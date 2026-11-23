@@ -21,7 +21,8 @@ export function PeoplePanel() {
   const caddie = c.owned.map(lifestyleById).find((l) => l?.kind === 'caddie');
   const people: Person[] = [
     { id: 'coach', name: 'Coach Dana', role: 'Swing coach', about: 'A better relationship means bigger training gains.', show: true },
-    { id: 'mom', name: 'Mom', role: 'Biggest fan', about: 'Keeps you grounded. She worries about money.', show: true },
+    // Baba, Ryan's father. The relationship keeps its original save key ('mom') so existing careers keep their hearts.
+    { id: 'mom', name: 'Baba (Dad)', role: 'Biggest fan, harshest critic', about: 'Blunt, loving, always on time. He worries about your putting.', show: true },
     { id: 'friend', name: 'Jess', role: 'Best friend', about: "Drags you out when you need it. Films your trick shots.", show: true },
     { id: 'rival', name: RIVAL.name, role: 'Rival', about: rival ? `Currently on the ${TOURS[rival.tour].name}. Head-to-head: ${Number(c.flags.h2hWins ?? 0)}–${Number(c.flags.h2hLosses ?? 0)}.` : '', show: true },
     { id: 'caddie', name: caddie?.name.replace(/^Hire .*\((.*)\)$/, '$1') ?? 'Caddie', role: 'Caddie', about: 'Reads greens and keeps you calm.', show: !!caddie },

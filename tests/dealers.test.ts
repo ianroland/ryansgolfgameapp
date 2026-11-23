@@ -80,3 +80,14 @@ describe('baked-in props are held back (author direction 22 Nov)', () => {
     }
   });
 });
+
+describe('dealer names and portraits', () => {
+  it('the craps dealer is Stick Lady, with 8 portraits; Velvet Vega keeps her name', async () => {
+    const { DEALER_NAMES } = await import('../src/ui/casino/DealerDialogue');
+    expect(DEALER_NAMES).toEqual({ velvet: 'Velvet Vega', craps: 'Stick Lady' });
+    const sp = decodePng(join(DIR, 'stick_portraits.png'));
+    const meta = JSON.parse(readFileSync(join(DIR, 'stick_portraits.json'), 'utf8'));
+    expect(meta.portraits).toHaveLength(8);
+    expect(sp.width).toBe(meta.cell[0] * 8);
+  });
+});

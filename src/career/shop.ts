@@ -33,7 +33,7 @@ export interface LifestyleItem {
 }
 
 export const GEAR: GearItem[] = [
-  { id: 'driver_starter', slot: 'driver', name: 'Hand-me-down Driver', price: 0, bonus: {}, minFame: 0, description: 'Mom found it at a garage sale. It works.' },
+  { id: 'driver_starter', slot: 'driver', name: 'Hand-me-down Driver', price: 0, bonus: {}, minFame: 0, description: 'Baba\'s old driver. It works. Don\'t lose it.' },
   { id: 'driver_tour', slot: 'driver', name: 'Tour Driver', price: 900, bonus: { power: 3 }, minFame: 0, description: 'Modern head, fitted shaft. +3 Power.' },
   { id: 'driver_pro', slot: 'driver', name: 'Pro Launch Driver', price: 4200, bonus: { power: 6, accuracy: 1 }, minFame: 20, description: 'Low spin, big carry. +6 Power, +1 Accuracy.' },
   { id: 'driver_elite', slot: 'driver', name: 'Elite Custom Driver', price: 12000, bonus: { power: 9, accuracy: 2 }, minFame: 45, description: 'Built to your swing by the tour van. +9 Power, +2 Accuracy.' },

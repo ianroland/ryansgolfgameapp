@@ -153,14 +153,14 @@ describe('casino money', () => {
     expect(await s.economy.getBalance(RYAN)).toBe(START - 2000);
   });
 
-  it('a slots jackpot unlocks the achievement; promising Mom closes the casino for a while', async () => {
+  it('a slots jackpot unlocks the achievement; promising Baba closes the casino for a while', async () => {
     const { s } = await newCareer();
     await s.casino.visit();
     await s.casino.wager('slots', 'jp', 'spin', 5);
     await s.casino.settle('slots', 'jp', 'spin', 2000, { jackpot: true });
     expect((await s.career.getCareer()).achievements.jackpot).toBeDefined();
     await setCareer(s, (c) => { c.flags.casinoBanUntil = c.season * 100 + c.week + 6; c.week += 1; });
-    expect(E.casinoBlocker(await s.career.getCareer())).toMatch(/Mom/);
+    expect(E.casinoBlocker(await s.career.getCareer())).toMatch(/Baba/);
   });
 });
 

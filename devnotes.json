@@ -28,7 +28,7 @@
         },
         {
           "tag": "improved",
-          "text": "New animated dealers: Velvet Vega deals blackjack and reacts to every hand, and the craps stickman calls the roll and reacts to the result."
+          "text": "New animated dealers: Velvet Vega deals blackjack and reacts to every hand, and Stick Lady calls the craps roll and reacts to the result."
         },
         {
           "tag": "improved",
@@ -77,6 +77,22 @@
         {
           "tag": "fixed",
           "text": "The Save window (and other pop-ups) always sit on top; activity cards no longer show through them."
+        },
+        {
+          "tag": "improved",
+          "text": "Every dealer now talks in the same dialogue box as Madame Monique, with a portrait: Velvet Vega at blackjack and Stick Lady (the craps dealer, previously called the stickman). Stick Lady's face changes with the roll."
+        },
+        {
+          "tag": "fixed",
+          "text": "Madame Monique is now the same size as the other dealers."
+        },
+        {
+          "tag": "changed",
+          "text": "Ryan's dad, Baba, replaces Mom in the People tab, the weekly \"Call Baba\" activity and the family story events. Your existing relationship carries over."
+        },
+        {
+          "tag": "fixed",
+          "text": "Recent results on the Career tab: the tour badge sits on its own line above the event name instead of being squeezed beside it."
         },
         {
           "tag": "changed",

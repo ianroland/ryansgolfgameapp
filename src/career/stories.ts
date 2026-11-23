@@ -60,11 +60,11 @@ export const STORIES: Story[] = [
   },
   {
     id: 'mom_car', weight: 1, when: (c) => c.season <= 3,
-    title: "Mom's car broke down",
-    body: () => '"It\'s the transmission, honey. I\'ll figure something out — don\'t worry about it."',
+    title: "Baba's mower broke down",
+    body: () => '"The reel mower is finished. Thirty years. I\'ll fix it myself. Don\'t worry about it."',
     choices: [
-      { label: 'Send her $500', hint: '−$500, Mom ♥♥, Form +2', effects: { money: -500, rel: { mom: 12 }, form: 2 }, result: 'She cries a little on the phone. Worth every cent.' },
-      { label: "I can't right now", hint: 'Mom ♥−, Form −2', effects: { rel: { mom: -6 }, form: -2 }, result: 'She says she understands. You feel lousy all week.' },
+      { label: 'Send him $500', hint: '−$500, Baba ♥♥, Form +2', effects: { money: -500, rel: { mom: 12 }, form: 2 }, result: 'He says he didn\'t need it. Then he buys the mower. Worth every cent.' },
+      { label: "I can't right now", hint: 'Baba ♥−, Form −2', effects: { rel: { mom: -6 }, form: -2 }, result: 'He says it\'s fine. You feel lousy all week.' },
     ],
   },
   {
@@ -82,7 +82,7 @@ export const STORIES: Story[] = [
     title: 'The local paper calls',
     body: () => 'The Dry Creek Ledger wants a feature: "Hometown Girl Chasing the Tour."',
     choices: [
-      { label: 'Do the interview', hint: 'Fame +4, −8 Energy', effects: { fame: 4, energy: -8, rel: { fans: 6 } }, result: 'You make the front of the sports section. Mom buys ten copies.' },
+      { label: 'Do the interview', hint: 'Fame +4, −8 Energy', effects: { fame: 4, energy: -8, rel: { fans: 6 } }, result: 'You make the front of the sports section. Baba buys ten copies, then circles your three-putt.' },
       { label: 'Not right now', hint: 'Fame −1', effects: { fame: -1 }, result: 'The reporter sighs and writes about high-school volleyball instead.' },
     ],
   },
@@ -146,8 +146,8 @@ export const STORIES: Story[] = [
     title: 'College scholarship offer',
     body: () => 'Coastal State University offers a full golf scholarship: coaching, travel, and a stipend.',
     choices: [
-      { label: 'Accept (stay amateur)', hint: '+$3,000, +2 to every skill, Mom ♥♥', effects: { money: 3000, stats: { power: 2, accuracy: 2, shortGame: 2, putting: 2 }, rel: { mom: 15 }, flags: { college: true } }, result: 'Mom frames the letter. Turning pro can wait — a little.' },
-      { label: "Decline — I'm going pro", hint: 'Form +2, Mom ♥−', effects: { form: 2, rel: { mom: -5 }, flags: { declinedCollege: true } }, result: 'Bold. Your coach nods slowly.' },
+      { label: 'Accept (stay amateur)', hint: '+$3,000, +2 to every skill, Baba ♥♥', effects: { money: 3000, stats: { power: 2, accuracy: 2, shortGame: 2, putting: 2 }, rel: { mom: 15 }, flags: { college: true } }, result: 'Baba frames the letter and hangs it in the shed. Turning pro can wait — a little.' },
+      { label: "Decline — I'm going pro", hint: 'Form +2, Baba ♥−', effects: { form: 2, rel: { mom: -5 }, flags: { declinedCollege: true } }, result: 'Bold. Your coach nods slowly.' },
     ],
   },
   {
@@ -202,11 +202,11 @@ export const STORIES: Story[] = [
   },
   {
     id: 'mom_visits', weight: 1, when: () => true,
-    title: 'Mom flies in',
-    body: () => 'Surprise! Mom booked a cheap flight to watch you practice.',
+    title: 'Baba drives in',
+    body: () => 'Surprise! Baba drove four hours to watch you practice.',
     choices: [
-      { label: 'Show her around', hint: 'Mom ♥♥, Form +3, −5 Energy', effects: { rel: { mom: 10 }, form: 3, energy: -5 }, result: 'She tells everyone at the range you\'re her daughter.' },
-      { label: "I'm too busy", hint: 'Mom ♥−−', effects: { rel: { mom: -8 } }, result: 'She goes to the outlet mall alone.' },
+      { label: 'Show him around', hint: 'Baba ♥♥, Form +3, −5 Energy', effects: { rel: { mom: 10 }, form: 3, energy: -5 }, result: 'He tells everyone at the range that you\'re his kid. Then he critiques the practice green.' },
+      { label: "I'm too busy", hint: 'Baba ♥−−', effects: { rel: { mom: -8 } }, result: 'He drives the four hours home without stopping.' },
     ],
   },
   {
@@ -237,16 +237,16 @@ STORIES.push(
   {
     id: 'casino_mom', weight: 4,
     when: (c) => Number(c.flags.casinoWagered ?? 0) - Number(c.flags.casinoReturned ?? 0) >= 3000 && Number(c.flags.casinoMomTalk ?? 0) < Number(c.flags.casinoVisits ?? 0) - 2,
-    title: 'Mom heard about the casino',
-    body: (c) => `"Honey, Jess says you've been at Desert Palms a lot. You're down $${(Number(c.flags.casinoWagered ?? 0) - Number(c.flags.casinoReturned ?? 0)).toLocaleString()}. Is everything okay?"`,
+    title: 'Baba heard about the casino',
+    body: (c) => `"Jess says you've been at Desert Palms a lot. You're down $${(Number(c.flags.casinoWagered ?? 0) - Number(c.flags.casinoReturned ?? 0)).toLocaleString()}. I don't understand cards. I understand losing. Is everything okay?"`,
     choices: [
       {
-        label: "You're right. I'll take a break.", hint: 'Mom ♥♥, Form +2, no casino for 6 weeks',
+        label: "You're right. I'll take a break.", hint: 'Baba ♥♥, Form +2, no casino for 6 weeks',
         effects: (c) => ({ rel: { mom: 10 }, form: 2, flags: { casinoBanUntil: c.season * 100 + c.week + 6, casinoMomTalk: Number(c.flags.casinoVisits ?? 0) } }),
-        result: 'She sounds relieved. You feel lighter too.',
+        result: 'He says "Good." Then, quieter: "Good." You feel lighter too.',
       },
       {
-        label: "It's fine, Mom. I've got it.", hint: 'Mom ♥−−, Form −2',
+        label: "It's fine, Baba. I've got it.", hint: 'Baba ♥−−, Form −2',
         effects: (c) => ({ rel: { mom: -10 }, form: -2, flags: { casinoMomTalk: Number(c.flags.casinoVisits ?? 0) } }),
         result: 'There\'s a long pause on the line.',
       },

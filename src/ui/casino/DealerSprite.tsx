@@ -1,6 +1,6 @@
 /**
  * Animated casino dealers (presentation only): Velvet Vega at blackjack and the
- * craps stickman. Each uses a head-aligned atlas cut from the supplied sprite
+ * craps dealer, Stick Lady. Each uses a head-aligned atlas cut from the supplied sprite
  * sheets (art/source_sheets/casino/), with a manifest of animations. One-shot
  * reactions play once and return to idle; nothing here touches game logic.
  */

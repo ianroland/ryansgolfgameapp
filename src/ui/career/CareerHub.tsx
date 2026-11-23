@@ -292,11 +292,12 @@ function NewsCard() {
           <h3 className="sub-title">Recent results</h3>
           <ul className="list compact">
             {c.recent.slice(0, 5).map((r) => (
-              <li key={r.tournamentId} className="list-row">
-                <span>
-                  <TourPill tour={r.tour} /> {r.name}
+              <li key={r.tournamentId} className="list-row recent-row">
+                <span className="recent-event">
+                  <TourPill tour={r.tour} />
+                  <span className="recent-name">{r.name}</span>
                 </span>
-                <span>
+                <span className="recent-score">
                   <b>{r.posLabel}</b> <span className="muted">{r.toPar === 0 ? 'E' : r.toPar > 0 ? `+${r.toPar}` : r.toPar}</span>
                   {r.prize > 0 && <span className="pos"> {shortMoney(r.prize)}</span>}
                 </span>

@@ -136,7 +136,7 @@ export const ACTIONS: ActionDef[] = [
   { id: 'mental', label: 'Visualisation', group: 'Train', energy: -8, describe: (c) => `Breathing and pre-shot routine. +${(trainingGain(c, 'nerve') * 0.9).toFixed(2)} Nerve.` },
   { id: 'rest', label: 'Rest Day', group: 'Life', energy: 25, describe: () => 'Sleep in, stretch, eat well. +25 Energy.' },
   { id: 'social', label: 'Hang with Jess', group: 'Life', energy: 6, describe: () => 'Tacos and bad movies. +Form, Jess ♥, +6 Energy.' },
-  { id: 'call_mom', label: 'Call Mom', group: 'Life', energy: 3, describe: () => 'She always knows what to say. Mom ♥, +Form.' },
+  { id: 'call_mom', label: 'Call Baba', group: 'Life', energy: 3, describe: () => 'He tells you what you did wrong, then that he\'s proud. Baba ♥, +Form.' },
   {
     id: 'content', label: 'Post a Video', group: 'Life', energy: -6, describe: () => 'Trick shots and swing tips. +Fame, Fans ♥.',
     available: (c) => (c.fame >= 4 ? null : 'Needs a little fame first'),
@@ -200,7 +200,7 @@ export function doAction(prev: CareerState, id: ActionId): Outcome {
   } else if (id === 'call_mom') {
     c.form = clamp(c.form + 1, -10, 10);
     rel(c, 'mom', 5);
-    message = 'Mom ♥ · Form +1';
+    message = 'Baba ♥ · Form +1';
   } else if (id === 'content') {
     const r = rng(hashString(`content:${c.season}:${c.week}:${n}`) ^ Number(c.flags.seed ?? 0));
     const viral = r.next() < 0.12;
@@ -234,7 +234,7 @@ export function casinoBlocker(c: CareerState): string | null {
   if (c.flags.casinoVisit === casinoWeekKey(c)) return null;
   if (c.active) return 'Finish your tournament first';
   if (c.pendingStory) return 'Something needs your attention first';
-  if (Number(c.flags.casinoBanUntil ?? 0) > c.season * 100 + c.week) return 'You promised Mom you\'d stay away for a while';
+  if (Number(c.flags.casinoBanUntil ?? 0) > c.season * 100 + c.week) return 'You promised Baba you\'d stay away for a while';
   if (c.actionsUsed >= ACTIONS_PER_WEEK) return 'No time left this week';
   if (c.energy < CASINO_ENERGY) return 'Too tired';
   return null;
@@ -534,7 +534,7 @@ export function advanceWeek(prev: CareerState, ctx: WeekContext): Outcome {
   if (rent < ctx.livingCost) {
     c.form = clamp(c.form - 3, -10, 10);
     rel(c, 'mom', -2);
-    inbox(c, 'Behind on rent', "You couldn't cover this week's bills. Mom spotted you, but she's worried. Work a shift or two.", 'bad');
+    inbox(c, 'Behind on rent', "You couldn't cover this week's bills. Baba spotted you, and asked twice if you're eating. Work a shift or two.", 'bad');
   }
 
   c.energy = clamp(c.energy + energyRegen(c, ctx.homeEnergy), 0, 100);

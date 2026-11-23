@@ -19,6 +19,7 @@ import { Greyhounds } from './Greyhounds';
 import { DialogueBox, MoniqueSprite, REACH_MS, useMonique } from './Monique';
 import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
 import { BigWinOverlay, celebrateWin } from './BigWin';
+import { DEALER_NAMES, DealerDialogue } from './DealerDialogue';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
 import { pendingRace } from '../../services/casinoService';
 
@@ -58,16 +59,11 @@ function BetChip({ amount, className }: { amount: number; className?: string }) 
   );
 }
 
-/** A dealer behind the table (animated sprite), with a speech bubble for reactions. */
-function Dealer({ who, name, line, anim }: { who: 'velvet' | 'craps'; name: string; line: string | null; anim: DealerAnim }) {
+/** A dealer behind the table (animated sprite). What they say goes in the dialogue box below the table. */
+function Dealer({ who, anim }: { who: 'velvet' | 'craps'; anim: DealerAnim }) {
   return (
     <div className="table-dealer" data-anim={anim}>
-      {line && (
-        <p className="dealer-line" aria-live="polite" key={line} data-testid="dealer-line">
-          <b>{name}:</b> {line}
-        </p>
-      )}
-      <DealerSprite who={who} anim={anim} height={150} name={name} />
+      <DealerSprite who={who} anim={anim} height={150} name={DEALER_NAMES[who]} />
     </div>
   );
 }
@@ -167,7 +163,7 @@ function Blackjack() {
     <section className="hub-card casino-game bj-game">
       <h2 className="hub-title">Blackjack <span className="muted">Pays 3:2 · dealer stands on 17 · ${BJ_LIMITS.min}–${BJ_LIMITS.max}</span></h2>
       <div className="table-stage">
-        <Dealer who="velvet" name="Velvet" line={line} anim={velvet.anim} />
+        <Dealer who="velvet" anim={velvet.anim} />
         <div className="felt" style={{ backgroundImage: `url(${felt.url})`, aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="bj-felt">
           <div className="felt-dealer">
             {table.dealer.length > 0 && <span className="felt-total">Dealer {handValue(dealerShown).total}</span>}
@@ -192,6 +188,7 @@ function Blackjack() {
           </div>
         </div>
       </div>
+      <DealerDialogue who="velvet" line={line} anim={velvet.anim} />
 
       {playing ? (
         <div className="btn-row casino-actions">
@@ -354,7 +351,7 @@ const BET_LABELS: Record<BetKey, { name: string; desc: string }> = {
 /** Where each point box sits on the drawn table (percent across, measured from the gold box lines on craps_table_v2). */
 const POINT_X: Record<number, number> = { 4: 31.9, 5: 39.2, 6: 46.5, 8: 53.9, 9: 61.2, 10: 68.8 };
 
-/** The stickman's call for a roll (flavour only; the result comes from the craps rules). */
+/** Stick Lady's call for a roll (flavour only; the result comes from the craps rules). */
 function stickCall(before: number | null, after: number | null, sum: number): string {
   if (before === null) {
     if (sum === 7 || sum === 11) return sum === 11 ? 'Yo-leven! Front line winner!' : 'Seven! Front line winner!';
@@ -441,7 +438,7 @@ function Craps() {
         <span className={`puck ${table.point ? 'on' : ''}`}>{table.point ? `ON ${table.point}` : 'OFF'}</span>
       </h2>
       <div className="table-stage">
-        <Dealer who="craps" name="Stickman" line={call} anim={stick.anim} />
+        <Dealer who="craps" anim={stick.anim} />
         <div className="felt craps-felt" style={{ backgroundImage: `url(${felt.url})`, aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="craps-felt">
           {table.point && <span className="felt-puck" style={{ left: `${POINT_X[table.point]}%` }} data-testid="craps-puck">ON</span>}
           <div className={`dice-area ${rolling ? 'rolling' : ''}`} key={rolls} data-testid="craps-dice">
@@ -451,6 +448,7 @@ function Craps() {
           {!rolling && rolls > 0 && <span className="felt-sum" key={`s${rolls}`}>{dice[0] + dice[1]}</span>}
         </div>
       </div>
+      <DealerDialogue who="craps" line={call} anim={stick.anim} />
       <div className="craps-bets">
         {(Object.keys(BET_LABELS) as BetKey[]).map((k) => {
           const block = betBlocker(table, k, chip);

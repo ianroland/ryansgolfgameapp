@@ -1553,3 +1553,15 @@ kbd { display: inline-block; min-width: 22px; padding: 0 6px; font-family: var(-
 .bj-game .felt-hands.n2 .felt-hand, .bj-game .felt-hands.n3 .felt-hand, .bj-game .felt-hands.n4 .felt-hand { flex-direction: column; align-items: center; }
 .bj-game .felt-hands.n2 .felt-meta, .bj-game .felt-hands.n3 .felt-meta, .bj-game .felt-hands.n4 .felt-meta { flex-direction: row; align-items: center; }
 .bj-game .table-stage { margin-bottom: 6px; }
+
+/* Dealer dialogue boxes (Velvet Vega, Stick Lady): same frame as Madame Monique's. */
+.rpg-box.dealer { cursor: default; margin-top: 10px; }
+.rpg-box.dealer .rpg-text { min-height: 1.4em; }
+.dealer-portrait { background-color: #3a1a4a; }
+
+/* Career hub: recent results. Badge on its own line above the event name, score on the right. */
+.recent-row { align-items: center; gap: 12px; }
+.recent-event { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-width: 0; }
+.recent-event > .pill { padding: 3px 10px; line-height: 1.25; }
+.recent-name { overflow-wrap: anywhere; }
+.recent-score { flex: none; text-align: right; white-space: nowrap; }

@@ -51,7 +51,7 @@ export const CATALOG: Record<string, CatalogItem> = Object.fromEntries(
     decor('decor_plant', 'Fiddle-Leaf Fig', 120, 'plant', 'plant', 1, 'Needs light, water and compliments.'),
     decor('art_print', 'Seaside Print', 200, 'wall_art', 'painting_0', 1, 'A framed print of a links course at dusk.'),
     decor('decor_lamp', 'Floor Lamp', 400, 'lamp', 'lamp', 2, 'Soft light for late-night swing videos.'),
-    decor('decor_sofa', 'Leather Sofa', 2_200, 'seating', 'sofa', 2, 'Room for Jess, Mom and the trophy-room tour.'),
+    decor('decor_sofa', 'Leather Sofa', 2_200, 'seating', 'sofa', 2, 'Room for Jess, Baba and the trophy-room tour.'),
     decor('decor_bookshelf', 'Bookshelf', 1_500, 'shelf', 'bookshelf', 2, 'Golf books, scorecards and souvenirs.'),
     decor('art_canvas', 'Original Canvas', 8_000, 'wall_art', 'painting_1', 3, 'An original painting by a local artist.'),
   ].map((i) => [i.id, i]),
