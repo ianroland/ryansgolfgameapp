@@ -9,6 +9,7 @@ import velvetPortrait from '../../assets/casino/velvet_portrait.png';
 import stickPortraits from '../../assets/casino/stick_portraits.png';
 import stickMeta from '../../assets/casino/stick_portraits.json';
 import type { DealerAnim } from './DealerSprite';
+import { TierChip } from './Tipping';
 
 export const DEALER_NAMES = { velvet: 'Velvet Vega', craps: 'Stick Lady' } as const;
 
@@ -31,7 +32,14 @@ function Portrait({ who, anim }: { who: 'velvet' | 'craps'; anim: DealerAnim }) 
   );
 }
 
-export function DealerDialogue({ who, line, anim }: { who: 'velvet' | 'craps'; line: string | null; anim: DealerAnim }) {
+/** A dealer line: plain text (existing lines) or a draft line awaiting approval. */
+export type DealerLine = string | { text: string; draft: boolean };
+
+const NPC_OF = { velvet: 'velvet_vega', craps: 'stick_lady' } as const;
+
+export function DealerDialogue({ who, line: raw, anim }: { who: 'velvet' | 'craps'; line: DealerLine | null; anim: DealerAnim }) {
+  const line = raw === null ? null : typeof raw === 'string' ? raw : raw.text;
+  const draft = raw !== null && typeof raw !== 'string' && raw.draft;
   const [typed, setTyped] = useState(0);
   useEffect(() => setTyped(0), [line]);
   useEffect(() => {
@@ -48,7 +56,11 @@ export function DealerDialogue({ who, line, anim }: { who: 'velvet' | 'craps'; l
     <div className={`rpg-box dealer ${who}`} aria-live="polite" data-testid="dealer-line" onClick={() => setTyped(line.length)}>
       <Portrait who={who} anim={anim} />
       <div className="rpg-body">
-        <p className="rpg-name">{DEALER_NAMES[who]}</p>
+        <p className="rpg-name">
+          {DEALER_NAMES[who]}
+          <TierChip npcId={NPC_OF[who]} />
+          {draft && <span className="rpg-draft" title="Dialogue awaiting Script Room approval">Draft line</span>}
+        </p>
         <p className="rpg-text">{line.slice(0, typed)}<span className="rpg-caret" aria-hidden>{done ? '' : '▌'}</span></p>
       </div>
     </div>

@@ -10,6 +10,7 @@ import { DomainError } from '../core/errors';
 import { newId } from '../core/ids';
 import type { EconomyTransaction, PlayerId, TransactionType } from '../core/types';
 import type { AppDB } from '../persistence/db';
+import { deriveFromLedger, rulesReached } from '../expansion/unlocks';
 import { BalanceSnapshotSchema, EconomyTransactionSchema } from '../persistence/schemas';
 
 export interface PostRequest {
@@ -30,9 +31,12 @@ export interface PostResult {
 export class EconomyService {
   constructor(private readonly db: AppDB) {}
 
-  /** Tables a caller must include if it posts inside its own transaction. */
+  /**
+   * Tables a caller must include if it posts inside its own transaction. Includes the
+   * peak-bankroll milestone and casino unlock tables, which every post updates.
+   */
   get tables() {
-    return [this.db.profiles, this.db.ledger, this.db.balances];
+    return [this.db.profiles, this.db.ledger, this.db.balances, this.db.milestones, this.db.unlocks];
   }
 
   /**
@@ -71,8 +75,32 @@ export class EconomyService {
       await this.db.ledger.add(transaction);
       await this.db.balances.put({ ownerId: req.ownerId, balance: balanceAfter, lastTransactionId: transaction.id, seq });
       await this.db.profiles.update(req.ownerId, { ledgerSeq: seq });
+      await this.trackMilestones(transaction);
       return { transaction, replayed: false };
     });
+  }
+
+  /**
+   * Peak bankroll and permanent casino unlocks (White Buffalo at $100,000, Morongo Sky at
+   * $1,000,000; CONFIRMED). Runs inside every post, so every income source counts, and an
+   * unlock is written in the same transaction as the entry that earned it. Never removes one.
+   */
+  private async trackMilestones(t: EconomyTransaction): Promise<void> {
+    const m = await this.db.milestones.get(t.ownerId);
+    if (!m) {
+      // First post on a save from before peaks were tracked: recognise its history once.
+      const d = deriveFromLedger(await this.db.ledger.where('ownerId').equals(t.ownerId).toArray(), t.ownerId);
+      if (d.milestone) await this.db.milestones.put(d.milestone);
+      for (const u of d.unlocks) {
+        if (!(await this.db.unlocks.get(u.id))) await this.db.unlocks.add(u.txnId === t.id ? { ...u, trigger: 'live' } : u);
+      }
+      return;
+    }
+    if (t.balanceAfter > m.peakBalance) await this.db.milestones.put({ ownerId: t.ownerId, peakBalance: t.balanceAfter, peakTxnId: t.id, peakAt: t.timestamp });
+    for (const r of rulesReached(t.balanceAfter)) {
+      if (await this.db.unlocks.get(r.id)) continue;
+      await this.db.unlocks.add({ id: r.id, ownerId: t.ownerId, at: t.timestamp, trigger: 'live', txnId: t.id, threshold: r.threshold, balance: t.balanceAfter });
+    }
   }
 
   async getBalance(ownerId: PlayerId): Promise<number> {

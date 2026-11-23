@@ -1,4 +1,5 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { LOCATIONS } from '../expansion/locations';
 import { isDomainError } from '../core/errors';
 import { PLAYER_ID } from '../core/ids';
 import type { GameServices } from '../services';
@@ -53,6 +54,21 @@ export function GameProvider({ services, initial, ephemeral = false, children }:
       }),
     [services, push],
   );
+  // Casino unlocks (White Buffalo at $100,000, Morongo Sky at $1,000,000) are written by the ledger
+  // in the same transaction as the money that earned them; announce new ones once they're loaded.
+  const unlockIds = state.expansion.unlocks.map((u) => u.id).sort().join(',');
+  const knownUnlocks = useRef<string | null>(null);
+  useEffect(() => {
+    const prev = knownUnlocks.current;
+    knownUnlocks.current = unlockIds;
+    if (prev === null) return; // first load: nothing new to announce
+    const before = new Set(prev ? prev.split(',') : []);
+    for (const id of unlockIds ? unlockIds.split(',') : []) {
+      if (before.has(id)) continue;
+      const loc = LOCATIONS.find((l) => l.unlock === id);
+      if (loc) push({ id: `unlock-${id}`, kind: 'info', title: `New casino unlocked: ${loc.name}`, body: 'Your bank reached a new high. This unlock is permanent.' });
+    }
+  }, [unlockIds, push]);
   // Career Legacy: season-end and fame milestones don't come from a tournament result, so they are
   // recognized when the season or the fame level changes (idempotent; see LegacyService.reconcile).
   const legacySeason = state.career.season;

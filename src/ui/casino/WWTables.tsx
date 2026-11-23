@@ -25,6 +25,7 @@ import { formatMoney } from '../format';
 import { celebrateWin } from './BigWin';
 import { BetChip, PlayingCard } from './TableBits';
 import meta from '../../assets/casino/ww/ww_meta.json';
+import { TierChip, TipTray, type TipReaction } from './Tipping';
 
 const urls = import.meta.glob<string>('../../assets/casino/ww/*.png', { eager: true, query: '?url', import: 'default' });
 export const wwArt = (name: string) => urls[`../../assets/casino/ww/${name}.png`];
@@ -122,6 +123,8 @@ interface Chat<E extends WWEvent> {
   level: ChatLevel;
   setLevel: (l: ChatLevel) => void;
   say: (event: E) => void;
+  /** Shows a specific line (tip reactions) with a face and pose. */
+  sayLine: (line: WWLine, face: string, pose: string) => void;
   setPose: (p: string, holdMs?: number) => void;
 }
 
@@ -157,7 +160,15 @@ function useDealerChat<E extends WWEvent>(who: WWDealer, faces: Record<E, string
     }
   };
   useEffect(() => () => window.clearTimeout(back.current), []);
-  return { line, face, pose, level, setLevel, say, setPose };
+  const sayLine = useCallback(
+    (l: WWLine, f: string, p: string) => {
+      setFace(f);
+      setPose(p);
+      setLine(l);
+    },
+    [setPose],
+  );
+  return { line, face, pose, level, setLevel, say, sayLine, setPose };
 }
 
 function WWDialogue({ who, chat }: { who: WWDealer; chat: Chat<WWEvent> }) {
@@ -184,6 +195,7 @@ function WWDialogue({ who, chat }: { who: WWDealer; chat: Chat<WWEvent> }) {
       <div className="rpg-body">
         <p className="rpg-name">
           {WW_NAMES[who]}
+          <TierChip npcId={who} />
           {line && line.status !== 'approved' && <span className="ww-draft" title="Draft dialogue, pending Script Room approval">Draft</span>}
           <button
             type="button"
@@ -374,6 +386,7 @@ export function Baccarat() {
         )}
       </WWStage>
       <WWDialogue who="waifu" chat={chat as unknown as Chat<WWEvent>} />
+      <TipTray npcId="waifu" disabled={busy || !revealed} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'delighted' : 'smile', 'present')} />
       {notice && <p className="ww-notice" data-testid="bac-notice">{notice}</p>}
       <ChipPicker chip={chip} setChip={setChip} note={<>Tap Player, Banker or Tie to place <b>{formatMoney(chip)}</b> · on the table <b>{formatMoney(staked)}</b></>} />
       <div className="btn-row casino-actions">
@@ -575,6 +588,7 @@ export function ThreeCard() {
         )}
       </WWStage>
       <WWDialogue who="winston" chat={chat as unknown as Chat<WWEvent>} />
+      <TipTray npcId="winston" disabled={busy || !!pending} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'laugh' : 'grin', 'present')} />
       {r && showDealer && (
         <ul className="tc-breakdown" data-testid="tc-breakdown">
           <li>Ante {r.outcome === 'fold' ? 'lost (folded)' : r.anteReturn ? `returns ${formatMoney(r.anteReturn)}` : 'lost'}</li>

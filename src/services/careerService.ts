@@ -5,6 +5,8 @@
  * a single IndexedDB transaction that also posts the money it produced, so
  * career state and the ledger always move together.
  */
+import type { UnlockRecord } from '../expansion/unlocks';
+import type { LocationState, NpcState } from '../npc/types';
 import { achievementById } from '../career/achievements';
 import { gameDate, PLAYER_ID, PLAYER_NAME, START_MONEY } from '../career/config';
 import * as engine from '../career/engine';
@@ -47,6 +49,15 @@ export interface ClubhouseState {
   trophies: TrophyInstance[];
   placements: TrophyPlacement[];
   career: CareerState;
+  /** Casino Secrets & Rivalries: unlocks, peak bankroll, dealer relationships, lobby state. */
+  expansion: ExpansionView;
+}
+
+export interface ExpansionView {
+  unlocks: UnlockRecord[];
+  peakBalance: number;
+  npcs: NpcState[];
+  locations: LocationState[];
 }
 
 export interface TrophyHistory {
@@ -88,6 +99,12 @@ export class CareerService {
       const placements = (await this.db.trophyPlacements.toArray()).map((r) => validateRow('trophyPlacements', r)).filter((p) => trophyIds.has(p.trophyInstanceId));
       const career = validateRow('careers', await this.db.careers.get('career')) as unknown as CareerState;
       trophies.sort((a, b) => a.earnedAt.localeCompare(b.earnedAt));
+      const expansion: ExpansionView = {
+        unlocks: (await this.db.unlocks.where('ownerId').equals(playerId).toArray()).map((r) => validateRow('unlocks', r) as UnlockRecord),
+        peakBalance: (await this.db.milestones.get(playerId))?.peakBalance ?? 0,
+        npcs: (await this.db.npcState.toArray()).map((r) => validateRow('npcState', r) as NpcState),
+        locations: (await this.db.locationState.toArray()).map((r) => validateRow('locationState', r) as LocationState),
+      };
       return {
         profile,
         balance: await this.economy.getBalance(playerId),
@@ -98,6 +115,7 @@ export class CareerService {
         trophies,
         placements,
         career,
+        expansion,
       };
     });
   }

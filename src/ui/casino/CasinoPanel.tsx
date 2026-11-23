@@ -21,7 +21,10 @@ import { Baccarat, ThreeCard } from './WWTables';
 import { DialogueBox, MoniqueSprite, REACH_MS, useMonique } from './Monique';
 import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
 import { BigWinOverlay, celebrateWin } from './BigWin';
-import { DEALER_NAMES, DealerDialogue } from './DealerDialogue';
+import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
+import { TipTray } from './Tipping';
+import { CasinoLobby } from './CasinoLobby';
+import { LOCATIONS, type CasinoGameId } from '../../expansion/locations';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
 import { pendingRace } from '../../services/casinoService';
 
@@ -31,7 +34,7 @@ import { pendingRace } from '../../services/casinoService';
  * the existing games.
  */
 
-type Game = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds' | 'baccarat' | 'threecard';
+type Game = CasinoGameId;
 
 const CHIPS = [5, 10, 25, 100, 500];
 
@@ -79,7 +82,7 @@ function Blackjack() {
   const [bet, setBet] = useState(25);
   const [round, setRound] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [line, setLine] = useState<string | null>('Velvet Vega. I deal, you decide. Place a bet.');
+  const [line, setLine] = useState<DealerLine | null>('Velvet Vega. I deal, you decide. Place a bet.');
   const settled = useRef<string | null>(null);
   const felt = casinoArt('blackjack_table');
   const velvet = useDealerAnim();
@@ -165,6 +168,14 @@ function Blackjack() {
         </div>
       </div>
       <DealerDialogue who="velvet" line={line} anim={velvet.anim} />
+      <TipTray
+        npcId="velvet_vega"
+        disabled={busy || playing}
+        onTipped={(r) => {
+          setLine({ text: r.line.text, draft: r.line.status !== 'approved' });
+          velvet.play('win');
+        }}
+      />
 
       {playing ? (
         <div className="btn-row casino-actions">
@@ -347,7 +358,7 @@ function Craps() {
   const [rolling, setRolling] = useState(false);
   const [rolls, setRolls] = useState(0);
   const [log, setLog] = useState<string[]>(['Place a Pass or Don\'t Pass bet and roll.']);
-  const [call, setCall] = useState<string | null>('New shooter coming out. Get your bets down.');
+  const [call, setCall] = useState<DealerLine | null>('New shooter coming out. Get your bets down.');
   const roundRef = useRef<string | null>(null);
   const partRef = useRef(0);
   const [busy, setBusy] = useState(false);
@@ -425,6 +436,14 @@ function Craps() {
         </div>
       </div>
       <DealerDialogue who="craps" line={call} anim={stick.anim} />
+      <TipTray
+        npcId="stick_lady"
+        disabled={busy || rolling}
+        onTipped={(r) => {
+          setCall({ text: r.line.text, draft: r.line.status !== 'approved' });
+          stick.play('call');
+        }}
+      />
       <div className="craps-bets">
         {(Object.keys(BET_LABELS) as BetKey[]).map((k) => {
           const block = betBlocker(table, k, chip);
@@ -575,6 +594,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
         </div>
       </div>
       {monique.item && !spinning && !reaching && <DialogueBox item={monique.item} more={monique.more} onNext={monique.next} />}
+      <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />
       <div className="chip-rack">
         {CHIPS.map((c) => (
           <button key={c} className={`chip chip-${c} ${chip === c ? 'on' : ''}`} onClick={() => setChip(c)} aria-pressed={chip === c}>{c}</button>
@@ -595,6 +615,8 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
 }
 
 // ───────────────────────── Casino floor ─────────────────────────
+
+const DESERT_PALMS = LOCATIONS.find((l) => l.id === 'desert_palms')!;
 
 export function CasinoPanel() {
   const { state, services, run, notify } = useGame();
@@ -630,6 +652,8 @@ export function CasinoPanel() {
         </dl>
       </section>
 
+      <CasinoLobby onPlayHere={() => document.getElementById('casino-games')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} />
+
       {!inside ? (
         <section className="hub-card casino-door">
           <img className="door-art" src={exterior.url} alt="The Desert Palms entrance, palms and fountains lit up at night" draggable={false} />
@@ -652,14 +676,10 @@ export function CasinoPanel() {
         </section>
       ) : (
         <>
-          <nav className="subtabs casino-tabs" aria-label="Casino games">
-            <button className={game === 'blackjack' ? 'on' : ''} onClick={() => setGame('blackjack')} data-testid="casino-blackjack">Blackjack</button>
-            <button className={game === 'slots' ? 'on' : ''} onClick={() => setGame('slots')} data-testid="casino-slots">Slots</button>
-            <button className={game === 'craps' ? 'on' : ''} onClick={() => setGame('craps')} data-testid="casino-craps">Craps</button>
-            <button className={game === 'roulette' ? 'on' : ''} onClick={() => setGame('roulette')} data-testid="casino-roulette">Roulette</button>
-            <button className={game === 'baccarat' ? 'on' : ''} onClick={() => setGame('baccarat')} data-testid="casino-baccarat">Baccarat</button>
-            <button className={game === 'threecard' ? 'on' : ''} onClick={() => setGame('threecard')} data-testid="casino-threecard">Three Card</button>
-            <button className={game === 'greyhounds' ? 'on' : ''} onClick={() => setGame('greyhounds')} data-testid="casino-greyhounds">Greyhounds</button>
+          <nav className="subtabs casino-tabs" id="casino-games" aria-label="Casino games">
+            {DESERT_PALMS.games.map((g) => (
+              <button key={g.id} className={game === g.id ? 'on' : ''} onClick={() => setGame(g.id)} data-testid={`casino-${g.id}`}>{g.label}</button>
+            ))}
           </nav>
           {/* Games stay mounted so a hand in progress survives switching. */}
           <div hidden={game !== 'blackjack'}><Blackjack /></div>

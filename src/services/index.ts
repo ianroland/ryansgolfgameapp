@@ -16,6 +16,8 @@ import { TrophyDisplayService } from './trophyDisplayService';
 import { registerTrophyAwards } from './trophyAwardService';
 import { RecordsService, registerAlbatrossRecords } from './recordsService';
 import { LegacyService, registerLegacyAwards } from './legacyService';
+import { ExpansionService } from './expansionService';
+import { NpcService } from './npcService';
 
 export interface GameServices {
   db: AppDB;
@@ -30,6 +32,8 @@ export interface GameServices {
   saves: SaveService;
   records: RecordsService;
   legacy: LegacyService;
+  expansion: ExpansionService;
+  npc: NpcService;
 }
 
 export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOptions): GameServices {
@@ -55,5 +59,7 @@ export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOpt
     saves: new SaveService(db),
     records: new RecordsService(db),
     legacy: new LegacyService(db),
+    expansion: new ExpansionService(db),
+    npc: new NpcService(db, economy),
   };
 }

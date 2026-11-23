@@ -30,6 +30,7 @@ export async function importSaveFile(services: GameServices, file: File) {
   await services.saves.importSave(data);
   await services.records.reconcile();
   await services.legacy.reconcile();
+  await services.expansion.reconcile();
 }
 
 /** Erases the career and reloads. `autostart` skips the title screen once. */

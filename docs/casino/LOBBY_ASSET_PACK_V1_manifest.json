@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "source": "approved casino lobby concept image generated 2026-11-23",
+  "status": "prototype extraction / UI integration starter; NOT final production-ready painted layers",
+  "cards": [
+    {
+      "id": "desert_palms",
+      "art": "desert_palms_art_1200x520.png",
+      "full_reference": "desert_palms_full_card_reference.png",
+      "locked_overlay": null,
+      "dimensions": [
+        1200,
+        520
+      ]
+    },
+    {
+      "id": "white_buffalo",
+      "art": "white_buffalo_art_1200x520.png",
+      "full_reference": "white_buffalo_full_card_reference.png",
+      "locked_overlay": "white_buffalo_locked_overlay_1200x520.png",
+      "dimensions": [
+        1200,
+        520
+      ]
+    },
+    {
+      "id": "morongo_sky",
+      "art": "morongo_sky_art_1200x520.png",
+      "full_reference": "morongo_sky_full_card_reference.png",
+      "locked_overlay": "morongo_sky_locked_overlay_1200x520.png",
+      "dimensions": [
+        1200,
+        520
+      ]
+    }
+  ],
+  "unlock_rules": {
+    "desert_palms": 0,
+    "white_buffalo": 100000,
+    "morongo_sky": 1000000
+  },
+  "notes": [
+    "Artwork crops are extracted from one approved flattened concept. Casino sign lettering remains baked into art.",
+    "Locked overlays and gold frame are actual separate transparent RGBA layers.",
+    "Card artwork 1200x520 is resized from source crop; verify at runtime and replace with separately commissioned production art before final release.",
+    "Bankroll thresholds and labels should be rendered in code, not painted into card artwork."
+  ]
+}

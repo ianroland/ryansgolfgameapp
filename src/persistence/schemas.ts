@@ -217,6 +217,72 @@ export const AlbatrossRecordSchema = z
   })
   .refine((r) => r.strokes - r.par === -3, { message: 'An albatross is exactly three under par' });
 
+// ── Casino Secrets & Rivalries (schema v3) ──
+
+const gameTime = isoTime;
+
+/** A permanent casino unlock (src/expansion/unlocks.ts). Never deleted. */
+export const UnlockRecordSchema = z.object({
+  id: z.enum(['unlock:white_buffalo', 'unlock:morongo_sky']),
+  ownerId: id,
+  at: gameTime,
+  trigger: z.enum(['live', 'backfill']),
+  txnId: id,
+  threshold: int.positive(),
+  balance: nonNeg,
+});
+
+/** Highest bankroll ever reached (kept by EconomyService.post). */
+export const MilestoneRecordSchema = z.object({
+  ownerId: id,
+  peakBalance: nonNeg,
+  peakTxnId: id,
+  peakAt: gameTime,
+});
+
+/** One dealer's relationship with Ryan (src/npc). */
+export const NpcStateSchema = z.object({
+  npcId: id,
+  /** Earned through conversations and events (not in Slice 1; starts neutral). */
+  base: z.number().min(0).max(100),
+  /** Earned through tips only; capped (see GOODWILL_CAP). */
+  goodwill: z.number().min(0).max(100),
+  visits: nonNeg,
+  lastVisitKey: z.string(),
+  tips: z.object({
+    lifetime: nonNeg,
+    count: nonNeg,
+    largest: nonNeg,
+    /** Casino visit keys on which Ryan tipped this dealer, newest last (last 8). */
+    visitKeys: z.array(z.string()).max(8),
+    /** Goodwill gained on the current visit (per-visit cap). */
+    visitKey: z.string(),
+    visitGain: z.number().min(0),
+    firstAt: gameTime.optional(),
+    lastAt: gameTime.optional(),
+  }),
+});
+
+/** Append-only relationship history. */
+export const RelationshipLogSchema = z.object({
+  id,
+  npcId: id,
+  seq: int.positive(),
+  at: gameTime,
+  kind: z.enum(['tip', 'visit']),
+  amount: nonNeg.optional(),
+  delta: z.number(),
+  txnId: id.optional(),
+  visitKey: z.string(),
+});
+
+/** Per-location UI state: whether Ryan has seen it since it unlocked. */
+export const LocationStateSchema = z.object({
+  locationId: z.enum(['desert_palms', 'white_buffalo', 'morongo_sky']),
+  seenUnlock: z.boolean(),
+  visits: nonNeg,
+});
+
 /** Table name → row schema. Used for writes, load validation and import. */
 export const TABLE_SCHEMAS = {
   profiles: PlayerProfileSchema,
@@ -231,6 +297,11 @@ export const TABLE_SCHEMAS = {
   careerEvents: CareerEventSchema,
   processedEvents: ProcessedCareerEventSchema,
   albatrosses: AlbatrossRecordSchema,
+  unlocks: UnlockRecordSchema,
+  milestones: MilestoneRecordSchema,
+  npcState: NpcStateSchema,
+  relationshipLog: RelationshipLogSchema,
+  locationState: LocationStateSchema,
 } as const;
 
 export type TableName = keyof typeof TABLE_SCHEMAS;

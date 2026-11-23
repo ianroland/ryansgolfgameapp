@@ -2,6 +2,29 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.15.0",
+      "date": "2026-11-23",
+      "title": "Casino lobby, dealer tips and two casinos to unlock",
+      "items": [
+        {
+          "tag": "new",
+          "text": "A casino lobby with three casinos. Desert Palms is open now. The White Buffalo unlocks the first time your bank reaches $100,000, and Morongo Sky the first time it reaches $1,000,000. Unlocks are permanent, every kind of income counts, and older careers that already got there are recognised automatically. Both new casinos are opening soon."
+        },
+        {
+          "tag": "new",
+          "text": "Tip your dealers between hands: Velvet, Stick Lady, Monique, Waifu and Winston. Each remembers how much and how often you tip, reacts in their own words, and warms up to you over time. Tips never change the cards, dice or wheel, and there's no penalty for not tipping."
+        },
+        {
+          "tag": "new",
+          "text": "Each dealer shows how well they know you, from New face upward."
+        },
+        {
+          "tag": "fixed",
+          "text": "Greyhound races: the leader line sits in its own bar under the lanes, so the start line no longer cuts through it."
+        }
+      ]
+    },
+    {
       "version": "0.14.0",
       "date": "2026-11-23",
       "title": "Baccarat with Waifu and Three Card Poker with Winston",

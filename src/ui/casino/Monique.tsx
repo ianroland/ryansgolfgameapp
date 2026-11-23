@@ -5,6 +5,7 @@
  * payouts are untouched. Dialogue is placeholder until the Script Room
  * approves it (see src/casino/monique.ts).
  */
+import { TierChip } from './Tipping';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import meta from '../../assets/casino/monique.json';
 import atlasUrl from '../../assets/casino/monique_table.png';
@@ -153,6 +154,7 @@ export function DialogueBox({ item, more, onNext }: { item: DialogueItem; more: 
       <div className="rpg-body">
         <p className="rpg-name">
           {item.who === 'monique' ? 'Madame Monique' : 'Ryan'}
+          {item.who === 'monique' && <TierChip npcId="madame_monique" />}
           {!item.approved && <span className="rpg-draft" title="Dialogue awaiting Script Room approval">Draft line</span>}
         </p>
         <p className="rpg-text" data-testid="monique-text">{item.text.slice(0, typed)}<span className="rpg-caret" aria-hidden>{done ? '' : '▌'}</span></p>
@@ -251,6 +253,12 @@ export function useMonique(active: boolean) {
       if (ev) window.setTimeout(() => say(ev), 500);
     },
     insufficient: () => say('insufficient_funds'),
+    /** A reaction to a tip (between spins only; lines are drafts until approved). */
+    tipReaction: (text: string, approved: boolean, expr: MoniqueExpr) => {
+      setMode('react');
+      window.setTimeout(() => setMode('idle'), 1400);
+      setQueue([{ who: 'monique', text, approved, expr, then: 'neutral' }]);
+    },
     leave: (balance: number, go: () => void) => {
       leaveAfter.current = go;
       say(farewellEvent(memRef.current, balance));

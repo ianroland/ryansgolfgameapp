@@ -8,6 +8,10 @@
  *  v2 — record book: `albatrosses` (verified albatross records). Additive:
  *       every v1 table is unchanged. Past albatrosses are recovered from
  *       stored hole-by-hole results by RecordsService.backfill().
+ *  v3 — Casino Secrets & Rivalries, Slice 1: `unlocks` (permanent casino
+ *       unlocks), `milestones` (peak bankroll), `npcState` + `relationshipLog`
+ *       (dealer relationships and tips), `locationState`. Additive. Unlocks
+ *       already earned are recognised from the ledger (ExpansionService.reconcile).
  *
  * Future versions add `this.version(n).stores(...).upgrade(...)` below and a
  * matching step in saveService.migrateSaveFile, so old saves keep loading.
@@ -30,10 +34,12 @@ import type {
 } from '../core/types';
 import type { AlbatrossRecord } from '../records/albatross';
 import type { TournamentRecord } from './records';
+import type { MilestoneRecord, UnlockRecord } from '../expansion/unlocks';
+import type { LocationState, NpcState, RelationshipLogEntry } from '../npc/types';
 import { TABLE_SCHEMAS, type TableName } from './schemas';
 
 export const DB_NAME = 'ryans-road-to-the-lpga';
-export const CURRENT_SCHEMA_VERSION = 2;
+export const CURRENT_SCHEMA_VERSION = 3;
 
 export const STORES_V1 = {
   profiles: 'id',
@@ -58,7 +64,16 @@ export const STORES_V2 = {
   albatrosses: 'id, golferId, season, courseId, tournamentId',
 } as const;
 
-export const CURRENT_STORES = STORES_V2;
+export const STORES_V3 = {
+  ...STORES_V2,
+  unlocks: 'id, ownerId',
+  milestones: 'ownerId',
+  npcState: 'npcId',
+  relationshipLog: 'id, npcId, [npcId+seq]',
+  locationState: 'locationId',
+} as const;
+
+export const CURRENT_STORES = STORES_V3;
 
 export class AppDB extends Dexie {
   profiles!: Table<PlayerProfile, string>;
@@ -73,11 +88,17 @@ export class AppDB extends Dexie {
   careerEvents!: Table<CareerEvent, string>;
   processedEvents!: Table<ProcessedCareerEvent, string>;
   albatrosses!: Table<AlbatrossRecord, string>;
+  unlocks!: Table<UnlockRecord, string>;
+  milestones!: Table<MilestoneRecord, string>;
+  npcState!: Table<NpcState, string>;
+  relationshipLog!: Table<RelationshipLogEntry, string>;
+  locationState!: Table<LocationState, string>;
 
   constructor(name: string = DB_NAME, options?: DexieOptions) {
     super(name, options);
     this.version(1).stores(STORES_V1);
     this.version(2).stores(STORES_V2);
+    this.version(3).stores(STORES_V3);
     this.installValidationHooks();
   }
 

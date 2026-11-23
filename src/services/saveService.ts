@@ -8,6 +8,7 @@ import { DomainError } from '../core/errors';
 import type { EconomyTransaction } from '../core/types';
 import { CURRENT_SCHEMA_VERSION, CURRENT_STORES, type AppDB } from '../persistence/db';
 import { computeBalanceSnapshots } from '../persistence/derived';
+import { deriveFromLedger } from '../expansion/unlocks';
 import { TABLE_SCHEMAS, type TableName } from '../persistence/schemas';
 
 export const SAVE_FORMAT = 'ryans-road-save';
@@ -36,6 +37,22 @@ export function migrateSaveFile(file: SaveFile): SaveFile {
   if (version === 1) {
     tables = { ...tables, albatrosses: [] };
     version = 2;
+  }
+  // v2 → v3: Casino Secrets & Rivalries tables. Unlocks already earned are read from the
+  // ledger (the first entry whose balance reached each threshold); nothing else is invented.
+  if (version === 2) {
+    tables = { ...tables, unlocks: [], milestones: [], npcState: [], relationshipLog: [], locationState: [] };
+    version = 3;
+  }
+  // Unlocks are permanent and proven by the ledger: add any the ledger shows but the file lacks.
+  {
+    const ledger = (tables.ledger ?? []) as EconomyTransaction[];
+    const have = new Set(((tables.unlocks ?? []) as { id: string }[]).map((u) => u.id));
+    const owners = [...new Set(ledger.map((t) => t.ownerId))];
+    const extraUnlocks = owners.flatMap((o) => deriveFromLedger(ledger, o).unlocks).filter((u) => !have.has(u.id));
+    const haveM = new Set(((tables.milestones ?? []) as { ownerId: string }[]).map((m) => m.ownerId));
+    const extraM = owners.map((o) => deriveFromLedger(ledger, o).milestone).filter((m): m is NonNullable<typeof m> => !!m && !haveM.has(m.ownerId));
+    tables = { ...tables, unlocks: [...((tables.unlocks ?? []) as unknown[]), ...extraUnlocks], milestones: [...((tables.milestones ?? []) as unknown[]), ...extraM] };
   }
   // The balance snapshot is always rebuilt from the ledger so an edited or
   // partial save can't smuggle in money the ledger doesn't hold.

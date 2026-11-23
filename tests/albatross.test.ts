@@ -16,7 +16,7 @@ import {
 } from '../src/career/tournament';
 import { checksum } from '../src/core/checksum';
 import { rng } from '../src/golf/math';
-import { STORES_V1 } from '../src/persistence/db';
+import { CURRENT_SCHEMA_VERSION, STORES_V1 } from '../src/persistence/db';
 import {
   albatrossId,
   detectAlbatrosses,
@@ -281,7 +281,7 @@ describe('save migration (v1 → v2)', () => {
 
     const s2 = createServices(name);
     await s2.career.ensureCareer(RYAN);
-    expect(s2.db.verno).toBe(2);
+    expect(s2.db.verno).toBe(CURRENT_SCHEMA_VERSION); // v1 opens straight up to the current version
     expect(await s2.db.tournaments.count()).toBe(1);
     expect(await s2.db.albatrosses.count()).toBe(0); // nothing invented on open
     const before = await s2.career.loadClubhouse(RYAN);
@@ -305,7 +305,7 @@ describe('save migration (v1 → v2)', () => {
     await playTournament(s, 'amateur-1-w2', { score: albatrossOnPar5s });
     const real = await s.db.albatrosses.count();
     const file = await s.saves.exportSave();
-    expect(file.schemaVersion).toBe(2);
+    expect(file.schemaVersion).toBe(CURRENT_SCHEMA_VERSION);
 
     // As a v1 file.
     const old = structuredClone(file);
