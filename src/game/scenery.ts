@@ -43,6 +43,9 @@ export function preloadCourseArt(scene: Phaser.Scene) {
 export function registerCourseFrames(scene: Phaser.Scene) {
   const tex = scene.textures.get('course');
   for (const [name, f] of Object.entries(KIT.frames)) tex.add(name, 0, f.x, f.y, f.w, f.h);
+  // The flagstick without its little stand (rows 104+ of flag_red), so the pole goes into the hole.
+  const fl = KIT.frames.flag_red;
+  tex.add('flag_pole', 0, fl.x, fl.y, fl.w, FLAG_POLE_H);
   for (const k of ['course', 'backdrop_coast', 'backdrop_city', 'backdrop_mountains']) {
     scene.textures.get(k).setFilter(Phaser.Textures.FilterMode.NEAREST);
   }
@@ -140,7 +143,11 @@ export function buildDecor(h: HoleDef): Decor[] {
 
 export const BACKDROP_FOR_HOLE: Backdrop[] = ['mountains', 'mountains', 'mountains', 'city', 'city', 'coast', 'coast', 'mountains', 'city'];
 
+/** Rows of flag_red above its stand. */
+export const FLAG_POLE_H = 104;
+
 export function kitFrame(key: string): KitFrame {
+  if (key === 'flag_pole') return { ...KIT.frames.flag_red, h: FLAG_POLE_H, ay: FLAG_POLE_H };
   return KIT.frames[key];
 }
 

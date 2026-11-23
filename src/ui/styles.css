@@ -47,6 +47,7 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
   margin: 0 -16px; padding: 14px 24px 16px;
   isolation: isolate; /* keeps the scenery strip (z-index -1) behind the header contents, not behind the page */
+  z-index: 20; /* above page content, so header popovers (sound menu) are never covered; full-screen overlays sit higher */
   background: #14301e; /* fallback under the scenery strip */
   border-bottom: 4px solid var(--ink);
   box-shadow: inset 0 -3px 0 var(--gold-dark), 0 6px 0 rgba(0, 0, 0, 0.25);
@@ -1519,3 +1520,36 @@ kbd { display: inline-block; min-width: 22px; padding: 0 6px; font-family: var(-
 .scene-tint.page { background: linear-gradient(180deg, rgba(10, 36, 22, 0.84) 0%, rgba(10, 36, 22, 0.72) 50%, rgba(8, 30, 18, 0.6) 100%); }
 .scene-tint.header { background: linear-gradient(90deg, rgba(5, 20, 12, 0.55) 0%, rgba(5, 20, 12, 0.05) 45%, rgba(5, 20, 12, 0.45) 100%); }
 @media (prefers-reduced-motion: reduce) { .scene-layer.fading-in { animation: none; } }
+
+/* Big-win celebration (BigWin.tsx): coins, confetti and a counting banner over the casino. Clicks pass through. */
+.bigwin { position: fixed; inset: 0; z-index: 9000; pointer-events: none; display: grid; place-items: center; }
+.bigwin-fx { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.bigwin-banner { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 42px 20px; background: radial-gradient(ellipse at center, rgba(40, 8, 52, 0.92), rgba(20, 4, 28, 0.85)); border: 4px solid var(--ink); border-radius: 14px; box-shadow: 0 0 0 4px var(--gold), 0 0 40px rgba(255, 216, 74, 0.55), 0 10px 0 rgba(0, 0, 0, 0.4); animation: bigwin-pop 0.55s cubic-bezier(0.2, 1.7, 0.4, 1) both; }
+.bigwin-title { font-family: var(--head); font-size: clamp(44px, 7vw, 92px); line-height: 1; color: #ffe066; text-shadow: 4px 4px 0 var(--ink), 0 0 24px rgba(255, 200, 60, 0.8); letter-spacing: 0.04em; animation: bigwin-pulse 0.6s ease-in-out infinite alternate; }
+.bigwin.mega .bigwin-title { background: linear-gradient(90deg, #ff3fa4, #ffd84a, #3fd0ff, #7dff6a, #ff3fa4); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(4px 4px 0 var(--ink)); animation: bigwin-rainbow 1.2s linear infinite, bigwin-pulse 0.5s ease-in-out infinite alternate; }
+.bigwin-amount { font-family: var(--head); font-size: clamp(52px, 8.5vw, 112px); line-height: 1; color: #fff; text-shadow: 4px 4px 0 var(--ink), 0 0 28px rgba(125, 255, 106, 0.75); font-variant-numeric: tabular-nums; }
+.bigwin.mega .bigwin-amount { color: #7dff6a; }
+@keyframes bigwin-pop { from { transform: scale(0.2) rotate(-6deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
+@keyframes bigwin-pulse { from { transform: scale(1); } to { transform: scale(1.06); } }
+@keyframes bigwin-rainbow { to { background-position: 300% 0; } }
+@media (prefers-reduced-motion: reduce) { .bigwin-banner, .bigwin-title, .bigwin.mega .bigwin-title { animation: none; } }
+
+/* Blackjack felt layout v2: everything sized to the table art (container units), nothing over the BLACKJACK
+   lettering (y 27-41%) and nothing below the rail. Dealer row under the lettering; Ryan's hand on the centre
+   spot with its total, chip and result beside the cards rather than below them. */
+.bj-game .felt { container-type: inline-size; }
+.bj-game .felt-dealer { top: 42%; flex-direction: row; gap: 1.2cqw; }
+.bj-game .felt-hands { top: 58.5%; gap: 3cqw; }
+.bj-game .felt-hand { flex-direction: row; align-items: center; gap: 0.9cqw; padding: 0.4cqw 0.6cqw; }
+.bj-game .felt-hand .felt-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4cqw; }
+.bj-game .felt .pcard { width: 4.5cqw; height: 6.25cqw; margin-left: -1.1cqw; border-width: 2px; border-radius: 0.7cqw; }
+.bj-game .felt .pcard:first-child { margin-left: 0; }
+.bj-game .felt .pcard .pc-corner { left: 0.35cqw; top: 0.15cqw; font-size: 1.45cqw; }
+.bj-game .felt .pcard .pc-suit { font-size: 2.5cqw; padding-top: 0.9cqw; }
+.bj-game .felt-total { font-size: 1.75cqw; padding: 0 0.7cqw; }
+.bj-game .felt-chip img { width: 2.9cqw; }
+.bj-game .felt-chip b { font-size: 1.6cqw; }
+.bj-game .felt .bj-result { font-size: 1.7cqw; padding: 0.1cqw 0.8cqw; border-width: 2px; }
+.bj-game .felt-hands.n2 .felt-hand, .bj-game .felt-hands.n3 .felt-hand, .bj-game .felt-hands.n4 .felt-hand { flex-direction: column; align-items: center; }
+.bj-game .felt-hands.n2 .felt-meta, .bj-game .felt-hands.n3 .felt-meta, .bj-game .felt-hands.n4 .felt-meta { flex-direction: row; align-items: center; }
+.bj-game .table-stage { margin-bottom: 6px; }

@@ -18,6 +18,7 @@ import {
 import atlasUrl from '../../assets/casino/greyhounds/greyhounds_run.png';
 import atlasMeta from '../../assets/casino/greyhounds/greyhounds_run.json';
 import { sound } from '../../audio/sound';
+import { celebrateWin } from './BigWin';
 import { greyhoundHistory, pendingRace } from '../../services/casinoService';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
@@ -144,6 +145,7 @@ export function Greyhounds({ onLeave }: { onLeave: () => void }) {
     setSettled({ payout, order });
     setPhase('result');
     if (payout > 0) sound.play(payout - bet.stake >= 500 ? 'cheer' : 'cash', { volume: 0.8 });
+    if (payout > 0) celebrateWin(payout - bet.stake, bet.stake);
     else sound.play('groan', { volume: 0.4 });
     await refresh();
   }

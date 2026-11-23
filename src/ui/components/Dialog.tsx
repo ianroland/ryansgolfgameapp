@@ -1,5 +1,6 @@
 import { useBlocking } from '../blocking';
 import { useEffect, useRef, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 /** Accessible modal: labelled, Esc closes, focus moves in and is restored. */
 export function Dialog({ title, onClose, children, wide }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean }) {
@@ -26,7 +27,8 @@ export function Dialog({ title, onClose, children, wide }: { title: string; onCl
     };
   }, [onClose]);
 
-  return (
+  // Rendered at the top of the page so no parent's stacking (the header, a panel) can put anything above it.
+  return createPortal(
     <div className="backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
       <div className={`dialog ${wide ? 'wide' : ''}`} role="dialog" aria-modal="true" aria-label={title} ref={ref} tabIndex={-1}>
         <div className="dialog-head">
@@ -35,6 +37,7 @@ export function Dialog({ title, onClose, children, wide }: { title: string; onCl
         </div>
         <div className="dialog-body">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

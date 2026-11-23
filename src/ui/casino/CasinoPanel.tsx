@@ -18,6 +18,7 @@ import { boxStyle, casinoArt, chipFor } from './casinoArt';
 import { Greyhounds } from './Greyhounds';
 import { DialogueBox, MoniqueSprite, REACH_MS, useMonique } from './Monique';
 import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
+import { BigWinOverlay, celebrateWin } from './BigWin';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
 import { pendingRace } from '../../services/casinoService';
 
@@ -117,6 +118,10 @@ function Blackjack() {
     settled.current = roundId;
     const pay = totalPayout(s);
     await run(() => services.casino.settle('blackjack', roundId, 'result', pay));
+    {
+      const staked = s.hands.reduce((a, h) => a + h.bet, 0);
+      celebrateWin(pay - staked, staked);
+    }
     const best = s.hands.map((h) => h.result).find((r) => r === 'blackjack') ?? s.hands.map((h) => h.result).find((r) => r === 'win');
     sound.play(best === 'blackjack' ? 'achievement' : best === 'win' ? 'cash' : s.hands.some((h) => h.result === 'push') ? 'ui_click' : 'groan', { volume: 0.6 });
     setLine(velvetLine(s));
@@ -174,11 +179,13 @@ function Blackjack() {
             {table.hands.map((hand, idx) => (
               <div key={idx} className={`felt-hand ${playing && idx === table.active ? 'active' : ''}`}>
                 <div className="cards">{hand.cards.map((c, i) => <PlayingCard key={`${round}-${idx}-${i}`} card={c} i={i} />)}</div>
-                <span className="felt-total">
-                  {table.hands.length > 1 ? `Hand ${idx + 1}` : 'Ryan'} {handValue(hand.cards).total}
-                </span>
-                <BetChip amount={hand.bet} />
-                {hand.result && <span className={`bj-result ${hand.result}`} data-testid="bj-result">{RESULT_TEXT[hand.result]}{hand.payout ? ` +${formatMoney(hand.payout - hand.bet)}` : ''}</span>}
+                <div className="felt-meta">
+                  <span className="felt-total">
+                    {table.hands.length > 1 ? `Hand ${idx + 1}` : 'Ryan'} {handValue(hand.cards).total}
+                  </span>
+                  <BetChip amount={hand.bet} />
+                  {hand.result && <span className={`bj-result ${hand.result}`} data-testid="bj-result">{RESULT_TEXT[hand.result]}{hand.payout ? ` +${formatMoney(hand.payout - hand.bet)}` : ''}</span>}
+                </div>
               </div>
             ))}
             {table.hands.length === 0 && <BetChip amount={bet} className="pending" />}
@@ -258,6 +265,7 @@ function Slots() {
     if (r.payout > 0) await run(() => services.casino.settle('slots', id, 'spin', r.payout, { jackpot: r.jackpot }));
     setMsg(r.payout > 0 ? `${r.line} · WIN ${formatMoney(r.payout)}` : 'No win');
     setLights(r.jackpot ? 'jackpot' : r.payout > 0 ? 'win' : 'off');
+    if (r.payout > 0) celebrateWin(r.payout - bet, bet, { jackpot: r.jackpot });
     if (r.jackpot) sound.play('win');
     else if (r.payout >= bet * 10) sound.play('cheer');
     else if (r.payout > 0) sound.play('cash');
@@ -416,6 +424,7 @@ function Craps() {
       else if (anyLose) stick.play('loss');
     }
     if (won) sound.play(won >= 500 ? 'cheer' : 'cash', { volume: 0.7 });
+    if (won > 0) celebrateWin(won, outcomes.filter((o) => o.result === 'win').reduce((a, o) => a + table.bets[o.bet], 0));
     else if (outcomes.some((o) => o.result === 'lose')) sound.play('groan', { volume: 0.4 });
     setTable(next);
     if (betsOnTable(next) === 0) {
@@ -536,6 +545,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
     const net = payout - staked;
     setLog((l) => [`${n} ${colorOf(n)}${winners.length ? ` · ${winners.join(', ')} ${winners.length > 1 ? 'win' : 'wins'}` : ''} · ${net > 0 ? `won ${formatMoney(net)}` : net === 0 ? 'broke even' : `lost ${formatMoney(-net)}`}`, ...l].slice(0, 6));
     if (payout > staked) sound.play(payout - staked >= 500 ? 'cheer' : 'cash', { volume: 0.7 });
+    if (payout > staked) celebrateWin(payout - staked, staked);
     else sound.play('groan', { volume: 0.4 });
     setLast(bets);
     setBets({});
@@ -633,6 +643,7 @@ export function CasinoPanel() {
 
   return (
     <main className="casino">
+      <BigWinOverlay />
       <section className="hub-card casino-head" style={{ backgroundImage: `linear-gradient(90deg, rgba(20,8,30,0.92) 0%, rgba(20,8,30,0.55) 45%, rgba(20,8,30,0.1) 100%), url(${exterior.url})` }}>
         <div className="casino-brand">
           <img className="casino-logo" src={logo.url} alt="Desert Palms Casino" draggable={false} />

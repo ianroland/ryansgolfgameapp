@@ -55,6 +55,30 @@
           "text": "Madame Monique's lines are all signed off."
         },
         {
+          "tag": "new",
+          "text": "Big wins at the casino now get a celebration: gold coins pour down, confetti fires, and a BIG WIN (or MEGA WIN) banner counts up what you won. It works at every table, the slots and the greyhounds."
+        },
+        {
+          "tag": "fixed",
+          "text": "Blackjack: the dealer's cards no longer cover the BLACKJACK lettering, and your hand no longer spills over the buttons."
+        },
+        {
+          "tag": "fixed",
+          "text": "Phase 1 Ryan's putting stroke: his hair and shirt are whole again (no more missing chunk)."
+        },
+        {
+          "tag": "fixed",
+          "text": "The flagstick now stands in the cup instead of on top of the green."
+        },
+        {
+          "tag": "fixed",
+          "text": "Birdies and better: the big reaction portrait now slides in on the left, in place of the small animated reaction, so the two no longer clash and the minimap stays clear."
+        },
+        {
+          "tag": "fixed",
+          "text": "The Save window (and other pop-ups) always sit on top; activity cards no longer show through them."
+        },
+        {
           "tag": "changed",
           "text": "The greyhound sprites are provisional."
         }

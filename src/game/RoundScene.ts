@@ -1262,7 +1262,8 @@ export class RoundScene extends Phaser.Scene {
 
   private setupDecor() {
     this.decor = buildDecor(this.hole);
-    this.decor.push({ key: 'flag_red', x: this.hole.pin.x, y: this.hole.pin.y, h: 2.8, shadow: 0 });
+    // The pole (stand trimmed off) stands in the cup: same scale as before, its foot at the hole's centre.
+    this.decor.push({ key: 'flag_pole', x: this.hole.pin.x, y: this.hole.pin.y, h: (2.8 * 104) / 111, shadow: 0 });
     while (this.decorImgs.length < this.decor.length) this.decorImgs.push(this.add.image(0, 0, 'course', 'palm_0').setVisible(false));
     this.decorImgs.forEach((img, i) => {
       const d = this.decor[i];
@@ -1302,8 +1303,18 @@ export class RoundScene extends Phaser.Scene {
   private drawCup() {
     const p = this.project(this.hole.pin.x, this.hole.pin.y, 0);
     if (!p) return;
-    this.g.fillStyle(0x111111, 1);
-    this.g.fillEllipse(p.x, p.y, Math.max(3, 0.26 * p.s), Math.max(1.5, 0.09 * p.s));
+    // A sunk cup: a darker turf lip, the black hole, and the white liner showing on the far wall.
+    const w = Math.max(3, 0.26 * p.s), h = Math.max(1.5, 0.09 * p.s);
+    this.g.fillStyle(0x2f6a22, 0.9);
+    this.g.fillEllipse(p.x, p.y, w * 1.35, h * 1.5);
+    this.g.fillStyle(0x0b0b0b, 1);
+    this.g.fillEllipse(p.x, p.y, w, h);
+    if (w > 8) {
+      this.g.fillStyle(0xe8e8e0, 0.85);
+      this.g.fillEllipse(p.x, p.y - h * 0.22, w * 0.86, h * 0.5);
+      this.g.fillStyle(0x0b0b0b, 1);
+      this.g.fillEllipse(p.x, p.y + h * 0.04, w * 0.86, h * 0.62);
+    }
   }
 
   private drawAimAids() {
@@ -1459,12 +1470,12 @@ export class RoundScene extends Phaser.Scene {
   private drawCutin() {
     const show = !!this.reaction && (this.phase === 'result' || this.phase === 'done') && !this.bc?.replaying;
     this.cutinBg.clear();
-    this.cutinImg.setVisible(show);
-    if (!show) {
-      this.drawBust(0);
-      return;
-    }
-    const t = (this.time.now - this.reactionStart) / 1000;
+    const t = show ? (this.time.now - this.reactionStart) / 1000 : 0;
+    // Standout moments get the big portrait, in the left slot, instead of the small full-body reaction.
+    const bust = show && this.bust !== null;
+    this.cutinImg.setVisible(show && !bust);
+    this.drawBust(bust ? t : -1);
+    if (!show || bust) return;
     const slide = Math.min(1, t / 0.18);
     const x0 = lerp(-170, 14, 1 - (1 - slide) ** 3);
     const y0 = 128;
@@ -1482,20 +1493,18 @@ export class RoundScene extends Phaser.Scene {
       .setOrigin(f.ax / f.w, f.ay / f.h)
       .setPosition(x0 + 68, y0 + 186)
       .setScale(1.1);
-    this.drawBust(t);
   }
 
-  /** The big arcade-style reaction portrait for standout moments: slides in from the right, holds, slides out. */
+  /** The big arcade-style reaction portrait for standout moments: slides in from the left under the hole card and stays for the result. */
   private drawBust(t: number) {
     this.bustBg.clear();
-    const show = this.bust !== null && t < 2.6 && !!this.reaction && (this.phase === 'result' || this.phase === 'done') && !this.bc?.replaying;
+    const show = t >= 0;
     this.bustImg.setVisible(show);
     if (!show) return;
-    const size = 236;
+    const size = 214;
     const into = Math.min(1, t / 0.22);
-    const out = t > 2.3 ? (t - 2.3) / 0.3 : 0;
-    const x = W - 22 - size + (1 - (1 - (1 - into) ** 3)) * (size + 40) + out * (size + 40);
-    const y = 118;
+    const x = lerp(-size - 30, 22, 1 - (1 - into) ** 3);
+    const y = 130;
     this.pixelPanel(this.bustBg, x - 8, y - 8, size + 16, size + 16);
     this.bustImg.setTexture(`cutin_${this.look}`, `pose_${this.bust}`).setPosition(x, y).setDisplaySize(size, size);
   }
