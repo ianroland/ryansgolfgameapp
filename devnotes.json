@@ -2,6 +2,21 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.15.2",
+      "date": "2026-11-23",
+      "title": "Casino chips with each casino's own look",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Desert Palms chips now carry its palm-tree design on every table, in the chip selectors and on tips. The White Buffalo and Morongo Sky have their own sets, ready for when their doors open. Values and betting are unchanged."
+        },
+        {
+          "tag": "improved",
+          "text": "New screenshots and casino features on the website."
+        }
+      ]
+    },
+    {
       "version": "0.15.1",
       "date": "2026-11-23",
       "title": "Dealer tipping, upgraded",

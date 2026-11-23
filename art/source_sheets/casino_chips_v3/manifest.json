@@ -1,0 +1,185 @@
+{
+  "status": "revised integration prototypes; full-circle with 10px padding",
+  "chips": [
+    {
+      "casino": "desert_palms",
+      "denomination": 1,
+      "file": "desert_palms/chip_1_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 5,
+      "file": "desert_palms/chip_5_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 25,
+      "file": "desert_palms/chip_25_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 100,
+      "file": "desert_palms/chip_100_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 500,
+      "file": "desert_palms/chip_500_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 1000,
+      "file": "desert_palms/chip_1000_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 1,
+      "file": "white_buffalo/chip_1_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 5,
+      "file": "white_buffalo/chip_5_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 25,
+      "file": "white_buffalo/chip_25_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 100,
+      "file": "white_buffalo/chip_100_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 500,
+      "file": "white_buffalo/chip_500_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 1000,
+      "file": "white_buffalo/chip_1000_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 1,
+      "file": "morongo_sky/chip_1_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 5,
+      "file": "morongo_sky/chip_5_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 25,
+      "file": "morongo_sky/chip_25_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 100,
+      "file": "morongo_sky/chip_100_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 500,
+      "file": "morongo_sky/chip_500_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 1000,
+      "file": "morongo_sky/chip_1000_face_128.png",
+      "size": [
+        128,
+        128
+      ],
+      "padding": 10
+    }
+  ]
+}

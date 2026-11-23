@@ -441,3 +441,38 @@ describe('lobby art and music hooks', () => {
     expect(requestedCasinoMusic()).toBe('desert_palms_lobby');
   });
 });
+
+describe('casino chip themes (Chip Pack V3)', () => {
+  it('every casino has all six denominations as 128x128 transparent faces', async () => {
+    const { CHIP_THEMES, CHIP_DENOMINATIONS } = await import('../src/expansion/chipThemes');
+    const { decodePng } = await import('./png');
+    expect([...CHIP_DENOMINATIONS]).toEqual([1, 5, 25, 100, 500, 1000]);
+    for (const loc of ['desert_palms', 'white_buffalo', 'morongo_sky'] as const) {
+      expect(CHIP_THEMES[loc].location).toBe(loc);
+      for (const d of CHIP_DENOMINATIONS) {
+        expect(CHIP_THEMES[loc].face(d), `${loc} $${d}`).toBeTruthy();
+        const png = decodePng(join(__dirname, `../src/assets/casino/chips/${loc}/chip_${d}.png`));
+        expect([png.width, png.height]).toEqual([128, 128]);
+        const a = (x: number, y: number) => png.data[(y * 128 + x) * 4 + 3];
+        expect([a(0, 0), a(127, 0), a(0, 127), a(127, 127)]).toEqual([0, 0, 0, 0]);
+        expect(a(64, 64)).toBe(255);
+      }
+    }
+  });
+
+  it('felt chips pick the biggest face that fits (as before); no face for $10, which keeps the original chip', async () => {
+    const { chipFaceForAmount, CHIP_THEMES } = await import('../src/expansion/chipThemes');
+    expect(chipFaceForAmount('desert_palms', 3)!.denomination).toBe(1);
+    expect(chipFaceForAmount('desert_palms', 10)!.denomination).toBe(5);
+    expect(chipFaceForAmount('desert_palms', 250)!.denomination).toBe(100);
+    expect(chipFaceForAmount('morongo_sky', 5000)!.denomination).toBe(1000);
+    expect(CHIP_THEMES.desert_palms.face(10)).toBeNull();
+  });
+
+  it('chip art is presentation only: no casino rules or money code reads it', () => {
+    for (const dir of ['../src/casino', '../src/services', '../src/career']) {
+      const d = join(__dirname, dir);
+      for (const f of readdirSync(d).filter((x) => x.endsWith('.ts'))) expect(readFileSync(join(d, f), 'utf8'), f).not.toMatch(/chipThemes/);
+    }
+  });
+});

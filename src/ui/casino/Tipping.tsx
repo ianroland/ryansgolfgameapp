@@ -21,6 +21,8 @@ import { pickTipLine, type TipLine } from '../../npc/tipLines';
 import type { NpcId } from '../../npc/types';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
+import { CHIP_THEMES } from '../../expansion/chipThemes';
+import { useCasinoLocation } from './casinoLocation';
 
 const art = import.meta.glob<string>('../../assets/casino/tipping/*.png', { eager: true, query: '?url', import: 'default' });
 const tipArt = (name: string) => art[`../../assets/casino/tipping/${name}.png`];
@@ -61,8 +63,11 @@ const reducedMotion = () => {
   }
 };
 
-/** The chip flies from the tray to the dealer: six frames while it travels. */
-function TipFlight({ from, to, onDone }: { from: DOMRect; to: DOMRect; onDone: () => void }) {
+/**
+ * The chip flies from the tray to the dealer. With a casino chip face for the amount it's that
+ * chip, spinning; otherwise the six-frame flight art.
+ */
+function TipFlight({ from, to, face, onDone }: { from: DOMRect; to: DOMRect; face: string | null; onDone: () => void }) {
   const [frame, setFrame] = useState(0);
   const [go, setGo] = useState(false);
   useEffect(() => {
@@ -75,15 +80,15 @@ function TipFlight({ from, to, onDone }: { from: DOMRect; to: DOMRect; onDone: (
       window.clearTimeout(end);
     };
   }, [onDone]);
-  const size = 96;
+  const size = face ? 44 : 96;
   const x0 = from.left + from.width / 2 - size / 2;
   const y0 = from.top + from.height / 2 - size / 2;
   const dx = to.left + to.width / 2 - size / 2 - x0;
   const dy = to.top + to.height * 0.55 - size / 2 - y0;
   return createPortal(
     <img
-      className="tip-flight"
-      src={FLIGHT[frame]}
+      className={`tip-flight ${face ? 'chip-flight' : ''}`}
+      src={face ?? FLIGHT[frame]}
       alt=""
       aria-hidden
       data-testid="tip-flight"
@@ -103,7 +108,8 @@ export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled:
   const { tier, state: npc } = useDealerTier(npcId);
   const [busy, setBusy] = useState(false);
   const lock = useRef(false);
-  const [flight, setFlight] = useState<{ from: DOMRect; to: DOMRect } | null>(null);
+  const [flight, setFlight] = useState<{ from: DOMRect; to: DOMRect; face: string | null } | null>(null);
+  const chips = CHIP_THEMES[useCasinoLocation()];
   const [feedback, setFeedback] = useState<'gain' | 'neutral' | null>(null);
   const [banner, setBanner] = useState<TierId | null>(null);
   const recent = useRef<string[]>([]);
@@ -118,12 +124,12 @@ export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled:
   useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), []);
   const later = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
 
-  const startFlight = () => {
+  const startFlight = (amount: number) => {
     const tray = trayRef.current;
     const table = tray?.closest('.casino-game');
     const target = table?.querySelector('.table-dealer, .ww-dealer, [data-testid="monique-sprite"]');
     if (!tray || !target || reducedMotion()) return;
-    setFlight({ from: tray.getBoundingClientRect(), to: target.getBoundingClientRect() });
+    setFlight({ from: tray.getBoundingClientRect(), to: target.getBoundingClientRect(), face: chips.face(amount) });
   };
 
   const tip = async (amount: number) => {
@@ -136,7 +142,7 @@ export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled:
     setBusy(false);
     if (!r || !r.outcome) return;
     const outcome = r.outcome;
-    startFlight();
+    startFlight(amount);
     sound.play(outcome.event === 'tier_up' ? 'achievement' : 'cash', { volume: 0.4 });
     const line = pickTipLine(npcId, outcome.event, recent.current);
     recent.current = [...recent.current, line.id].slice(-6);
@@ -203,7 +209,7 @@ export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled:
         </div>
       </div>
       {disabled && <span className="tip-wait">Tips open between hands</span>}
-      {flight && <TipFlight from={flight.from} to={flight.to} onDone={endFlight} />}
+      {flight && <TipFlight from={flight.from} to={flight.to} face={flight.face} onDone={endFlight} />}
     </div>
   );
 }

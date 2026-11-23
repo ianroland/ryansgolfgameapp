@@ -1,0 +1,1 @@
+V3 FIXED: 18 128x128 transparent chip faces with 10px transparent padding. These are cropped from revised artwork, and require in-game visual QA. Replace prior V3 face assets. Stacks from V3 are NOT included or approved; remake them after chip face QA. Shared bankroll and denominations remain unchanged.

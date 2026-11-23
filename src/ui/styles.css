@@ -1706,3 +1706,11 @@ kbd { display: inline-block; min-width: 22px; padding: 0 6px; font-family: var(-
   .lobby-card { scroll-snap-align: start; }
 }
 .rpg-box.dealer .rpg-name { flex-wrap: wrap; row-gap: 4px; }
+
+/* Casino chip themes (Chip Pack V3): selector chips show the casino's chip face. */
+.chip.chip-face { padding: 0; overflow: visible; background: transparent; border: 0; box-shadow: none; }
+.chip.chip-face img { display: block; width: 100%; height: 100%; filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.45)); pointer-events: none; }
+.chip.chip-face:hover:not(:disabled) img { filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.45)) brightness(1.08); }
+.chip.chip-face:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.tip-flight.chip-flight { width: 44px !important; height: 44px !important; animation: chip-spin 0.48s linear; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.4)); }
+@keyframes chip-spin { from { rotate: 0deg; } to { rotate: 540deg; } }

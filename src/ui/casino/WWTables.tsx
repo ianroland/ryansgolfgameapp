@@ -26,6 +26,7 @@ import { celebrateWin } from './BigWin';
 import { BetChip, PlayingCard } from './TableBits';
 import meta from '../../assets/casino/ww/ww_meta.json';
 import { TierChip, TipTray, type TipReaction } from './Tipping';
+import { ChipButton } from './Chips';
 
 const urls = import.meta.glob<string>('../../assets/casino/ww/*.png', { eager: true, query: '?url', import: 'default' });
 export const wwArt = (name: string) => urls[`../../assets/casino/ww/${name}.png`];
@@ -223,9 +224,7 @@ function ChipPicker({ chip, setChip, note }: { chip: number; setChip: (c: number
   return (
     <div className="chip-rack">
       {CHIPS.map((c) => (
-        <button key={c} className={`chip chip-${c} ${chip === c ? 'on' : ''}`} onClick={() => setChip(c)} aria-pressed={chip === c} aria-label={`$${c} chip`}>
-          {c}
-        </button>
+        <ChipButton key={c} value={c} on={chip === c} onClick={() => setChip(c)} label={`$${c} chip`} />
       ))}
       <span className="chip-total">{note}</span>
     </div>

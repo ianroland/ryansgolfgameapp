@@ -10,6 +10,7 @@
  * cycles, one per lane colour). The lane number is drawn on each jacket here, over
  * the painted digit, so it is always right whichever dog is in the lane.
  */
+import { ChipButton } from './Chips';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   betBlocker, cardForPending, drawCard, GREYHOUND_LIMITS, oddsLabel, priceCard, raceForPending, STYLE_LABEL, TICK, TRACK_YARDS, TRAP_COLORS, TRAP_INK, winReturn,
@@ -243,7 +244,7 @@ export function Greyhounds({ onLeave }: { onLeave: () => void }) {
           </ol>
           <div className="chip-rack">
             {CHIPS.map((c) => (
-              <button key={c} className={`chip chip-${c}`} onClick={() => setStake((s) => Math.min(GREYHOUND_LIMITS.max, s + c))} aria-label={`Add $${c}`} data-testid={`gh-chip-${c}`}>{c}</button>
+              <ChipButton key={c} value={c} onClick={() => setStake((s) => Math.min(GREYHOUND_LIMITS.max, s + c))} label={`Add $${c}`} testId={`gh-chip-${c}`} />
             ))}
             <span className="chip-total">Bet <b data-testid="gh-stake">{formatMoney(stake)}</b></span>
             <button className="btn ghost small" onClick={() => setStake(0)} disabled={stake === 0}>Clear</button>

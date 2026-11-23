@@ -23,6 +23,9 @@ import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
 import { BigWinOverlay, celebrateWin } from './BigWin';
 import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
 import { TipTray } from './Tipping';
+import { ChipButton } from './Chips';
+import { CasinoLocationContext, useCasinoLocation } from './casinoLocation';
+import { CHIP_THEMES } from '../../expansion/chipThemes';
 import { CasinoLobby } from './CasinoLobby';
 import { LOCATIONS, type CasinoGameId } from '../../expansion/locations';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
@@ -42,9 +45,7 @@ function ChipRack({ value, onAdd, onClear, min, disabled }: { value: number; onA
   return (
     <div className="chip-rack">
       {CHIPS.filter((c) => c >= Math.min(min, 5)).map((c) => (
-        <button key={c} className={`chip chip-${c}`} onClick={() => onAdd(c)} disabled={disabled} aria-label={`Add $${c}`}>
-          {c}
-        </button>
+        <ChipButton key={c} value={c} onClick={() => onAdd(c)} disabled={disabled} label={`Add $${c}`} />
       ))}
       <span className="chip-total">Bet <b>{formatMoney(value)}</b></span>
       <button className="btn ghost small" onClick={onClear} disabled={disabled || value === 0}>Clear</button>
@@ -218,6 +219,7 @@ function Reel({ symbol, spinning }: { symbol: SlotSymbol; spinning: boolean }) {
 
 function Slots() {
   const { state, services, run } = useGame();
+  const casinoLoc = useCasinoLocation();
   const [bet, setBet] = useState(25);
   const [reels, setReels] = useState<SlotSymbol[]>(['trophy', 'seven', 'flag']);
   const [stopped, setStopped] = useState(3);
@@ -298,7 +300,7 @@ function Slots() {
       <div className="slot-bets" role="radiogroup" aria-label="Bet per spin">
         {SLOT_BETS.map((b) => (
           <button key={b} role="radio" aria-checked={bet === b} className={`chip-token ${bet === b ? 'on' : ''}`} onClick={() => setBet(b)} disabled={busy} aria-label={`Bet $${b}`}>
-            <img src={casinoArt(`chip_${b}`).url} alt="" draggable={false} />
+            <img src={CHIP_THEMES[casinoLoc].face(b) ?? casinoArt(`chip_${b}`).url} alt="" draggable={false} />
           </button>
         ))}
         <button className="btn primary spin-btn" onClick={onSpin} disabled={busy || state.balance < bet} data-testid="slot-spin">
@@ -458,7 +460,7 @@ function Craps() {
       </div>
       <div className="chip-rack">
         {CHIPS.map((c) => (
-          <button key={c} className={`chip chip-${c} ${chip === c ? 'on' : ''}`} onClick={() => setChip(c)} aria-pressed={chip === c}>{c}</button>
+          <ChipButton key={c} value={c} on={chip === c} onClick={() => setChip(c)} label={`$${c} chip`} />
         ))}
         <span className="chip-total">Tap a bet to place <b>{formatMoney(chip)}</b> · on table <b>{formatMoney(betsOnTable(table))}</b></span>
       </div>
@@ -597,7 +599,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
       <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />
       <div className="chip-rack">
         {CHIPS.map((c) => (
-          <button key={c} className={`chip chip-${c} ${chip === c ? 'on' : ''}`} onClick={() => setChip(c)} aria-pressed={chip === c}>{c}</button>
+          <ChipButton key={c} value={c} on={chip === c} onClick={() => setChip(c)} label={`$${c} chip`} />
         ))}
         <span className="chip-total">Tap the layout to place <b>{formatMoney(chip)}</b> · on table <b>{formatMoney(totalOn(bets))}</b></span>
       </div>
@@ -638,6 +640,7 @@ export function CasinoPanel() {
   const logo = casinoArt('casino_logo');
 
   return (
+    <CasinoLocationContext.Provider value="desert_palms">
     <main className="casino">
       <BigWinOverlay />
       <section className="hub-card casino-head" style={{ backgroundImage: `linear-gradient(90deg, rgba(20,8,30,0.92) 0%, rgba(20,8,30,0.55) 45%, rgba(20,8,30,0.1) 100%), url(${exterior.url})` }}>
@@ -692,5 +695,6 @@ export function CasinoPanel() {
         </>
       )}
     </main>
+    </CasinoLocationContext.Provider>
   );
 }
