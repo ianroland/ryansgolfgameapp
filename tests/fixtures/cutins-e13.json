@@ -1,0 +1,632 @@
+{
+ "name": "E13 Revision 3: K2 keeps the Kayla bonus near Ryan, for a double bogey and an ordinary bogey (D1)",
+ "source": "epson-42-w28, full mode, round 3 of 3: actual simulation record (revealSnapshot at the round's last boundary)",
+ "snapshot": {
+  "tournamentId": "epson-42-w28",
+  "tour": "epson",
+  "special": true,
+  "round": 2,
+  "rounds": 3,
+  "isFinal": true,
+  "pars": [
+   4,
+   5,
+   4,
+   3,
+   4,
+   4,
+   5,
+   3,
+   4
+  ],
+  "q": 9,
+  "boundaries": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "ryanId": "golfer_ryan",
+  "rivalId": "golfer_kayla_brooks",
+  "alive": [
+   "golfer_epson_99",
+   "golfer_epson_86",
+   "golfer_epson_129",
+   "golfer_epson_125",
+   "golfer_epson_105",
+   "golfer_epson_97",
+   "golfer_epson_103",
+   "golfer_kayla_brooks",
+   "golfer_epson_112",
+   "golfer_epson_134",
+   "golfer_epson_88",
+   "golfer_epson_163",
+   "golfer_ryan",
+   "golfer_epson_165",
+   "golfer_epson_172",
+   "golfer_epson_141",
+   "golfer_epson_98",
+   "golfer_epson_110",
+   "golfer_epson_114",
+   "golfer_epson_156",
+   "golfer_epson_106",
+   "golfer_epson_143",
+   "golfer_epson_122",
+   "golfer_epson_145",
+   "golfer_epson_123",
+   "golfer_epson_153",
+   "golfer_epson_142",
+   "golfer_epson_151",
+   "golfer_epson_100",
+   "golfer_epson_102",
+   "golfer_epson_149",
+   "golfer_epson_126",
+   "golfer_epson_113",
+   "golfer_epson_91",
+   "golfer_epson_117"
+  ],
+  "prior": {
+   "golfer_epson_99": -4,
+   "golfer_epson_86": 0,
+   "golfer_epson_129": 1,
+   "golfer_epson_125": 1,
+   "golfer_epson_105": 2,
+   "golfer_epson_97": 2,
+   "golfer_epson_103": 2,
+   "golfer_kayla_brooks": 3,
+   "golfer_epson_112": 3,
+   "golfer_epson_134": 3,
+   "golfer_epson_88": 4,
+   "golfer_epson_163": 4,
+   "golfer_ryan": 5,
+   "golfer_epson_165": 5,
+   "golfer_epson_172": 5,
+   "golfer_epson_141": 5,
+   "golfer_epson_98": 5,
+   "golfer_epson_110": 6,
+   "golfer_epson_114": 6,
+   "golfer_epson_156": 6,
+   "golfer_epson_106": 6,
+   "golfer_epson_143": 6,
+   "golfer_epson_122": 6,
+   "golfer_epson_145": 6,
+   "golfer_epson_123": 6,
+   "golfer_epson_153": 6,
+   "golfer_epson_142": 6,
+   "golfer_epson_151": 7,
+   "golfer_epson_100": 7,
+   "golfer_epson_102": 7,
+   "golfer_epson_149": 7,
+   "golfer_epson_126": 7,
+   "golfer_epson_113": 7,
+   "golfer_epson_91": 7,
+   "golfer_epson_117": 7
+  },
+  "holes": {
+   "golfer_epson_99": [
+    5,
+    5,
+    5,
+    3,
+    5,
+    5,
+    4,
+    2,
+    5
+   ],
+   "golfer_epson_86": [
+    4,
+    5,
+    5,
+    3,
+    5,
+    5,
+    4,
+    4,
+    4
+   ],
+   "golfer_epson_129": [
+    4,
+    5,
+    5,
+    2,
+    4,
+    6,
+    6,
+    3,
+    4
+   ],
+   "golfer_epson_125": [
+    4,
+    6,
+    5,
+    2,
+    4,
+    4,
+    5,
+    3,
+    5
+   ],
+   "golfer_epson_105": [
+    4,
+    5,
+    5,
+    4,
+    4,
+    5,
+    5,
+    3,
+    5
+   ],
+   "golfer_epson_97": [
+    5,
+    6,
+    4,
+    4,
+    5,
+    4,
+    5,
+    2,
+    3
+   ],
+   "golfer_epson_103": [
+    4,
+    4,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    5
+   ],
+   "golfer_kayla_brooks": [
+    6,
+    5,
+    5,
+    3,
+    5,
+    5,
+    5,
+    4,
+    3
+   ],
+   "golfer_epson_112": [
+    3,
+    4,
+    4,
+    4,
+    5,
+    4,
+    5,
+    3,
+    5
+   ],
+   "golfer_epson_134": [
+    5,
+    5,
+    4,
+    4,
+    4,
+    4,
+    6,
+    3,
+    5
+   ],
+   "golfer_epson_88": [
+    3,
+    4,
+    5,
+    4,
+    5,
+    4,
+    4,
+    5,
+    5
+   ],
+   "golfer_epson_163": [
+    3,
+    5,
+    4,
+    4,
+    4,
+    5,
+    5,
+    4,
+    3
+   ],
+   "golfer_ryan": [
+    5,
+    5,
+    3,
+    4,
+    4,
+    5,
+    5,
+    4,
+    4
+   ],
+   "golfer_epson_165": [
+    5,
+    5,
+    5,
+    4,
+    4,
+    3,
+    5,
+    4,
+    3
+   ],
+   "golfer_epson_172": [
+    4,
+    5,
+    5,
+    2,
+    4,
+    5,
+    5,
+    3,
+    6
+   ],
+   "golfer_epson_141": [
+    5,
+    5,
+    5,
+    3,
+    4,
+    4,
+    5,
+    4,
+    6
+   ],
+   "golfer_epson_98": [
+    5,
+    5,
+    5,
+    2,
+    4,
+    3,
+    4,
+    4,
+    4
+   ],
+   "golfer_epson_110": [
+    3,
+    5,
+    5,
+    3,
+    4,
+    5,
+    5,
+    3,
+    4
+   ],
+   "golfer_epson_114": [
+    4,
+    5,
+    5,
+    3,
+    4,
+    5,
+    5,
+    4,
+    5
+   ],
+   "golfer_epson_156": [
+    4,
+    4,
+    4,
+    4,
+    6,
+    5,
+    5,
+    4,
+    4
+   ],
+   "golfer_epson_106": [
+    5,
+    5,
+    4,
+    4,
+    5,
+    5,
+    6,
+    3,
+    4
+   ],
+   "golfer_epson_143": [
+    5,
+    5,
+    5,
+    3,
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "golfer_epson_122": [
+    5,
+    5,
+    5,
+    3,
+    4,
+    4,
+    6,
+    4,
+    5
+   ],
+   "golfer_epson_145": [
+    4,
+    6,
+    5,
+    2,
+    4,
+    5,
+    5,
+    4,
+    3
+   ],
+   "golfer_epson_123": [
+    5,
+    6,
+    5,
+    3,
+    4,
+    5,
+    5,
+    3,
+    3
+   ],
+   "golfer_epson_153": [
+    5,
+    4,
+    4,
+    3,
+    5,
+    6,
+    5,
+    3,
+    4
+   ],
+   "golfer_epson_142": [
+    4,
+    4,
+    4,
+    3,
+    4,
+    6,
+    5,
+    4,
+    5
+   ],
+   "golfer_epson_151": [
+    4,
+    6,
+    3,
+    4,
+    4,
+    4,
+    5,
+    4,
+    5
+   ],
+   "golfer_epson_100": [
+    5,
+    5,
+    4,
+    4,
+    4,
+    6,
+    5,
+    4,
+    4
+   ],
+   "golfer_epson_102": [
+    4,
+    3,
+    4,
+    2,
+    6,
+    5,
+    5,
+    2,
+    4
+   ],
+   "golfer_epson_149": [
+    5,
+    6,
+    4,
+    3,
+    6,
+    4,
+    5,
+    3,
+    5
+   ],
+   "golfer_epson_126": [
+    4,
+    5,
+    5,
+    5,
+    5,
+    3,
+    4,
+    3,
+    4
+   ],
+   "golfer_epson_113": [
+    3,
+    5,
+    5,
+    2,
+    5,
+    4,
+    5,
+    5,
+    4
+   ],
+   "golfer_epson_91": [
+    4,
+    6,
+    5,
+    3,
+    6,
+    4,
+    5,
+    3,
+    6
+   ],
+   "golfer_epson_117": [
+    5,
+    5,
+    5,
+    4,
+    5,
+    4,
+    6,
+    3,
+    5
+   ]
+  }
+ },
+ "expected": {
+  "balanced": [
+   {
+    "q": 1,
+    "selected": "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h1",
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h1": 61
+    }
+   },
+   {
+    "q": 2,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:EAGLE:golfer_epson_102:h2": 71
+    },
+    "reasons": {
+     "epson-42-w28:r3:EAGLE:golfer_epson_102:h2": "suppressed_cooldown"
+    }
+   },
+   {
+    "q": 3,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h3": 45
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h3": "suppressed_cooldown"
+    }
+   },
+   {
+    "q": 5,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h5": 45
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h5": "late_reserve"
+    }
+   },
+   {
+    "q": 6,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h6": 45
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h6": "late_reserve"
+    }
+   },
+   {
+    "q": 8,
+    "selected": "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h8",
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h8": 57
+    }
+   },
+   {
+    "q": 9,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h9": 57
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h9": "suppressed_cap"
+    }
+   }
+  ],
+  "fullTv": [
+   {
+    "q": 1,
+    "selected": "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h1",
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h1": 61
+    }
+   },
+   {
+    "q": 2,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:EAGLE:golfer_epson_102:h2": 80
+    },
+    "reasons": {
+     "epson-42-w28:r3:EAGLE:golfer_epson_102:h2": "suppressed_cooldown"
+    }
+   },
+   {
+    "q": 3,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h3": 45
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h3": "late_reserve"
+    }
+   },
+   {
+    "q": 5,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h5": 45
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h5": "late_reserve"
+    }
+   },
+   {
+    "q": 6,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h6": 45
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h6": "late_reserve"
+    }
+   },
+   {
+    "q": 8,
+    "selected": "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h8",
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h8": 57
+    }
+   },
+   {
+    "q": 9,
+    "selected": null,
+    "s4": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h9": 57
+    },
+    "reasons": {
+     "epson-42-w28:r3:RIVAL_SWING:golfer_kayla_brooks:h9": "suppressed_cooldown"
+    }
+   }
+  ]
+ }
+}

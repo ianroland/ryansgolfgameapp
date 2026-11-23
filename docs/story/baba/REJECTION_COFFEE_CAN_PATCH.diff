@@ -1,0 +1,72 @@
+# The Rejection — coffee-can patch (P1–P15), as a diff
+# Status: DRAFT — AUTHOR APPROVAL REQUIRED. The Rejection is APPROVED CANON (locked).
+# Source: BABA_SCENES_SECOND_DRAFT.md, lines 170-238. '-' lines are the draft's quoted
+# 'Current (exact)' text; '+' lines are its 'Patched' text. Both copied verbatim.
+# NOT VERIFIED against the locked script: The Rejection's approved script is not in the
+# project or in any upload, and the game has no Rejection scene. Before applying, compare
+# each '-' line with the locked script word for word.
+# Not applied anywhere. Unchanged by this patch (per the draft): the $250 floor, the $500 cap,
+# the 30% repayment, the $1 courier fee, the payment plan, both prices and the price lock, every
+# choice, the caper clue count, Count of Beirut and "Cash, check or coffee can?".
+# The optional "Don't three-putt" line from the first proposal is NOT included (author asked
+# for the minimal patch).
+
+@@ P1 · Before you read: card continuity @@
+- "(Mom's coffee can, then a payment plan)"
++ "(Baba's coffee can, then a payment plan)"
+
+@@ P2 · Fairchild's office @@
+- RYAN: "My mom."
++ RYAN: "My baba."
+
+@@ P3 · Fairchild's office @@
+- FAIRCHILD: "Is your mother a Fortune 500 company?"
++ FAIRCHILD: "Is your father a Fortune 500 company?"
+
+@@ P4 · Fairchild's office @@
+- MARTY [confident]: "She's a Fortune… she has five hundred dollars in a coffee can. That's a portfolio."
++ MARTY [confident]: "He's a Fortune… he has five hundred dollars in a coffee can. That's a portfolio."
+
+@@ P5 · Voiceover after the verdict @@
+- "Mom's coffee can was sitting on our kitchen counter right then."
++ "Baba's coffee can was sitting on a shelf in his maintenance shed right then."
+
+@@ P6 · Registration stage direction @@
+- "Mom is in the queue behind Ryan, holding a coffee can."
++ "Baba is in the queue behind Ryan, holding a coffee can."
+
+@@ P7 · Pays in full @@
+- "[Ryan counts it out. Mom steps forward with the can.]"
++ "[Ryan counts it out. Baba steps forward with the can.]"
+
+@@ P8 · Pays in full @@
+- MOM [happy]: "I brought the can."
++ BABA [neutral]: "I brought the can."
+
+@@ P9 · Pays in full @@
+- RYAN: "I've got it, Mom. Buy the kettle."
++ RYAN: "I've got it, Baba. Buy the mower."
+
+@@ P10 · Is short @@
+- MOM [neutral]: "I was going to buy a new kettle. (Beat.) This kettle's fine."
++ BABA [neutral]: "I was going to buy a new mower. (Beat.) This mower's fine."
+
+@@ P11 · Payment table: pays in full @@
+- "Mom offers the can; Ryan turns it down (Mom ♥)"
++ "Baba offers the can; Ryan turns it down (Baba ♥)"
+
+@@ P12 · Payment table: is short @@
+- "Mom's coffee can covers up to $500 of what's left (mom_coffee_can = true, Mom ♥)"
++ "Baba's coffee can covers up to $500 of what's left (baba_coffee_can = true, Baba ♥)"
+
+@@ P13 · Act IV payoffs: the coffee can @@
+- "if mom_coffee_can, the can sits behind the podium on Sunday next to Mom's casserole, full again"
++ "if baba_coffee_can, the can sits behind the podium on Sunday next to Baba's cooler of BOBO MILKY, full again"
+
+@@ P14 · New-flags paragraph @@
+- mom_coffee_can
++ baba_coffee_can (renamed from mom_coffee_can)
+
+@@ P15 · Production: registration props @@
+- "Mom's coffee-can prop"
++ "Baba's coffee-can prop"

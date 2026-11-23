@@ -1,0 +1,190 @@
+{
+ "name": "E4 key mode: holes 1-6 revealed at once",
+ "snapshot": {
+  "tournamentId": "lpga-3-w4",
+  "tour": "lpga",
+  "special": false,
+  "round": 3,
+  "rounds": 4,
+  "isFinal": true,
+  "pars": [
+   4,
+   4,
+   3,
+   5,
+   4,
+   3,
+   4,
+   5,
+   4
+  ],
+  "q": 9,
+  "boundaries": [
+   6,
+   7,
+   8,
+   9
+  ],
+  "ryanId": "golfer_ryan",
+  "rivalId": "golfer_kayla_brooks",
+  "alive": [
+   "golfer_ryan",
+   "golfer_whitfield",
+   "golfer_lindqvist",
+   "golfer_field_1",
+   "golfer_field_2",
+   "golfer_field_3",
+   "golfer_field_4",
+   "golfer_field_5",
+   "golfer_field_6"
+  ],
+  "prior": {
+   "golfer_ryan": -8,
+   "golfer_whitfield": -10,
+   "golfer_lindqvist": -8,
+   "golfer_field_1": 0,
+   "golfer_field_2": 1,
+   "golfer_field_3": 2,
+   "golfer_field_4": 3,
+   "golfer_field_5": 4,
+   "golfer_field_6": 5
+  },
+  "holes": {
+   "golfer_ryan": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_whitfield": [
+    4,
+    4,
+    3,
+    7,
+    4,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_lindqvist": [
+    4,
+    4,
+    2,
+    4,
+    3,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_field_1": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_field_2": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_field_3": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_field_4": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_field_5": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_field_6": [
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4
+   ]
+  }
+ },
+ "expected": {
+  "balanced": [
+   {
+    "q": 6,
+    "selected": "lpga-3-w4:r4:LEAD_CHANGE:golfer_lindqvist:h6",
+    "s4": {
+     "lpga-3-w4:r4:LEAD_CHANGE:golfer_lindqvist:h6": 68,
+     "lpga-3-w4:r4:LEADER_STUMBLE:golfer_whitfield:h6": 56
+    },
+    "reasons": {
+     "lpga-3-w4:r4:LEADER_STUMBLE:golfer_whitfield:h6": "lost_tiebreak"
+    },
+    "alsoTags": {
+     "lpga-3-w4:r4:LEAD_CHANGE:golfer_lindqvist:h6": [
+      "HOT_RUN"
+     ]
+    }
+   }
+  ],
+  "fullTv": [
+   {
+    "q": 6,
+    "selected": "lpga-3-w4:r4:LEADER_STUMBLE:golfer_whitfield:h6",
+    "s4": {
+     "lpga-3-w4:r4:LEADER_STUMBLE:golfer_whitfield:h6": 74,
+     "lpga-3-w4:r4:LEAD_CHANGE:golfer_lindqvist:h6": 72
+    },
+    "reasons": {
+     "lpga-3-w4:r4:LEAD_CHANGE:golfer_lindqvist:h6": "lost_tiebreak"
+    }
+   }
+  ],
+  "scoresByTag": {
+   "HOT_RUN@lindqvist@5": 54
+  }
+ }
+}

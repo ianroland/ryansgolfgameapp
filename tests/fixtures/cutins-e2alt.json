@@ -1,0 +1,182 @@
+{
+ "name": "E2 alt: the same eagle in round 3 of 4",
+ "snapshot": {
+  "tournamentId": "lpga-3-w18",
+  "tour": "lpga",
+  "special": true,
+  "round": 2,
+  "rounds": 4,
+  "isFinal": false,
+  "pars": [
+   4,
+   5,
+   4,
+   3,
+   4,
+   4,
+   5,
+   3,
+   4
+  ],
+  "q": 9,
+  "boundaries": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "ryanId": "golfer_ryan",
+  "rivalId": "golfer_kayla_brooks",
+  "alive": [
+   "golfer_ryan",
+   "golfer_kayla_brooks",
+   "golfer_leader",
+   "golfer_field_1",
+   "golfer_field_2",
+   "golfer_field_3",
+   "golfer_field_4",
+   "golfer_field_5",
+   "golfer_field_6"
+  ],
+  "prior": {
+   "golfer_ryan": -8,
+   "golfer_kayla_brooks": -5,
+   "golfer_leader": -10,
+   "golfer_field_1": 0,
+   "golfer_field_2": 1,
+   "golfer_field_3": 2,
+   "golfer_field_4": 3,
+   "golfer_field_5": 4,
+   "golfer_field_6": 5
+  },
+  "holes": {
+   "golfer_ryan": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_kayla_brooks": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    3,
+    3,
+    4
+   ],
+   "golfer_leader": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_field_1": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_field_2": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_field_3": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_field_4": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_field_5": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_field_6": [
+    4,
+    5,
+    4,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+   ]
+  }
+ },
+ "expected": {
+  "balanced": [
+   {
+    "q": 7,
+    "selected": "lpga-3-w18:r3:EAGLE:golfer_kayla_brooks:h7",
+    "s4": {
+     "lpga-3-w18:r3:EAGLE:golfer_kayla_brooks:h7": 58
+    }
+   }
+  ],
+  "fullTv": [
+   {
+    "q": 7,
+    "selected": "lpga-3-w18:r3:EAGLE:golfer_kayla_brooks:h7",
+    "s4": {
+     "lpga-3-w18:r3:EAGLE:golfer_kayla_brooks:h7": 76
+    }
+   }
+  ],
+  "scoresByTag": {
+   "RIVAL_SWING@kayla@7": 58
+  }
+ }
+}

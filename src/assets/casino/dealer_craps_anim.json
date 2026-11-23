@@ -1,0 +1,53 @@
+{
+ "cell": [
+  195,
+  148
+ ],
+ "headX": 70.0,
+ "frames": {
+  "idle": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "call": [
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "win": [
+   20,
+   21,
+   22,
+   23
+  ],
+  "loss": [
+   24,
+   25
+  ],
+  "special": [
+   26,
+   27,
+   28
+  ]
+ },
+ "heldBack": {
+  "chips": [
+   14,
+   15,
+   16,
+   17,
+   18,
+   19
+  ]
+ },
+ "heldBackNote": "Frames kept in the atlas but never shown: baked-in chips; the game's chip rendering is authoritative (author direction 22 Nov)."
+}

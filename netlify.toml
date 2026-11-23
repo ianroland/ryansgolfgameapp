@@ -1,0 +1,7 @@
+# Netlify: build the landing page + game into dist-site/.
+[build]
+  command = "npm run build:site"
+  publish = "dist-site"
+
+[build.environment]
+  NODE_VERSION = "22"

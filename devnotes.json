@@ -1,0 +1,432 @@
+{
+  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
+  "notes": [
+    {
+      "version": "0.13.2",
+      "date": "2026-11-22",
+      "title": "New scenery, a new roulette table, greyhound race cards, Madame Monique, new dealers and the Grand Clubhouse",
+      "items": [
+        {
+          "tag": "new",
+          "text": "New 32-bit scenery: city sunset, desert palms, coastal cliffs and casino night rotate behind the game every 90 seconds, with a crisp new header strip that fits any window size."
+        },
+        {
+          "tag": "new",
+          "text": "A new roulette table with the wheel on the right. Madame Monique runs it: she reaches across and sets the wheel spinning, reacts to big hits, and talks to you between spins in a dialogue box with her portrait. She never interrupts a spin."
+        },
+        {
+          "tag": "new",
+          "text": "Monique remembers you: streaks, big wins, how long you've been away and how your golf is going. She notices your Pink Jacket once."
+        },
+        {
+          "tag": "new",
+          "text": "Greyhound racing is a living race card: 36 dogs, each with its own running style. Every race draws a new field of six, with odds worked out from how they match up. The card stays put until its race is run, even if you leave or reload."
+        },
+        {
+          "tag": "improved",
+          "text": "Animated greyhounds in their lane jackets, plus a recent-races board with your last 10 races, the odds you got and what you won or lost."
+        },
+        {
+          "tag": "improved",
+          "text": "New animated dealers: Velvet Vega deals blackjack and reacts to every hand, and the craps stickman calls the roll and reacts to the result."
+        },
+        {
+          "tag": "improved",
+          "text": "A new craps table without painted dice, so the only dice on the felt are the ones you roll, and the ON puck sits on the point."
+        },
+        {
+          "tag": "new",
+          "text": "The Grand Clubhouse: a fifth home, above the Champion's Estate, with floor-to-ceiling windows over the course. You buy it with career earnings; no major or Pink Jacket needed."
+        },
+        {
+          "tag": "fixed",
+          "text": "The schedule's tour badges no longer crowd the event names."
+        },
+        {
+          "tag": "new",
+          "text": "A Leave the table button at roulette."
+        },
+        {
+          "tag": "changed",
+          "text": "Monique's lines are drafts, marked as such in the game, until they're signed off in the Script Room. The greyhound sprites are provisional."
+        }
+      ]
+    },
+    {
+      "version": "0.13.1",
+      "date": "2026-11-22",
+      "title": "Greyhound racing at Desert Palms",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Greyhound racing in the casino: six dogs, 500 yards. Pick a dog, see its odds and exactly what it pays, place a win bet, and watch the race from the boxes to the line."
+        },
+        {
+          "tag": "new",
+          "text": "Every race is decided when you bet and saved with it, so the race you watch is the race that pays. Close a race halfway and it finishes and pays when you come back."
+        },
+        {
+          "tag": "changed",
+          "text": "The greyhounds are placeholder art for now."
+        }
+      ]
+    },
+    {
+      "version": "0.13.0",
+      "date": "2026-11-22",
+      "title": "Career Legacy and the Pink Jacket",
+      "items": [
+        {
+          "tag": "new",
+          "text": "A new Legacy tab: your trophy room, career records, a milestone timeline and your legacy status, all built from finished, verified results."
+        },
+        {
+          "tag": "new",
+          "text": "23 career milestones, from your first win to the Career Grand Slam. Milestones you already earned in an existing career are recognized with their original dates."
+        },
+        {
+          "tag": "new",
+          "text": "The season's first major is now The Desert Rose Invitational. Win it on the LPGA once Ryan reaches phase 3 to earn the Pink Jacket, with its own ceremony and a display case in your clubhouse. Your Pink Jacket count shows in Stats."
+        },
+        {
+          "tag": "improved",
+          "text": "Ryan now looks right in every phase: portraits, story scenes and the on-course swing all use the approved art for the current phase."
+        },
+        {
+          "tag": "changed",
+          "text": "The visor now goes with Ryan's phase, so the separate visor option is gone. Earlier results keep the event names they were played under."
+        },
+        {
+          "tag": "new",
+          "text": "Roulette at Desert Palms: a single-zero wheel with straight-up numbers (35 to 1), dozens and columns (2 to 1) and the even-money bets."
+        },
+        {
+          "tag": "improved",
+          "text": "Ryan's waggle at address, putting stroke and shot reactions (celebrate, fist pumps, hands on hips, following the ball, frustration) now use the approved art for each phase."
+        },
+        {
+          "tag": "improved",
+          "text": "New clubhouse rooms for every home. Up to three trophy cabinets stand along the back wall, the side walls stay clear, and the furniture sits on the floor. Cabinets you had in a corner move to the back wall automatically."
+        },
+        {
+          "tag": "new",
+          "text": "Big moments get an arcade-style close-up: an ace, an eagle, a birdie, a holed par or a par-3 green from the tee each bring up Ryan's reaction portrait."
+        }
+      ]
+    },
+    {
+      "version": "0.12.0",
+      "date": "2026-11-21",
+      "title": "Desert Palms gets its tables",
+      "items": [
+        {
+          "tag": "improved",
+          "text": "Blackjack is played on a real table: Velvet deals from the shoe, cards slide in, chips drop on your spot, and she reacts to every hand."
+        },
+        {
+          "tag": "improved",
+          "text": "Fairway Fortune is a proper cabinet: the reels spin behind the glass, pull the lever or hit the yellow button to spin, red and blue change the bet, and the lights go off on a win."
+        },
+        {
+          "tag": "improved",
+          "text": "Craps is played on the felt: the point puck moves, the dice tumble across the table and the stickman calls every roll."
+        },
+        {
+          "tag": "improved",
+          "text": "The casino front, logo and chips now use the Desert Palms art. Rules, odds and payouts are unchanged."
+        }
+      ]
+    },
+    {
+      "version": "0.11.0",
+      "date": "2026-11-21",
+      "title": "Ryan's look and the first encounter",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Ryan's look: natural curls, bald, or the auburn ponytail wig, with the visor as a separate choice. The bald look unlocks in Act II and the wig in Act III. Click Ryan's portrait to change it."
+        },
+        {
+          "tag": "new",
+          "text": "Story encounters: animated scenes with full-body characters, expression portraits, choices and real consequences. Skip jumps to the next decision and never makes one for you."
+        },
+        {
+          "tag": "new",
+          "text": "The Gold-Plated Driver: Biff Fairway III wants a long-drive bet at the range. Play the drive with a timing meter, or sim it. It's followed by The Gold-Plated Putter."
+        },
+        {
+          "tag": "new",
+          "text": "The cast: portraits and poses for Kayla, Coach Martinez, Biff, Marty, Commissioner Clipboard, Agent Reese, Mr. Dawson, Jordan, Avery and Reporter Kim."
+        },
+        {
+          "tag": "fixed",
+          "text": "Only one blocking screen at a time: an encounter no longer opens on top of a story, its result, a dialog or the tournament screen."
+        }
+      ]
+    },
+    {
+      "version": "0.10.0",
+      "date": "2026-11-21",
+      "title": "Albatross Leaderboard",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Records tab: the Albatross Leaderboard. Five views: Career, Season, All-time log, Courses (filter by course and hole) and My albatrosses."
+        },
+        {
+          "tag": "new",
+          "text": "An albatross is three under par on one hole: a par 5 in 2 or a par 4 in 1. Each one comes from a verified, finished hole score with penalty strokes included. An eagle is never counted."
+        },
+        {
+          "tag": "new",
+          "text": "Every golfer in the field can make one, not just Ryan. They're rare: about one in 15,000 to 20,000 par 5s on tour."
+        },
+        {
+          "tag": "new",
+          "text": "The ALBATROSS! celebration, with its own fanfare. Press any key or tap to skip."
+        },
+        {
+          "tag": "new",
+          "text": "Clubhouse trophies: the Albatross Ball for your first and the Five Albatross Plaque for your fifth. Plus two achievements: Albatross! and Rare Bird."
+        },
+        {
+          "tag": "new",
+          "text": "Inbox news whenever anyone in your event makes one, including Ryan's first career albatross."
+        },
+        {
+          "tag": "improved",
+          "text": "Stats now count albatrosses on their own instead of as eagles."
+        },
+        {
+          "tag": "improved",
+          "text": "Saves upgrade automatically. Albatrosses already in your stored results are found and added once. Nothing is added for rounds without verifiable hole scores."
+        }
+      ]
+    },
+    {
+      "version": "0.9.4",
+      "date": "2026-11-20",
+      "title": "The tour travels",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Five new courses: Pacific Bluffs Links, Desert Palms Resort, Lakeside Pines CC, Skyline National and Highland Ridge. Every one has nine holes of its own."
+        },
+        {
+          "tag": "new",
+          "text": "Every event now has its own venue. Coastal events go to the links, desert events to the resort, and the majors and finales to Highland Ridge."
+        },
+        {
+          "tag": "new",
+          "text": "Each course looks the part, with its own backdrop, sky and grass: golden fescue on the coast, sandy scrub in the desert, deep pines by the lakes."
+        },
+        {
+          "tag": "new",
+          "text": "Each course plays the part too. The links are windy, the resort is scoreable and Highland Ridge is a championship test, and the whole field feels it."
+        },
+        {
+          "tag": "improved",
+          "text": "The event card, the schedule and the entry screen show the course, with its par, yardage and character."
+        },
+        {
+          "tag": "new",
+          "text": "Stats: a new By course table shows your record at every venue, and the tournament log names the course."
+        },
+        {
+          "tag": "fixed",
+          "text": "A tree that had grown in the Dry Creek duck pond has been moved."
+        }
+      ]
+    },
+    {
+      "version": "0.9.3",
+      "date": "2026-11-20",
+      "title": "Career stats",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Stats tab: events, wins, majors, top 10s, cuts made, best finish, earnings and scoring average at a glance."
+        },
+        {
+          "tag": "new",
+          "text": "All-time money list: every golfer in the world ranked by career prize money. Start at the bottom and climb past the legends, season by season."
+        },
+        {
+          "tag": "new",
+          "text": "Scoring breakdown: low round, par 3/4/5 averages, and how every hole played out (eagles to double bogeys)."
+        },
+        {
+          "tag": "new",
+          "text": "Prize money by season, a season-by-season table with your final ranking, and your record against Kayla Brooks."
+        },
+        {
+          "tag": "new",
+          "text": "Tournament log: every event Ryan has played, with a hole-by-hole scorecard for each."
+        }
+      ]
+    },
+    {
+      "version": "0.9.2",
+      "date": "2026-11-20",
+      "title": "Title menu",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Title screen menu: Continue, New Career and Load Career. Use the arrow keys, a controller, or click and tap."
+        },
+        {
+          "tag": "new",
+          "text": "New Career asks first and offers to export a backup before erasing anything."
+        },
+        {
+          "tag": "new",
+          "text": "Load Career brings back a career from a save file."
+        },
+        {
+          "tag": "improved",
+          "text": "Cleaner \"This week's golf\" card: event name, purse, rounds and cost laid out with room to breathe, and a tidier Coming up list."
+        }
+      ]
+    },
+    {
+      "version": "0.9.1",
+      "date": "2026-11-20",
+      "title": "Hole flyovers",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Flyover: press the ? Flyover button, F or ? (Y on a controller) to glide down the whole hole to the green, then swoop back to your ball."
+        },
+        {
+          "tag": "new",
+          "text": "Live yardage to the pin and a camera marker on the minimap during the flyover."
+        }
+      ]
+    },
+    {
+      "version": "0.9",
+      "date": "2026-11-20",
+      "title": "Desert Palms Casino",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Casino tab: blackjack (3:2, double, split), Fairway Fortune slots and craps (Pass, Don't Pass, Odds, Field)."
+        },
+        {
+          "tag": "new",
+          "text": "A night at the casino uses one of the week's activities. Lose too much and Mom will call."
+        },
+        {
+          "tag": "new",
+          "text": "Achievements: Jackpot! and High Roller."
+        }
+      ]
+    },
+    {
+      "version": "0.8.2",
+      "date": "2026-11-20",
+      "title": "Title screen, logo and sound",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Arcade title screen with the new Ryan's Road to the LPGA logo."
+        },
+        {
+          "tag": "new",
+          "text": "Music and sound effects: swings, impacts by club, landings, the cup, crowd reactions, cash and trophies. M mutes."
+        },
+        {
+          "tag": "improved",
+          "text": "Roomier hole-result and final-result cards."
+        }
+      ]
+    },
+    {
+      "version": "0.8",
+      "date": "2026-11-20",
+      "title": "Ryan's Road to the LPGA",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Full career RPG: train, work, rest and see friends each week; story events with choices; relationships, fame and form."
+        },
+        {
+          "tag": "new",
+          "text": "The road: Amateur Circuit → turn pro → Q-School → Epson Tour → LPGA Tour with four majors."
+        },
+        {
+          "tag": "new",
+          "text": "Stroke-play tournaments with cuts and playoffs. Pick Quick Sim, Key Holes or Full Round for each event."
+        },
+        {
+          "tag": "new",
+          "text": "Ryan's skills change how shots feel: accuracy, short game, putting, power and nerve."
+        },
+        {
+          "tag": "new",
+          "text": "Clubhouse levels: four homes, decor, bigger trophy cabinets and achievements."
+        }
+      ]
+    },
+    {
+      "version": "0.6",
+      "date": "2026-11-19",
+      "title": "32-bit look",
+      "items": [
+        {
+          "tag": "new",
+          "text": "32-bit course art: trees, backdrops, bunkers and water."
+        },
+        {
+          "tag": "new",
+          "text": "New 32-bit menus and on-course HUD."
+        },
+        {
+          "tag": "fixed",
+          "text": "Fairways no longer show a zigzag pattern; mowing stripes follow the hole."
+        }
+      ]
+    },
+    {
+      "version": "0.5",
+      "date": "2026-11-19",
+      "title": "Ryan arrives",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Hand-drawn golfer sprite with a full swing, putt and reactions."
+        },
+        {
+          "tag": "new",
+          "text": "Backspin on chips and wedges: hold down while setting height."
+        },
+        {
+          "tag": "fixed",
+          "text": "The golfer no longer flies along with the ball."
+        }
+      ]
+    },
+    {
+      "version": "0.4",
+      "date": "2026-11-19",
+      "title": "Real golf",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Arcade golf in the style of 90s classics: two-click swing, draw and fade, wind, slopes and spin."
+        }
+      ]
+    },
+    {
+      "version": "0.1",
+      "date": "2026-11-19",
+      "title": "Clubhouse alpha",
+      "items": [
+        {
+          "tag": "new",
+          "text": "First clubhouse with a trophy cabinet, room editor and saves."
+        }
+      ]
+    }
+  ]
+}

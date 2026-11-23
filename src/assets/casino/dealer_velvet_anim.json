@@ -1,0 +1,59 @@
+{
+ "cell": [
+  211,
+  200
+ ],
+ "headX": 98.7,
+ "frames": {
+  "idle": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "deal": [
+   10
+  ],
+  "win": [
+   21,
+   22,
+   23
+  ],
+  "special": [
+   24,
+   25,
+   26
+  ],
+  "loss": [
+   27,
+   28,
+   29,
+   30,
+   31,
+   32
+  ]
+ },
+ "heldBack": {
+  "card": [
+   11,
+   12,
+   13,
+   14
+  ],
+  "chips": [
+   15,
+   16,
+   17,
+   18,
+   19,
+   20
+  ]
+ },
+ "heldBackNote": "Frames kept in the atlas but never shown: the deal frames hold a baked-in card and the chip frames baked-in chips; the game draws its own cards and chips (author direction 22 Nov). Deal uses the card-free lean."
+}

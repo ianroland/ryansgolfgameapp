@@ -1,0 +1,199 @@
+{
+ "image": "ryan.png",
+ "w": 959,
+ "h": 492,
+ "frames": {
+  "curly.portrait.neutral": {
+   "x": 0,
+   "y": 0,
+   "w": 151,
+   "h": 162,
+   "ax": 75,
+   "ay": 81
+  },
+  "curly.portrait.confident": {
+   "x": 0,
+   "y": 0,
+   "w": 151,
+   "h": 162,
+   "ax": 75,
+   "ay": 81
+  },
+  "curly.portrait.happy": {
+   "x": 153,
+   "y": 0,
+   "w": 152,
+   "h": 162,
+   "ax": 76,
+   "ay": 81
+  },
+  "curly.portrait.angry": {
+   "x": 307,
+   "y": 0,
+   "w": 155,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "curly.portrait.surprised": {
+   "x": 464,
+   "y": 0,
+   "w": 152,
+   "h": 162,
+   "ax": 76,
+   "ay": 81
+  },
+  "curly.portrait.worried": {
+   "x": 618,
+   "y": 0,
+   "w": 155,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "curly.portrait.disappointed": {
+   "x": 618,
+   "y": 0,
+   "w": 155,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "curly.portrait.laughing": {
+   "x": 775,
+   "y": 0,
+   "w": 152,
+   "h": 162,
+   "ax": 76,
+   "ay": 81
+  },
+  "bald.portrait.neutral": {
+   "x": 0,
+   "y": 164,
+   "w": 154,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "bald.portrait.confident": {
+   "x": 0,
+   "y": 164,
+   "w": 154,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "bald.portrait.happy": {
+   "x": 156,
+   "y": 164,
+   "w": 155,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "bald.portrait.angry": {
+   "x": 313,
+   "y": 164,
+   "w": 154,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "bald.portrait.surprised": {
+   "x": 469,
+   "y": 164,
+   "w": 154,
+   "h": 162,
+   "ax": 77,
+   "ay": 81
+  },
+  "bald.portrait.worried": {
+   "x": 625,
+   "y": 164,
+   "w": 159,
+   "h": 162,
+   "ax": 79,
+   "ay": 81
+  },
+  "bald.portrait.disappointed": {
+   "x": 625,
+   "y": 164,
+   "w": 159,
+   "h": 162,
+   "ax": 79,
+   "ay": 81
+  },
+  "bald.portrait.laughing": {
+   "x": 786,
+   "y": 164,
+   "w": 157,
+   "h": 162,
+   "ax": 78,
+   "ay": 81
+  },
+  "wig.portrait.neutral": {
+   "x": 0,
+   "y": 328,
+   "w": 156,
+   "h": 162,
+   "ax": 78,
+   "ay": 81
+  },
+  "wig.portrait.confident": {
+   "x": 0,
+   "y": 328,
+   "w": 156,
+   "h": 162,
+   "ax": 78,
+   "ay": 81
+  },
+  "wig.portrait.happy": {
+   "x": 158,
+   "y": 328,
+   "w": 156,
+   "h": 162,
+   "ax": 78,
+   "ay": 81
+  },
+  "wig.portrait.angry": {
+   "x": 316,
+   "y": 328,
+   "w": 159,
+   "h": 162,
+   "ax": 79,
+   "ay": 81
+  },
+  "wig.portrait.surprised": {
+   "x": 477,
+   "y": 328,
+   "w": 159,
+   "h": 162,
+   "ax": 79,
+   "ay": 81
+  },
+  "wig.portrait.worried": {
+   "x": 638,
+   "y": 328,
+   "w": 159,
+   "h": 162,
+   "ax": 79,
+   "ay": 81
+  },
+  "wig.portrait.disappointed": {
+   "x": 638,
+   "y": 328,
+   "w": 159,
+   "h": 162,
+   "ax": 79,
+   "ay": 81
+  },
+  "wig.portrait.laughing": {
+   "x": 799,
+   "y": 328,
+   "w": 158,
+   "h": 162,
+   "ax": 79,
+   "ay": 81
+  }
+ }
+}

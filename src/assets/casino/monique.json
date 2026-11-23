@@ -1,0 +1,64 @@
+{
+ "cell": [
+  200,
+  210
+ ],
+ "frames": {
+  "idle": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "spin": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "emote": [
+   20,
+   21,
+   22,
+   23,
+   24,
+   25
+  ]
+ },
+ "portraitCell": [
+  152,
+  160
+ ],
+ "portraits": [
+  "neutral",
+  "raised",
+  "smirk",
+  "surprised"
+ ],
+ "heldBack": {
+  "chips": [
+   14,
+   15,
+   16,
+   17,
+   18,
+   19
+  ]
+ },
+ "heldBackNote": "Frames kept in the atlas but never shown: the chip frames have baked-in chips; the game's own chip rendering is authoritative (author direction 22 Nov).",
+ "arm": {
+  "file": "monique_arm.png",
+  "frames": {
+   "8": 0,
+   "9": 1,
+   "10": 2
+  },
+  "note": "Arm-only overlay for the reach frames, cut from her own pixels by tools (legacy-work/monique_arm.py): the sleeve and hand below the table's back rail, drawn in front of the table so her hand reaches the wheel's far rim. Nothing redrawn."
+ }
+}

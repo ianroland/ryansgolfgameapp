@@ -1,0 +1,219 @@
+{
+ "name": "E6 cooldown under Full TV; cap under Balanced",
+ "snapshot": {
+  "tournamentId": "lpga-3-w8",
+  "tour": "lpga",
+  "special": false,
+  "round": 3,
+  "rounds": 4,
+  "isFinal": true,
+  "pars": [
+   5,
+   3,
+   4,
+   4,
+   3,
+   4,
+   5,
+   4,
+   4
+  ],
+  "q": 9,
+  "boundaries": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "ryanId": "golfer_ryan",
+  "rivalId": "golfer_kayla_brooks",
+  "alive": [
+   "golfer_ryan",
+   "golfer_x",
+   "golfer_park",
+   "golfer_sato",
+   "golfer_field_1",
+   "golfer_field_2",
+   "golfer_field_3",
+   "golfer_field_4",
+   "golfer_field_5",
+   "golfer_field_6"
+  ],
+  "prior": {
+   "golfer_ryan": -6,
+   "golfer_x": -8,
+   "golfer_park": -7,
+   "golfer_sato": -5,
+   "golfer_field_1": 1,
+   "golfer_field_2": 2,
+   "golfer_field_3": 3,
+   "golfer_field_4": 4,
+   "golfer_field_5": 5,
+   "golfer_field_6": 6
+  },
+  "holes": {
+   "golfer_ryan": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_x": [
+    5,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_park": [
+    5,
+    3,
+    3,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_sato": [
+    5,
+    3,
+    4,
+    2,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_1": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_2": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_3": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_4": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_5": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_6": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ]
+  }
+ },
+ "expected": {
+  "balanced": [
+   {
+    "q": 3,
+    "selected": "lpga-3-w8:r4:LEAD_CHANGE:golfer_park:h3",
+    "s4": {
+     "lpga-3-w8:r4:LEAD_CHANGE:golfer_park:h3": 76
+    }
+   },
+   {
+    "q": 4,
+    "selected": null,
+    "s4": {
+     "lpga-3-w8:r4:EAGLE:golfer_sato:h4": 58
+    },
+    "reasons": {
+     "lpga-3-w8:r4:EAGLE:golfer_sato:h4": "suppressed_cooldown"
+    }
+   }
+  ],
+  "fullTv": [
+   {
+    "q": 3,
+    "selected": "lpga-3-w8:r4:LEAD_CHANGE:golfer_park:h3",
+    "s4": {
+     "lpga-3-w8:r4:LEAD_CHANGE:golfer_park:h3": 80
+    }
+   },
+   {
+    "q": 4,
+    "selected": null,
+    "s4": {
+     "lpga-3-w8:r4:EAGLE:golfer_sato:h4": 68
+    },
+    "reasons": {
+     "lpga-3-w8:r4:EAGLE:golfer_sato:h4": "suppressed_cooldown"
+    }
+   }
+  ],
+  "noCandidatesAt": [
+   5,
+   6,
+   7,
+   8,
+   9
+  ]
+ }
+}

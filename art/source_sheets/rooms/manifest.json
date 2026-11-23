@@ -1,0 +1,122 @@
+[
+  {
+    "name": "01_starter_pad",
+    "source_crop": [
+      18,
+      8,
+      758,
+      306
+    ],
+    "native_size": [
+      740,
+      298
+    ],
+    "game_canvas": [
+      960,
+      540
+    ],
+    "draw_rect": [
+      0,
+      76,
+      960,
+      387
+    ],
+    "note": "Concept-art crop; preview placement, not verified against actual clubhouse renderer."
+  },
+  {
+    "name": "02_coastal_condo",
+    "source_crop": [
+      776,
+      8,
+      1525,
+      306
+    ],
+    "native_size": [
+      749,
+      298
+    ],
+    "game_canvas": [
+      960,
+      540
+    ],
+    "draw_rect": [
+      0,
+      79,
+      960,
+      382
+    ],
+    "note": "Concept-art crop; preview placement, not verified against actual clubhouse renderer."
+  },
+  {
+    "name": "03_hillside_house",
+    "source_crop": [
+      15,
+      311,
+      753,
+      630
+    ],
+    "native_size": [
+      738,
+      319
+    ],
+    "game_canvas": [
+      960,
+      540
+    ],
+    "draw_rect": [
+      0,
+      62,
+      960,
+      415
+    ],
+    "note": "Concept-art crop; preview placement, not verified against actual clubhouse renderer."
+  },
+  {
+    "name": "04_estate_lounge",
+    "source_crop": [
+      771,
+      311,
+      1526,
+      630
+    ],
+    "native_size": [
+      755,
+      319
+    ],
+    "game_canvas": [
+      960,
+      540
+    ],
+    "draw_rect": [
+      0,
+      67,
+      960,
+      406
+    ],
+    "note": "Concept-art crop; preview placement, not verified against actual clubhouse renderer."
+  },
+  {
+    "name": "05_grand_clubhouse",
+    "source_crop": [
+      95,
+      635,
+      1444,
+      1011
+    ],
+    "native_size": [
+      1349,
+      376
+    ],
+    "game_canvas": [
+      960,
+      540
+    ],
+    "draw_rect": [
+      0,
+      136,
+      960,
+      268
+    ],
+    "note": "Concept-art crop; preview placement, not verified against actual clubhouse renderer."
+  }
+]

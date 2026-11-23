@@ -1,0 +1,1158 @@
+{
+ "name": "E11 Revision 3: in a major, the leader passes the gate while Ryan is far back (M3)",
+ "source": "lpga-4-w6, full mode, round 2 of 4: actual simulation record (revealSnapshot at the round's last boundary)",
+ "snapshot": {
+  "tournamentId": "lpga-4-w6",
+  "tour": "lpga",
+  "special": true,
+  "round": 1,
+  "rounds": 4,
+  "isFinal": false,
+  "pars": [
+   5,
+   3,
+   4,
+   4,
+   3,
+   4,
+   5,
+   4,
+   4
+  ],
+  "q": 9,
+  "boundaries": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "ryanId": "golfer_ryan",
+  "rivalId": "golfer_kayla_brooks",
+  "alive": [
+   "golfer_ryan",
+   "golfer_kayla_brooks",
+   "golfer_lpga_244",
+   "golfer_lpga_265",
+   "golfer_lpga_211",
+   "golfer_lpga_179",
+   "golfer_lpga_215",
+   "golfer_lpga_249",
+   "golfer_lpga_178",
+   "golfer_lpga_250",
+   "golfer_lpga_214",
+   "golfer_lpga_252",
+   "golfer_lpga_222",
+   "golfer_lpga_204",
+   "golfer_lpga_217",
+   "golfer_lpga_212",
+   "golfer_lpga_280",
+   "golfer_lpga_285",
+   "golfer_lpga_256",
+   "golfer_lpga_192",
+   "golfer_lpga_218",
+   "golfer_lpga_197",
+   "golfer_lpga_194",
+   "golfer_lpga_283",
+   "golfer_lpga_228",
+   "golfer_lpga_277",
+   "golfer_lpga_182",
+   "golfer_lpga_236",
+   "golfer_lpga_190",
+   "golfer_lpga_264",
+   "golfer_lpga_260",
+   "golfer_lpga_224",
+   "golfer_lpga_195",
+   "golfer_lpga_220",
+   "golfer_lpga_258",
+   "golfer_lpga_240",
+   "golfer_lpga_185",
+   "golfer_lpga_246",
+   "golfer_lpga_242",
+   "golfer_lpga_282",
+   "golfer_lpga_200",
+   "golfer_lpga_187",
+   "golfer_lpga_202",
+   "golfer_lpga_203",
+   "golfer_lpga_210",
+   "golfer_lpga_184",
+   "golfer_lpga_227",
+   "golfer_lpga_206",
+   "golfer_lpga_201",
+   "golfer_lpga_231",
+   "golfer_lpga_243",
+   "golfer_lpga_198",
+   "golfer_lpga_226",
+   "golfer_lpga_180",
+   "golfer_lpga_257",
+   "golfer_lpga_278",
+   "golfer_lpga_177",
+   "golfer_lpga_219",
+   "golfer_lpga_216",
+   "golfer_lpga_276",
+   "golfer_lpga_266",
+   "golfer_lpga_176",
+   "golfer_lpga_193",
+   "golfer_lpga_221",
+   "golfer_lpga_189",
+   "golfer_lpga_209",
+   "golfer_lpga_225",
+   "golfer_lpga_188",
+   "golfer_lpga_232",
+   "golfer_lpga_208",
+   "golfer_lpga_279",
+   "golfer_lpga_181"
+  ],
+  "prior": {
+   "golfer_ryan": 1,
+   "golfer_kayla_brooks": 2,
+   "golfer_lpga_244": -2,
+   "golfer_lpga_265": 0,
+   "golfer_lpga_211": -1,
+   "golfer_lpga_179": 4,
+   "golfer_lpga_215": -1,
+   "golfer_lpga_249": 1,
+   "golfer_lpga_178": 1,
+   "golfer_lpga_250": 0,
+   "golfer_lpga_214": 4,
+   "golfer_lpga_252": 1,
+   "golfer_lpga_222": 1,
+   "golfer_lpga_204": 1,
+   "golfer_lpga_217": 1,
+   "golfer_lpga_212": 0,
+   "golfer_lpga_280": 7,
+   "golfer_lpga_285": -1,
+   "golfer_lpga_256": -1,
+   "golfer_lpga_192": -3,
+   "golfer_lpga_218": -2,
+   "golfer_lpga_197": -2,
+   "golfer_lpga_194": -1,
+   "golfer_lpga_283": -3,
+   "golfer_lpga_228": 2,
+   "golfer_lpga_277": 1,
+   "golfer_lpga_182": 2,
+   "golfer_lpga_236": -2,
+   "golfer_lpga_190": 0,
+   "golfer_lpga_264": -1,
+   "golfer_lpga_260": 0,
+   "golfer_lpga_224": -5,
+   "golfer_lpga_195": 1,
+   "golfer_lpga_220": -1,
+   "golfer_lpga_258": -2,
+   "golfer_lpga_240": 2,
+   "golfer_lpga_185": -2,
+   "golfer_lpga_246": 0,
+   "golfer_lpga_242": -2,
+   "golfer_lpga_282": -2,
+   "golfer_lpga_200": 4,
+   "golfer_lpga_187": 3,
+   "golfer_lpga_202": -4,
+   "golfer_lpga_203": 1,
+   "golfer_lpga_210": 0,
+   "golfer_lpga_184": -1,
+   "golfer_lpga_227": 0,
+   "golfer_lpga_206": -1,
+   "golfer_lpga_201": 6,
+   "golfer_lpga_231": 4,
+   "golfer_lpga_243": 3,
+   "golfer_lpga_198": 2,
+   "golfer_lpga_226": 3,
+   "golfer_lpga_180": -4,
+   "golfer_lpga_257": 1,
+   "golfer_lpga_278": -3,
+   "golfer_lpga_177": -3,
+   "golfer_lpga_219": -2,
+   "golfer_lpga_216": -2,
+   "golfer_lpga_276": -1,
+   "golfer_lpga_266": 2,
+   "golfer_lpga_176": -3,
+   "golfer_lpga_193": -1,
+   "golfer_lpga_221": -1,
+   "golfer_lpga_189": -6,
+   "golfer_lpga_209": 4,
+   "golfer_lpga_225": 2,
+   "golfer_lpga_188": -2,
+   "golfer_lpga_232": 2,
+   "golfer_lpga_208": 0,
+   "golfer_lpga_279": -4,
+   "golfer_lpga_181": -4
+  },
+  "holes": {
+   "golfer_ryan": [
+    4,
+    3,
+    3,
+    4,
+    3,
+    4,
+    6,
+    4,
+    4
+   ],
+   "golfer_kayla_brooks": [
+    5,
+    3,
+    5,
+    3,
+    2,
+    4,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_244": [
+    4,
+    3,
+    5,
+    5,
+    3,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_lpga_265": [
+    4,
+    2,
+    5,
+    4,
+    4,
+    4,
+    5,
+    4,
+    5
+   ],
+   "golfer_lpga_211": [
+    4,
+    4,
+    5,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5
+   ],
+   "golfer_lpga_179": [
+    5,
+    3,
+    4,
+    3,
+    3,
+    5,
+    4,
+    4,
+    5
+   ],
+   "golfer_lpga_215": [
+    5,
+    2,
+    4,
+    4,
+    3,
+    3,
+    4,
+    5,
+    4
+   ],
+   "golfer_lpga_249": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    3,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_178": [
+    4,
+    2,
+    5,
+    3,
+    2,
+    4,
+    4,
+    3,
+    4
+   ],
+   "golfer_lpga_250": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_214": [
+    4,
+    4,
+    3,
+    3,
+    2,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_lpga_252": [
+    3,
+    2,
+    4,
+    5,
+    3,
+    4,
+    6,
+    4,
+    4
+   ],
+   "golfer_lpga_222": [
+    4,
+    3,
+    4,
+    2,
+    3,
+    3,
+    5,
+    5,
+    4
+   ],
+   "golfer_lpga_204": [
+    5,
+    4,
+    4,
+    4,
+    3,
+    5,
+    3,
+    4,
+    4
+   ],
+   "golfer_lpga_217": [
+    5,
+    2,
+    3,
+    5,
+    2,
+    3,
+    5,
+    4,
+    4
+   ],
+   "golfer_lpga_212": [
+    5,
+    3,
+    4,
+    5,
+    3,
+    3,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_280": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    7,
+    4,
+    5
+   ],
+   "golfer_lpga_285": [
+    5,
+    4,
+    4,
+    4,
+    2,
+    3,
+    5,
+    3,
+    3
+   ],
+   "golfer_lpga_256": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    3,
+    5
+   ],
+   "golfer_lpga_192": [
+    3,
+    3,
+    6,
+    4,
+    2,
+    4,
+    4,
+    5,
+    3
+   ],
+   "golfer_lpga_218": [
+    4,
+    3,
+    4,
+    3,
+    3,
+    4,
+    6,
+    3,
+    4
+   ],
+   "golfer_lpga_197": [
+    4,
+    2,
+    4,
+    4,
+    3,
+    4,
+    5,
+    3,
+    4
+   ],
+   "golfer_lpga_194": [
+    5,
+    3,
+    5,
+    4,
+    3,
+    4,
+    5,
+    5,
+    5
+   ],
+   "golfer_lpga_283": [
+    5,
+    2,
+    3,
+    4,
+    2,
+    4,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_228": [
+    4,
+    3,
+    4,
+    4,
+    3,
+    5,
+    4,
+    5,
+    3
+   ],
+   "golfer_lpga_277": [
+    4,
+    3,
+    3,
+    4,
+    3,
+    5,
+    5,
+    5,
+    3
+   ],
+   "golfer_lpga_182": [
+    4,
+    4,
+    3,
+    4,
+    2,
+    4,
+    4,
+    3,
+    4
+   ],
+   "golfer_lpga_236": [
+    5,
+    4,
+    2,
+    5,
+    3,
+    5,
+    4,
+    4,
+    3
+   ],
+   "golfer_lpga_190": [
+    5,
+    4,
+    4,
+    5,
+    3,
+    4,
+    4,
+    4,
+    3
+   ],
+   "golfer_lpga_264": [
+    5,
+    2,
+    4,
+    3,
+    4,
+    3,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_260": [
+    5,
+    2,
+    3,
+    5,
+    2,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_lpga_224": [
+    5,
+    4,
+    3,
+    5,
+    3,
+    4,
+    4,
+    3,
+    3
+   ],
+   "golfer_lpga_195": [
+    6,
+    4,
+    5,
+    5,
+    4,
+    3,
+    6,
+    4,
+    4
+   ],
+   "golfer_lpga_220": [
+    4,
+    4,
+    4,
+    4,
+    2,
+    5,
+    4,
+    5,
+    4
+   ],
+   "golfer_lpga_258": [
+    4,
+    3,
+    5,
+    4,
+    3,
+    4,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_240": [
+    5,
+    5,
+    5,
+    4,
+    3,
+    5,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_185": [
+    4,
+    2,
+    4,
+    3,
+    3,
+    4,
+    6,
+    4,
+    5
+   ],
+   "golfer_lpga_246": [
+    4,
+    3,
+    4,
+    4,
+    3,
+    4,
+    4,
+    5,
+    5
+   ],
+   "golfer_lpga_242": [
+    5,
+    3,
+    4,
+    3,
+    3,
+    5,
+    5,
+    4,
+    6
+   ],
+   "golfer_lpga_282": [
+    4,
+    3,
+    4,
+    4,
+    3,
+    5,
+    4,
+    3,
+    5
+   ],
+   "golfer_lpga_200": [
+    6,
+    2,
+    5,
+    4,
+    3,
+    4,
+    5,
+    4,
+    5
+   ],
+   "golfer_lpga_187": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    5,
+    4,
+    5,
+    4
+   ],
+   "golfer_lpga_202": [
+    5,
+    3,
+    4,
+    5,
+    2,
+    4,
+    5,
+    5,
+    5
+   ],
+   "golfer_lpga_203": [
+    5,
+    3,
+    4,
+    3,
+    3,
+    4,
+    4,
+    4,
+    3
+   ],
+   "golfer_lpga_210": [
+    4,
+    5,
+    3,
+    3,
+    4,
+    5,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_184": [
+    4,
+    3,
+    4,
+    3,
+    3,
+    4,
+    5,
+    3,
+    3
+   ],
+   "golfer_lpga_227": [
+    4,
+    4,
+    4,
+    5,
+    3,
+    4,
+    6,
+    5,
+    4
+   ],
+   "golfer_lpga_206": [
+    5,
+    4,
+    3,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_lpga_201": [
+    5,
+    4,
+    4,
+    4,
+    3,
+    5,
+    4,
+    4,
+    5
+   ],
+   "golfer_lpga_231": [
+    4,
+    3,
+    5,
+    5,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_243": [
+    5,
+    4,
+    4,
+    5,
+    2,
+    3,
+    6,
+    4,
+    4
+   ],
+   "golfer_lpga_198": [
+    5,
+    4,
+    5,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5
+   ],
+   "golfer_lpga_226": [
+    5,
+    4,
+    4,
+    4,
+    2,
+    3,
+    5,
+    4,
+    5
+   ],
+   "golfer_lpga_180": [
+    4,
+    2,
+    4,
+    4,
+    3,
+    4,
+    3,
+    4,
+    5
+   ],
+   "golfer_lpga_257": [
+    5,
+    5,
+    6,
+    4,
+    2,
+    4,
+    5,
+    5,
+    4
+   ],
+   "golfer_lpga_278": [
+    5,
+    3,
+    5,
+    5,
+    3,
+    3,
+    5,
+    3,
+    4
+   ],
+   "golfer_lpga_177": [
+    5,
+    3,
+    3,
+    4,
+    2,
+    4,
+    4,
+    3,
+    4
+   ],
+   "golfer_lpga_219": [
+    5,
+    2,
+    5,
+    3,
+    3,
+    5,
+    4,
+    4,
+    3
+   ],
+   "golfer_lpga_216": [
+    5,
+    3,
+    4,
+    4,
+    2,
+    5,
+    4,
+    4,
+    5
+   ],
+   "golfer_lpga_276": [
+    5,
+    2,
+    3,
+    4,
+    3,
+    4,
+    5,
+    3,
+    5
+   ],
+   "golfer_lpga_266": [
+    4,
+    2,
+    4,
+    4,
+    2,
+    3,
+    5,
+    4,
+    3
+   ],
+   "golfer_lpga_176": [
+    5,
+    4,
+    4,
+    4,
+    3,
+    4,
+    4,
+    4,
+    3
+   ],
+   "golfer_lpga_193": [
+    5,
+    3,
+    3,
+    4,
+    3,
+    3,
+    5,
+    5,
+    4
+   ],
+   "golfer_lpga_221": [
+    5,
+    3,
+    3,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_lpga_189": [
+    4,
+    2,
+    4,
+    5,
+    3,
+    4,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_209": [
+    4,
+    3,
+    3,
+    5,
+    3,
+    3,
+    6,
+    4,
+    4
+   ],
+   "golfer_lpga_225": [
+    5,
+    3,
+    5,
+    5,
+    3,
+    4,
+    4,
+    4,
+    2
+   ],
+   "golfer_lpga_188": [
+    5,
+    3,
+    3,
+    3,
+    3,
+    5,
+    4,
+    4,
+    4
+   ],
+   "golfer_lpga_232": [
+    5,
+    3,
+    3,
+    4,
+    3,
+    5,
+    4,
+    3,
+    3
+   ],
+   "golfer_lpga_208": [
+    5,
+    2,
+    4,
+    4,
+    3,
+    4,
+    5,
+    2,
+    4
+   ],
+   "golfer_lpga_279": [
+    5,
+    3,
+    5,
+    4,
+    2,
+    4,
+    4,
+    3,
+    3
+   ],
+   "golfer_lpga_181": [
+    5,
+    2,
+    4,
+    3,
+    3,
+    3,
+    4,
+    5,
+    4
+   ]
+  }
+ },
+ "expected": {
+  "balanced": [
+   {
+    "q": 1,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_192:h1": 50,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_252:h1": 50
+    },
+    "reasons": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_192:h1": "below_threshold",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_252:h1": "below_threshold"
+    }
+   },
+   {
+    "q": 3,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_236:h3": 50
+    },
+    "reasons": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_236:h3": "below_threshold"
+    }
+   },
+   {
+    "q": 4,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h4": 30,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_222:h4": 50
+    },
+    "reasons": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h4": "below_threshold",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_222:h4": "below_threshold"
+    }
+   },
+   {
+    "q": 5,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h5": 46,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_214:h5": 44
+    },
+    "reasons": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h5": "below_threshold",
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_214:h5": "below_threshold"
+    }
+   },
+   {
+    "q": 7,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h7": 46,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_180:h7": 50,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_204:h7": 50
+    },
+    "reasons": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h7": "below_threshold",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_180:h7": "below_threshold",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_204:h7": "below_threshold"
+    }
+   },
+   {
+    "q": 8,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_208:h8": 42
+    },
+    "reasons": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_208:h8": "gate"
+    }
+   },
+   {
+    "q": 9,
+    "selected": "lpga-4-w6:r2:LEAD_CHANGE:golfer_lpga_189:h9",
+    "s4": {
+     "lpga-4-w6:r2:LEAD_CHANGE:golfer_lpga_189:h9": 68,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_224:h9": 44,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_225:h9": 50,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_232:h9": 44,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_279:h9": 44
+    },
+    "reasons": {
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_224:h9": "below_threshold",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_225:h9": "below_threshold",
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_232:h9": "below_threshold",
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_279:h9": "below_threshold"
+    }
+   }
+  ],
+  "fullTv": [
+   {
+    "q": 1,
+    "selected": "lpga-4-w6:r2:EAGLE:golfer_lpga_192:h1",
+    "s4": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_192:h1": 60,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_252:h1": 56
+    },
+    "reasons": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_252:h1": "lost_tiebreak"
+    }
+   },
+   {
+    "q": 3,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_236:h3": 56
+    },
+    "reasons": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_236:h3": "late_reserve"
+    }
+   },
+   {
+    "q": 4,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h4": 30,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_222:h4": 56
+    },
+    "reasons": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h4": "late_reserve",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_222:h4": "late_reserve"
+    }
+   },
+   {
+    "q": 5,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h5": 46,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_214:h5": 50
+    },
+    "reasons": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h5": "late_reserve",
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_214:h5": "late_reserve"
+    }
+   },
+   {
+    "q": 7,
+    "selected": "lpga-4-w6:r2:EAGLE:golfer_lpga_180:h7",
+    "s4": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h7": 46,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_180:h7": 60,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_204:h7": 56
+    },
+    "reasons": {
+     "lpga-4-w6:r2:RIVAL_SWING:golfer_kayla_brooks:h7": "below_threshold",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_204:h7": "lost_tiebreak"
+    }
+   },
+   {
+    "q": 8,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_208:h8": 48
+    },
+    "reasons": {
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_208:h8": "suppressed_cap"
+    }
+   },
+   {
+    "q": 9,
+    "selected": null,
+    "s4": {
+     "lpga-4-w6:r2:LEAD_CHANGE:golfer_lpga_189:h9": 72,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_224:h9": 54,
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_225:h9": 56,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_232:h9": 50,
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_279:h9": 54
+    },
+    "reasons": {
+     "lpga-4-w6:r2:LEAD_CHANGE:golfer_lpga_189:h9": "suppressed_cap",
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_224:h9": "suppressed_cap",
+     "lpga-4-w6:r2:EAGLE:golfer_lpga_225:h9": "suppressed_cap",
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_232:h9": "suppressed_cap",
+     "lpga-4-w6:r2:HOT_RUN:golfer_lpga_279:h9": "suppressed_cap"
+    }
+   }
+  ]
+ }
+}

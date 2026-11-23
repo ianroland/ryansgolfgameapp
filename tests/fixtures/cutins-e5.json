@@ -1,0 +1,205 @@
+{
+ "name": "E5 equal eagles: hash tie-break",
+ "snapshot": {
+  "tournamentId": "epson-2-w6",
+  "tour": "epson",
+  "special": false,
+  "round": 1,
+  "rounds": 3,
+  "isFinal": false,
+  "pars": [
+   5,
+   3,
+   4,
+   4,
+   3,
+   4,
+   5,
+   4,
+   4
+  ],
+  "q": 9,
+  "boundaries": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "ryanId": "golfer_ryan",
+  "rivalId": "golfer_kayla_brooks",
+  "alive": [
+   "golfer_ryan",
+   "golfer_a",
+   "golfer_b",
+   "golfer_c",
+   "golfer_chen_l",
+   "golfer_duarte_m",
+   "golfer_field_1",
+   "golfer_field_2",
+   "golfer_field_3",
+   "golfer_field_4"
+  ],
+  "prior": {
+   "golfer_ryan": -4,
+   "golfer_a": -8,
+   "golfer_b": -7,
+   "golfer_c": -6,
+   "golfer_chen_l": -3,
+   "golfer_duarte_m": -3,
+   "golfer_field_1": 1,
+   "golfer_field_2": 2,
+   "golfer_field_3": 3,
+   "golfer_field_4": 4
+  },
+  "holes": {
+   "golfer_ryan": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_a": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_b": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_c": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_chen_l": [
+    3,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_duarte_m": [
+    3,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_1": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_2": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_3": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ],
+   "golfer_field_4": [
+    5,
+    3,
+    4,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4
+   ]
+  }
+ },
+ "expected": {
+  "balanced": [
+   {
+    "q": 1,
+    "selected": null,
+    "s4": {
+     "epson-2-w6:r2:EAGLE:golfer_chen_l:h1": 36,
+     "epson-2-w6:r2:EAGLE:golfer_duarte_m:h1": 36
+    },
+    "reasons": {
+     "epson-2-w6:r2:EAGLE:golfer_chen_l:h1": "below_threshold",
+     "epson-2-w6:r2:EAGLE:golfer_duarte_m:h1": "below_threshold"
+    }
+   }
+  ],
+  "fullTv": [
+   {
+    "q": 1,
+    "selected": "epson-2-w6:r2:EAGLE:golfer_duarte_m:h1",
+    "s4": {
+     "epson-2-w6:r2:EAGLE:golfer_duarte_m:h1": 52,
+     "epson-2-w6:r2:EAGLE:golfer_chen_l:h1": 52
+    },
+    "reasons": {
+     "epson-2-w6:r2:EAGLE:golfer_chen_l:h1": "lost_tiebreak"
+    }
+   }
+  ],
+  "hashes": {
+   "epson-2-w6:r2:EAGLE:golfer_chen_l:h1": 3329715253,
+   "epson-2-w6:r2:EAGLE:golfer_duarte_m:h1": 501345157
+  }
+ }
+}

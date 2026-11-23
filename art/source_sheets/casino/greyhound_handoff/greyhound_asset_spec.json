@@ -1,0 +1,62 @@
+{
+  "project": "Desert Palms Casino / Greyhound Racing",
+  "status": "REFERENCE PACKAGE \u2014 sprite atlas must be produced and validated",
+  "target_resolution": [
+    960,
+    540
+  ],
+  "racers": [
+    {
+      "number": 1,
+      "name": "Dusty Trail",
+      "jacket": "red",
+      "hex": "#e32636"
+    },
+    {
+      "number": 2,
+      "name": "Velvet Rocket",
+      "jacket": "blue",
+      "hex": "#2478ed"
+    },
+    {
+      "number": 3,
+      "name": "Palm Springs Pete",
+      "jacket": "white",
+      "hex": "#f1f0e8"
+    },
+    {
+      "number": 4,
+      "name": "Sandstorm Sally",
+      "jacket": "yellow",
+      "hex": "#f2cc22"
+    },
+    {
+      "number": 5,
+      "name": "Coyote Ugly",
+      "jacket": "orange",
+      "hex": "#f47a22"
+    },
+    {
+      "number": 6,
+      "name": "Snake Eyes",
+      "jacket": "green",
+      "hex": "#1ca64a"
+    }
+  ],
+  "proposed_output": {
+    "atlas": "assets/casino/greyhounds/greyhounds_run.png",
+    "metadata": "assets/casino/greyhounds/greyhounds_run.json",
+    "frames_per_dog": 8,
+    "directions": [
+      "right"
+    ],
+    "frame_dimensions": "Choose after inspecting current in-game lane dimensions; same size for every frame",
+    "background": "transparent"
+  },
+  "warnings": [
+    "The concept image is NOT a uniform sprite atlas.",
+    "Some depicted jacket numbers are wrong or inconsistent.",
+    "Do not treat the current screenshot or concept as animation-ready transparent sprites.",
+    "Do not change race outcomes, odds, timers, payout rules, or racer names."
+  ]
+}

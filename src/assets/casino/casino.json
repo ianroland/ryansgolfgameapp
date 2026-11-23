@@ -1,0 +1,342 @@
+{
+  "cabinet": {
+    "file": "cabinet.png",
+    "w": 817,
+    "h": 719,
+    "ax": 408.5,
+    "ay": 719,
+    "source": [
+      "casino_retro_tables",
+      1343,
+      3,
+      817,
+      719
+    ],
+    "windows": [
+      [
+        101,
+        368,
+        152,
+        152
+      ],
+      [
+        298,
+        368,
+        153,
+        152
+      ],
+      [
+        496,
+        368,
+        151,
+        152
+      ]
+    ],
+    "buttons": [
+      [
+        118,
+        586,
+        150,
+        60
+      ],
+      [
+        316,
+        586,
+        150,
+        60
+      ],
+      [
+        514,
+        586,
+        150,
+        60
+      ]
+    ]
+  },
+  "cabinet_lever": {
+    "file": "cabinet_lever.png",
+    "w": 85,
+    "h": 217,
+    "ax": 42.5,
+    "ay": 217,
+    "source": [
+      "casino_retro_tables",
+      2075,
+      256,
+      85,
+      217
+    ],
+    "at": [
+      732,
+      253
+    ]
+  },
+  "blackjack_table": {
+    "file": "blackjack_table.png",
+    "w": 1059,
+    "h": 369,
+    "ax": 529.5,
+    "ay": 369,
+    "source": [
+      "casino_retro_tables",
+      160,
+      2,
+      1059,
+      369
+    ]
+  },
+  "craps_table": {
+    "file": "craps_table_v2.png",
+    "w": 1937,
+    "h": 589,
+    "ax": 968.5,
+    "ay": 589,
+    "source": [
+      "Retro_Pixel-Art_Craps_Table",
+      53,
+      76,
+      1937,
+      589
+    ],
+    "note": "Craps table without painted dice (22 Nov): the game's own dice are the only dice on the felt. Purple background keyed out from the border. Replaces the table with painted dice (archived in art/retired)."
+  },
+  "dealer_blackjack": {
+    "file": "dealer_blackjack.png",
+    "w": 108,
+    "h": 123,
+    "ax": 54.0,
+    "ay": 123,
+    "source": [
+      "casino_assets",
+      892,
+      287,
+      108,
+      123
+    ]
+  },
+  "dealer_craps": {
+    "file": "dealer_craps.png",
+    "w": 103,
+    "h": 127,
+    "ax": 51.5,
+    "ay": 127,
+    "source": [
+      "casino_assets",
+      338,
+      281,
+      103,
+      127
+    ]
+  },
+  "velvet_portrait": {
+    "file": "velvet_portrait.png",
+    "w": 170,
+    "h": 196,
+    "ax": 85.0,
+    "ay": 98.0,
+    "source": [
+      "casino_pixel_cast",
+      762,
+      6,
+      170,
+      196
+    ]
+  },
+  "sym_seven": {
+    "file": "sym_seven.png",
+    "w": 59,
+    "h": 60,
+    "ax": 29.5,
+    "ay": 30.0,
+    "source": [
+      "casino_assets",
+      558,
+      525,
+      59,
+      60
+    ]
+  },
+  "sym_trophy": {
+    "file": "sym_trophy.png",
+    "w": 62,
+    "h": 60,
+    "ax": 31.0,
+    "ay": 30.0,
+    "source": [
+      "casino_assets",
+      626,
+      525,
+      62,
+      60
+    ]
+  },
+  "sym_flag": {
+    "file": "sym_flag.png",
+    "w": 61,
+    "h": 62,
+    "ax": 30.5,
+    "ay": 31.0,
+    "source": [
+      "casino_assets",
+      697,
+      524,
+      61,
+      62
+    ]
+  },
+  "sym_cherry": {
+    "file": "sym_cherry.png",
+    "w": 54,
+    "h": 57,
+    "ax": 27.0,
+    "ay": 28.5,
+    "source": [
+      "casino_assets",
+      558,
+      665,
+      218,
+      57
+    ]
+  },
+  "sym_bell": {
+    "file": "sym_bell.png",
+    "w": 55,
+    "h": 57,
+    "ax": 27.5,
+    "ay": 28.5,
+    "source": [
+      "casino_assets",
+      558,
+      665,
+      218,
+      57
+    ]
+  },
+  "sym_bar": {
+    "file": "sym_bar.png",
+    "w": 55,
+    "h": 57,
+    "ax": 27.5,
+    "ay": 28.5,
+    "source": [
+      "casino_assets",
+      558,
+      665,
+      218,
+      57
+    ]
+  },
+  "sym_diamond": {
+    "file": "sym_diamond.png",
+    "w": 54,
+    "h": 57,
+    "ax": 27.0,
+    "ay": 28.5,
+    "source": [
+      "casino_assets",
+      558,
+      665,
+      218,
+      57
+    ]
+  },
+  "chip_5": {
+    "file": "chip_5.png",
+    "w": 52,
+    "h": 51,
+    "ax": 26.0,
+    "ay": 25.5,
+    "source": [
+      "casino_assets",
+      1015,
+      613,
+      108,
+      52
+    ]
+  },
+  "chip_25": {
+    "file": "chip_25.png",
+    "w": 52,
+    "h": 51,
+    "ax": 26.0,
+    "ay": 25.5,
+    "source": [
+      "casino_assets",
+      1015,
+      613,
+      108,
+      52
+    ]
+  },
+  "chip_100": {
+    "file": "chip_100.png",
+    "w": 52,
+    "h": 52,
+    "ax": 26.0,
+    "ay": 26.0,
+    "source": [
+      "casino_assets",
+      1014,
+      674,
+      52,
+      52
+    ]
+  },
+  "chip_500": {
+    "file": "chip_500.png",
+    "w": 53,
+    "h": 53,
+    "ax": 26.5,
+    "ay": 26.5,
+    "source": [
+      "casino_assets",
+      1072,
+      673,
+      53,
+      53
+    ]
+  },
+  "casino_exterior": {
+    "file": "casino_exterior.png",
+    "w": 585,
+    "h": 251,
+    "ax": 292.5,
+    "ay": 251,
+    "source": [
+      "casino_assets",
+      6,
+      6,
+      585,
+      251
+    ]
+  },
+  "casino_logo": {
+    "file": "casino_logo.png",
+    "w": 306,
+    "h": 185,
+    "ax": 153.0,
+    "ay": 185,
+    "source": [
+      "casino_assets",
+      1226,
+      4,
+      306,
+      185
+    ]
+  },
+  "roulette_table": {
+    "file": "roulette_table_rw.png",
+    "w": 1774,
+    "h": 865,
+    "ax": 887.0,
+    "ay": 865,
+    "source": [
+      "16-Bit_Luxury_Roulette_Table",
+      0,
+      10,
+      1774,
+      865
+    ],
+    "note": "Right-wheel table (22 Nov). Black background keyed to transparent from the outside only; enclosed shadows kept. Replaces the left-wheel table (archived in art/retired)."
+  }
+}
