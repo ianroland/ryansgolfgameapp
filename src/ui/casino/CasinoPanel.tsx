@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   BJ_LIMITS, canDouble, canSplit, deal, double, handValue, hit, newTable, split, stand, totalPayout,
-  type BJState, type Card,
+  type BJState,
 } from '../../casino/blackjack';
 import { betBlocker, betsOnTable, CRAPS_LIMITS, newCraps, resolveRoll, rollDice, type BetKey, type CrapsState } from '../../casino/craps';
 import { PAYTABLE, REEL, SLOT_BETS, spin, SYMBOL_ART, type SlotSymbol } from '../../casino/slots';
@@ -14,8 +14,10 @@ import { CASINO_ENERGY, casinoBlocker, casinoNet, casinoWeekKey } from '../../ca
 import { sound } from '../../audio/sound';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
-import { boxStyle, casinoArt, chipFor } from './casinoArt';
+import { boxStyle, casinoArt } from './casinoArt';
 import { Greyhounds } from './Greyhounds';
+import { BetChip, PlayingCard } from './TableBits';
+import { Baccarat, ThreeCard } from './WWTables';
 import { DialogueBox, MoniqueSprite, REACH_MS, useMonique } from './Monique';
 import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
 import { BigWinOverlay, celebrateWin } from './BigWin';
@@ -29,7 +31,7 @@ import { pendingRace } from '../../services/casinoService';
  * the existing games.
  */
 
-type Game = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds';
+type Game = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds' | 'baccarat' | 'threecard';
 
 const CHIPS = [5, 10, 25, 100, 500];
 
@@ -47,18 +49,6 @@ function ChipRack({ value, onAdd, onClear, min, disabled }: { value: number; onA
   );
 }
 
-/** A bet sitting on the felt: the drawn chip that fits, and the amount. */
-function BetChip({ amount, className }: { amount: number; className?: string }) {
-  if (amount <= 0) return null;
-  const chip = chipFor(amount);
-  return (
-    <span className={`felt-chip ${className ?? ''}`} key={amount}>
-      <img src={chip.url} alt="" draggable={false} />
-      <b>{formatMoney(amount)}</b>
-    </span>
-  );
-}
-
 /** A dealer behind the table (animated sprite). What they say goes in the dialogue box below the table. */
 function Dealer({ who, anim }: { who: 'velvet' | 'craps'; anim: DealerAnim }) {
   return (
@@ -69,20 +59,6 @@ function Dealer({ who, anim }: { who: 'velvet' | 'craps'; anim: DealerAnim }) {
 }
 
 // ───────────────────────── Blackjack ─────────────────────────
-
-const RANKS = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-const SUITS = ['♠', '♥', '♦', '♣'];
-
-function PlayingCard({ card, hidden, i }: { card: Card; hidden?: boolean; i: number }) {
-  if (hidden) return <div className="pcard back" style={{ animationDelay: `${i * 0.12}s` }} aria-label="Face-down card" />;
-  const red = card.suit === 1 || card.suit === 2;
-  return (
-    <div className={`pcard ${red ? 'red' : ''}`} style={{ animationDelay: `${i * 0.12}s` }} aria-label={`${RANKS[card.rank]} of ${['spades', 'hearts', 'diamonds', 'clubs'][card.suit]}`}>
-      <span className="pc-corner">{RANKS[card.rank]}<br />{SUITS[card.suit]}</span>
-      <span className="pc-suit">{SUITS[card.suit]}</span>
-    </div>
-  );
-}
 
 const RESULT_TEXT = { blackjack: 'BLACKJACK!', win: 'WIN', push: 'PUSH', lose: 'LOSE', bust: 'BUST' } as const;
 
@@ -645,7 +621,7 @@ export function CasinoPanel() {
       <section className="hub-card casino-head" style={{ backgroundImage: `linear-gradient(90deg, rgba(20,8,30,0.92) 0%, rgba(20,8,30,0.55) 45%, rgba(20,8,30,0.1) 100%), url(${exterior.url})` }}>
         <div className="casino-brand">
           <img className="casino-logo" src={logo.url} alt="Desert Palms Casino" draggable={false} />
-          <p className="muted">Blackjack, slots, craps, roulette and greyhound racing. In-game money only.</p>
+          <p className="muted">Blackjack, slots, craps, roulette, baccarat, Three Card Poker and greyhound racing. In-game money only.</p>
         </div>
         <dl className="casino-stats">
           <div><dt>Bank</dt><dd>{formatMoney(state.balance)}</dd></div>
@@ -681,6 +657,8 @@ export function CasinoPanel() {
             <button className={game === 'slots' ? 'on' : ''} onClick={() => setGame('slots')} data-testid="casino-slots">Slots</button>
             <button className={game === 'craps' ? 'on' : ''} onClick={() => setGame('craps')} data-testid="casino-craps">Craps</button>
             <button className={game === 'roulette' ? 'on' : ''} onClick={() => setGame('roulette')} data-testid="casino-roulette">Roulette</button>
+            <button className={game === 'baccarat' ? 'on' : ''} onClick={() => setGame('baccarat')} data-testid="casino-baccarat">Baccarat</button>
+            <button className={game === 'threecard' ? 'on' : ''} onClick={() => setGame('threecard')} data-testid="casino-threecard">Three Card</button>
             <button className={game === 'greyhounds' ? 'on' : ''} onClick={() => setGame('greyhounds')} data-testid="casino-greyhounds">Greyhounds</button>
           </nav>
           {/* Games stay mounted so a hand in progress survives switching. */}
@@ -688,6 +666,8 @@ export function CasinoPanel() {
           <div hidden={game !== 'slots'}><Slots /></div>
           <div hidden={game !== 'craps'}><Craps /></div>
           <div hidden={game !== 'roulette'}><Roulette active={game === 'roulette'} onLeave={() => setGame('blackjack')} /></div>
+          {game === 'baccarat' && <Baccarat />}
+          {game === 'threecard' && <ThreeCard />}
           {game === 'greyhounds' && <Greyhounds onLeave={() => setGame('blackjack')} />}
         </>
       )}

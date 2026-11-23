@@ -13,6 +13,11 @@ import {
   type PendingRace, type RaceHistoryEntry, type RaceResult,
 } from '../casino/greyhounds';
 import { SLOT_BETS } from '../casino/slots';
+import {
+  betBlocker as baccaratBlocker, dealFromShoe, freshShoe, HISTORY_SIZE as BACCARAT_HISTORY, needsShuffle, totalReturn, totalStaked,
+  type BaccaratBets, type BaccaratHand, type BaccaratHistoryEntry, type ShoeState,
+} from '../casino/baccarat';
+import { betBlocker as threeCardBlocker, newDeck, settle3, type PendingThreeCard, type ThreeCardResult } from '../casino/threeCard';
 import * as engine from '../career/engine';
 import { CareerRuleError } from '../career/engine';
 import type { CareerState } from '../career/types';
@@ -23,10 +28,10 @@ import type { CareerService } from './careerService';
 import type { EconomyService } from './economyService';
 import type { Notifier } from './notifier';
 
-export type CasinoGame = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds';
+export type CasinoGame = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds' | 'baccarat' | 'threecard';
 
 /** Most a round can return per dollar wagered in it (roulette: straight up, 35 to 1 plus the stake). */
-const MAX_RETURN: Record<CasinoGame, number> = { blackjack: 2.5, slots: 400, craps: 4, roulette: 36, greyhounds: 31 };
+const MAX_RETURN: Record<CasinoGame, number> = { blackjack: 2.5, slots: 400, craps: 4, roulette: 36, greyhounds: 31, baccarat: 9, threecard: 41 };
 
 /** The greyhound race bet on and decided but not yet paid, if any (kept on the career so a reload can't lose it). */
 export function pendingRace(c: CareerState): PendingRace | null {
@@ -47,6 +52,26 @@ const readJson = <T>(raw: unknown): T | null => {
     return null;
   }
 };
+
+/** The baccarat shoe in play (additive flag). Null until the first hand, or if unreadable (a fresh shoe is shuffled). */
+export const baccaratShoe = (c: CareerState) => readJson<ShoeState>(c.flags.baccaratShoe);
+/** The last 20 baccarat outcomes, newest first (additive flag). */
+export const baccaratHistory = (c: CareerState) => readJson<BaccaratHistoryEntry[]>(c.flags.baccaratHistory) ?? [];
+/** The Three Card Poker hand dealt and waiting for Play or Fold, if any (additive flag; survives a reload). */
+export const pendingThreeCard = (c: CareerState) => readJson<PendingThreeCard>(c.flags.threeCardPending);
+
+export interface BaccaratRound {
+  roundId: string;
+  hand: BaccaratHand;
+  bets: BaccaratBets;
+  staked: number;
+  payout: number;
+  /** A new shoe was shuffled before this hand (the cut card had come out). */
+  shuffled: boolean;
+  /** The cut card came out during this hand: the next hand starts a new shoe. */
+  cutCardOut: boolean;
+  shoeNo: number;
+}
 
 /** Today's greyhound race card (locked once dealt, until its race is run). Additive flag. */
 export const currentGreyhoundCard = (c: CareerState) => readJson<{ seed: number; v: 2 }>(c.flags.greyhoundCard);
@@ -175,6 +200,108 @@ export class CasinoService {
       this.notifier.emit({ kind: 'info', title: `Achievement: ${name}`, refId: `ach:${id}` });
     }
     return out;
+  }
+
+  /**
+   * Baccarat: one coup, start to finish, in a single step. The stake is debited once and the
+   * return credited once inside the same transaction, so a reload, a double click or a
+   * second tab can never take or pay a hand twice. The shoe is saved on the career (the cut
+   * card ends it; the next hand shuffles a fresh 8-deck shoe).
+   */
+  async playBaccarat(bets: BaccaratBets): Promise<BaccaratRound> {
+    const clean: BaccaratBets = {};
+    for (const k of ['player', 'banker', 'tie'] as const) if ((bets[k] ?? 0) > 0) clean[k] = bets[k];
+    const unlocked: string[] = [];
+    const out = await this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      const block = baccaratBlocker(clean, await this.economy.getBalance(c.playerId));
+      if (block) throw new DomainError('CAREER_RULE', block);
+      let shoe = baccaratShoe(c);
+      const shuffled = needsShuffle(shoe);
+      if (shuffled) shoe = freshShoe((shoe?.n ?? 0) + 1).shoe;
+      const { hand, shoe: after } = dealFromShoe(shoe!);
+      const staked = totalStaked(clean);
+      const payout = totalReturn(clean, hand.outcome);
+      if (payout > staked * MAX_RETURN.baccarat) throw new DomainError('CAREER_RULE', 'Payout exceeds what this hand can return');
+      const roundId = newId('casino_baccarat');
+      await this.economy.post({ ownerId: c.playerId, amount: -staked, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:bet:main` });
+      if (payout > 0) await this.economy.post({ ownerId: c.playerId, amount: payout, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:pay:main` });
+      let next = engine.recordCasino(c, staked, payout, { biggestWin: payout - staked });
+      const entry: BaccaratHistoryEntry = { o: hand.outcome, p: hand.playerTotal, b: hand.bankerTotal, ...(hand.natural ? { nat: true } : {}) };
+      next.flags.baccaratShoe = JSON.stringify(after);
+      next.flags.baccaratHistory = JSON.stringify([entry, ...baccaratHistory(c)].slice(0, BACCARAT_HISTORY));
+      if (payout > staked) {
+        const o = engine.withAchievements({ career: next, money: [] });
+        unlocked.push(...(o.unlocked ?? []));
+        next = o.career;
+      }
+      await this.db.careers.put(next);
+      return { roundId, hand, bets: clean, staked, payout, shuffled, cutCardOut: needsShuffle(after), shoeNo: after.n };
+    });
+    this.announce(unlocked);
+    return out;
+  }
+
+  /**
+   * Three Card Poker: puts the Ante (and Pair Plus, if any) down and deals both hands from a
+   * freshly shuffled deck. The hand is saved on the career, so a reload comes back to the same
+   * cards waiting for Play or Fold. The bank must cover the Play bet too.
+   */
+  async startThreeCard(ante: number, pairPlus: number): Promise<PendingThreeCard> {
+    return this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      if (pendingThreeCard(c)) throw new DomainError('CAREER_RULE', 'Finish the hand on the table first');
+      const block = threeCardBlocker(ante, pairPlus, await this.economy.getBalance(c.playerId));
+      if (block) throw new DomainError('CAREER_RULE', block);
+      const deck = newDeck();
+      const pending: PendingThreeCard = { roundId: newId('casino_threecard'), ante, pairPlus, player: deck.slice(0, 3), dealer: deck.slice(3, 6), v: 1 };
+      await this.economy.post({ ownerId: c.playerId, amount: -ante, type: 'casino', sourceId: pending.roundId, idempotencyKey: `casino:${pending.roundId}:bet:ante` });
+      if (pairPlus > 0) await this.economy.post({ ownerId: c.playerId, amount: -pairPlus, type: 'casino', sourceId: pending.roundId, idempotencyKey: `casino:${pending.roundId}:bet:pairplus` });
+      const next = engine.recordCasino(c, ante + pairPlus, 0);
+      next.flags.threeCardPending = JSON.stringify(pending);
+      await this.db.careers.put(next);
+      return pending;
+    });
+  }
+
+  /**
+   * Plays (puts down a Play bet equal to the Ante) or folds the saved hand, then settles every
+   * bet once. Calling it again for the same hand changes nothing and returns null.
+   */
+  async finishThreeCard(roundId: string, play: boolean): Promise<{ pending: PendingThreeCard; result: ThreeCardResult; staked: number } | null> {
+    const unlocked: string[] = [];
+    const out = await this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.db.careers.get('career');
+      if (!c) throw new DomainError('NO_PROFILE', 'No career found');
+      const pending = pendingThreeCard(c);
+      if (!pending || pending.roundId !== roundId) return null;
+      if (play) {
+        if ((await this.economy.getBalance(c.playerId)) < pending.ante) throw new DomainError('CAREER_RULE', 'Not enough chips for the Play bet');
+        await this.economy.post({ ownerId: c.playerId, amount: -pending.ante, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:bet:play` });
+      }
+      const result = settle3(pending.player, pending.dealer, pending.ante, pending.pairPlus, play);
+      const staked = pending.ante + pending.pairPlus + (play ? pending.ante : 0);
+      if (result.total > staked * MAX_RETURN.threecard) throw new DomainError('CAREER_RULE', 'Payout exceeds what this hand can return');
+      if (result.total > 0) await this.economy.post({ ownerId: c.playerId, amount: result.total, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:pay:main` });
+      let next = engine.recordCasino(c, play ? pending.ante : 0, result.total, { biggestWin: result.total - staked });
+      delete next.flags.threeCardPending;
+      if (result.total > staked) {
+        const o = engine.withAchievements({ career: next, money: [] });
+        unlocked.push(...(o.unlocked ?? []));
+        next = o.career;
+      }
+      await this.db.careers.put(next);
+      return { pending, result, staked };
+    });
+    this.announce(unlocked);
+    return out;
+  }
+
+  private announce(unlocked: string[]) {
+    for (const id of unlocked) {
+      const name = id === 'high_roller' ? 'High Roller' : id === 'jackpot' ? 'Jackpot!' : id;
+      this.notifier.emit({ kind: 'info', title: `Achievement: ${name}`, refId: `ach:${id}` });
+    }
   }
 
   /** Saves Madame Monique's memory of Ryan (streaks, visits, what she has remarked on). Additive: one flag. */

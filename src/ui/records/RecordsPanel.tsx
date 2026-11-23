@@ -180,7 +180,7 @@ function MineView({ mine }: { mine: AlbatrossRecord[] }) {
         <PixelBird className="alb-bird small" />
         <p>
           <b>No albatrosses yet.</b> Hole a par 5 in two or a par 4 from the tee, three under par on one hole. Tour pros
-          see one every few seasons. When it happens it goes in here for good, with a <b>{TROPHY_DEFINITIONS.albatross_first.name}</b> for the clubhouse.
+          see one every few seasons. When it happens it goes in here for good, with a <b>{TROPHY_DEFINITIONS.albatross_first.name}</b> for the trophy cabinet at home.
         </p>
       </div>
     );

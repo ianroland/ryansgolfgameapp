@@ -1,0 +1,104 @@
+{
+ "waifu_idle": [
+  246,
+  250
+ ],
+ "waifu_deal": [
+  220,
+  261
+ ],
+ "waifu_present": [
+  291,
+  247
+ ],
+ "waifu_think": [
+  192,
+  245
+ ],
+ "winston_idle": [
+  263,
+  243
+ ],
+ "winston_present": [
+  276,
+  246
+ ],
+ "winston_point": [
+  276,
+  244
+ ],
+ "winston_think": [
+  212,
+  237
+ ],
+ "baccarat_felt": [
+  550,
+  220
+ ],
+ "threecard_felt": [
+  534,
+  221
+ ],
+ "chip_tray": [
+  193,
+  62
+ ],
+ "shoe_red": [
+  89,
+  79
+ ],
+ "shoe_blue": [
+  89,
+  80
+ ],
+ "vp_cabinet": [
+  295,
+  274
+ ],
+ "vp_marquee": [
+  334,
+  109
+ ],
+ "waifu_faces": {
+  "cell": [
+   102,
+   111
+  ],
+  "faces": [
+   "neutral",
+   "smile",
+   "confident",
+   "surprised",
+   "soft",
+   "closed",
+   "delighted",
+   "wink"
+  ]
+ },
+ "winston_faces": {
+  "cell": [
+   102,
+   112
+  ],
+  "faces": [
+   "grin",
+   "laugh",
+   "smirk",
+   "surprised",
+   "neutral",
+   "closed",
+   "roar",
+   "wink"
+  ]
+ },
+ "anchors": {
+  "waifu_idle": 110,
+  "waifu_deal": 96,
+  "waifu_present": 123,
+  "waifu_think": 69,
+  "winston_idle": 120,
+  "winston_present": 103,
+  "winston_point": 116,
+  "winston_think": 92
+ }
+}

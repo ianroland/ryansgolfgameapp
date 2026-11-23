@@ -1,0 +1,213 @@
+{
+  "character": "Winston",
+  "approval_status": "DRAFT \u2014 requires Script Room approval",
+  "lines": {
+    "welcome": [
+      {
+        "id": "winston_welcome_01",
+        "text": "Welcome to Three Card Poker.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_welcome_02",
+        "text": "Pull up a chair. Three cards, plenty of drama.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_welcome_03",
+        "text": "You here to play or admire the felt?",
+        "status": "draft"
+      }
+    ],
+    "bet": [
+      {
+        "id": "winston_bet_01",
+        "text": "Ante is down. Feeling lucky?",
+        "status": "draft"
+      },
+      {
+        "id": "winston_bet_02",
+        "text": "Your bets are set.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_bet_03",
+        "text": "All right. Let us deal.",
+        "status": "draft"
+      }
+    ],
+    "deal": [
+      {
+        "id": "winston_deal_01",
+        "text": "Here come your three cards.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_deal_02",
+        "text": "Three for you. Three for me.",
+        "status": "draft"
+      }
+    ],
+    "decision": [
+      {
+        "id": "winston_decision_01",
+        "text": "Play or fold? Your call.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_decision_02",
+        "text": "You riding with that hand?",
+        "status": "draft"
+      },
+      {
+        "id": "winston_decision_03",
+        "text": "Think it over. I can wait.",
+        "status": "draft"
+      }
+    ],
+    "dealer_qualifies": [
+      {
+        "id": "winston_dealer_qualifies_01",
+        "text": "Queen-high or better. I qualify.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_dealer_qualifies_02",
+        "text": "Dealer qualifies. Time to compare.",
+        "status": "draft"
+      }
+    ],
+    "dealer_no_qualify": [
+      {
+        "id": "winston_dealer_no_qualify_01",
+        "text": "No qualification. Ante pays, Play pushes.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_dealer_no_qualify_02",
+        "text": "Not enough for me to qualify this time.",
+        "status": "draft"
+      }
+    ],
+    "player_win": [
+      {
+        "id": "winston_player_win_01",
+        "text": "You got it. Nice hand.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_player_win_02",
+        "text": "That one belongs to you.",
+        "status": "draft"
+      }
+    ],
+    "dealer_win": [
+      {
+        "id": "winston_dealer_win_01",
+        "text": "Dealer takes this one.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_dealer_win_02",
+        "text": "Better luck on the next hand.",
+        "status": "draft"
+      }
+    ],
+    "push": [
+      {
+        "id": "winston_push_01",
+        "text": "Same hand. Bets push.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_push_02",
+        "text": "A draw. We go again.",
+        "status": "draft"
+      }
+    ],
+    "pair_plus_win": [
+      {
+        "id": "winston_pair_plus_win_01",
+        "text": "Pair Plus pays. Nice hand!",
+        "status": "draft"
+      },
+      {
+        "id": "winston_pair_plus_win_02",
+        "text": "That side bet came through.",
+        "status": "draft"
+      }
+    ],
+    "ante_bonus": [
+      {
+        "id": "winston_ante_bonus_01",
+        "text": "That hand earns an Ante Bonus.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_ante_bonus_02",
+        "text": "Now that is a bonus-worthy hand.",
+        "status": "draft"
+      }
+    ],
+    "fold": [
+      {
+        "id": "winston_fold_01",
+        "text": "You fold. Fair enough.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_fold_02",
+        "text": "Sometimes the best play is walking away.",
+        "status": "draft"
+      }
+    ],
+    "big_win": [
+      {
+        "id": "winston_big_win_01",
+        "text": "That is a strong hand!",
+        "status": "draft"
+      },
+      {
+        "id": "winston_big_win_02",
+        "text": "Now that is worth celebrating.",
+        "status": "draft"
+      }
+    ],
+    "loss": [
+      {
+        "id": "winston_loss_01",
+        "text": "Tough break. Want another?",
+        "status": "draft"
+      },
+      {
+        "id": "winston_loss_02",
+        "text": "The cards can be stubborn.",
+        "status": "draft"
+      }
+    ],
+    "insufficient_funds": [
+      {
+        "id": "winston_insufficient_funds_01",
+        "text": "Not enough chips for that wager.",
+        "status": "draft"
+      },
+      {
+        "id": "winston_insufficient_funds_02",
+        "text": "Check your balance before we deal.",
+        "status": "draft"
+      }
+    ],
+    "return_visit": [
+      {
+        "id": "winston_return_visit_01",
+        "text": "Back for another three?",
+        "status": "draft"
+      },
+      {
+        "id": "winston_return_visit_02",
+        "text": "Good to see you at the table again.",
+        "status": "draft"
+      }
+    ]
+  }
+}

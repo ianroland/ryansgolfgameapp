@@ -183,7 +183,7 @@ export function LegacyPanel({ onOpenTrophies }: { onOpenTrophies?: () => void })
             <p className="empty">No trophies yet.</p>
           )}
           {onOpenTrophies && (
-            <button className="btn small ghost" onClick={onOpenTrophies} data-testid="legacy-open-cabinet">Open the clubhouse cabinet</button>
+            <button className="btn small ghost" onClick={onOpenTrophies} data-testid="legacy-open-cabinet">Open the trophy cabinet at home</button>
           )}
         </div>
 

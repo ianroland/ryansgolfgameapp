@@ -2,6 +2,29 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.14.0",
+      "date": "2026-11-23",
+      "title": "Baccarat with Waifu and Three Card Poker with Winston",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Baccarat (Punto Banco, 8 decks) with Waifu dealing. Bet Player, Banker or Tie on the felt; the standard third-card rules are applied for you. The shoe carries over between hands and visits, with a cut card and a shuffle notice, and the last 20 hands show on a bead road."
+        },
+        {
+          "tag": "new",
+          "text": "Three Card Poker with Winston: Ante and Play with an optional Pair Plus. He qualifies with queen-high, the Ante Bonus pays on straights and better when you play, and Pair Plus pays on your hand even if you fold. A dealt hand waits for you across a reload."
+        },
+        {
+          "tag": "new",
+          "text": "Both dealers talk you through the game in the same dialogue box as Monique, with their own faces and poses. Set their chat to quiet to hear only results."
+        },
+        {
+          "tag": "improved",
+          "text": "The Clubhouse tab is now called Home. The Shop keeps Homes, and the Grand Clubhouse is still the top home."
+        }
+      ]
+    },
+    {
       "version": "0.13.2",
       "date": "2026-11-22",
       "title": "New scenery, a new roulette table, greyhound race cards, Madame Monique, new dealers and the Grand Clubhouse",

@@ -103,8 +103,8 @@ export function ShopPanel() {
 
       {tab === 'homes' && (
         <section className="hub-card">
-          <h2 className="hub-title">Homes &amp; clubhouse levels</h2>
-          <p className="muted">A better home means a bigger clubhouse: more places for furniture, fancier cabinets, and more energy each week. Rent goes up too.</p>
+          <h2 className="hub-title">Homes</h2>
+          <p className="muted">A better home means more room: more places for furniture, fancier cabinets, and more energy each week. Rent goes up too.</p>
           <ul className="list">
             {HOMES.map((h) => {
               const current = h.id === state.propertyDef.id;

@@ -49,7 +49,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'legacy', label: 'Legacy' },
   { id: 'shop', label: 'Shop' },
   { id: 'people', label: 'People' },
-  { id: 'clubhouse', label: 'Clubhouse' },
+  { id: 'clubhouse', label: 'Home' },
   { id: 'casino', label: 'Casino' },
 ];
 
@@ -234,7 +234,7 @@ export function App() {
           </div>
           {tab === 'clubhouse' && (
             <main className="layout">
-              <section className="stage-wrap" aria-label="Clubhouse room">
+              <section className="stage-wrap" aria-label="Ryan's home">
                 <ClubhouseCanvas
                   vm={vm}
                   label={`Ryan's ${state.propertyDef.name}: ${vm.placed.length} item(s) placed`}
@@ -248,7 +248,7 @@ export function App() {
               </section>
 
               <aside className="panel">
-                <nav className="subtabs inpanel" aria-label="Clubhouse">
+                <nav className="subtabs inpanel" aria-label="Home">
                   {SUBSCREENS.map((s) => (
                     <button key={s.id} className={screen === s.id ? 'on' : ''} onClick={() => go(s.id)} data-testid={`sub-${s.id}`}>{s.label}</button>
                   ))}

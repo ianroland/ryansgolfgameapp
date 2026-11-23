@@ -126,7 +126,7 @@ export function LegacyCelebration() {
           <div className="ceremony-beat" data-testid="ceremony-room">
             <img className="ceremony-case jacket-drop" src={caseUrl} alt="" height={210} />
             <h2 id="ceremony-title" className="legacy-word rose small">{m.title} · No. {m.jacketNumber ?? 1}</h2>
-            <p className="legacy-event">In your clubhouse display case</p>
+            <p className="legacy-event">In your display case at home</p>
             <button ref={btn} className="btn primary" onClick={(e) => { e.stopPropagation(); advance(); }} data-testid="ceremony-continue">
               {queue.length > 1 ? 'Next' : 'Continue'}
             </button>
