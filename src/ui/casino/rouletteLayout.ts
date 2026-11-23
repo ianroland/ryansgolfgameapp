@@ -67,9 +67,9 @@ export const WHEEL_AT = { x: 1452, y: 332, rx: 160, ry: 128 };
 /**
  * Madame Monique behind the table, slightly left of the wheel's centre, so her
  * right-reaching spin arm ends on the wheel's far rim. Table-image pixels; her
- * 200 x 210 sprite cell is drawn at 1.25x, which matches Velvet Vega's and
- * Stick Lady's on-screen size. Placed so the hand in her fullest reach
+ * 200 x 210 sprite cell is drawn at 1.7x: head, shoulders and bow tie clear
+ * the table like the other dealers (1.25x sank her behind the wheel). Placed so the hand in her fullest reach
  * (frame 9, cell x 181, y ~158) lands on the far rim at (1510, 146).
  */
-export const MONIQUE_SCALE = 1.25;
-export const MONIQUE_AT = { left: 1284, top: -52, w: 250, h: 262 };
+export const MONIQUE_SCALE = 1.7;
+export const MONIQUE_AT = { left: 1202, top: -123, w: 340, h: 357 };
