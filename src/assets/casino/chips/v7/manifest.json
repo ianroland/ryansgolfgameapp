@@ -1,0 +1,127 @@
+{
+  "version": "7.0",
+  "description": "21 independent, circular RGBA chips with reconstructed outer rims and preserved central emblem/denomination art",
+  "canvas": [
+    256,
+    256
+  ],
+  "diameter_px": 208,
+  "padding_px": 24,
+  "denominations": [
+    1,
+    5,
+    10,
+    25,
+    100,
+    500,
+    1000
+  ],
+  "files": [
+    {
+      "casino": "desert_palms",
+      "denomination": 1,
+      "path": "chips/desert_palms/0001.png"
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 5,
+      "path": "chips/desert_palms/0005.png"
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 10,
+      "path": "chips/desert_palms/0010.png"
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 25,
+      "path": "chips/desert_palms/0025.png"
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 100,
+      "path": "chips/desert_palms/0100.png"
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 500,
+      "path": "chips/desert_palms/0500.png"
+    },
+    {
+      "casino": "desert_palms",
+      "denomination": 1000,
+      "path": "chips/desert_palms/1000.png"
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 1,
+      "path": "chips/white_buffalo/0001.png"
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 5,
+      "path": "chips/white_buffalo/0005.png"
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 10,
+      "path": "chips/white_buffalo/0010.png"
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 25,
+      "path": "chips/white_buffalo/0025.png"
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 100,
+      "path": "chips/white_buffalo/0100.png"
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 500,
+      "path": "chips/white_buffalo/0500.png"
+    },
+    {
+      "casino": "white_buffalo",
+      "denomination": 1000,
+      "path": "chips/white_buffalo/1000.png"
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 1,
+      "path": "chips/morongo_sky/0001.png"
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 5,
+      "path": "chips/morongo_sky/0005.png"
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 10,
+      "path": "chips/morongo_sky/0010.png"
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 25,
+      "path": "chips/morongo_sky/0025.png"
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 100,
+      "path": "chips/morongo_sky/0100.png"
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 500,
+      "path": "chips/morongo_sky/0500.png"
+    },
+    {
+      "casino": "morongo_sky",
+      "denomination": 1000,
+      "path": "chips/morongo_sky/1000.png"
+    }
+  ],
+  "caveat": "Outer rims rebuilt to eliminate adjacent-chip contamination; center art extracted from approved source. Inspect appearance at game viewport."
+}

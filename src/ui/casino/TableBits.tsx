@@ -4,16 +4,17 @@ import { formatMoney } from '../format';
 import { chipFor } from './casinoArt';
 import { chipFaceForAmount } from '../../expansion/chipThemes';
 import { useCasinoLocation } from './casinoLocation';
+import { ChipImg } from './Chips';
 
 /** A bet sitting on the felt: the drawn chip that fits, and the amount. */
 export function BetChip({ amount, className }: { amount: number; className?: string }) {
   const location = useCasinoLocation();
   if (amount <= 0) return null;
   // The casino's own chip face; the original chip art is the fallback.
-  const chip = chipFaceForAmount(location, amount) ?? chipFor(amount);
+  const chip = chipFaceForAmount(location, amount);
   return (
     <span className={`felt-chip ${className ?? ''}`} key={amount}>
-      <img src={chip.url} alt="" draggable={false} />
+      {chip ? <ChipImg src={chip.url} source={chip.source} /> : <img src={chipFor(amount).url} alt="" draggable={false} />}
       <b>{formatMoney(amount)}</b>
     </span>
   );

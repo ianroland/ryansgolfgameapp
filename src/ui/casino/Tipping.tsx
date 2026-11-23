@@ -87,7 +87,7 @@ function TipFlight({ from, to, face, onDone }: { from: DOMRect; to: DOMRect; fac
   const dy = to.top + to.height * 0.55 - size / 2 - y0;
   return createPortal(
     <img
-      className={`tip-flight ${face ? 'chip-flight' : ''}`}
+      className={`tip-flight ${face ? 'chip-flight chip-img' : ''}`}
       src={face ?? FLIGHT[frame]}
       alt=""
       aria-hidden
@@ -171,23 +171,19 @@ export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled:
         </div>
       ) : null}
       <div className="tip-row">
-        <img ref={trayRef} className="tip-tray-art" src={tipArt('tip_tray')} alt="" draggable={false} width={193} height={122} />
-        <div className="tip-info">
-          <span className="tip-title">Tip {dealer.short}</span>
-          <span className="tip-rel">
-            <img src={tierBadge(tier.id)} alt="" width={30} height={30} draggable={false} />
-            <b data-testid={`tip-tier-${npcId}`}>{tier.label}</b>
-            {feedback && <img className="tip-feedback" src={tipArt(`rel_${feedback}`)} alt={feedback === 'gain' ? 'Relationship improved' : 'No change'} data-testid="tip-feedback" data-kind={feedback} />}
-          </span>
-          <span className="tip-total" data-testid={`tip-total-${npcId}`}>
-            {npc.tips.count > 0 ? (
-              <>
-                <b>{formatMoney(npc.tips.lifetime)}</b> in {npc.tips.count} {npc.tips.count === 1 ? 'tip' : 'tips'} · tipped on {npc.tips.visitsTipped ?? 0} of {visits} {visits === 1 ? 'visit' : 'visits'}
-              </>
-            ) : (
-              'Optional. Tips never change the game.'
-            )}
-          </span>
+        <div className="tip-head">
+          <picture>
+            <source media="(max-width: 760px)" srcSet={tipArt('tips_icon_64')} width={64} height={64} />
+            <img ref={trayRef} className="tip-icon" src={tipArt('tips_icon_96')} alt="Tips" draggable={false} width={96} height={96} />
+          </picture>
+          <div className="tip-info">
+            <span className="tip-title">Tip {dealer.short}</span>
+            <span className="tip-rel">
+              <img src={tierBadge(tier.id)} alt="" width={30} height={30} draggable={false} />
+              <b data-testid={`tip-tier-${npcId}`}>{tier.label}</b>
+              {feedback && <img className="tip-feedback" src={tipArt(`rel_${feedback}`)} alt={feedback === 'gain' ? 'Relationship improved' : 'No change'} data-testid="tip-feedback" data-kind={feedback} />}
+            </span>
+          </div>
         </div>
         <div className="tip-buttons" role="group" aria-label={`Tip ${dealer.name}`}>
           {TIP_AMOUNTS.map((a) => {
@@ -207,6 +203,15 @@ export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled:
             );
           })}
         </div>
+        <span className="tip-total" data-testid={`tip-total-${npcId}`}>
+          {npc.tips.count > 0 ? (
+            <>
+              <b>{formatMoney(npc.tips.lifetime)}</b> in {npc.tips.count} {npc.tips.count === 1 ? 'tip' : 'tips'} · tipped on {npc.tips.visitsTipped ?? 0} of {visits} {visits === 1 ? 'visit' : 'visits'}
+            </>
+          ) : (
+            'Optional. Tips never change the game.'
+          )}
+        </span>
       </div>
       {disabled && <span className="tip-wait">Tips open between hands</span>}
       {flight && <TipFlight from={flight.from} to={flight.to} face={flight.face} onDone={endFlight} />}

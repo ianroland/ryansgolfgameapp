@@ -6,7 +6,7 @@
  */
 import 'fake-indexeddb/auto';
 import Dexie from 'dexie';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { totalReturn } from '../src/casino/baccarat';
@@ -442,31 +442,65 @@ describe('lobby art and music hooks', () => {
   });
 });
 
-describe('casino chip themes (Chip Pack V3)', () => {
-  it('every casino has all six denominations as 128x128 transparent faces', async () => {
-    const { CHIP_THEMES, CHIP_DENOMINATIONS } = await import('../src/expansion/chipThemes');
+describe('casino chip themes (Chip Pack V7)', () => {
+  const CASINOS = ['desert_palms', 'white_buffalo', 'morongo_sky'] as const;
+  const V7 = join(__dirname, '../src/assets/casino/chips/v7');
+
+  it('the manifest maps all 21 chips: 3 casinos x $1, $5, $10, $25, $100, $500, $1,000', async () => {
+    const { CHIP_MANIFEST, CHIP_DENOMINATIONS } = await import('../src/expansion/chipThemes');
+    expect([...CHIP_DENOMINATIONS]).toEqual([1, 5, 10, 25, 100, 500, 1000]);
+    expect(CHIP_MANIFEST.denominations).toEqual([...CHIP_DENOMINATIONS]);
+    expect(CHIP_MANIFEST.files).toHaveLength(21);
+    const keys = new Set(CHIP_MANIFEST.files.map((f) => `${f.casino}:${f.denomination}`));
+    for (const c of CASINOS) for (const d of CHIP_DENOMINATIONS) expect(keys.has(`${c}:${d}`), `${c} $${d}`).toBe(true);
+  });
+
+  it('every chip is one round 256x256 transparent PNG with padding on all sides', async () => {
+    const { CHIP_MANIFEST } = await import('../src/expansion/chipThemes');
     const { decodePng } = await import('./png');
-    expect([...CHIP_DENOMINATIONS]).toEqual([1, 5, 25, 100, 500, 1000]);
-    for (const loc of ['desert_palms', 'white_buffalo', 'morongo_sky'] as const) {
-      expect(CHIP_THEMES[loc].location).toBe(loc);
-      for (const d of CHIP_DENOMINATIONS) {
-        expect(CHIP_THEMES[loc].face(d), `${loc} $${d}`).toBeTruthy();
-        const png = decodePng(join(__dirname, `../src/assets/casino/chips/${loc}/chip_${d}.png`));
-        expect([png.width, png.height]).toEqual([128, 128]);
-        const a = (x: number, y: number) => png.data[(y * 128 + x) * 4 + 3];
-        expect([a(0, 0), a(127, 0), a(0, 127), a(127, 127)]).toEqual([0, 0, 0, 0]);
-        expect(a(64, 64)).toBe(255);
-      }
+    for (const f of CHIP_MANIFEST.files) {
+      const png = decodePng(join(V7, f.path));
+      expect([png.width, png.height], f.path).toEqual([256, 256]);
+      const a = (x: number, y: number) => png.data[(y * 256 + x) * 4 + 3];
+      let x0 = 256, x1 = -1, y0 = 256, y1 = -1, n = 0;
+      for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) if (a(x, y) > 16) { n++; x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
+      expect(Math.min(x0, y0, 255 - x1, 255 - y1), `${f.path} padding`).toBeGreaterThanOrEqual(16);
+      const w = x1 - x0 + 1, h = y1 - y0 + 1;
+      expect(Math.abs(w - h), `${f.path} not oval`).toBeLessThanOrEqual(2);
+      // Filled area matches a disc of that width (a square or oval would not).
+      expect(n / (Math.PI * (w / 2) ** 2), `${f.path} round`).toBeCloseTo(1, 1);
+      expect(a(128, 128), f.path).toBe(255);
     }
   });
 
-  it('felt chips pick the biggest face that fits (as before); no face for $10, which keeps the original chip', async () => {
-    const { chipFaceForAmount, CHIP_THEMES } = await import('../src/expansion/chipThemes');
+  it('each casino shows its own V7 chips through one shared lookup', async () => {
+    const { CHIP_THEMES, CHIP_DENOMINATIONS, chipAsset } = await import('../src/expansion/chipThemes');
+    const urls = new Set<string>();
+    for (const c of CASINOS) {
+      expect(CHIP_THEMES[c].location).toBe(c);
+      for (const d of CHIP_DENOMINATIONS) {
+        const asset = chipAsset(c, d)!;
+        expect(asset.source, `${c} $${d}`).toBe('v7');
+        expect(CHIP_THEMES[c].face(d)).toBe(asset.url);
+        urls.add(asset.url);
+      }
+    }
+    expect(urls.size).toBe(21);
+    expect(CHIP_THEMES.white_buffalo.emblem).toBe('Buffalo');
+  });
+
+  it('felt chips pick the biggest face that fits, now including $10; unknown amounts have no face', async () => {
+    const { chipFaceForAmount, chipAsset } = await import('../src/expansion/chipThemes');
     expect(chipFaceForAmount('desert_palms', 3)!.denomination).toBe(1);
-    expect(chipFaceForAmount('desert_palms', 10)!.denomination).toBe(5);
+    expect(chipFaceForAmount('desert_palms', 10)!.denomination).toBe(10);
+    expect(chipFaceForAmount('white_buffalo', 24)!.denomination).toBe(10);
     expect(chipFaceForAmount('desert_palms', 250)!.denomination).toBe(100);
     expect(chipFaceForAmount('morongo_sky', 5000)!.denomination).toBe(1000);
-    expect(CHIP_THEMES.desert_palms.face(10)).toBeNull();
+    expect(chipAsset('desert_palms', 2)).toBeNull();
+  });
+
+  it('the V3 faces are kept as fallbacks until V7 passes QA', () => {
+    for (const c of CASINOS) for (const d of [1, 5, 25, 100, 500, 1000]) expect(existsSync(join(__dirname, `../src/assets/casino/chips/${c}/chip_${d}.png`))).toBe(true);
   });
 
   it('chip art is presentation only: no casino rules or money code reads it', () => {

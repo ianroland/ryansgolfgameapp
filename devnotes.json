@@ -2,6 +2,25 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.15.3",
+      "date": "2026-11-23",
+      "title": "New casino chips and a tidier tip panel",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Redrawn casino chips for all three casinos, including a proper $10 chip. Every chip is perfectly round and sharp at any screen size."
+        },
+        {
+          "tag": "new",
+          "text": "A new TIPS icon on the dealer tip panel."
+        },
+        {
+          "tag": "improved",
+          "text": "The tip panel now sits beside the dealer's dialogue box instead of under it, so the table area is shorter. On phones it stacks below."
+        }
+      ]
+    },
+    {
       "version": "0.15.2",
       "date": "2026-11-23",
       "title": "Casino chips with each casino's own look",

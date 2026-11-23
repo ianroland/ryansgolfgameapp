@@ -384,8 +384,10 @@ export function Baccarat() {
           </>
         )}
       </WWStage>
-      <WWDialogue who="waifu" chat={chat as unknown as Chat<WWEvent>} />
-      <TipTray npcId="waifu" disabled={busy || !revealed} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'delighted' : 'smile', 'present')} />
+      <div className="dealer-row">
+        <WWDialogue who="waifu" chat={chat as unknown as Chat<WWEvent>} />
+        <TipTray npcId="waifu" disabled={busy || !revealed} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'delighted' : 'smile', 'present')} />
+      </div>
       {notice && <p className="ww-notice" data-testid="bac-notice">{notice}</p>}
       <ChipPicker chip={chip} setChip={setChip} note={<>Tap Player, Banker or Tie to place <b>{formatMoney(chip)}</b> · on the table <b>{formatMoney(staked)}</b></>} />
       <div className="btn-row casino-actions">
@@ -586,8 +588,10 @@ export function ThreeCard() {
           </span>
         )}
       </WWStage>
-      <WWDialogue who="winston" chat={chat as unknown as Chat<WWEvent>} />
-      <TipTray npcId="winston" disabled={busy || !!pending} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'laugh' : 'grin', 'present')} />
+      <div className="dealer-row">
+        <WWDialogue who="winston" chat={chat as unknown as Chat<WWEvent>} />
+        <TipTray npcId="winston" disabled={busy || !!pending} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'laugh' : 'grin', 'present')} />
+      </div>
       {r && showDealer && (
         <ul className="tc-breakdown" data-testid="tc-breakdown">
           <li>Ante {r.outcome === 'fold' ? 'lost (folded)' : r.anteReturn ? `returns ${formatMoney(r.anteReturn)}` : 'lost'}</li>

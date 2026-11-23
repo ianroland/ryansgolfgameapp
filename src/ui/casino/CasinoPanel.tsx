@@ -23,9 +23,9 @@ import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
 import { BigWinOverlay, celebrateWin } from './BigWin';
 import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
 import { TipTray } from './Tipping';
-import { ChipButton } from './Chips';
-import { CasinoLocationContext, useCasinoLocation } from './casinoLocation';
-import { CHIP_THEMES } from '../../expansion/chipThemes';
+import { ChipButton, ChipImg } from './Chips';
+import { CasinoLocationContext, devChipPreview, useCasinoLocation } from './casinoLocation';
+import { chipAsset } from '../../expansion/chipThemes';
 import { CasinoLobby } from './CasinoLobby';
 import { LOCATIONS, type CasinoGameId } from '../../expansion/locations';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
@@ -168,15 +168,17 @@ function Blackjack() {
           </div>
         </div>
       </div>
-      <DealerDialogue who="velvet" line={line} anim={velvet.anim} />
-      <TipTray
-        npcId="velvet_vega"
-        disabled={busy || playing}
-        onTipped={(r) => {
-          setLine({ text: r.line.text, draft: r.line.status !== 'approved' });
-          velvet.play('win');
-        }}
-      />
+      <div className="dealer-row">
+        <DealerDialogue who="velvet" line={line} anim={velvet.anim} />
+        <TipTray
+          npcId="velvet_vega"
+          disabled={busy || playing}
+          onTipped={(r) => {
+            setLine({ text: r.line.text, draft: r.line.status !== 'approved' });
+            velvet.play('win');
+          }}
+        />
+      </div>
 
       {playing ? (
         <div className="btn-row casino-actions">
@@ -300,7 +302,10 @@ function Slots() {
       <div className="slot-bets" role="radiogroup" aria-label="Bet per spin">
         {SLOT_BETS.map((b) => (
           <button key={b} role="radio" aria-checked={bet === b} className={`chip-token ${bet === b ? 'on' : ''}`} onClick={() => setBet(b)} disabled={busy} aria-label={`Bet $${b}`}>
-            <img src={CHIP_THEMES[casinoLoc].face(b) ?? casinoArt(`chip_${b}`).url} alt="" draggable={false} />
+            {(() => {
+              const face = chipAsset(casinoLoc, b);
+              return face ? <ChipImg src={face.url} source={face.source} /> : <img src={casinoArt(`chip_${b}`).url} alt="" draggable={false} />;
+            })()}
           </button>
         ))}
         <button className="btn primary spin-btn" onClick={onSpin} disabled={busy || state.balance < bet} data-testid="slot-spin">
@@ -437,15 +442,17 @@ function Craps() {
           {!rolling && rolls > 0 && <span className="felt-sum" key={`s${rolls}`}>{dice[0] + dice[1]}</span>}
         </div>
       </div>
-      <DealerDialogue who="craps" line={call} anim={stick.anim} />
-      <TipTray
-        npcId="stick_lady"
-        disabled={busy || rolling}
-        onTipped={(r) => {
-          setCall({ text: r.line.text, draft: r.line.status !== 'approved' });
-          stick.play('call');
-        }}
-      />
+      <div className="dealer-row">
+        <DealerDialogue who="craps" line={call} anim={stick.anim} />
+        <TipTray
+          npcId="stick_lady"
+          disabled={busy || rolling}
+          onTipped={(r) => {
+            setCall({ text: r.line.text, draft: r.line.status !== 'approved' });
+            stick.play('call');
+          }}
+        />
+      </div>
       <div className="craps-bets">
         {(Object.keys(BET_LABELS) as BetKey[]).map((k) => {
           const block = betBlocker(table, k, chip);
@@ -595,8 +602,10 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
           })}
         </div>
       </div>
-      {monique.item && !spinning && !reaching && <DialogueBox item={monique.item} more={monique.more} onNext={monique.next} />}
-      <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />
+      <div className="dealer-row">
+        {monique.item && !spinning && !reaching && <DialogueBox item={monique.item} more={monique.more} onNext={monique.next} />}
+        <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />
+      </div>
       <div className="chip-rack">
         {CHIPS.map((c) => (
           <ChipButton key={c} value={c} on={chip === c} onClick={() => setChip(c)} label={`$${c} chip`} />
@@ -640,7 +649,7 @@ export function CasinoPanel() {
   const logo = casinoArt('casino_logo');
 
   return (
-    <CasinoLocationContext.Provider value="desert_palms">
+    <CasinoLocationContext.Provider value={devChipPreview() ?? 'desert_palms'}>
     <main className="casino">
       <BigWinOverlay />
       <section className="hub-card casino-head" style={{ backgroundImage: `linear-gradient(90deg, rgba(20,8,30,0.92) 0%, rgba(20,8,30,0.55) 45%, rgba(20,8,30,0.1) 100%), url(${exterior.url})` }}>
