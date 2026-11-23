@@ -153,7 +153,7 @@ export function DialogueBox({ item, more, onNext }: { item: DialogueItem; more: 
       <div className="rpg-body">
         <p className="rpg-name">
           {item.who === 'monique' ? 'Madame Monique' : 'Ryan'}
-          {!item.approved && <span className="rpg-draft" title="Placeholder dialogue awaiting Script Room approval">Draft line</span>}
+          {!item.approved && <span className="rpg-draft" title="Dialogue awaiting Script Room approval">Draft line</span>}
         </p>
         <p className="rpg-text" data-testid="monique-text">{item.text.slice(0, typed)}<span className="rpg-caret" aria-hidden>{done ? '' : '▌'}</span></p>
       </div>

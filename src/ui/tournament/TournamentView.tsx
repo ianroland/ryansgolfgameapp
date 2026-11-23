@@ -218,6 +218,7 @@ export function TournamentView({ onExit }: { onExit: () => void }) {
 
   const setup: HoleSetup | null = useMemo(() => {
     if (!active || !def || !course || nextHole === undefined) return null;
+    if (import.meta.env.DEV) (window as unknown as { wtgCourse: unknown }).wtgCourse = course;
     const wind = windsForRound(active.seed, active.round, course)[nextHole];
     const mods = shotModifiers(c, pressureFor(active, def));
     return {
@@ -225,6 +226,7 @@ export function TournamentView({ onExit }: { onExit: () => void }) {
       holeIndex: nextHole,
       holeCount: course.holes.length,
       theme: course.theme,
+      courseId: course.id,
       wind,
       golferName: 'Ryan',
       look: resolveLook(appearanceOf(c)).sheet,

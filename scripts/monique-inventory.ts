@@ -4,7 +4,7 @@
  * Run: npx vite-node scripts/monique-inventory.ts
  */
 import { writeFileSync } from 'node:fs';
-import { exprFor, LINES, SIGNATURE, type MoniqueEvent, type RyanPhase } from '../src/casino/monique';
+import { exprFor, LINES, LINES_APPROVED_ON, SIGNATURE, type MoniqueEvent, type RyanPhase } from '../src/casino/monique';
 import pkg from '../package.json';
 
 const GROUPS: { title: string; events: { ev: MoniqueEvent; when: string; phases: string }[] }[] = [
@@ -43,14 +43,17 @@ const GROUPS: { title: string; events: { ev: MoniqueEvent; when: string; phases:
 
 const PHASES: RyanPhase[] = [1, 2, 3];
 const PHASE_NAME: Record<RyanPhase, string> = { 1: 'Phase 1 (natural hair, he/him): cocky', 2: 'Phase 2 (bald, he/him): bitter', 3: 'Phase 3 (wig and visor, she/her): sharp' };
-const status = (approved?: boolean) => (approved ? '**APPROVED**' : 'Draft line');
+const status = (approved?: boolean) => (approved ? 'Approved' : 'Draft line');
 const esc = (t: string) => t.replace(/\|/g, '\\|');
 
 let moniqueCount = 0, ryanCount = 0, approvedCount = 0;
 for (const e of Object.values(LINES)) {
   moniqueCount += e.monique.length;
   approvedCount += e.monique.filter((l) => l.approved).length;
-  for (const p of PHASES) ryanCount += e.ryan?.[p]?.length ?? 0;
+  for (const p of PHASES) {
+    ryanCount += e.ryan?.[p]?.length ?? 0;
+    approvedCount += e.ryan?.[p]?.filter((l) => l.approved).length ?? 0;
+  }
 }
 const covered = GROUPS.flatMap((g) => g.events.map((e) => e.ev));
 const missing = (Object.keys(LINES) as MoniqueEvent[]).filter((e) => !covered.includes(e));
@@ -60,8 +63,10 @@ const out: string[] = [];
 out.push('# Madame Monique: dialogue inventory (for Script Room review)', '');
 out.push(`Generated from \`src/casino/monique.ts\` (v${pkg.version}) by \`scripts/monique-inventory.ts\`, so it always matches what ships.`, '');
 out.push(`**${moniqueCount + ryanCount} lines:** ${moniqueCount} by Monique and ${ryanCount} comebacks by Ryan.`, '');
-out.push(`**Approved (${approvedCount} uses of 1 line):** "${SIGNATURE}" It's used in two events. Every other line is a **Draft line** and shows that tag in the game until the Script Room approves it.`, '');
-out.push('To approve, edit or replace a line, mark it here and send it back; the text drops into the code unchanged. The triggers and the dialogue system stay as they are.', '');
+out.push(approvedCount === moniqueCount + ryanCount
+  ? `**All ${approvedCount} lines are approved** (author sign-off ${LINES_APPROVED_ON}; the signature line "${SIGNATURE}" was approved first). No line shows a "Draft line" tag in the game.`
+  : `**Approved: ${approvedCount} of ${moniqueCount + ryanCount}.** Lines not yet approved show a "Draft line" tag in the game.`, '');
+out.push('To change a line, edit it here and send it back. A changed line goes back to draft until it is signed off. The triggers and the dialogue system stay as they are.', '');
 out.push("**How phases work:** Monique's lines are the same in every phase. Ryan's automatic comeback depends on the phase look he is wearing (phase 1 cocky, phase 2 bitter, phase 3 sharp). It plays every other time for routine events, and always for the Pink Jacket and extraordinary wins. There are no player choices.", '');
 out.push('Part 1 lists every line by event. Part 2 lists Ryan\'s comebacks by career phase.', '');
 

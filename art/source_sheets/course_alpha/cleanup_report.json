@@ -1,0 +1,82 @@
+{
+ "course_bench.png": {
+  "fringe_removed": 488,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "cypress_tree.png": {
+  "fringe_removed": 429,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "desert_cactus.png": {
+  "fringe_removed": 419,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "golf_cart.png": {
+  "fringe_removed": 968,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "lily_pond_decorative.png": {
+  "fringe_removed": 428,
+  "specks_removed": 0,
+  "fringe_left": 4
+ },
+ "oak_tree.png": {
+  "fringe_removed": 958,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "palm_tree.png": {
+  "fringe_removed": 989,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "pine_tree.png": {
+  "fringe_removed": 874,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "pink_flowering_shrub.png": {
+  "fringe_removed": 527,
+  "specks_removed": 1,
+  "fringe_left": 0
+ },
+ "pond_reeds.png": {
+  "fringe_removed": 841,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "purple_flowerbed.png": {
+  "fringe_removed": 284,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "red_flagstick.png": {
+  "fringe_removed": 315,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "rock_cluster.png": {
+  "fringe_removed": 329,
+  "specks_removed": 0,
+  "fringe_left": 0
+ },
+ "sand_bunker_decorative.png": {
+  "fringe_removed": 42,
+  "specks_removed": 2,
+  "fringe_left": 0
+ },
+ "wooden_bridge.png": {
+  "fringe_removed": 460,
+  "specks_removed": 0,
+  "fringe_left": 4
+ },
+ "wooden_course_sign.png": {
+  "fringe_removed": 497,
+  "specks_removed": 0,
+  "fringe_left": 0
+ }
+}

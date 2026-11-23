@@ -1,0 +1,216 @@
+{
+  "version": "0.1-alpha",
+  "camera": "behind-golfer pseudo-3D perspective",
+  "source": "AI-generated 4x4 sheet",
+  "quality_warning": "Automatic background extraction from a baked checkerboard; inspect edges and clean artifacts before shipping. Bunker and pond are decorative only; no terrain semantics.",
+  "assets": [
+    {
+      "id": "pine_tree",
+      "file": "sprites/pine_tree.png",
+      "width": 216,
+      "height": 300,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "oak_tree",
+      "file": "sprites/oak_tree.png",
+      "width": 297,
+      "height": 283,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "palm_tree",
+      "file": "sprites/palm_tree.png",
+      "width": 246,
+      "height": 299,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "cypress_tree",
+      "file": "sprites/cypress_tree.png",
+      "width": 172,
+      "height": 300,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "pink_flowering_shrub",
+      "file": "sprites/pink_flowering_shrub.png",
+      "width": 272,
+      "height": 212,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "desert_cactus",
+      "file": "sprites/desert_cactus.png",
+      "width": 259,
+      "height": 272,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "pond_reeds",
+      "file": "sprites/pond_reeds.png",
+      "width": 266,
+      "height": 262,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "rock_cluster",
+      "file": "sprites/rock_cluster.png",
+      "width": 288,
+      "height": 145,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "wooden_course_sign",
+      "file": "sprites/wooden_course_sign.png",
+      "width": 295,
+      "height": 223,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "course_bench",
+      "file": "sprites/course_bench.png",
+      "width": 291,
+      "height": 165,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "golf_cart",
+      "file": "sprites/golf_cart.png",
+      "width": 297,
+      "height": 243,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "wooden_bridge",
+      "file": "sprites/wooden_bridge.png",
+      "width": 308,
+      "height": 186,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "red_flagstick",
+      "file": "sprites/red_flagstick.png",
+      "width": 160,
+      "height": 291,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "sand_bunker_decorative",
+      "file": "sprites/sand_bunker_decorative.png",
+      "width": 293,
+      "height": 151,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "lily_pond_decorative",
+      "file": "sprites/lily_pond_decorative.png",
+      "width": 292,
+      "height": 208,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    },
+    {
+      "id": "purple_flowerbed",
+      "file": "sprites/purple_flowerbed.png",
+      "width": 286,
+      "height": 163,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "category": "decorative",
+      "collision": "none",
+      "notes": "Visual-only sprite. Review transparency edges before production."
+    }
+  ]
+}

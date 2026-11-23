@@ -47,8 +47,16 @@
           "text": "A Leave the table button at roulette."
         },
         {
+          "tag": "new",
+          "text": "Dry Creek's 2nd hole, Duck Pond, has new course scenery: trees beyond the boundary, flowers, reeds by the pond, a course sign, a bench and a cart. It's decoration only and never gets in the way of your shot. More courses to follow."
+        },
+        {
+          "tag": "improved",
+          "text": "Madame Monique's lines are all signed off."
+        },
+        {
           "tag": "changed",
-          "text": "Monique's lines are drafts, marked as such in the game, until they're signed off in the Script Room. The greyhound sprites are provisional."
+          "text": "The greyhound sprites are provisional."
         }
       ]
     },

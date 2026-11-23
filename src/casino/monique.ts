@@ -1,11 +1,11 @@
 /**
  * Madame Monique, the Desert Palms roulette croupier: memory, events and lines.
  *
- * SCRIPT ROOM: every line here is a PLACEHOLDER awaiting approval, except the
- * approved signature line "The wheel remembers, darling." Lines carry
- * `approved: true` only when the Script Room has signed them off; the dialogue
- * box shows a "Draft line" tag on everything else. The full inventory, by event,
- * Ryan phase and Monique expression, is docs/MONIQUE_DIALOGUE_INVENTORY.md.
+ * SCRIPT ROOM: every line here is APPROVED. The signature line "The wheel
+ * remembers, darling." was approved first; the author approved all of the
+ * remaining lines, as written, on 22 Nov 2026. New or changed lines must start
+ * as drafts (`approved: false`, shown with a "Draft line" tag) until signed off.
+ * The full inventory, by event and Ryan's phase, is docs/MONIQUE_DIALOGUE_INVENTORY.md.
  *
  * She reacts only; nothing here changes odds, payouts or rules, and she never
  * refuses to talk or penalises Ryan.
@@ -42,9 +42,11 @@ interface EventLines {
   ryan?: Record<RyanPhase, Line[]>;
 }
 
-const L = (...t: string[]): Line[] => t.map((text) => ({ text, approved: text === SIGNATURE }));
+/** Author approval of every line below, as written (22 Nov 2026). */
+export const LINES_APPROVED_ON = '2026-11-22';
+const L = (...t: string[]): Line[] => t.map((text) => ({ text, approved: true }));
 
-/** PLACEHOLDER dialogue (see header). */
+/** Approved dialogue (see header). */
 export const LINES: Record<MoniqueEvent, EventLines> = {
   pink_jacket: {
     monique: L('A Pink Jacket. Sincerely, Ryan, congratulations. It suits you.', 'I heard about the jacket. Well played. Truly.'),

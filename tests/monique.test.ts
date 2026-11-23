@@ -77,13 +77,14 @@ describe('Monique: at the wheel', () => {
     expect(farewellEvent(down, 0)).toBe('farewell_broke');
   });
 
-  it('lines rotate (no back-to-back repeats); only the signature line is approved', () => {
+  it('lines rotate (no back-to-back repeats); every line is author-approved (22 Nov), signature included', () => {
     let m = fresh();
     const a = pickLine(m, 'banter'); m = a.mem;
     const b = pickLine(m, 'banter');
     expect(b.line.text).not.toBe(a.line.text);
     const all = Object.values(LINES).flatMap((e) => [...e.monique, ...Object.values(e.ryan ?? {}).flat()]);
-    expect(all.filter((l) => l.approved).every((l) => l.text === SIGNATURE)).toBe(true);
+    expect(all).toHaveLength(61);
+    expect(all.every((l) => l.approved)).toBe(true);
     expect(all.some((l) => l.text === SIGNATURE)).toBe(true);
   });
 

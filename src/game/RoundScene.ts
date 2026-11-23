@@ -54,6 +54,7 @@ import {
 import { GroundRenderer } from './groundRenderer';
 import { sound } from '../audio/sound';
 import { BACKDROP_FOR_HOLE, buildDecor, depthFor, kitFrame, preloadCourseArt, registerCourseFrames, type Decor } from './scenery';
+import { ALPHA_NEAR_YARDS, ALPHA_SPRITES, buildAlphaScenery, type AlphaProp } from './sceneryAlpha';
 import { LIE_EFFECT, MAX_CURVE, nominalCarry, simulateShot, type ShotResult, type Wind } from '../golf/physics';
 // Broadcast proof of concept (Phase 1): developer-only, presentation-only.
 import { broadcastConfigFromSearch, type BroadcastConfig } from '../broadcast/config';
@@ -108,6 +109,8 @@ export interface HoleSetup {
   holeCount: number;
   /** Course look (backdrops, tint, ground grade). Default: Dry Creek's. */
   theme?: CourseTheme;
+  /** Course id: only picks which holes get the decorative alpha scenery layer (visual only). */
+  courseId?: string;
   wind: Wind;
   golferName: string;
   /** e.g. "RD 2 · T14 · -3" */
@@ -205,6 +208,9 @@ export class RoundScene extends Phaser.Scene {
   private backdrop!: Phaser.GameObjects.TileSprite;
   private ballG!: Phaser.GameObjects.Graphics;
   private decor: Decor[] = [];
+  /** Decorative alpha scenery (opt-in per hole; never read by physics, lies, scoring or the minimap). */
+  private alphaProps: AlphaProp[] = [];
+  private alphaImgs: Phaser.GameObjects.Image[] = [];
   private decorImgs: Phaser.GameObjects.Image[] = [];
 
   // ── Broadcast proof of concept (Phase 1) — developer-only, presentation-only ──
@@ -360,6 +366,7 @@ export class RoundScene extends Phaser.Scene {
     this.ground.setHaze(theme?.haze ?? HAZE[bd]);
     this.ground.setGrade(theme?.grade);
     this.setupDecor();
+    this.setupAlphaScenery();
     this.buildMinimap();
     this.ball = { x: 0, y: 0 };
     this.ballZ = 0;
@@ -381,6 +388,8 @@ export class RoundScene extends Phaser.Scene {
       this.load.image(`cutin_${look}`, g.cutin);
     }
     preloadCourseArt(this);
+    // Decorative alpha scenery: a missing file just leaves that prop out (checked with textures.exists).
+    for (const [id, spr] of Object.entries(ALPHA_SPRITES)) this.load.image(`alpha_${id}`, spr.url);
   }
 
   private registerFrames() {
@@ -1136,9 +1145,73 @@ export class RoundScene extends Phaser.Scene {
     const replay = this.bc?.replaying ? this.bc.frame() : null;
     if (replay) this.drawReplayBall(replay);
     else if (!this.spriteShowsBall && !(this.holed && this.phase !== 'flight')) this.drawBall();
+    this.drawAlphaScenery();
     this.drawCutin();
     this.drawHud();
     if (replay) this.drawReplayOverlay(replay);
+  }
+
+  private setupAlphaScenery() {
+    this.alphaProps = buildAlphaScenery(this.hole, this.setup.courseId);
+    while (this.alphaImgs.length < this.alphaProps.length) this.alphaImgs.push(this.add.image(0, 0, '__DEFAULT').setOrigin(0.5, 1).setVisible(false));
+    this.alphaImgs.forEach((img, i) => {
+      const p = this.alphaProps[i];
+      const key = p ? `alpha_${p.id}` : '';
+      if (!p || !this.textures.exists(key)) return void img.setVisible(false);
+      this.textures.get(key).setFilter(Phaser.Textures.FilterMode.LINEAR);
+      img.setTexture(key).setOrigin(0.5, 1).setAlpha(1);
+    });
+  }
+
+  /**
+   * Things scenery must never hide: the ball, the flag and cup, the aim target and the golfer,
+   * as screen boxes with their distance. A prop nearer than one of them and overlapping it is
+   * faded right down, so it can't cover play.
+   */
+  private sceneryGuards(): { x0: number; y0: number; x1: number; y1: number; d: number }[] {
+    const out: { x0: number; y0: number; x1: number; y1: number; d: number }[] = [];
+    const box = (x: number, y: number, w: number, h: number, d: number) => out.push({ x0: x - w / 2, y0: y - h, x1: x + w / 2, y1: y + 6, d });
+    const ball = this.project(this.ball.x, this.ball.y, this.ballZ);
+    if (ball) box(ball.x, ball.y + 8, 28, 28, ball.d);
+    const pin = this.project(this.hole.pin.x, this.hole.pin.y, 0);
+    if (pin) box(pin.x + 0.6 * pin.s, pin.y, Math.max(24, 2.4 * pin.s), Math.max(30, 3.2 * pin.s), pin.d);
+    if (this.golferImg.visible) {
+      const b = this.golferImg.getBounds();
+      out.push({ x0: b.x, y0: b.y, x1: b.x + b.width, y1: b.y + b.height, d: 0 });
+    }
+    const aiming = this.phase === 'aim' || this.phase === 'power' || this.phase === 'height' || this.phase === 'swing';
+    if (aiming && this.preview) {
+      // The landing ring (6 yd radius) and the line out to it.
+      const t = this.project(this.preview.x, this.preview.y, 0);
+      if (t) box(t.x, t.y + 6 * t.s * 0.3, Math.max(40, 13 * t.s), Math.max(30, 6 * t.s), t.d);
+      const mid = this.project((this.ball.x + this.preview.x) / 2, (this.ball.y + this.preview.y) / 2, 0);
+      if (mid) box(mid.x, mid.y + 6, 30, 24, mid.d);
+    }
+    return out;
+  }
+
+  private drawAlphaScenery() {
+    if (!this.alphaProps.length) return;
+    const guards = this.sceneryGuards();
+    for (let i = 0; i < this.alphaProps.length; i++) {
+      const pr = this.alphaProps[i];
+      const img = this.alphaImgs[i];
+      const spr = ALPHA_SPRITES[pr.id];
+      const p = this.project(pr.x, pr.y, 0);
+      if (!p || p.d < ALPHA_NEAR_YARDS || p.d > 750 || !this.textures.exists(`alpha_${pr.id}`)) {
+        img.setVisible(false);
+        continue;
+      }
+      const sc = (p.s * pr.h) / spr.h;
+      if (spr.h * sc < 2) {
+        img.setVisible(false);
+        continue;
+      }
+      img.setPosition(p.x, p.y).setScale(sc).setDepth(depthFor(p.d)).setVisible(true);
+      const x0 = p.x - (spr.w * sc) / 2, x1 = p.x + (spr.w * sc) / 2, y0 = p.y - spr.h * sc, y1 = p.y;
+      const covers = guards.some((g) => p.d < g.d && x0 < g.x1 && x1 > g.x0 && y0 < g.y1 && y1 > g.y0);
+      img.setAlpha(covers ? 0.18 : 1);
+    }
   }
 
   /** Replay (DEV flag): the recorded ball, drawn like the live one, with a short trail. */
