@@ -1874,3 +1874,4 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .roulette-history b.red { background: #c21d24; }
 .roulette-history b.black { background: #111; }
 .roulette-history b.green { background: #128a3d; }
+.rpg-text.rpg-status { font-style: italic; opacity: 0.8; }

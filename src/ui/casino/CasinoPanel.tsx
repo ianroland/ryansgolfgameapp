@@ -18,7 +18,7 @@ import { boxStyle, casinoArt } from './casinoArt';
 import { Greyhounds } from './Greyhounds';
 import { BetChip, PlayingCard } from './TableBits';
 import { Baccarat, ThreeCard } from './WWTables';
-import { DialogueBox, MoniqueSprite, REACH_MS, useMonique } from './Monique';
+import { DialogueBox, MoniqueRest, MoniqueSprite, REACH_MS, useMonique } from './Monique';
 import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
 import { BigWinOverlay, celebrateWin } from './BigWin';
 import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
@@ -554,6 +554,10 @@ function Craps() {
 function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void }) {
   const { state, services, run } = useGame();
   const monique = useMonique(active);
+  const [moniqueLast, setMoniqueLast] = useState<string | null>(null);
+  useEffect(() => {
+    if (monique.item?.who === 'monique') setMoniqueLast(monique.item.text);
+  }, [monique.item]);
   const [bets, setBets] = useState<RouletteBets>({});
   const [last, setLast] = useState<RouletteBets>({});
   const [chip, setChip] = useState(10);
@@ -709,7 +713,11 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
         </div>
       )}
       <div className="dealer-row">
-        {monique.item && !spinning && !reaching && <DialogueBox item={monique.item} more={monique.more} onNext={monique.next} />}
+        {monique.item && !spinning && !reaching ? (
+          <DialogueBox item={monique.item} more={monique.more} onNext={monique.next} />
+        ) : (
+          <MoniqueRest lastLine={moniqueLast} status={spinning || reaching ? 'The wheel is spinning…' : undefined} />
+        )}
         <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />
       </div>
       <div className="chip-rack">

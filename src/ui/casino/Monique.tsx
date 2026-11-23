@@ -169,6 +169,19 @@ export function DialogueBox({ item, more, onNext }: { item: DialogueItem; more: 
   );
 }
 
+/**
+ * Monique at rest: with no line queued (or while the wheel spins) she stays at the table as her
+ * portrait panel, showing her last line, or a plain status while the wheel turns. No new dialogue.
+ */
+export function MoniqueRest({ lastLine, status }: { lastLine: string | null; status?: string }) {
+  const text = status ?? lastLine ?? '';
+  return (
+    <DealerDialoguePanel name="Madame Monique" npcId="madame_monique" speaker="monique" className="monique rest" testId="monique-rest" text={text} portrait={<MoniquePortrait expr="neutral" />}>
+      <p className={`rpg-text ${status ? 'rpg-status' : ''}`}>{text || '\u00a0'}</p>
+    </DealerDialoguePanel>
+  );
+}
+
 const RYAN_EXPR: Record<RyanPhase, Expression> = { 1: 'confident', 2: 'worried', 3: 'confident' };
 
 /** When Monique speaks: greetings on arrival, reactions after a spin (never during), farewells. */
