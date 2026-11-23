@@ -1565,3 +1565,21 @@ kbd { display: inline-block; min-width: 22px; padding: 0 6px; font-family: var(-
 .recent-event > .pill { padding: 3px 10px; line-height: 1.25; }
 .recent-name { overflow-wrap: anywhere; }
 .recent-score { flex: none; text-align: right; white-space: nowrap; }
+
+/* Blackjack felt layout v3 (23 Nov): dealer's hand left of centre, Ryan's right of centre, both under the
+   lettering, so the rows can't collide on this short table. Cards ~25% bigger. No outline box around the
+   active hand; with split hands the one in play gets a gold glow under its total instead. */
+.bj-game .felt-dealer { left: 34%; top: 46%; gap: 1cqw; }
+.bj-game .felt-hands { left: 66%; top: 46%; gap: 2.4cqw; }
+.bj-game .felt-hand, .bj-game .felt-hand.active { box-shadow: none; background: none; padding: 0; }
+.bj-game .felt-hand.active .felt-total { box-shadow: 0 0 0 2px var(--gold-2), 0 0 12px rgba(255, 230, 128, 0.6); }
+.bj-game .felt .pcard { width: 5.6cqw; height: 7.8cqw; margin-left: -1.3cqw; }
+.bj-game .felt .pcard .pc-corner { font-size: 1.8cqw; left: 0.45cqw; top: 0.2cqw; }
+.bj-game .felt .pcard .pc-suit { font-size: 3.1cqw; padding-top: 1.2cqw; }
+.bj-game .felt-total { font-size: 1.9cqw; }
+.bj-game .felt-chip img { width: 3.1cqw; }
+.bj-game .felt-chip b { font-size: 1.75cqw; }
+.bj-game .felt .bj-result { font-size: 1.8cqw; }
+/* Split hands: stack each hand's cards over its total, side by side to the right. */
+.bj-game .felt-hands.n2, .bj-game .felt-hands.n3, .bj-game .felt-hands.n4 { left: 67%; top: 44%; }
+.bj-game .felt-hands.n3 .pcard, .bj-game .felt-hands.n4 .pcard { width: 4.4cqw; height: 6.1cqw; }
