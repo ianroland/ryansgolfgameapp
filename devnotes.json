@@ -2,6 +2,29 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.17.0",
+      "date": "2026-11-23",
+      "title": "Cocktail servers",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Each casino has its own cocktail server: Maya Solis at Desert Palms, Nina Calder at The White Buffalo and Celeste Vale at Morongo Sky. She comes by between rounds, or you can call her over. She has six expressions, and her dialogue is a draft."
+        },
+        {
+          "tag": "new",
+          "text": "Order a Tito's Double (Ryan's only drink) or water, chat, or tip her. She remembers you, and your relationship is saved like the dealers'."
+        },
+        {
+          "tag": "new",
+          "text": "Drinks add up. After a few, each one brings a random social or stamina effect, more often a bad one the more Ryan has had. When he's had too much she cuts him off, and tips can't change that; water and time do. Getting cut off repeatedly in one season gets a note from your sponsor."
+        },
+        {
+          "tag": "improved",
+          "text": "Drinks never touch the games: cards, dice, the wheel and payouts are exactly as before."
+        }
+      ]
+    },
+    {
       "version": "0.16.4",
       "date": "2026-11-23",
       "title": "Tables side by side with the dealer",

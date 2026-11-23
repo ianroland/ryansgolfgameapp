@@ -27,6 +27,7 @@ import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
 import { CARD_LAYOUTS, crapsSceneFor, rouletteSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
 import { boardCell, RouletteBoard } from './RouletteBoard';
 import { SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
+import { ServerPanel, signalRoundComplete } from './ServerPanel';
 import { ChipButton, ChipImg } from './Chips';
 import { CasinoLocationContext, devChipPreview, devLegacyTables, useCasinoLocation } from './casinoLocation';
 import { chipAsset } from '../../expansion/chipThemes';
@@ -122,6 +123,7 @@ function Blackjack() {
     const best = s.hands.map((h) => h.result).find((r) => r === 'blackjack') ?? s.hands.map((h) => h.result).find((r) => r === 'win');
     sound.play(best === 'blackjack' ? 'achievement' : best === 'win' ? 'cash' : s.hands.some((h) => h.result === 'push') ? 'ui_click' : 'groan', { volume: 0.6 });
     setLine(velvetLine(s));
+    signalRoundComplete(services);
     // Presentation: Velvet reacts, then handles the chips (paying or collecting).
     // A push gets no reaction. No chip animation: the game draws its own chips.
     const reaction: DealerAnim | null = best === 'blackjack' ? 'special' : best === 'win' ? 'win' : s.hands.some((h) => h.result === 'push') ? null : 'loss';
@@ -219,6 +221,7 @@ function Blackjack() {
             velvet.play('win');
           }}
         />
+        <ServerPanel busy={busy || playing} />
       </div>
       </div>
 
@@ -465,6 +468,7 @@ function Craps() {
     if (won > 0) celebrateWin(won, outcomes.filter((o) => o.result === 'win').reduce((a, o) => a + table.bets[o.bet], 0));
     else if (outcomes.some((o) => o.result === 'lose')) sound.play('groan', { volume: 0.4 });
     setTable(next);
+    signalRoundComplete(services);
     if (betsOnTable(next) === 0) {
       roundRef.current = null;
       partRef.current = 0;
@@ -524,6 +528,7 @@ function Craps() {
             stick.play('call');
           }}
         />
+        <ServerPanel busy={busy || rolling} />
       </div>
       </div>
       <div className="craps-bets">
@@ -634,6 +639,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
     partRef.current = 0;
     setBusy(false);
     monique.spinEnd({ staked, paid: payout, straightHit: outcomes.some((o) => o.spot.startsWith('n') && o.payout > 0), bankBefore });
+    signalRoundComplete(services);
   };
 
   const pct = (b: Box) => boxStyle(RT, b);
@@ -728,6 +734,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
           <MoniqueRest lastLine={moniqueLast} status={spinning || reaching ? 'The wheel is spinning…' : undefined} />
         )}
         <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />
+        <ServerPanel busy={busy || spinning || reaching} />
       </div>
       </div>
       <div className="chip-rack">

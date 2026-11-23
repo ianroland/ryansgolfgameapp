@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "drink": {
+    "id": "titos_double",
+    "display_name": "Tito's Double",
+    "alcoholic": true,
+    "only_alcoholic_option": true,
+    "strength_units": 2,
+    "prices_proposed": {
+      "desert_palms": 15,
+      "white_buffalo": 22,
+      "morongo_sky": 35
+    }
+  },
+  "non_alcoholic": {
+    "id": "water",
+    "display_name": "Water",
+    "price": 0
+  },
+  "server_actions": [
+    "order_titos_double",
+    "request_water",
+    "chat",
+    "tip",
+    "decline",
+    "apologize",
+    "leave"
+  ],
+  "proposed_tip_amounts": [
+    5,
+    10,
+    25
+  ],
+  "service_rules": {
+    "between_rounds_only": true,
+    "manual_request_available": true,
+    "no_mid_hand_interruptions": true,
+    "server_refusal_is_enforced": true,
+    "refusal_disables_alcohol_order": true,
+    "water_and_leave_always_available": true,
+    "tip_does_not_override_refusal": true,
+    "no_tip_no_penalty": true,
+    "no_alcohol_needed_for_secret_game": true
+  },
+  "proposed_refusal": {
+    "buzz_threshold": 70,
+    "repeat_behavior_flags": true,
+    "reset_on_sufficient_recovery": true,
+    "message_event": "refusal"
+  },
+  "proposed_random_effects": {
+    "start_after_alcoholic_drinks_this_visit": 2,
+    "rng_domain": "rpg_social_only",
+    "never_affects_casino_odds": true,
+    "outcomes": [
+      {
+        "id": "liquid_courage",
+        "type": "mixed",
+        "social_confidence": 8,
+        "focus": -3
+      },
+      {
+        "id": "loose_lips",
+        "type": "debuff",
+        "discretion": -10
+      },
+      {
+        "id": "second_wind",
+        "type": "mixed",
+        "social_energy": 5,
+        "stamina": -8
+      },
+      {
+        "id": "bad_judgment",
+        "type": "debuff",
+        "decision_making": -12
+      },
+      {
+        "id": "quiet_night",
+        "type": "neutral"
+      }
+    ],
+    "weighting": "Implement configurable weights; increasing intoxication shifts probabilities toward negative effects. No fixed odds approved."
+  },
+  "events": {
+    "arrival": "intro",
+    "first_ever_order": "first_order",
+    "alcohol_order_success": "order",
+    "tip_success": "tip",
+    "tip_declined": "no_tip",
+    "chat": "chat",
+    "decline": "decline",
+    "water_order": "water",
+    "intoxication_warning": "concern",
+    "alcohol_refused": "refusal",
+    "rude_choice": "hostile",
+    "apology": "apology",
+    "exit": "farewell",
+    "relationship_rumor": "rumor"
+  },
+  "proposed_relationship": {
+    "score_range": [
+      0,
+      100
+    ],
+    "initial": 40,
+    "tiers": {
+      "stranger": [
+        0,
+        19
+      ],
+      "acquaintance": [
+        20,
+        49
+      ],
+      "friendly": [
+        50,
+        74
+      ],
+      "trusted": [
+        75,
+        100
+      ]
+    },
+    "tip_once_per_visit_positive": true,
+    "diminishing_returns": true,
+    "no_tip_penalty": false,
+    "rude_choice_negative": true,
+    "apology_possible": true
+  },
+  "career_consequences": {
+    "track_repeated_serious_behavior": true,
+    "sponsor_emails_after_pattern_not_single_drink": true,
+    "dialogue_draft": true
+  },
+  "visual": {
+    "presentation": "RPG portrait speech bubble",
+    "portrait_aspect_ratio": "1:1",
+    "expression_count_per_server": 6,
+    "no_full_body_server_at_table": true
+  }
+}

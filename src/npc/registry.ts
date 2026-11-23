@@ -9,10 +9,10 @@ import { ROULETTE_LIMITS } from '../casino/roulette';
 import { THREE_CARD_LIMITS } from '../casino/threeCard';
 import type { CasinoGameId } from '../expansion/locations';
 import type { LocationId } from '../expansion/unlocks';
-import type { NpcId } from './types';
+import type { DealerId } from './types';
 
 export interface DealerDef {
-  id: NpcId;
+  id: DealerId;
   name: string;
   /** Used on buttons ("Tip Monique"). */
   short: string;
@@ -31,4 +31,4 @@ export const DEALERS: readonly DealerDef[] = [
 ];
 
 export const dealerById = (id: string) => DEALERS.find((d) => d.id === id);
-export const isDealerId = (id: string): id is NpcId => DEALERS.some((d) => d.id === id);
+export const isDealerId = (id: string): id is DealerId => DEALERS.some((d) => d.id === id);

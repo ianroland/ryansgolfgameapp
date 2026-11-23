@@ -2,7 +2,9 @@
 import type { GameTime } from '../core/types';
 import type { LocationId } from '../expansion/unlocks';
 
-export type NpcId = 'velvet_vega' | 'stick_lady' | 'madame_monique' | 'waifu' | 'winston';
+/** Dealers, then the cocktail servers (src/casino/servers). */
+export type DealerId = 'velvet_vega' | 'stick_lady' | 'madame_monique' | 'waifu' | 'winston';
+export type NpcId = DealerId | 'dp_server' | 'wb_server' | 'ms_server';
 
 export interface NpcState {
   npcId: NpcId;
@@ -34,7 +36,7 @@ export interface RelationshipLogEntry {
   npcId: NpcId;
   seq: number;
   at: GameTime;
-  kind: 'tip' | 'visit';
+  kind: 'tip' | 'visit' | 'order' | 'water' | 'chat' | 'refused' | 'rude' | 'apology';
   amount?: number;
   delta: number;
   txnId?: string;

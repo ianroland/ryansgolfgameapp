@@ -1,0 +1,58 @@
+casino,server,event,expression,line_id,text
+desert_palms,Maya Solis,intro,friendly,dp_server.intro.1,"Welcome back to Desert Palms. Want your usual, Ryan?"
+desert_palms,Maya Solis,intro,friendly,dp_server.intro.2,You found my section again. Lucky me.
+desert_palms,Maya Solis,order,friendly,dp_server.order.1,One Tito’s Double. Coming right up.
+desert_palms,Maya Solis,order,friendly,dp_server.order.2,The usual? I could have guessed.
+desert_palms,Maya Solis,first_order,friendly,dp_server.first_order.1,Tito’s Double? I’ll remember that.
+desert_palms,Maya Solis,chat,playful,dp_server.chat.1,How’s the golf treating you?
+desert_palms,Maya Solis,chat,playful,dp_server.chat.2,The night shift hears everything. Almost everything.
+desert_palms,Maya Solis,tip,impressed,dp_server.tip.1,"Thank you, Ryan. That was thoughtful."
+desert_palms,Maya Solis,tip,impressed,dp_server.tip.2,"You didn’t have to, but I appreciate it."
+desert_palms,Maya Solis,no_tip,friendly,dp_server.no_tip.1,No problem. Enjoy your game.
+desert_palms,Maya Solis,decline,friendly,dp_server.decline.1,All good. I’ll check back later.
+desert_palms,Maya Solis,water,friendly,dp_server.water.1,Water it is. Good call.
+desert_palms,Maya Solis,rumor,impressed,dp_server.rumor.1,There’s a card game people only mention after midnight. That’s all I’m saying.
+desert_palms,Maya Solis,concern,concerned,dp_server.concern.1,"Hey, I’m keeping an eye on you. How about water this round?"
+desert_palms,Maya Solis,refusal,firm,dp_server.refusal.1,"No more Tito’s tonight, Ryan. Water’s on me."
+desert_palms,Maya Solis,refusal,firm,dp_server.refusal.2,I’m not serving another double. Let’s get you some water.
+desert_palms,Maya Solis,hostile,annoyed,dp_server.hostile.1,"I’m here to do my job, Ryan. Let’s keep it respectful."
+desert_palms,Maya Solis,apology,friendly,dp_server.apology.1,Thanks for saying that. Let’s start fresh.
+desert_palms,Maya Solis,farewell,friendly,dp_server.farewell.1,See you next time. And good luck out there.
+white_buffalo,Nina Calder,intro,friendly,wb_server.intro.1,"Evening, Ryan. The usual, or are we taking it easy?"
+white_buffalo,Nina Calder,intro,friendly,wb_server.intro.2,I saw you walk in. You looked like you had a story.
+white_buffalo,Nina Calder,order,friendly,wb_server.order.1,Tito’s Double. Understood.
+white_buffalo,Nina Calder,order,friendly,wb_server.order.2,One double. I’ll be back.
+white_buffalo,Nina Calder,first_order,friendly,wb_server.first_order.1,A Tito’s Double. Noted.
+white_buffalo,Nina Calder,chat,playful,wb_server.chat.1,The tables aren’t the only place people make decisions.
+white_buffalo,Nina Calder,chat,playful,wb_server.chat.2,You’d be surprised what a quiet room can tell you.
+white_buffalo,Nina Calder,tip,impressed,wb_server.tip.1,Much appreciated.
+white_buffalo,Nina Calder,tip,impressed,wb_server.tip.2,That’s generous. Thank you.
+white_buffalo,Nina Calder,no_tip,friendly,wb_server.no_tip.1,No worries.
+white_buffalo,Nina Calder,decline,friendly,wb_server.decline.1,Fair enough.
+white_buffalo,Nina Calder,water,friendly,wb_server.water.1,Water. Smart choice.
+white_buffalo,Nina Calder,rumor,impressed,wb_server.rumor.1,Some regulars meet away from the main floor. They’re selective about company.
+white_buffalo,Nina Calder,concern,concerned,wb_server.concern.1,You’re slowing down. I’d switch to water if I were you.
+white_buffalo,Nina Calder,refusal,firm,wb_server.refusal.1,"I’m cutting you off for tonight, Ryan. Water is available."
+white_buffalo,Nina Calder,refusal,firm,wb_server.refusal.2,"No more doubles. We can talk, but I’m not pouring another."
+white_buffalo,Nina Calder,hostile,annoyed,wb_server.hostile.1,That tone won’t help you here.
+white_buffalo,Nina Calder,apology,friendly,wb_server.apology.1,Accepted. Let’s keep things civil.
+white_buffalo,Nina Calder,farewell,friendly,wb_server.farewell.1,"Take care of yourself, Ryan."
+morongo_sky,Celeste Vale,intro,friendly,ms_server.intro.1,"Good evening, Ryan. Shall I bring your usual?"
+morongo_sky,Celeste Vale,intro,friendly,ms_server.intro.2,Welcome to Morongo Sky. I hope your evening is going well.
+morongo_sky,Celeste Vale,order,friendly,ms_server.order.1,A Tito’s Double. Certainly.
+morongo_sky,Celeste Vale,order,friendly,ms_server.order.2,Your usual. I’ll have it brought over.
+morongo_sky,Celeste Vale,first_order,friendly,ms_server.first_order.1,A Tito’s Double. I’ll remember your preference.
+morongo_sky,Celeste Vale,chat,playful,ms_server.chat.1,Discretion is a valuable currency here.
+morongo_sky,Celeste Vale,chat,playful,ms_server.chat.2,Not every invitation arrives in an envelope.
+morongo_sky,Celeste Vale,tip,impressed,ms_server.tip.1,Very kind of you. Thank you.
+morongo_sky,Celeste Vale,tip,impressed,ms_server.tip.2,I appreciate your consideration.
+morongo_sky,Celeste Vale,no_tip,friendly,ms_server.no_tip.1,Of course. Enjoy your evening.
+morongo_sky,Celeste Vale,decline,friendly,ms_server.decline.1,As you wish.
+morongo_sky,Celeste Vale,water,friendly,ms_server.water.1,"Water, certainly."
+morongo_sky,Celeste Vale,rumor,impressed,ms_server.rumor.1,There is a private table upstairs. Invitations are not requested; they are offered.
+morongo_sky,Celeste Vale,concern,concerned,ms_server.concern.1,"Ryan, may I suggest water for now?"
+morongo_sky,Celeste Vale,refusal,firm,ms_server.refusal.1,I won’t be serving another alcoholic drink tonight. I can offer water.
+morongo_sky,Celeste Vale,refusal,firm,ms_server.refusal.2,"For your well-being, service of alcohol is finished for the evening."
+morongo_sky,Celeste Vale,hostile,annoyed,ms_server.hostile.1,I’m happy to assist when we can speak respectfully.
+morongo_sky,Celeste Vale,apology,friendly,ms_server.apology.1,Thank you. I appreciate that.
+morongo_sky,Celeste Vale,farewell,friendly,ms_server.farewell.1,"Enjoy the rest of your evening, Ryan."

@@ -49,12 +49,14 @@ export type TransactionType =
   | 'sponsor_income'
   | 'story'
   | 'casino'
-  /** A tip to a casino dealer (Casino Secrets & Rivalries). Never a wager. */
-  | 'tip';
+  /** A tip to a casino dealer or cocktail server (Casino Secrets & Rivalries). Never a wager. */
+  | 'tip'
+  /** A drink bought from a cocktail server (Tito's Double). Never a wager. */
+  | 'drink';
 
 export const TRANSACTION_TYPES: TransactionType[] = [
   'career_start_grant', 'furniture_purchase', 'home_purchase', 'gear_purchase', 'lifestyle_purchase', 'entry_fee',
-  'travel', 'prize_money', 'living_costs', 'job_wage', 'sponsor_income', 'story', 'casino', 'tip',
+  'travel', 'prize_money', 'living_costs', 'job_wage', 'sponsor_income', 'story', 'casino', 'tip', 'drink',
 ];
 
 export interface EconomyTransaction {

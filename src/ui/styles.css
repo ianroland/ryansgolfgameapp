@@ -1922,3 +1922,38 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
   .table-layout.side .dealer-panel.collapsed .dlg-portrait > * { width: 40px; height: 40px; }
   .table-layout.side .table-col .roulette-history { margin-left: 0; }
 }
+
+/* ── Cocktail server (portrait panel under the dealer and tip panels) ── */
+.dealer-row > .srv-bar, .dealer-row > .srv-panel { grid-column: 1 / -1; }
+@media (min-width: 1000px) { .table-layout.side > .dealer-row > .srv-bar, .table-layout.side > .dealer-row > .srv-panel { grid-column: 1; } }
+.srv-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 6px 10px; background: linear-gradient(180deg, #2a1238, #170a22); border: 3px solid var(--ink); border-radius: 10px; box-shadow: inset 0 0 0 2px rgba(255, 215, 110, 0.6); }
+.srv-mini { width: 40px; height: 40px; object-fit: cover; border: 2px solid var(--gold); border-radius: 6px; image-rendering: auto; }
+.srv-bar-name { font-family: var(--head); font-size: 16px; color: var(--gold-2); text-shadow: 1px 1px 0 var(--ink); }
+.srv-bar .btn { margin-left: auto; }
+.srv-status { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 12px; }
+.srv-level { padding: 0 6px; font-family: var(--head); font-size: 12px; color: var(--ink); background: #bfe6c4; border-radius: 4px; }
+.srv-level.buzzed { background: #ffe39a; }
+.srv-level.tipsy { background: #ffb36b; }
+.srv-level.impaired { background: #ff7b7b; }
+.srv-refused { padding: 0 6px; color: #fff; background: #8a1f2a; border-radius: 4px; }
+.srv-effects { color: #ffd98a; }
+.srv-panel { display: grid; gap: 6px; }
+.srv-panel .dealer-panel { margin: 0; }
+.srv-portrait { display: block; width: 96px; height: 96px; object-fit: cover; border: 3px solid var(--gold); border-radius: 8px; box-shadow: 0 0 0 2px var(--ink); image-rendering: auto; }
+@media (min-width: 1000px) { .table-layout.side .srv-portrait { width: 80px; height: 80px; } }
+.dealer-panel.collapsed .srv-portrait { width: 40px; height: 40px; }
+.srv-actions { display: grid; gap: 6px; padding: 8px 10px; background: rgba(0, 0, 0, 0.25); border: 2px solid rgba(255, 215, 110, 0.35); border-radius: 10px; }
+.srv-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.srv-spacer { flex: 1; }
+.srv-tip-label { font-family: var(--head); font-size: 13px; color: var(--gold-2); }
+.srv-tip { display: inline-flex; align-items: center; gap: 2px; padding: 0 4px 0 0; color: #fff; font-family: var(--head); font-size: 13px; background: transparent; border: 0; cursor: pointer; }
+.srv-tip img.chip-img { width: 34px; }
+.srv-tip:disabled { opacity: 0.45; cursor: not-allowed; }
+.srv-tip:hover:not(:disabled) b, .srv-tip:focus-visible b { color: var(--gold-2); }
+.srv-effect-note { font-size: 12px; color: #ffd98a; }
+.srv-note { margin: 0; }
+/* Name rows wrap and keep clear of the collapse button (narrow columns, phones). */
+.dealer-panel .rpg-name { flex-wrap: wrap; row-gap: 4px; }
+.dealer-panel.server .rpg-name, .table-layout.side .dealer-panel .rpg-name { padding-right: 34px; }
+.dealer-panel.server .dlg-side { position: absolute; top: 8px; right: 8px; }
+.dealer-panel.server { grid-template-columns: auto 1fr; }

@@ -5,7 +5,7 @@
  */
 import { cryptoInt, type RandomInt } from '../casino/random';
 import type { TipEvent } from './relationship';
-import type { NpcId } from './types';
+import type { DealerId } from './types';
 
 export interface TipLine {
   id: string;
@@ -15,7 +15,7 @@ export interface TipLine {
 
 type Script = Record<TipEvent, string[]>;
 
-const SCRIPTS: Record<NpcId, Script> = {
+const SCRIPTS: Record<DealerId, Script> = {
   velvet_vega: {
     tip_first: ["A tip. From you. I'll mark the date.", 'Thank you. The cards still won’t like you, but I might.'],
     tip_small: ['Noted. Appreciated, even.', 'Thank you. Every chip counts.'],
@@ -66,7 +66,7 @@ const SCRIPTS: Record<NpcId, Script> = {
 export const TIP_SCRIPTS = SCRIPTS;
 
 /** Picks a draft tip line, avoiding the last line this dealer said about tips. */
-export function pickTipLine(npcId: NpcId, event: TipEvent, recent: string[], rand: RandomInt = cryptoInt): TipLine {
+export function pickTipLine(npcId: DealerId, event: TipEvent, recent: string[], rand: RandomInt = cryptoInt): TipLine {
   const pool = SCRIPTS[npcId][event].map((text, i) => ({ id: `${npcId}_${event}_${i + 1}`, text, status: 'draft' as const }));
   const fresh = pool.filter((l) => !recent.slice(-3).includes(l.id));
   const from = fresh.length ? fresh : pool;

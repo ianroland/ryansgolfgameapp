@@ -272,7 +272,7 @@ export const RelationshipLogSchema = z.object({
   npcId: id,
   seq: int.positive(),
   at: gameTime,
-  kind: z.enum(['tip', 'visit']),
+  kind: z.enum(['tip', 'visit', 'order', 'water', 'chat', 'refused', 'rude', 'apology']),
   amount: nonNeg.optional(),
   delta: z.number(),
   txnId: id.optional(),

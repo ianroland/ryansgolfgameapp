@@ -18,7 +18,7 @@ import type { TierId } from '../../npc/config';
 import { dealerById } from '../../npc/registry';
 import { freshNpcState, normalizeNpcState, TIERS, TIP_AMOUNTS, tierDefOf, type TipEvent } from '../../npc/relationship';
 import { pickTipLine, type TipLine } from '../../npc/tipLines';
-import type { NpcId } from '../../npc/types';
+import type { DealerId, NpcId } from '../../npc/types';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
 import { CHIP_THEMES } from '../../expansion/chipThemes';
@@ -103,7 +103,7 @@ function TipFlight({ from, to, face, onDone }: { from: DOMRect; to: DOMRect; fac
  * (`disabled`). Counts a visit to the dealer's table once per casino visit. A press is locked
  * until its request finishes, and has its own id, so rapid clicks can't charge twice.
  */
-export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled: boolean; onTipped: (r: TipReaction) => void }) {
+export function TipTray({ npcId, disabled, onTipped }: { npcId: DealerId; disabled: boolean; onTipped: (r: TipReaction) => void }) {
   const { state, services, run } = useGame();
   const { tier, state: npc } = useDealerTier(npcId);
   const [busy, setBusy] = useState(false);

@@ -9,6 +9,8 @@ import { casinoWeekKey } from '../career/engine';
 import { DomainError } from '../core/errors';
 import type { AppDB } from '../persistence/db';
 import { dealerById, DEALERS } from '../npc/registry';
+import { serverById } from '../casino/servers/registry';
+import { SERVER_CONFIG } from '../casino/servers/config';
 import { applyTip, applyVisit, freshNpcState, normalizeNpcState, TIP_AMOUNTS, type TipOutcome } from '../npc/relationship';
 import { eligibleHooks, type RelationshipHook } from '../npc/hooks';
 import type { NpcId, NpcState, RelationshipLogEntry } from '../npc/types';
@@ -77,8 +79,12 @@ export class NpcService {
    */
   async tip(npcId: NpcId, amount: number, tipId: string): Promise<TipResult> {
     const dealer = dealerById(npcId);
-    if (!dealer) throw new DomainError('CAREER_RULE', 'Unknown dealer');
-    if (!(TIP_AMOUNTS as readonly number[]).includes(amount)) throw new DomainError('CAREER_RULE', 'Pick a tip amount');
+    const server = serverById(npcId);
+    if (!dealer && !server) throw new DomainError('CAREER_RULE', 'Unknown dealer');
+    // Servers have their own tip sizes and a fixed reference (dealers use their table minimum).
+    const amounts: readonly number[] = server ? SERVER_CONFIG.tipAmounts : TIP_AMOUNTS;
+    const reference = server ? SERVER_CONFIG.tipReference : dealer!.tableMin;
+    if (!amounts.includes(amount)) throw new DomainError('CAREER_RULE', 'Pick a tip amount');
     if (!tipId) throw new DomainError('CAREER_RULE', 'Missing tip id');
     const key = `tip:${npcId}:${tipId}`;
     return this.db.transaction('rw', [...this.economy.tables, this.db.careers, this.db.npcState, this.db.relationshipLog], async () => {
@@ -89,7 +95,7 @@ export class NpcService {
       if (npcId === 'winston' && pendingThreeCard(c)) throw new DomainError('CAREER_RULE', 'Tip between hands: finish this hand first');
       const { transaction } = await this.economy.post({ ownerId: c.playerId, amount: -amount, type: 'tip', sourceId: npcId, idempotencyKey: key });
       const visitKey = casinoWeekKey(c);
-      const outcome = applyTip(applyVisit(await this.stateOf(npcId), visitKey), amount, dealer.tableMin, visitKey, transaction.timestamp);
+      const outcome = applyTip(applyVisit(await this.stateOf(npcId), visitKey), amount, reference, visitKey, transaction.timestamp);
       await this.db.npcState.put(outcome.next);
       await this.log({ id: `rel:${npcId}:${tipId}`, npcId, at: transaction.timestamp, kind: 'tip', amount, delta: outcome.gain, txnId: transaction.id, visitKey });
       return { outcome, state: outcome.next, balance: transaction.balanceAfter, replayed: false, hooks: eligibleHooks(outcome.next) };

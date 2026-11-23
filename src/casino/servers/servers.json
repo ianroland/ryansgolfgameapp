@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "status": "draft_dialogue_pending_user_approval",
+  "servers": {
+    "desert_palms": {
+      "id": "dp_server",
+      "name": "Maya Solis",
+      "venue": "Desert Palms",
+      "personality": "Playful, quick-witted, warm; direct when concerned",
+      "theme": "emerald_gold",
+      "sprite_mapping": {
+        "friendly": "assets/casino/npcs/servers/desert_palms/friendly.png",
+        "playful": "assets/casino/npcs/servers/desert_palms/playful.png",
+        "impressed": "assets/casino/npcs/servers/desert_palms/impressed.png",
+        "concerned": "assets/casino/npcs/servers/desert_palms/concerned.png",
+        "annoyed": "assets/casino/npcs/servers/desert_palms/annoyed.png",
+        "firm": "assets/casino/npcs/servers/desert_palms/firm.png"
+      },
+      "expression_triggers": {
+        "friendly": [
+          "intro",
+          "first_order",
+          "order",
+          "decline",
+          "water",
+          "farewell"
+        ],
+        "playful": [
+          "chat"
+        ],
+        "impressed": [
+          "tip",
+          "rumor"
+        ],
+        "concerned": [
+          "concern"
+        ],
+        "annoyed": [
+          "hostile"
+        ],
+        "firm": [
+          "refusal"
+        ]
+      },
+      "dialogue": {
+        "intro": [
+          {
+            "id": "dp_server.intro.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "Welcome back to Desert Palms. Want your usual, Ryan?"
+          },
+          {
+            "id": "dp_server.intro.2",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "You found my section again. Lucky me."
+          }
+        ],
+        "order": [
+          {
+            "id": "dp_server.order.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "One Tito’s Double. Coming right up."
+          },
+          {
+            "id": "dp_server.order.2",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "The usual? I could have guessed."
+          }
+        ],
+        "first_order": [
+          {
+            "id": "dp_server.first_order.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "Tito’s Double? I’ll remember that."
+          }
+        ],
+        "chat": [
+          {
+            "id": "dp_server.chat.1",
+            "speaker": "dp_server",
+            "expression": "playful",
+            "text": "How’s the golf treating you?"
+          },
+          {
+            "id": "dp_server.chat.2",
+            "speaker": "dp_server",
+            "expression": "playful",
+            "text": "The night shift hears everything. Almost everything."
+          }
+        ],
+        "tip": [
+          {
+            "id": "dp_server.tip.1",
+            "speaker": "dp_server",
+            "expression": "impressed",
+            "text": "Thank you, Ryan. That was thoughtful."
+          },
+          {
+            "id": "dp_server.tip.2",
+            "speaker": "dp_server",
+            "expression": "impressed",
+            "text": "You didn’t have to, but I appreciate it."
+          }
+        ],
+        "no_tip": [
+          {
+            "id": "dp_server.no_tip.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "No problem. Enjoy your game."
+          }
+        ],
+        "decline": [
+          {
+            "id": "dp_server.decline.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "All good. I’ll check back later."
+          }
+        ],
+        "water": [
+          {
+            "id": "dp_server.water.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "Water it is. Good call."
+          }
+        ],
+        "rumor": [
+          {
+            "id": "dp_server.rumor.1",
+            "speaker": "dp_server",
+            "expression": "impressed",
+            "text": "There’s a card game people only mention after midnight. That’s all I’m saying."
+          }
+        ],
+        "concern": [
+          {
+            "id": "dp_server.concern.1",
+            "speaker": "dp_server",
+            "expression": "concerned",
+            "text": "Hey, I’m keeping an eye on you. How about water this round?"
+          }
+        ],
+        "refusal": [
+          {
+            "id": "dp_server.refusal.1",
+            "speaker": "dp_server",
+            "expression": "firm",
+            "text": "No more Tito’s tonight, Ryan. Water’s on me."
+          },
+          {
+            "id": "dp_server.refusal.2",
+            "speaker": "dp_server",
+            "expression": "firm",
+            "text": "I’m not serving another double. Let’s get you some water."
+          }
+        ],
+        "hostile": [
+          {
+            "id": "dp_server.hostile.1",
+            "speaker": "dp_server",
+            "expression": "annoyed",
+            "text": "I’m here to do my job, Ryan. Let’s keep it respectful."
+          }
+        ],
+        "apology": [
+          {
+            "id": "dp_server.apology.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "Thanks for saying that. Let’s start fresh."
+          }
+        ],
+        "farewell": [
+          {
+            "id": "dp_server.farewell.1",
+            "speaker": "dp_server",
+            "expression": "friendly",
+            "text": "See you next time. And good luck out there."
+          }
+        ]
+      }
+    },
+    "white_buffalo": {
+      "id": "wb_server",
+      "name": "Nina Calder",
+      "venue": "The White Buffalo",
+      "personality": "Observant, dry humor, quietly protective",
+      "theme": "teal_copper",
+      "sprite_mapping": {
+        "friendly": "assets/casino/npcs/servers/white_buffalo/friendly.png",
+        "playful": "assets/casino/npcs/servers/white_buffalo/playful.png",
+        "impressed": "assets/casino/npcs/servers/white_buffalo/impressed.png",
+        "concerned": "assets/casino/npcs/servers/white_buffalo/concerned.png",
+        "annoyed": "assets/casino/npcs/servers/white_buffalo/annoyed.png",
+        "firm": "assets/casino/npcs/servers/white_buffalo/firm.png"
+      },
+      "expression_triggers": {
+        "friendly": [
+          "intro",
+          "first_order",
+          "order",
+          "decline",
+          "water",
+          "farewell"
+        ],
+        "playful": [
+          "chat"
+        ],
+        "impressed": [
+          "tip",
+          "rumor"
+        ],
+        "concerned": [
+          "concern"
+        ],
+        "annoyed": [
+          "hostile"
+        ],
+        "firm": [
+          "refusal"
+        ]
+      },
+      "dialogue": {
+        "intro": [
+          {
+            "id": "wb_server.intro.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "Evening, Ryan. The usual, or are we taking it easy?"
+          },
+          {
+            "id": "wb_server.intro.2",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "I saw you walk in. You looked like you had a story."
+          }
+        ],
+        "order": [
+          {
+            "id": "wb_server.order.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "Tito’s Double. Understood."
+          },
+          {
+            "id": "wb_server.order.2",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "One double. I’ll be back."
+          }
+        ],
+        "first_order": [
+          {
+            "id": "wb_server.first_order.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "A Tito’s Double. Noted."
+          }
+        ],
+        "chat": [
+          {
+            "id": "wb_server.chat.1",
+            "speaker": "wb_server",
+            "expression": "playful",
+            "text": "The tables aren’t the only place people make decisions."
+          },
+          {
+            "id": "wb_server.chat.2",
+            "speaker": "wb_server",
+            "expression": "playful",
+            "text": "You’d be surprised what a quiet room can tell you."
+          }
+        ],
+        "tip": [
+          {
+            "id": "wb_server.tip.1",
+            "speaker": "wb_server",
+            "expression": "impressed",
+            "text": "Much appreciated."
+          },
+          {
+            "id": "wb_server.tip.2",
+            "speaker": "wb_server",
+            "expression": "impressed",
+            "text": "That’s generous. Thank you."
+          }
+        ],
+        "no_tip": [
+          {
+            "id": "wb_server.no_tip.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "No worries."
+          }
+        ],
+        "decline": [
+          {
+            "id": "wb_server.decline.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "Fair enough."
+          }
+        ],
+        "water": [
+          {
+            "id": "wb_server.water.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "Water. Smart choice."
+          }
+        ],
+        "rumor": [
+          {
+            "id": "wb_server.rumor.1",
+            "speaker": "wb_server",
+            "expression": "impressed",
+            "text": "Some regulars meet away from the main floor. They’re selective about company."
+          }
+        ],
+        "concern": [
+          {
+            "id": "wb_server.concern.1",
+            "speaker": "wb_server",
+            "expression": "concerned",
+            "text": "You’re slowing down. I’d switch to water if I were you."
+          }
+        ],
+        "refusal": [
+          {
+            "id": "wb_server.refusal.1",
+            "speaker": "wb_server",
+            "expression": "firm",
+            "text": "I’m cutting you off for tonight, Ryan. Water is available."
+          },
+          {
+            "id": "wb_server.refusal.2",
+            "speaker": "wb_server",
+            "expression": "firm",
+            "text": "No more doubles. We can talk, but I’m not pouring another."
+          }
+        ],
+        "hostile": [
+          {
+            "id": "wb_server.hostile.1",
+            "speaker": "wb_server",
+            "expression": "annoyed",
+            "text": "That tone won’t help you here."
+          }
+        ],
+        "apology": [
+          {
+            "id": "wb_server.apology.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "Accepted. Let’s keep things civil."
+          }
+        ],
+        "farewell": [
+          {
+            "id": "wb_server.farewell.1",
+            "speaker": "wb_server",
+            "expression": "friendly",
+            "text": "Take care of yourself, Ryan."
+          }
+        ]
+      }
+    },
+    "morongo_sky": {
+      "id": "ms_server",
+      "name": "Celeste Vale",
+      "venue": "Morongo Sky",
+      "personality": "Elegant, discreet, unflappable; maintains firm boundaries",
+      "theme": "purple_platinum",
+      "sprite_mapping": {
+        "friendly": "assets/casino/npcs/servers/morongo_sky/friendly.png",
+        "playful": "assets/casino/npcs/servers/morongo_sky/playful.png",
+        "impressed": "assets/casino/npcs/servers/morongo_sky/impressed.png",
+        "concerned": "assets/casino/npcs/servers/morongo_sky/concerned.png",
+        "annoyed": "assets/casino/npcs/servers/morongo_sky/annoyed.png",
+        "firm": "assets/casino/npcs/servers/morongo_sky/firm.png"
+      },
+      "expression_triggers": {
+        "friendly": [
+          "intro",
+          "first_order",
+          "order",
+          "decline",
+          "water",
+          "farewell"
+        ],
+        "playful": [
+          "chat"
+        ],
+        "impressed": [
+          "tip",
+          "rumor"
+        ],
+        "concerned": [
+          "concern"
+        ],
+        "annoyed": [
+          "hostile"
+        ],
+        "firm": [
+          "refusal"
+        ]
+      },
+      "dialogue": {
+        "intro": [
+          {
+            "id": "ms_server.intro.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "Good evening, Ryan. Shall I bring your usual?"
+          },
+          {
+            "id": "ms_server.intro.2",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "Welcome to Morongo Sky. I hope your evening is going well."
+          }
+        ],
+        "order": [
+          {
+            "id": "ms_server.order.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "A Tito’s Double. Certainly."
+          },
+          {
+            "id": "ms_server.order.2",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "Your usual. I’ll have it brought over."
+          }
+        ],
+        "first_order": [
+          {
+            "id": "ms_server.first_order.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "A Tito’s Double. I’ll remember your preference."
+          }
+        ],
+        "chat": [
+          {
+            "id": "ms_server.chat.1",
+            "speaker": "ms_server",
+            "expression": "playful",
+            "text": "Discretion is a valuable currency here."
+          },
+          {
+            "id": "ms_server.chat.2",
+            "speaker": "ms_server",
+            "expression": "playful",
+            "text": "Not every invitation arrives in an envelope."
+          }
+        ],
+        "tip": [
+          {
+            "id": "ms_server.tip.1",
+            "speaker": "ms_server",
+            "expression": "impressed",
+            "text": "Very kind of you. Thank you."
+          },
+          {
+            "id": "ms_server.tip.2",
+            "speaker": "ms_server",
+            "expression": "impressed",
+            "text": "I appreciate your consideration."
+          }
+        ],
+        "no_tip": [
+          {
+            "id": "ms_server.no_tip.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "Of course. Enjoy your evening."
+          }
+        ],
+        "decline": [
+          {
+            "id": "ms_server.decline.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "As you wish."
+          }
+        ],
+        "water": [
+          {
+            "id": "ms_server.water.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "Water, certainly."
+          }
+        ],
+        "rumor": [
+          {
+            "id": "ms_server.rumor.1",
+            "speaker": "ms_server",
+            "expression": "impressed",
+            "text": "There is a private table upstairs. Invitations are not requested; they are offered."
+          }
+        ],
+        "concern": [
+          {
+            "id": "ms_server.concern.1",
+            "speaker": "ms_server",
+            "expression": "concerned",
+            "text": "Ryan, may I suggest water for now?"
+          }
+        ],
+        "refusal": [
+          {
+            "id": "ms_server.refusal.1",
+            "speaker": "ms_server",
+            "expression": "firm",
+            "text": "I won’t be serving another alcoholic drink tonight. I can offer water."
+          },
+          {
+            "id": "ms_server.refusal.2",
+            "speaker": "ms_server",
+            "expression": "firm",
+            "text": "For your well-being, service of alcohol is finished for the evening."
+          }
+        ],
+        "hostile": [
+          {
+            "id": "ms_server.hostile.1",
+            "speaker": "ms_server",
+            "expression": "annoyed",
+            "text": "I’m happy to assist when we can speak respectfully."
+          }
+        ],
+        "apology": [
+          {
+            "id": "ms_server.apology.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "Thank you. I appreciate that."
+          }
+        ],
+        "farewell": [
+          {
+            "id": "ms_server.farewell.1",
+            "speaker": "ms_server",
+            "expression": "friendly",
+            "text": "Enjoy the rest of your evening, Ryan."
+          }
+        ]
+      }
+    }
+  }
+}

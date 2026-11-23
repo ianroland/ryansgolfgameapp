@@ -28,6 +28,7 @@ import meta from '../../assets/casino/ww/ww_meta.json';
 import { TipTray, type TipReaction } from './Tipping';
 import { ChipButton } from './Chips';
 import { DealerDialoguePanel, SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
+import { ServerPanel, signalRoundComplete } from './ServerPanel';
 import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
 import { CARD_LAYOUTS, type CardGame, type CardScene } from '../../expansion/tableThemes';
 
@@ -334,6 +335,7 @@ export function Baccarat() {
     later(doneMs, () => {
       setRevealed(true);
       setBusy(false);
+      signalRoundComplete(services);
       const net = r.payout - r.staked;
       const tier = celebrateWin(net, r.staked);
       sound.play(net > 0 ? 'cash' : net === 0 ? 'ui_click' : 'groan', { volume: 0.55 });
@@ -410,6 +412,7 @@ export function Baccarat() {
       <div className="dealer-row">
         <WWDialogue who="waifu" chat={chat as unknown as Chat<WWEvent>} />
         <TipTray npcId="waifu" disabled={busy || !revealed} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'delighted' : 'smile', 'present')} />
+        <ServerPanel busy={busy || !revealed} />
       </div>
       </div>
       {notice && <p className="ww-notice" data-testid="bac-notice">{notice}</p>}
@@ -524,6 +527,7 @@ export function ThreeCard() {
     sound.play('ui_click');
     later(900, () => {
       setBusy(false);
+      signalRoundComplete(services);
       const r = out.result;
       const net = r.total - out.staked;
       const tier = celebrateWin(net, out.staked);
@@ -627,6 +631,7 @@ export function ThreeCard() {
       <div className="dealer-row">
         <WWDialogue who="winston" chat={chat as unknown as Chat<WWEvent>} />
         <TipTray npcId="winston" disabled={busy || !!pending} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'laugh' : 'grin', 'present')} />
+        <ServerPanel busy={busy || !!pending} />
       </div>
       </div>
       {r && showDealer && (
