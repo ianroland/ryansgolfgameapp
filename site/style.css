@@ -109,3 +109,8 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 40px; }
   .btn.big { font-size: 26px; padding: 12px 22px 10px; }
   .game-frame { height: 70vh; }
 }
+
+/* Studio credit */
+.studio { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 4px 0 18px; }
+.studio-by { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
+.studio-logo { width: min(360px, 80vw); height: auto; image-rendering: pixelated; }
