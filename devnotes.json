@@ -2,6 +2,21 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.18.0",
+      "date": "2026-11-23",
+      "title": "Sportsbook preview (demo)",
+      "items": [
+        {
+          "tag": "new",
+          "text": "A first look at the Palms Sports Bar: a new Sportsbook (demo) tab at Desert Palms with four fictional leagues, betting lines, a bet slip with singles and parlays, scores, standings, news and history."
+        },
+        {
+          "tag": "improved",
+          "text": "This is a demo: teams, odds and results are placeholders, and demo bets never touch your bankroll. The real leagues and betting come later."
+        }
+      ]
+    },
+    {
       "version": "0.17.0",
       "date": "2026-11-23",
       "title": "Cocktail servers",

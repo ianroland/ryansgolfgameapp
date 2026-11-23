@@ -16,6 +16,7 @@ import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
 import { boxStyle, casinoArt } from './casinoArt';
 import { Greyhounds } from './Greyhounds';
+import { Sportsbook } from '../sportsbook/Sportsbook';
 import { BetChip, PlayingCard } from './TableBits';
 import { Baccarat, ThreeCard } from './WWTables';
 import { DialogueBox, MoniqueRest, MoniqueSprite, REACH_MS, useMonique } from './Monique';
@@ -832,6 +833,7 @@ export function CasinoPanel() {
           {game === 'baccarat' && <Baccarat />}
           {game === 'threecard' && <ThreeCard />}
           {game === 'greyhounds' && <Greyhounds onLeave={() => setGame('blackjack')} />}
+          {game === 'sportsbook' && <Sportsbook />}
         </>
       )}
     </main>

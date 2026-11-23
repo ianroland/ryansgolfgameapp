@@ -7,7 +7,7 @@
 import type { LocationId, UnlockId } from './unlocks';
 import { UNLOCK_RULES } from './unlocks';
 
-export type CasinoGameId = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'baccarat' | 'threecard' | 'greyhounds';
+export type CasinoGameId = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'baccarat' | 'threecard' | 'greyhounds' | 'sportsbook';
 
 export interface LocationDef {
   id: LocationId;
@@ -45,6 +45,7 @@ export const LOCATIONS: readonly LocationDef[] = [
       { id: 'baccarat', label: 'Baccarat' },
       { id: 'threecard', label: 'Three Card' },
       { id: 'greyhounds', label: 'Greyhounds' },
+      { id: 'sportsbook', label: 'Sportsbook (demo)' },
     ],
   },
   {
