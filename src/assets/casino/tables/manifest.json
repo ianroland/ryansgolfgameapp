@@ -1,0 +1,400 @@
+{
+ "version": "1.0",
+ "card_tables": [
+  {
+   "casino_id": "desert_palms",
+   "game_id": "blackjack",
+   "asset_path": "src/assets/casino/tables/desert_palms/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/desert_palms/scene.png",
+   "original_dimensions": [
+    588,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    0,
+    3
+   ],
+   "asset_dimensions": [
+    588,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.3548,
+   "safe_content_bounds_felt_px": [
+    48,
+    231,
+    495,
+    150
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Dealer cards top centre, rules line (from blackjack.ts) mid felt, player hands lower centre; bet chip beside each hand. No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "desert_palms",
+   "game_id": "three_card_poker",
+   "asset_path": "src/assets/casino/tables/desert_palms/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/desert_palms/scene.png",
+   "original_dimensions": [
+    588,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    0,
+    3
+   ],
+   "asset_dimensions": [
+    588,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.3548,
+   "safe_content_bounds_felt_px": [
+    48,
+    231,
+    495,
+    150
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Dealer cards top, player cards middle, Ante / Play / Pair Plus ovals drawn by the game in the lower felt. No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "desert_palms",
+   "game_id": "baccarat",
+   "asset_path": "src/assets/casino/tables/desert_palms/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/desert_palms/scene.png",
+   "original_dimensions": [
+    588,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    0,
+    3
+   ],
+   "asset_dimensions": [
+    588,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.3548,
+   "safe_content_bounds_felt_px": [
+    48,
+    231,
+    495,
+    150
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Player / Banker cards top, Player / Tie / Banker zones drawn by the game with pays from the rules (Tie 8 to 1, Banker 0.95 to 1). No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "white_buffalo",
+   "game_id": "blackjack",
+   "asset_path": "src/assets/casino/tables/white_buffalo/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/white_buffalo/scene.png",
+   "original_dimensions": [
+    579,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    7,
+    3
+   ],
+   "asset_dimensions": [
+    572,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.318,
+   "safe_content_bounds_felt_px": [
+    52,
+    238,
+    496,
+    143
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Dealer cards top centre, rules line (from blackjack.ts) mid felt, player hands lower centre; bet chip beside each hand. No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "white_buffalo",
+   "game_id": "three_card_poker",
+   "asset_path": "src/assets/casino/tables/white_buffalo/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/white_buffalo/scene.png",
+   "original_dimensions": [
+    579,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    7,
+    3
+   ],
+   "asset_dimensions": [
+    572,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.318,
+   "safe_content_bounds_felt_px": [
+    52,
+    238,
+    496,
+    143
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Dealer cards top, player cards middle, Ante / Play / Pair Plus ovals drawn by the game in the lower felt. No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "white_buffalo",
+   "game_id": "baccarat",
+   "asset_path": "src/assets/casino/tables/white_buffalo/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/white_buffalo/scene.png",
+   "original_dimensions": [
+    579,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    7,
+    3
+   ],
+   "asset_dimensions": [
+    572,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.318,
+   "safe_content_bounds_felt_px": [
+    52,
+    238,
+    496,
+    143
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Player / Banker cards top, Player / Tie / Banker zones drawn by the game with pays from the rules (Tie 8 to 1, Banker 0.95 to 1). No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "morongo_sky",
+   "game_id": "blackjack",
+   "asset_path": "src/assets/casino/tables/morongo_sky/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/morongo_sky/scene.png",
+   "original_dimensions": [
+    588,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    23,
+    3
+   ],
+   "asset_dimensions": [
+    565,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.3018,
+   "safe_content_bounds_felt_px": [
+    63,
+    235,
+    488,
+    149
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Dealer cards top centre, rules line (from blackjack.ts) mid felt, player hands lower centre; bet chip beside each hand. No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "morongo_sky",
+   "game_id": "three_card_poker",
+   "asset_path": "src/assets/casino/tables/morongo_sky/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/morongo_sky/scene.png",
+   "original_dimensions": [
+    588,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    23,
+    3
+   ],
+   "asset_dimensions": [
+    565,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.3018,
+   "safe_content_bounds_felt_px": [
+    63,
+    235,
+    488,
+    149
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Dealer cards top, player cards middle, Ante / Play / Pair Plus ovals drawn by the game in the lower felt. No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  },
+  {
+   "casino_id": "morongo_sky",
+   "game_id": "baccarat",
+   "asset_path": "src/assets/casino/tables/morongo_sky/card_scene.png",
+   "shared_by": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+   ],
+   "source": "CASINO_CARD_TABLES_V1 backgrounds/morongo_sky/scene.png",
+   "original_dimensions": [
+    588,
+    557
+   ],
+   "trimmed_border_left_top_px": [
+    23,
+    3
+   ],
+   "asset_dimensions": [
+    565,
+    554
+   ],
+   "rendered": "width 100% of the table area (max 900 CSS px); rows above y=120 (room, not table) hidden; aspect ratio preserved",
+   "aspect_ratio": 1.3018,
+   "safe_content_bounds_felt_px": [
+    63,
+    235,
+    488,
+    149
+   ],
+   "dealer_anchor": null,
+   "dealer_note": "No full-body dealer at the table; the dealer appears in the dialogue panel (RPG presentation).",
+   "betting_alignment": "Player / Banker cards top, Player / Tie / Banker zones drawn by the game with pays from the rules (Tie 8 to 1, Banker 0.95 to 1). No painted markings.",
+   "validation": "in-game QA passed at 1440/1192/390 (trial art: low native resolution, side rails run off the image edges)"
+  }
+ ],
+ "craps_tables": [
+  {
+   "casino_id": "desert_palms",
+   "game_id": "craps",
+   "asset_path": "src/assets/casino/tables/desert_palms/craps_full_scene.webp",
+   "source": "CASINO_CRAPS_TABLES_V1 tables/desert_palms/craps_full_scene.png",
+   "original_dimensions": [
+    1672,
+    941
+   ],
+   "asset_dimensions": [
+    1672,
+    941
+   ],
+   "rendered": "whole scene, width 100% of the table area (max 900 CSS px), aspect ratio preserved",
+   "aspect_ratio": 1.7768,
+   "betting_alignment": "Bets placed with the existing buttons below the table; chips for Pass, Don't Pass, Odds and Field shown on the matching painted areas; point puck on the painted number boxes.",
+   "masked_unsupported_markings": [
+    "Come",
+    "Don't Come Bar",
+    "Place Bets header",
+    "Hardways",
+    "One-roll bets (Any Seven, Any Craps, Horn)",
+    "Big 6 / Big 8"
+   ],
+   "validation": "in-game QA passed; needs clean-felt art (see report)"
+  },
+  {
+   "casino_id": "white_buffalo",
+   "game_id": "craps",
+   "asset_path": "src/assets/casino/tables/white_buffalo/craps_full_scene.webp",
+   "source": "CASINO_CRAPS_TABLES_V1 tables/white_buffalo/craps_full_scene.png",
+   "original_dimensions": [
+    1672,
+    941
+   ],
+   "asset_dimensions": [
+    1672,
+    941
+   ],
+   "rendered": "whole scene, width 100% of the table area (max 900 CSS px), aspect ratio preserved",
+   "aspect_ratio": 1.7768,
+   "betting_alignment": "Bets placed with the existing buttons below the table; chips for Pass, Don't Pass, Odds and Field shown on the matching painted areas; point puck on the painted number boxes.",
+   "masked_unsupported_markings": [
+    "Come",
+    "Don't Come Bar",
+    "Place Bets header",
+    "Hardways",
+    "One-roll bets (Any Seven, Any Craps, Horn)",
+    "Big 6 / Big 8"
+   ],
+   "validation": "in-game QA passed; needs clean-felt art (see report)"
+  },
+  {
+   "casino_id": "morongo_sky",
+   "game_id": "craps",
+   "asset_path": "src/assets/casino/tables/morongo_sky/craps_full_scene.webp",
+   "source": "CASINO_CRAPS_TABLES_V1 tables/morongo_sky/craps_full_scene.png",
+   "original_dimensions": [
+    1672,
+    941
+   ],
+   "asset_dimensions": [
+    1672,
+    941
+   ],
+   "rendered": "whole scene, width 100% of the table area (max 900 CSS px), aspect ratio preserved",
+   "aspect_ratio": 1.7768,
+   "betting_alignment": "Bets placed with the existing buttons below the table; chips for Pass, Don't Pass, Odds and Field shown on the matching painted areas; point puck on the painted number boxes.",
+   "masked_unsupported_markings": [
+    "Come",
+    "Don't Come Bar",
+    "Place Bets header",
+    "Hardways",
+    "One-roll bets (Any Seven, Any Craps, Horn)",
+    "Big 6 / Big 8"
+   ],
+   "validation": "in-game QA passed; needs clean-felt art (see report)"
+  }
+ ]
+}

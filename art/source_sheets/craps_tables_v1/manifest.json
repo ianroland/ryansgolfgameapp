@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "collection": "Casino-specific craps backgrounds",
+  "original_canvas": [
+    1672,
+    941
+  ],
+  "game": "craps",
+  "items": [
+    {
+      "casino_id": "desert_palms",
+      "asset": "tables/desert_palms/craps_full_scene.png",
+      "size": [
+        1672,
+        941
+      ],
+      "format": "RGBA PNG",
+      "status": "concept-background; needs game-specific zone alignment and label validation",
+      "full_scene": true
+    },
+    {
+      "casino_id": "white_buffalo",
+      "asset": "tables/white_buffalo/craps_full_scene.png",
+      "size": [
+        1672,
+        941
+      ],
+      "format": "RGBA PNG",
+      "status": "concept-background; needs game-specific zone alignment and label validation",
+      "full_scene": true
+    },
+    {
+      "casino_id": "morongo_sky",
+      "asset": "tables/morongo_sky/craps_full_scene.png",
+      "size": [
+        1672,
+        941
+      ],
+      "format": "RGBA PNG",
+      "status": "concept-background; needs game-specific zone alignment and label validation",
+      "full_scene": true
+    }
+  ],
+  "warnings": [
+    "These images are complete 1672x941 scenes, not transparent table-only sprites.",
+    "All felt labels, decorative dice, and payout text are baked into the backgrounds. They are not verified as accurate for the existing craps rules.",
+    "Do not use illustrated betting zones as hitboxes. Overlay gameplay controls from the actual game.",
+    "Do not stretch; contain/letterbox or adapt layout without cropping rails.",
+    "No live dealer, chips, or moving dice should be baked into final production gameplay."
+  ]
+}

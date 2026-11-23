@@ -9,7 +9,7 @@ import velvetPortrait from '../../assets/casino/velvet_portrait.png';
 import stickPortraits from '../../assets/casino/stick_portraits.png';
 import stickMeta from '../../assets/casino/stick_portraits.json';
 import type { DealerAnim } from './DealerSprite';
-import { TierChip } from './Tipping';
+import { DealerDialoguePanel } from './DealerPanel';
 
 export const DEALER_NAMES = { velvet: 'Velvet Vega', craps: 'Stick Lady' } as const;
 
@@ -53,16 +53,17 @@ export function DealerDialogue({ who, line: raw, anim }: { who: 'velvet' | 'crap
   if (!line) return null;
   const done = typed >= line.length;
   return (
-    <div className={`rpg-box dealer ${who}`} aria-live="polite" data-testid="dealer-line" onClick={() => setTyped(line.length)}>
-      <Portrait who={who} anim={anim} />
-      <div className="rpg-body">
-        <p className="rpg-name">
-          {DEALER_NAMES[who]}
-          <TierChip npcId={NPC_OF[who]} />
-          {draft && <span className="rpg-draft" title="Dialogue awaiting Script Room approval">Draft line</span>}
-        </p>
-        <p className="rpg-text">{line.slice(0, typed)}<span className="rpg-caret" aria-hidden>{done ? '' : '▌'}</span></p>
-      </div>
-    </div>
+    <DealerDialoguePanel
+      name={DEALER_NAMES[who]}
+      npcId={NPC_OF[who]}
+      portrait={<Portrait who={who} anim={anim} />}
+      text={line}
+      draft={draft}
+      className={`dealer ${who}`}
+      testId="dealer-line"
+      onClick={() => setTyped(line.length)}
+    >
+      <p className="rpg-text">{line.slice(0, typed)}<span className="rpg-caret" aria-hidden>{done ? '' : '▌'}</span></p>
+    </DealerDialoguePanel>
   );
 }

@@ -127,7 +127,8 @@ export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled:
   const startFlight = (amount: number) => {
     const tray = trayRef.current;
     const table = tray?.closest('.casino-game');
-    const target = table?.querySelector('.table-dealer, .ww-dealer, [data-testid="monique-sprite"]');
+    // The chip flies to the dealer's portrait in the dialogue panel (no full-body sprite at the table).
+    const target = table?.querySelector('[data-dealer-portrait], .table-dealer, .ww-dealer, [data-testid="monique-sprite"]');
     if (!tray || !target || reducedMotion()) return;
     setFlight({ from: tray.getBoundingClientRect(), to: target.getBoundingClientRect(), face: chips.face(amount) });
   };

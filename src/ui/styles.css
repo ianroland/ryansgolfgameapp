@@ -1737,3 +1737,108 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
   .dealer-row > .tip-panel { grid-column: 1; }
   .tip-icon { width: 64px; height: 64px; margin: -12px -4px -12px -5px; }
 }
+
+/* ── RPG dealer presentation: tables are the focus; dealers live in the dialogue panel ── */
+.table-stage.no-dealer { padding-top: 0; }
+.dealer-panel { position: relative; }
+.dealer-panel .dlg-portrait { display: block; line-height: 0; }
+.dealer-panel .dlg-side { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; align-self: stretch; gap: 6px; }
+.dlg-toggle { width: 26px; height: 24px; padding: 0; font-size: 14px; line-height: 1; color: var(--gold-2); background: rgba(0, 0, 0, 0.35); border: 2px solid currentColor; border-radius: 6px; cursor: pointer; }
+.dlg-toggle:hover, .dlg-toggle:focus-visible { color: #fff; outline: none; box-shadow: 0 0 0 2px var(--gold-2); }
+/* Collapsed: one slim strip with a small portrait, name, tier and the line on one row. */
+.dealer-panel.collapsed { padding: 4px 10px; gap: 10px; animation: none; }
+.dealer-panel.collapsed .dlg-portrait > * { width: 40px !important; height: 40px !important; border-width: 2px; border-radius: 6px; }
+.dealer-panel.collapsed .rpg-ryan { overflow: hidden; }
+.dealer-panel.collapsed .rpg-name { margin: 0; font-size: 15px; }
+.dealer-panel.collapsed .dlg-oneline { min-height: 0; overflow: hidden; font-size: 13px; white-space: nowrap; text-overflow: ellipsis; }
+.dealer-panel.collapsed .dlg-side { flex-direction: row; align-items: center; }
+.dealer-panel.collapsed .rpg-next { padding: 2px 8px; font-size: 12px; }
+.dealer-panel.collapsed .rpg-draft, .dealer-panel.collapsed .ww-chat { display: none; }
+/* Casino colours on the panel border (Desert Palms keeps the house gold). */
+.dealer-panel.loc-white_buffalo { background: linear-gradient(180deg, #123a3e, #0a2226); box-shadow: inset 0 0 0 3px #c9793a, inset 0 0 0 5px #3fb6b0, 0 6px 0 rgba(0, 0, 0, 0.35); }
+.dealer-panel.loc-morongo_sky { background: linear-gradient(180deg, #2a0f46, #14062a); box-shadow: inset 0 0 0 3px #d8dbe6, inset 0 0 0 5px #b8902e, 0 6px 0 rgba(0, 0, 0, 0.35); }
+.dealer-panel.ryan { background: linear-gradient(180deg, #12304a, #0a1c2c); }
+.dealer-panel .dlg-portrait > * { display: block; }
+.dealer-row > .dealer-panel.collapsed { align-self: center; }
+
+/* ── Casino card-table scenes (CASINO_CARD_TABLES_V1): Blackjack, Baccarat, Three Card Poker ──
+   The scene keeps its own proportions; the felt layer (.cs-felt) is a container, so sizes below
+   are in % of the felt's width (cqw) and scale with the table. */
+.card-scene { position: relative; width: 100%; max-width: 900px; margin: 4px auto 0; overflow: hidden; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35); background: #120818; }
+.card-scene-img { position: absolute; left: 0; width: 100%; max-width: none; display: block; object-fit: fill; image-rendering: pixelated; pointer-events: none; user-select: none; }
+.cs-felt { position: absolute; container-type: inline-size; }
+.cs-felt > * { position: absolute; }
+.cs-block { z-index: 4; display: flex; align-items: center; gap: 1.4cqw; transform: translate(-50%, -50%); white-space: nowrap; }
+.cs-felt .pcard { width: 6.4cqw; height: 9cqw; margin-left: -1.9cqw; border-width: 2px; border-radius: 0.8cqw; animation: deal-shoe 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+.cs-felt .pcard:first-child { margin-left: 0; }
+.cs-felt .pcard .pc-corner { left: 0.45cqw; top: 0.2cqw; font-size: 2.05cqw; }
+.cs-felt .pcard .pc-suit { font-size: 3.5cqw; padding-top: 1.5cqw; }
+.cs-felt .cards { display: flex; }
+.cs-felt .felt-total { font-size: 2.1cqw; padding: 0.1cqw 0.8cqw; }
+.cs-felt .felt-total.win { background: var(--gold-2); color: var(--ink); text-shadow: none; }
+.cs-felt .felt-chip { gap: 0.5cqw; }
+.cs-felt .felt-chip img { width: 3.8cqw; }
+.cs-felt .felt-chip b { font-size: 2cqw; }
+.cs-felt .bj-result { font-size: 2.1cqw; padding: 0.1cqw 0.9cqw; border-width: 2px; }
+/* Felt lettering is drawn by the game (from its rules), never painted into the art. */
+.cs-rules { z-index: 3; margin: 0; transform: translate(-50%, -50%); white-space: nowrap; font-family: var(--head); font-size: 2.2cqw; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-2); text-shadow: 0.2cqw 0.2cqw 0 var(--ink); opacity: 0.92; pointer-events: none; }
+/* Blackjack hands */
+.cs-felt .felt-hands { gap: 3cqw; }
+.cs-felt .felt-hand { display: flex; flex-direction: row; align-items: center; gap: 1cqw; padding: 0.4cqw 0.7cqw; border-radius: 1cqw; }
+.cs-felt .felt-hand .felt-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4cqw; }
+.cs-felt .felt-hand.active { box-shadow: 0 0 0 0.3cqw var(--gold-2), 0 0 1.8cqw rgba(255, 230, 128, 0.55); }
+.cs-felt .felt-hands.n2 .felt-hand, .cs-felt .felt-hands.n3 .felt-hand, .cs-felt .felt-hands.n4 .felt-hand { flex-direction: column; }
+.cs-felt .felt-hands.n2 .felt-meta, .cs-felt .felt-hands.n3 .felt-meta, .cs-felt .felt-hands.n4 .felt-meta { flex-direction: row; align-items: center; }
+.cs-felt .felt-hands.n3 .pcard, .cs-felt .felt-hands.n4 .pcard { width: 5.2cqw; height: 7.3cqw; }
+/* Baccarat / Three Card Poker hands and results */
+.cs-felt .ww-hand, .cs-felt .ww-hand.bac-player, .cs-felt .ww-hand.bac-banker { transform: translate(-50%, -50%); gap: 1cqw; }
+.cs-felt .tc-dealer-rank, .cs-felt .tc-player-rank, .cs-felt .ww-result { transform: translate(-50%, -50%); }
+.cs-felt .ww-result { font-size: 2.2cqw; padding: 0.3cqw 1.3cqw; }
+/* Betting zones: shapes drawn by the game on the clean felt (labels and pays come from the rules). */
+.cs-felt .ww-zone { justify-content: center; gap: 0.3cqw; padding: 0; border: 0.35cqw solid var(--gold-2); border-radius: 1.6cqw; background: rgba(0, 0, 0, 0.18); box-shadow: inset 0 0 0 0.2cqw rgba(0, 0, 0, 0.35); }
+.cs-felt .ww-zone.player { background: rgba(40, 90, 200, 0.42); }
+.cs-felt .ww-zone.banker { background: rgba(190, 40, 40, 0.42); }
+.cs-felt .ww-zone.tie { background: rgba(0, 0, 0, 0.22); }
+.cs-felt .ww-zone:hover:not(:disabled) { background-color: rgba(255, 240, 160, 0.2); }
+.cs-felt .ww-zone.won { border-color: #fff; box-shadow: 0 0 2.2cqw rgba(255, 230, 128, 0.8); }
+.cs-felt .ww-zone-label { font-size: 2.6cqw; }
+.cs-felt .ww-zone-pays { font-size: 1.7cqw; }
+.cs-felt .ww-zone .felt-chip img { width: 3.6cqw; }
+.cs-felt .ww-zone .felt-chip b { font-size: 1.8cqw; }
+.cs-felt .ww-zone.oval { border-radius: 50%; padding: 0; }
+.cs-felt .ww-zone.oval .ww-zone-label { font-size: 1.8cqw; }
+.cs-felt .ww-zone.oval .ww-zone-pays { font-size: 1.3cqw; }
+.cs-felt .ww-zone.oval .felt-chip img { width: 3cqw; }
+.cs-felt .ww-zone.oval .felt-chip b { font-size: 1.5cqw; }
+/* Casino accents on the zone borders */
+.loc-white_buffalo .cs-felt .ww-zone { border-color: #e0a060; }
+.loc-morongo_sky .cs-felt .ww-zone { border-color: #e4e6f0; }
+.loc-morongo_sky .cs-rules { color: #e8e9f4; }
+@media (prefers-reduced-motion: reduce) { .cs-felt .pcard { animation: none; } }
+.card-scene { box-sizing: content-box; }
+
+/* ── Craps scenes (CASINO_CRAPS_TABLES_V1): whole scene, own proportions; game layers on top ── */
+.craps-scene { position: relative; width: 100%; max-width: 900px; margin: 4px auto 0; overflow: hidden; box-sizing: content-box; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35); container-type: inline-size; }
+.craps-scene-img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; image-rendering: auto; pointer-events: none; user-select: none; }
+/* Painted bets this game doesn't offer are covered with felt (see tableThemes.ts). */
+.craps-veil { position: absolute; display: grid; place-items: center; border-radius: 0.6cqw; background: rgba(8, 62, 34, 0.93); box-shadow: inset 0 0 0 0.15cqw rgba(255, 220, 120, 0.25); pointer-events: none; }
+.loc-white_buffalo .craps-veil { background: rgba(10, 58, 62, 0.93); }
+.loc-morongo_sky .craps-veil { background: rgba(48, 14, 74, 0.94); }
+.craps-veil em { padding: 0 1cqw; font-style: normal; font-family: var(--head); font-size: 1.35cqw; line-height: 1.3; text-align: center; color: rgba(255, 230, 150, 0.75); text-shadow: 1px 1px 0 var(--ink); }
+.craps-scene .felt-puck { z-index: 3; width: 3.2cqw; height: 3.2cqw; font-size: 1.15cqw; }
+.craps-felt-chip { position: absolute; z-index: 3; transform: translate(-50%, -50%); }
+.craps-felt-chip .felt-chip img { width: 3.4cqw; }
+.craps-felt-chip .felt-chip b { font-size: 1.6cqw; }
+.craps-scene .dice-area { z-index: 4; top: auto; }
+.craps-scene .die { width: 4.2cqw; height: 4.2cqw; padding: 0.5cqw; }
+.craps-scene .felt-sum { z-index: 4; transform: translate(-50%, -50%); font-size: 2.6cqw; }
+.craps-veil { background: rgba(8, 62, 34, 0.975); }
+.loc-white_buffalo .craps-veil { background: rgba(10, 58, 62, 0.975); }
+.loc-morongo_sky .craps-veil { background: rgba(48, 14, 74, 0.975); }
+.craps-veil.main { place-items: end center; padding-bottom: 1cqw; }
+/* Small screens: keep felt text readable (never below ~10px). */
+.cs-felt .felt-total, .cs-felt .bj-result, .cs-felt .ww-result { font-size: max(10px, 2.1cqw); }
+.cs-felt .ww-zone-label { font-size: max(10px, 2.6cqw); }
+.cs-felt .ww-zone.oval .ww-zone-label { font-size: max(9px, 1.8cqw); }
+.cs-felt .ww-zone-pays, .cs-felt .felt-chip b { font-size: max(8px, 1.7cqw); }
+.cs-rules { font-size: max(8px, 2.2cqw); }

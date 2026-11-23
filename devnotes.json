@@ -2,6 +2,25 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.16.0",
+      "date": "2026-11-23",
+      "title": "New casino tables and dealer portraits",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Blackjack, Baccarat and Three Card Poker are now played at new themed tables, one look per casino: Desert Palms, The White Buffalo and Morongo Sky."
+        },
+        {
+          "tag": "new",
+          "text": "Craps gets three new full-casino tables. Only the bets this table offers are shown: Pass, Don't Pass, Odds and Field."
+        },
+        {
+          "tag": "improved",
+          "text": "Dealers now appear in their dialogue box with portrait, name and relationship tier instead of standing behind the table, so the tables are the focus. The dialogue box can be collapsed to a single line."
+        }
+      ]
+    },
+    {
       "version": "0.15.3",
       "date": "2026-11-23",
       "title": "New casino chips and a tidier tip panel",

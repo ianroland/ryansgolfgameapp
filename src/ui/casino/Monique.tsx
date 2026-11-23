@@ -5,7 +5,7 @@
  * payouts are untouched. Dialogue is placeholder until the Script Room
  * approves it (see src/casino/monique.ts).
  */
-import { TierChip } from './Tipping';
+import { DealerDialoguePanel } from './DealerPanel';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import meta from '../../assets/casino/monique.json';
 import atlasUrl from '../../assets/casino/monique_table.png';
@@ -143,24 +143,29 @@ export function DialogueBox({ item, more, onNext }: { item: DialogueItem; more: 
   const done = typed >= item.text.length;
   const next = () => (done ? onNext() : setTyped(item.text.length));
   return (
-    <div className={`rpg-box ${item.who}`} role="dialog" aria-live="polite" data-testid="monique-dialogue" data-who={item.who} onClick={next}>
-      {item.who === 'monique' ? (
-        <MoniquePortrait expr={expr as MoniqueExpr} />
-      ) : (
-        <span className="rpg-ryan">
-          <SpriteFrame who={RYAN_ID} frame={portraitKey(RYAN_ID, expr as Expression, appearanceOf(state.career))} height={92} />
-        </span>
-      )}
-      <div className="rpg-body">
-        <p className="rpg-name">
-          {item.who === 'monique' ? 'Madame Monique' : 'Ryan'}
-          {item.who === 'monique' && <TierChip npcId="madame_monique" />}
-          {!item.approved && <span className="rpg-draft" title="Dialogue awaiting Script Room approval">Draft line</span>}
-        </p>
-        <p className="rpg-text" data-testid="monique-text">{item.text.slice(0, typed)}<span className="rpg-caret" aria-hidden>{done ? '' : '▌'}</span></p>
-      </div>
-      <button className="btn small rpg-next" onClick={(e) => { e.stopPropagation(); next(); }} data-testid="monique-continue">{done ? (more ? 'Next ▶' : 'Continue ▶') : '▸▸'}</button>
-    </div>
+    <DealerDialoguePanel
+      name={item.who === 'monique' ? 'Madame Monique' : 'Ryan'}
+      npcId={item.who === 'monique' ? 'madame_monique' : undefined}
+      speaker={item.who}
+      role="dialog"
+      testId="monique-dialogue"
+      className={item.who}
+      text={item.text}
+      draft={!item.approved}
+      onClick={next}
+      portrait={
+        item.who === 'monique' ? (
+          <MoniquePortrait expr={expr as MoniqueExpr} />
+        ) : (
+          <span className="rpg-ryan">
+            <SpriteFrame who={RYAN_ID} frame={portraitKey(RYAN_ID, expr as Expression, appearanceOf(state.career))} height={92} />
+          </span>
+        )
+      }
+      actions={<button className="btn small rpg-next" onClick={(e) => { e.stopPropagation(); next(); }} data-testid="monique-continue">{done ? (more ? 'Next ▶' : 'Continue ▶') : '▸▸'}</button>}
+    >
+      <p className="rpg-text" data-testid="monique-text">{item.text.slice(0, typed)}<span className="rpg-caret" aria-hidden>{done ? '' : '▌'}</span></p>
+    </DealerDialoguePanel>
   );
 }
 

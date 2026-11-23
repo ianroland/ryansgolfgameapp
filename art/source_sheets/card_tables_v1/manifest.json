@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "source": "TABLE_THEME_CONCEPT_APPROVAL.png",
+  "status": "scene backgrounds ready for trial integration; overlays are alignment guides only",
+  "casinos": {
+    "desert_palms": {
+      "background": "backgrounds/desert_palms/scene.png",
+      "width": 588,
+      "height": 557,
+      "source_crop": [
+        32,
+        220,
+        620,
+        777
+      ],
+      "alignment_guides": {
+        "blackjack": "guides/desert_palms/blackjack_ALIGNMENT_GUIDE_ONLY.png",
+        "three_card_poker": "guides/desert_palms/three_card_poker_ALIGNMENT_GUIDE_ONLY.png",
+        "baccarat": "guides/desert_palms/baccarat_ALIGNMENT_GUIDE_ONLY.png"
+      }
+    },
+    "white_buffalo": {
+      "background": "backgrounds/white_buffalo/scene.png",
+      "width": 579,
+      "height": 557,
+      "source_crop": [
+        653,
+        220,
+        1232,
+        777
+      ],
+      "alignment_guides": {
+        "blackjack": "guides/white_buffalo/blackjack_ALIGNMENT_GUIDE_ONLY.png",
+        "three_card_poker": "guides/white_buffalo/three_card_poker_ALIGNMENT_GUIDE_ONLY.png",
+        "baccarat": "guides/white_buffalo/baccarat_ALIGNMENT_GUIDE_ONLY.png"
+      }
+    },
+    "morongo_sky": {
+      "background": "backgrounds/morongo_sky/scene.png",
+      "width": 588,
+      "height": 557,
+      "source_crop": [
+        1265,
+        220,
+        1853,
+        777
+      ],
+      "alignment_guides": {
+        "blackjack": "guides/morongo_sky/blackjack_ALIGNMENT_GUIDE_ONLY.png",
+        "three_card_poker": "guides/morongo_sky/three_card_poker_ALIGNMENT_GUIDE_ONLY.png",
+        "baccarat": "guides/morongo_sky/baccarat_ALIGNMENT_GUIDE_ONLY.png"
+      }
+    }
+  },
+  "games": [
+    "blackjack",
+    "three_card_poker",
+    "baccarat"
+  ],
+  "notes": [
+    "Use object-fit: contain; never distort",
+    "Do not bake chips/cards/dealers/buttons into background",
+    "Game-specific zone guides are NOT authoritative hitboxes",
+    "Background artwork includes chairs and table emblems, and has no dealer sprites"
+  ]
+}

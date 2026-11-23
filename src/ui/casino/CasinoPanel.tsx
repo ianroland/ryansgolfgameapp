@@ -23,8 +23,11 @@ import { DealerSprite, useDealerAnim, type DealerAnim } from './DealerSprite';
 import { BigWinOverlay, celebrateWin } from './BigWin';
 import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
 import { TipTray } from './Tipping';
+import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
+import { CARD_LAYOUTS, crapsSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
+import { SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
 import { ChipButton, ChipImg } from './Chips';
-import { CasinoLocationContext, devChipPreview, useCasinoLocation } from './casinoLocation';
+import { CasinoLocationContext, devChipPreview, devLegacyTables, useCasinoLocation } from './casinoLocation';
 import { chipAsset } from '../../expansion/chipThemes';
 import { CasinoLobby } from './CasinoLobby';
 import { LOCATIONS, type CasinoGameId } from '../../expansion/locations';
@@ -40,6 +43,7 @@ import { pendingRace } from '../../services/casinoService';
 type Game = CasinoGameId;
 
 const CHIPS = [5, 10, 25, 100, 500];
+const BJ_L = CARD_LAYOUTS.blackjack;
 
 function ChipRack({ value, onAdd, onClear, min, disabled }: { value: number; onAdd: (n: number) => void; onClear: () => void; min: number; disabled?: boolean }) {
   return (
@@ -138,36 +142,55 @@ function Blackjack() {
   const playing = table.phase === 'player';
   const h = table.hands[table.active];
   const dealerShown = table.holeHidden && playing ? [table.dealer[0]] : table.dealer;
+  const scene = useCardScene();
+  const dealerTotal = table.dealer.length > 0 && <span className="felt-total">Dealer {handValue(dealerShown).total}</span>;
+  const dealerCards = (
+    <div className="cards">
+      {table.dealer.map((c, i) => <PlayingCard key={`${round}-d${i}`} card={c} i={i} hidden={i === 1 && table.holeHidden && playing} />)}
+    </div>
+  );
+  const hands = (
+    <>
+      {table.hands.map((hand, idx) => (
+        <div key={idx} className={`felt-hand ${playing && idx === table.active ? 'active' : ''}`}>
+          <div className="cards">{hand.cards.map((c, i) => <PlayingCard key={`${round}-${idx}-${i}`} card={c} i={i} />)}</div>
+          <div className="felt-meta">
+            <span className="felt-total">
+              {table.hands.length > 1 ? `Hand ${idx + 1}` : 'Ryan'} {handValue(hand.cards).total}
+            </span>
+            <BetChip amount={hand.bet} />
+            {hand.result && <span className={`bj-result ${hand.result}`} data-testid="bj-result">{RESULT_TEXT[hand.result]}{hand.payout ? ` +${formatMoney(hand.payout - hand.bet)}` : ''}</span>}
+          </div>
+        </div>
+      ))}
+      {table.hands.length === 0 && <BetChip amount={bet} className="pending" />}
+    </>
+  );
 
   return (
     <section className="hub-card casino-game bj-game">
       <h2 className="hub-title">Blackjack <span className="muted">Pays 3:2 · dealer stands on 17 · ${BJ_LIMITS.min}–${BJ_LIMITS.max}</span></h2>
-      <div className="table-stage">
-        <Dealer who="velvet" anim={velvet.anim} />
-        <div className="felt" style={{ backgroundImage: `url(${felt.url})`, aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="bj-felt">
-          <div className="felt-dealer">
-            {table.dealer.length > 0 && <span className="felt-total">Dealer {handValue(dealerShown).total}</span>}
-            <div className="cards">
-              {table.dealer.map((c, i) => <PlayingCard key={`${round}-d${i}`} card={c} i={i} hidden={i === 1 && table.holeHidden && playing} />)}
-            </div>
+      {scene ? (
+        <CardTableScene scene={scene} game="blackjack" testId="bj-felt">
+          <div className="cs-block cs-row" style={feltAt(BJ_L.dealer)}>
+            {dealerTotal}
+            {dealerCards}
           </div>
-          <div className={`felt-hands n${Math.max(1, table.hands.length)}`}>
-            {table.hands.map((hand, idx) => (
-              <div key={idx} className={`felt-hand ${playing && idx === table.active ? 'active' : ''}`}>
-                <div className="cards">{hand.cards.map((c, i) => <PlayingCard key={`${round}-${idx}-${i}`} card={c} i={i} />)}</div>
-                <div className="felt-meta">
-                  <span className="felt-total">
-                    {table.hands.length > 1 ? `Hand ${idx + 1}` : 'Ryan'} {handValue(hand.cards).total}
-                  </span>
-                  <BetChip amount={hand.bet} />
-                  {hand.result && <span className={`bj-result ${hand.result}`} data-testid="bj-result">{RESULT_TEXT[hand.result]}{hand.payout ? ` +${formatMoney(hand.payout - hand.bet)}` : ''}</span>}
-                </div>
-              </div>
-            ))}
-            {table.hands.length === 0 && <BetChip amount={bet} className="pending" />}
+          <p className="cs-rules" style={feltAt(BJ_L.rules)}>Blackjack pays 3 to 2 · Dealer stands on all 17s</p>
+          <div className={`cs-block cs-row felt-hands n${Math.max(1, table.hands.length)}`} style={feltAt(BJ_L.hands)}>{hands}</div>
+        </CardTableScene>
+      ) : (
+        <div className={`table-stage ${SHOW_TABLE_DEALER_SPRITES ? '' : 'no-dealer'}`}>
+          {SHOW_TABLE_DEALER_SPRITES && <Dealer who="velvet" anim={velvet.anim} />}
+          <div className="felt" style={{ backgroundImage: `url(${felt.url})`, aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="bj-felt">
+            <div className="felt-dealer">
+              {dealerTotal}
+              {dealerCards}
+            </div>
+            <div className={`felt-hands n${Math.max(1, table.hands.length)}`}>{hands}</div>
           </div>
         </div>
-      </div>
+      )}
       <div className="dealer-row">
         <DealerDialogue who="velvet" line={line} anim={velvet.anim} />
         <TipTray
@@ -345,6 +368,9 @@ const BET_LABELS: Record<BetKey, { name: string; desc: string }> = {
 /** Where each point box sits on the drawn table (percent across, measured from the gold box lines on craps_table_v2). */
 const POINT_X: Record<number, number> = { 4: 31.9, 5: 39.2, 6: 46.5, 8: 53.9, 9: 61.2, 10: 68.8 };
 
+const scenePt = (sc: CrapsScene, [x, y]: Pt) => ({ left: `${(x / sc.size[0]) * 100}%`, top: `${(y / sc.size[1]) * 100}%` });
+const sceneRect = (sc: CrapsScene, [x, y, w, h]: Rect) => ({ left: `${(x / sc.size[0]) * 100}%`, top: `${(y / sc.size[1]) * 100}%`, width: `${(w / sc.size[0]) * 100}%`, height: `${(h / sc.size[1]) * 100}%` });
+
 /** Stick Lady's call for a roll (flavour only; the result comes from the craps rules). */
 function stickCall(before: number | null, after: number | null, sum: number): string {
   if (before === null) {
@@ -371,6 +397,8 @@ function Craps() {
   const [busy, setBusy] = useState(false);
   const felt = casinoArt('craps_table');
   const stick = useDealerAnim();
+  const casinoLoc = useCasinoLocation();
+  const crapsScene = devLegacyTables() ? null : crapsSceneFor(casinoLoc);
 
   const roundId = () => (roundRef.current ??= services.casino.newRoundId('craps'));
 
@@ -431,17 +459,41 @@ function Craps() {
         Craps <span className="muted">${CRAPS_LIMITS.min}–${CRAPS_LIMITS.max}</span>
         <span className={`puck ${table.point ? 'on' : ''}`}>{table.point ? `ON ${table.point}` : 'OFF'}</span>
       </h2>
-      <div className="table-stage">
-        <Dealer who="craps" anim={stick.anim} />
-        <div className="felt craps-felt" style={{ backgroundImage: `url(${felt.url})`, aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="craps-felt">
-          {table.point && <span className="felt-puck" style={{ left: `${POINT_X[table.point]}%` }} data-testid="craps-puck">ON</span>}
-          <div className={`dice-area ${rolling ? 'rolling' : ''}`} key={rolls} data-testid="craps-dice">
+      {crapsScene ? (
+        <div className={`craps-scene craps-felt loc-${crapsScene.location}`} style={{ aspectRatio: `${crapsScene.size[0]} / ${crapsScene.size[1]}` }} data-testid="craps-felt" data-scene={crapsScene.location}>
+          <img className="craps-scene-img" src={crapsScene.url} width={crapsScene.size[0]} height={crapsScene.size[1]} alt="" draggable={false} />
+          {crapsScene.veils.map((r, i) => (
+            <span key={i} className={`craps-veil ${i === crapsScene.veils.length - 1 ? 'main' : ''}`} style={sceneRect(crapsScene, r)} aria-hidden>
+              {i === crapsScene.veils.length - 1 && <em>This table: Pass · Don&rsquo;t Pass · Odds · Field</em>}
+            </span>
+          ))}
+          {table.point && <span className="felt-puck" style={scenePt(crapsScene, crapsScene.point[table.point as 4])} data-testid="craps-puck">ON</span>}
+          {(Object.keys(crapsScene.spots) as BetKey[]).map((k) =>
+            table.bets[k] > 0 ? (
+              <span key={k} className="craps-felt-chip" style={scenePt(crapsScene, crapsScene.spots[k])} data-testid={`craps-chip-${k}`}>
+                <BetChip amount={table.bets[k]} />
+              </span>
+            ) : null,
+          )}
+          <div className={`dice-area ${rolling ? 'rolling' : ''}`} key={rolls} data-testid="craps-dice" style={scenePt(crapsScene, crapsScene.dice)}>
             <Die n={dice[0]} rolling={rolling} i={0} />
             <Die n={dice[1]} rolling={rolling} i={1} />
           </div>
-          {!rolling && rolls > 0 && <span className="felt-sum" key={`s${rolls}`}>{dice[0] + dice[1]}</span>}
+          {!rolling && rolls > 0 && <span className="felt-sum" key={`s${rolls}`} style={scenePt(crapsScene, [crapsScene.dice[0], crapsScene.dice[1] + 70])}>{dice[0] + dice[1]}</span>}
         </div>
-      </div>
+      ) : (
+        <div className={`table-stage ${SHOW_TABLE_DEALER_SPRITES ? '' : 'no-dealer'}`}>
+          {SHOW_TABLE_DEALER_SPRITES && <Dealer who="craps" anim={stick.anim} />}
+          <div className="felt craps-felt" style={{ backgroundImage: `url(${felt.url})`, aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="craps-felt">
+            {table.point && <span className="felt-puck" style={{ left: `${POINT_X[table.point]}%` }} data-testid="craps-puck">ON</span>}
+            <div className={`dice-area ${rolling ? 'rolling' : ''}`} key={rolls} data-testid="craps-dice">
+              <Die n={dice[0]} rolling={rolling} i={0} />
+              <Die n={dice[1]} rolling={rolling} i={1} />
+            </div>
+            {!rolling && rolls > 0 && <span className="felt-sum" key={`s${rolls}`}>{dice[0] + dice[1]}</span>}
+          </div>
+        </div>
+      )}
       <div className="dealer-row">
         <DealerDialogue who="craps" line={call} anim={stick.anim} />
         <TipTray
@@ -568,9 +620,9 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
       </h2>
       <div className="table-stage roulette-stage">
         <div className="felt roulette-felt" style={{ aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="roulette-felt">
-          <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} />
+          {SHOW_TABLE_DEALER_SPRITES && <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} />}
           <img className="roulette-table-img" src={felt.url} alt="" draggable={false} />
-          <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} layer="arm" />
+          {SHOW_TABLE_DEALER_SPRITES && <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} layer="arm" />}
           <div
             className="roulette-wheel-plane"
             style={{ left: `${(WHEEL_AT.x / RT.w) * 100}%`, top: `${(WHEEL_AT.y / RT.h) * 100}%`, width: `${((WHEEL_AT.rx * 2) / RT.w) * 100}%`, ['--wheel-tilt' as string]: `${WHEEL_AT.ry / WHEEL_AT.rx}` }}

@@ -1,0 +1,130 @@
+/**
+ * Casino table art, per casino (data-driven). Purely visual: geometry here places cards, chips
+ * and betting zones over the art; every rule, limit and payout stays in src/casino/*.
+ *
+ * Card tables (CASINO_CARD_TABLES_V1): one environment scene per casino, shared by Blackjack,
+ * Three Card Poker and Baccarat. Scenes were only trimmed of the concept sheet's border strips
+ * (tools/prep_card_scenes.py), never scaled. `viewTop` hides room above the table (never the
+ * table, rail or front emblem); `felt` is the felt's box in scene pixels, which each game's
+ * layout (fractions of that box) is placed in. A casino without a scene uses the previous
+ * tables, which stay as the fallback.
+ */
+import type { LocationId } from './unlocks';
+
+export type CardGame = 'blackjack' | 'baccarat' | 'three_card_poker';
+
+export interface CardScene {
+  location: LocationId;
+  url: string;
+  /** Scene size in pixels. */
+  size: [number, number];
+  /** Rows of room above the table that are not shown. */
+  viewTop: number;
+  /** Felt box in scene pixels: x, y, w, h. */
+  felt: [number, number, number, number];
+}
+
+const scenes = import.meta.glob<string>('../assets/casino/tables/*/card_scene.png', { eager: true, query: '?url', import: 'default' });
+const url = (loc: LocationId) => scenes[`../assets/casino/tables/${loc}/card_scene.png`];
+
+const VIEW_TOP = 120;
+
+export const CARD_SCENES: Record<LocationId, CardScene> = {
+  desert_palms: { location: 'desert_palms', url: url('desert_palms'), size: [588, 554], viewTop: VIEW_TOP, felt: [48, 231, 495, 150] },
+  white_buffalo: { location: 'white_buffalo', url: url('white_buffalo'), size: [572, 554], viewTop: VIEW_TOP, felt: [52, 238, 496, 143] },
+  morongo_sky: { location: 'morongo_sky', url: url('morongo_sky'), size: [565, 554], viewTop: VIEW_TOP, felt: [63, 235, 488, 149] },
+};
+
+export function cardSceneFor(location: LocationId): CardScene | null {
+  const s = CARD_SCENES[location];
+  return s?.url ? s : null;
+}
+
+/**
+ * Where things sit on the felt, as fractions of the felt box: [centre x, centre y, width, height].
+ * One layout per game, shared by all three casinos.
+ */
+export type FeltBox = [number, number, number, number];
+export const CARD_LAYOUTS = {
+  blackjack: {
+    dealer: [0.5, 0.22, 0.6, 0.3] as FeltBox,
+    rules: [0.5, 0.47, 0.62, 0.09] as FeltBox,
+    hands: [0.5, 0.71, 0.8, 0.32] as FeltBox,
+  },
+  baccarat: {
+    playerCards: [0.3, 0.25, 0.3, 0.3] as FeltBox,
+    bankerCards: [0.7, 0.25, 0.3, 0.3] as FeltBox,
+    result: [0.5, 0.46, 0.5, 0.1] as FeltBox,
+    player: [0.27, 0.68, 0.22, 0.28] as FeltBox,
+    tie: [0.5, 0.68, 0.2, 0.28] as FeltBox,
+    banker: [0.73, 0.68, 0.22, 0.28] as FeltBox,
+  },
+  three_card_poker: {
+    dealer: [0.5, 0.19, 0.3, 0.28] as FeltBox,
+    dealerRank: [0.22, 0.19, 0.22, 0.1] as FeltBox,
+    player: [0.5, 0.51, 0.3, 0.28] as FeltBox,
+    playerRank: [0.22, 0.51, 0.22, 0.1] as FeltBox,
+    result: [0.78, 0.36, 0.26, 0.1] as FeltBox,
+    ante: [0.335, 0.81, 0.13, 0.2] as FeltBox,
+    play: [0.5, 0.81, 0.13, 0.2] as FeltBox,
+    pairplus: [0.665, 0.81, 0.13, 0.2] as FeltBox,
+  },
+} as const;
+
+/**
+ * Craps scenes (CASINO_CRAPS_TABLES_V1): full 1672x941 scenes, shown whole (never cropped).
+ * Files keep the pack's names (tables/<casino>/craps_full_scene), re-encoded as WebP at the same size.
+ *
+ * The art prints bets this game does not offer (Come, Don't Come, Place, Hardways, Big 6/8 and
+ * the one-roll bets, some with wrong payouts). Those areas are covered by `veils` so nothing on
+ * the felt suggests a bet that can't be made; the supported bets (Pass Line, Don't Pass Bar,
+ * Field and the Odds behind the Pass Line) stay visible. The place-number boxes stay too: they
+ * carry the point puck, as at a real table. Coordinates are scene pixels.
+ */
+export type Pt = [number, number];
+export type Rect = [number, number, number, number];
+export interface CrapsScene {
+  location: LocationId;
+  url: string;
+  sourceAsset: string;
+  size: [number, number];
+  /** Centre of each point box. */
+  point: Record<4 | 5 | 6 | 8 | 9 | 10, Pt>;
+  /** Where each supported bet's chip sits. */
+  spots: { pass: Pt; dontPass: Pt; odds: Pt; field: Pt };
+  dice: Pt;
+  /** Painted areas for bets the game does not offer. */
+  veils: Rect[];
+}
+
+const crapsFiles = import.meta.glob<string>('../assets/casino/tables/*/craps_full_scene.webp', { eager: true, query: '?url', import: 'default' });
+const crapsUrl = (loc: LocationId) => crapsFiles[`../assets/casino/tables/${loc}/craps_full_scene.webp`];
+
+export const CRAPS_SCENES: Record<LocationId, CrapsScene> = {
+  desert_palms: {
+    location: 'desert_palms', url: crapsUrl('desert_palms'), sourceAsset: 'tables/desert_palms/craps_full_scene.png', size: [1672, 941],
+    point: { 4: [497, 335], 5: [632, 335], 6: [767, 335], 8: [902, 335], 9: [1037, 335], 10: [1174, 335] },
+    spots: { pass: [215, 758], odds: [595, 758], dontPass: [400, 700], field: [430, 598] },
+    dice: [835, 565],
+    veils: [[295, 258, 136, 138], [1245, 258, 142, 138], [440, 256, 790, 38], [212, 396, 450, 178], [1008, 396, 444, 178], [650, 383, 375, 362]],
+  },
+  white_buffalo: {
+    location: 'white_buffalo', url: crapsUrl('white_buffalo'), sourceAsset: 'tables/white_buffalo/craps_full_scene.png', size: [1672, 941],
+    point: { 4: [470, 395], 5: [618, 395], 6: [762, 395], 8: [908, 395], 9: [1053, 395], 10: [1195, 395] },
+    spots: { pass: [228, 732], odds: [600, 732], dontPass: [390, 672], field: [450, 560] },
+    dice: [835, 615],
+    veils: [[253, 328, 150, 124], [1263, 328, 160, 124], [400, 326, 865, 38], [208, 456, 474, 88], [988, 456, 474, 88], [666, 446, 342, 344]],
+  },
+  morongo_sky: {
+    location: 'morongo_sky', url: crapsUrl('morongo_sky'), sourceAsset: 'tables/morongo_sky/craps_full_scene.png', size: [1672, 941],
+    point: { 4: [373, 397], 5: [440, 397], 6: [510, 397], 8: [577, 397], 9: [645, 397], 10: [715, 397] },
+    spots: { pass: [250, 702], odds: [572, 702], dontPass: [380, 648], field: [430, 552] },
+    dice: [835, 585],
+    veils: [[230, 346, 118, 132], [1326, 346, 118, 132], [343, 331, 410, 30], [916, 331, 416, 30], [198, 446, 434, 82], [1043, 446, 424, 82], [626, 430, 419, 309]],
+  },
+};
+
+export function crapsSceneFor(location: LocationId): CrapsScene | null {
+  const s = CRAPS_SCENES[location];
+  return s?.url ? s : null;
+}

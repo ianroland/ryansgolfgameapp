@@ -25,8 +25,11 @@ import { formatMoney } from '../format';
 import { celebrateWin } from './BigWin';
 import { BetChip, PlayingCard } from './TableBits';
 import meta from '../../assets/casino/ww/ww_meta.json';
-import { TierChip, TipTray, type TipReaction } from './Tipping';
+import { TipTray, type TipReaction } from './Tipping';
 import { ChipButton } from './Chips';
+import { DealerDialoguePanel, SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
+import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
+import { CARD_LAYOUTS, type CardGame, type CardScene } from '../../expansion/tableThemes';
 
 const urls = import.meta.glob<string>('../../assets/casino/ww/*.png', { eager: true, query: '?url', import: 'default' });
 export const wwArt = (name: string) => urls[`../../assets/casino/ww/${name}.png`];
@@ -39,12 +42,14 @@ const META = meta as unknown as Record<string, Size> & {
 };
 
 const CHIPS = [5, 10, 25, 100, 500];
+const BAC_L = CARD_LAYOUTS.baccarat;
+const TC_L = CARD_LAYOUTS.three_card_poker;
 export const WW_NAMES: Record<WWDealer, string> = { waifu: 'Waifu', winston: 'Winston' };
 
 // ───────────────────────── Shared stage ─────────────────────────
 
 /** Room above the felt for the dealer, in felt pixels; how big the dealer is drawn; where the dealer's desk line meets the felt. */
-const DEALER_ROOM = 172;
+const DEALER_ROOM = SHOW_TABLE_DEALER_SPRITES ? 172 : 0;
 const DEALER_SCALE = 0.78;
 const DESK_Y = 44;
 
@@ -65,7 +70,7 @@ function WWStage({ who, pose, felt, shoe, children, testId }: { who: WWDealer; p
   const [sw] = META[shoe];
   return (
     <div className="ww-table" style={{ aspectRatio: `${fw} / ${total}` }} data-testid={testId}>
-      <img
+      {SHOW_TABLE_DEALER_SPRITES && <img
         className="ww-dealer"
         key={name}
         src={wwArt(name)}
@@ -73,7 +78,7 @@ function WWStage({ who, pose, felt, shoe, children, testId }: { who: WWDealer; p
         draggable={false}
         data-pose={pose}
         style={{ left: pct(fw / 2 - ax * DEALER_SCALE, fw), top: pct(DEALER_ROOM + DESK_Y - ph * DEALER_SCALE, total), width: pct(pw * DEALER_SCALE, fw) }}
-      />
+      />}
       <div className="ww-felt felt" style={{ top: pct(DEALER_ROOM, total), height: pct(fh, total) }}>
         <img className="ww-felt-img" src={wwArt(felt)} alt="" draggable={false} />
         {/* Table props: their own layer, drawn once. */}
@@ -82,6 +87,17 @@ function WWStage({ who, pose, felt, shoe, children, testId }: { who: WWDealer; p
         {children}
       </div>
     </div>
+  );
+}
+
+/** The casino's card scene when there is one; otherwise the previous felt (the fallback). */
+function Stage({ scene, game, children, ...legacy }: { scene: CardScene | null; game: CardGame; who: WWDealer; pose: string; felt: string; shoe: string; children: ReactNode; testId: string }) {
+  return scene ? (
+    <CardTableScene scene={scene} game={game} testId={legacy.testId}>
+      {children}
+    </CardTableScene>
+  ) : (
+    <WWStage {...legacy}>{children}</WWStage>
   );
 }
 
@@ -185,38 +201,43 @@ function WWDialogue({ who, chat }: { who: WWDealer; chat: Chat<WWEvent> }) {
   const n = sheet.faces.length;
   const i = Math.max(0, sheet.faces.indexOf(face));
   return (
-    <div className={`rpg-box dealer ww ${who}`} aria-live="polite" data-testid="dealer-line" onClick={() => line && setTyped(line.text.length)}>
-      <span
-        className="ww-face"
-        role="img"
-        aria-label={`${WW_NAMES[who]} (${face})`}
-        data-face={face}
-        style={{ backgroundImage: `url(${wwArt(`${who}_faces`)})`, backgroundSize: `${n * 100}% 100%`, backgroundPosition: `${(i / (n - 1)) * 100}% 0` }}
-      />
-      <div className="rpg-body">
-        <p className="rpg-name">
-          {WW_NAMES[who]}
-          <TierChip npcId={who} />
-          {line && line.status !== 'approved' && <span className="ww-draft" title="Draft dialogue, pending Script Room approval">Draft</span>}
-          <button
-            type="button"
-            className="ww-chat"
-            onClick={(e) => {
-              e.stopPropagation();
-              setLevel(level === 'quiet' ? 'normal' : 'quiet');
-            }}
-            aria-pressed={level === 'quiet'}
-            title="Quiet keeps only results and notices"
-          >
-            Chat: {level === 'quiet' ? 'quiet' : 'on'}
-          </button>
-        </p>
-        <p className="rpg-text">
-          {line ? line.text.slice(0, typed) : ' '}
-          <span className="rpg-caret" aria-hidden>{line && typed < line.text.length ? '▌' : ''}</span>
-        </p>
-      </div>
-    </div>
+    <DealerDialoguePanel
+      name={WW_NAMES[who]}
+      npcId={who}
+      text={line?.text ?? ''}
+      draft={!!line && line.status !== 'approved'}
+      className={`dealer ww ${who}`}
+      testId="dealer-line"
+      onClick={() => line && setTyped(line.text.length)}
+      portrait={
+        <span
+          className="ww-face"
+          role="img"
+          aria-label={`${WW_NAMES[who]} (${face})`}
+          data-face={face}
+          style={{ backgroundImage: `url(${wwArt(`${who}_faces`)})`, backgroundSize: `${n * 100}% 100%`, backgroundPosition: `${(i / (n - 1)) * 100}% 0` }}
+        />
+      }
+      extra={
+        <button
+          type="button"
+          className="ww-chat"
+          onClick={(e) => {
+            e.stopPropagation();
+            setLevel(level === 'quiet' ? 'normal' : 'quiet');
+          }}
+          aria-pressed={level === 'quiet'}
+          title="Quiet keeps only results and notices"
+        >
+          Chat: {level === 'quiet' ? 'quiet' : 'on'}
+        </button>
+      }
+    >
+      <p className="rpg-text">
+        {line ? line.text.slice(0, typed) : ' '}
+        <span className="rpg-caret" aria-hidden>{line && typed < line.text.length ? '▌' : ''}</span>
+      </p>
+    </DealerDialoguePanel>
   );
 }
 
@@ -255,6 +276,7 @@ function dealOrder(r: BaccaratRound) {
 export function Baccarat() {
   const { state, services, run } = useGame();
   const chat = useDealerChat<WaifuEvent>('waifu', WAIFU_FACE, WAIFU_POSE);
+  const scene = useCardScene();
   const [chip, setChip] = useState(25);
   const [bets, setBets] = useState<BaccaratBets>({});
   const [last, setLast] = useState<BaccaratBets>({});
@@ -340,7 +362,7 @@ export function Baccarat() {
       <h2 className="hub-title">
         Baccarat <span className="muted">Punto Banco · 8 decks · ${BACCARAT_LIMITS.min}–${BACCARAT_LIMITS.max} a spot (proposed)</span>
       </h2>
-      <WWStage who="waifu" pose={chat.pose} felt="baccarat_felt" shoe="shoe_red" testId="baccarat-table">
+      <Stage scene={scene} game="baccarat" who="waifu" pose={chat.pose} felt="baccarat_felt" shoe="shoe_red" testId="baccarat-table">
         {(['player', 'tie', 'banker'] as const).map((spot) => {
           const z = BAC_ZONES[spot];
           const shown = round && !revealed ? round.bets[spot] ?? 0 : revealed && round && staked === 0 ? round.bets[spot] ?? 0 : bets[spot] ?? 0;
@@ -349,7 +371,7 @@ export function Baccarat() {
             <button
               key={spot}
               className={`ww-zone ${spot} ${won ? 'won' : ''}`}
-              style={onFelt(BAC_FELT, ...z.box)}
+              style={scene ? feltAt(BAC_L[spot], true) : onFelt(BAC_FELT, ...z.box)}
               onClick={() => add(spot)}
               onContextMenu={(e) => {
                 e.preventDefault();
@@ -367,23 +389,23 @@ export function Baccarat() {
         })}
         {round && order && (
           <>
-            <div className="ww-hand bac-player" style={onFelt(BAC_FELT, 92, 14)} data-testid="bac-player-cards">
+            <div className="ww-hand bac-player" style={scene ? feltAt(BAC_L.playerCards) : onFelt(BAC_FELT, 92, 14)} data-testid="bac-player-cards">
               <span className={`felt-total ${revealed && round.hand.outcome === 'P' ? 'win' : ''}`}>Player {revealed ? round.hand.playerTotal : ''}</span>
               <div className="cards">{round.hand.player.map((c, i) => <PlayingCard key={`${round.roundId}p${i}`} card={c} i={i} delay={order.p[i] * CARD_GAP} />)}</div>
             </div>
-            <div className="ww-hand bac-banker" style={onFelt(BAC_FELT, 352, 14)} data-testid="bac-banker-cards">
+            <div className="ww-hand bac-banker" style={scene ? feltAt(BAC_L.bankerCards) : onFelt(BAC_FELT, 352, 14)} data-testid="bac-banker-cards">
               <div className="cards">{round.hand.banker.map((c, i) => <PlayingCard key={`${round.roundId}b${i}`} card={c} i={i} delay={order.b[i] * CARD_GAP} />)}</div>
               <span className={`felt-total ${revealed && round.hand.outcome === 'B' ? 'win' : ''}`}>Banker {revealed ? round.hand.bankerTotal : ''}</span>
             </div>
             {revealed && (
-              <span className={`ww-result o-${round.hand.outcome}`} style={onFelt(BAC_FELT, 275, 150)} data-testid="bac-result">
+              <span className={`ww-result o-${round.hand.outcome}`} style={scene ? feltAt(BAC_L.result) : onFelt(BAC_FELT, 275, 150)} data-testid="bac-result">
                 {OUTCOME_NAME[round.hand.outcome]}{round.hand.outcome === 'T' ? '' : ' wins'}{round.hand.natural ? ' · natural' : ''}
                 {round.payout > 0 ? ` · paid ${formatMoney(round.payout)}` : ''}
               </span>
             )}
           </>
         )}
-      </WWStage>
+      </Stage>
       <div className="dealer-row">
         <WWDialogue who="waifu" chat={chat as unknown as Chat<WWEvent>} />
         <TipTray npcId="waifu" disabled={busy || !revealed} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'delighted' : 'smile', 'present')} />
@@ -439,6 +461,7 @@ const TC_SPOTS = { ante: [112, 113, 87, 46], play: [226, 115, 85, 44], pairplus:
 export function ThreeCard() {
   const { state, services, run } = useGame();
   const chat = useDealerChat<WinstonEvent>('winston', WINSTON_FACE, WINSTON_POSE);
+  const scene = useCardScene();
   const pending = pendingThreeCard(state.career);
   const [chip, setChip] = useState(10);
   const [ante, setAnte] = useState(10);
@@ -532,26 +555,36 @@ export function ThreeCard() {
       <h2 className="hub-title">
         Three Card Poker <span className="muted">Ante ${THREE_CARD_LIMITS.anteMin}–${THREE_CARD_LIMITS.anteMax} · Pair Plus ${THREE_CARD_LIMITS.pairPlusMin}–${THREE_CARD_LIMITS.pairPlusMax} (proposed)</span>
       </h2>
-      <WWStage who="winston" pose={chat.pose} felt="threecard_felt" shoe="shoe_blue" testId="threecard-table">
+      <Stage scene={scene} game="three_card_poker" who="winston" pose={chat.pose} felt="threecard_felt" shoe="shoe_blue" testId="threecard-table">
         {hand && (
           <>
-            {hand.dealer.map((c, i) => (
-              <div key={`${hand.roundId}d${i}`} className="ww-hand tc-box" style={onFelt(TC_FELT, TC_BOXES[i][0] + TC_BOXES[i][2] / 2, TC_BOXES[i][1] + TC_BOXES[i][3] / 2)}>
+            {scene ? (
+              <div className="ww-hand tc-dealer" style={feltAt(TC_L.dealer)} data-testid="tc-dealer-cards">
                 <div className="cards">
-                  <PlayingCard key={showDealer ? 'up' : 'down'} card={c} i={i} hidden={!showDealer} delay={showDealer ? i * 0.18 : (i * 2 + 1) * 0.3} />
+                  {hand.dealer.map((c, i) => (
+                    <PlayingCard key={`${hand.roundId}d${i}${showDealer ? 'up' : 'down'}`} card={c} i={i} hidden={!showDealer} delay={showDealer ? i * 0.18 : (i * 2 + 1) * 0.3} />
+                  ))}
                 </div>
               </div>
-            ))}
+            ) : (
+              hand.dealer.map((c, i) => (
+                <div key={`${hand.roundId}d${i}`} className="ww-hand tc-box" style={onFelt(TC_FELT, TC_BOXES[i][0] + TC_BOXES[i][2] / 2, TC_BOXES[i][1] + TC_BOXES[i][3] / 2)}>
+                  <div className="cards">
+                    <PlayingCard key={showDealer ? 'up' : 'down'} card={c} i={i} hidden={!showDealer} delay={showDealer ? i * 0.18 : (i * 2 + 1) * 0.3} />
+                  </div>
+                </div>
+              ))
+            )}
             {showDealer && r && (
-              <span className="felt-total tc-dealer-rank" style={onFelt(TC_FELT, 100, 68)} data-testid="tc-dealer-rank">
+              <span className="felt-total tc-dealer-rank" style={scene ? feltAt(TC_L.dealerRank) : onFelt(TC_FELT, 100, 68)} data-testid="tc-dealer-rank">
                 Winston: {RANK3_NAMES[r.dealer.rank]}{r.qualifies ? '' : ' (no qualify)'}
               </span>
             )}
-            <div className="ww-hand tc-player" style={onFelt(TC_FELT, TC_FELT[0] / 2, 186)} data-testid="tc-player-cards">
+            <div className="ww-hand tc-player" style={scene ? feltAt(TC_L.player) : onFelt(TC_FELT, TC_FELT[0] / 2, 186)} data-testid="tc-player-cards">
               <div className="cards">{hand.player.map((c, i) => <PlayingCard key={`${hand.roundId}p${i}`} card={c} i={i} delay={pending ? i * 2 * 0.3 : 0} />)}</div>
             </div>
             {r && showDealer && (
-              <span className="felt-total tc-player-rank" style={onFelt(TC_FELT, 100, 178)} data-testid="tc-player-rank">Ryan: {RANK3_NAMES[r.player.rank]}</span>
+              <span className="felt-total tc-player-rank" style={scene ? feltAt(TC_L.playerRank) : onFelt(TC_FELT, 100, 178)} data-testid="tc-player-rank">Ryan: {RANK3_NAMES[r.player.rank]}</span>
             )}
           </>
         )}
@@ -563,7 +596,7 @@ export function ThreeCard() {
             <button
               key={spot}
               className={`ww-zone oval ${spot}`}
-              style={onFelt(TC_FELT, x, y, w, h)}
+              style={scene ? feltAt(TC_L[spot], true) : onFelt(TC_FELT, x, y, w, h)}
               onClick={() => spot !== 'play' && addTo(spot)}
               onContextMenu={(e) => {
                 e.preventDefault();
@@ -582,12 +615,12 @@ export function ThreeCard() {
           );
         })}
         {r && showDealer && (
-          <span className={`ww-result o-${r.outcome}`} style={onFelt(TC_FELT, 430, 174)} data-testid="tc-result">
+          <span className={`ww-result o-${r.outcome}`} style={scene ? feltAt(TC_L.result) : onFelt(TC_FELT, 430, 174)} data-testid="tc-result">
             {r.outcome === 'fold' ? 'Folded' : r.outcome === 'noqualify' ? 'Dealer doesn’t qualify' : r.outcome === 'win' ? 'Ryan wins' : r.outcome === 'push' ? 'Push' : 'Winston wins'}
             {r.total > 0 ? ` · paid ${formatMoney(r.total)}` : ''}
           </span>
         )}
-      </WWStage>
+      </Stage>
       <div className="dealer-row">
         <WWDialogue who="winston" chat={chat as unknown as Chat<WWEvent>} />
         <TipTray npcId="winston" disabled={busy || !!pending} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'laugh' : 'grin', 'present')} />
