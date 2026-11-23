@@ -128,3 +128,33 @@ export function crapsSceneFor(location: LocationId): CrapsScene | null {
   const s = CRAPS_SCENES[location];
   return s?.url ? s : null;
 }
+
+/**
+ * Roulette scenes (supplied 2026-11-23): whole 1672x941 scenes, wheel on the left. The painted
+ * betting grid is decorative and not accurate, so the game covers it with its own board
+ * (`board`, scene pixels) built from the roulette rules (single zero, the bets the engine
+ * supports). `wheel` is the painted ball track: centre and radii (it's drawn in perspective).
+ * The painted wheel's pockets aren't readable, so the ball lands by angle and the result badge
+ * announces the number.
+ */
+export interface RouletteScene {
+  location: LocationId;
+  url: string;
+  size: [number, number];
+  wheel: { x: number; y: number; rx: number; ry: number };
+  board: Rect;
+}
+
+const rouletteFiles = import.meta.glob<string>('../assets/casino/tables/*/roulette_scene.webp', { eager: true, query: '?url', import: 'default' });
+const rouletteUrl = (loc: LocationId) => rouletteFiles[`../assets/casino/tables/${loc}/roulette_scene.webp`];
+
+export const ROULETTE_SCENES: Record<LocationId, RouletteScene> = {
+  desert_palms: { location: 'desert_palms', url: rouletteUrl('desert_palms'), size: [1672, 941], wheel: { x: 298, y: 432, rx: 188, ry: 92 }, board: [604, 336, 1042, 278] },
+  white_buffalo: { location: 'white_buffalo', url: rouletteUrl('white_buffalo'), size: [1672, 941], wheel: { x: 343, y: 435, rx: 186, ry: 90 }, board: [634, 344, 928, 258] },
+  morongo_sky: { location: 'morongo_sky', url: rouletteUrl('morongo_sky'), size: [1672, 941], wheel: { x: 300, y: 462, rx: 190, ry: 70 }, board: [622, 394, 986, 226] },
+};
+
+export function rouletteSceneFor(location: LocationId): RouletteScene | null {
+  const s = ROULETTE_SCENES[location];
+  return s?.url ? s : null;
+}

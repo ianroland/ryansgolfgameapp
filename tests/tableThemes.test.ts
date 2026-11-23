@@ -73,3 +73,34 @@ describe('table art is presentation only', () => {
     expect(SHOW_TABLE_DEALER_SPRITES).toBe(false);
   });
 });
+
+describe('casino roulette scenes and board', () => {
+  it('each casino has a whole 1672x941 scene; the wheel and the board cover sit inside it', async () => {
+    const { ROULETTE_SCENES } = await import('../src/expansion/tableThemes');
+    for (const c of CASINOS) {
+      const s = ROULETTE_SCENES[c];
+      expect(s.url, c).toBeTruthy();
+      const [x, y, w, h] = s.board;
+      expect(x > s.wheel.x + s.wheel.rx - 20 && x + w <= 1672 && y + h <= 941, c).toBe(true);
+      expect(s.wheel.ry).toBeLessThan(s.wheel.rx);
+    }
+  });
+
+  it('the board has exactly the engine\'s 49 bets, each in its own cell, numbers in standard order', async () => {
+    const { ALL_SPOTS } = await import('../src/ui/casino/rouletteLayout');
+    const { boardCell } = await import('../src/ui/casino/RouletteBoard');
+    const { colorOf, wins } = await import('../src/casino/roulette');
+    expect(ALL_SPOTS).toHaveLength(49);
+    const cells = new Set(ALL_SPOTS.map((s) => `${boardCell(s).style.gridColumn}|${boardCell(s).style.gridRow}`));
+    expect(cells.size).toBe(49);
+    // Rows: 3,6..36 on top; 1,4..34 at the bottom. Column bets sit at the end of their row.
+    for (let n = 1; n <= 36; n++) {
+      const c = boardCell(`n${n}`);
+      expect(c.style.gridRow, `n${n}`).toBe(String(3 - ((n - 1) % 3)));
+      expect(c.tone).toBe(colorOf(n));
+      const colBet = (['col1', 'col2', 'col3'] as const).find((k) => wins(k, n))!;
+      expect(boardCell(colBet).style.gridRow).toBe(c.style.gridRow);
+    }
+    expect(boardCell('n0').tone).toBe('green');
+  });
+});

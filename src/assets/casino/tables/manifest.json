@@ -396,5 +396,71 @@
    ],
    "validation": "in-game QA passed; needs clean-felt art (see report)"
   }
+ ],
+ "roulette_tables": [
+  {
+   "casino_id": "desert_palms",
+   "game_id": "roulette",
+   "asset_path": "src/assets/casino/tables/desert_palms/roulette_scene.webp",
+   "source": "art/source_sheets/roulette_tables_v1/desert_palms.png",
+   "original_dimensions": [
+    1672,
+    941
+   ],
+   "asset_dimensions": [
+    1672,
+    941
+   ],
+   "aspect_ratio": 1.7768,
+   "rendered": "whole scene, width 100% (max 980 CSS px), aspect preserved",
+   "betting_alignment": "Decorative painted grid covered by the game board (49 engine bets); on phones the board renders below the scene.",
+   "validation": "in-game QA passed at 1440/1192/390",
+   "known_art_issues": [
+    "painted wheel pockets not readable (ball lands by angle; result badge announces the number)"
+   ]
+  },
+  {
+   "casino_id": "white_buffalo",
+   "game_id": "roulette",
+   "asset_path": "src/assets/casino/tables/white_buffalo/roulette_scene.webp",
+   "source": "art/source_sheets/roulette_tables_v1/white_buffalo.png",
+   "original_dimensions": [
+    1672,
+    941
+   ],
+   "asset_dimensions": [
+    1672,
+    941
+   ],
+   "aspect_ratio": 1.7768,
+   "rendered": "whole scene, width 100% (max 980 CSS px), aspect preserved",
+   "betting_alignment": "Decorative painted grid covered by the game board (49 engine bets); on phones the board renders below the scene.",
+   "validation": "in-game QA passed at 1440/1192/390",
+   "known_art_issues": [
+    "painted wheel pockets not readable (ball lands by angle; result badge announces the number)"
+   ]
+  },
+  {
+   "casino_id": "morongo_sky",
+   "game_id": "roulette",
+   "asset_path": "src/assets/casino/tables/morongo_sky/roulette_scene.webp",
+   "source": "art/source_sheets/roulette_tables_v1/morongo_sky.png",
+   "original_dimensions": [
+    1672,
+    941
+   ],
+   "asset_dimensions": [
+    1672,
+    941
+   ],
+   "aspect_ratio": 1.7768,
+   "rendered": "whole scene, width 100% (max 980 CSS px), aspect preserved",
+   "betting_alignment": "Decorative painted grid covered by the game board (49 engine bets); on phones the board renders below the scene.",
+   "validation": "in-game QA passed at 1440/1192/390",
+   "known_art_issues": [
+    "painted wheel pockets not readable (ball lands by angle; result badge announces the number)",
+    "a ball is painted into the wheel"
+   ]
+  }
  ]
 }

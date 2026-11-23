@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import {
   BJ_LIMITS, canDouble, canSplit, deal, double, handValue, hit, newTable, split, stand, totalPayout,
   type BJState,
@@ -6,7 +6,7 @@ import {
 import { betBlocker, betsOnTable, CRAPS_LIMITS, newCraps, resolveRoll, rollDice, type BetKey, type CrapsState } from '../../casino/craps';
 import { PAYTABLE, REEL, SLOT_BETS, spin, SYMBOL_ART, type SlotSymbol } from '../../casino/slots';
 import {
-  betBlocker as rouletteBlocker, colorOf, resolveSpin, ROULETTE_LIMITS, spinWheel, spotLabel, totalOn, WHEEL,
+  betBlocker as rouletteBlocker, colorOf, resolveSpin, ROULETTE_LIMITS, spinWheel, spotLabel, totalOn, WHEEL, wins as rouletteWins,
   type RouletteBets, type RouletteSpot,
 } from '../../casino/roulette';
 import { cryptoInt } from '../../casino/random';
@@ -24,7 +24,8 @@ import { BigWinOverlay, celebrateWin } from './BigWin';
 import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
 import { TipTray } from './Tipping';
 import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
-import { CARD_LAYOUTS, crapsSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
+import { CARD_LAYOUTS, crapsSceneFor, rouletteSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
+import { boardCell, RouletteBoard } from './RouletteBoard';
 import { SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
 import { ChipButton, ChipImg } from './Chips';
 import { CasinoLocationContext, devChipPreview, devLegacyTables, useCasinoLocation } from './casinoLocation';
@@ -44,6 +45,20 @@ type Game = CasinoGameId;
 
 const CHIPS = [5, 10, 25, 100, 500];
 const BJ_L = CARD_LAYOUTS.blackjack;
+
+/** True while the window is at most `px` wide (layout only). */
+function useNarrow(px: number): boolean {
+  const q = `(max-width: ${px}px)`;
+  const [narrow, setNarrow] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(q).matches);
+  useEffect(() => {
+    if (typeof matchMedia === 'undefined') return;
+    const m = matchMedia(q);
+    const on = () => setNarrow(m.matches);
+    m.addEventListener('change', on);
+    return () => m.removeEventListener('change', on);
+  }, [q]);
+  return narrow;
+}
 
 function ChipRack({ value, onAdd, onClear, min, disabled }: { value: number; onAdd: (n: number) => void; onClear: () => void; min: number; disabled?: boolean }) {
   return (
@@ -545,6 +560,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
   const [spinning, setSpinning] = useState(false);
   const [reaching, setReaching] = useState(false);
   const [result, setResult] = useState<number | null>(null);
+  const [history, setHistory] = useState<number[]>([]);
   const [spins, setSpins] = useState(0);
   const [log, setLog] = useState<string[]>(['Place your chips on the layout, then spin.']);
   const [busy, setBusy] = useState(false);
@@ -594,6 +610,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
     const staked = totalOn(bets);
     setSpinning(false);
     setResult(n);
+    setHistory((h) => [n, ...h].slice(0, 12));
     setSpins((k) => k + 1);
     const winners = outcomes.filter((o) => o.payout > 0).map((o) => spotLabel(o.spot));
     const net = payout - staked;
@@ -610,6 +627,30 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
   };
 
   const pct = (b: Box) => boxStyle(RT, b);
+  const casinoLoc = useCasinoLocation();
+  const rScene = devLegacyTables() ? null : rouletteSceneFor(casinoLoc);
+  const boardBelow = useNarrow(700);
+  const sceneBox = ([x, y, w, h]: Rect) => (rScene ? { left: `${(x / rScene.size[0]) * 100}%`, top: `${(y / rScene.size[1]) * 100}%`, width: `${(w / rScene.size[0]) * 100}%`, height: `${(h / rScene.size[1]) * 100}%` } : {});
+  /** One betting spot: the same button on the old art and on the game's board. */
+  const spotButton = (spot: RouletteSpot, style: CSSProperties, onBoard = false) => {
+    const hit = result !== null && !spinning && (spot === `n${result}` || (!spot.startsWith('n') && rouletteWins(spot, result)));
+    const cell = onBoard ? boardCell(spot) : null;
+    return (
+      <button
+        key={spot}
+        className={`roulette-spot ${hit ? 'hit' : ''} ${cell ? `rb-cell tone-${cell.tone}` : ''}`}
+        style={style}
+        onClick={() => place(spot)}
+        disabled={busy || spinning || reaching}
+        title={`${spotLabel(spot)}${rouletteBlocker(bets, spot, chip) ? ` · ${rouletteBlocker(bets, spot, chip)}` : ''}`}
+        aria-label={`Bet on ${spotLabel(spot)}`}
+        data-testid={`roulette-${spot}`}
+      >
+        {cell && <span className="rb-label">{cell.label}</span>}
+        {(bets[spot] ?? 0) > 0 && <BetChip amount={bets[spot]!} className="on-spot" />}
+      </button>
+    );
+  };
   const moniqueBox = { left: `${(MONIQUE_AT.left / RT.w) * 100}%`, top: `${(MONIQUE_AT.top / RT.h) * 100}%`, width: `${(MONIQUE_AT.w / RT.w) * 100}%`, height: `${(MONIQUE_AT.h / RT.h) * 100}%` };
   const ball = WHEEL.indexOf(result ?? 0) * (360 / WHEEL.length);
 
@@ -618,42 +659,55 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
       <h2 className="hub-title">
         Roulette <span className="muted">${ROULETTE_LIMITS.min}–${ROULETTE_LIMITS.maxSpot} a spot · single zero</span>
       </h2>
-      <div className="table-stage roulette-stage">
-        <div className="felt roulette-felt" style={{ aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="roulette-felt">
-          {SHOW_TABLE_DEALER_SPRITES && <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} />}
-          <img className="roulette-table-img" src={felt.url} alt="" draggable={false} />
-          {SHOW_TABLE_DEALER_SPRITES && <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} layer="arm" />}
-          <div
-            className="roulette-wheel-plane"
-            style={{ left: `${(WHEEL_AT.x / RT.w) * 100}%`, top: `${(WHEEL_AT.y / RT.h) * 100}%`, width: `${((WHEEL_AT.rx * 2) / RT.w) * 100}%`, ['--wheel-tilt' as string]: `${WHEEL_AT.ry / WHEEL_AT.rx}` }}
-            aria-hidden
-          >
-            <div className={`roulette-ball-track ${spinning ? 'spinning' : ''}`} key={spins} style={{ ['--ball-end' as string]: `${ball}deg` }} data-testid="roulette-ball-track">
-              {(spinning || result !== null) && <i className="roulette-ball" />}
+      {rScene ? (
+        <>
+          <div className={`roulette-scene loc-${rScene.location}`} style={{ aspectRatio: `${rScene.size[0]} / ${rScene.size[1]}` }} data-testid="roulette-felt" data-scene={rScene.location}>
+            <img className="roulette-scene-img" src={rScene.url} width={rScene.size[0]} height={rScene.size[1]} alt="" draggable={false} />
+            <div
+              className="roulette-wheel-plane"
+              style={{ left: `${(rScene.wheel.x / rScene.size[0]) * 100}%`, top: `${(rScene.wheel.y / rScene.size[1]) * 100}%`, width: `${((rScene.wheel.rx * 2) / rScene.size[0]) * 100}%`, ['--wheel-tilt' as string]: `${rScene.wheel.ry / rScene.wheel.rx}` }}
+              aria-hidden
+            >
+              <div className={`roulette-ball-track ${spinning ? 'spinning' : ''}`} key={spins} style={{ ['--ball-end' as string]: `${ball}deg` }} data-testid="roulette-ball-track">
+                {(spinning || result !== null) && <i className="roulette-ball" />}
+              </div>
+            </div>
+            {result !== null && !spinning && <span className={`roulette-result ${colorOf(result)}`} data-testid="roulette-result">{result}</span>}
+            {/* The painted grid is decorative: covered by the game's board (or a plain felt panel when the board sits below on phones). */}
+            <div className="rb-cover" style={sceneBox(rScene.board)}>
+              {!boardBelow && <RouletteBoard>{ALL_SPOTS.map((spot) => spotButton(spot, boardCell(spot).style, true))}</RouletteBoard>}
             </div>
           </div>
-          {result !== null && !spinning && (
-            <span className={`roulette-result ${colorOf(result)}`} data-testid="roulette-result">{result}</span>
-          )}
-          {ALL_SPOTS.map((spot) => {
-            const hit = result !== null && !spinning && spot === `n${result}`;
-            return (
-              <button
-                key={spot}
-                className={`roulette-spot ${hit ? 'hit' : ''}`}
-                style={spot === 'n0' ? { ...pct(spotBox(spot)), clipPath: ZERO_CLIP } : pct(spotBox(spot))}
-                onClick={() => place(spot)}
-                disabled={busy || spinning || reaching}
-                title={`${spotLabel(spot)}${rouletteBlocker(bets, spot, chip) ? ` · ${rouletteBlocker(bets, spot, chip)}` : ''}`}
-                aria-label={`Bet on ${spotLabel(spot)}`}
-                data-testid={`roulette-${spot}`}
-              >
-                {(bets[spot] ?? 0) > 0 && <BetChip amount={bets[spot]!} className="on-spot" />}
-              </button>
-            );
-          })}
+          {boardBelow && <RouletteBoard className="below">{ALL_SPOTS.map((spot) => spotButton(spot, boardCell(spot).style, true))}</RouletteBoard>}
+        </>
+      ) : (
+        <div className="table-stage roulette-stage">
+          <div className="felt roulette-felt" style={{ aspectRatio: `${felt.w} / ${felt.h}` }} data-testid="roulette-felt">
+            {SHOW_TABLE_DEALER_SPRITES && <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} />}
+            <img className="roulette-table-img" src={felt.url} alt="" draggable={false} />
+            {SHOW_TABLE_DEALER_SPRITES && <MoniqueSprite mode={monique.mode} since={monique.modeSince} style={moniqueBox} layer="arm" />}
+            <div
+              className="roulette-wheel-plane"
+              style={{ left: `${(WHEEL_AT.x / RT.w) * 100}%`, top: `${(WHEEL_AT.y / RT.h) * 100}%`, width: `${((WHEEL_AT.rx * 2) / RT.w) * 100}%`, ['--wheel-tilt' as string]: `${WHEEL_AT.ry / WHEEL_AT.rx}` }}
+              aria-hidden
+            >
+              <div className={`roulette-ball-track ${spinning ? 'spinning' : ''}`} key={spins} style={{ ['--ball-end' as string]: `${ball}deg` }} data-testid="roulette-ball-track">
+                {(spinning || result !== null) && <i className="roulette-ball" />}
+              </div>
+            </div>
+            {result !== null && !spinning && (
+              <span className={`roulette-result ${colorOf(result)}`} data-testid="roulette-result">{result}</span>
+            )}
+            {ALL_SPOTS.map((spot) => spotButton(spot, spot === 'n0' ? { ...pct(spotBox(spot)), clipPath: ZERO_CLIP } : pct(spotBox(spot))))}
+          </div>
         </div>
-      </div>
+      )}
+      {history.length > 0 && (
+        <div className="roulette-history" aria-label="Recent winning numbers (newest first)" data-testid="roulette-history">
+          <span>Last numbers</span>
+          {history.map((n, i) => <b key={i} className={colorOf(n)}>{n}</b>)}
+        </div>
+      )}
       <div className="dealer-row">
         {monique.item && !spinning && !reaching && <DialogueBox item={monique.item} more={monique.more} onNext={monique.next} />}
         <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />

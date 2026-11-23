@@ -1842,3 +1842,35 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .cs-felt .ww-zone.oval .ww-zone-label { font-size: max(9px, 1.8cqw); }
 .cs-felt .ww-zone-pays, .cs-felt .felt-chip b { font-size: max(8px, 1.7cqw); }
 .cs-rules { font-size: max(8px, 2.2cqw); }
+
+/* ── Roulette scenes: whole scene; the game's own board covers the decorative painted grid ── */
+.roulette-scene { position: relative; width: 100%; max-width: 980px; margin: 4px auto 0; overflow: hidden; box-sizing: content-box; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35); }
+.roulette-scene-img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; user-select: none; }
+.roulette-scene .roulette-wheel-plane { z-index: 4; }
+.roulette-scene .roulette-result { z-index: 5; left: 2%; top: 3%; }
+.rb-cover { position: absolute; z-index: 3; display: flex; border-radius: 1.2%/4%; background: #0d5a32; box-shadow: inset 0 0 0 2px rgba(255, 215, 110, 0.85), inset 0 0 0 5px rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.45); }
+.loc-white_buffalo .rb-cover, .loc-white_buffalo .rb-panel.below { background: #0d4d50; }
+.loc-morongo_sky .rb-cover { background: #0d4a2e; box-shadow: inset 0 0 0 2px #d8dbe6, inset 0 0 0 5px rgba(0, 0, 0, 0.35), 0 4px 10px rgba(0, 0, 0, 0.45); }
+.rb-panel { flex: 1; padding: 2.2%; container-type: inline-size; }
+.rb-panel.below { max-width: 760px; margin: 10px auto 0; padding: 8px; background: #0d5a32; border: 3px solid var(--ink); border-radius: 10px; box-shadow: inset 0 0 0 2px var(--gold-2); }
+.rb-grid { display: grid; grid-template-columns: 1.15fr repeat(12, 1fr) 1.15fr; grid-template-rows: repeat(3, 1fr) 0.85fr 0.85fr; gap: 0.35cqw; width: 100%; height: 100%; }
+.rb-panel.below .rb-grid { height: auto; grid-template-rows: repeat(3, 40px) 34px 34px; gap: 3px; }
+.rb-cell.roulette-spot { position: relative; display: grid; place-items: center; min-width: 0; padding: 0; border: 0.2cqw solid rgba(255, 220, 120, 0.85); border-radius: 0.6cqw; color: #fff; font-family: var(--head); font-size: max(10px, 2.3cqw); line-height: 1; text-shadow: 1px 1px 0 var(--ink); cursor: pointer; }
+.rb-cell.tone-red { background: #b8161e; }
+.rb-cell.tone-black { background: #15151c; }
+.rb-cell.tone-green { background: #11843f; font-size: max(12px, 3cqw); }
+.rb-cell.tone-outside { background: rgba(0, 0, 0, 0.2); font-size: max(9px, 1.9cqw); }
+.rb-cell:hover:not(:disabled), .rb-cell:focus-visible { outline: none; box-shadow: inset 0 0 0 0.35cqw #ffe680, 0 0 1.2cqw rgba(255, 230, 128, 0.7); }
+.rb-cell:disabled { cursor: default; }
+.rb-cell.hit { box-shadow: inset 0 0 0 0.4cqw #fff, 0 0 1.6cqw rgba(255, 255, 255, 0.9); }
+.rb-cell .rb-label { pointer-events: none; }
+.rb-cell .felt-chip.on-spot { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.rb-cell .felt-chip img { width: max(16px, 3.6cqw); }
+.rb-cell .felt-chip b { display: none; }
+.roulette-history { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; max-width: 980px; margin: 8px auto 0; font-size: 13px; }
+.roulette-history span { margin-right: 4px; opacity: 0.85; }
+.roulette-history b { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 4px; font-family: var(--head); font-size: 14px; color: #fff; border: 2px solid var(--ink); border-radius: 50%; }
+.roulette-history b:first-of-type { box-shadow: 0 0 0 2px var(--gold-2); }
+.roulette-history b.red { background: #c21d24; }
+.roulette-history b.black { background: #111; }
+.roulette-history b.green { background: #128a3d; }

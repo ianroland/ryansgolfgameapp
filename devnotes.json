@@ -2,6 +2,21 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.16.2",
+      "date": "2026-11-23",
+      "title": "Three new roulette tables",
+      "items": [
+        {
+          "tag": "new",
+          "text": "Roulette has a new table for each casino, with the wheel on the left and a clear betting board on the right, drawn from the real single-zero rules."
+        },
+        {
+          "tag": "improved",
+          "text": "Every winning bet lights up after a spin, and a strip of recent winning numbers sits under the table. On phones, the betting board moves below the table so it's easy to tap."
+        }
+      ]
+    },
+    {
       "version": "0.16.1",
       "date": "2026-11-23",
       "title": "Men's fields early, women's fields on the LPGA path",
