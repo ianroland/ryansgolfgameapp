@@ -12,7 +12,7 @@ import { coursePar, type CourseDef, type HoleDef } from '../golf/course';
 import { hashString, inEllipse, rng } from '../golf/math';
 import type { GameTime } from '../core/types';
 import { gameDate, PLAYER_ID, PLAYER_NAME, QSCHOOL, SCHEDULES, TOURS, type QStage, type TourId } from './config';
-import { pickField, RIVAL, simRound, type FieldModel } from './field';
+import { isMensTour, pickField, RIVAL, simRound, type FieldModel } from './field';
 import { playerRating } from './stats';
 import type { ActiveTournament, CareerState, RoundMode } from './types';
 import { courseIdForEvent } from './venues';
@@ -209,16 +209,26 @@ export function holesToPlay(mode: RoundMode, round: number, PARS: number[]): num
   return [...new Set([par3, par5, par4, PARS.length - 1])].filter((i) => i !== undefined).sort((a, b) => a - b);
 }
 
-export function startTournament(def: TournamentDef, c: CareerState, mode: RoundMode): ActiveTournament {
+/**
+ * Field rules: 'current' (men's fields for the Amateur Circuit and SoCal Pro Series; Kayla and
+ * the Q-School hopefuls on the women's side) or 'reference-v1', the rules the frozen cut-in
+ * reference dataset (tools/cutins-lab, test T7) was recorded with. The game always uses 'current'.
+ */
+export type FieldRules = 'current' | 'reference-v1';
+
+export function startTournament(def: TournamentDef, c: CareerState, mode: RoundMode, rules: FieldRules = 'current'): ActiveTournament {
+  const legacy = rules === 'reference-v1';
   const seed = hashString(`${def.id}:${c.playerId}`);
   const extras = [{ id: c.playerId, name: PLAYER_NAME, rating: 0 }];
   const rival = Object.values(c.pools).flat().find((g) => g.id === c.rivalId);
-  const poolTour: TourId = def.tour === 'qschool' ? 'mini' : def.tour;
-  if (rival && (rival.tour === poolTour || def.tour === 'qschool' || def.special)) extras.push({ id: rival.id, name: rival.name, rating: rival.rating + def.ratingShift });
+  const poolTour: TourId = legacy && def.tour === 'qschool' ? 'mini' : def.tour;
+  // Kayla only plays the women's tours (Q-School on); men's fields never include her.
+  if (rival && (legacy || !isMensTour(def.tour)) && (rival.tour === poolTour || def.tour === 'qschool' || def.special)) extras.push({ id: rival.id, name: rival.name, rating: rival.rating + def.ratingShift });
   let pool = c.pools[poolTour];
   // Q-School: early stages draw from the mini tours and the Epson Tour's
   // strugglers; Q-Series is Epson Tour regulars fighting for LPGA cards.
-  if (def.tour === 'qschool') pool = def.qStage === 3 ? c.pools.epson : [...c.pools.mini, ...c.pools.epson.filter((g) => g.rating < 66)];
+  // (Women's fields: Q-School hopefuls rather than the men's mini tours.)
+  if (def.tour === 'qschool') pool = def.qStage === 3 ? c.pools.epson : [...(legacy ? c.pools.mini : c.pools.qschool ?? []), ...c.pools.epson.filter((g) => g.rating < 66)];
   const entrants = pickField(pool, def.fieldSize, seed, def.ratingShift, extras);
   const course = courseOf(def);
   return {

@@ -31,7 +31,8 @@ describe('career stats', () => {
     expect(st.bySeason).toHaveLength(1);
     expect(st.bySeason[0]).toMatchObject({ season: 1, events: 2, wins: 1, earnings: 0, tours: ['amateur'] });
     expect(st.history[0].tournamentId).toBe('amateur-1-w5'); // newest first
-    expect(st.rival?.events).toBe(2);
+    // Kayla doesn't play the men's Amateur Circuit, so there are no shared events yet.
+    expect(st.rival?.events ?? 0).toBe(0);
   });
 
   it('season end records the rank and tour for the stats table', () => {

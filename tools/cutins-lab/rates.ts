@@ -74,7 +74,7 @@ export interface DriverResult {
 }
 
 export function runTournament(def: TournamentDef, c: CareerState, mode: RoundMode, opts: DriverOptions = {}): DriverResult {
-  let a = startTournament(def, c, mode);
+  let a = startTournament(def, c, mode, 'reference-v1') // the frozen reference dataset's field rules;
   const rounds: RoundTrace[] = [];
   while (a.round < def.rounds) {
     const steps: ActiveTournament[] = [];

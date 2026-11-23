@@ -62,6 +62,7 @@ async function boot() {
     await services.legacy.reconcile().catch((e) => console.warn('Career legacy check failed', e));
     // Casino unlocks: recognise ones the bankroll history already earned (idempotent, never removes).
     await services.expansion.reconcile().catch((e) => console.warn('Casino unlock check failed', e));
+    await services.career.reconcileFields().catch((e) => console.warn('Tour field check failed', e));
     const initial = await services.career.loadClubhouse();
     if (import.meta.env.DEV) (window as unknown as { wtg: unknown }).wtg = services; // debugging aid
     root.render(

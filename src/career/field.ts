@@ -6,6 +6,7 @@ import { rng, type Rng } from '../golf/math';
 import { PLAYER_ID, TOURS, type TourId } from './config';
 import type { PoolGolfer } from './types';
 
+/** Women's tours use these first names (Q-School, Epson Tour, LPGA Tour). */
 const FIRST = [
   'Ava', 'Mia', 'Sofia', 'Lena', 'Maya', 'Zoe', 'Nora', 'Ella', 'Chloe', 'Ivy', 'Hana', 'Yuna', 'Mei', 'Priya', 'Ana', 'Lucia', 'Elise', 'Greta',
   'Freya', 'Ingrid', 'Camila', 'Valentina', 'Riley', 'Jordan', 'Sky', 'Tess', 'Brooke', 'Paige', 'Kendra', 'Dani', 'Marisol', 'Noor', 'Leilani',
@@ -18,11 +19,43 @@ const LAST = [
   'Park', 'Reyes', 'Silva', 'Tanaka', 'Vance', 'Weller', 'Young',
 ];
 
+/** Men's tours use these first names (original, generic; no real golfers). */
+const MALE_FIRST = [
+  'Liam', 'Noah', 'Mateo', 'Ethan', 'Lucas', 'Owen', 'Caleb', 'Diego', 'Marcus', 'Jamal', 'Kenji', 'Hiro', 'Arjun', 'Rohan', 'Tomas', 'Andre',
+  'Felix', 'Henrik', 'Lars', 'Mikael', 'Rafael', 'Santiago', 'Tyler', 'Connor', 'Brady', 'Cole', 'Garrett', 'Wes', 'Dante', 'Malik', 'Kai', 'Ren',
+  'Minho', 'Jae', 'Duc', 'Femi', 'Kofi', 'Elias', 'Jonah', 'Silas', 'Theo', 'Hugo', 'Nico', 'Pablo', 'Callum', 'Rhys', 'Declan', 'Emeka',
+];
+
+/**
+ * Phases 1 and 2 (the Amateur Circuit and the SoCal Pro Series) are men's fields; from LPGA
+ * Q-School on, Ryan plays women's fields. Kayla Brooks only plays the women's tours.
+ */
+export const MENS_TOURS: ReadonlySet<TourId> = new Set<TourId>(['amateur', 'mini']);
+export const isMensTour = (t: TourId) => MENS_TOURS.has(t);
+
 export const RIVAL = { id: 'golfer_kayla_brooks', name: 'Kayla Brooks' };
 
-const POOL_SIZES: Record<TourId, number> = { amateur: 40, mini: 45, qschool: 0, epson: 90, lpga: 110 };
+/** The rival's tour for a rating: never a men's tour. */
+export function rivalTourFor(rating: number): TourId {
+  return rating >= 68 ? 'lpga' : rating >= 57 ? 'epson' : 'qschool';
+}
 
+const LEGACY_POOL_SIZES: Record<TourId, number> = { amateur: 40, mini: 45, qschool: 0, epson: 90, lpga: 110 };
+/** Women's Q-School hopefuls (added by reconcileFieldPools). */
+const QSCHOOL_POOL_SIZE = 45;
+
+/**
+ * The tour pools for a new career. Generated exactly as before (same draws, so the Epson and
+ * LPGA pools and every rating are unchanged), then split into men's and women's fields by
+ * reconcileFieldPools, which uses its own random stream.
+ */
 export function buildPools(seed = 2027): Record<TourId, PoolGolfer[]> {
+  const pools = buildLegacyPools(seed);
+  return reconcileFieldPools(pools, seed) ?? pools;
+}
+
+/** The original generator (one shared name list, Kayla on the amateur tour). */
+function buildLegacyPools(seed: number): Record<TourId, PoolGolfer[]> {
   const r = rng(seed);
   const used = new Set<string>([RIVAL.name]);
   const name = () => {
@@ -38,7 +71,7 @@ export function buildPools(seed = 2027): Record<TourId, PoolGolfer[]> {
   let n = 0;
   for (const tour of ['amateur', 'mini', 'qschool', 'epson', 'lpga'] as TourId[]) {
     const cfg = TOURS[tour];
-    pools[tour] = Array.from({ length: POOL_SIZES[tour] }, () => ({
+    pools[tour] = Array.from({ length: LEGACY_POOL_SIZES[tour] }, () => ({
       id: `golfer_${tour}_${++n}`,
       name: name(),
       // Skewed so most of the field is mid-pack and a few are elite.
@@ -48,6 +81,59 @@ export function buildPools(seed = 2027): Record<TourId, PoolGolfer[]> {
   }
   pools.amateur.push({ id: RIVAL.id, name: RIVAL.name, rating: 40, tour: 'amateur' });
   return pools;
+}
+
+/**
+ * Brings an older save's pools in line with the men's/women's split: renames women in the
+ * men's pools (same ids and ratings, so records and money lists still match), adds the women's
+ * Q-School pool if the save has none, and moves Kayla out of the men's tours. Returns null when
+ * nothing needs changing. Deterministic for a save's seed.
+ */
+export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: number): Record<TourId, PoolGolfer[]> | null {
+  const female = new Set(FIRST);
+  const next = Object.fromEntries(Object.entries(pools).map(([k, v]) => [k, v.map((g) => ({ ...g }))])) as Record<TourId, PoolGolfer[]>;
+  let changed = false;
+  const used = new Set(Object.values(next).flat().map((g) => g.name));
+  const r = rng(seed ^ 0x6e6d);
+  const fresh = (list: string[]) => {
+    for (;;) {
+      const n = `${list[r.int(0, list.length - 1)]} ${LAST[r.int(0, LAST.length - 1)]}`;
+      if (!used.has(n)) {
+        used.add(n);
+        return n;
+      }
+    }
+  };
+  // Kayla leaves the men's tours.
+  for (const t of MENS_TOURS) {
+    const k = next[t]?.find((g) => g.id === RIVAL.id);
+    if (k) {
+      next[t] = next[t].filter((g) => g.id !== RIVAL.id);
+      const tour = rivalTourFor(k.rating);
+      next[tour] = [...(next[tour] ?? []), { ...k, tour }];
+      changed = true;
+    }
+  }
+  for (const t of MENS_TOURS) {
+    for (const g of next[t] ?? []) {
+      if (g.id !== PLAYER_ID && female.has(g.name.split(' ')[0])) {
+        g.name = fresh(MALE_FIRST);
+        changed = true;
+      }
+    }
+  }
+  if (!next.qschool || next.qschool.filter((g) => g.id !== RIVAL.id).length === 0) {
+    const cfg = TOURS.qschool;
+    const extra = Array.from({ length: QSCHOOL_POOL_SIZE }, (_, i) => ({
+      id: `golfer_qs_${i + 1}`,
+      name: fresh(FIRST),
+      rating: Math.round(cfg.ratingMin + (cfg.ratingMax - cfg.ratingMin) * Math.pow(r.next(), 0.8)),
+      tour: 'qschool' as TourId,
+    }));
+    next.qschool = [...(next.qschool ?? []), ...extra];
+    changed = true;
+  }
+  return changed ? next : null;
 }
 
 /** Expected strokes over par per hole for a rating, before noise. */
@@ -143,3 +229,6 @@ export function evolvePools(pools: Record<TourId, PoolGolfer[]>, seasonEarnings:
   next.lpga = next.lpga.filter((g) => !down.includes(g)).concat(up.map((g) => ({ ...g, tour: 'lpga' as TourId })));
   return next;
 }
+
+/** First-name lists by field (for tests and docs). */
+export const FIRST_NAMES = { men: MALE_FIRST, women: FIRST } as const;

@@ -13,7 +13,7 @@ import {
   ACTIONS_PER_WEEK, EPSON_GRADUATES, gameDate, LPGA_KEEP_CARD, PLAYER_ID, QSCHOOL, QSERIES_EPSON_CARDS,
   QSERIES_LPGA_CARDS, SEASON_WEEKS, START_AGE, TOURS, fameLevel, type QStage, type TourId,
 } from './config';
-import { buildPools, evolvePools, RIVAL } from './field';
+import { buildPools, evolvePools, RIVAL, rivalTourFor } from './field';
 import { gearById, lifestyleById, STARTING_EQUIPMENT } from './shop';
 import { clampStat, skillPointCost, trainingGain, travelDiscount, energyRegen } from './stats';
 import { storyById, STORIES, type Effects } from './stories';
@@ -711,9 +711,6 @@ export function pointsList(c: CareerState, limit = 20) {
     .slice(0, limit);
 }
 
-function rivalTourFor(rating: number): TourId {
-  return rating >= 68 ? 'lpga' : rating >= 57 ? 'epson' : rating >= 46 ? 'mini' : 'amateur';
-}
 
 export function seasonRollover(prev: CareerState): CareerState {
   const c = clone(prev);

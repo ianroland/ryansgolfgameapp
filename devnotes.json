@@ -2,6 +2,21 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.16.1",
+      "date": "2026-11-23",
+      "title": "Men's fields early, women's fields on the LPGA path",
+      "items": [
+        {
+          "tag": "fixed",
+          "text": "The Amateur Circuit and SoCal Pro Series are now men's fields. From LPGA Q-School on (Q-School, Epson Tour, LPGA Tour), Ryan plays women's fields."
+        },
+        {
+          "tag": "improved",
+          "text": "Kayla Brooks becomes Ryan's on-course rival once he reaches Q-School. Existing saves are updated automatically: only names change, never results, money or ratings."
+        }
+      ]
+    },
+    {
       "version": "0.16.0",
       "date": "2026-11-23",
       "title": "New casino tables and dealer portraits",

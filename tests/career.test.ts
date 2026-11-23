@@ -171,13 +171,14 @@ describe('road to the LPGA (engine)', () => {
 });
 
 describe('stroke-play tournaments', () => {
-  it('fields come from persistent pools and include Ryan (and her rival on her tour)', () => {
+  it("fields come from persistent pools and include Ryan (the rival only on the women's tours)", () => {
     const c = fresh();
     const def = findTournament('amateur-1-w2')!;
     const a = startTournament(def, c, 'sim');
     expect(a.entrants).toHaveLength(TOURS.amateur.fieldSize);
     expect(a.entrants.map((e) => e.id)).toContain(c.playerId);
-    expect(a.entrants.map((e) => e.id)).toContain(c.rivalId);
+    // The Amateur Circuit is a men's field: Kayla joins Ryan's fields from Q-School on.
+    expect(a.entrants.map((e) => e.id)).not.toContain(c.rivalId);
     expect(buildPools(1)).toEqual(buildPools(1));
   });
 

@@ -9,6 +9,7 @@ import type { UnlockRecord } from '../expansion/unlocks';
 import type { LocationState, NpcState } from '../npc/types';
 import { achievementById } from '../career/achievements';
 import { gameDate, PLAYER_ID, PLAYER_NAME, START_MONEY } from '../career/config';
+import { reconcileFieldPools } from '../career/field';
 import * as engine from '../career/engine';
 import { CareerRuleError, type ActionId, type Outcome } from '../career/engine';
 import { activeCourse, completeRound, finalizeTournament, findTournament, type TournamentResult } from '../career/tournament';
@@ -117,6 +118,22 @@ export class CareerService {
         career,
         expansion,
       };
+    });
+  }
+
+  /**
+   * Older saves: men's fields for the Amateur Circuit and SoCal Pro Series, Kayla on the women's
+   * tours, and a women's Q-School pool (see reconcileFieldPools). Names only: ids, ratings,
+   * results and money are untouched. Returns true when the save was updated.
+   */
+  async reconcileFields(): Promise<boolean> {
+    return this.db.transaction('rw', this.db.careers, async () => {
+      const c = await this.db.careers.get('career');
+      if (!c) return false;
+      const next = reconcileFieldPools(c.pools, Number(c.flags?.seed ?? 0));
+      if (!next) return false;
+      await this.db.careers.put({ ...c, pools: next });
+      return true;
     });
   }
 
