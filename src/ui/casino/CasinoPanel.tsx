@@ -45,6 +45,8 @@ type Game = CasinoGameId;
 
 const CHIPS = [5, 10, 25, 100, 500];
 const BJ_L = CARD_LAYOUTS.blackjack;
+/** Wide scenes (craps, roulette) also put the dealer beside the table on wide screens (tested: fits one screen). */
+const WIDE_SIDE = true;
 
 /** True while the window is at most `px` wide (layout only). */
 function useNarrow(px: number): boolean {
@@ -185,6 +187,7 @@ function Blackjack() {
   return (
     <section className="hub-card casino-game bj-game">
       <h2 className="hub-title">Blackjack <span className="muted">Pays 3:2 · dealer stands on 17 · ${BJ_LIMITS.min}–${BJ_LIMITS.max}</span></h2>
+      <div className="table-layout side">
       {scene ? (
         <CardTableScene scene={scene} game="blackjack" testId="bj-felt">
           <div className="cs-block cs-row" style={feltAt(BJ_L.dealer)}>
@@ -216,6 +219,7 @@ function Blackjack() {
             velvet.play('win');
           }}
         />
+      </div>
       </div>
 
       {playing ? (
@@ -474,6 +478,7 @@ function Craps() {
         Craps <span className="muted">${CRAPS_LIMITS.min}–${CRAPS_LIMITS.max}</span>
         <span className={`puck ${table.point ? 'on' : ''}`}>{table.point ? `ON ${table.point}` : 'OFF'}</span>
       </h2>
+      <div className={`table-layout ${WIDE_SIDE ? 'side' : ''}`}>
       {crapsScene ? (
         <div className={`craps-scene craps-felt loc-${crapsScene.location}`} style={{ aspectRatio: `${crapsScene.size[0]} / ${crapsScene.size[1]}` }} data-testid="craps-felt" data-scene={crapsScene.location}>
           <img className="craps-scene-img" src={crapsScene.url} width={crapsScene.size[0]} height={crapsScene.size[1]} alt="" draggable={false} />
@@ -519,6 +524,7 @@ function Craps() {
             stick.play('call');
           }}
         />
+      </div>
       </div>
       <div className="craps-bets">
         {(Object.keys(BET_LABELS) as BetKey[]).map((k) => {
@@ -663,6 +669,8 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
       <h2 className="hub-title">
         Roulette <span className="muted">${ROULETTE_LIMITS.min}–${ROULETTE_LIMITS.maxSpot} a spot · single zero</span>
       </h2>
+      <div className={`table-layout ${WIDE_SIDE ? 'side' : ''}`}>
+      <div className="table-col">
       {rScene ? (
         <>
           <div className={`roulette-scene loc-${rScene.location}`} style={{ aspectRatio: `${rScene.size[0]} / ${rScene.size[1]}` }} data-testid="roulette-felt" data-scene={rScene.location}>
@@ -712,6 +720,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
           {history.map((n, i) => <b key={i} className={colorOf(n)}>{n}</b>)}
         </div>
       )}
+      </div>
       <div className="dealer-row">
         {monique.item && !spinning && !reaching ? (
           <DialogueBox item={monique.item} more={monique.more} onNext={monique.next} />
@@ -719,6 +728,7 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
           <MoniqueRest lastLine={moniqueLast} status={spinning || reaching ? 'The wheel is spinning…' : undefined} />
         )}
         <TipTray npcId="madame_monique" disabled={busy || spinning || reaching} onTipped={(r) => monique.tipReaction(r.line.text, r.line.status === 'approved', r.event === 'tip_huge' ? 'surprised' : 'smirk')} />
+      </div>
       </div>
       <div className="chip-rack">
         {CHIPS.map((c) => (

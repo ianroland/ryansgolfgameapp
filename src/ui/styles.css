@@ -1885,3 +1885,40 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
   .dealer-panel .rpg-name { font-size: 20px; }
   .dealer-panel.collapsed .dlg-oneline { font-size: 14px; }
 }
+/* Bigger chips on the tables (felt, zones, craps spots, roulette board). Always 1:1 (ChipImg). */
+.cs-felt .felt-chip img { width: 5cqw; }
+.cs-felt .felt-chip b { font-size: max(9px, 2.3cqw); }
+.cs-felt .ww-zone .felt-chip img { width: 4.8cqw; }
+.cs-felt .ww-zone.oval .felt-chip img { width: 4cqw; }
+.cs-felt .ww-zone.oval { justify-content: center; gap: 0; }
+.craps-felt-chip .felt-chip img { width: 4.6cqw; }
+.craps-felt-chip .felt-chip b { font-size: 2cqw; }
+.rb-cell .felt-chip img { width: max(22px, 4.8cqw); }
+.bj-game .felt-chip img, .ww-felt .felt-chip img { width: 3.9cqw; }
+
+/* Table + dealer layout: on wide screens the table takes the left column and the dealer's
+   dialogue (with the tip panel under it) the right; narrower screens stack as before. */
+.table-layout { display: block; }
+@media (min-width: 1000px) {
+  .table-layout.side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 360px); gap: 16px; align-items: start; margin-top: 4px; }
+  .table-layout.side > .card-scene, .table-layout.side > .craps-scene, .table-layout.side .roulette-scene, .table-layout.side > .table-stage, .table-layout.side > .ww-table { margin: 0; max-width: none; }
+  .table-layout.side > .dealer-row { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 0; align-content: start; }
+  .table-layout.side > .dealer-row > .tip-panel { grid-column: 1; align-self: start; }
+  .table-layout.side > .dealer-row > .rpg-box { align-self: start; }
+  .table-layout.side .dealer-panel { grid-template-columns: auto 1fr; padding: 12px; }
+  .table-layout.side .dealer-panel .dlg-side { position: absolute; top: 8px; right: 8px; flex-direction: row; align-items: center; }
+  .table-layout.side .dealer-panel .rpg-name { padding-right: 34px; }
+  .table-layout.side .dealer-panel .dlg-portrait > * { width: 80px; height: 80px; }
+  .table-layout.side .dealer-panel .rpg-text { min-height: 4.2em; }
+  .table-layout.side .dealer-panel.collapsed .rpg-text { min-height: 0; }
+  .table-layout.side .dealer-panel .rpg-next { margin-top: 6px; }
+}
+@media (min-width: 1000px) {
+  /* In the side column the collapse toggle sits in the corner; actions (Next ▶) get their own row. */
+  .table-layout.side .dealer-panel .dlg-side { position: static; grid-column: 1 / -1; justify-content: flex-end; }
+  .table-layout.side .dealer-panel .dlg-side:not(:has(.rpg-next)) { height: 0; margin-top: -14px; }
+  .table-layout.side .dealer-panel .dlg-toggle { position: absolute; top: 8px; right: 8px; }
+  .table-layout.side .dealer-panel .rpg-next { margin-top: 0; }
+  .table-layout.side .dealer-panel.collapsed .dlg-portrait > * { width: 40px; height: 40px; }
+  .table-layout.side .table-col .roulette-history { margin-left: 0; }
+}

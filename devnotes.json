@@ -2,6 +2,21 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.16.4",
+      "date": "2026-11-23",
+      "title": "Tables side by side with the dealer",
+      "items": [
+        {
+          "tag": "improved",
+          "text": "On wider screens every casino table now sits on the left, with the dealer's dialogue and the tip panel stacked on the right. The table, dealer and betting controls fit on one screen. Phones keep the stacked layout."
+        },
+        {
+          "tag": "improved",
+          "text": "Bigger chips on all the tables."
+        }
+      ]
+    },
+    {
       "version": "0.16.3",
       "date": "2026-11-23",
       "title": "Monique stays at the roulette table",

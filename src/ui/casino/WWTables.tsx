@@ -362,6 +362,7 @@ export function Baccarat() {
       <h2 className="hub-title">
         Baccarat <span className="muted">Punto Banco · 8 decks · ${BACCARAT_LIMITS.min}–${BACCARAT_LIMITS.max} a spot (proposed)</span>
       </h2>
+      <div className="table-layout side">
       <Stage scene={scene} game="baccarat" who="waifu" pose={chat.pose} felt="baccarat_felt" shoe="shoe_red" testId="baccarat-table">
         {(['player', 'tie', 'banker'] as const).map((spot) => {
           const z = BAC_ZONES[spot];
@@ -409,6 +410,7 @@ export function Baccarat() {
       <div className="dealer-row">
         <WWDialogue who="waifu" chat={chat as unknown as Chat<WWEvent>} />
         <TipTray npcId="waifu" disabled={busy || !revealed} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'delighted' : 'smile', 'present')} />
+      </div>
       </div>
       {notice && <p className="ww-notice" data-testid="bac-notice">{notice}</p>}
       <ChipPicker chip={chip} setChip={setChip} note={<>Tap Player, Banker or Tie to place <b>{formatMoney(chip)}</b> · on the table <b>{formatMoney(staked)}</b></>} />
@@ -555,6 +557,7 @@ export function ThreeCard() {
       <h2 className="hub-title">
         Three Card Poker <span className="muted">Ante ${THREE_CARD_LIMITS.anteMin}–${THREE_CARD_LIMITS.anteMax} · Pair Plus ${THREE_CARD_LIMITS.pairPlusMin}–${THREE_CARD_LIMITS.pairPlusMax} (proposed)</span>
       </h2>
+      <div className="table-layout side">
       <Stage scene={scene} game="three_card_poker" who="winston" pose={chat.pose} felt="threecard_felt" shoe="shoe_blue" testId="threecard-table">
         {hand && (
           <>
@@ -624,6 +627,7 @@ export function ThreeCard() {
       <div className="dealer-row">
         <WWDialogue who="winston" chat={chat as unknown as Chat<WWEvent>} />
         <TipTray npcId="winston" disabled={busy || !!pending} onTipped={(r: TipReaction) => chat.sayLine(r.line, r.event === 'tip_huge' ? 'surprised' : r.event === 'tier_up' ? 'laugh' : 'grin', 'present')} />
+      </div>
       </div>
       {r && showDealer && (
         <ul className="tc-breakdown" data-testid="tc-breakdown">
