@@ -9,7 +9,8 @@ import { casinoWeekKey } from '../career/engine';
 import { DomainError } from '../core/errors';
 import type { AppDB } from '../persistence/db';
 import { dealerById, DEALERS } from '../npc/registry';
-import { applyTip, applyVisit, freshNpcState, TIP_AMOUNTS, type TipOutcome } from '../npc/relationship';
+import { applyTip, applyVisit, freshNpcState, normalizeNpcState, TIP_AMOUNTS, type TipOutcome } from '../npc/relationship';
+import { eligibleHooks, type RelationshipHook } from '../npc/hooks';
 import type { NpcId, NpcState, RelationshipLogEntry } from '../npc/types';
 import type { EconomyService } from './economyService';
 import { pendingThreeCard } from './casinoService';
@@ -20,6 +21,8 @@ export interface TipResult {
   balance: number;
   /** This tip id was already applied: nothing was charged or counted again. */
   replayed: boolean;
+  /** Future relationship events that became eligible (none are registered yet). */
+  hooks: RelationshipHook[];
 }
 
 export class NpcService {
@@ -37,7 +40,8 @@ export class NpcService {
   }
 
   private async stateOf(npcId: NpcId): Promise<NpcState> {
-    return ((await this.db.npcState.get(npcId)) as NpcState | undefined) ?? freshNpcState(npcId);
+    const row = (await this.db.npcState.get(npcId)) as NpcState | undefined;
+    return row ? normalizeNpcState(row) : freshNpcState(npcId);
   }
 
   private async log(entry: Omit<RelationshipLogEntry, 'seq'>) {
@@ -48,7 +52,7 @@ export class NpcService {
   /** Every dealer's relationship (dealers Ryan hasn't met yet come back neutral). */
   async states(): Promise<NpcState[]> {
     const rows = new Map((await this.db.npcState.toArray()).map((r) => [r.npcId, r as NpcState]));
-    return DEALERS.map((d) => rows.get(d.id) ?? freshNpcState(d.id));
+    return DEALERS.map((d) => { const r = rows.get(d.id); return r ? normalizeNpcState(r) : freshNpcState(d.id); });
   }
 
   /** Ryan sits at a dealer's table: counted once per casino visit. */
@@ -58,8 +62,8 @@ export class NpcService {
       const c = await this.openCareer();
       const key = casinoWeekKey(c);
       const prev = await this.stateOf(npcId);
+      if (prev.lastVisitKey === key) return prev; // already counted this visit
       const next = applyVisit(prev, key);
-      if (next === prev) return prev;
       await this.db.npcState.put(next);
       const at = (await this.db.profiles.get(c.playerId))?.careerClock ?? new Date(0).toISOString();
       await this.log({ id: `rel:${npcId}:visit:${key}`, npcId, at, kind: 'visit', delta: 0, visitKey: key });
@@ -80,7 +84,7 @@ export class NpcService {
     return this.db.transaction('rw', [...this.economy.tables, this.db.careers, this.db.npcState, this.db.relationshipLog], async () => {
       const c = await this.openCareer();
       if (await this.db.ledger.where('idempotencyKey').equals(key).count()) {
-        return { outcome: null, state: await this.stateOf(npcId), balance: await this.economy.getBalance(c.playerId), replayed: true };
+        return { outcome: null, state: await this.stateOf(npcId), balance: await this.economy.getBalance(c.playerId), replayed: true, hooks: [] };
       }
       if (npcId === 'winston' && pendingThreeCard(c)) throw new DomainError('CAREER_RULE', 'Tip between hands: finish this hand first');
       const { transaction } = await this.economy.post({ ownerId: c.playerId, amount: -amount, type: 'tip', sourceId: npcId, idempotencyKey: key });
@@ -88,7 +92,7 @@ export class NpcService {
       const outcome = applyTip(applyVisit(await this.stateOf(npcId), visitKey), amount, dealer.tableMin, visitKey, transaction.timestamp);
       await this.db.npcState.put(outcome.next);
       await this.log({ id: `rel:${npcId}:${tipId}`, npcId, at: transaction.timestamp, kind: 'tip', amount, delta: outcome.gain, txnId: transaction.id, visitKey });
-      return { outcome, state: outcome.next, balance: transaction.balanceAfter, replayed: false };
+      return { outcome, state: outcome.next, balance: transaction.balanceAfter, replayed: false, hooks: eligibleHooks(outcome.next) };
     });
   }
 

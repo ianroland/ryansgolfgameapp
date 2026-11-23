@@ -1,0 +1,292 @@
+{
+ "tip_5_normal.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_5_normal.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_5_hover.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_5_hover.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_5_pressed.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_5_pressed.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_25_normal.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_25_normal.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_25_hover.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_25_hover.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_25_pressed.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_25_pressed.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_100_normal.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_100_normal.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_100_hover.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_100_hover.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_100_pressed.png": {
+  "size": [
+   114,
+   74
+  ],
+  "from": "tip_100_pressed.png",
+  "crop": [
+   7,
+   32,
+   121,
+   106
+  ]
+ },
+ "tip_tray.png": {
+  "size": [
+   193,
+   122
+  ],
+  "from": "tip_tray_220x160.png",
+  "crop": [
+   15,
+   29,
+   208,
+   151
+  ]
+ },
+ "tier_acquaintance.png": {
+  "size": [
+   103,
+   103
+  ],
+  "from": "tier_acquaintance_128x128.png",
+  "crop": [
+   13,
+   8,
+   116,
+   111
+  ]
+ },
+ "tier_regular.png": {
+  "size": [
+   103,
+   103
+  ],
+  "from": "tier_regular_128x128.png",
+  "crop": [
+   13,
+   8,
+   116,
+   111
+  ]
+ },
+ "tier_friend.png": {
+  "size": [
+   103,
+   103
+  ],
+  "from": "tier_friend_128x128.png",
+  "crop": [
+   13,
+   8,
+   116,
+   111
+  ]
+ },
+ "tier_confidant.png": {
+  "size": [
+   103,
+   103
+  ],
+  "from": "tier_confidant_128x128.png",
+  "crop": [
+   13,
+   8,
+   116,
+   111
+  ]
+ },
+ "tier_inner_circle.png": {
+  "size": [
+   103,
+   103
+  ],
+  "from": "tier_inner_circle_128x128.png",
+  "crop": [
+   13,
+   8,
+   116,
+   111
+  ]
+ },
+ "tier_up_banner.png": {
+  "size": [
+   872,
+   115
+  ],
+  "from": "tier_up_banner_900x160.png",
+  "crop": [
+   14,
+   21,
+   886,
+   136
+  ]
+ },
+ "rel_gain.png": {
+  "size": [
+   39,
+   35
+  ],
+  "from": "rel_gain_48x48.png",
+  "crop": [
+   5,
+   6,
+   44,
+   41
+  ]
+ },
+ "rel_neutral.png": {
+  "size": [
+   39,
+   33
+  ],
+  "from": "rel_neutral_48x48.png",
+  "crop": [
+   5,
+   6,
+   44,
+   39
+  ]
+ },
+ "rel_loss.png": {
+  "size": [
+   39,
+   33
+  ],
+  "from": "rel_loss_48x48.png",
+  "crop": [
+   5,
+   6,
+   44,
+   39
+  ]
+ },
+ "tip_flight_00.png": {
+  "size": [
+   128,
+   128
+  ]
+ },
+ "tip_flight_01.png": {
+  "size": [
+   128,
+   128
+  ]
+ },
+ "tip_flight_02.png": {
+  "size": [
+   128,
+   128
+  ]
+ },
+ "tip_flight_03.png": {
+  "size": [
+   128,
+   128
+  ]
+ },
+ "tip_flight_04.png": {
+  "size": [
+   128,
+   128
+  ]
+ },
+ "tip_flight_05.png": {
+  "size": [
+   128,
+   128
+  ]
+ },
+ "panel.png": {
+  "size": [
+   900,
+   220
+  ],
+  "note": "9-slice border"
+ }
+}

@@ -1,0 +1,221 @@
+{
+  "pack": "Casino Tipping & Relationships V2",
+  "status": "clean transparent UI prototype; visual QA and in-game viewport approval required",
+  "style": "Neo Geo inspired, gold purple emerald",
+  "files": [
+    {
+      "name": "dialogue_panel_blank_900x220.png",
+      "size": [
+        900,
+        220
+      ],
+      "alpha": true
+    },
+    {
+      "name": "rel_gain_48x48.png",
+      "size": [
+        48,
+        48
+      ],
+      "alpha": true
+    },
+    {
+      "name": "rel_loss_48x48.png",
+      "size": [
+        48,
+        48
+      ],
+      "alpha": true
+    },
+    {
+      "name": "rel_neutral_48x48.png",
+      "size": [
+        48,
+        48
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tier_acquaintance_128x128.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tier_confidant_128x128.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tier_friend_128x128.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tier_inner_circle_128x128.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tier_regular_128x128.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tier_up_banner_900x160.png",
+      "size": [
+        900,
+        160
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_100_hover.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_100_normal.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_100_pressed.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_25_hover.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_25_normal.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_25_pressed.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_5_hover.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_5_normal.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_5_pressed.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_flight_00.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_flight_01.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_flight_02.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_flight_03.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_flight_04.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_flight_05.png",
+      "size": [
+        128,
+        128
+      ],
+      "alpha": true
+    },
+    {
+      "name": "tip_tray_220x160.png",
+      "size": [
+        220,
+        160
+      ],
+      "alpha": true
+    }
+  ],
+  "runtime_rules": [
+    "All bankroll deductions through central ledger",
+    "Tips only between rounds",
+    "No casino odds changes",
+    "Amounts and text rendered in UI; asset button labels are illustrative"
+  ]
+}

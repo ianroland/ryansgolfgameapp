@@ -43,5 +43,5 @@ export const TX_LABELS: Record<string, string> = {
   sponsor_income: 'Sponsor',
   story: 'Life',
   casino: 'Casino',
-  tip: 'Dealer tip',
+  tip: 'Dealer tip (gratuity)',
 };

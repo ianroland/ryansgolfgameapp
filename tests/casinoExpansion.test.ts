@@ -15,8 +15,11 @@ import { LOCATIONS, isUnlocked, unlockThreshold } from '../src/expansion/locatio
 import { deriveFromLedger, UNLOCK_RULES } from '../src/expansion/unlocks';
 import { DEALERS } from '../src/npc/registry';
 import {
-  applyTip, applyVisit, freshNpcState, GOODWILL_CAP, NEUTRAL_BASE, TIERS, tierOf, TIP_AMOUNTS, TIP_GAIN_CAP, VISIT_GAIN_CAP,
+  applyInteraction, applyTip, applyVisit, freshNpcState, GOODWILL_CAP, NEUTRAL_BASE, normalizeNpcState, relationshipOf, TIERS, tierIdOf, tierOf,
+  tipFrequency, TIP_AMOUNTS, TIP_GAIN_CAP, VISIT_GAIN_CAP,
 } from '../src/npc/relationship';
+import { RELATIONSHIP_CONFIG } from '../src/npc/config';
+import { eligibleHooks, RELATIONSHIP_HOOKS } from '../src/npc/hooks';
 import { pickTipLine, TIP_SCRIPTS } from '../src/npc/tipLines';
 import { CURRENT_SCHEMA_VERSION, STORES_V2 } from '../src/persistence/db';
 import { createServices, type GameServices } from '../src/services';
@@ -188,10 +191,57 @@ describe('existing saves', () => {
 
 describe('tipping rules (pure)', () => {
   const at = '2027-03-01T00:00:00.000Z';
-  it('tiers are labels; tips alone can never pass "Regular"', () => {
-    expect(TIERS.map((t) => t.label)).toEqual(['New face', 'Familiar', 'Regular', 'Friend', 'Close friend', 'Confidant']);
-    expect(tierOf(freshNpcState('waifu'))).toBe('New face');
+  it('five tiers; everyone starts an Acquaintance; tips alone can never pass Regular', () => {
+    expect(TIERS.map((t) => t.label)).toEqual(['Acquaintance', 'Regular', 'Friend', 'Confidant', 'Inner Circle']);
+    expect(TIERS.map((t) => t.id)).toEqual(RELATIONSHIP_CONFIG.tiers.map((t) => t.id));
+    expect(tierOf(freshNpcState('waifu'))).toBe('Acquaintance');
     expect(tierOf({ base: NEUTRAL_BASE, goodwill: GOODWILL_CAP })).toBe('Regular');
+  });
+
+  it('higher tiers need meaningful interactions; tier advancement is flagged and remembered', () => {
+    let s = freshNpcState('winston');
+    for (let v = 0; v < 40; v++) for (let i = 0; i < 3; i++) s = applyTip(s, 100, 10, `v${v}`, at).next;
+    expect(tierIdOf(s)).toBe('regular');
+    expect(s.flags!.reached_regular).toBe(at);
+    s = applyInteraction(s, 8, 'helped_winston', at);
+    expect(tierIdOf(s)).toBe('friend');
+    expect(s.flags!.reached_friend).toBe(at);
+    expect(s.memories!.map((m) => m.key)).toContain('helped_winston');
+    s = applyInteraction(s, 30, 'big_favour', at);
+    expect(tierIdOf(s)).toBe('inner_circle');
+    expect(relationshipOf(s)).toBeLessThanOrEqual(100);
+  });
+
+  it('the tier-up event fires on the tip that crosses a tier', () => {
+    let s = freshNpcState('velvet_vega');
+    const events: string[] = [];
+    for (let v = 0; v < 6; v++) for (let i = 0; i < 2; i++) {
+      const o = applyTip(s, 100, 10, `v${v}`, at);
+      events.push(o.event);
+      s = o.next;
+    }
+    expect(events.filter((e) => e === 'tier_up')).toHaveLength(1);
+    expect(events[0]).toBe('tip_first');
+  });
+
+  it('relationship hooks: none registered yet; a registered hook becomes eligible once, at its tier', () => {
+    expect(RELATIONSHIP_HOOKS).toEqual([]);
+    const hook = { id: 'test_invite', npc: 'winston' as const, minTier: 'friend' as const, onceFlag: 'invited' };
+    const s = freshNpcState('winston');
+    expect(eligibleHooks(s, [hook])).toEqual([]);
+    const friend = applyInteraction(s, 25, 'x', at);
+    expect(eligibleHooks(friend, [hook]).map((h) => h.id)).toEqual(['test_invite']);
+    expect(eligibleHooks({ ...friend, flags: { invited: true } }, [hook])).toEqual([]);
+    expect(eligibleHooks(friend, [{ ...hook, npc: 'waifu' as const }])).toEqual([]);
+  });
+
+  it('rows saved by v0.15.0 (no flags, memories or visit count) load with sensible defaults', () => {
+    const old = { npcId: 'waifu' as const, base: 50, goodwill: 2, visits: 3, lastVisitKey: '1:3', tips: { lifetime: 30, count: 2, largest: 25, visitKeys: ['1:1', '1:3'], visitKey: '1:3', visitGain: 1 } };
+    const n = normalizeNpcState(old);
+    expect(n.tips.visitsTipped).toBe(2);
+    expect(n.flags).toEqual({});
+    expect(n.memories).toEqual([]);
+    expect(tipFrequency(n)).toBeCloseTo(2 / 3);
   });
 
   it('diminishing returns: bigger tips help more, but far less than proportionally, and one tip is capped', () => {
@@ -216,6 +266,7 @@ describe('tipping rules (pure)', () => {
     expect(s.goodwill).toBeGreaterThan(GOODWILL_CAP - 0.5);
     expect(tierOf(s)).toBe('Regular');
     expect(s.tips.count).toBe(20 + 58 * 5);
+    expect(s.tips.visitsTipped).toBe(59);
     expect(s.tips.largest).toBe(1_000_000);
     expect(s.tips.visitKeys).toHaveLength(8);
   });
@@ -240,7 +291,7 @@ describe('tipping rules (pure)', () => {
     const never = Array.from({ length: 50 }, (_, i) => i).reduce((x, i) => applyVisit(x, `w${i}`), freshNpcState('madame_monique'));
     expect(never.base).toBe(NEUTRAL_BASE);
     expect(never.goodwill).toBe(0);
-    expect(tierOf(never)).toBe('New face');
+    expect(tierOf(never)).toBe('Acquaintance');
   });
 
   it('reaction events: first tip, generous, huge, maxed', () => {
@@ -332,7 +383,10 @@ describe('tipping through the casino', () => {
     expect(x.visits).toBe(4);
     expect(x.tips.count).toBe(0);
     expect(x.goodwill).toBe(0);
-    expect(tierOf(x)).toBe('New face');
+    expect(tierOf(x)).toBe('Acquaintance');
+    expect(w.tips.visitsTipped).toBe(2);
+    expect(tipFrequency(w)).toBe(0.5);
+    expect(w.tips.lastAt).toBeDefined();
     s.db.close();
   });
 

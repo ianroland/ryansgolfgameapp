@@ -2,6 +2,25 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.15.1",
+      "date": "2026-11-23",
+      "title": "Dealer tipping, upgraded",
+      "items": [
+        {
+          "tag": "improved",
+          "text": "A new tip panel at every dealer table: a tip tray, $5 / $25 / $100 buttons, and your chip flies across to the dealer. The dealer answers once it lands."
+        },
+        {
+          "tag": "improved",
+          "text": "Five relationship tiers with badges: Acquaintance, Regular, Friend, Confidant and Inner Circle. A banner celebrates moving up. Tips can make you a Regular; going further takes more than money."
+        },
+        {
+          "tag": "improved",
+          "text": "Each dealer remembers your first tip, the tiers you've reached and how often you tip on your visits."
+        }
+      ]
+    },
+    {
       "version": "0.15.0",
       "date": "2026-11-23",
       "title": "Casino lobby, dealer tips and two casinos to unlock",

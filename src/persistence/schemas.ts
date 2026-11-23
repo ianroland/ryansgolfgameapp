@@ -245,7 +245,7 @@ export const NpcStateSchema = z.object({
   npcId: id,
   /** Earned through conversations and events (not in Slice 1; starts neutral). */
   base: z.number().min(0).max(100),
-  /** Earned through tips only; capped (see GOODWILL_CAP). */
+  /** Earned through tips only; capped (see RELATIONSHIP_CONFIG.goodwillCap). */
   goodwill: z.number().min(0).max(100),
   visits: nonNeg,
   lastVisitKey: z.string(),
@@ -258,9 +258,12 @@ export const NpcStateSchema = z.object({
     /** Goodwill gained on the current visit (per-visit cap). */
     visitKey: z.string(),
     visitGain: z.number().min(0),
+    visitsTipped: nonNeg.optional(),
     firstAt: gameTime.optional(),
     lastAt: gameTime.optional(),
   }),
+  flags: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).optional(),
+  memories: z.array(z.object({ key: z.string().min(1), at: gameTime })).max(50).optional(),
 });
 
 /** Append-only relationship history. */

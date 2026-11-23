@@ -74,7 +74,7 @@
 |---|---|---|---|
 | Q2 | White Buffalo introduction: cinematic on first visit, or an invitation story? | WB1 | Short cinematic; the invitation story is optional |
 | Q3 | Expansion triggers instead of story acts (the story is stuck in Act I)? | F5 | Own triggers |
-| Q4 | Relationship display: tier name only, a number, or hidden? Decay? | F4, UI | Tier name visible, number hidden, no decay |
+| Q4 | ~~Relationship display~~ **Resolved (v0.15.1):** five tiers shown as name + badge (Acquaintance, Regular, Friend, Confidant, Inner Circle); score hidden; no decay. Thresholds still PROPOSED (`src/npc/config.ts`). | — | — |
 | Q5 | Poker seats, buy-ins, rebuys, AI difficulty | P1, room art | 6 seats; buy-in bands per location |
 | Q6 | Stud limit structure; Omaha pot-limit vs no-limit | P2, P4 | Fixed-limit Stud; pot-limit Omaha |
 | Q7 | One weekly casino activity = one location? Travel cost to Morongo? | F3 | Yes; Morongo has a travel cost |

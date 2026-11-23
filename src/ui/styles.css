@@ -1671,13 +1671,38 @@ kbd { display: inline-block; min-width: 22px; padding: 0 6px; font-family: var(-
 .lobby-progress small { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11px; text-shadow: 1px 1px 0 var(--ink); }
 .lobby-action { margin-top: auto; pointer-events: none; }
 .lobby-card.locked .lobby-action { opacity: 0.7; }
-.tier-chip { padding: 1px 8px; font-family: var(--head); font-size: 14px; line-height: 1.2; letter-spacing: 0.04em; text-transform: none; color: #fff; text-shadow: none; background: #5b3fa0; border: 1px solid rgba(255, 230, 128, 0.5); border-radius: 999px; }
-.tip-tray { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 0; padding: 6px 10px; background: rgba(0, 0, 0, 0.2); border: 2px dashed rgba(255, 230, 128, 0.35); border-radius: 10px; }
-.tip-tray .chip { width: 40px; height: 40px; font-size: 13px; }
-.tip-label { font-family: var(--head); font-size: 16px; color: var(--gold-2); text-shadow: 2px 2px 0 var(--ink); }
-.tip-total { font-size: 13px; opacity: 0.9; }
+.tier-chip { display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px 1px 3px; font-family: var(--head); font-size: 14px; line-height: 1.2; letter-spacing: 0.04em; text-transform: none; color: #fff; text-shadow: none; background: #3a1f5c; border: 1px solid rgba(255, 230, 128, 0.5); border-radius: 999px; }
+.tier-chip img { image-rendering: pixelated; }
+/* Tip panel (Tipping & Relationships V2 art). The panel art is a 9-slice border: corners keep their size. */
+.tip-panel { position: relative; margin: 10px 0 0; padding: 4px 8px; border-style: solid; border-width: 18px; border-image-slice: 36 fill; border-image-width: 18px; border-image-repeat: stretch; }
+.tip-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.tip-tray-art { width: 96px; height: auto; image-rendering: pixelated; filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.35)); }
+.tip-info { display: flex; flex: 1 1 220px; flex-direction: column; gap: 3px; min-width: 0; }
+.tip-title { font-family: var(--head); font-size: 22px; line-height: 1; color: var(--gold-2); text-shadow: 2px 2px 0 var(--ink); text-transform: uppercase; }
+.tip-rel { display: flex; align-items: center; gap: 6px; font-size: 15px; }
+.tip-rel img { image-rendering: pixelated; }
+.tip-rel b { font-family: var(--head); font-size: 18px; color: #fff; }
+.tip-feedback { width: 28px; height: auto; animation: pop 0.3s ease-out; }
+.tip-total { font-size: 13px; opacity: 0.92; }
 .tip-total b { color: var(--gold-2); }
+.tip-buttons { display: flex; gap: 8px; }
+.tip-btn { width: 86px; height: 56px; padding: 0; background: var(--tip-n) center / contain no-repeat; border: 0; border-radius: 10px; cursor: pointer; image-rendering: pixelated; filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.35)); }
+.tip-btn:hover:not(:disabled), .tip-btn:focus-visible { background-image: var(--tip-h); }
+.tip-btn:active:not(:disabled) { background-image: var(--tip-p); transform: translateY(2px); filter: none; }
+.tip-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.tip-btn:disabled { cursor: not-allowed; opacity: 0.45; filter: grayscale(0.6); }
+.tip-wait { display: block; margin-top: 2px; font-size: 12px; opacity: 0.8; }
+.tier-banner { position: relative; display: grid; place-items: center; margin: 0 auto 8px; max-width: 620px; animation: pop 0.35s ease-out; }
+.tier-banner-art { width: 100%; height: auto; image-rendering: pixelated; }
+.tier-banner-text { display: flex; align-items: center; gap: 8px; margin-top: 4px; font-size: 16px; color: #fff; text-shadow: 1px 1px 0 var(--ink); }
+.tier-banner-text b { color: var(--gold-2); font-family: var(--head); font-size: 20px; }
+.tip-flight { position: fixed; z-index: 90; pointer-events: none; image-rendering: pixelated; transition-property: transform; transition-timing-function: cubic-bezier(0.3, 0.1, 0.4, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .tier-banner, .tip-feedback { animation: none !important; }
+  .tip-flight { display: none; }
+}
 @media (max-width: 720px) {
   .casino-lobby { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
   .lobby-card { scroll-snap-align: start; }
 }
+.rpg-box.dealer .rpg-name { flex-wrap: wrap; row-gap: 4px; }

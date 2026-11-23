@@ -1,31 +1,48 @@
 /**
- * Dealer tipping (Casino Secrets & Rivalries, Slice 1): the tip tray under each dealer's
- * dialogue box, and the relationship tier shown beside the dealer's name (a label, never a
- * number). Reuses the existing chip buttons; no new art. Presentation only: the rules live in
- * src/npc and NpcService, and nothing here reaches a game's rules or payouts.
+ * Dealer tipping UI (Casino Secrets & Rivalries, Slice 1), built on the Tipping &
+ * Relationships V2 asset pack (prototype art): tip tray, $5/$25/$100 buttons with normal /
+ * hover / pressed states, tier badges, gain / neutral indicators, the tier-up banner, the
+ * dialogue-panel frame (as a 9-slice border, never stretched) and the 6-frame tip flight.
+ *
+ * Presentation only: rules live in src/npc, money in NpcService (one ledger debit per press,
+ * type 'tip', a gratuity). Nothing here reaches a game's odds, RNG, rules or payouts. The panel
+ * sits below the dealer's dialogue box, in the page flow, so it never covers cards, chips, bet
+ * controls or the dealer. The flight is a brief overlay that ignores the pointer and is skipped
+ * when the player prefers reduced motion.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { sound } from '../../audio/sound';
 import { newId } from '../../core/ids';
+import type { TierId } from '../../npc/config';
 import { dealerById } from '../../npc/registry';
-import { freshNpcState, TIP_AMOUNTS, tierOf, type TipEvent } from '../../npc/relationship';
+import { freshNpcState, normalizeNpcState, TIERS, TIP_AMOUNTS, tierDefOf, type TipEvent } from '../../npc/relationship';
 import { pickTipLine, type TipLine } from '../../npc/tipLines';
 import type { NpcId } from '../../npc/types';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
 
-/** The dealer's relationship tier, from saved state. */
+const art = import.meta.glob<string>('../../assets/casino/tipping/*.png', { eager: true, query: '?url', import: 'default' });
+const tipArt = (name: string) => art[`../../assets/casino/tipping/${name}.png`];
+const FLIGHT = [0, 1, 2, 3, 4, 5].map((i) => tipArt(`tip_flight_0${i}`));
+const FLIGHT_FRAME_MS = 80;
+
+export const tierBadge = (id: TierId) => tipArt(`tier_${id}`);
+
+/** The dealer's relationship, from saved state (tier only: the score is never shown). */
 export function useDealerTier(npcId: NpcId) {
   const { state } = useGame();
-  const s = state.expansion.npcs.find((n) => n.npcId === npcId) ?? freshNpcState(npcId);
-  return { tier: tierOf(s), state: s };
+  const row = state.expansion.npcs.find((n) => n.npcId === npcId);
+  const s = row ? normalizeNpcState(row) : freshNpcState(npcId);
+  return { tier: tierDefOf(s), state: s };
 }
 
 export function TierChip({ npcId }: { npcId: NpcId }) {
   const { tier } = useDealerTier(npcId);
   return (
-    <span className="tier-chip" title="How well this dealer knows you" data-testid={`tier-${npcId}`}>
-      {tier}
+    <span className="tier-chip" title="How well this dealer knows you" data-testid={`tier-${npcId}`} data-tier={tier.id}>
+      <img src={tierBadge(tier.id)} alt="" width={18} height={18} draggable={false} />
+      {tier.label}
     </span>
   );
 }
@@ -36,54 +53,157 @@ export interface TipReaction {
   amount: number;
 }
 
+const reducedMotion = () => {
+  try {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch {
+    return false;
+  }
+};
+
+/** The chip flies from the tray to the dealer: six frames while it travels. */
+function TipFlight({ from, to, onDone }: { from: DOMRect; to: DOMRect; onDone: () => void }) {
+  const [frame, setFrame] = useState(0);
+  const [go, setGo] = useState(false);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setGo(true));
+    const t = window.setInterval(() => setFrame((f) => Math.min(FLIGHT.length - 1, f + 1)), FLIGHT_FRAME_MS);
+    const end = window.setTimeout(onDone, FLIGHT_FRAME_MS * FLIGHT.length + 120);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearInterval(t);
+      window.clearTimeout(end);
+    };
+  }, [onDone]);
+  const size = 96;
+  const x0 = from.left + from.width / 2 - size / 2;
+  const y0 = from.top + from.height / 2 - size / 2;
+  const dx = to.left + to.width / 2 - size / 2 - x0;
+  const dy = to.top + to.height * 0.55 - size / 2 - y0;
+  return createPortal(
+    <img
+      className="tip-flight"
+      src={FLIGHT[frame]}
+      alt=""
+      aria-hidden
+      data-testid="tip-flight"
+      style={{ left: x0, top: y0, width: size, height: size, transform: go ? `translate(${dx}px, ${dy}px)` : 'none', transitionDuration: `${FLIGHT_FRAME_MS * FLIGHT.length}ms` }}
+    />,
+    document.body,
+  );
+}
+
 /**
- * Tip buttons for one dealer. Disabled during a hand, spin or roll (`disabled`). Counts a visit
- * to the dealer's table once per casino visit. Each press has its own id, so a retried request
- * can't charge twice.
+ * Tip panel for one dealer, under the dealer's dialogue box. Disabled during a hand, spin or roll
+ * (`disabled`). Counts a visit to the dealer's table once per casino visit. A press is locked
+ * until its request finishes, and has its own id, so rapid clicks can't charge twice.
  */
 export function TipTray({ npcId, disabled, onTipped }: { npcId: NpcId; disabled: boolean; onTipped: (r: TipReaction) => void }) {
   const { state, services, run } = useGame();
-  const { state: npc } = useDealerTier(npcId);
+  const { tier, state: npc } = useDealerTier(npcId);
   const [busy, setBusy] = useState(false);
+  const lock = useRef(false);
+  const [flight, setFlight] = useState<{ from: DOMRect; to: DOMRect } | null>(null);
+  const [feedback, setFeedback] = useState<'gain' | 'neutral' | null>(null);
+  const [banner, setBanner] = useState<TierId | null>(null);
   const recent = useRef<string[]>([]);
+  const trayRef = useRef<HTMLImageElement>(null);
+  const timers = useRef<number[]>([]);
   const dealer = dealerById(npcId)!;
+  const endFlight = useCallback(() => setFlight(null), []);
 
   useEffect(() => {
     void services.npc.visit(npcId).catch(() => {});
   }, [services, npcId]);
+  useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), []);
+  const later = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
+
+  const startFlight = () => {
+    const tray = trayRef.current;
+    const table = tray?.closest('.casino-game');
+    const target = table?.querySelector('.table-dealer, .ww-dealer, [data-testid="monique-sprite"]');
+    if (!tray || !target || reducedMotion()) return;
+    setFlight({ from: tray.getBoundingClientRect(), to: target.getBoundingClientRect() });
+  };
 
   const tip = async (amount: number) => {
-    if (busy || disabled) return;
+    if (lock.current || disabled) return;
+    lock.current = true;
     setBusy(true);
     const tipId = newId('tip');
     const r = await run(() => services.npc.tip(npcId, amount, tipId));
+    lock.current = false;
     setBusy(false);
     if (!r || !r.outcome) return;
-    sound.play(r.outcome.event === 'tier_up' ? 'achievement' : 'cash', { volume: 0.4 });
-    const line = pickTipLine(npcId, r.outcome.event, recent.current);
+    const outcome = r.outcome;
+    startFlight();
+    sound.play(outcome.event === 'tier_up' ? 'achievement' : 'cash', { volume: 0.4 });
+    const line = pickTipLine(npcId, outcome.event, recent.current);
     recent.current = [...recent.current, line.id].slice(-6);
-    onTipped({ line, event: r.outcome.event, amount });
+    setFeedback(outcome.gain > 0 ? 'gain' : 'neutral');
+    later(2200, () => setFeedback(null));
+    if (outcome.event === 'tier_up') {
+      setBanner(outcome.tierAfter);
+      later(3600, () => setBanner(null));
+    }
+    // The dealer answers once the chip has landed.
+    later(reducedMotion() ? 0 : FLIGHT_FRAME_MS * FLIGHT.length, () => onTipped({ line, event: outcome.event, amount }));
   };
 
+  const bannerTier = banner ? TIERS.find((t) => t.id === banner) : null;
+  const visits = Math.max(npc.visits, npc.tips.visitsTipped ?? 0);
+
   return (
-    <div className="tip-tray" data-testid={`tip-tray-${npcId}`}>
-      <span className="tip-label">Tip {dealer.short}</span>
-      {TIP_AMOUNTS.map((a) => (
-        <button
-          key={a}
-          className={`chip chip-${a}`}
-          onClick={() => tip(a)}
-          disabled={disabled || busy || state.balance < a}
-          title={disabled ? 'Tip between hands' : `Tip ${formatMoney(a)}`}
-          aria-label={`Tip ${dealer.name} ${formatMoney(a)}`}
-          data-testid={`tip-${npcId}-${a}`}
-        >
-          {a}
-        </button>
-      ))}
-      <span className="tip-total" data-testid={`tip-total-${npcId}`}>
-        {npc.tips.count > 0 ? <>Tipped <b>{formatMoney(npc.tips.lifetime)}</b> over {npc.tips.count} {npc.tips.count === 1 ? 'tip' : 'tips'}</> : 'Tips are optional, and never change the game.'}
-      </span>
+    <div className="tip-panel" data-testid={`tip-tray-${npcId}`} style={{ borderImageSource: `url(${tipArt('panel')})` }}>
+      {bannerTier ? (
+        <div className="tier-banner" role="status" data-testid="tier-banner">
+          <img className="tier-banner-art" src={tipArt('tier_up_banner')} alt="Relationship advanced!" draggable={false} />
+          <span className="tier-banner-text">
+            <img src={tierBadge(bannerTier.id)} alt="" width={34} height={34} draggable={false} />
+            {dealer.name} now counts you as <b>{bannerTier.id === 'inner_circle' ? 'Inner Circle' : `a ${bannerTier.label}`}</b>
+          </span>
+        </div>
+      ) : null}
+      <div className="tip-row">
+        <img ref={trayRef} className="tip-tray-art" src={tipArt('tip_tray')} alt="" draggable={false} width={193} height={122} />
+        <div className="tip-info">
+          <span className="tip-title">Tip {dealer.short}</span>
+          <span className="tip-rel">
+            <img src={tierBadge(tier.id)} alt="" width={30} height={30} draggable={false} />
+            <b data-testid={`tip-tier-${npcId}`}>{tier.label}</b>
+            {feedback && <img className="tip-feedback" src={tipArt(`rel_${feedback}`)} alt={feedback === 'gain' ? 'Relationship improved' : 'No change'} data-testid="tip-feedback" data-kind={feedback} />}
+          </span>
+          <span className="tip-total" data-testid={`tip-total-${npcId}`}>
+            {npc.tips.count > 0 ? (
+              <>
+                <b>{formatMoney(npc.tips.lifetime)}</b> in {npc.tips.count} {npc.tips.count === 1 ? 'tip' : 'tips'} · tipped on {npc.tips.visitsTipped ?? 0} of {visits} {visits === 1 ? 'visit' : 'visits'}
+              </>
+            ) : (
+              'Optional. Tips never change the game.'
+            )}
+          </span>
+        </div>
+        <div className="tip-buttons" role="group" aria-label={`Tip ${dealer.name}`}>
+          {TIP_AMOUNTS.map((a) => {
+            const off = disabled || busy || state.balance < a;
+            return (
+              <button
+                key={a}
+                className="tip-btn"
+                onClick={() => tip(a)}
+                disabled={off}
+                title={disabled ? 'Tip between hands' : state.balance < a ? 'Not enough in the bank' : `Tip ${dealer.name} ${formatMoney(a)}`}
+                data-testid={`tip-${npcId}-${a}`}
+                style={{ ['--tip-n' as string]: `url(${tipArt(`tip_${a}_normal`)})`, ['--tip-h' as string]: `url(${tipArt(`tip_${a}_hover`)})`, ['--tip-p' as string]: `url(${tipArt(`tip_${a}_pressed`)})` }}
+              >
+                <span className="sr-only">Tip {formatMoney(a)}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      {disabled && <span className="tip-wait">Tips open between hands</span>}
+      {flight && <TipFlight from={flight.from} to={flight.to} onDone={endFlight} />}
     </div>
   );
 }

@@ -17,9 +17,16 @@ export interface NpcState {
     visitKeys: string[];
     visitKey: string;
     visitGain: number;
+    /** Casino visits on which Ryan tipped this dealer (lifetime). Missing on v0.15.0 rows. */
+    visitsTipped?: number;
     firstAt?: GameTime;
+    /** Game time of the last tip. */
     lastAt?: GameTime;
   };
+  /** Significant moments and dialogue flags (first tip, tiers reached, future event flags). */
+  flags?: Record<string, string | number | boolean>;
+  /** Significant memories, newest last (capped). */
+  memories?: { key: string; at: GameTime }[];
 }
 
 export interface RelationshipLogEntry {
