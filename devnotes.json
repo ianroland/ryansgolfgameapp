@@ -9,6 +9,10 @@
         {
           "tag": "fixed",
           "text": "Madame Monique no longer disappears from roulette once her line is dismissed. Her portrait panel stays beside the tip panel, showing her last line, and shows the wheel spinning during spins."
+        },
+        {
+          "tag": "improved",
+          "text": "Bigger dealer dialogue text at every table."
         }
       ]
     },

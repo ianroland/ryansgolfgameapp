@@ -1875,3 +1875,13 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .roulette-history b.black { background: #111; }
 .roulette-history b.green { background: #128a3d; }
 .rpg-text.rpg-status { font-style: italic; opacity: 0.8; }
+/* Bigger dealer dialogue text (readability). */
+.dealer-panel .rpg-text { font-size: 21px; line-height: 1.35; }
+.dealer-panel .rpg-name { font-size: 24px; }
+.dealer-panel.collapsed .dlg-oneline { font-size: 16px; }
+.dealer-panel.collapsed .rpg-name { font-size: 17px; }
+@media (max-width: 720px) {
+  .dealer-panel .rpg-text { font-size: 18px; }
+  .dealer-panel .rpg-name { font-size: 20px; }
+  .dealer-panel.collapsed .dlg-oneline { font-size: 14px; }
+}
