@@ -1,8 +1,8 @@
 [
   {
     "id": "gdc",
-    "name": "Grand Diamond Circuit",
-    "short": "GDC",
+    "name": "Grand Diamond League",
+    "short": "GDL",
     "sport": "baseball",
     "founded": 1972,
     "identity": "The Workingman's League",
@@ -35,8 +35,8 @@
   },
   {
     "id": "ccl",
-    "name": "Crown Court League",
-    "short": "CCL",
+    "name": "Crown Ball League",
+    "short": "CBL",
     "sport": "basketball",
     "founded": 1974,
     "identity": "The Players' League",
@@ -67,8 +67,8 @@
   },
   {
     "id": "igl",
-    "name": "Iron Gridiron League",
-    "short": "IGL",
+    "name": "Amigo League Football",
+    "short": "ALF",
     "sport": "football",
     "founded": 1976,
     "identity": "The Saturday League",
@@ -106,7 +106,7 @@
   },
   {
     "id": "fhl",
-    "name": "Frostline Hockey League",
+    "name": "Federal Hockey League",
     "short": "FHL",
     "sport": "hockey",
     "founded": 1978,

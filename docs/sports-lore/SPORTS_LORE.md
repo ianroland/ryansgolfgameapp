@@ -1,5 +1,7 @@
 # Sports lore: historical canon layer (`sports-lore/1`)
 
+> **League names (owner rename, 2026-11-23):** Grand Diamond League (**GDL**, baseball), Crown Ball League (**CBL**, basketball), Amigo League Football (**ALF**, football), Federal Hockey League (**FHL**, hockey). Internal ids are unchanged (`gdc`, `ccl`, `igl`, `fhl`; team ids such as `igl_ironclads`; event ids such as `igl-1994-001`), so saves, bets, history data and exports keep working. Older reports in this folder use the previous names. New names are not legally cleared either.
+
 **Status:** canon revision `0.1.1-draft`, status `proposed`. Source: `03_SPORTS_UNIVERSE_HISTORY.md` (draft for approval). Original fictional lore; team names are not legally cleared.
 
 This is a read-only reference layer. It never changes simulation RNG, standings, odds, betting outcomes, the bankroll, saves or the game clock. Tests enforce this (see below).

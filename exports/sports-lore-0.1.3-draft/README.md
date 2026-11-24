@@ -1,6 +1,6 @@
 # Nationwide Sports Universe: historical canon
 
-- Contract: `sports-lore/1` · canon revision `0.1.2-draft` · status **proposed**
+- Contract: `sports-lore/1` · canon revision `0.1.3-draft` · status **proposed**
 - Scope: 1972-2026. Seasons from 2027 are simulated per save and are not in this pack.
 - Original fictional lore, not a claim about real professional sports. Proposed canon: draft until approved. Team names are not legally cleared.
 
@@ -25,6 +25,6 @@ Files: `manifest.json`, `leagues.json`, `teams.json`, `people.json`, `events.jso
 - **q3.** Decide the original 1970s franchises, relocations and expansions. The current 32 cities are not assumed to be founding cities.
 - **q4.** Fill missing championship years and opponents in a later canon pass.
 - **q5.** Confirm whether Burlington's pre-2019 Frost Cup was in 1995.
-- **q6.** Confirm Darius King's and Leon Mercer's CCL teams.
+- **q6.** Confirm Darius King's and Leon Mercer's CBL teams.
 - **q7.** Define historic season formats and playoffs only as needed by the anchor facts.
 - **q8.** Decide how lore is revealed if the game ever starts before 2027. Today every career starts in 2027, so all 1972-2026 lore is past history.

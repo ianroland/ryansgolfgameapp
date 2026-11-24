@@ -50,10 +50,10 @@ export interface LeagueDef {
 }
 
 export const LEAGUES: readonly LeagueDef[] = [
-  { id: 'gdc', name: 'Grand Diamond Circuit', short: 'GDC', sport: 'baseball', spreadName: 'Run line', unit: 'runs', baseTotal: 8.5, spreadScale: 1, fixedSpread: 1.5 },
-  { id: 'ccl', name: 'Crown Court League', short: 'CCL', sport: 'basketball', spreadName: 'Spread', unit: 'points', baseTotal: 214.5, spreadScale: 0.35, fixedSpread: null },
-  { id: 'igl', name: 'Iron Gridiron League', short: 'IGL', sport: 'football', spreadName: 'Spread', unit: 'points', baseTotal: 44.5, spreadScale: 0.28, fixedSpread: null },
-  { id: 'fhl', name: 'Frostline Hockey League', short: 'FHL', sport: 'hockey', spreadName: 'Puck line', unit: 'goals', baseTotal: 5.5, spreadScale: 1, fixedSpread: 1.5 },
+  { id: 'gdc', name: 'Grand Diamond League', short: 'GDL', sport: 'baseball', spreadName: 'Run line', unit: 'runs', baseTotal: 8.5, spreadScale: 1, fixedSpread: 1.5 },
+  { id: 'ccl', name: 'Crown Ball League', short: 'CBL', sport: 'basketball', spreadName: 'Spread', unit: 'points', baseTotal: 214.5, spreadScale: 0.35, fixedSpread: null },
+  { id: 'igl', name: 'Amigo League Football', short: 'ALF', sport: 'football', spreadName: 'Spread', unit: 'points', baseTotal: 44.5, spreadScale: 0.28, fixedSpread: null },
+  { id: 'fhl', name: 'Federal Hockey League', short: 'FHL', sport: 'hockey', spreadName: 'Puck line', unit: 'goals', baseTotal: 5.5, spreadScale: 1, fixedSpread: 1.5 },
 ];
 
 /**

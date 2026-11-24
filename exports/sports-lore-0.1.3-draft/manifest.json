@@ -1,6 +1,6 @@
 {
   "schema_version": "sports-lore/1",
-  "canon_revision": "0.1.2-draft",
+  "canon_revision": "0.1.3-draft",
   "canon_status": "proposed",
   "pack_id": "ryans_road.sports_lore",
   "title": "Nationwide Sports Universe: historical canon",
@@ -71,7 +71,7 @@
     },
     {
       "id": "q6",
-      "text": "Confirm Darius King's and Leon Mercer's CCL teams.",
+      "text": "Confirm Darius King's and Leon Mercer's CBL teams.",
       "source": "bible"
     },
     {
@@ -127,15 +127,21 @@
       "text": "Who won the 2009 CCL finals?",
       "answer": "Miami, as the v0.3/v0.4 ledger says.",
       "date": "2026-11-23"
+    },
+    {
+      "id": "q21",
+      "text": "League names.",
+      "answer": "Renamed by the owner: Grand Diamond League (GDL, baseball), Crown Ball League (CBL, basketball), Amigo League Football (ALF, football), Federal Hockey League (FHL, hockey). Internal ids (gdc, ccl, igl, fhl) are unchanged.",
+      "date": "2026-11-23"
     }
   ],
   "hashes": {
-    "README.md": "sha256-07bfb2c921aed7910537d42186300c2dda0f1618fbdf170c0fd87af1b6c2d686",
+    "README.md": "sha256-76339e5e2c83cec7bbb2921a0659212ac0cf113256e2e53d495185c5666055e2",
     "championships.json": "sha256-5f8821d19e3a1d7ca2754654825ccb6d44d482f00fbcb6ec390bf08170e5277f",
     "dialogue_rules.json": "sha256-282a7ec06b59d41a3a3b46de02179f84e4a16d7df619bcb22d2da8e7501ab516",
-    "events.json": "sha256-ec7a08a62104c34a3bf15dd328a714580769bf4bfa6617f1cd67b4a14d04cabc",
+    "events.json": "sha256-7eee1462a4bb1fc7bf64e649a64bd27921e0cd4cbcb6bda05739c9fcfd64feda",
     "franchise_history.json": "sha256-de555c3130bd8b1ca5a97a1bfc829fbe37633d2ab5a8e7ee39499667936a68f7",
-    "leagues.json": "sha256-d3f4a1cbd998bdcfc5ccb6d5550c924d4352432aa79ebc4e617e23c5e5a2c955",
+    "leagues.json": "sha256-f99c7eaa6012355ea83cc5c394960ca72f70d6069ba9718178d133d95ebcf49c",
     "people.json": "sha256-4c2cd0801eada4194576f1c21992488d17c3adc5ea3c27d71392b7efdf741879",
     "rivalries.json": "sha256-1a04bdc13c742e3cb00b49e3309a27ae42b4465e2063ede8d6644eae62093373",
     "schemas/championships.schema.json": "sha256-a8ac0cd79f416273f271f28ed716bd74be114e62f36f9f8d07dada4374d38db3",
@@ -151,7 +157,7 @@
   },
   "x-export": {
     "exported_by": "Ryan's Road to the LPGA",
-    "game_version": "0.19.1",
+    "game_version": "0.19.4",
     "contract": "sports-lore/1"
   }
 }

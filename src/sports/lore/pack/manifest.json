@@ -1,6 +1,6 @@
 {
   "schema_version": "sports-lore/1",
-  "canon_revision": "0.1.2-draft",
+  "canon_revision": "0.1.3-draft",
   "canon_status": "proposed",
   "pack_id": "ryans_road.sports_lore",
   "title": "Nationwide Sports Universe: historical canon",
@@ -71,7 +71,7 @@
     },
     {
       "id": "q6",
-      "text": "Confirm Darius King's and Leon Mercer's CCL teams.",
+      "text": "Confirm Darius King's and Leon Mercer's CBL teams.",
       "source": "bible"
     },
     {
@@ -126,6 +126,12 @@
       "id": "q20",
       "text": "Who won the 2009 CCL finals?",
       "answer": "Miami, as the v0.3/v0.4 ledger says.",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "q21",
+      "text": "League names.",
+      "answer": "Renamed by the owner: Grand Diamond League (GDL, baseball), Crown Ball League (CBL, basketball), Amigo League Football (ALF, football), Federal Hockey League (FHL, hockey). Internal ids (gdc, ccl, igl, fhl) are unchanged.",
       "date": "2026-11-23"
     }
   ]

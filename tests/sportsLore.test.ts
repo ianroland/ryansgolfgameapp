@@ -24,7 +24,7 @@ describe('sports-lore/1 canon pack', () => {
   it('is valid, versioned and still a draft', () => {
     expect(bundledLoreIssues()).toEqual([]);
     expect(L.manifest.schema_version).toBe('sports-lore/1');
-    expect(L.manifest.canon_revision).toBe('0.1.2-draft');
+    expect(L.manifest.canon_revision).toBe('0.1.3-draft');
     expect(L.manifest.canon_status).toBe('proposed');
     expect(L.events.every((e) => e.status === 'draft')).toBe(true);
   });
@@ -84,7 +84,7 @@ describe('owner decisions of 2026-11-23', () => {
     expect(lore.league('ccl')!.known_historic_formats).toEqual([]);
     expect(lore.person('per_marco_salazar')!.affiliations[0]).toMatchObject({ team: 'gdc_firebirds', basis: 'confirmed' });
     expect(lore.person('per_calvin_redd')!.affiliations[0]).toMatchObject({ team: 'ccl_dustdevils', basis: 'confirmed' });
-    expect(L.manifest.resolved_questions!.map((q) => q.id)).toEqual(['q9', 'q10', 'q11', 'q12', 'q13', 'q19', 'q20']);
+    expect(L.manifest.resolved_questions!.map((q) => q.id)).toEqual(['q9', 'q10', 'q11', 'q12', 'q13', 'q19', 'q20', 'q21']);
     expect(L.manifest.open_questions.map((q) => q.id)).toEqual(['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8']);
   });
 });
@@ -206,7 +206,7 @@ describe('knowledge tiers and the year clock', () => {
 
   it('NPC context carries event ids, the rules and the constraints for what it knows', () => {
     const c = npcLoreContext({ npcId: 'test_fan', tier: 'fan', leagues: ['igl'], teams: ['igl_squall'], birthYear: 1970 }, 2027);
-    expect(c.loreRevision).toBe('0.1.2-draft');
+    expect(c.loreRevision).toBe('0.1.3-draft');
     expect(c.facts.every((f) => /^[a-z]{3}-\d{4}-\d{3}#f\d+$/.test(f.fact))).toBe(true);
     expect(c.constraints).toContainEqual({ event: 'igl-1994-001', rule: 'NPCs may disagree with the call, but never say New Orleans officially won.' });
     expect(c.perspectives.map((p) => p.team)).toEqual(['igl_squall']);
@@ -282,7 +282,7 @@ describe('export and import (NPC Factory knowledge pack)', () => {
   });
 
   it('the committed export in exports/ is current', () => {
-    const dir = join(__dirname, '../exports/sports-lore-0.1.2-draft');
+    const dir = join(__dirname, '../exports/sports-lore-0.1.3-draft');
     const onDisk = (readdirSync(dir, { recursive: true }) as string[]).filter((f) => f.includes('.')).map((f) => f.replaceAll('\\', '/')).sort();
     const pkgVersion = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8')).version;
     const fresh = buildKnowledgePack(L, pkgVersion).files;

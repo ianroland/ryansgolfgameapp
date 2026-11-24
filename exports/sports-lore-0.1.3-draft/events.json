@@ -14,7 +14,7 @@
     "facts": [
       {
         "id": "f1",
-        "text": "In 1972, eight independent owners signed the Grand Diamond Circuit's founding charter in St. Louis.",
+        "text": "In 1972, eight independent owners signed the Grand Diamond League's founding charter in St. Louis.",
         "year": 1972,
         "tier": "casual"
       },
@@ -251,7 +251,7 @@
   {
     "id": "ccl-1974-001",
     "league": "ccl",
-    "title": "The Crown Court Revolution",
+    "title": "The Crown Ball Revolution",
     "year": 1974,
     "span": {
       "start": 1974,
@@ -263,25 +263,25 @@
     "facts": [
       {
         "id": "f1",
-        "text": "The Crown Court League opened in 1974 with a 24-second shot clock and a three-point arc.",
+        "text": "The Crown Ball League opened in 1974 with a 24-second shot clock and a three-point arc.",
         "year": 1974,
         "tier": "casual"
       },
       {
         "id": "f2",
-        "text": "The CCL built its promotion around its players.",
+        "text": "The CBL built its promotion around its players.",
         "year": 1974,
         "tier": "casual"
       },
       {
         "id": "f3",
-        "text": "The CCL championship trophy is nicknamed the Crown.",
+        "text": "The CBL championship trophy is nicknamed the Crown.",
         "year": 1974,
         "tier": "casual"
       },
       {
         "id": "f4",
-        "text": "Eight clubs founded the Crown Court League.",
+        "text": "Eight clubs founded the Crown Ball League.",
         "year": 1974,
         "tier": "fan"
       }
@@ -297,7 +297,7 @@
       "label": "widely known"
     },
     "unknowns": [
-      "Which franchises founded the CCL."
+      "Which franchises founded the CBL."
     ],
     "constraints": [],
     "outcomes": [],
@@ -335,7 +335,7 @@
     "facts": [
       {
         "id": "f1",
-        "text": "Los Angeles and Chicago met in three straight CCL finals, 1987 to 1989.",
+        "text": "Los Angeles and Chicago met in three straight CBL finals, 1987 to 1989.",
         "year": 1989,
         "tier": "casual"
       },
@@ -528,7 +528,7 @@
       },
       {
         "id": "f3",
-        "text": "Miami won the 2009 CCL finals.",
+        "text": "Miami won the 2009 CBL finals.",
         "year": 2009,
         "tier": "fan"
       },
@@ -596,13 +596,13 @@
     "facts": [
       {
         "id": "f1",
-        "text": "In 1976 eight owners founded the Iron Gridiron League as a Saturday fall league.",
+        "text": "In 1976 eight owners founded the Amigo League Football as a Saturday fall league.",
         "year": 1976,
         "tier": "casual"
       },
       {
         "id": "f2",
-        "text": "The IGL title game is the Iron Bowl.",
+        "text": "The ALF title game is the Iron Bowl.",
         "year": 1976,
         "tier": "casual"
       }
@@ -618,7 +618,7 @@
       "label": "widely known"
     },
     "unknowns": [
-      "Which franchises founded the IGL."
+      "Which franchises founded the ALF."
     ],
     "constraints": [],
     "outcomes": [],
@@ -856,7 +856,7 @@
     "facts": [
       {
         "id": "f1",
-        "text": "In 1978 eight northern clubs founded the Frostline Hockey League with shared travel funding.",
+        "text": "In 1978 eight northern clubs founded the Federal Hockey League with shared travel funding.",
         "year": 1978,
         "tier": "casual"
       },

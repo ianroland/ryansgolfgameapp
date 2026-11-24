@@ -1,5 +1,7 @@
 # Sportsbook: design document
 
+> **League names (owner rename, 2026-11-23):** Grand Diamond League (**GDL**, baseball), Crown Ball League (**CBL**, basketball), Amigo League Football (**ALF**, football), Federal Hockey League (**FHL**, hockey). Internal ids are unchanged (`gdc`, `ccl`, `igl`, `fhl`; team ids such as `igl_ironclads`; event ids such as `igl-1994-001`), so saves, bets, history data and exports keep working. Older reports in this folder use the previous names. New names are not legally cleared either.
+
 - **Status:** proposed, for approval. **No implementation and no final assets.**
 - **Game:** Ryan's Road to the LPGA, v0.17.0.
 - **Scope:** a self-contained feature. It doesn't change golf scoring, any existing casino game, casino unlocks or the shared bankroll rules.

@@ -9,7 +9,7 @@ const sel = (gameId: string, market: Selection['market'], side: Selection['side'
 
 describe('sportsbook demo data (Phase 1)', () => {
   it('four original leagues with eight uniquely named teams each', () => {
-    expect(LEAGUES.map((l) => l.short)).toEqual(['GDC', 'CCL', 'IGL', 'FHL']);
+    expect(LEAGUES.map((l) => l.short)).toEqual(['GDL', 'CBL', 'ALF', 'FHL']); // owner rename 2026-11-23; ids stay gdc/ccl/igl/fhl
     for (const l of LEAGUES) expect(teamsOf(l.id)).toHaveLength(8);
     expect(new Set(TEAMS.map((t) => t.id)).size).toBe(32);
     expect(new Set(TEAMS.map((t) => t.displayName)).size).toBe(32);

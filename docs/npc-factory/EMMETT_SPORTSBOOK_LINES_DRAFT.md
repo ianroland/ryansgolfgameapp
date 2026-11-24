@@ -6,7 +6,7 @@ Desert Palms sportsbook clerk. These are short one-liners in his voice (warm, ea
 - **Live lines:** every third line is about this season, built from real standings and results (the league leader, last week's biggest win, or when the next games are).
 - **Status:** all lines are drafts until you approve them. Say which to change or cut.
 
-## Baseball (GDC)
+## Baseball (GDL)
 
 | Line | Mood | Cites |
 |---|---|---|
@@ -18,22 +18,22 @@ Desert Palms sportsbook clerk. These are short one-liners in his voice (warm, ea
 | Never tell a Boston fan a late lead is safe, slugger. | playful | `gdc-1998-001` |
 | Charleston, 2011: two coaches suspended for stealing signs. No proof the players knew. | firm | `gdc-2011-001` |
 
-## Basketball (CCL)
+## Basketball (CBL)
 
 | Line | Mood | Cites |
 |---|---|---|
-| Crown Court League, '74. Shot clock, three-point arc, and a trophy called the Crown. | friendly | `ccl-1974-001` |
+| Crown Ball League, '74. Shot clock, three-point arc, and a trophy called the Crown. | friendly | `ccl-1974-001` |
 | Comets and Voltage, three straight finals, '87 to '89. Chicago took two. | impressed | `ccl-1987-001` |
 | King or Mercer? Pick a side, kid. Quietly. | playful | `ccl-1987-001` |
 | '96 Vegas: lowest seed, first Crown. Calvin Redd dropped 31. A Redd-letter day. | impressed | `ccl-1996-001` |
 | Mention Calvin Redd in this town and somebody buys a round. | friendly | `ccl-1996-001` |
 | Detroit dealt Bellamy to Miami in '08. Miami won in '09, Detroit in '12. Everybody won. | friendly | `ccl-2008-001` |
 
-## Football (IGL)
+## Football (ALF)
 
 | Line | Mood | Cites |
 |---|---|---|
-| Iron Gridiron League, 1976. Saturday football since day one, partner. | friendly | `igl-1976-001` |
+| Amigo League Football, 1976. Saturday football since day one, partner. | friendly | `igl-1976-001` |
 | '85 Cleveland went 14–0. You didn't score on that Wall, you apologized. | impressed | `igl-1985-001` |
 | '94 Iron Bowl: Oklahoma City 24, New Orleans 20. Argue the call all you want, boss. | firm | `igl-1994-001` |
 | Asheville: 2–12 in 2015, champs in 2016. Worst to first. Highland fling. | impressed | `igl-2016-001` |
@@ -42,7 +42,7 @@ Desert Palms sportsbook clerk. These are short one-liners in his voice (warm, ea
 
 | Line | Mood | Cites |
 |---|---|---|
-| Frostline Hockey League, '78. Eight northern clubs, one Frost Cup. | friendly | `fhl-1978-001` |
+| Federal Hockey League, '78. Eight northern clubs, one Frost Cup. | friendly | `fhl-1978-001` |
 | Soren, '89: 71 saves in triple overtime. The arena ran out of food. Save-ory. | impressed | `fhl-1989-001` |
 | Anchorage fans judge every goalie against Soren. Every single one, chief. | playful | `fhl-1989-001` |
 | Bozeman and Duluth, 2002: seven games, four overtimes. Still no hugs. | impressed | `fhl-2002-001` |
