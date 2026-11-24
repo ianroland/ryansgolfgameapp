@@ -125,7 +125,7 @@ export function Sportsbook() {
       />
       <div className="sb-clerk-text">
         <span className="sb-clerk-name">{theme.art.clerk.name}</span>
-        <p className="sb-clerk-line">“Lines are posted. Take your time.” <span className="rpg-draft">Placeholder</span></p>
+        <p className="sb-clerk-line">“Lines are posted. Take your time.”</p>
       </div>
     </>
   ) : (
