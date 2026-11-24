@@ -40,10 +40,11 @@ import { ART as LOBBY_ART } from './CasinoLobby';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
 import { crapsLast, crapsShooter, crapsTable, pendingRace } from '../../services/casinoService';
 import {
-  MOOD_LABEL, newRegularState, pickLine, placeBets, regularsAt, rollEvents, RYAN_SEAT, seatsAt, settleRegular, STICK_STREAK, STYLE_LABEL, tableMood,
+  faceFor, MOOD_LABEL, newRegularState, pickLine, placeBets, regularsAt, rollEvents, RYAN_SEAT, seatsAt, settleRegular, STICK_STREAK, STYLE_LABEL, tableMood,
   type Mood, type Regular, type RegularState,
 } from './crapsRegulars';
 import type { LocationId } from '../../expansion/unlocks';
+import { regularPortrait } from './regularPortraits';
 
 /*
  * Presentation only. Every rule, wager and settlement call below is the same
@@ -560,8 +561,8 @@ function Craps() {
       : pickLine(casinoLoc, events, r.shooter.rolls + r.shooter.history.length * 100 + (crapsLast(state.career)?.n ?? 0), r.shooter.seat);
     setRegs(saveRegulars(casinoLoc, { states, say: say ?? regs.say }));
     // Stick Lady calls the table's big moments (drafts).
-    if (moodAfter !== moodBefore && moodAfter !== 'steady') setCall({ text: STICK_STREAK[moodAfter](moodAfter === 'cold' ? '' : seatName(r.shooterBefore.seat)), draft: true });
-    else if (r.shooter.seat !== r.shooterBefore.seat) setCall({ text: r.shooter.seat === RYAN_SEAT ? STICK_STREAK.ryanShoots('Ryan') : STICK_STREAK.newShooter(seatName(r.shooter.seat)), draft: true });
+    if (moodAfter !== moodBefore && moodAfter !== 'steady') setCall(STICK_STREAK[moodAfter](moodAfter === 'cold' ? '' : seatName(r.shooterBefore.seat)));
+    else if (r.shooter.seat !== r.shooterBefore.seat) setCall(r.shooter.seat === RYAN_SEAT ? STICK_STREAK.ryanShoots('Ryan') : STICK_STREAK.newShooter(seatName(r.shooter.seat)));
     if (table.point !== null && sum === 7) stick.play('special');
     else if (won > 0) stick.play('win');
     else if (lost > 0) stick.play('loss');
@@ -751,7 +752,12 @@ function Craps() {
             const st = regs.states[regularsAt(casinoLoc).indexOf(who)];
             return (
               <div key={who.id} className={`cr-seat ${isShooter ? 'shooting' : ''} ${regs.say?.who.id === who.id ? 'talking' : ''}`} title={who.bio} data-testid={`craps-seat-${who.id}`}>
-                <span className="cr-badge" style={{ background: who.colour }}>{who.short[0]}</span>
+                {(() => {
+                  const pic = regularPortrait(who.id, faceFor(st));
+                  return pic
+                    ? <img className="cr-badge cr-portrait" src={pic} alt="" style={{ borderColor: who.colour }} draggable={false} />
+                    : <span className="cr-badge" style={{ background: who.colour }}>{who.short[0]}</span>;
+                })()}
                 <span className="cr-name">{who.short}{isShooter && <em className="cr-dice" title="Has the dice">⚄</em>}</span>
                 <span className="cr-info">{STYLE_LABEL[who.style]} · riding {formatMoney(st ? onTable(st.table) : 0)}</span>
               </div>
@@ -760,7 +766,7 @@ function Craps() {
         </div>
         {regs.say && (
           <p className="cr-say" data-testid="craps-chatter">
-            <b style={{ color: regs.say.who.colour }}>{regs.say.who.short}:</b> &ldquo;{regs.say.text}&rdquo; <span className="rpg-draft">Draft line</span>
+            <b style={{ color: regs.say.who.colour }}>{regs.say.who.short}:</b> &ldquo;{regs.say.text}&rdquo;
           </p>
         )}
       </div>

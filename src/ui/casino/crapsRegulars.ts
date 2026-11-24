@@ -4,8 +4,9 @@
  * nothing here changes a roll, a payout or Ryan's money. The regulars play with pretend money that
  * never touches the ledger. Streaks are read from what the dice actually did.
  *
- * Characters and every line are DRAFTS (2026-11-24) awaiting the owner's approval; see
- * docs/casino/CRAPS_REGULARS_DRAFT.md.
+ * Characters, betting styles, every line and Stick Lady's streak calls were APPROVED by the owner on
+ * 2026-11-24 (docs/casino/CRAPS_REGULARS.md). Portraits are pending (NPC Factory brief:
+ * docs/npc-factory/CRAPS_REGULARS_PORTRAITS.md); until they arrive the rail shows coloured initials.
  */
 import { addBet, betBlocker, maxLay, resolveRoll, type CrapsAction, type CrapsTable, newTable, type PointNo } from '../../casino/craps';
 import { RYAN_SEAT, type Mood } from '../../casino/crapsShooter';
@@ -217,8 +218,13 @@ export const STICK_STREAK: Record<'hot' | 'fire' | 'cold' | 'ryanShoots' | 'newS
 
 // ───────────── Their pretend bets (the same rules and dice as Ryan's) ─────────────
 
-export interface RegularState { table: CrapsTable; stack: number; rebuys: number; net: number }
-export const newRegularState = (r: Regular): RegularState => ({ table: newTable(), stack: r.stack, rebuys: 0, net: 0 });
+export interface RegularState { table: CrapsTable; stack: number; rebuys: number; net: number; /** Won (+) or lost (-) on the last roll: picks the portrait's face. */ lastNet?: number }
+export const newRegularState = (r: Regular): RegularState => ({ table: newTable(), stack: r.stack, rebuys: 0, net: 0, lastNet: 0 });
+export const REGULARS_STATUS = 'approved' as const;
+
+/** Portrait expressions for the regulars (background NPCs: three faces). */
+export type RegularFace = 'neutral' | 'happy' | 'groan';
+export const faceFor = (s: RegularState | undefined): RegularFace => (!s || !s.lastNet ? 'neutral' : s.lastNet > 0 ? 'happy' : 'groan');
 
 /** The bets a regular makes before the next roll, by style and the table's mood. Every bet passes the real rules. */
 export function chooseBets(r: Regular, t: CrapsTable, mood: Mood): [CrapsAction, number][] {
@@ -304,7 +310,7 @@ export function settleRegular(s: RegularState, dice: [number, number]): { state:
   const paid = r.outcomes.reduce((a, o) => a + o.payout, 0);
   const lost = r.outcomes.filter((o) => o.result === 'lose').reduce((a, o) => a + o.stake, 0);
   const net = paid - r.outcomes.reduce((a, o) => a + o.stake, 0);
-  return { state: { ...s, table: r.table, stack: s.stack + paid, net: s.net + net }, paid, lost };
+  return { state: { ...s, table: r.table, stack: s.stack + paid, net: s.net + net, lastNet: net }, paid, lost };
 }
 
 // ───────────── Who says what ─────────────

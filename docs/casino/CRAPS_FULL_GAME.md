@@ -67,7 +67,7 @@ The rules are in `src/casino/craps.ts`; the header comment there has every rule 
 
 ## Table life (0.20.4)
 
-The table now has regulars, a rotating shooter (Ryan takes turns), and hot and cold table moods built from real streaks. The dice stay fair. Characters and lines are drafts: see `docs/casino/CRAPS_REGULARS_DRAFT.md`.
+The table now has regulars, a rotating shooter (Ryan takes turns), and hot and cold table moods built from real streaks. The dice stay fair. Characters and lines are drafts: see `docs/casino/CRAPS_REGULARS.md`.
 
 ## Betting on the felt (0.20.4)
 

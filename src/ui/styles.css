@@ -2599,3 +2599,4 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .craps-centre-felt button:disabled { cursor: default; }
 .craps-layout-toggle { margin-top: 10px; padding: 6px 12px; font: inherit; font-size: 14px; color: #fff6d8; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(233, 194, 90, 0.5); border-radius: 8px; cursor: pointer; }
 .craps-layout-toggle:hover { background: rgba(255, 255, 255, 0.08); }
+.cr-portrait { padding: 0; object-fit: cover; background: #14100a; image-rendering: pixelated; border-width: 2px; border-style: solid; }

@@ -1,6 +1,6 @@
-# Craps regulars: DRAFT for approval
+# Craps regulars: APPROVED
 
-Version 0.20.4. These are draft characters and lines for the craps table, nine regulars in all (three per casino). The game shows every line marked **Draft line** until you approve it. The code is in `src/ui/casino/crapsRegulars.ts` (shooter and mood: `src/casino/crapsShooter.ts`); the lines below are generated from that file, so they match exactly.
+Version 0.20.4. These are the nine craps regulars (three per casino), with their lines and Stick Lady's streak calls. The owner **approved** all of them on 2026-11-24, and the game shows the lines without a draft tag. Portraits are next, via NPC Factory: see `docs/npc-factory/CRAPS_REGULARS_PORTRAITS.md`. The code is in `src/ui/casino/crapsRegulars.ts` (shooter and mood: `src/casino/crapsShooter.ts`); the lines below are generated from that file, so they match exactly.
 
 ## How the table works
 
@@ -16,11 +16,11 @@ Version 0.20.4. These are draft characters and lines for the craps table, nine r
 - **Who talks.** After each roll at most one regular speaks. The biggest moment that roll wins: a change in mood, the dice passing, a seven-out, a point made, then the smaller moments, which get remarked on only some of the time. Which regular and which line is chosen from the roll itself, so the same roll always gets the same line.
 - **Where it sits.** The rail goes in the space under the table, as you suggested, together with the chip rack and the Roll button.
 
-## For you to decide
+## Status
 
-1. Approve or change the nine characters: names, backgrounds and betting styles.
-2. Approve or edit the lines. Please check the tone: Victor's superstition about the word "seven", Toby's trucker talk, Rosalind's "darling".
-3. Portraits: the regulars show as coloured initials until art exists. They could go to NPC Factory for portraits.
+- **Characters, betting styles and lines:** approved (2026-11-24).
+- **Stick Lady's streak calls:** approved (2026-11-24). Her other new craps calls (a Come bet moving, a Place win, a hardway win, a one-roll win) are still drafts.
+- **Portraits:** requested from NPC Factory. The game uses them automatically once they're dropped in.
 
 ## Desert Palms
 
@@ -30,7 +30,7 @@ Retired neon-sign painter. Painted half the signs on the Strip, never bets the d
 
 **Plays:** Pass + odds. Pretend stack $1,500, base bet $10.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Pull up a rail, kid. Right side only at this end of the table.<br>Evening! I painted that sign out front, you know. Lit it myself in ’88. |
 | Natural on the come-out | Front line winner! Now that’s how you open a show. |
@@ -50,7 +50,7 @@ Deals blackjack across town and spends her nights off on the other side of a dif
 
 **Plays:** Don’t side. Pretend stack $1,200, base bet $10.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | I’m on the don’t, so I’ll be the quiet one. No offense.<br>Night off. Somebody else can do the shuffling. |
 | Craps on the come-out | Little craps. I’ll take it. Quietly. |
@@ -68,7 +68,7 @@ Retired chemistry teacher. Knows exactly what the hardways cost him and bets the
 
 **Plays:** Hardways + Field. Pretend stack $800, base bet $5.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Hard eight, always hard eight. I know the odds. I taught the odds. |
 | A hardway rolls | HARD WAY! Do you see that? Both fours! Textbook!<br>A pair! Nine to one! Somebody write this down! |
@@ -89,7 +89,7 @@ Cattle rancher, three hours’ drive away. Places the six and the eight, presses
 
 **Plays:** Place 6 & 8. Pretend stack $4,000, base bet $30.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Evenin’.<br>Six and eight. Same as always. |
 | Point made | Mm. Good. |
@@ -107,7 +107,7 @@ Sells lake houses and keeps score of everything, including you. Pass, Come and f
 
 **Plays:** Pass + Come. Pretend stack $5,000, base bet $25.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Corinne Bales, Lakeside Realty. You golf? I sell the houses on the fifteenth hole. |
 | Natural on the come-out | Seven! That’s a closing! |
@@ -125,7 +125,7 @@ Drove trucks coast to coast for thirty years and now drives his RV between casin
 
 **Plays:** Horn & Yo. Pretend stack $3,000, base bet $20.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Horn high yo, dealer! Hey, new face. Toby. I’m the loud one. |
 | Yo (11) | YO-LEVEN! What’d I tell ya! Fifteen to one, baby!<br>YO! Breaker breaker, we got an eleven! |
@@ -147,7 +147,7 @@ Owns three restaurants and a superstition for each. Bets big on the pass with fu
 
 **Plays:** Pass + odds. Pretend stack $30,000, base bet $200.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Victor Sloane. Please don’t say the s-word at this table. You know the one. |
 | Natural on the come-out | The big red on the come-out. That one I like. |
@@ -166,7 +166,7 @@ Poker pro on a night off. Plays the don’t side with lay odds because the edge 
 
 **Plays:** Don’t side. Pretend stack $20,000, base bet $100.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Don’t pass with lay odds: one point three six percent. Just so you know what you’re looking at. |
 | Craps on the come-out | Craps on the come-out. One in nine. Thank you. |
@@ -184,7 +184,7 @@ Old desert money, older pearls. Places all the inside numbers, calls everybody d
 
 **Plays:** Inside numbers. Pretend stack $25,000, base bet $120.
 
-| When | Lines (draft) |
+| When | Lines |
 |---|---|
 | Arriving | Darling, you’re standing in Harold’s spot. Harold’s been gone since ’07. Stay. |
 | Point made | Lovely, lovely. Pay my inside, would you, dear? |
@@ -197,7 +197,7 @@ Old desert money, older pearls. Places all the inside numbers, calls everybody d
 | Their own turn to shoot | My turn? How thrilling. |
 | Buying another stack | Do bring another rack, dear. And a fresh napkin. |
 
-## Stick Lady: streak calls (draft)
+## Stick Lady: streak calls
 
 - **Hot:** We've got a hot shooter, folks! {shooter} has the dice working!
 - **On fire:** {shooter} is ON FIRE! Get your bets down while the dice are hot!

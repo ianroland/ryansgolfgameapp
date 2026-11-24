@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.5",
+   "date": "2026-11-24",
+   "title": "The regulars are official, and a new welcome",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "The nine craps regulars and everything they say are now final, along with Stick Lady's hot and cold calls. Portraits are on the way."
+    },
+    {
+     "tag": "improved",
+     "text": "A new career starts with a better welcome letter that previews the road ahead, with a word about Baba."
+    }
+   ]
+  },
+  {
    "version": "0.20.4",
    "date": "2026-11-24",
    "title": "Craps comes alive, and you bet on the felt",

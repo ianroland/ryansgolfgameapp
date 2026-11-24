@@ -100,7 +100,8 @@ export function newCareerState(seed = 2027): CareerState {
   inbox(
     c,
     'Welcome to the road',
-    "You're 18, you've got a hand-me-down driver and a dream. Play the Amateur Circuit, train hard, and turn pro when you're ready. Q-School is the door to the LPGA.",
+    // Owner-approved wording (2026-11-24): draft A plus the owner's own closing line, kept as written.
+    "You're 18, with a hand-me-down driver, a bucket of range balls and a dream bigger than the muni. Here's the road: play the Amateur Circuit, train every week, turn pro when you're ready, and fight your way through Q-School for a tour card. Between here and there you'll find rivals, sponsors, big nights at Desert Palms, calls home, and Baba at the muni, keeping the RYAN — PRO can on the shelf. Train hard and who knows, you might earn that PGA card and make Baba proud... if all else fails, sex change and try for the LPGA... heh!",
     'good',
   );
   return c;

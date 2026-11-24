@@ -106,3 +106,16 @@ describe('the regulars', () => {
     expect(pickLine('desert_palms', ['myShoot'], 3, RYAN_SEAT)).toBeNull();
   });
 });
+
+describe('approval and portraits', () => {
+  it('the regulars are approved; faces follow the last roll; no portrait files yet means initials', async () => {
+    const { REGULARS_STATUS, faceFor } = await import('../src/ui/casino/crapsRegulars');
+    const { regularPortrait } = await import('../src/ui/casino/regularPortraits');
+    expect(REGULARS_STATUS).toBe('approved');
+    const r = REGULARS[0];
+    expect(faceFor({ ...newRegularState(r), lastNet: 20 })).toBe('happy');
+    expect(faceFor({ ...newRegularState(r), lastNet: -10 })).toBe('groan');
+    expect(faceFor(newRegularState(r))).toBe('neutral');
+    for (const x of REGULARS) expect(regularPortrait(x.id, 'happy')).toBeNull();
+  });
+});
