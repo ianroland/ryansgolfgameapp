@@ -39,7 +39,7 @@ describe('location registry', () => {
     const dp = LOCATIONS[0];
     expect(dp.unlock).toBeNull();
     expect(isUnlocked(dp, new Set())).toBe(true);
-    expect(dp.games.map((g) => g.id)).toEqual(['blackjack', 'slots', 'machines', 'craps', 'roulette', 'baccarat', 'threecard', 'greyhounds', 'sportsbook']);
+    expect(dp.games.map((g) => g.id)).toEqual(['blackjack', 'slots', 'machines', 'wheel', 'craps', 'roulette', 'baccarat', 'threecard', 'greyhounds', 'sportsbook']);
     expect(unlockThreshold(LOCATIONS[1])).toBe(100_000);
     expect(unlockThreshold(LOCATIONS[2])).toBe(1_000_000);
     expect(isUnlocked(LOCATIONS[1], new Set([WB]))).toBe(true);

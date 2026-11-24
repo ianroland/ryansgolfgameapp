@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
 import {
   BJ_LIMITS, canDouble, canSplit, deal, double, handValue, hit, newTable, split, stand, totalPayout,
   type BJState,
 } from '../../casino/blackjack';
-import { betBlocker, betsOnTable, CRAPS_LIMITS, newCraps, resolveRoll, rollDice, type BetKey, type CrapsState } from '../../casino/craps';
+import { amountOn, betBlocker, canTakeDown, CRAPS_LIMITS, onTable, POINTS, type BetOutcome as CrapsOutcome, type CrapsAction, type CrapsTable, type PointNo } from '../../casino/craps';
 import { PAYTABLE, REEL, SLOT_BETS, spin, SYMBOL_ART, type SlotSymbol } from '../../casino/slots';
 import {
   betBlocker as rouletteBlocker, colorOf, resolveSpin, ROULETTE_LIMITS, spinWheel, spotLabel, totalOn, WHEEL, wins as rouletteWins,
@@ -18,6 +18,7 @@ import { boxStyle, casinoArt } from './casinoArt';
 import { Greyhounds } from './Greyhounds';
 import { Sportsbook } from '../sportsbook/Sportsbook';
 import { VideoMachine } from './Machines';
+import { SpinWheel } from './SpinWheel';
 import { BetChip, PlayingCard } from './TableBits';
 import { Baccarat, ThreeCard } from './WWTables';
 import { DialogueBox, MoniqueRest, MoniqueSprite, REACH_MS, useMonique } from './Monique';
@@ -37,7 +38,7 @@ import { CasinoLobby } from './CasinoLobby';
 import { casinoAt, locationById, type CasinoGameId } from '../../expansion/locations';
 import { ART as LOBBY_ART } from './CasinoLobby';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
-import { pendingRace } from '../../services/casinoService';
+import { crapsLast, crapsTable, pendingRace } from '../../services/casinoService';
 
 /*
  * Presentation only. Every rule, wager and settlement call below is the same
@@ -387,21 +388,31 @@ function Die({ n, rolling, i }: { n: number; rolling: boolean; i: number }) {
   );
 }
 
-const BET_LABELS: Record<BetKey, { name: string; desc: string }> = {
-  pass: { name: 'Pass Line', desc: '7/11 win on come-out; then hit the point before a 7' },
-  dontPass: { name: "Don't Pass", desc: '2/3 win on come-out (12 pushes); then 7 before the point' },
-  odds: { name: 'Pass Odds', desc: 'True odds behind your Pass bet, up to 2×. No house edge.' },
-  field: { name: 'Field', desc: 'One roll: 3,4,9,10,11 pay 1:1 · 2 pays 2:1 · 12 pays 3:1' },
-};
+/** Bets in the line row, in table order. Descriptions are the rules, not flavour. */
+const LINE_BETS: { a: CrapsAction; name: string; desc: string }[] = [
+  { a: { kind: 'pass' }, name: 'Pass Line', desc: 'Come-out: 7/11 win, 2/3/12 lose; then the point before a 7. Pays 1:1' },
+  { a: { kind: 'passOdds' }, name: 'Pass Odds', desc: 'Behind your Pass bet once a point is on: true odds, up to 2×. No house edge' },
+  { a: { kind: 'dontPass' }, name: "Don't Pass", desc: 'Come-out: 2/3 win, 12 pushes, 7/11 lose; then a 7 before the point. Pays 1:1' },
+  { a: { kind: 'dontOdds' }, name: 'Lay Odds', desc: 'Behind Don’t Pass once a point is on: wins on the 7 at true odds (1:2, 2:3, 5:6). No house edge' },
+  { a: { kind: 'come' }, name: 'Come', desc: 'Once a point is on: like a new Pass bet; travels to its own number. Pays 1:1' },
+  { a: { kind: 'dontCome' }, name: "Don't Come", desc: 'Once a point is on: like a new Don’t Pass bet; travels to its own number. Pays 1:1' },
+  { a: { kind: 'field' }, name: 'Field', desc: 'One roll: 3, 4, 9, 10, 11 pay 1:1 · 2 pays 2:1 · 12 pays 3:1' },
+];
+const PLACE_PAY: Record<PointNo, string> = { 4: '9:5', 5: '7:5', 6: '7:6', 8: '7:6', 9: '7:5', 10: '9:5' };
+const NUMBER_WORD: Record<PointNo, string> = { 4: 'four', 5: 'five', 6: 'six', 8: 'eight', 9: 'nine', 10: 'ten' };
+const actionKey = (a: CrapsAction) => ('n' in a ? `${a.kind}-${a.n}` : a.kind);
 
 /** Where each point box sits on the drawn table (percent across, measured from the gold box lines on craps_table_v2). */
 const POINT_X: Record<number, number> = { 4: 31.9, 5: 39.2, 6: 46.5, 8: 53.9, 9: 61.2, 10: 68.8 };
 
 const scenePt = (sc: CrapsScene, [x, y]: Pt) => ({ left: `${(x / sc.size[0]) * 100}%`, top: `${(y / sc.size[1]) * 100}%` });
 const sceneRect = (sc: CrapsScene, [x, y, w, h]: Rect) => ({ left: `${(x / sc.size[0]) * 100}%`, top: `${(y / sc.size[1]) * 100}%`, width: `${(w / sc.size[0]) * 100}%`, height: `${(h / sc.size[1]) * 100}%` });
+/** A spot inside a number box, at fractions of the box from its centre. */
+const boxPt = (sc: CrapsScene, n: PointNo, fx: number, fy: number) => scenePt(sc, [sc.point[n][0] + fx * sc.box[0], sc.point[n][1] + fy * sc.box[1]]);
 
-/** Stick Lady's call for a roll (flavour only; the result comes from the craps rules). */
-function stickCall(before: number | null, after: number | null, sum: number): string {
+/** Stick Lady's call for a roll (flavour only; the result comes from the craps rules). New lines (Come, Place) are drafts. */
+function stickCall(before: number | null, after: number | null, sum: number, outcomes: CrapsOutcome[]): DealerLine {
+  const moved = outcomes.find((o) => o.result === 'move');
   if (before === null) {
     if (sum === 7 || sum === 11) return sum === 11 ? 'Yo-leven! Front line winner!' : 'Seven! Front line winner!';
     if (sum === 2 || sum === 3 || sum === 12) return `Craps, ${sum}! Line away.`;
@@ -409,84 +420,105 @@ function stickCall(before: number | null, after: number | null, sum: number): st
   }
   if (sum === before) return `${sum}, the hard way or easy, winner! Pay the line.`;
   if (sum === 7 && after === null) return 'Seven out. Line away.';
+  if (moved) return { text: `${sum}! Come bet goes to the ${NUMBER_WORD[sum as PointNo]}. Shooter rolls again.`, draft: true };
+  if (outcomes.some((o) => o.bet.startsWith('place ') && o.result === 'win')) return { text: `${sum}! Pay the place bet. Same shooter.`, draft: true };
   return `${sum}. No decision. Shooter rolls again.`;
 }
 
 function Craps() {
   const { state, services, run } = useGame();
-  const [table, setTable] = useState<CrapsState>(newCraps());
+  const live = crapsTable(state.career);
+  const last = crapsLast(state.career);
+  // While the dice are in the air the table shows the bets as they were.
+  const [frozen, setFrozen] = useState<CrapsTable | null>(null);
+  const table = frozen ?? live;
   const [chip, setChip] = useState(10);
-  const [dice, setDice] = useState<[number, number]>([3, 4]);
+  const [dice, setDice] = useState<[number, number]>(last?.dice ?? [3, 4]);
   const [rolling, setRolling] = useState(false);
   const [rolls, setRolls] = useState(0);
-  const [log, setLog] = useState<string[]>(['Place a Pass or Don\'t Pass bet and roll.']);
-  const [call, setCall] = useState<DealerLine | null>('New shooter coming out. Get your bets down.');
-  const roundRef = useRef<string | null>(null);
-  const partRef = useRef(0);
+  const [log, setLog] = useState<string[]>([last ? `Last roll ${last.dice[0]} + ${last.dice[1]} = ${last.message}` : 'Place a Pass or Don’t Pass bet and roll.']);
+  const [call, setCall] = useState<DealerLine | null>(onTable(live) > 0 ? 'Bets are down. Shooter, your dice.' : 'New shooter coming out. Get your bets down.');
   const [busy, setBusy] = useState(false);
   const felt = casinoArt('craps_table');
   const stick = useDealerAnim();
   const casinoLoc = useCasinoLocation();
   const crapsScene = devLegacyTables() ? null : crapsSceneFor(casinoLoc);
+  const note = (m: string) => setLog((l) => [m, ...l].slice(0, 8));
 
-  const roundId = () => (roundRef.current ??= services.casino.newRoundId('craps'));
-
-  const place = async (bet: BetKey) => {
-    const block = betBlocker(table, bet, chip);
-    if (block) return setLog((l) => [block, ...l].slice(0, 6));
+  const place = async (a: CrapsAction) => {
+    const block = betBlocker(table, a, chip);
+    if (block) return note(block);
     setBusy(true);
-    const ok = await run(() => services.casino.wager('craps', roundId(), `${bet}${++partRef.current}`, chip));
-    if (ok !== undefined) {
-      setTable((t) => ({ ...t, bets: { ...t.bets, [bet]: t.bets[bet] + chip } }));
-      sound.play('ui_click');
-    }
+    const ok = await run(() => services.casino.crapsBet(a, chip));
+    if (ok) sound.play('ui_click');
+    setBusy(false);
+  };
+  const down = async (a: CrapsAction) => {
+    setBusy(true);
+    const ok = await run(() => services.casino.crapsTakeDown(a));
+    if (ok) sound.play('ui_click', { volume: 0.5 });
     setBusy(false);
   };
 
   const roll = async () => {
-    if (betsOnTable(table) === 0) return;
+    if (onTable(table) === 0 || busy) return;
     setBusy(true);
+    setFrozen(live);
     setRolling(true);
     setCall('Dice are out!');
     stick.play('call');
     sound.play('swing', { volume: 0.5 });
-    await new Promise((r) => window.setTimeout(r, 700));
-    const d = rollDice();
-    setDice(d);
+    const r = await run(() => services.casino.crapsRoll());
+    await new Promise((res) => window.setTimeout(res, 700));
     setRolling(false);
+    setFrozen(null);
+    if (!r) return setBusy(false);
+    setDice(r.dice);
     setRolls((n) => n + 1);
     sound.play('bounce_hard');
-    const { state: next, outcomes, message } = resolveRoll(table, d);
-    const pay = outcomes.reduce((a, o) => a + o.payout, 0);
-    const id = roundRef.current!;
-    if (pay > 0) await run(() => services.casino.settle('craps', id, `roll${++partRef.current}`, pay));
-    const won = outcomes.filter((o) => o.result === 'win').reduce((a, o) => a + o.payout - table.bets[o.bet], 0);
-    setLog((l) => [`${d[0]} + ${d[1]} = ${message}${won ? ` · won ${formatMoney(won)}` : outcomes.some((o) => o.result === 'lose') ? ' · bets lost' : ''}`, ...l].slice(0, 6));
-    setCall(stickCall(table.point, next.point, d[0] + d[1]));
-    {
-      const sevenOut = table.point !== null && d[0] + d[1] === 7;
-      const anyWin = outcomes.some((o) => o.result === 'win');
-      const anyLose = outcomes.some((o) => o.result === 'lose');
-      if (sevenOut) stick.play('special');
-      else if (anyWin) stick.play('win');
-      else if (anyLose) stick.play('loss');
-    }
-    if (won) sound.play(won >= 500 ? 'cheer' : 'cash', { volume: 0.7 });
-    if (won > 0) celebrateWin(won, outcomes.filter((o) => o.result === 'win').reduce((a, o) => a + table.bets[o.bet], 0));
-    else if (outcomes.some((o) => o.result === 'lose')) sound.play('groan', { volume: 0.4 });
-    setTable(next);
+    const sum = r.dice[0] + r.dice[1];
+    const won = r.paid - r.outcomes.filter((o) => o.payout > 0).reduce((a, o) => a + o.stake, 0);
+    const lost = r.outcomes.filter((o) => o.result === 'lose').reduce((a, o) => a + o.stake, 0);
+    note(`${r.dice[0]} + ${r.dice[1]} = ${r.message}${won > 0 ? ` · won ${formatMoney(won)}` : ''}${lost > 0 ? ` · lost ${formatMoney(lost)}` : ''}`);
+    setCall(stickCall(table.point, r.table.point, sum, r.outcomes));
+    if (table.point !== null && sum === 7) stick.play('special');
+    else if (won > 0) stick.play('win');
+    else if (lost > 0) stick.play('loss');
+    if (won > 0) {
+      sound.play(won >= 500 ? 'cheer' : 'cash', { volume: 0.7 });
+      celebrateWin(won, r.outcomes.filter((o) => o.payout > 0).reduce((a, o) => a + Math.max(o.stake, 1), 0));
+    } else if (lost > 0) sound.play('groan', { volume: 0.4 });
     signalRoundComplete(services);
-    if (betsOnTable(next) === 0) {
-      roundRef.current = null;
-      partRef.current = 0;
-    }
     setBusy(false);
+  };
+
+  const chipAt = (key: string, amount: number, style: CSSProperties, cls = '') =>
+    amount > 0 ? (
+      <span key={key} className={`craps-felt-chip ${cls}`} style={style} data-testid={`craps-chip-${key}`}>
+        <BetChip amount={amount} />
+      </span>
+    ) : null;
+
+  const actionBtn = (a: CrapsAction, label: string, desc: string, cls = '') => {
+    const on = amountOn(table, a);
+    const block = betBlocker(table, a, chip);
+    return (
+      <span key={actionKey(a)} className={`craps-spot-wrap ${cls}`}>
+        <button className={`craps-spot ${a.kind} ${on ? 'has' : ''}`} onClick={() => place(a)} disabled={busy || rolling || !!block || chip > state.balance} title={block ?? desc} aria-label={`${label}: ${block ?? desc}${on ? `. On it: ${formatMoney(on)}` : ''}`} data-testid={`craps-${actionKey(a)}`}>
+          <span className="spot-name">{label}</span>
+          {on > 0 ? <BetChip amount={on} className="on-spot" /> : <span className="spot-desc">{block && !on ? block : desc}</span>}
+        </button>
+        {on > 0 && canTakeDown(a) && (
+          <button className="craps-down" onClick={() => down(a)} disabled={busy || rolling} aria-label={`Take down ${label}`} title="Take it down" data-testid={`craps-down-${actionKey(a)}`}>×</button>
+        )}
+      </span>
+    );
   };
 
   return (
     <section className="hub-card casino-game craps-game">
       <h2 className="hub-title">
-        Craps <span className="muted">${CRAPS_LIMITS.min}–${CRAPS_LIMITS.max}</span>
+        Craps <span className="muted">${CRAPS_LIMITS.min}–${CRAPS_LIMITS.max} · line, come, place, odds and field</span>
         <span className={`puck ${table.point ? 'on' : ''}`}>{table.point ? `ON ${table.point}` : 'OFF'}</span>
       </h2>
       <div className={`table-layout ${WIDE_SIDE ? 'side' : ''}`}>
@@ -495,17 +527,24 @@ function Craps() {
           <img className="craps-scene-img" src={crapsScene.url} width={crapsScene.size[0]} height={crapsScene.size[1]} alt="" draggable={false} />
           {crapsScene.veils.map((r, i) => (
             <span key={i} className={`craps-veil ${i === crapsScene.veils.length - 1 ? 'main' : ''}`} style={sceneRect(crapsScene, r)} aria-hidden>
-              {i === crapsScene.veils.length - 1 && <em>This table: Pass · Don&rsquo;t Pass · Odds · Field</em>}
+              {i === crapsScene.veils.length - 1 && <em>Hardways and one-roll bets: not at this table yet</em>}
             </span>
           ))}
-          {table.point && <span className="felt-puck" style={scenePt(crapsScene, crapsScene.point[table.point as 4])} data-testid="craps-puck">ON</span>}
-          {(Object.keys(crapsScene.spots) as BetKey[]).map((k) =>
-            table.bets[k] > 0 ? (
-              <span key={k} className="craps-felt-chip" style={scenePt(crapsScene, crapsScene.spots[k])} data-testid={`craps-chip-${k}`}>
-                <BetChip amount={table.bets[k]} />
-              </span>
-            ) : null,
-          )}
+          {table.point && <span className="felt-puck" style={boxPt(crapsScene, table.point, 0, -0.3)} data-testid="craps-puck">ON</span>}
+          {chipAt('pass', table.pass, scenePt(crapsScene, crapsScene.spots.pass))}
+          {chipAt('passOdds', table.passOdds, scenePt(crapsScene, crapsScene.spots.odds))}
+          {chipAt('dontPass', table.dontPass, scenePt(crapsScene, crapsScene.spots.dontPass))}
+          {chipAt('dontOdds', table.dontOdds, scenePt(crapsScene, crapsScene.spots.dontOdds), 'small')}
+          {chipAt('field', table.field, scenePt(crapsScene, crapsScene.spots.field))}
+          {chipAt('come', table.come, scenePt(crapsScene, crapsScene.spots.come))}
+          {chipAt('dontCome', table.dontCome, scenePt(crapsScene, crapsScene.spots.dontCome))}
+          {POINTS.map((n) => (
+            <Fragment key={n}>
+              {chipAt(`come-${n}`, (table.comePoints[n]?.bet ?? 0) + (table.comePoints[n]?.odds ?? 0), boxPt(crapsScene, n, -0.27, 0.08), 'num')}
+              {chipAt(`dc-${n}`, (table.dontComePoints[n]?.bet ?? 0) + (table.dontComePoints[n]?.odds ?? 0), boxPt(crapsScene, n, 0.27, 0.08), 'num dc')}
+              {chipAt(`place-${n}`, table.place[n] ?? 0, boxPt(crapsScene, n, 0, 0.36), 'num')}
+            </Fragment>
+          ))}
           <div className={`dice-area ${rolling ? 'rolling' : ''}`} key={rolls} data-testid="craps-dice" style={scenePt(crapsScene, crapsScene.dice)}>
             <Die n={dice[0]} rolling={rolling} i={0} />
             <Die n={dice[1]} rolling={rolling} i={1} />
@@ -538,34 +577,46 @@ function Craps() {
         <ServerPanel busy={busy || rolling} />
       </div>
       </div>
-      <div className="craps-bets">
-        {(Object.keys(BET_LABELS) as BetKey[]).map((k) => {
-          const block = betBlocker(table, k, chip);
+      <div className="craps-bets">{LINE_BETS.map((b) => actionBtn(b.a, b.name, b.desc))}</div>
+      <div className="craps-numbers" role="group" aria-label="The numbers: place bets, and odds on come points">
+        {POINTS.map((n) => {
+          const cp = table.comePoints[n];
+          const dc = table.dontComePoints[n];
           return (
-            <button key={k} className={`craps-spot ${k}`} onClick={() => place(k)} disabled={busy || chip > state.balance} title={block ?? BET_LABELS[k].desc} data-testid={`craps-${k}`}>
-              <span className="spot-name">{BET_LABELS[k].name}</span>
-              <span className="spot-desc">{BET_LABELS[k].desc}</span>
-              {table.bets[k] > 0 && <BetChip amount={table.bets[k]} className="on-spot" />}
-            </button>
+            <div key={n} className={`craps-num ${table.point === n ? 'is-point' : ''}`} data-testid={`craps-num-${n}`}>
+              <p className="craps-num-head"><b>{n}</b>{table.point === n && <span className="mini-puck">ON</span>}</p>
+              {actionBtn({ kind: 'place', n }, `Place ${n}`, `Pays ${PLACE_PAY[n]}; stays up after a win; loses on a 7`, 'mini')}
+              {cp && <p className="craps-num-line">Come {formatMoney(cp.bet)}{cp.odds ? ` + odds ${formatMoney(cp.odds)}` : ''}</p>}
+              {cp && actionBtn({ kind: 'comeOdds', n }, 'Odds', 'True odds on your Come bet, up to 2×', 'mini')}
+              {dc && <p className="craps-num-line">Don&rsquo;t Come {formatMoney(dc.bet)}{dc.odds ? ` + lay ${formatMoney(dc.odds)}` : ''}</p>}
+              {dc && actionBtn({ kind: 'dontComeOdds', n }, 'Lay', 'Lay odds on your Don’t Come bet', 'mini')}
+            </div>
           );
         })}
       </div>
+      <label className="craps-toggle">
+        <input type="checkbox" checked={table.placeOn} disabled={busy || rolling} onChange={(e) => void run(() => services.casino.crapsPlaceOn(e.target.checked))} data-testid="craps-place-on" />
+        Place bets work on the come-out roll too <span className="muted">(normally off)</span>
+      </label>
       <div className="chip-rack">
         {CHIPS.map((c) => (
           <ChipButton key={c} value={c} on={chip === c} onClick={() => setChip(c)} label={`$${c} chip`} />
         ))}
-        <span className="chip-total">Tap a bet to place <b>{formatMoney(chip)}</b> · on table <b>{formatMoney(betsOnTable(table))}</b></span>
+        <span className="chip-total">Tap a bet to add <b>{formatMoney(chip)}</b> · on the table <b>{formatMoney(onTable(table))}</b></span>
       </div>
       <div className="btn-row casino-actions">
-        <button className="btn primary" onClick={roll} disabled={busy || betsOnTable(table) === 0} data-testid="craps-roll">Roll the dice</button>
+        <button className="btn primary" onClick={roll} disabled={busy || rolling || onTable(table) === 0} data-testid="craps-roll">Roll the dice</button>
       </div>
       <ul className="craps-log" aria-live="polite">
         {log.map((l, i) => <li key={i} className={i === 0 ? 'latest' : ''}>{l}</li>)}
       </ul>
+      <p className="fineprint">
+        Bets ride from roll to roll and stay on the table if you leave or reload. Place bets and any odds can be taken down (×); line and Come bets stay until decided.
+        Odds on Come bets are off on the come-out roll. Hardways and the one-roll bets come in a later update.
+      </p>
     </section>
   );
 }
-
 
 // ───────────────────────── Roulette ─────────────────────────
 
@@ -798,7 +849,7 @@ export function CasinoPanel() {
           ) : (
             <p className="casino-name" data-testid="casino-name">{here.name}</p>
           )}
-          <p className="muted">Blackjack, slots, video poker, keno, craps, roulette, baccarat, Three Card Poker and greyhound racing. In-game money only.</p>
+          <p className="muted">Blackjack, slots, video poker, keno, Spin to Win, craps, roulette, baccarat, Three Card Poker and greyhound racing. In-game money only.</p>
         </div>
         <dl className="casino-stats">
           <div><dt>Bank</dt><dd>{formatMoney(state.balance)}</dd></div>
@@ -848,6 +899,7 @@ export function CasinoPanel() {
           {game === 'greyhounds' && <Greyhounds onLeave={() => setGame('blackjack')} />}
           {game === 'sportsbook' && <Sportsbook />}
           {game === 'machines' && <VideoMachine />}
+          {game === 'wheel' && <SpinWheel />}
         </>
       )}
     </main>

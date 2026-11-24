@@ -1,7 +1,7 @@
 {
   "name": "ryans-road-to-the-lpga",
   "private": true,
-  "version": "0.20.1",
+  "version": "0.20.2",
   "type": "module",
   "scripts": {
     "dev": "vite",

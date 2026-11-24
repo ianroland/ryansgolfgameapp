@@ -65,7 +65,7 @@ describe('casino craps scenes', () => {
       const pts = [...Object.values(s.point), ...Object.values(s.spots), s.dice];
       for (const [x, y] of pts) expect(x > 0 && x < 1672 && y > 0 && y < 941, c).toBe(true);
       expect(Object.keys(s.point).map(Number).sort((a, b) => a - b)).toEqual([4, 5, 6, 8, 9, 10]);
-      expect(Object.keys(s.spots).sort()).toEqual(['dontPass', 'field', 'odds', 'pass']);
+      expect(Object.keys(s.spots).sort()).toEqual(['come', 'dontCome', 'dontOdds', 'dontPass', 'field', 'odds', 'pass']);
     }
     expect(new Set(CASINOS.map((c) => CRAPS_SCENES[c].url)).size).toBe(3);
   });

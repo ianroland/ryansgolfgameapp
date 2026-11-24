@@ -111,11 +111,10 @@ export function cardSceneFor<G extends CardGame>(location: LocationId, game: G):
  * Craps scenes (CASINO_CRAPS_TABLES_V1): full 1672x941 scenes, shown whole (never cropped).
  * Files keep the pack's names (tables/<casino>/craps_full_scene), re-encoded as WebP at the same size.
  *
- * The art prints bets this game does not offer (Come, Don't Come, Place, Hardways, Big 6/8 and
- * the one-roll bets, some with wrong payouts). Those areas are covered by `veils` so nothing on
- * the felt suggests a bet that can't be made; the supported bets (Pass Line, Don't Pass Bar,
- * Field and the Odds behind the Pass Line) stay visible. The place-number boxes stay too: they
- * carry the point puck, as at a real table. Coordinates are scene pixels.
+ * Craps step 1 (0.20.2) plays the line, Come / Don't Come, Place bets, odds and the Field, so
+ * those painted areas are uncovered. Hardways, the one-roll bets and Big 6/8 are not offered yet
+ * (step 2; some of their painted payouts are wrong), so `veils` still cover them. The number boxes
+ * carry the point puck and the chips on each number (`box` is their size). Coordinates are scene pixels.
  */
 export type Pt = [number, number];
 export type Rect = [number, number, number, number];
@@ -126,8 +125,10 @@ export interface CrapsScene {
   size: [number, number];
   /** Centre of each point box. */
   point: Record<4 | 5 | 6 | 8 | 9 | 10, Pt>;
-  /** Where each supported bet's chip sits. */
-  spots: { pass: Pt; dontPass: Pt; odds: Pt; field: Pt };
+  /** Where each bet's chip sits. */
+  spots: { pass: Pt; dontPass: Pt; odds: Pt; field: Pt; come: Pt; dontCome: Pt; dontOdds: Pt };
+  /** Size of a number box (chips on a number sit at fixed fractions of it). */
+  box: [number, number];
   dice: Pt;
   /** Painted areas for bets the game does not offer. */
   veils: Rect[];
@@ -140,23 +141,26 @@ export const CRAPS_SCENES: Record<LocationId, CrapsScene> = {
   desert_palms: {
     location: 'desert_palms', url: crapsUrl('desert_palms'), sourceAsset: 'tables/desert_palms/craps_full_scene.png', size: [1672, 941],
     point: { 4: [497, 335], 5: [632, 335], 6: [767, 335], 8: [902, 335], 9: [1037, 335], 10: [1174, 335] },
-    spots: { pass: [215, 758], odds: [595, 758], dontPass: [400, 700], field: [430, 598] },
+    spots: { pass: [215, 758], odds: [595, 758], dontPass: [400, 700], field: [430, 598], come: [440, 445], dontCome: [362, 322], dontOdds: [480, 700] },
+    box: [130, 74],
     dice: [835, 565],
-    veils: [[295, 258, 136, 138], [1245, 258, 142, 138], [440, 256, 790, 38], [212, 396, 450, 178], [1008, 396, 444, 178], [650, 383, 375, 362]],
+    veils: [[215, 490, 440, 82], [1010, 490, 440, 82], [650, 383, 375, 362]],
   },
   white_buffalo: {
     location: 'white_buffalo', url: crapsUrl('white_buffalo'), sourceAsset: 'tables/white_buffalo/craps_full_scene.png', size: [1672, 941],
     point: { 4: [470, 395], 5: [618, 395], 6: [762, 395], 8: [908, 395], 9: [1053, 395], 10: [1195, 395] },
-    spots: { pass: [228, 732], odds: [600, 732], dontPass: [390, 672], field: [450, 560] },
+    spots: { pass: [228, 732], odds: [600, 732], dontPass: [390, 672], field: [450, 560], come: [480, 500], dontCome: [325, 392], dontOdds: [470, 672] },
+    box: [145, 80],
     dice: [835, 615],
-    veils: [[253, 328, 150, 124], [1263, 328, 160, 124], [400, 326, 865, 38], [208, 456, 474, 88], [988, 456, 474, 88], [666, 446, 342, 344]],
+    veils: [[666, 446, 342, 344]],
   },
   morongo_sky: {
     location: 'morongo_sky', url: crapsUrl('morongo_sky'), sourceAsset: 'tables/morongo_sky/craps_full_scene.png', size: [1672, 941],
     point: { 4: [373, 397], 5: [440, 397], 6: [510, 397], 8: [577, 397], 9: [645, 397], 10: [715, 397] },
-    spots: { pass: [250, 702], odds: [572, 702], dontPass: [380, 648], field: [430, 552] },
+    spots: { pass: [250, 702], odds: [572, 702], dontPass: [380, 648], field: [430, 552], come: [450, 485], dontCome: [285, 392], dontOdds: [460, 648] },
+    box: [66, 86],
     dice: [835, 585],
-    veils: [[230, 346, 118, 132], [1326, 346, 118, 132], [343, 331, 410, 30], [916, 331, 416, 30], [198, 446, 434, 82], [1043, 446, 424, 82], [626, 430, 419, 309]],
+    veils: [[626, 430, 419, 309]],
   },
 };
 

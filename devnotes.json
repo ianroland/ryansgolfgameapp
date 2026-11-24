@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.2",
+   "date": "2026-11-24",
+   "title": "Full craps (part 1) and Spin to Win",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Craps now has Come and Don't Come bets, Place bets on 4, 5, 6, 8, 9 and 10, and lay odds behind Don't Pass and Don't Come. Your bets ride from roll to roll and stay on the table if you leave or reload. Place bets and odds can be taken down. Hardways and one-roll bets come next."
+    },
+    {
+     "tag": "new",
+     "text": "Spin to Win: the classic money wheel, with a machine of its own at every casino. Bet on $1, $2, $5, $10, $20, the casino's emblem or the star, then spin. The wheel has 54 equal slots, so what you see is the real odds: up to 40 to 1."
+    }
+   ]
+  },
+  {
    "version": "0.20.1",
    "date": "2026-11-24",
    "title": "New card tables, and two more casinos open",

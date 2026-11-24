@@ -5,7 +5,10 @@
  * A payout can never exceed what the round could legally return.
  */
 import { BJ_LIMITS } from '../casino/blackjack';
-import { CRAPS_LIMITS } from '../casino/craps';
+import {
+  addBet, betBlocker as crapsBlocker, canTakeDown, CRAPS_LIMITS, MAX_ROLL_RETURN, onTable, readTable, resolveRoll, rollDice, takeDown,
+  type BetOutcome as CrapsOutcome, type CrapsAction, type CrapsTable,
+} from '../casino/craps';
 import { ROULETTE_LIMITS } from '../casino/roulette';
 import type { MoniqueMemory } from '../casino/monique';
 import {
@@ -19,6 +22,7 @@ import {
 } from '../casino/baccarat';
 import { betBlocker as threeCardBlocker, newDeck, settle3, type PendingThreeCard, type ThreeCardResult } from '../casino/threeCard';
 import { betBlocker as vpBlocker, dealVP, settleVP, VP_MAX_RETURN, vpStake, type PendingVideoPoker, type VideoPokerResult } from '../casino/videoPoker';
+import { betBlocker as wheelBlocker, settleWheel, spinSlot, WHEEL_MAX_RETURN, type WheelBets, type WheelResult } from '../casino/wheel';
 import { betBlocker as kenoBlocker, drawBalls, KENO_MAX_RETURN, settleKeno, type KenoResult } from '../casino/keno';
 import * as engine from '../career/engine';
 import { locationById } from '../expansion/locations';
@@ -32,10 +36,10 @@ import type { CareerService } from './careerService';
 import type { EconomyService } from './economyService';
 import type { Notifier } from './notifier';
 
-export type CasinoGame = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds' | 'baccarat' | 'threecard' | 'videopoker' | 'keno';
+export type CasinoGame = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds' | 'baccarat' | 'threecard' | 'videopoker' | 'keno' | 'wheel';
 
 /** Most a round can return per dollar wagered in it (roulette: straight up, 35 to 1 plus the stake). */
-const MAX_RETURN: Record<CasinoGame, number> = { blackjack: 2.5, slots: 400, craps: 4, roulette: 36, greyhounds: 31, baccarat: 9, threecard: 41, videopoker: VP_MAX_RETURN, keno: KENO_MAX_RETURN };
+const MAX_RETURN: Record<CasinoGame, number> = { blackjack: 2.5, slots: 400, craps: 4, roulette: 36, greyhounds: 31, baccarat: 9, threecard: 41, videopoker: VP_MAX_RETURN, keno: KENO_MAX_RETURN, wheel: WHEEL_MAX_RETURN };
 
 /** The greyhound race bet on and decided but not yet paid, if any (kept on the career so a reload can't lose it). */
 export function pendingRace(c: CareerState): PendingRace | null {
@@ -65,6 +69,17 @@ export const baccaratHistory = (c: CareerState) => readJson<BaccaratHistoryEntry
 export const pendingThreeCard = (c: CareerState) => readJson<PendingThreeCard>(c.flags.threeCardPending);
 /** The video poker hand dealt and waiting for holds, if any (additive flag; survives a reload). */
 export const pendingVideoPoker = (c: CareerState) => readJson<PendingVideoPoker>(c.flags.videoPokerPending);
+/** The craps table: every bet riding on it, the point and the last roll (additive flag; survives a reload). */
+export const crapsTable = (c: CareerState) => readTable(c.flags.crapsTable);
+export interface CrapsLastRoll { dice: [number, number]; message: string; outcomes: CrapsOutcome[]; n: number }
+export const crapsLast = (c: CareerState) => readJson<CrapsLastRoll>(c.flags.crapsLast);
+
+/** Spin to Win: the last spins, newest first (slot and symbol; additive flag), and the last spin in full. */
+export interface WheelHistoryEntry { slot: number; symbol: string }
+export const wheelHistory = (c: CareerState) => readJson<WheelHistoryEntry[]>(c.flags.wheelHistory) ?? [];
+export const wheelLast = (c: CareerState) => readJson<WheelResult & { roundId: string }>(c.flags.wheelLast);
+export const WHEEL_HISTORY = 20;
+
 /** The last keno draws, newest first (additive flag): each game's twenty balls. */
 export const kenoHistory = (c: CareerState) => readJson<number[][]>(c.flags.kenoHistory) ?? [];
 export const KENO_HISTORY = 10;
@@ -86,6 +101,9 @@ export interface BaccaratRound {
 export const currentGreyhoundCard = (c: CareerState) => readJson<{ seed: number; v: 2 }>(c.flags.greyhoundCard);
 /** The last 10 greyhound races, newest first. Additive flag. */
 export const greyhoundHistory = (c: CareerState) => readJson<RaceHistoryEntry[]>(c.flags.greyhoundHistory) ?? [];
+
+/** The ledger source id for the bets on the craps table now (a new one once the table clears). */
+const crapsSession = (c: CareerState) => (typeof c.flags.crapsSession === 'string' && c.flags.crapsSession ? c.flags.crapsSession : newId('casino_craps'));
 
 export class CasinoService {
   constructor(
@@ -384,6 +402,126 @@ export class CasinoService {
       }
       await this.db.careers.put(next);
       return { roundId, result };
+    });
+    this.announce(unlocked);
+    return out;
+  }
+
+  /**
+   * Craps: puts chips on one bet. The table lives on the career (flag `crapsTable`), so bets ride
+   * from roll to roll and survive a reload. Ledger entries share the table's session id.
+   */
+  async crapsBet(action: CrapsAction, amount: number): Promise<CrapsTable> {
+    return this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      const table = crapsTable(c);
+      const block = crapsBlocker(table, action, amount);
+      if (block) throw new DomainError('CAREER_RULE', block);
+      if ((await this.economy.getBalance(c.playerId)) < amount) throw new DomainError('CAREER_RULE', 'Not enough in the bank');
+      const sid = crapsSession(c);
+      const k = Number(c.flags.crapsSeq ?? 0) + 1;
+      await this.economy.post({ ownerId: c.playerId, amount: -amount, type: 'casino', sourceId: sid, idempotencyKey: `casino:${sid}:bet:${k}` });
+      const next = addBet(table, action, amount);
+      const career = engine.recordCasino(c, amount, 0);
+      career.flags.crapsTable = JSON.stringify(next);
+      career.flags.crapsSession = sid;
+      career.flags.crapsSeq = k;
+      await this.db.careers.put(career);
+      return next;
+    });
+  }
+
+  /** Takes a Place bet or any odds back down, returning the chips. */
+  async crapsTakeDown(action: CrapsAction): Promise<CrapsTable> {
+    return this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      if (!canTakeDown(action)) throw new DomainError('CAREER_RULE', 'That bet stays on the table until it is decided');
+      const { table, returned } = takeDown(crapsTable(c), action);
+      if (returned === 0) return table;
+      const sid = crapsSession(c);
+      const k = Number(c.flags.crapsSeq ?? 0) + 1;
+      await this.economy.post({ ownerId: c.playerId, amount: returned, type: 'casino', sourceId: sid, idempotencyKey: `casino:${sid}:down:${k}` });
+      const career = engine.recordCasino(c, 0, returned);
+      career.flags.crapsTable = JSON.stringify(table);
+      career.flags.crapsSeq = k;
+      await this.db.careers.put(career);
+      return table;
+    });
+  }
+
+  /** Place bets working (or off) on the come-out roll. */
+  async crapsPlaceOn(on: boolean): Promise<CrapsTable> {
+    return this.db.transaction('rw', [this.db.careers], async () => {
+      const c = await this.open();
+      const table = { ...crapsTable(c), placeOn: on };
+      await this.db.careers.put({ ...c, flags: { ...c.flags, crapsTable: JSON.stringify(table) } });
+      return table;
+    });
+  }
+
+  /**
+   * Rolls the dice for the table: the roll is made here, decided by the rules, paid once and
+   * saved with the new table in the same transaction, so a reload or a second tab can't reroll
+   * or pay a roll twice.
+   */
+  async crapsRoll(): Promise<{ dice: [number, number]; outcomes: CrapsOutcome[]; message: string; table: CrapsTable; paid: number; staked: number }> {
+    const unlocked: string[] = [];
+    const out = await this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      const before = crapsTable(c);
+      if (onTable(before) === 0) throw new DomainError('CAREER_RULE', 'Put a bet down first');
+      const dice = rollDice();
+      const { table, outcomes, message } = resolveRoll(before, dice);
+      const paid = outcomes.reduce((a, o) => a + o.payout, 0);
+      if (paid > onTable(before) * MAX_ROLL_RETURN) throw new DomainError('CAREER_RULE', 'Payout exceeds what this roll can return');
+      const sid = crapsSession(c);
+      const n = Number(c.flags.crapsRolls ?? 0) + 1;
+      if (paid > 0) await this.economy.post({ ownerId: c.playerId, amount: paid, type: 'casino', sourceId: sid, idempotencyKey: `casino:${sid}:roll:${n}` });
+      const staked = outcomes.reduce((a, o) => a + o.stake, 0);
+      let next = engine.recordCasino(c, 0, paid, { biggestWin: paid - staked });
+      next.flags.crapsTable = JSON.stringify(table);
+      next.flags.crapsRolls = n;
+      next.flags.crapsLast = JSON.stringify({ dice, message, outcomes, n } satisfies CrapsLastRoll);
+      // A cleared table starts a new session id for the next bets.
+      if (onTable(table) === 0) delete next.flags.crapsSession;
+      if (paid > staked) {
+        const o = engine.withAchievements({ career: next, money: [] });
+        unlocked.push(...(o.unlocked ?? []));
+        next = o.career;
+      }
+      await this.db.careers.put(next);
+      return { dice, outcomes, message, table, paid, staked };
+    });
+    this.announce(unlocked);
+    return out;
+  }
+
+  /**
+   * Spin to Win: the slot is drawn here (one unbiased draw over 54 equal slots), then the bets are
+   * debited, the spin paid and saved, all in one transaction, before the wheel is animated. The
+   * animation only shows the committed result; a reload shows the same result and never respins.
+   */
+  async spinWheel(bets: WheelBets): Promise<WheelResult & { roundId: string }> {
+    const unlocked: string[] = [];
+    const out = await this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      const block = wheelBlocker(bets, await this.economy.getBalance(c.playerId));
+      if (block) throw new DomainError('CAREER_RULE', block);
+      const result = settleWheel(bets, spinSlot());
+      if (result.payout > result.staked * MAX_RETURN.wheel) throw new DomainError('CAREER_RULE', 'Payout exceeds what this spin can return');
+      const roundId = newId('casino_wheel');
+      await this.economy.post({ ownerId: c.playerId, amount: -result.staked, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:bet:main` });
+      if (result.payout > 0) await this.economy.post({ ownerId: c.playerId, amount: result.payout, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:pay:main` });
+      let next = engine.recordCasino(c, result.staked, result.payout, { biggestWin: result.payout - result.staked });
+      next.flags.wheelLast = JSON.stringify({ ...result, roundId });
+      next.flags.wheelHistory = JSON.stringify([{ slot: result.slot, symbol: result.symbol }, ...wheelHistory(c)].slice(0, WHEEL_HISTORY));
+      if (result.payout > result.staked) {
+        const o = engine.withAchievements({ career: next, money: [] });
+        unlocked.push(...(o.unlocked ?? []));
+        next = o.career;
+      }
+      await this.db.careers.put(next);
+      return { ...result, roundId };
     });
     this.announce(unlocked);
     return out;

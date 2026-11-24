@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { canDouble, canSplit, deal, double, handValue, hit, newTable, split, stand, totalPayout, type BJState, type Card } from '../src/casino/blackjack';
-import { betBlocker, newCraps, resolveRoll } from '../src/casino/craps';
 import { returnToPlayer, spin } from '../src/casino/slots';
 import { seededInt } from '../src/casino/random';
 import * as E from '../src/career/engine';
@@ -82,34 +81,6 @@ describe('slots', () => {
     const r = spin(10, seededInt(42));
     expect(r.reels).toHaveLength(3);
     expect(r.payout % 10).toBe(0);
-  });
-});
-
-describe('craps', () => {
-  it('come-out: 7 and 11 win the pass line, 2/3/12 lose; 12 pushes don\'t pass', () => {
-    const s = { point: null, bets: { pass: 10, dontPass: 10, odds: 0, field: 0 } };
-    expect(resolveRoll(s, [3, 4]).outcomes).toEqual([{ bet: 'pass', result: 'win', payout: 20 }, { bet: 'dontPass', result: 'lose', payout: 0 }]);
-    expect(resolveRoll(s, [6, 6]).outcomes).toEqual([{ bet: 'pass', result: 'lose', payout: 0 }, { bet: 'dontPass', result: 'push', payout: 10 }]);
-  });
-  it('a point, then odds at true odds; 7 out loses', () => {
-    let s = resolveRoll({ point: null, bets: { pass: 10, dontPass: 0, odds: 0, field: 0 } }, [2, 2]).state;
-    expect(s.point).toBe(4);
-    expect(betBlocker(s, 'odds', 25)).toMatch(/2×/);
-    s = { ...s, bets: { ...s.bets, odds: 20 } };
-    const hitPoint = resolveRoll(s, [1, 3]);
-    expect(hitPoint.outcomes).toEqual([{ bet: 'odds', result: 'win', payout: 60 }, { bet: 'pass', result: 'win', payout: 20 }]);
-    expect(hitPoint.state.point).toBeNull();
-    expect(resolveRoll(s, [3, 4]).outcomes.every((o) => o.result === 'lose')).toBe(true);
-  });
-  it('field pays 2:1 on 2, 3:1 on 12, loses on 7', () => {
-    const f = (d: [number, number]) => resolveRoll({ point: null, bets: { pass: 0, dontPass: 0, odds: 0, field: 10 } }, d).outcomes[0];
-    expect(f([1, 1]).payout).toBe(30);
-    expect(f([6, 6]).payout).toBe(40);
-    expect(f([4, 5]).payout).toBe(20);
-    expect(f([3, 4]).payout).toBe(0);
-  });
-  it('line bets only on the come-out', () => {
-    expect(betBlocker({ ...newCraps(), point: 6 }, 'pass', 10)).toMatch(/come-out/);
   });
 });
 

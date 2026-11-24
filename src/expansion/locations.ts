@@ -9,7 +9,7 @@ import type { CareerState } from '../career/types';
 import type { LocationId, UnlockId } from './unlocks';
 import { UNLOCK_RULES } from './unlocks';
 
-export type CasinoGameId = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'baccarat' | 'threecard' | 'machines' | 'greyhounds' | 'sportsbook';
+export type CasinoGameId = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'baccarat' | 'threecard' | 'machines' | 'wheel' | 'greyhounds' | 'sportsbook';
 
 export interface LocationDef {
   id: LocationId;
@@ -36,6 +36,7 @@ const GAMES: LocationDef['games'] = [
   { id: 'blackjack', label: 'Blackjack' },
   { id: 'slots', label: 'Slots' },
   { id: 'machines', label: 'Video Poker & Keno' },
+  { id: 'wheel', label: 'Spin to Win' },
   { id: 'craps', label: 'Craps' },
   { id: 'roulette', label: 'Roulette' },
   { id: 'baccarat', label: 'Baccarat' },

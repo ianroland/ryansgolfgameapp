@@ -2376,3 +2376,83 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 }
 /* Scenes size their own cards; the old tables' 96px minimum row height made phone hands tall. */
 .cs-felt .cards { min-height: 0; flex-wrap: nowrap; }
+
+/* ── Craps step 1 (0.20.2): line row, the numbers, chips on number boxes. ── */
+.craps-spot-wrap { position: relative; display: flex; }
+.craps-spot-wrap > .craps-spot { flex: 1; min-width: 0; }
+.craps-spot.pass { grid-column: auto; }
+.craps-spot:disabled { opacity: 0.55; cursor: default; }
+.craps-spot.has { border-color: #ffe680; }
+.craps-spot .on-spot { position: static; align-self: flex-start; }
+.craps-down { position: absolute; top: -8px; right: -8px; z-index: 2; width: 26px; height: 26px; padding: 0; font-size: 18px; line-height: 1; color: #fff; background: #8a1d2a; border: 2px solid var(--ink); border-radius: 50%; cursor: pointer; }
+.craps-down:disabled { opacity: 0.5; cursor: default; }
+.craps-numbers { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.craps-num { display: flex; flex-direction: column; gap: 6px; padding: 8px; border: 2px solid rgba(255, 255, 255, 0.25); border-radius: 10px; background: rgba(0, 0, 0, 0.2); }
+.craps-num.is-point { border-color: #fff; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25); }
+.craps-num-head { display: flex; align-items: center; gap: 8px; margin: 0; font-family: var(--head); font-size: 28px; line-height: 1; color: #ffe680; text-shadow: 2px 2px 0 var(--ink); }
+.mini-puck { padding: 1px 7px; font-size: 13px; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 999px; text-shadow: none; }
+.craps-num-line { margin: 0; font-size: 12px; color: #d8f0de; }
+.craps-spot-wrap.mini .craps-spot { padding: 6px 8px; }
+.craps-spot-wrap.mini .spot-name { font-size: 18px; }
+.craps-spot-wrap.mini .spot-desc { font-size: 11px; }
+.craps-toggle { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 14px; }
+.craps-felt-chip.small .felt-chip img { width: 3.2cqw; }
+.craps-felt-chip.num .felt-chip img { width: 2.6cqw; }
+.craps-felt-chip.num .felt-chip b { font-size: max(8px, 1.3cqw); }
+.loc-morongo_sky .craps-felt-chip.num .felt-chip img { width: 2cqw; }
+.loc-morongo_sky .craps-felt-chip.num .felt-chip b { font-size: max(8px, 1.05cqw); }
+@media (max-width: 900px) { .craps-numbers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .craps-bets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ── Spin to Win (money wheel) on each casino's machine. ── */
+.spin-cab { position: relative; width: 100%; max-width: 620px; margin: 0 auto; background: center / 100% 100% no-repeat; border-radius: 10px; container-type: inline-size; }
+.spin-wheel { position: absolute; border-radius: 50%; }
+.spin-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.spin-rotor { transform-box: view-box; transform-origin: 0 0; } /* the viewBox is centred on 0,0 */
+.spin-label { font-family: var(--head); font-weight: 400; text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: rgba(0, 0, 0, 0.45); stroke-width: 0.7px; letter-spacing: -0.3px; }
+.spin-won { animation: spin-flash 0.6s steps(2, jump-none) 4; }
+@keyframes spin-flash { 50% { fill: #fff6c4; } }
+.spin-pointer { position: absolute; z-index: 3; height: auto; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.6)); pointer-events: none; }
+.spin-pays { position: absolute; z-index: 2; display: flex; flex-direction: column; padding: 2.2cqw 1.6cqw 1.6cqw; background: linear-gradient(180deg, #3a0717, #22030d); border: 0.5cqw solid #d9a62e; border-radius: 1.4cqw; box-shadow: inset 0 0 0 0.3cqw #5c0f22; color: #ffe9a8; }
+.spin-pays-title { margin: 0 0 1cqw; text-align: center; font-family: var(--head); font-size: 4.2cqw; text-transform: uppercase; letter-spacing: 0.06em; color: #fff3c4; text-shadow: 0.3cqw 0.3cqw 0 #000; }
+.spin-pays table { width: 100%; border-collapse: collapse; font-family: var(--head); font-size: 3.1cqw; }
+.spin-pays th { width: 1%; padding: 0.45cqw 0.8cqw 0.45cqw 0; }
+.spin-pays td { padding: 0.45cqw 0; white-space: nowrap; }
+.spin-pays .spin-slots { text-align: right; color: #d7b97a; font-size: 2.6cqw; }
+.spin-pays tr + tr th, .spin-pays tr + tr td { border-top: 1px solid rgba(255, 220, 150, 0.15); }
+.spin-pays tr.hit td, .spin-pays tr.hit th { background: rgba(255, 220, 90, 0.25); }
+.spin-sym { display: inline-grid; place-items: center; min-width: 5.2cqw; height: 4.4cqw; padding: 0 0.6cqw; font-family: var(--head); font-size: 3cqw; border: 0.3cqw solid #e8c15a; border-radius: 1cqw; }
+.spin-sym img { width: 3.6cqw; height: 3.6cqw; }
+.spin-betplate { position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 1.4cqw; background: linear-gradient(180deg, #1c1622, #0c0a10); border: 0.5cqw solid #d9a62e; border-radius: 1.2cqw; font-family: var(--head); text-transform: uppercase; color: #ffe9a8; }
+.spin-betplate span { font-size: 3.4cqw; color: #d7b97a; }
+.spin-betplate b { font-weight: 400; font-size: 4.6cqw; color: #7dff6a; text-shadow: 0 0 1cqw rgba(110, 255, 90, 0.5); }
+.wheel-spin-btn { position: absolute; z-index: 2; padding: 0; border: 0; background: center / 100% 100% no-repeat; cursor: pointer; }
+.wheel-spin-btn:hover:not(:disabled) { filter: brightness(1.12); }
+.wheel-spin-btn:active:not(:disabled) { transform: translateY(2px); }
+.wheel-spin-btn:disabled { cursor: default; }
+.wheel-spin-btn:focus-visible, .spin-spot:focus-visible, .spin-chip:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.spin-status { margin: 10px 0 6px; text-align: center; font-family: var(--head); font-size: clamp(18px, 2.2vw, 26px); text-transform: uppercase; color: #fff; text-shadow: 2px 2px 0 var(--ink); }
+.spin-status.win { color: #ffe84a; animation: neon 1.1s steps(2, jump-none) infinite; }
+.spin-board { display: grid; gap: 12px; padding: 6px; border-style: solid; border-width: 18px; }
+.spin-spots { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.spin-spot { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 4px; cursor: pointer; background: rgba(0, 0, 0, 0.35); border: 2px solid #e8c15a; border-radius: 10px; color: #fff; }
+.spin-spot:hover:not(:disabled) { background: rgba(255, 255, 255, 0.08); }
+.spin-spot:disabled { cursor: default; }
+.spin-spot.won { box-shadow: 0 0 0 3px #ffe84a, 0 0 18px #ffd23a; }
+.spin-spot-sym { display: grid; place-items: center; min-width: 46px; height: 38px; padding: 0 6px; font-family: var(--head); font-size: 26px; color: var(--ink); background: var(--sym); border: 2px solid #e8c15a; border-radius: 8px; }
+.spin-spot-sym img { width: 30px; height: 30px; }
+.spin-spot-pays { font-size: 12px; color: #ffe9a8; }
+.spin-spot-on { min-height: 18px; font-family: var(--head); font-size: 17px; color: #7dff6a; }
+.spin-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.spin-chip { padding: 0; background: none; border: 0; cursor: pointer; border-radius: 8px; }
+.spin-chip img { display: block; width: 64px; height: auto; }
+.spin-chip.on { box-shadow: 0 0 0 3px #ffe84a, 0 0 12px #ffd23a; }
+.spin-chip:disabled { opacity: 0.5; cursor: default; }
+.spin-meters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 560px; }
+.spin-meter { position: relative; background: center / 100% 100% no-repeat; container-type: inline-size; }
+.spin-meter b { position: absolute; display: grid; place-items: center; font-family: var(--head); font-weight: 400; font-size: 15cqw; color: #7dff6a; background: #050807; border-radius: 3cqw; text-shadow: 0 0 2cqw rgba(110, 255, 90, 0.55); }
+.spin-history { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; container-type: inline-size; }
+.spin-history .spin-sym { min-width: 30px; height: 26px; font-size: 16px; border-width: 2px; border-radius: 6px; }
+.spin-history .spin-sym img { width: 20px; height: 20px; }
+@media (max-width: 720px) { .spin-spots { grid-template-columns: repeat(4, minmax(0, 1fr)); } .spin-chip img { width: 52px; } }
+@media (prefers-reduced-motion: reduce) { .spin-won, .spin-status.win { animation: none; } }
