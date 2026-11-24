@@ -6,10 +6,10 @@ changes a save or the shared data.
 
 ## Navigation entry point
 
-- A new main tab, **Sports History**, after Casino. It opens inside the game: no page reload, and the career and session are untouched.
+- **Moved in 0.19.12:** the board now lives in the sportsbook, not the main navigation. The sportsbook's **History** button (Casino → Sportsbook) opens it in place of the lounge, on the league that was on screen. **◀ Sportsbook** (or **Esc** with no drill-down open) returns to the lines. The old lore-only History screen it replaced is gone. *(0.19.9–0.19.11 had it as a main tab, Sports History, after Casino.)*
+- It opens inside the game: no page reload, and the career and session are untouched.
 - The board is lazy-loaded, so its code and archive download on first open only.
-- It remembers where you were when you leave the tab and come back.
-- The sportsbook's History tab now points to it.
+- It remembers where you were when you close it and come back (a drill-down left open is kept; otherwise it opens on the sportsbook's league).
 
 **Inside the board:**
 - nine section tabs;
@@ -84,7 +84,7 @@ Every screen reads the same season list, so a champion is the same in Seasons, C
 - this report
 
 **Modified:**
-- `src/ui/App.tsx`: the Sports History tab, lazy-loaded.
+- `src/ui/App.tsx`: the Sports History tab, lazy-loaded (moved into `src/ui/sportsbook/Sportsbook.tsx` in 0.19.12).
 - `src/ui/styles.css`: the `.hb-*` almanac styles.
 - `src/ui/sportsbook/Sportsbook.tsx`: a pointer to the board.
 - `src/services/sportsUniverseService.ts`: `historyInput()`, read-only.

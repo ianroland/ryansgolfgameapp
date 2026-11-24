@@ -2,6 +2,17 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.19.12",
+   "date": "2026-11-24",
+   "title": "Sports history moves into the sportsbook",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "The Sports History Board now lives in the sportsbook instead of the main menu: press History at the sportsbook to open the full archive on the league you were watching, and ◀ Sportsbook (or Esc) to get back to the lines."
+    }
+   ]
+  },
+  {
    "version": "0.19.11",
    "date": "2026-11-24",
    "title": "Sports history for NPC Factory",

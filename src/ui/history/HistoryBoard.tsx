@@ -2,8 +2,10 @@
  * The Sports History Board (Phase E): the four leagues' archive, read-only. Shared history is
  * loaded on first open (separate chunks); this save's completed seasons come from the living
  * universe's stored years. Nothing here changes the save.
+ *
+ * It opens from the sportsbook's History button, in place of the lounge; `onClose` returns there.
  */
-import { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { sportsWorldOf } from '../../career/sportsbook';
 import { buildBoard, type Board } from '../../sports/archive/board';
 import { buildSaveHistory } from '../../sports/archive/save';
@@ -23,18 +25,27 @@ import { YearInReview } from './Review';
 import { SeasonArchive, SeasonDetail } from './Seasons';
 import { TeamPage } from './TeamPage';
 
-/** Where the board was left this session (closing and reopening the tab comes back here). */
+/** Where the board was left this session (closing and reopening it comes back here). */
 let remembered: NavState | null = null;
 const LEAGUE_SECTIONS = new Set(['overview', 'archive', 'records', 'awards']);
 
-export default function HistoryBoard() {
+export default function HistoryBoard({ onClose, league }: { onClose?: () => void; league?: LeagueId } = {}) {
   const { services, state } = useGame();
   const c = state.career;
   const [board, setBoard] = useState<Board | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
-  const [nav, dispatch] = useReducer(navReduce, remembered ?? initialNav());
+  // Opens on the league the sportsbook was showing, unless a drill-down was left open last time.
+  const [nav, dispatch] = useReducer(navReduce, null, () => {
+    const s = remembered ?? initialNav(league);
+    return league && !s.stack.length ? navReduce(s, { type: 'league', league }) : s;
+  });
   useEffect(() => { remembered = nav; }, [nav]);
+  const navRef = useRef(nav);
+  navRef.current = nav;
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+  const rootRef = useRef<HTMLElement>(null);
   const done = typeof c.flags.sportsYearDone === 'number' ? c.flags.sportsYearDone : 0;
 
   useEffect(() => {
@@ -58,7 +69,11 @@ export default function HistoryBoard() {
   }, []);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !(e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement)) dispatch({ type: 'back' });
+      if (e.key !== 'Escape' || e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
+      // The casino stays mounted behind other tabs: ignore keys while the board isn't on screen.
+      if (!rootRef.current?.getClientRects().length) return;
+      if (navRef.current.stack.length) dispatch({ type: 'back' });
+      else closeRef.current?.();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -67,8 +82,11 @@ export default function HistoryBoard() {
   const top = nav.stack.at(-1);
 
   return (
-    <main className="hb" data-testid="history-board">
+    <main className={`hb${onClose ? ' hb-in-book' : ''}`} data-testid="history-board" ref={rootRef}>
       <header className="hb-top">
+        {onClose && (
+          <button type="button" className="hb-close" onClick={onClose} data-testid="hb-close" title="Back to the sportsbook (Esc)">◀ Sportsbook</button>
+        )}
         <div className="hb-brand">
           <span className="hb-brand-k">Sports History Board</span>
           <span className="hb-brand-s">Four leagues · {board ? `1972–${board.lastCompleted}` : 'the archive'}</span>

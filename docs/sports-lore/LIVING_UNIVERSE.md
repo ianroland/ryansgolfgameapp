@@ -156,7 +156,7 @@ It's idempotent across repeats, reloads and tabs.
 
 ## The History Board (Phase E)
 
-The board (`src/ui/history/`, main tab "Sports History") reads this universe through a read-only layer:
+The board (`src/ui/history/`, opened from the sportsbook's History button) reads this universe through a read-only layer:
 - `src/sports/archive/shared.ts` loads the shared files plus `archive.json` (season lines and playoff series, 1972–2026, derived by `scripts/history/build_archive.ts`).
 - `save.ts` adds the save's stored years and rebuilds any fixed-roster seasons a legacy save played.
 - `board.ts` combines them; every view reads the same season list.

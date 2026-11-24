@@ -4,9 +4,9 @@
  * Lines, scores and standings come from the sports engine for this career's world and calendar.
  * Bets are real: placing one takes the stake from the bankroll (services.sportsbook, ledger key
  * `bet:<ticketId>`), and advancing the week settles and pays them, with a note in the Inbox.
- * News is still demo copy.
+ * News is still demo copy. History opens the full Sports History Board in place of the lounge.
  */
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { DEMO_MARGIN, demoNews, fmtAmerican, LEAGUES, leagueById, teamById, type DemoGame, type DemoLine, type LeagueId } from '../../sports/demo';
 import { parlayCheck, potentialReturn, selectionKey, SLIP_RULES, toggleSelection, type Selection } from '../../sports/slip';
 import { boardFor, recentFinals, standingsToDate, type BookGame, type WorldRef } from '../../sports/book';
@@ -15,7 +15,6 @@ import { bookTotalsOf, sportsWorldOf, ticketsOf } from '../../career/sportsbook'
 import { newId } from '../../core/ids';
 import { clerkLine } from '../../sports/clerks/lines';
 import { LOUNGE_LAYOUT, LOUNGE_SIZE, LOUNGES, rectPct, type ClerkExpression, type NativeRect } from '../../sports/themes';
-import { bundledLore, leagueTimeline, lore, sportsYearForSeason, teamHistory } from '../../sports/lore/service';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
 import { useCasinoLocation } from '../casino/casinoLocation';
@@ -40,6 +39,9 @@ function useSessionState<K extends 'slip'>(key: K): [(typeof session)[K], (f: (v
   };
   return [v, set];
 }
+
+/** The archive is a separate chunk, loaded the first time History is opened. */
+const HistoryBoard = lazy(() => import('../history/HistoryBoard'));
 
 const SPORT_LABEL = { baseball: 'Baseball', basketball: 'Basketball', football: 'Football', hockey: 'Hockey' } as const;
 
@@ -194,6 +196,15 @@ export function Sportsbook() {
     return { '--l': p.left, '--t': p.top, '--w': p.width, '--h': p.height } as CSSProperties;
   };
 
+  // History opens the full Sports History Board in place of the lounge; its Sportsbook button (or Esc) comes back.
+  if (view === 'history') {
+    return (
+      <Suspense fallback={<main className="hb hb-in-book"><div className="hb-state" role="status"><p className="hb-loading">Opening the archive…</p></div></main>}>
+        <HistoryBoard league={league} onClose={() => setView('lines')} />
+      </Suspense>
+    );
+  }
+
   return (
     <section className={`hub-card sportsbook loc-${loc}`} style={style} data-testid="sportsbook" aria-label={`${theme.name} sportsbook`}>
       <div className="sb-stage" data-testid="sb-stage">
@@ -283,8 +294,6 @@ export function Sportsbook() {
                   ))}
                 </ul>
               )}
-
-              {view === 'history' && <LeagueHistory league={league} year={sportsYearForSeason(state.career.season)} />}
 
               {view === 'tickets' && <Tickets tickets={tickets} totals={bookTotalsOf(c)} week={c.week} season={c.season} />}
               <p className="sb-foot">Lines include a {(DEMO_MARGIN * 100).toFixed(1)}% house margin. Bets settle when you advance the week; results go to your Inbox.</p>
@@ -482,151 +491,6 @@ function Tickets({ tickets, totals, week, season }: { tickets: Ticket[]; totals:
             </li>
           ))}
         </ul>
-      )}
-    </div>
-  );
-}
-
-/**
- * League history from the sports-lore canon (draft until approved). Read-only: it shows only what
- * the canon has written, marks proposed inferences as such, and counts the rest as unwritten.
- * Seasons from 2027 on will come from the save's own simulated ledger (Phase 4), not from canon.
- * Split into sections so each one fits the board without hidden overflow.
- */
-const HIST_SECTIONS = [
-  { id: 'about', label: 'About' },
-  { id: 'champions', label: 'Champions' },
-  { id: 'moments', label: 'Moments' },
-  { id: 'legends', label: 'Legends' },
-  { id: 'teams', label: 'Teams' },
-] as const;
-type HistSection = (typeof HIST_SECTIONS)[number]['id'];
-
-function LeagueHistory({ league, year }: { league: LeagueId; year: number }) {
-  const [section, setSection] = useState<HistSection>('about');
-  const [team, setTeam] = useState<string | null>(null);
-  useEffect(() => setTeam(null), [league]);
-  const viewer = { year, tier: 'historian' as const };
-  const t = leagueTimeline(league, viewer);
-  const L = lore.league(league)!;
-  const written = t.ledger.filter((r) => r.status !== 'unwritten');
-  const legends = bundledLore().people.filter((p) => p.league === league && p.events.some((e) => t.events.some((x) => x.id === e)));
-  const th = team ? teamHistory(team, viewer) : null;
-  const span = (e: { span: { start: number; end: number } }) => (e.span.start === e.span.end ? `${e.span.start}` : `${e.span.start}–${e.span.end}`);
-  return (
-    <div className="sb-history" data-testid="sb-history">
-      <p className="sb-hist-head">
-        <b>{t.name}</b> · founded {t.founded} · {t.trophy}
-        <span className="sb-foot"> Full archive, records and player profiles: the <b>Sports History</b> tab.</span>
-        {t.canonStatus !== 'approved' && <span className="rpg-draft" title={`Proposed canon ${t.canonRevision}, not yet approved`}>Draft canon</span>}
-      </p>
-      <nav className="sb-hist-tabs" aria-label="History sections">
-        {HIST_SECTIONS.map((x) => (
-          <button key={x.id} className={section === x.id ? 'on' : ''} aria-pressed={section === x.id} onClick={() => { setSection(x.id); setTeam(null); }} data-testid={`sb-hist-${x.id}`}>{x.label}</button>
-        ))}
-      </nav>
-
-      {section === 'about' && (
-        <div className="sb-hist-body" data-testid="sb-history-about">
-          <p><b>“{t.identity}”</b></p>
-          <p>{L.summary}</p>
-          <p className="sb-foot">
-            Founded {L.founded}{L.founding.charter_city ? ` in ${L.founding.charter_city}` : ''}{L.founding.founding_clubs ? ` by ${L.founding.founding_clubs} clubs` : ''}.
-            {' '}Today: {L.current_format.teams} teams, {L.current_format.games_per_team} games each.
-          </p>
-          {t.rivalries.length > 0 && (
-            <ul className="sb-list">
-              {t.rivalries.map((r) => (
-                <li key={r.id}><b>{r.teams.map((x) => teamById(x).displayName).join(' vs ')}</b><span>{r.summary}</span></li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
-
-      {section === 'champions' && (
-        <div className="sb-hist-body">
-          <table className="sb-table" data-testid="sb-history-ledger">
-            <thead><tr><th>Season</th><th>Champion</th><th>Final opponent</th></tr></thead>
-            <tbody>
-              {written.map((r) => (
-                <tr key={r.season} data-status={r.status}>
-                  <td>{r.season}</td>
-                  {r.status === 'established' && (<><td>{teamLabel(r.champion)}</td><td>{r.runnerUp ? teamLabel(r.runnerUp) : <i>Not written</i>}</td></>)}
-                  {r.status === 'winner_unknown' && (<><td><i>Not written</i></td><td>Finalist: {r.finalists.map(teamLabel).join(', ')}</td></>)}
-                  {r.status === 'inference_pending_approval' && (<><td>{teamLabel(r.champion)} <span className="sb-tag">proposed</span></td><td><i>Not written</i></td></>)}
-                  {r.status === 'simulated' && (<><td>{teamLabel(r.champion)}</td><td>{r.runnerUp ? teamLabel(r.runnerUp) : '—'}</td></>)}
-                </tr>
-              ))}
-              {t.undatedTitles.map((u) => (
-                <tr key={u.record} data-status="year_unknown"><td>{u.from}–{u.to}</td><td>{teamLabel(u.champion)} ×{u.count}</td><td><i>Years not written</i></td></tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="sb-foot" data-testid="sb-history-unwritten">{t.counts.unwritten} of {t.ledger.length} seasons since {t.founded} are not written yet.</p>
-        </div>
-      )}
-
-      {section === 'moments' && (
-        <ul className="sb-list sb-hist-body" data-testid="sb-history-events">
-          {[...t.events].reverse().map((e) => (
-            <li key={e.id}>
-              <b>{span(e)} · {e.title}</b>
-              <span>{e.summary}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {section === 'legends' && (
-        <ul className="sb-list sb-hist-body" data-testid="sb-history-legends">
-          {legends.map((p) => {
-            const aff = p.affiliations.map((a) => teamById(a.team).displayName);
-            const ev = p.events.map((e) => lore.event(e)!).filter(Boolean);
-            return (
-              <li key={p.id}>
-                <b>{p.name}</b>
-                <em>{p.roles.join(', ')} · {aff.length ? aff.join(' → ') : 'team not written yet'}{p.career_status === 'retired' ? ' · retired' : ''}</em>
-                <span>{ev.map((e) => `${span(e)} ${e.title}`).join(' · ')}</span>
-              </li>
-            );
-          })}
-          {legends.length === 0 && <li>No legends written yet.</li>}
-        </ul>
-      )}
-
-      {section === 'teams' && !th && (
-        <div className="sb-hist-teams sb-hist-body" data-testid="sb-history-teams">
-          {bundledLore().teams.filter((x) => x.league === league).map((x) => {
-            const h = teamHistory(x.id, viewer)!;
-            const titles = h.titles.length + h.undatedTitles.reduce((n, u) => n + u.count, 0);
-            return (
-              <button key={x.id} className="sb-hist-team" onClick={() => setTeam(x.id)} data-testid={`sb-hist-team-${x.id}`}>
-                <i className="sb-swatch" style={{ background: teamById(x.id).colors[0] }} />
-                <span>{teamById(x.id).displayName}</span>
-                <em>{titles ? `${titles} title${titles > 1 ? 's' : ''} on record` : h.events.length ? `${h.events.length} moment${h.events.length > 1 ? 's' : ''}` : 'history unwritten'}</em>
-              </button>
-            );
-          })}
-        </div>
-      )}
-
-      {section === 'teams' && th && (
-        <div className="sb-hist-body" data-testid="sb-history-team">
-          <p><button className="sb-hist-back" onClick={() => setTeam(null)}>‹ All teams</button> <b>{teamById(th.team.id).displayName}</b> · {th.team.colors_named.join(' / ')}</p>
-          <p className="sb-foot">
-            Titles on record: {th.titles.length ? th.titles.join(', ') : 'none written'}
-            {th.undatedTitles.map((u) => ` · ${u.count} more in ${u.from}–${u.to} (years not written)`).join('')}
-            {th.pendingTitles.length ? ` · proposed: ${th.pendingTitles.join(', ')}` : ''}
-            {th.finalsLost.length ? ` · finals lost: ${th.finalsLost.join(', ')}` : ''}
-          </p>
-          {th.perspectives.map((p) => <p key={p.stance} className="sb-hist-voice">Fans: {p.stance}</p>)}
-          <ul className="sb-list">
-            {th.events.map((e) => (<li key={e.id}><b>{span(e)} · {e.title}</b><span>{e.summary}</span></li>))}
-          </ul>
-          {th.events.length === 0 && <p className="sb-foot">No moments written for this franchise yet. Founding city and history before today are also unwritten.</p>}
-          {th.rivalries.length > 0 && <p className="sb-foot">Rival: {th.rivalries.map((r) => teamById(r.teams.find((x) => x !== th.team.id)!).displayName).join(', ')}</p>}
-        </div>
       )}
     </div>
   );
