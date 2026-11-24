@@ -12,6 +12,9 @@
  *       unlocks), `milestones` (peak bankroll), `npcState` + `relationshipLog`
  *       (dealer relationships and tips), `locationState`. Additive. Unlocks
  *       already earned are recognised from the ledger (ExpansionService.reconcile).
+ *  v4 — Living sports universe (Phase D part 3): `sportsYears`, one row per completed sports
+ *       year of this save (summary, player lines, next season's state). Additive; older saves
+ *       start empty and build their years as seasons complete.
  *
  * Future versions add `this.version(n).stores(...).upgrade(...)` below and a
  * matching step in saveService.migrateSaveFile, so old saves keep loading.
@@ -36,10 +39,13 @@ import type { AlbatrossRecord } from '../records/albatross';
 import type { TournamentRecord } from './records';
 import type { MilestoneRecord, UnlockRecord } from '../expansion/unlocks';
 import type { LocationState, NpcState, RelationshipLogEntry } from '../npc/types';
-import { TABLE_SCHEMAS, type TableName } from './schemas';
+import { TABLE_SCHEMAS, type SportsYearSchema, type TableName } from './schemas';
+import type { z } from 'zod';
+
+export type SportsYearRecord = z.infer<typeof SportsYearSchema>;
 
 export const DB_NAME = 'ryans-road-to-the-lpga';
-export const CURRENT_SCHEMA_VERSION = 3;
+export const CURRENT_SCHEMA_VERSION = 4;
 
 export const STORES_V1 = {
   profiles: 'id',
@@ -73,7 +79,12 @@ export const STORES_V3 = {
   locationState: 'locationId',
 } as const;
 
-export const CURRENT_STORES = STORES_V3;
+export const STORES_V4 = {
+  ...STORES_V3,
+  sportsYears: 'id, year',
+} as const;
+
+export const CURRENT_STORES = STORES_V4;
 
 export class AppDB extends Dexie {
   profiles!: Table<PlayerProfile, string>;
@@ -93,12 +104,14 @@ export class AppDB extends Dexie {
   npcState!: Table<NpcState, string>;
   relationshipLog!: Table<RelationshipLogEntry, string>;
   locationState!: Table<LocationState, string>;
+  sportsYears!: Table<SportsYearRecord, string>;
 
   constructor(name: string = DB_NAME, options?: DexieOptions) {
     super(name, options);
     this.version(1).stores(STORES_V1);
     this.version(2).stores(STORES_V2);
     this.version(3).stores(STORES_V3);
+    this.version(4).stores(STORES_V4);
     this.installValidationHooks();
   }
 

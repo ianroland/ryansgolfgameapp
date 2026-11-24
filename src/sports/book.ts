@@ -11,6 +11,8 @@ import { DEMO_MARGIN, LEAGUES, leagueById, teamsOf, toAmerican, type DemoGame, t
 import { SPORTS_CONFIG } from './config';
 import { stream } from './rng';
 import { historyWorld } from './liveRosters';
+import { stateFor, type EvolveRef } from './universe/chain';
+import { worldFromState } from './universe/model';
 import { createWorld, playLeagueSeason, SIMULATORS, sportOf, standingsOf, type LeagueSeason, type PlayedGame, type StandingRow, type World } from './season';
 
 export const SHADOW_RUNS = 60;
@@ -30,13 +32,46 @@ export interface BookGame extends DemoGame {
 
 /**
  * Which world a save's sports run in. A plain seed is the original generated world (every
- * season, as before Phase D part 2). `{ seed, historyFrom }` is a migrated save: seasons from
- * `historyFrom` on use the history carry-over rosters (liveRosters.ts), earlier ones the original.
+ * season, as before Phase D part 2). `{ seed, historyFrom }` (v2) uses the fixed 2027 carry-over
+ * rosters from `historyFrom` on. `{ seed, historyFrom, evolveFrom }` (v3, Phase D part 3) also
+ * runs a yearly off-season: from `evolveFrom` on, every season's rosters come from the one before
+ * (aging, retirements, drafts; universe/chain.ts). Each season keeps its own rosters for good, so
+ * a ticket is always graded on the version it was priced on.
  */
-export type WorldRef = number | { seed: number; historyFrom: number };
+export type WorldRef = number | { seed: number; historyFrom: number; evolveFrom?: number };
 export const seedOf = (ref: WorldRef) => (typeof ref === 'number' ? ref : ref.seed);
-export const rostersFor = (ref: WorldRef, season: number): 'generated' | 'history' => (typeof ref !== 'number' && season >= ref.historyFrom ? 'history' : 'generated');
-const keyOf = (ref: WorldRef, season: number) => `${seedOf(ref)}:${season}:${rostersFor(ref, season)}`;
+export function rostersFor(ref: WorldRef, season: number): 'generated' | 'history' | 'evolved' {
+  if (typeof ref === 'number' || season < ref.historyFrom) return 'generated';
+  return ref.evolveFrom !== undefined && season >= ref.evolveFrom ? 'evolved' : 'history';
+}
+const keyOf = (ref: WorldRef, season: number) => {
+  const mode = rostersFor(ref, season);
+  return mode === 'evolved' ? `${seedOf(ref)}:${season}:evolved:${(ref as EvolveRef).historyFrom}:${(ref as EvolveRef).evolveFrom}` : `${seedOf(ref)}:${season}:${mode}`;
+};
+/** The live players for a season of this world (engine players with that season's ratings). */
+function worldFor(ref: WorldRef, season: number): World {
+  const seed = seedOf(ref);
+  const mode = rostersFor(ref, season);
+  if (mode === 'generated') return createWorld(seed);
+  if (mode === 'history') return historyWorld(seed);
+  const r = ref as EvolveRef;
+  return worldFromState(stateFor(r, season, (s) => seasonOf(r, s)), seed);
+}
+const versions = new Map<string, string>();
+/** A short fingerprint of a season's rosters and ratings: tickets record it, settlement checks it. */
+export function rosterVersion(ref: WorldRef, season: number): string {
+  const k = keyOf(ref, season);
+  let v = versions.get(k);
+  if (!v) {
+    let h = 2166136261;
+    const text = seasonOf(ref, season).world.players.map((p) => `${p.id}|${p.teamId}|${p.pos}|${p.overall}`).sort().join(';');
+    for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 16777619);
+    v = (h >>> 0).toString(36);
+    versions.set(k, v);
+    if (versions.size > 50) versions.delete(versions.keys().next().value!);
+  }
+  return v;
+}
 
 // ── Season results (memoized; a season for all four leagues takes ~70 ms) ──
 const seasonCache = new Map<string, { world: World; leagues: Record<LeagueId, LeagueSeason> }>();
@@ -44,8 +79,7 @@ export function seasonOf(ref: WorldRef, season: number) {
   const k = keyOf(ref, season);
   let v = seasonCache.get(k);
   if (!v) {
-    const seed = seedOf(ref);
-    const world = rostersFor(ref, season) === 'history' ? historyWorld(seed) : createWorld(seed);
+    const world = worldFor(ref, season);
     const leagues = Object.fromEntries(LEAGUES.map((l) => [l.id, playLeagueSeason(world, l.id, season)])) as Record<LeagueId, LeagueSeason>;
     v = { world, leagues };
     seasonCache.set(k, v);

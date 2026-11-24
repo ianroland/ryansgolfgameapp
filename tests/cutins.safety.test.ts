@@ -277,7 +277,7 @@ describe('A26 — the default release build carries no CI-1 code (CI-2: the revi
       if (m[1]) continue;
       expect(m[2]).not.toMatch(/cutins|CutInCard|cutinCopy/);
     }
-  });
+  }, 30_000); // walks the whole import graph; allow for a busy machine (full suite runs long simulations in parallel)
   const bundle = process.env.CI1_BUNDLE_DIR;
   const CI_STRINGS = ['ryans-road.cutins', 'LEADER_STUMBLE', 'revealSnapshot', 'suppressed_cooldown', 'LEADER STUMBLES', 'RIVAL WATCH'];
   const bundleFiles = (dir: string) => {

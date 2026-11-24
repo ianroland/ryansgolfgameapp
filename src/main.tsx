@@ -65,6 +65,8 @@ async function boot() {
     await services.career.reconcileFields().catch((e) => console.warn('Tour field check failed', e));
     // Sports world v2: settle what's final, then mark the save for the history rosters (idempotent).
     await services.sportsbook.migrateWorld().catch((e) => console.warn('Sports world migration failed', e));
+    // Living sports universe: load this save's stored years, then run any off-season that is due.
+    await services.sportsUniverse.processDue().catch((e) => console.warn('Sports off-season failed', e));
     const initial = await services.career.loadClubhouse();
     if (import.meta.env.DEV) (window as unknown as { wtg: unknown }).wtg = services; // debugging aid
     root.render(

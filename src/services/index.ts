@@ -20,6 +20,7 @@ import { ExpansionService } from './expansionService';
 import { NpcService } from './npcService';
 import { DrinkService } from './drinkService';
 import { SportsbookService } from './sportsbookService';
+import { SportsUniverseService } from './sportsUniverseService';
 
 export interface GameServices {
   db: AppDB;
@@ -38,6 +39,7 @@ export interface GameServices {
   npc: NpcService;
   drinks: DrinkService;
   sportsbook: SportsbookService;
+  sportsUniverse: SportsUniverseService;
 }
 
 export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOptions): GameServices {
@@ -50,6 +52,7 @@ export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOpt
   // Career Legacy: after trophies, so a Pink Jacket's trophy already exists.
   registerLegacyAwards(pipeline);
   const career = new CareerService(db, economy, notifier, pipeline);
+  const sportsbook = new SportsbookService(db, economy, notifier);
   return {
     db,
     notifier,
@@ -66,6 +69,7 @@ export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOpt
     expansion: new ExpansionService(db),
     npc: new NpcService(db, economy),
     drinks: new DrinkService(db, economy),
-    sportsbook: new SportsbookService(db, economy, notifier),
+    sportsbook,
+    sportsUniverse: new SportsUniverseService(db, sportsbook, notifier),
   };
 }

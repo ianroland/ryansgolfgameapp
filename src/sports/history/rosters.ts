@@ -45,7 +45,7 @@ export function level(sport: Sport, p: HPlayer, year: number, teamOffset: number
   return talent + teamOffset - agePenalty;
 }
 
-function attrsFor(sport: Sport, pos: string, lvl: number, id: string, year: number): Record<string, number> {
+export function attrsFor(sport: Sport, pos: string, lvl: number, id: string, year: number): Record<string, number> {
   const spec = SPECS[sport].find((s) => s.pos === pos) ?? SPECS[sport][0];
   const keys = Object.keys(spec.attrs);
   const even = 1 / keys.length;
@@ -56,7 +56,7 @@ function attrsFor(sport: Sport, pos: string, lvl: number, id: string, year: numb
 }
 
 /** Engine positions for a roster, best players first within each group. */
-function mapPositions(sport: Sport, ranked: { p: HPlayer; lvl: number }[]): Map<string, string> {
+export function mapPositions(sport: Sport, ranked: { p: HPlayer; lvl: number }[]): Map<string, string> {
   const pos = new Map<string, string>();
   const by = (x: string[]) => ranked.filter((r) => x.includes(r.p.p));
   if (sport === 'baseball') {

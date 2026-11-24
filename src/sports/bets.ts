@@ -8,7 +8,7 @@
  * of their odds; if every leg pushes or voids the stake comes back. Parlay payout cap applies.
  */
 import { decimalOf, fmtAmerican, teamById, type LeagueId, type Market, type Side } from './demo';
-import { findGame, isFinal, openGame, type WorldRef } from './book';
+import { findGame, isFinal, openGame, rosterVersion, type WorldRef } from './book';
 import { parlayCheck, SLIP_RULES, type Selection } from './slip';
 import type { PlayedGame } from './season';
 
@@ -29,6 +29,8 @@ export interface TicketLeg {
   result?: LegResult;
   /** Final score, home first. */
   final?: [number, number];
+  /** Roster version of the game's season when priced (rosterVersion). Older tickets have none. */
+  rv?: string;
 }
 export interface Ticket {
   id: string;
@@ -71,6 +73,9 @@ export function gradeLeg(leg: Pick<TicketLeg, 'market' | 'side' | 'point'>, hs: 
 export function settleTicket(t: Ticket, seed: WorldRef, season: number, week: number): Ticket | null {
   if (t.status !== 'open') return null;
   if (!t.legs.every((l) => isFinal(l.season, l.week, season, week))) return null;
+  // Never grade against a different roster version than the one the bet was priced on: such a
+  // ticket stays open (and is reported by the service) rather than being settled or voided.
+  if (t.legs.some((l) => l.rv && l.rv !== rosterVersion(seed, l.season))) return null;
   const legs = t.legs.map((l): TicketLeg => {
     const f = findGame(seed, l.season, l.gameId);
     if (!f) return { ...l, result: 'void' };
@@ -124,7 +129,7 @@ export function buildTickets(args: {
     if (!g) return { ok: false, reason: 'That game has already been played' };
     const line = g.lines.find((l) => l.market === p.market && l.side === p.side);
     if (!line || line.american !== p.american || line.point !== p.point) return { ok: false, reason: 'A line changed. Check the board and try again.' };
-    legs.push({ gameId: g.id, league: g.league, season: g.season, week: g.week, when: g.when, home: g.home, away: g.away, market: p.market, side: p.side, point: p.point, american: p.american, label: p.label });
+    legs.push({ gameId: g.id, league: g.league, season: g.season, week: g.week, when: g.when, home: g.home, away: g.away, market: p.market, side: p.side, point: p.point, american: p.american, label: p.label, rv: rosterVersion(seed, g.season) });
   }
   const total = stake * count;
   if (total > balance) return { ok: false, reason: 'Not enough in the bank' };

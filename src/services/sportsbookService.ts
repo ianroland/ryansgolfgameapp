@@ -64,7 +64,7 @@ export class SportsbookService {
    * stay open and settle later against the same games they were priced on. Running it again
    * changes nothing.
    */
-  async migrateWorld(): Promise<{ migrated: boolean; historyFrom?: number; reason?: string; settled: number; open: number }> {
+  async migrateWorld(): Promise<{ migrated: boolean; historyFrom?: number; evolveFrom?: number; reason?: string; settled: number; open: number }> {
     const settled = await this.settleDue();
     return this.db.transaction('rw', this.db.careers, async () => {
       const c = await this.db.careers.get('career');
@@ -73,7 +73,7 @@ export class SportsbookService {
       const plan = planSportsMigration(c);
       if (!plan) return { migrated: false, settled: settled.length, open };
       await this.db.careers.put(migrateSportsWorld(c));
-      return { migrated: true, historyFrom: plan.historyFrom, reason: plan.reason, settled: settled.length, open };
+      return { migrated: true, historyFrom: plan.historyFrom, evolveFrom: plan.evolveFrom, reason: plan.reason, settled: settled.length, open };
     });
   }
 

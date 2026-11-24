@@ -242,7 +242,7 @@ describe('the live leagues and save migration', () => {
   it('new careers start on the history rosters; the plan keeps a season with tickets or results on the old ones', () => {
     const c = newCareerState(5);
     expect(c.flags.sportsWorldV).toBe(SPORTS_WORLD_VERSION);
-    expect(sportsWorldOf(c)).toEqual({ seed: sportsSeedOf(c), historyFrom: 1 });
+    expect(sportsWorldOf(c)).toEqual({ seed: sportsSeedOf(c), historyFrom: 1, evolveFrom: 2 });
     expect(planSportsMigration(c)).toBeNull();
     expect(migrateSportsWorld(c)).toBe(c);
     const legacy = { ...c, flags: { seed: 5 }, season: 2, week: 1 };
@@ -253,7 +253,7 @@ describe('the live leagues and save migration', () => {
     expect(planSportsMigration(withTicket)).toMatchObject({ historyFrom: 3 });
     const once = migrateSportsWorld({ ...legacy, week: 6 });
     expect(migrateSportsWorld(once)).toBe(once);
-    expect(once.flags).toMatchObject({ seed: 5, sportsWorldV: 2, sportsHistoryFrom: 3 });
+    expect(once.flags).toMatchObject({ seed: 5, sportsWorldV: 3, sportsHistoryFrom: 3, sportsEvolveFrom: 4 });
   });
 });
 
@@ -267,7 +267,7 @@ describe('migrating a save with live tickets', () => {
     const { s } = await newCareer();
     // An older save: no world marker, part-way through season 1.
     const c0 = await s.career.getCareer();
-    const { sportsWorldV: _v, sportsHistoryFrom: _f, ...oldFlags } = c0.flags;
+    const { sportsWorldV: _v, sportsHistoryFrom: _f, sportsEvolveFrom: _e, ...oldFlags } = c0.flags;
     await s.db.careers.put({ ...c0, flags: oldFlags, week: 3 });
     const seed = sportsSeedOf(c0);
     expect(sportsWorldOf(await s.career.getCareer())).toBe(seed);
@@ -284,7 +284,7 @@ describe('migrating a save with live tickets', () => {
     const m1 = await s.sportsbook.migrateWorld();
     expect(m1).toMatchObject({ migrated: true, historyFrom: 2, settled: 2, open: 1 });
     const after1 = await s.career.getCareer();
-    expect(after1.flags).toMatchObject({ sportsWorldV: 2, sportsHistoryFrom: 2 });
+    expect(after1.flags).toMatchObject({ sportsWorldV: 3, sportsHistoryFrom: 2, sportsEvolveFrom: 3 });
     const paid1 = ticketsOf(after1).filter((t) => t.status !== 'open').reduce((a, t) => a + t.payout, 0);
     expect(await s.economy.getBalance(RYAN)).toBe(start - 105 + paid1);
 
@@ -312,7 +312,7 @@ describe('migrating a save with live tickets', () => {
   it('a migrated save survives export and import unchanged; an imported old save is migrated once', async () => {
     const { s } = await newCareer();
     const c = await s.career.getCareer();
-    const { sportsWorldV: _v, sportsHistoryFrom: _f, ...oldFlags } = c.flags;
+    const { sportsWorldV: _v, sportsHistoryFrom: _f, sportsEvolveFrom: _e, ...oldFlags } = c.flags;
     await s.db.careers.put({ ...c, flags: oldFlags, week: 8 });
     const file = await s.saves.exportSave();
     const { s: t } = await newCareer();
@@ -323,7 +323,7 @@ describe('migrating a save with live tickets', () => {
     const { s: u } = await newCareer();
     await u.saves.importSave(migrated);
     expect((await u.sportsbook.migrateWorld()).migrated).toBe(false);
-    expect(sportsWorldOf(await u.career.getCareer())).toEqual({ seed: sportsSeedOf(c), historyFrom: 2 });
+    expect(sportsWorldOf(await u.career.getCareer())).toEqual({ seed: sportsSeedOf(c), historyFrom: 2, evolveFrom: 3 });
   }, 60_000);
 
   it('a new career bets on the history rosters and settles on them', async () => {

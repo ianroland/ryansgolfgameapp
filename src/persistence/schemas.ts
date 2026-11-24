@@ -286,6 +286,24 @@ export const LocationStateSchema = z.object({
   visits: nonNeg,
 });
 
+/**
+ * One completed sports year in this save's living universe (Phase D part 3): written once, in the
+ * same transaction as the career's `sportsYearDone` flag. `summary` and `lines` are JSON; `state`
+ * (the next season's players and rosters) is kept on the newest rows only.
+ */
+export const SportsYearSchema = z.object({
+  id: z.string().regex(/^sy:\d{4}$/),
+  year: int.min(2027),
+  season: int.positive(),
+  chain: z.string().min(1),
+  phase: z.literal('complete'),
+  steps: z.array(z.string()),
+  at: z.string(),
+  summary: z.string(),
+  lines: z.string(),
+  state: z.string().nullable(),
+});
+
 /** Table name → row schema. Used for writes, load validation and import. */
 export const TABLE_SCHEMAS = {
   profiles: PlayerProfileSchema,
@@ -305,6 +323,7 @@ export const TABLE_SCHEMAS = {
   npcState: NpcStateSchema,
   relationshipLog: RelationshipLogSchema,
   locationState: LocationStateSchema,
+  sportsYears: SportsYearSchema,
 } as const;
 
 export type TableName = keyof typeof TABLE_SCHEMAS;

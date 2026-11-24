@@ -16,43 +16,61 @@ export const sportsSeedOf = (c: Pick<CareerState, 'flags' | 'playerId'>): number
   typeof c.flags.sportsSeed === 'number' ? c.flags.sportsSeed : hashString(`sports:${c.playerId}`) % 2_000_000_000;
 
 /**
- * Sports world version (Phase D part 2). Version 2 saves carry `sportsHistoryFrom`: the first
- * career season played on the history carry-over rosters. Saves without it play every season on
- * the original generated rosters until `migrateSportsWorld` marks them.
+ * Sports world version. v2 (Phase D part 2) saves carry `sportsHistoryFrom`: the first career
+ * season on the history carry-over rosters. v3 (Phase D part 3) adds `sportsEvolveFrom`: the first
+ * season whose rosters come from a yearly off-season (aging, retirements, drafts); seasons from
+ * `sportsHistoryFrom` up to it keep the fixed 2027 rosters. `sportsYearDone` is the last sports
+ * year whose off-season is stored. Saves below v3 are moved up by `migrateSportsWorld`.
  */
-export const SPORTS_WORLD_VERSION = 2;
+export const SPORTS_WORLD_VERSION = 3;
 /** First calendar week with sports games (a game in week W is final once the career passes W). */
 export const SPORTS_FIRST_WEEK = Math.min(...Object.values(SPORTS_CONFIG.calendar).map((c) => c.startWeek));
+const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
 
 /** The world this career's sportsbook runs in (see book.ts WorldRef). */
 export function sportsWorldOf(c: Pick<CareerState, 'flags' | 'playerId'>): WorldRef {
   const seed = sportsSeedOf(c);
-  const from = c.flags.sportsHistoryFrom;
-  return c.flags.sportsWorldV === SPORTS_WORLD_VERSION && typeof from === 'number' ? { seed, historyFrom: from } : seed;
+  const { sportsWorldV: v, sportsHistoryFrom: from, sportsEvolveFrom: evo } = c.flags;
+  if (v === 3 && num(from) && num(evo)) return { seed, historyFrom: from, evolveFrom: evo };
+  if ((v === 2 || v === 3) && num(from)) return { seed, historyFrom: from };
+  return seed;
 }
-export const sportsWorldMarked = (c: Pick<CareerState, 'flags'>) => c.flags.sportsWorldV === SPORTS_WORLD_VERSION && typeof c.flags.sportsHistoryFrom === 'number';
+export const sportsWorldMarked = (c: Pick<CareerState, 'flags'>) =>
+  c.flags.sportsWorldV === SPORTS_WORLD_VERSION && num(c.flags.sportsHistoryFrom) && num(c.flags.sportsEvolveFrom);
 
 /**
- * When an unmarked save switches to the carry-over rosters. The season in progress keeps its
- * original rosters if any of its games are already final or any ticket is on it, so every game
- * that was seen, priced or bet on plays out exactly as before; otherwise it switches now.
+ * How an older save moves to v3. A season that already has a ticket on it, or any final game,
+ * keeps exactly the rosters it had: the history rosters (v2's `sportsHistoryFrom`, or for an
+ * unmarked save this season if nothing has happened yet, else next season) and the yearly
+ * off-seasons from the first season after that which is still untouched.
  */
-export function planSportsMigration(c: Pick<CareerState, 'flags' | 'season' | 'week'>): { historyFrom: number; reason: string } | null {
+export function planSportsMigration(c: Pick<CareerState, 'flags' | 'season' | 'week'>): { historyFrom: number; evolveFrom: number; reason: string } | null {
   if (sportsWorldMarked(c)) return null;
   const onSeason = ticketsOf(c).filter((t) => t.legs.some((l) => l.season >= c.season));
-  if (onSeason.length) return { historyFrom: c.season + 1, reason: `${onSeason.length} ticket(s) on season ${c.season}` };
-  if (c.week > SPORTS_FIRST_WEEK) return { historyFrom: c.season + 1, reason: `season ${c.season} is under way` };
-  return { historyFrom: c.season, reason: `no season ${c.season} games played or bet on yet` };
+  const started = c.week > SPORTS_FIRST_WEEK;
+  const safeNow = !onSeason.length && !started;
+  const why = onSeason.length ? `${onSeason.length} ticket(s) on season ${c.season}` : started ? `season ${c.season} is under way` : `no season ${c.season} games played or bet on yet`;
+  const from = c.flags.sportsHistoryFrom;
+  const historyFrom = (c.flags.sportsWorldV === 2 || c.flags.sportsWorldV === 3) && num(from) ? from : safeNow ? c.season : c.season + 1;
+  const evolveFrom = Math.max(historyFrom + 1, safeNow ? c.season : c.season + 1);
+  return { historyFrom, evolveFrom, reason: why };
 }
 
 /**
- * Marks a save for the carry-over rosters (idempotent: a marked save is returned unchanged).
+ * Moves a save to the current world version (idempotent: a v3 save is returned unchanged).
  * Changes flags only: no money, tickets, players or schedules are touched.
  */
 export function migrateSportsWorld<C extends CareerState>(c: C): C {
   const plan = planSportsMigration(c);
   if (!plan) return c;
-  return { ...c, flags: { ...c.flags, sportsSeed: sportsSeedOf(c), sportsWorldV: SPORTS_WORLD_VERSION, sportsHistoryFrom: plan.historyFrom, sportsWorldMigrated: `${c.season}.${c.week}` } };
+  const stamp = `${c.season}.${c.week}`;
+  return {
+    ...c,
+    flags: {
+      ...c.flags, sportsSeed: sportsSeedOf(c), sportsWorldV: SPORTS_WORLD_VERSION, sportsHistoryFrom: plan.historyFrom, sportsEvolveFrom: plan.evolveFrom,
+      sportsWorldMigrated: typeof c.flags.sportsWorldMigrated === 'string' ? c.flags.sportsWorldMigrated : stamp, sportsEvolveMigrated: stamp,
+    },
+  };
 }
 
 function readJson<T>(v: unknown, fallback: T): T {

@@ -215,6 +215,25 @@ export function transactions(data: HistoryData): Transaction[] {
  * (MVP 40, championship MVP 25, pitching/defensive award 25, rookie 5) and 5 per title.
  */
 export const HOF_RULE = { waitYears: 5, minSeasons: 8, topShare: 0.025 };
+/** Career-score bonus per award (MVP 40, championship MVP 25, rookie 5, any other award 25). */
+export const awardBonus = (award: string) => ({ 'Most Valuable Player': 40, 'Championship MVP': 25, 'Rookie of the Year': 5 } as Record<string, number>)[award] ?? 25;
+/**
+ * The statistical pathway's bar per league: the score of the last career inside the top 2.5% of
+ * the 1972-2025 ranking. Later classes are judged against the same bar (Phase D part 3).
+ */
+export function hallOfFameThreshold(data: HistoryData, careerValue: Map<string, { value: number; seasons: number; titles: number }>, awards: Award[]): Record<LeagueId, number> {
+  const bonus = new Map<string, number>();
+  for (const a of awards) bonus.set(a.playerId, (bonus.get(a.playerId) ?? 0) + awardBonus(a.award));
+  const out = {} as Record<LeagueId, number>;
+  for (const league of ['gdc', 'ccl', 'igl', 'fhl'] as LeagueId[]) {
+    const pool = data.players.filter((p) => p.l === league && careerValue.has(p.i) && careerValue.get(p.i)!.seasons >= HOF_RULE.minSeasons);
+    const score = (p: HPlayer) => careerValue.get(p.i)!.value + (bonus.get(p.i) ?? 0) + 5 * careerValue.get(p.i)!.titles;
+    const ranked = pool.map(score).sort((a, b) => b - a);
+    const cut = Math.max(1, Math.round(data.players.filter((p) => p.l === league).length * HOF_RULE.topShare));
+    out[league] = ranked[cut - 1];
+  }
+  return out;
+}
 /** Historical Legends pathway (owner decision 2026-11-24). Add names only with owner approval. */
 export const HISTORICAL_LEGENDS: { playerId: string; basis: string; event: string }[] = [
   { playerId: 'gdc_elias_voss', basis: 'Three no-hitters in the 1983 season (13–1)', event: 'gdc-1983-001' },
@@ -227,8 +246,7 @@ export const LEGENDARY_DEFICIT = '0-3';
  */
 export function hallOfFame(data: HistoryData, careerValue: Map<string, { value: number; seasons: number; titles: number }>, awards: Award[], throughYear = 2025): HallOfFamer[] {
   const bonus = new Map<string, number>();
-  const B: Record<string, number> = { 'Most Valuable Player': 40, 'Championship MVP': 25, 'Rookie of the Year': 5 };
-  for (const a of awards) bonus.set(a.playerId, (bonus.get(a.playerId) ?? 0) + (B[a.award] ?? 25));
+  for (const a of awards) bonus.set(a.playerId, (bonus.get(a.playerId) ?? 0) + awardBonus(a.award));
   const out: HallOfFamer[] = [];
   for (const league of ['gdc', 'ccl', 'igl', 'fhl'] as LeagueId[]) {
     const pool = data.players.filter((p) => p.l === league && careerValue.has(p.i) && careerValue.get(p.i)!.seasons >= HOF_RULE.minSeasons);

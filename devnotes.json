@@ -2,6 +2,25 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.19.8",
+   "date": "2026-11-24",
+   "title": "The leagues live on",
+   "items": [
+    {
+     "tag": "new",
+     "text": "From 2028 the four leagues keep evolving with your career: players age, improve and decline, retire, and are replaced through a yearly draft. Champions, awards, records and Hall of Fame classes build up season after season, and every career's sports history goes its own way."
+    },
+    {
+     "tag": "new",
+     "text": "When a new season starts, your Inbox gets the sports year in review: champions, retirements, rookies and Hall of Fame inductees."
+    },
+    {
+     "tag": "improved",
+     "text": "Every bet settles against the exact game it was priced on, and a season you've already bet on or watched never changes."
+    }
+   ]
+  },
+  {
    "version": "0.19.7",
    "date": "2026-11-24",
    "title": "The leagues' own players take the field",

@@ -132,7 +132,12 @@ function WeekCard({ onEnter }: { onEnter: (def: TournamentDef) => void }) {
   };
   const advance = async () => {
     setConfirmSkip(false);
-    const o = await run(() => services.career.advanceWeek());
+    const o = await run(async () => {
+      const out = await services.career.advanceWeek();
+      // A new season: run the sports off-season that just became due (once; stored).
+      if (out.career.week === 1) await services.sportsUniverse.processDue().catch((e) => console.warn('Sports off-season failed', e));
+      return out;
+    });
     if (o) sound.play('week');
     if (o) notify({ kind: 'info', title: o.career.week === 1 ? `Season ${o.career.season} begins!` : `Week ${o.career.week}` });
   };

@@ -168,7 +168,7 @@ describe('existing saves', () => {
     await add(s, 1_200_000);
     await spend(s, 1_100_000);
     const file = await s.saves.exportSave();
-    expect(file.schemaVersion).toBe(3);
+    expect(file.schemaVersion).toBe(CURRENT_SCHEMA_VERSION); // v4 since the living sports universe (Phase D part 3)
     const old = structuredClone(file);
     old.schemaVersion = 2;
     for (const t of ['unlocks', 'milestones', 'npcState', 'relationshipLog', 'locationState'] as const) delete old.tables[t];

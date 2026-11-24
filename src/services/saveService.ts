@@ -44,6 +44,12 @@ export function migrateSaveFile(file: SaveFile): SaveFile {
     tables = { ...tables, unlocks: [], milestones: [], npcState: [], relationshipLog: [], locationState: [] };
     version = 3;
   }
+  // v3 → v4: the living sports universe's years start empty; they are rebuilt from the save's
+  // seed as seasons complete (SportsUniverseService), never copied from elsewhere.
+  if (version === 3) {
+    tables = { ...tables, sportsYears: [] };
+    version = 4;
+  }
   // Unlocks are permanent and proven by the ledger: add any the ledger shows but the file lacks.
   {
     const ledger = (tables.ledger ?? []) as EconomyTransaction[];
