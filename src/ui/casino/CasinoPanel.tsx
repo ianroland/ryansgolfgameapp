@@ -27,7 +27,7 @@ import { BigWinOverlay, celebrateWin } from './BigWin';
 import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
 import { TipTray } from './Tipping';
 import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
-import { crapsSceneFor, rouletteSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
+import { crapsSceneFor, crapsZones, rouletteSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
 import { boardCell, RouletteBoard } from './RouletteBoard';
 import { SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
 import { ServerPanel, signalRoundComplete } from './ServerPanel';
@@ -38,7 +38,12 @@ import { CasinoLobby } from './CasinoLobby';
 import { casinoAt, locationById, type CasinoGameId } from '../../expansion/locations';
 import { ART as LOBBY_ART } from './CasinoLobby';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
-import { crapsLast, crapsTable, pendingRace } from '../../services/casinoService';
+import { crapsLast, crapsShooter, crapsTable, pendingRace } from '../../services/casinoService';
+import {
+  MOOD_LABEL, newRegularState, pickLine, placeBets, regularsAt, rollEvents, RYAN_SEAT, seatsAt, settleRegular, STICK_STREAK, STYLE_LABEL, tableMood,
+  type Mood, type Regular, type RegularState,
+} from './crapsRegulars';
+import type { LocationId } from '../../expansion/unlocks';
 
 /*
  * Presentation only. Every rule, wager and settlement call below is the same
@@ -388,6 +393,30 @@ function Die({ n, rolling, i }: { n: number; rolling: boolean; i: number }) {
   );
 }
 
+const crapsUi: { showLayout: boolean | null } = { showLayout: null };
+/** What a tap on a painted area of the felt bets: the line bet on the come-out, its odds once a point is on. */
+function feltAction(kind: 'pass' | 'dontPass' | 'come' | 'dontCome' | 'field', t: CrapsTable): CrapsAction {
+  if (kind === 'pass') return t.point !== null && t.pass > 0 ? { kind: 'passOdds' } : { kind: 'pass' };
+  if (kind === 'dontPass') return t.point !== null && t.dontPass > 0 ? { kind: 'dontOdds' } : { kind: 'dontPass' };
+  return { kind };
+}
+
+/** The regulars' pretend tables for the play session, per casino (they reset when the game reloads). */
+interface RegularsSession { states: RegularState[]; say: { who: Regular; event: string; text: string } | null }
+const regularsMemo: Partial<Record<LocationId, RegularsSession>> = {};
+function regularsSession(loc: LocationId, point: PointNo | null, mood: Mood): RegularsSession {
+  const have = regularsMemo[loc];
+  if (have) return have;
+  const list = regularsAt(loc);
+  const states = list.map((r) => placeBets(r, newRegularState(r), point, mood).state);
+  // Someone says hello the first time Ryan walks up to the table this session.
+  const greeter = list.find((r) => r.lines.arrive?.length) ?? null;
+  const fresh = { states, say: greeter ? { who: greeter, event: 'arrive', text: greeter.lines.arrive![0] } : null };
+  regularsMemo[loc] = fresh;
+  return fresh;
+}
+const saveRegulars = (loc: LocationId, s: RegularsSession) => (regularsMemo[loc] = s);
+
 /** Bets in the line row, in table order. Descriptions are the rules, not flavour. */
 const LINE_BETS: { a: CrapsAction; name: string; desc: string }[] = [
   { a: { kind: 'pass' }, name: 'Pass Line', desc: 'Come-out: 7/11 win, 2/3/12 lose; then the point before a 7. Pays 1:1' },
@@ -462,6 +491,20 @@ function Craps() {
   const casinoLoc = useCasinoLocation();
   const crapsScene = devLegacyTables() ? null : crapsSceneFor(casinoLoc);
   const note = (m: string) => setLog((l) => [m, ...l].slice(0, 8));
+  // The felt is the betting surface; the bet list below it is open by default on phones, where the felt is small.
+  const narrow = useNarrow(720);
+  const [showLayoutPick, setShowLayout] = useState<boolean | null>(crapsUi.showLayout);
+  const showLayout = showLayoutPick ?? (narrow || !crapsScene);
+  useEffect(() => { crapsUi.showLayout = showLayoutPick; }, [showLayoutPick]);
+
+  // Table life: the shooter and mood come from the saved table; the regulars play pretend money in the session.
+  const shooter = crapsShooter(state.career);
+  const mood = tableMood(shooter);
+  const seats = seatsAt(casinoLoc);
+  const seatName = (i: number) => { const w = seats[i]; return w === 'ryan' ? 'Ryan' : w.short; };
+  const shooterName = seatName(shooter.seat);
+  const [regs, setRegs] = useState<RegularsSession>(() => regularsSession(casinoLoc, live.point, mood));
+  useEffect(() => { setRegs(regularsSession(casinoLoc, live.point, mood)); }, [casinoLoc]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const place = async (a: CrapsAction) => {
     const block = betBlocker(table, a, chip);
@@ -499,6 +542,26 @@ function Craps() {
     const lost = r.outcomes.filter((o) => o.result === 'lose').reduce((a, o) => a + o.stake, 0);
     note(`${r.dice[0]} + ${r.dice[1]} = ${r.message}${won > 0 ? ` · won ${formatMoney(won)}` : ''}${lost > 0 ? ` · lost ${formatMoney(lost)}` : ''}`);
     setCall(stickCall(table.point, r.table.point, sum, r.outcomes));
+    // The regulars: same dice, their own pretend bets; then one of them may say something.
+    const moodBefore = tableMood(r.shooterBefore);
+    const moodAfter = tableMood(r.shooter);
+    const regsList = regularsAt(casinoLoc);
+    const rebought: Regular[] = [];
+    const states = regs.states.map((st, i) => {
+      const settled = settleRegular(st, r.dice).state;
+      const placed = placeBets(regsList[i], settled, r.table.point, moodAfter);
+      if (placed.rebought) rebought.push(regsList[i]);
+      return placed.state;
+    });
+    const events = rollEvents(table.point, r.dice, moodBefore, moodAfter, r.shooterBefore.seat, r.shooter.seat);
+    const broke = rebought.find((x) => x.lines.broke?.length);
+    const say = broke && !events.some((e) => e === 'hot' || e === 'fire' || e === 'cold')
+      ? { who: broke, event: 'broke' as const, text: broke.lines.broke![0] }
+      : pickLine(casinoLoc, events, r.shooter.rolls + r.shooter.history.length * 100 + (crapsLast(state.career)?.n ?? 0), r.shooter.seat);
+    setRegs(saveRegulars(casinoLoc, { states, say: say ?? regs.say }));
+    // Stick Lady calls the table's big moments (drafts).
+    if (moodAfter !== moodBefore && moodAfter !== 'steady') setCall({ text: STICK_STREAK[moodAfter](moodAfter === 'cold' ? '' : seatName(r.shooterBefore.seat)), draft: true });
+    else if (r.shooter.seat !== r.shooterBefore.seat) setCall({ text: r.shooter.seat === RYAN_SEAT ? STICK_STREAK.ryanShoots('Ryan') : STICK_STREAK.newShooter(seatName(r.shooter.seat)), draft: true });
     if (table.point !== null && sum === 7) stick.play('special');
     else if (won > 0) stick.play('win');
     else if (lost > 0) stick.play('loss');
@@ -565,31 +628,70 @@ function Craps() {
         <span className={`puck ${table.point ? 'on' : ''}`}>{table.point ? `ON ${table.point}` : 'OFF'}</span>
       </h2>
       <div className={`table-layout ${WIDE_SIDE ? 'side' : ''}`}>
+      <div className="craps-left">
       {crapsScene ? (
-        <div className={`craps-scene craps-felt loc-${crapsScene.location}`} style={{ aspectRatio: `${crapsScene.size[0]} / ${crapsScene.size[1]}` }} data-testid="craps-felt" data-scene={crapsScene.location}>
+        <div className={`craps-scene craps-felt loc-${crapsScene.location} mood-${mood}`} style={{ aspectRatio: `${crapsScene.size[0]} / ${crapsScene.size[1]}` }} data-testid="craps-felt" data-scene={crapsScene.location}>
           <img className="craps-scene-img" src={crapsScene.url} width={crapsScene.size[0]} height={crapsScene.size[1]} alt="" draggable={false} />
           {crapsScene.veils.map((r, i) =>
             i === crapsScene.veils.length - 1 ? (
               // The painted centre has some wrong payouts: the centre is drawn over it with the real ones, and the bets on it.
-              <div key={i} className="craps-centre-felt" style={sceneRect(crapsScene, r)} aria-hidden data-testid="craps-centre-felt">
+              <div key={i} className="craps-centre-felt" style={sceneRect(crapsScene, r)} role="group" aria-label="Centre: hardways and one-roll bets" data-testid="craps-centre-felt">
                 <b className="ccf-head">Hardways</b>
                 <div className="ccf-hard">
                   {([6, 10, 8, 4] as HardNo[]).map((n) => (
-                    <span key={n} className={table.hard[n] ? 'on' : ''}><i>{HARD_DICE[n]}</i>{table.hard[n] ? formatMoney(table.hard[n]!) : `${HARD_PAYS[n]} to 1`}</span>
+                    <button key={n} type="button" className={table.hard[n] ? 'on' : ''} onClick={() => place({ kind: 'hard', n })} disabled={busy || rolling} title={areaDesc({ kind: 'hard', n })} data-testid={`felt-hard-${n}`}><i>{HARD_DICE[n]}</i>{table.hard[n] ? formatMoney(table.hard[n]!) : `${HARD_PAYS[n]} to 1`}</button>
                   ))}
                 </div>
                 <b className="ccf-head">One roll bets</b>
-                <span className={`ccf-wide red ${table.props.any7 ? 'on' : ''}`}>Any Seven {table.props.any7 ? formatMoney(table.props.any7) : '4 to 1'}</span>
+                <button type="button" className={`ccf-wide red ${table.props.any7 ? 'on' : ''}`} onClick={() => place({ kind: 'prop', p: 'any7' })} disabled={busy || rolling} title={areaDesc({ kind: 'prop', p: 'any7' })} data-testid="felt-prop-any7">Any Seven {table.props.any7 ? formatMoney(table.props.any7) : '4 to 1'}</button>
                 <div className="ccf-props">
                   {(['two', 'three', 'yo', 'twelve'] as PropKey[]).map((p) => (
-                    <span key={p} className={table.props[p] ? 'on' : ''}>{({ two: '2', three: '3', yo: '11', twelve: '12' } as Record<string, string>)[p]}<small>{table.props[p] ? formatMoney(table.props[p]!) : `${PROP_BY[p].pays}:1`}</small></span>
+                    <button key={p} type="button" className={table.props[p] ? 'on' : ''} onClick={() => place({ kind: 'prop', p })} disabled={busy || rolling} title={areaDesc({ kind: 'prop', p })} data-testid={`felt-prop-${p}`}>{({ two: '2', three: '3', yo: '11', twelve: '12' } as Record<string, string>)[p]}<small>{table.props[p] ? formatMoney(table.props[p]!) : `${PROP_BY[p].pays}:1`}</small></button>
                   ))}
                 </div>
-                <span className={`ccf-wide red ${table.props.anyCraps ? 'on' : ''}`}>Any Craps {table.props.anyCraps ? formatMoney(table.props.anyCraps) : '7 to 1'}</span>
+                <button type="button" className={`ccf-wide red ${table.props.anyCraps ? 'on' : ''}`} onClick={() => place({ kind: 'prop', p: 'anyCraps' })} disabled={busy || rolling} title={areaDesc({ kind: 'prop', p: 'anyCraps' })} data-testid="felt-prop-anyCraps">Any Craps {table.props.anyCraps ? formatMoney(table.props.anyCraps) : '7 to 1'}</button>
               </div>
             ) : (
               <span key={i} className="craps-veil" style={sceneRect(crapsScene, r)} aria-hidden />
             ),
+          )}
+          {/* Tap the felt to bet, as at a real table. Once a point is on, tapping your line bet puts odds behind it. */}
+          {crapsZones(crapsScene).map((z, i) => {
+            const a = feltAction(z.kind, table);
+            const block = betBlocker(table, a, chip);
+            return (
+              <button
+                key={`z${i}`}
+                type="button"
+                className={`craps-zone ${block ? 'blocked' : ''}`}
+                style={sceneRect(crapsScene, z.rect)}
+                onClick={() => place(a)}
+                disabled={busy || rolling}
+                title={block ?? `${areaName(a)}: ${areaDesc(a)}`}
+                aria-label={`${areaName(a)}${block ? ` (${block})` : ''}`}
+                data-testid={i % 2 === 0 ? `felt-${z.kind}` : undefined}
+              />
+            );
+          })}
+          {[crapsScene.point, crapsScene.point2].filter(Boolean).flatMap((row, r) =>
+            POINTS.map((n) => {
+              const [cx, cy] = row![n];
+              const a: CrapsAction = { kind: 'place', n };
+              const block = betBlocker(table, a, chip);
+              return (
+                <button
+                  key={`n${r}-${n}`}
+                  type="button"
+                  className={`craps-zone num ${block ? 'blocked' : ''}`}
+                  style={sceneRect(crapsScene, [cx - crapsScene.box[0] / 2, cy - crapsScene.box[1] / 2, crapsScene.box[0], crapsScene.box[1]])}
+                  onClick={() => place(a)}
+                  disabled={busy || rolling}
+                  title={block ?? `Place ${n}: ${areaDesc(a)}`}
+                  aria-label={`Place ${n}`}
+                  data-testid={r === 0 ? `felt-place-${n}` : undefined}
+                />
+              );
+            }),
           )}
           {table.point && <span className="felt-puck" style={boxPt(crapsScene, table.point, 0, -0.3)} data-testid="craps-puck">ON</span>}
           {chipAt('pass', table.pass, scenePt(crapsScene, crapsScene.spots.pass))}
@@ -625,6 +727,55 @@ function Craps() {
           </div>
         </div>
       )}
+      {/* The rail: who's shooting, how the table's running, and the regulars (pretend money; the dice are the same fair dice). */}
+      <div className={`craps-rail m-${mood}`} data-testid="craps-rail">
+        <div className="cr-mood" data-testid="craps-mood" data-mood={mood}>
+          <span className="cr-mood-label">{MOOD_LABEL[mood]}</span>
+          <span className="cr-meter" aria-hidden>{(['cold', 'steady', 'hot', 'fire'] as Mood[]).map((m) => <i key={m} className={m === mood ? 'on' : ''} />)}</span>
+          <span className="cr-shooter">
+            Shooter: <b>{shooterName}</b> · {shooter.rolls} roll{shooter.rolls === 1 ? '' : 's'}{shooter.points ? ` · ${shooter.points} point${shooter.points > 1 ? 's' : ''} made` : ''}
+          </span>
+        </div>
+        <div className="cr-seats">
+          {seats.map((who, i) => {
+            const isShooter = shooter.seat === i;
+            if (who === 'ryan') {
+              return (
+                <div key="ryan" className={`cr-seat ryan ${isShooter ? 'shooting' : ''}`} data-testid="craps-seat-ryan">
+                  <span className="cr-badge" style={{ background: '#2f6fd6' }}>R</span>
+                  <span className="cr-name">Ryan{isShooter && <em className="cr-dice" title="Has the dice">⚄</em>}</span>
+                  <span className="cr-info">You · riding {formatMoney(onTable(table))}</span>
+                </div>
+              );
+            }
+            const st = regs.states[regularsAt(casinoLoc).indexOf(who)];
+            return (
+              <div key={who.id} className={`cr-seat ${isShooter ? 'shooting' : ''} ${regs.say?.who.id === who.id ? 'talking' : ''}`} title={who.bio} data-testid={`craps-seat-${who.id}`}>
+                <span className="cr-badge" style={{ background: who.colour }}>{who.short[0]}</span>
+                <span className="cr-name">{who.short}{isShooter && <em className="cr-dice" title="Has the dice">⚄</em>}</span>
+                <span className="cr-info">{STYLE_LABEL[who.style]} · riding {formatMoney(st ? onTable(st.table) : 0)}</span>
+              </div>
+            );
+          })}
+        </div>
+        {regs.say && (
+          <p className="cr-say" data-testid="craps-chatter">
+            <b style={{ color: regs.say.who.colour }}>{regs.say.who.short}:</b> &ldquo;{regs.say.text}&rdquo; <span className="rpg-draft">Draft line</span>
+          </p>
+        )}
+      </div>
+      <div className="craps-controls">
+        <div className="chip-rack">
+          {CHIPS.map((c) => (
+            <ChipButton key={c} value={c} on={chip === c} onClick={() => setChip(c)} label={`$${c} chip`} />
+          ))}
+          <span className="chip-total">Tap a bet to add <b>{formatMoney(chip)}</b> · on the table <b>{formatMoney(onTable(table))}</b></span>
+        </div>
+        <button className="btn primary" onClick={roll} disabled={busy || rolling || onTable(table) === 0} data-testid="craps-roll">
+          {shooter.seat === RYAN_SEAT ? 'Shoot the dice' : `Roll · ${shooterName} shooting`}
+        </button>
+      </div>
+      </div>
       <div className="dealer-row">
         <DealerDialogue who="craps" line={call} anim={stick.anim} />
         <TipTray
@@ -639,7 +790,10 @@ function Craps() {
       </div>
       </div>
       {/* The betting layout mirrors one side of the felt: the bar and the numbers on top, then Come, Field, Don't Pass and the Pass Line. */}
-      <div className="craps-board">
+      <button type="button" className="craps-layout-toggle" onClick={() => setShowLayout(!showLayout)} aria-expanded={showLayout} data-testid="craps-layout-toggle">
+        {showLayout ? 'Hide the bet list' : 'Show the bet list'} <span className="muted">(every bet, including odds on come points)</span>
+      </button>
+      {showLayout && <div className="craps-board">
       <div className={`craps-layout loc-${casinoLoc}`} role="group" aria-label="Craps layout: tap an area to put your chip on it" data-testid="craps-layout">
         {feltArea({ kind: 'dontCome' }, 'cl-dc', <><b>Don&rsquo;t Come</b><b>Bar</b><i>⚅⚅</i></>)}
         {POINTS.map((n) => {
@@ -686,20 +840,11 @@ function Craps() {
         {feltArea({ kind: 'horn' }, 'cc-wide', <><span>Horn</span><small>2 · 3 · 11 · 12</small></>)}
         {feltArea({ kind: 'prop', p: 'anyCraps' }, 'cc-wide cc-red', <><span>Any Craps</span><small>7 to 1</small></>)}
       </div>
-      </div>
+      </div>}
       <label className="craps-toggle">
         <input type="checkbox" checked={table.placeOn} disabled={busy || rolling} onChange={(e) => void run(() => services.casino.crapsPlaceOn(e.target.checked))} data-testid="craps-place-on" />
         Place bets work on the come-out roll too <span className="muted">(normally off)</span>
       </label>
-      <div className="chip-rack">
-        {CHIPS.map((c) => (
-          <ChipButton key={c} value={c} on={chip === c} onClick={() => setChip(c)} label={`$${c} chip`} />
-        ))}
-        <span className="chip-total">Tap a bet to add <b>{formatMoney(chip)}</b> · on the table <b>{formatMoney(onTable(table))}</b></span>
-      </div>
-      <div className="btn-row casino-actions">
-        <button className="btn primary" onClick={roll} disabled={busy || rolling || onTable(table) === 0} data-testid="craps-roll">Roll the dice</button>
-      </div>
       <ul className="craps-log" aria-live="polite">
         {log.map((l, i) => <li key={i} className={i === 0 ? 'latest' : ''}>{l}</li>)}
       </ul>

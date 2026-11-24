@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.4",
+   "date": "2026-11-24",
+   "title": "Craps comes alive, and you bet on the felt",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "Bet right on the craps table, like at baccarat: tap the Pass Line, the Field, Come, a number, a hardway or a one-roll bet on the felt itself. Once a point is on, tapping your Pass or Don't Pass bet again puts odds behind it. The full bet list is still one tap away (and open by default on phones)."
+    },
+    {
+     "tag": "new",
+     "text": "Craps has regulars now: three characters at each casino's table, each with their own way of betting and plenty to say. They bet pretend money on the same dice as you."
+    },
+    {
+     "tag": "new",
+     "text": "The dice pass around the table after every seven-out, and when it's Ryan's turn you shoot. A meter shows when the table runs hot, on fire or cold, built from what the dice actually did. The dice themselves are always fair."
+    },
+    {
+     "tag": "improved",
+     "text": "The table's rail, your chips and the Roll button sit right under the craps table."
+    }
+   ]
+  },
+  {
    "version": "0.20.3",
    "date": "2026-11-24",
    "title": "Craps: the whole table",

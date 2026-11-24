@@ -129,6 +129,13 @@ export interface CrapsScene {
   spots: { pass: Pt; dontPass: Pt; odds: Pt; field: Pt; come: Pt; dontCome: Pt; dontOdds: Pt };
   /** Size of a number box (chips on a number sit at fixed fractions of it). */
   box: [number, number];
+  /**
+   * Tap areas on the painted felt (scene pixels), left side of the table; the right side is the
+   * mirror image (see `crapsZones`). The number boxes come from `point` and `box`.
+   */
+  zones: { pass: Rect[]; dontPass: Rect[]; come: Rect[]; dontCome: Rect[]; field: Rect[] };
+  /** A second row of number boxes (Morongo Sky prints the numbers on both sides). */
+  point2?: Record<4 | 5 | 6 | 8 | 9 | 10, Pt>;
   dice: Pt;
   /** Painted areas for bets the game does not offer. */
   veils: Rect[];
@@ -143,6 +150,7 @@ export const CRAPS_SCENES: Record<LocationId, CrapsScene> = {
     point: { 4: [497, 335], 5: [632, 335], 6: [767, 335], 8: [902, 335], 9: [1037, 335], 10: [1174, 335] },
     spots: { pass: [215, 758], odds: [595, 758], dontPass: [400, 700], field: [430, 598], come: [440, 445], dontCome: [362, 322], dontOdds: [480, 700] },
     box: [130, 74],
+    zones: { pass: [[150, 730, 410, 70], [90, 330, 85, 370]], dontPass: [[190, 675, 390, 55]], come: [[235, 395, 375, 95]], dontCome: [[300, 258, 130, 135]], field: [[190, 580, 410, 92]] },
     dice: [835, 565],
     veils: [[215, 490, 440, 82], [1010, 490, 440, 82], [650, 383, 375, 362]],
   },
@@ -151,6 +159,7 @@ export const CRAPS_SCENES: Record<LocationId, CrapsScene> = {
     point: { 4: [470, 395], 5: [618, 395], 6: [762, 395], 8: [908, 395], 9: [1053, 395], 10: [1195, 395] },
     spots: { pass: [228, 732], odds: [600, 732], dontPass: [390, 672], field: [450, 560], come: [480, 500], dontCome: [325, 392], dontOdds: [470, 672] },
     box: [145, 80],
+    zones: { pass: [[150, 700, 460, 75]], dontPass: [[160, 650, 450, 45], [110, 380, 90, 320]], come: [[160, 460, 520, 85]], dontCome: [[250, 330, 150, 115]], field: [[160, 545, 520, 105]] },
     dice: [835, 615],
     veils: [[666, 446, 342, 344]],
   },
@@ -159,10 +168,24 @@ export const CRAPS_SCENES: Record<LocationId, CrapsScene> = {
     point: { 4: [373, 397], 5: [440, 397], 6: [510, 397], 8: [577, 397], 9: [645, 397], 10: [715, 397] },
     spots: { pass: [250, 702], odds: [572, 702], dontPass: [380, 648], field: [430, 552], come: [450, 485], dontCome: [285, 392], dontOdds: [460, 648] },
     box: [66, 86],
+    zones: { pass: [[210, 670, 410, 60], [125, 370, 85, 280]], dontPass: [[210, 625, 410, 40]], come: [[200, 445, 410, 80]], dontCome: [[230, 355, 110, 120]], field: [[200, 525, 425, 100]] },
+    point2: { 4: [946, 397], 5: [1014, 397], 6: [1083, 397], 8: [1151, 397], 9: [1219, 397], 10: [1288, 397] },
     dice: [835, 585],
     veils: [[626, 430, 419, 309]],
   },
 };
+
+/** Every tap area on a craps scene, both sides of the table (the right side mirrors the left). */
+export function crapsZones(s: CrapsScene): { kind: keyof CrapsScene['zones']; rect: Rect }[] {
+  const out: { kind: keyof CrapsScene['zones']; rect: Rect }[] = [];
+  for (const kind of Object.keys(s.zones) as (keyof CrapsScene['zones'])[]) {
+    for (const [x, y, w, h] of s.zones[kind]) {
+      out.push({ kind, rect: [x, y, w, h] });
+      out.push({ kind, rect: [s.size[0] - x - w, y, w, h] });
+    }
+  }
+  return out;
+}
 
 export function crapsSceneFor(location: LocationId): CrapsScene | null {
   const s = CRAPS_SCENES[location];

@@ -65,6 +65,15 @@ The rules are in `src/casino/craps.ts`; the header comment there has every rule 
 
 **Drafts:** new Stick Lady calls for hardway and one-roll wins are draft lines, awaiting approval.
 
-## Next (proposed)
+## Table life (0.20.4)
 
-Table regulars, a rotating shooter (with turns for Ryan), and hot and cold table moods built from real streaks. The dice stay fair: streaks come from the dice, never from changing the odds.
+The table now has regulars, a rotating shooter (Ryan takes turns), and hot and cold table moods built from real streaks. The dice stay fair. Characters and lines are drafts: see `docs/casino/CRAPS_REGULARS_DRAFT.md`.
+
+## Betting on the felt (0.20.4)
+
+The painted table is the betting surface, the same way baccarat works. Invisible tap areas sit over the painted spots on both sides of the table. They glow on hover, and a bet the rules don't allow yet says why in the log.
+
+- **The spots you can tap:** Pass Line, Don't Pass Bar, Come, Don't Come Bar, the Field, each number (a Place bet), and every bet in the drawn centre (hardways and one-roll bets). The tap areas for each table are in `src/expansion/tableThemes.ts` (`zones`, mirrored for the right-hand side).
+- **Odds:** once a point is on, tapping your Pass Line or Don't Pass bet again puts odds (or lay odds) behind it.
+- **Morongo Sky:** both of its printed rows of numbers can be tapped.
+- **The bet list:** the table-shaped bet list is still there, and is the way to put odds on Come points. It's open by default on phones, where the felt is small, and one tap away on wider screens.

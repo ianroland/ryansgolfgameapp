@@ -22,6 +22,7 @@ import {
 } from '../casino/baccarat';
 import { betBlocker as threeCardBlocker, newDeck, settle3, type PendingThreeCard, type ThreeCardResult } from '../casino/threeCard';
 import { betBlocker as vpBlocker, dealVP, settleVP, VP_MAX_RETURN, vpStake, type PendingVideoPoker, type VideoPokerResult } from '../casino/videoPoker';
+import { advanceShooter, readShooter, type ShooterState } from '../casino/crapsShooter';
 import { betBlocker as wheelBlocker, settleWheel, spinSlot, WHEEL_MAX_RETURN, type WheelBets, type WheelResult } from '../casino/wheel';
 import { betBlocker as kenoBlocker, drawBalls, KENO_MAX_RETURN, settleKeno, type KenoResult } from '../casino/keno';
 import * as engine from '../career/engine';
@@ -73,6 +74,8 @@ export const pendingVideoPoker = (c: CareerState) => readJson<PendingVideoPoker>
 export const crapsTable = (c: CareerState) => readTable(c.flags.crapsTable);
 export interface CrapsLastRoll { dice: [number, number]; message: string; outcomes: CrapsOutcome[]; n: number }
 export const crapsLast = (c: CareerState) => readJson<CrapsLastRoll>(c.flags.crapsLast);
+/** Who has the dice and how their hand is going (additive flag; presentation: it never changes a roll). */
+export const crapsShooter = (c: CareerState): ShooterState => readShooter(c.flags.crapsShooter);
 
 /** Spin to Win: the last spins, newest first (slot and symbol; additive flag), and the last spin in full. */
 export interface WheelHistoryEntry { slot: number; symbol: string }
@@ -465,7 +468,7 @@ export class CasinoService {
    * saved with the new table in the same transaction, so a reload or a second tab can't reroll
    * or pay a roll twice.
    */
-  async crapsRoll(): Promise<{ dice: [number, number]; outcomes: CrapsOutcome[]; message: string; table: CrapsTable; paid: number; staked: number }> {
+  async crapsRoll(): Promise<{ dice: [number, number]; outcomes: CrapsOutcome[]; message: string; table: CrapsTable; paid: number; staked: number; shooter: ShooterState; shooterBefore: ShooterState }> {
     const unlocked: string[] = [];
     const out = await this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
       const c = await this.open();
@@ -483,6 +486,9 @@ export class CasinoService {
       next.flags.crapsTable = JSON.stringify(table);
       next.flags.crapsRolls = n;
       next.flags.crapsLast = JSON.stringify({ dice, message, outcomes, n } satisfies CrapsLastRoll);
+      const shooterBefore = crapsShooter(c);
+      const shooter = advanceShooter(shooterBefore, before.point, dice);
+      next.flags.crapsShooter = JSON.stringify(shooter);
       // A cleared table starts a new session id for the next bets.
       if (onTable(table) === 0) delete next.flags.crapsSession;
       if (paid > staked) {
@@ -491,7 +497,7 @@ export class CasinoService {
         next = o.career;
       }
       await this.db.careers.put(next);
-      return { dice, outcomes, message, table, paid, staked };
+      return { dice, outcomes, message, table, paid, staked, shooter, shooterBefore };
     });
     this.announce(unlocked);
     return out;

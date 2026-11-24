@@ -2548,3 +2548,54 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .craps-centre-felt .on { background: rgba(255, 220, 90, 0.35); color: #fff; box-shadow: 0 0 0.8cqw rgba(255, 220, 90, 0.8); }
 .craps-layout, .craps-centre { align-items: stretch; } .craps-layout > *, .craps-centre > * { align-self: stretch; }
 .cl-area.has .cl-hit { padding-bottom: 28px; } @media (max-width: 720px) { .cl-chip .felt-chip img { width: 22px; } .cl-chip .felt-chip b { font-size: 11px; } .cl-area.has .cl-hit { padding-bottom: 24px; } }
+
+/* ── Craps table life (0.20.4): the rail under the table, the shooter, hot and cold. ── */
+.craps-left { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.craps-left > .craps-scene, .craps-left > .table-stage { margin: 0; max-width: none; }
+.craps-rail { display: grid; gap: 6px; padding: 8px 10px; border: 2px solid #6b4a1c; border-radius: 12px; background: linear-gradient(180deg, #2a1a10, #1a100a); box-shadow: inset 0 0 0 1px #e9c25a55; }
+.cr-mood { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 14px; color: #f3e2b0; }
+.cr-mood-label { padding: 2px 10px; font-family: var(--head); font-size: 18px; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 999px; background: #3a3a48; color: #fff; }
+.m-hot .cr-mood-label { background: #d8641a; }
+.m-fire .cr-mood-label { background: linear-gradient(90deg, #ff3d1f, #ffb21a); animation: neon 0.9s steps(2, jump-none) infinite; }
+.m-cold .cr-mood-label { background: #2d6fb8; }
+.cr-meter { display: inline-flex; gap: 3px; }
+.cr-meter i { width: 18px; height: 8px; border-radius: 3px; background: rgba(255, 255, 255, 0.15); }
+.cr-meter i:nth-child(1).on { background: #5aa8ff; }
+.cr-meter i:nth-child(2).on { background: #e9e2c8; }
+.cr-meter i:nth-child(3).on { background: #ff8a2a; }
+.cr-meter i:nth-child(4).on { background: #ff3d1f; box-shadow: 0 0 8px #ff8a2a; }
+.cr-shooter b { color: #fff; font-weight: 400; font-family: var(--head); font-size: 17px; }
+.cr-seats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.cr-seat { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 6px; align-items: center; padding: 5px 7px; border: 1px solid rgba(233, 194, 90, 0.35); border-radius: 8px; background: rgba(0, 0, 0, 0.25); cursor: default; }
+.cr-seat.shooting { border-color: #ffe680; box-shadow: 0 0 0 2px rgba(255, 230, 128, 0.35); }
+.cr-seat.talking { background: rgba(255, 230, 128, 0.12); }
+.cr-seat.ryan { border-color: #6aa0ff; }
+.cr-badge { grid-row: 1 / 3; display: grid; place-items: center; width: 28px; height: 28px; font-family: var(--head); font-size: 18px; color: #14100a; border: 2px solid #14100a; border-radius: 50%; }
+.cr-name { font-family: var(--head); font-size: 17px; color: #fff; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cr-dice { margin-left: 4px; font-style: normal; color: #ffe680; }
+.cr-info { font-size: 11px; color: #d8c79a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cr-say { margin: 0; font-size: 14px; color: #fff6d8; }
+.cr-say b { font-family: var(--head); font-weight: 400; font-size: 16px; }
+.craps-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.craps-controls .chip-rack { margin: 0; }
+.craps-controls .btn.primary { min-width: 0; }
+/* Hot and cold dice on the felt. */
+.craps-scene.mood-hot .die { box-shadow: 0 0 1.2cqw #ff8a2a, 0 0 2.4cqw rgba(255, 120, 30, 0.6); }
+.craps-scene.mood-fire .die { box-shadow: 0 0 1.4cqw #ffb21a, 0 0 3cqw #ff3d1f; }
+.craps-scene.mood-cold .die { box-shadow: 0 0 1.2cqw #7ec3ff, 0 0 2.2cqw rgba(90, 170, 255, 0.5); filter: saturate(0.8); }
+@media (max-width: 720px) { .cr-seats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .m-fire .cr-mood-label { animation: none; } }
+
+/* ── Craps: bet on the felt (0.20.4). Invisible tap areas over the painted spots; they glow on hover. ── */
+.craps-zone { position: absolute; z-index: 2; padding: 0; background: transparent; border: 0; border-radius: 0.8cqw; cursor: pointer; }
+.craps-zone:hover:not(:disabled), .craps-zone:focus-visible { background: rgba(255, 240, 160, 0.16); box-shadow: inset 0 0 0 0.25cqw rgba(255, 230, 128, 0.85), 0 0 1.4cqw rgba(255, 230, 128, 0.5); outline: none; }
+.craps-zone.blocked:hover:not(:disabled) { background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 0 0 0.2cqw rgba(255, 255, 255, 0.35); cursor: not-allowed; }
+.craps-zone:disabled { cursor: default; }
+.craps-felt-chip, .felt-puck, .dice-area, .felt-sum { pointer-events: none; }
+.craps-centre-felt { pointer-events: auto; }
+.craps-centre-felt button { padding: 0; font: inherit; color: inherit; text-transform: inherit; background: transparent; cursor: pointer; }
+.craps-centre-felt .ccf-wide.red { background: rgba(170, 20, 30, 0.85); }
+.craps-centre-felt button:hover:not(:disabled), .craps-centre-felt button:focus-visible { background-color: rgba(255, 240, 160, 0.22); outline: none; box-shadow: 0 0 0.8cqw rgba(255, 230, 128, 0.7); }
+.craps-centre-felt button:disabled { cursor: default; }
+.craps-layout-toggle { margin-top: 10px; padding: 6px 12px; font: inherit; font-size: 14px; color: #fff6d8; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(233, 194, 90, 0.5); border-radius: 8px; cursor: pointer; }
+.craps-layout-toggle:hover { background: rgba(255, 255, 255, 0.08); }
