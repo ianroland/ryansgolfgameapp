@@ -122,4 +122,61 @@
 - **Tests:** `tests/sportsEngine.test.ts` (18).
 - **Not yet built:** other sports, the off-season (draft, development, aging, trades, retirements), odds, saving, the calendar hook, and UI wiring. The sportsbook screens still show demo data.
 
-**Next:** Phase 2b. Baseball, football and hockey simulations on the same framework, then Phase 2c, the off-season.
+**Next (done below):** Phase 2b.
+
+## Phase 2b result (implemented): baseball, football and hockey engines
+
+- **Still pure engine, nothing visible yet.** No UI, save or ledger changes. Basketball results are unchanged from Phase 2a (same seeds give the same seasons).
+- **New files** in `src/sports/`:
+  - `sim.ts`: the shapes every sport shares (game result, box line, game context).
+  - `baseball.ts`: plate-appearance simulation. Four-man rotation, bullpen, base running, sacrifice flies, double plays, extra innings with a runner on second from the 10th, walk-offs.
+  - `football.ts`: drive simulation. Touchdowns, field goals, defensive scores, overtime (each team gets a drive, then sudden death). Regular-season games can end tied; playoff games always have a winner.
+  - `hockey.ts`: shot simulation, shooter against goalie, with assists. The backup goalie starts every fourth game. Five-minute sudden-death overtime, then a shootout.
+- **Changed:** `players.ts` (rosters by sport), `schedule.ts` (baseball's three-game series), `season.ts` (all four leagues), `config.ts` (all tunable numbers, still PROPOSED).
+- **Rosters:**
+
+| Sport | Players per team | Positions |
+|---|---|---|
+| Baseball | 16 | one at each fielding spot plus DH and utility; 4 starting and 2 relief pitchers |
+| Basketball | 10 | two at each position |
+| Football | 24 | QB, 2 RB, 3 WR, TE, 5 OL, 4 DL, 3 LB, 4 DB, K |
+| Hockey | 18 | 3 C, 7 W, 6 D, 2 G |
+
+- **Calendar** (Ryan's 30-week season; every league finishes its playoffs by week 30):
+
+| Sport | Regular season | Games per team | Playoffs |
+|---|---|---|---|
+| Baseball | from week 1, 3 days a week, in 3-game series | 42 | best-of-5 semis, best-of-7 final (2-3-2) |
+| Basketball | weeks 2–15 | 28 | best-of-5 semis, best-of-7 final |
+| Football | from week 13, one game a week | 14 | single-game semis, neutral-site final |
+| Hockey | from week 15, 2 days a week | 28 | best-of-5 semis, best-of-7 final |
+
+- **Standings:** hockey uses points (2 for a win, 1 for an overtime or shootout loss). Football counts a tie as half a win.
+- **Awards:** MVP and Finals MVP in every league, scored from each sport's own box score. Kickers are excluded.
+- **Measured** over 30 seeded seasons:
+
+| Measure | Baseball | Football | Hockey |
+|---|---|---|---|
+| Total score per game (both teams) | about 9.3 runs | about 46.5 points | about 6.2 goals |
+| Home win rate | about 55% | about 53% | about 56% |
+| Extra innings / overtime | about 9% | under 10% | about 15% (some shootouts) |
+| Team quality vs record (correlation) | about 0.69 | about 0.53 | about 0.64 |
+| Time per season | about 28 ms | about 6 ms | about 15 ms |
+
+- **Tests:** `tests/sportsEngine.test.ts` now has 29 (11 new). They cover determinism, rosters, schedule length and calendar, baseball series, box scores that add up to the final score, hockey points, football ties and the neutral final, baseball's 2-3-2 final, realism ranges, better teams winning more, and awards.
+- **Not yet built:** the off-season (draft, development, aging, trades, retirements), odds, saving, the calendar hook, and UI wiring. The sportsbook screens still show demo data.
+
+**Next:** Phase 2c, the off-season.
+
+## Desert Palms sportsbook clerk (installed)
+
+- **Who:** Emmett Okafor (`emmett_okafor`), from the NPC Factory pack `tiny_mana.casino_servers` 0.2.0.
+- **Portraits:** all six expressions (friendly, playful, impressed, concerned, annoyed, firm) at `src/assets/sportsbook/desert_palms/clerk_<expression>.png`. They are copied byte-for-byte from the pack's `sprites/emmett_okafor/` and match the 3×2 sheet the user supplied.
+- **In the lounge:** shown in the clerk slot on wide screens and phones, with his name.
+  - Friendly by default.
+  - Concerned while the stake is more than the bankroll.
+  - Playful for a few seconds after a ticket goes in.
+  - These are presentation only and never touch the slip, odds or ledger.
+- **Still placeholder:** his line ("Lines are posted. Take your time.") keeps the Placeholder tag.
+- **Mismatch to fix in NPC Factory:** the pack lists Emmett as a **roulette dealer**, and all 21 of his dialogue lines are roulette puns. Those lines are not used here. Desert Palms roulette is already Monique's table. The pack should be re-exported with Emmett as the sportsbook clerk and sportsbook-appropriate lines. The pack itself was not edited.
+- **Pack status:** a development build (`productionReady: false`). Only the portraits were taken from it; no pack data is imported at runtime.

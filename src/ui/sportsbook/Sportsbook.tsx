@@ -12,7 +12,7 @@ import {
   type DemoGame, type DemoLine, type LeagueId,
 } from '../../sports/demo';
 import { parlayCheck, potentialReturn, selectionKey, SLIP_RULES, stakeCheck, toggleSelection, type Selection } from '../../sports/slip';
-import { LOUNGE_LAYOUT, LOUNGE_SIZE, LOUNGES, rectPct, type NativeRect } from '../../sports/themes';
+import { LOUNGE_LAYOUT, LOUNGE_SIZE, LOUNGES, rectPct, type ClerkExpression, type NativeRect } from '../../sports/themes';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
 import { useCasinoLocation } from '../casino/casinoLocation';
@@ -85,12 +85,49 @@ export function Sportsbook() {
   const toReturn = potentialReturn(slip, stake, useParlay);
   const canPlace = slip.length > 0 && sc.ok && (!parlay || pc.ok);
 
+  // Clerk expression: friendly by default, a playful beat after a ticket goes in, concerned while the
+  // stake is more than the bankroll. Presentation only: it never touches the slip, odds or ledger.
+  const [reaction, setReaction] = useState<ClerkExpression | null>(null);
+  useEffect(() => {
+    if (!reaction) return;
+    const t = window.setTimeout(() => setReaction(null), 4000);
+    return () => window.clearTimeout(t);
+  }, [reaction]);
+  const short = slip.length > 0 && stake > state.balance;
+  const expression: ClerkExpression = short ? 'concerned' : reaction ?? 'friendly';
+  const clerkBody = theme.art.clerk ? (
+    <>
+      <img
+        className="sb-clerk-portrait sb-clerk-img"
+        src={theme.art.clerk.portraits[expression]}
+        alt={`${theme.art.clerk.name}, sportsbook clerk (${expression})`}
+        width={256}
+        height={256}
+        draggable={false}
+        data-expression={expression}
+        data-testid="sb-clerk-portrait"
+      />
+      <div className="sb-clerk-text">
+        <span className="sb-clerk-name">{theme.art.clerk.name}</span>
+        <p className="sb-clerk-line">“Lines are posted. Take your time.” <span className="rpg-draft">Placeholder</span></p>
+      </div>
+    </>
+  ) : (
+    <>
+      <div className="sb-clerk-portrait" aria-label="Sportsbook clerk portrait (placeholder)">
+        <span>Clerk portrait<br />256×256 ×6<br />pending (NPC Factory)</span>
+      </div>
+      <p className="sb-clerk-line">“Lines are posted. Take your time.” <span className="rpg-draft">Placeholder</span></p>
+    </>
+  );
+
   const place = () => {
     const id = session.nextId++;
     setTickets((t) => [{ id, legs: slip, stake, parlay: useParlay, toReturn }, ...t]);
     setSlip([]);
     setConfirming(false);
     setView('tickets');
+    setReaction('playful');
   };
 
   const style = {
@@ -160,10 +197,7 @@ export function Sportsbook() {
               ))}
             </nav>
             <div className="sb-clerk sb-clerk-art" style={at(LOUNGE_LAYOUT.clerk)} data-testid="sb-clerk">
-              <div className="sb-clerk-portrait" aria-label="Sportsbook clerk portrait (placeholder)">
-                <span>Clerk portrait<br />256×256 ×6<br />pending (NPC Factory)</span>
-              </div>
-              <p className="sb-clerk-line">“Lines are posted. Take your time.” <span className="rpg-draft">Placeholder</span></p>
+              {clerkBody}
             </div>
           </div>
         </div>
@@ -261,10 +295,7 @@ export function Sportsbook() {
             </div>
           </div>
           <div className="sb-clerk sb-inline" data-testid="sb-clerk-m">
-              <div className="sb-clerk-portrait" aria-label="Sportsbook clerk portrait (placeholder)">
-                <span>Clerk portrait<br />256×256 ×6<br />pending (NPC Factory)</span>
-              </div>
-              <p className="sb-clerk-line">“Lines are posted. Take your time.” <span className="rpg-draft">Placeholder</span></p>
+            {clerkBody}
           </div>
           <div className="sb-slipwrap" style={at(LOUNGE_LAYOUT.slip)}>
             <div className="sb-slip" data-testid="sb-slip" aria-label="Bet slip">

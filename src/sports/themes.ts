@@ -12,20 +12,30 @@ export interface LoungeTheme {
   /** Colour tokens (CSS custom properties). */
   tokens: { bg1: string; bg2: string; neon: string; trim: string; crt: string; crtText: string; accent: string; panel: string };
   /** Art slots: background 1672x941, odds board frame (9-slice ~1200x600). Null = not supplied yet. */
-  art: { background: string | null; boardFrame: string | null; clerk: string | null };
+  art: { background: string | null; boardFrame: string | null; clerk: ClerkArt | null };
   /** Unlocked by the casino's existing rule (no new thresholds). */
   playable: boolean;
 }
 
+export const CLERK_EXPRESSIONS = ['friendly', 'playful', 'impressed', 'concerned', 'annoyed', 'firm'] as const;
+export type ClerkExpression = (typeof CLERK_EXPRESSIONS)[number];
+/** A clerk NPC: id and name come from the NPC Factory pack that supplied the portraits. */
+export interface ClerkArt { npcId: string; name: string; portraits: Record<ClerkExpression, string> }
+
 const art = import.meta.glob<string>('../assets/sportsbook/*/*.png', { eager: true, query: '?url', import: 'default' });
 const slot = (loc: LocationId, file: string) => art[`../assets/sportsbook/${loc}/${file}`] ?? null;
+/** All six expressions must be present, or the slot stays a placeholder (no half sets, no borrowed faces). */
+const clerk = (loc: LocationId, npcId: string, name: string): ClerkArt | null => {
+  const portraits = Object.fromEntries(CLERK_EXPRESSIONS.map((e) => [e, slot(loc, `clerk_${e}.png`)]));
+  return Object.values(portraits).every(Boolean) ? { npcId, name, portraits: portraits as Record<ClerkExpression, string> } : null;
+};
 
 export const LOUNGES: Record<LocationId, LoungeTheme> = {
   desert_palms: {
     location: 'desert_palms',
     name: 'Palms Sports Bar',
     tokens: { bg1: '#2a0f2e', bg2: '#0e3b2a', neon: '#ff4fa8', trim: '#d8a33a', crt: '#06140c', crtText: '#7dffb0', accent: '#2fbf71', panel: '#1c0c22' },
-    art: { background: slot('desert_palms', 'bg_lounge.png'), boardFrame: slot('desert_palms', 'odds_board_frame.png'), clerk: null },
+    art: { background: slot('desert_palms', 'bg_lounge.png'), boardFrame: slot('desert_palms', 'odds_board_frame.png'), clerk: clerk('desert_palms', 'emmett_okafor', 'Emmett Okafor') },
     playable: true,
   },
   white_buffalo: {

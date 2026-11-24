@@ -33,9 +33,16 @@ export function roundRobin(teams: readonly string[]): [string, string][][] {
   return rounds;
 }
 
-/** A full season: `meetings` round-robin cycles, home/away swapped on odd cycles; team order seeded. */
-export function seasonSchedule(teamIds: readonly string[], meetings: number, r: Rng, idPrefix: string): ScheduledGame[] {
-  if (meetings % 2) throw new Error('Meetings per opponent must be even for equal home and away');
+/**
+ * A full season. Each round-robin round becomes a series of `seriesLength` consecutive game days
+ * between the same teams at the same venue (baseball plays 3-game series; other sports 1).
+ * Cycles repeat until each pair has met `meetings` times, swapping home and away every cycle.
+ * `round` on each game is its game day.
+ */
+export function seasonSchedule(teamIds: readonly string[], meetings: number, r: Rng, idPrefix: string, seriesLength = 1): ScheduledGame[] {
+  if (meetings % seriesLength) throw new Error('Meetings must be a multiple of the series length');
+  const cycles = meetings / seriesLength;
+  if (cycles % 2) throw new Error('Home and away must split evenly: an even number of cycles is required');
   const order = [...teamIds];
   for (let i = order.length - 1; i > 0; i--) {
     const j = r.int(0, i);
@@ -43,14 +50,16 @@ export function seasonSchedule(teamIds: readonly string[], meetings: number, r: 
   }
   const base = roundRobin(order);
   const games: ScheduledGame[] = [];
-  let round = 0;
-  for (let cycle = 0; cycle < meetings; cycle++) {
+  let day = 0;
+  for (let cycle = 0; cycle < cycles; cycle++) {
     for (const rd of base) {
-      for (const [h, a] of rd) {
-        const [home, away] = cycle % 2 === 0 ? [h, a] : [a, h];
-        games.push({ id: `${idPrefix}:r${round + 1}:${home}-${away}`, round, home, away });
+      for (let g = 0; g < seriesLength; g++) {
+        for (const [h, a] of rd) {
+          const [home, away] = cycle % 2 === 0 ? [h, a] : [a, h];
+          games.push({ id: `${idPrefix}:r${day + 1}:${home}-${away}`, round: day, home, away });
+        }
+        day++;
       }
-      round++;
     }
   }
   return games;

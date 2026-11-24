@@ -6,6 +6,9 @@
 import { SPORTS_CONFIG } from './config';
 import type { Player } from './players';
 import type { Rng } from './rng';
+import type { GameContext, GameResult } from './sim';
+
+export type { GameResult, PlayerLine } from './sim';
 
 const C = SPORTS_CONFIG.basketball;
 
@@ -33,26 +36,9 @@ export function teamStrength(roster: readonly Player[]): TeamStrength {
   };
 }
 
-export interface PlayerLine {
-  playerId: string;
-  points: number;
-}
-
-export interface GameResult {
-  id: string;
-  home: string;
-  away: string;
-  homeScore: number;
-  awayScore: number;
-  /** Overtime periods played. */
-  ot: number;
-  /** Points per player (both teams), rotation players only. */
-  box: PlayerLine[];
-}
-
-function possession(r: Rng, off: TeamStrength, def: TeamStrength, home: boolean, box: Map<string, number>): number {
+function possession(r: Rng, off: TeamStrength, def: TeamStrength, home: boolean, box: Map<string, number>, neutral: boolean): number {
   if (r.chance(C.turnoverRate)) return 0;
-  const adj = (off.offense - def.defense) * C.matchupScale + (home ? C.homeEdge : 0);
+  const adj = (off.offense - def.defense) * C.matchupScale + (home && !neutral ? C.homeEdge : 0);
   const scorer = () => off.rotation[r.weighted(off.rotation.map((x) => x.share))].player.id;
   const add = (pts: number) => {
     if (pts) {
@@ -75,7 +61,8 @@ function possession(r: Rng, off: TeamStrength, def: TeamStrength, home: boolean,
 }
 
 /** Plays one game. `r` must be the game's own stream. */
-export function playBasketball(id: string, home: string, away: string, homeRoster: readonly Player[], awayRoster: readonly Player[], r: Rng): GameResult {
+export function playBasketball(id: string, home: string, away: string, homeRoster: readonly Player[], awayRoster: readonly Player[], r: Rng, ctx?: GameContext): GameResult {
+  const neutral = !!ctx?.neutral;
   const H = teamStrength(homeRoster);
   const A = teamStrength(awayRoster);
   const box = new Map<string, number>();
@@ -83,8 +70,8 @@ export function playBasketball(id: string, home: string, away: string, homeRoste
   let as = 0;
   const period = (possessions: number) => {
     for (let i = 0; i < possessions; i++) {
-      hs += possession(r, H, A, true, box);
-      as += possession(r, A, H, false, box);
+      hs += possession(r, H, A, true, box, neutral);
+      as += possession(r, A, H, false, box, neutral);
     }
   };
   const pace = Math.max(85, Math.round(C.pace.mean + r.normal() * C.pace.sd));
@@ -101,6 +88,7 @@ export function playBasketball(id: string, home: string, away: string, homeRoste
     homeScore: hs,
     awayScore: as,
     ot,
-    box: [...box].map(([playerId, points]) => ({ playerId, points })).sort((a, b) => b.points - a.points || a.playerId.localeCompare(b.playerId)),
+    ...(neutral ? { neutral } : {}),
+    box: [...box].map(([playerId, points]) => ({ playerId, points, extra: { v: points } })).sort((a, b) => b.points - a.points || a.playerId.localeCompare(b.playerId)),
   };
 }

@@ -1,17 +1,29 @@
 /**
- * The sports world and a full basketball season (Phase 2a): world creation from a seed, the
- * balanced schedule, every game, injuries, standings with tiebreakers, a top-4 playoff
- * (best-of-5 semifinals, best-of-7 final) and awards. Pure and deterministic: the same seed
- * and season always give the same results. Nothing here is saved yet (Phase 4).
+ * The sports world and full seasons for all four leagues: world creation from a seed, balanced
+ * schedules on Ryan's calendar, every game, injuries, standings with tiebreakers, a top-4
+ * playoff (series for baseball, basketball and hockey; single games for football, the final at a
+ * neutral site) and awards. Pure and deterministic: the same seed and season always give the
+ * same results. Nothing here is saved yet (Phase 4).
  */
-import { playBasketball, type GameResult } from './basketball';
+import { playBaseball } from './baseball';
+import { playBasketball } from './basketball';
 import { SPORTS_CONFIG } from './config';
-import { SEASON_FORMAT, teamsOf, type LeagueId } from './demo';
-import { generateBasketballRoster, makeNameGen, type Player } from './players';
+import { LEAGUES, SEASON_FORMAT, teamsOf, type LeagueId, type Sport } from './demo';
+import { playFootball } from './football';
+import { playHockey } from './hockey';
+import { generateRoster, makeNameGen, type Player } from './players';
 import { stream } from './rng';
 import { seasonSchedule, type ScheduledGame } from './schedule';
+import type { GameResult, Simulator } from './sim';
 
-const LEAGUE: LeagueId = 'ccl';
+export const SIMULATORS: Record<Sport, Simulator> = {
+  basketball: playBasketball,
+  baseball: playBaseball,
+  football: playFootball,
+  hockey: playHockey,
+};
+
+export const sportOf = (league: LeagueId): Sport => LEAGUES.find((l) => l.id === league)!.sport;
 
 export interface World {
   seed: number;
@@ -20,14 +32,21 @@ export interface World {
   players: Player[];
 }
 
-/** A new world: basketball rosters for the eight CCL franchises. */
+/** League generation order (basketball first, so its rosters match the Phase 2a world). */
+const GEN_ORDER: LeagueId[] = ['ccl', 'gdc', 'igl', 'fhl'];
+
+/** A new world: rosters for all 32 franchises. */
 export function createWorld(seed: number): World {
   const names = makeNameGen(stream(seed, 'names'));
   const quality: Record<string, number> = {};
   const players: Player[] = [];
-  for (const t of teamsOf(LEAGUE)) {
-    quality[t.id] = Math.round(stream(seed, 'team-quality', t.id).normal() * SPORTS_CONFIG.basketball.teamSpread * 10) / 10;
-    players.push(...generateBasketballRoster(t.id, quality[t.id], stream(seed, 'roster', t.id), names, `p_${t.id}`));
+  for (const league of GEN_ORDER) {
+    const sport = sportOf(league);
+    const g = SPORTS_CONFIG.generation[sport];
+    for (const t of teamsOf(league)) {
+      quality[t.id] = Math.round(stream(seed, 'team-quality', t.id).normal() * g.teamSpread * 10) / 10;
+      players.push(...generateRoster(sport, t.id, quality[t.id], stream(seed, 'roster', t.id), names, `p_${t.id}`, g.playerSpread));
+    }
   }
   return { seed, quality, players };
 }
@@ -41,6 +60,12 @@ export interface StandingRow {
   team: string;
   w: number;
   l: number;
+  /** Football ties. */
+  t: number;
+  /** Hockey overtime/shootout losses (not counted in `l`). */
+  otl: number;
+  /** Hockey points (2 per win, 1 per OT/SO loss); 0 elsewhere. */
+  pts: number;
   pf: number;
   pa: number;
   home: [number, number];
@@ -66,56 +91,83 @@ export interface InjuryEvent {
   games: number;
 }
 
-export interface BasketballSeason {
+export interface Awards {
+  /** Best contribution per game (nudged by team success), at least 60% of games played. */
+  mvp: { playerId: string; perGame: number };
+  /** Most contribution in the final for the champion. */
+  finalsMvp: { playerId: string; total: number };
+}
+
+export interface LeagueSeason {
   league: LeagueId;
+  sport: Sport;
   season: number;
   regular: PlayedGame[];
   standings: StandingRow[];
   playoffs: Series[];
   champion: string;
-  awards: { mvp: { playerId: string; ppg: number }; finalsMvp: { playerId: string; points: number } };
+  awards: Awards;
   injuries: InjuryEvent[];
   /** Player state at the end of the season (injuries carried). */
   players: Player[];
 }
+/** Phase 2a name, kept for callers. */
+export type BasketballSeason = LeagueSeason;
 
-const HOME_PATTERN: Record<number, boolean[]> = {
-  5: [true, true, false, false, true],
-  7: [true, true, false, false, true, false, true],
+/** Home games for the higher seed, by series length. */
+const HOME_PATTERN: Record<Sport, Record<number, boolean[]>> = {
+  basketball: { 5: [true, true, false, false, true], 7: [true, true, false, false, true, false, true] },
+  hockey: { 5: [true, true, false, false, true], 7: [true, true, false, false, true, false, true] },
+  baseball: { 5: [true, true, false, false, true], 7: [true, true, false, false, false, true, true] },
+  football: { 1: [true] },
 };
 
-export function standingsOf(games: readonly PlayedGame[], teamIds: readonly string[], tiebreak: (team: string) => number): StandingRow[] {
+export function standingsOf(games: readonly PlayedGame[], teamIds: readonly string[], tiebreak: (team: string) => number, sport: Sport = 'basketball'): StandingRow[] {
   const row = new Map<string, StandingRow & { last: string[] }>(
-    teamIds.map((t) => [t, { team: t, w: 0, l: 0, pf: 0, pa: 0, home: [0, 0], away: [0, 0], streak: '', last: [] }]),
+    teamIds.map((t) => [t, { team: t, w: 0, l: 0, t: 0, otl: 0, pts: 0, pf: 0, pa: 0, home: [0, 0], away: [0, 0], streak: '', last: [] }]),
   );
   const h2h = new Map<string, number>();
   for (const g of games) {
     const { homeScore: hs, awayScore: as } = g.result;
-    const homeWon = hs > as;
     const h = row.get(g.home)!;
     const a = row.get(g.away)!;
     h.pf += hs; h.pa += as; a.pf += as; a.pa += hs;
-    if (homeWon) { h.w++; a.l++; h.home[0]++; a.away[1]++; } else { a.w++; h.l++; a.away[0]++; h.home[1]++; }
-    h.last.push(homeWon ? 'W' : 'L');
-    a.last.push(homeWon ? 'L' : 'W');
-    const winner = homeWon ? g.home : g.away;
-    const loser = homeWon ? g.away : g.home;
-    h2h.set(`${winner}>${loser}`, (h2h.get(`${winner}>${loser}`) ?? 0) + 1);
+    if (hs === as) {
+      h.t++; a.t++;
+      h.last.push('T'); a.last.push('T');
+      continue;
+    }
+    const homeWon = hs > as;
+    const [win, lose] = homeWon ? [h, a] : [a, h];
+    win.w++;
+    // Hockey: an overtime or shootout loss is its own column and earns a point.
+    if (sport === 'hockey' && g.result.ot > 0) lose.otl++;
+    else lose.l++;
+    if (homeWon) { h.home[0]++; a.away[1]++; } else { a.away[0]++; h.home[1]++; }
+    win.last.push('W');
+    lose.last.push('L');
+    h2h.set(`${win.team}>${lose.team}`, (h2h.get(`${win.team}>${lose.team}`) ?? 0) + 1);
   }
   const rows = [...row.values()];
   for (const r of rows) {
+    if (sport === 'hockey') r.pts = r.w * 2 + r.otl;
     const last = r.last.at(-1);
     let n = 0;
     for (let i = r.last.length - 1; i >= 0 && r.last[i] === last; i--) n++;
     r.streak = last ? `${last}${n}` : '';
   }
-  // Win %, then head-to-head among the tied group, then point difference, then a seeded draw.
-  const pct = (r: StandingRow) => (r.w + r.l ? r.w / (r.w + r.l) : 0);
-  const byWins = new Map<number, typeof rows>();
-  for (const r of rows) byWins.set(pct(r), [...(byWins.get(pct(r)) ?? []), r]);
+  // Win % (hockey: points, then wins; football ties count half), then head-to-head among the
+  // tied group, then point difference, then a seeded draw.
+  const key = (r: StandingRow) => {
+    const gp = r.w + r.l + r.t + r.otl;
+    if (sport === 'hockey') return r.pts * 1000 + r.w;
+    return gp ? (r.w + r.t / 2) / gp : 0;
+  };
+  const groups = new Map<number, typeof rows>();
+  for (const r of rows) groups.set(key(r), [...(groups.get(key(r)) ?? []), r]);
   const ordered: typeof rows = [];
-  for (const p of [...byWins.keys()].sort((a, b) => b - a)) {
-    const group = byWins.get(p)!;
+  for (const k of [...groups.keys()].sort((a, b) => b - a)) {
+    const group = groups.get(k)!;
     const ids = group.map((r) => r.team);
     const h2hWins = (t: string) => ids.reduce((s, o) => s + (h2h.get(`${t}>${o}`) ?? 0), 0);
     group.sort((a, b) => h2hWins(b.team) - h2hWins(a.team) || b.pf - b.pa - (a.pf - a.pa) || tiebreak(b.team) - tiebreak(a.team));
@@ -124,36 +176,47 @@ export function standingsOf(games: readonly PlayedGame[], teamIds: readonly stri
   return ordered.map(({ last: _last, ...r }) => r);
 }
 
-/** Plays one full basketball season for a world. */
-export function playBasketballSeason(world: World, season: number): BasketballSeason {
-  const C = SPORTS_CONFIG.basketball;
-  const cal = SPORTS_CONFIG.calendar.basketball!;
-  const fmt = SEASON_FORMAT.basketball;
+/** Players exposed to injury in a game: basketball's eight-man rotation; everyone available elsewhere. */
+function exposed(sport: Sport, roster: readonly Player[]): Player[] {
+  const avail = roster.filter((p) => p.injuryGames === 0);
+  if (sport !== 'basketball') return avail;
+  return avail.sort((a, b) => b.overall - a.overall || a.id.localeCompare(b.id)).slice(0, SPORTS_CONFIG.basketball.rotation);
+}
+
+/** Plays one full season of a league. */
+export function playLeagueSeason(world: World, league: LeagueId, season: number): LeagueSeason {
+  const sport = sportOf(league);
+  const cal = SPORTS_CONFIG.calendar[sport];
+  const fmt = SEASON_FORMAT[sport];
+  const inj = SPORTS_CONFIG.injuries;
+  const injury = inj[sport];
+  const sim = SIMULATORS[sport];
   const seed = world.seed;
-  const ids = teamsOf(LEAGUE).map((t) => t.id);
-  const players = world.players.map((p) => ({ ...p, attrs: { ...p.attrs }, injuryGames: 0 }));
-  const roster = (team: string) => players.filter((p) => p.teamId === team);
+  const ids = teamsOf(league).map((t) => t.id);
+  const players = world.players.filter((p) => ids.includes(p.teamId)).map((p) => ({ ...p, attrs: { ...p.attrs }, injuryGames: 0 }));
+  const rosters = new Map(ids.map((t) => [t, players.filter((p) => p.teamId === t)]));
+  const gamesPlayed = new Map(ids.map((t) => [t, 0]));
   const injuries: InjuryEvent[] = [];
 
-  const play = (g: ScheduledGame, week: number): PlayedGame => {
-    // Who takes the floor is fixed before tip-off: the best available players.
-    const rotation = new Set(
-      [g.home, g.away].flatMap((team) =>
-        roster(team).filter((p) => p.injuryGames === 0).sort((a, b) => b.overall - a.overall || a.id.localeCompare(b.id)).slice(0, C.rotation).map((p) => p.id),
-      ),
-    );
-    const result = playBasketball(g.id, g.home, g.away, roster(g.home), roster(g.away), stream(seed, 'game', g.id));
+  const play = (g: ScheduledGame, week: number, playoff: boolean, neutral = false): PlayedGame => {
+    const hr = rosters.get(g.home)!;
+    const ar = rosters.get(g.away)!;
+    // Exposure is fixed before the game starts.
+    const atRisk = new Set([...exposed(sport, hr), ...exposed(sport, ar)].map((p) => p.id));
+    const ctx = { neutral, playoff, homeGameNo: gamesPlayed.get(g.home)!, awayGameNo: gamesPlayed.get(g.away)! };
+    const result = sim(g.id, g.home, g.away, hr, ar, stream(seed, 'game', g.id), ctx);
     for (const team of [g.home, g.away]) {
-      for (const p of roster(team)) {
+      gamesPlayed.set(team, gamesPlayed.get(team)! + 1);
+      for (const p of rosters.get(team)!) {
         if (p.injuryGames > 0) {
           p.injuryGames--; // sat this one out
           continue;
         }
-        if (!rotation.has(p.id)) continue;
+        if (!atRisk.has(p.id)) continue;
         const r = stream(seed, 'injury', p.id, g.id);
-        const chance = C.injuryChance * (p.tag === 'injury_prone' ? C.injuryProneMultiplier : p.tag === 'iron_man' ? 0.4 : 1);
+        const chance = injury.chance * (p.tag === 'injury_prone' ? inj.injuryProneMultiplier : p.tag === 'iron_man' ? inj.ironManMultiplier : 1);
         if (r.chance(chance)) {
-          const games = r.int(C.injuryGames.min, C.injuryGames.max);
+          const games = r.int(injury.min, injury.max);
           p.injuryGames = games;
           injuries.push({ playerId: p.id, teamId: team, gameId: g.id, games });
         }
@@ -162,62 +225,74 @@ export function playBasketballSeason(world: World, season: number): BasketballSe
     return { ...g, week, result };
   };
 
-  const schedule = seasonSchedule(ids, fmt.meetingsPerOpponent, stream(seed, 'schedule', LEAGUE, season), `${LEAGUE}:${season}`);
-  const regular = schedule.map((g) => play(g, cal.startWeek + Math.floor(g.round / cal.roundsPerWeek)));
-  const coin = (team: string) => stream(seed, 'tiebreak', LEAGUE, season, team).next();
-  const standings = standingsOf(regular, ids, coin);
+  const schedule = seasonSchedule(ids, fmt.meetingsPerOpponent, stream(seed, 'schedule', league, season), `${league}:${season}`, cal.seriesLength);
+  const regular = schedule.map((g) => play(g, cal.startWeek + Math.floor(g.round / cal.daysPerWeek), false));
+  const coin = (team: string) => stream(seed, 'tiebreak', league, season, team).next();
+  const standings = standingsOf(regular, ids, coin, sport);
 
-  // Playoffs: 1 v 4 and 2 v 3, then the final. The higher seed hosts games 1, 2, 5 (and 7).
+  // Playoffs: 1 v 4 and 2 v 3, then the final, one week per round.
   const lastWeek = regular.at(-1)!.week;
+  const po = SPORTS_CONFIG.playoffs[sport];
   const series = (round: Series['round'], high: string, low: string, bestOf: number, week: number): Series => {
     const games: PlayedGame[] = [];
     const wins: [number, number] = [0, 0];
     const need = Math.ceil(bestOf / 2);
+    const neutral = sport === 'football' && round === 'final';
     for (let i = 0; wins[0] < need && wins[1] < need; i++) {
-      const highHome = HOME_PATTERN[bestOf][i];
+      const highHome = HOME_PATTERN[sport][bestOf][i];
       const [home, away] = highHome ? [high, low] : [low, high];
-      const g = play({ id: `${LEAGUE}:${season}:po:${round}:${high}-${low}:g${i + 1}`, round: -1, home, away }, week);
+      const g = play({ id: `${league}:${season}:po:${round}:${high}-${low}:g${i + 1}`, round: -1, home, away }, week, true, neutral);
       games.push(g);
-      const homeWon = g.result.homeScore > g.result.awayScore;
-      const highWon = homeWon === highHome;
-      wins[highWon ? 0 : 1]++;
+      wins[(g.result.homeScore > g.result.awayScore) === highHome ? 0 : 1]++;
     }
     return { round, high, low, bestOf, games, winner: wins[0] === need ? high : low, wins };
   };
   const seeds = standings.slice(0, SPORTS_CONFIG.playoffs.teams).map((r) => r.team);
-  const po = SPORTS_CONFIG.playoffs.basketball;
   const semi1 = series('semifinal', seeds[0], seeds[3], po.semi, lastWeek + 1);
   const semi2 = series('semifinal', seeds[1], seeds[2], po.semi, lastWeek + 1);
   const finalHigh = seeds.indexOf(semi1.winner) < seeds.indexOf(semi2.winner) ? semi1.winner : semi2.winner;
   const finalLow = finalHigh === semi1.winner ? semi2.winner : semi1.winner;
   const final = series('final', finalHigh, finalLow, po.final, lastWeek + 2);
 
-  // Awards. MVP: points per game, nudged by team success; at least 60% of games played.
-  const totals = new Map<string, { pts: number; gp: number }>();
+  // Awards from each player's contribution (`v`): points in basketball; hits, power, runs and
+  // RBI in baseball; touchdowns in football; goals and assists in hockey. Kickers excluded.
+  const v = (b: { points: number; extra?: Record<string, number> }) => b.extra?.v ?? b.points;
+  const totals = new Map<string, { v: number; gp: number }>();
   for (const g of regular) for (const b of g.result.box) {
-    const t = totals.get(b.playerId) ?? { pts: 0, gp: 0 };
-    t.pts += b.points;
+    const t = totals.get(b.playerId) ?? { v: 0, gp: 0 };
+    t.v += v(b);
     t.gp++;
     totals.set(b.playerId, t);
   }
   const wins = new Map(standings.map((r) => [r.team, r.w]));
   const teamOf = new Map(players.map((p) => [p.id, p.teamId]));
-  const eligible = [...totals].filter(([, t]) => t.gp >= fmt.gamesPerTeam * 0.6);
-  const mvpScore = ([id, t]: [string, { pts: number; gp: number }]) => t.pts / t.gp + 0.3 * (wins.get(teamOf.get(id)!) ?? 0);
+  const posOf = new Map(players.map((p) => [p.id, p.pos]));
+  const winWeight = { basketball: 0.3, baseball: 0.03, football: 0.25, hockey: 0.02 }[sport];
+  const eligible = [...totals].filter(([id, t]) => t.gp >= fmt.gamesPerTeam * 0.6 && posOf.get(id) !== 'K');
+  const mvpScore = ([id, t]: [string, { v: number; gp: number }]) => t.v / t.gp + winWeight * (wins.get(teamOf.get(id)!) ?? 0);
   const [mvpId, mvpT] = eligible.sort((a, b) => mvpScore(b) - mvpScore(a) || a[0].localeCompare(b[0]))[0];
-  const finalsPts = new Map<string, number>();
-  for (const g of final.games) for (const b of g.result.box) if (teamOf.get(b.playerId) === final.winner) finalsPts.set(b.playerId, (finalsPts.get(b.playerId) ?? 0) + b.points);
-  const [fmvpId, fmvpPts] = [...finalsPts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
+  const finalsV = new Map<string, number>();
+  for (const g of final.games) for (const b of g.result.box) if (teamOf.get(b.playerId) === final.winner && posOf.get(b.playerId) !== 'K') finalsV.set(b.playerId, (finalsV.get(b.playerId) ?? 0) + v(b));
+  const [fmvpId, fmvpV] = [...finalsV].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
 
   return {
-    league: LEAGUE,
+    league,
+    sport,
     season,
     regular,
     standings,
     playoffs: [semi1, semi2, final],
     champion: final.winner,
-    awards: { mvp: { playerId: mvpId, ppg: Math.round((mvpT.pts / mvpT.gp) * 10) / 10 }, finalsMvp: { playerId: fmvpId, points: fmvpPts } },
+    awards: { mvp: { playerId: mvpId, perGame: Math.round((mvpT.v / mvpT.gp) * 10) / 10 }, finalsMvp: { playerId: fmvpId, total: Math.round(fmvpV * 10) / 10 } },
     injuries,
     players,
   };
+}
+
+/** Phase 2a entry point. */
+export const playBasketballSeason = (world: World, season: number) => playLeagueSeason(world, 'ccl', season);
+
+/** Every league's season for a world. */
+export function playAllSeasons(world: World, season: number): Record<LeagueId, LeagueSeason> {
+  return Object.fromEntries(LEAGUES.map((l) => [l.id, playLeagueSeason(world, l.id, season)])) as Record<LeagueId, LeagueSeason>;
 }

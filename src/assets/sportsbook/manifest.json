@@ -1,6 +1,6 @@
 {
  "version": 1,
- "status": "Backgrounds installed for all three lounges. League logos and team crests deferred (colour squares used). Every other asset is still missing and uses a placeholder.",
+ "status": "Backgrounds installed for all three lounges. Desert Palms clerk portraits (Emmett Okafor, six expressions) installed. League logos and team crests deferred (colour squares used). Every other asset is still missing and uses a placeholder.",
  "assets": [
   {
    "id": "desert_palms.bg_lounge",
@@ -51,10 +51,12 @@
    "height": 256,
    "transparent": true,
    "count": 6,
-   "status": "missing",
-   "placeholder": "CSS/labelled placeholder in the Phase 1 slice",
+   "status": "installed",
    "usedIn": "Clerk portrait slot (DealerDialoguePanel)",
-   "notes": "Six expressions: friendly, playful, impressed, concerned, annoyed, firm. Ids and names to be set with NPC Factory."
+   "notes": "Six expressions installed: friendly, playful, impressed, concerned, annoyed, firm. The pack is a development build and lists Emmett as a roulette dealer; he is placed here as the Desert Palms sportsbook clerk on the user's instruction. His pack dialogue (roulette lines) is not used. The clerk line is still a placeholder.",
+   "npcId": "emmett_okafor",
+   "name": "Emmett Okafor",
+   "source": "NPC Factory pack tiny_mana.casino_servers 0.2.0 (sprites/emmett_okafor/*.png, copied byte-for-byte; matches the user's 3x2 sheet emmett_okafor-expressions-3x2.png)"
   },
   {
    "id": "white_buffalo.bg_lounge",

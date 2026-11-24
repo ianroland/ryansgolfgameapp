@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { decimalOf, demoSlate, LEAGUES, SEASON_FORMAT, TEAMS, teamById, teamsOf, toAmerican } from '../src/sports/demo';
 import { parlayCheck, potentialReturn, SLIP_RULES, stakeCheck, toggleSelection, type Selection } from '../src/sports/slip';
-import { LOUNGES } from '../src/sports/themes';
+import { CLERK_EXPRESSIONS, LOUNGES } from '../src/sports/themes';
 
 const sel = (gameId: string, market: Selection['market'], side: Selection['side'], american = -110): Selection => ({ gameId, market, side, point: null, american, label: `${gameId} ${side}` });
 
@@ -129,9 +129,9 @@ describe('lounge themes and the sandbox boundary', () => {
     const bg = m.assets.filter((a: { id: string }) => a.id.endsWith('.bg_lounge'));
     expect(bg.map((a: { width: number; height: number }) => [a.width, a.height])).toEqual([[1672, 941], [1672, 941], [1672, 941]]);
     expect(m.assets.find((a: { id: string }) => a.id === 'team_crests').count).toBe(32);
-    // Only the three lounge backgrounds are installed; everything else stays missing.
+    // Installed: the three lounge backgrounds and the Desert Palms clerk. Everything else stays missing.
     const installed = m.assets.filter((a: { status: string }) => a.status === 'installed').map((a: { id: string }) => a.id).sort();
-    expect(installed).toEqual(['desert_palms.bg_lounge', 'morongo_sky.bg_lounge', 'white_buffalo.bg_lounge']);
+    expect(installed).toEqual(['desert_palms.bg_lounge', 'desert_palms.clerk', 'morongo_sky.bg_lounge', 'white_buffalo.bg_lounge']);
     // Logos and crests are deferred: teams use colour squares for now.
     const deferred = m.assets.filter((a: { status: string }) => a.status === 'deferred').map((a: { id: string }) => a.id).sort();
     expect(deferred).toEqual(['league_logos', 'team_crests']);
@@ -161,5 +161,24 @@ describe('lounge themes and the sandbox boundary', () => {
       ...readdirSync(join(__dirname, '../src/ui/sportsbook')).map((f) => join(__dirname, '../src/ui/sportsbook', f)),
     ].filter((f) => /\.tsx?$/.test(f));
     for (const f of files) expect(readFileSync(f, 'utf8'), f).not.toMatch(/economyService|persistence|services\.|\bnpc\/|servers\/|drinks|\.post\(/);
+  });
+});
+
+describe('Desert Palms sportsbook clerk (Emmett Okafor)', () => {
+  it('has all six NPC Factory portraits, 256x256 with transparency', () => {
+    for (const e of CLERK_EXPRESSIONS) {
+      const buf = readFileSync(`src/assets/sportsbook/desert_palms/clerk_${e}.png`);
+      expect(buf.readUInt32BE(16), e).toBe(256);
+      expect(buf.readUInt32BE(20), e).toBe(256);
+      expect(buf[25], `${e} colour type RGBA`).toBe(6);
+    }
+  });
+
+  it('only Desert Palms has a clerk; the other lounges keep the placeholder', () => {
+    expect(LOUNGES.desert_palms.art.clerk?.npcId).toBe('emmett_okafor');
+    expect(LOUNGES.desert_palms.art.clerk?.name).toBe('Emmett Okafor');
+    expect(Object.keys(LOUNGES.desert_palms.art.clerk!.portraits).sort()).toEqual([...CLERK_EXPRESSIONS].sort());
+    expect(LOUNGES.white_buffalo.art.clerk).toBeNull();
+    expect(LOUNGES.morongo_sky.art.clerk).toBeNull();
   });
 });
