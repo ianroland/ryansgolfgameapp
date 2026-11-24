@@ -231,11 +231,3 @@ export function demoNews(): DemoNews[] {
     { league: 'igl', tag: 'trade', headline: `${t('igl_harvesters')} add a veteran lineman`, body: 'A depth move ahead of the playoff push. (Demo story.)' },
   ];
 }
-
-export interface DemoChampion { league: LeagueId; season: string; team: string; mvp: string }
-export function demoHistory(): DemoChampion[] {
-  const names = ['R. Okonkwo', 'D. Haverford', 'M. Castellano', 'J. Lindqvist', 'T. Abernathy', 'S. Navarre', 'K. Odegaard', 'L. Whitcombe'];
-  return LEAGUES.flatMap((L, li) =>
-    [2024, 2025, 2026].map((y, yi) => ({ league: L.id, season: String(y), team: teamsOf(L.id)[(li * 3 + yi * 5) % 8].id, mvp: names[(li + yi * 3) % names.length] })),
-  );
-}

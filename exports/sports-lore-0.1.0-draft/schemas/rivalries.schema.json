@@ -1,0 +1,98 @@
+{
+  "$id": "sports-lore/1/rivalries.json",
+  "title": "sports-lore/1 rivalries.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "teams": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          },
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          }
+        ],
+        "items": false,
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "events": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        }
+      },
+      "intensity": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "basis": {
+        "type": "string"
+      },
+      "summary": {
+        "type": "string"
+      },
+      "interpretation": {
+        "type": "string"
+      },
+      "cite": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "locator": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "source",
+            "locator"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "teams",
+      "events",
+      "intensity",
+      "basis",
+      "summary",
+      "cite"
+    ],
+    "additionalProperties": false
+  }
+}

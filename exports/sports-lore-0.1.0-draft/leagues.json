@@ -1,0 +1,148 @@
+[
+  {
+    "id": "gdc",
+    "name": "Grand Diamond Circuit",
+    "short": "GDC",
+    "sport": "baseball",
+    "founded": 1972,
+    "identity": "The Workingman's League",
+    "trophy": "Founders Cup",
+    "founding": {
+      "charter_city": "St. Louis",
+      "founding_clubs": 8,
+      "founding_franchise_ids": null,
+      "founding_event": "gdc-1972-001"
+    },
+    "summary": "Eight independent ballclub owners sign a charter in St. Louis to offer affordable professional baseball outside the dominant established system. The agreement includes a salary ceiling, a shared travel fund and a championship series. The league is known for family ownership, compact ballparks, crafty pitchers, long road trips and grudges that pass down generations. By the 1990s it has a national following and keeps its blue-collar identity.",
+    "current_format": {
+      "teams": 8,
+      "games_per_team": 42,
+      "effective_year": null
+    },
+    "known_historic_formats": [
+      {
+        "season": 1998,
+        "fact": "The Founders Cup final was a best-of-seven series.",
+        "event": "gdc-1998-001"
+      }
+    ],
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC"
+      }
+    ]
+  },
+  {
+    "id": "ccl",
+    "name": "Crown Court League",
+    "short": "CCL",
+    "sport": "basketball",
+    "founded": 1974,
+    "identity": "The Players' League",
+    "trophy": "The Crown",
+    "founding": {
+      "charter_city": null,
+      "founding_clubs": null,
+      "founding_franchise_ids": null,
+      "founding_event": "ccl-1974-001"
+    },
+    "summary": "Founded by promoters and former players who wanted a faster, more personality-driven league. It launches with a 24-second shot clock and a three-point arc, celebrates outspoken stars, and builds its brand on bright uniforms and televised rivalries. Its 1980s boom makes Los Angeles and Chicago national talking points; the 1990s show that even low-seeded teams can win it all.",
+    "current_format": {
+      "teams": 8,
+      "games_per_team": 28,
+      "effective_year": null
+    },
+    "known_historic_formats": [
+      {
+        "season": 1996,
+        "fact": "The playoffs had at least three rounds (the champion beat three higher seeds).",
+        "event": "ccl-1996-001"
+      }
+    ],
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL"
+      }
+    ]
+  },
+  {
+    "id": "igl",
+    "name": "Iron Gridiron League",
+    "short": "IGL",
+    "sport": "football",
+    "founded": 1976,
+    "identity": "The Saturday League",
+    "trophy": "Iron Bowl",
+    "founding": {
+      "charter_city": null,
+      "founding_clubs": 8,
+      "founding_franchise_ids": null,
+      "founding_event": "igl-1976-001"
+    },
+    "summary": "Eight owners from industrial and college-football towns set up a compact fall competition with Saturday broadcasts and a nationally televised title game. The league is known for hard road trips, defensive football, fierce local pride and long-serving coaches. Its best-known arguments are about disputed calls and whether great defenses or great quarterbacks win championships.",
+    "current_format": {
+      "teams": 8,
+      "games_per_team": 14,
+      "effective_year": null
+    },
+    "known_historic_formats": [
+      {
+        "season": 1985,
+        "fact": "The regular season was 14 games (Cleveland went 14-0).",
+        "event": "igl-1985-001"
+      },
+      {
+        "season": 2015,
+        "fact": "The regular season was 14 games (Asheville went 2-12).",
+        "event": "igl-2016-001"
+      }
+    ],
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL"
+      }
+    ]
+  },
+  {
+    "id": "fhl",
+    "name": "Frostline Hockey League",
+    "short": "FHL",
+    "sport": "hockey",
+    "founded": 1978,
+    "identity": "The Northern Eight",
+    "trophy": "Frost Cup",
+    "founding": {
+      "charter_city": null,
+      "founding_clubs": 8,
+      "founding_franchise_ids": null,
+      "founding_event": "fhl-1978-001"
+    },
+    "summary": "Independent northern hockey clubs agree to share travel costs and play for a national championship, to survive high operating costs and brutal winter journeys. The Frost Cup is forged from silver and dark iron. The league is famous for fierce defense, long overtime games, small arenas and supporters who remember individual saves for decades.",
+    "current_format": {
+      "teams": 8,
+      "games_per_team": 28,
+      "effective_year": null
+    },
+    "known_historic_formats": [
+      {
+        "season": 2002,
+        "fact": "The Frost Cup final was a best-of-seven series.",
+        "event": "fhl-2002-001"
+      },
+      {
+        "season": 2019,
+        "fact": "The Frost Cup final went six games.",
+        "event": "fhl-2019-001"
+      }
+    ],
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL"
+      }
+    ]
+  }
+]

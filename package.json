@@ -1,7 +1,7 @@
 {
   "name": "ryans-road-to-the-lpga",
   "private": true,
-  "version": "0.18.3",
+  "version": "0.18.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "build:single": "tsc --noEmit && SINGLE=1 vite build",
     "build:site": "tsc --noEmit && vite build --outDir dist-site/play --emptyOutDir && node scripts/build-site.mjs",
-    "preview:site": "npx --yes serve dist-site -l 4173"
+    "preview:site": "npx --yes serve dist-site -l 4173",
+    "lore:export": "npx --yes vite-node scripts/export-sports-lore.ts"
   },
   "dependencies": {
     "@fontsource/jersey-15": "^5.3.0",

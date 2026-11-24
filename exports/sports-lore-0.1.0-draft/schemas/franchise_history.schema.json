@@ -1,0 +1,142 @@
+{
+  "$id": "sports-lore/1/franchise_history.json",
+  "title": "sports-lore/1 franchise_history.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "team": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "active",
+          "relocated",
+          "retired"
+        ]
+      },
+      "current_city": {
+        "type": "string"
+      },
+      "current_state": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 2
+      },
+      "current_since": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "founding_city": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "founding_member": {
+        "type": [
+          "boolean",
+          "null"
+        ]
+      },
+      "relocations": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                "from_city": {
+                  "type": "string"
+                },
+                "to_city": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "year",
+                "from_city",
+                "to_city"
+              ],
+              "additionalProperties": false
+            }
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "retired_year": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "attested_in_current_city": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "year": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "event": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "basis": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "year",
+            "event",
+            "basis"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "notes": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "team",
+      "status",
+      "current_city",
+      "current_state",
+      "current_since",
+      "founding_city",
+      "founding_member",
+      "relocations",
+      "retired_year",
+      "attested_in_current_city",
+      "notes"
+    ],
+    "additionalProperties": false
+  }
+}

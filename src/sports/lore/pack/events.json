@@ -1,0 +1,1073 @@
+[
+  {
+    "id": "gdc-1972-001",
+    "league": "gdc",
+    "title": "The Eight Owners' Agreement",
+    "year": 1972,
+    "span": {
+      "start": 1972,
+      "end": 1972
+    },
+    "teams": [],
+    "people": [],
+    "summary": "Eight independent owners sign the founding charter in St. Louis. Shared travel funding and the Founders Cup are established.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "In 1972, eight independent owners signed the Grand Diamond Circuit's founding charter in St. Louis.",
+        "year": 1972,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "The charter set up a shared travel fund and the Founders Cup.",
+        "year": 1972,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "The founding agreement included a salary ceiling and a championship series.",
+        "year": 1972,
+        "tier": "fan"
+      }
+    ],
+    "tags": [
+      "founding",
+      "tradition"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "Which franchises signed the charter."
+    ],
+    "constraints": [],
+    "outcomes": [],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Anchor events / gdc-1972-001"
+      }
+    ]
+  },
+  {
+    "id": "gdc-1983-001",
+    "league": "gdc",
+    "title": "The Summer of Elias Voss",
+    "year": 1983,
+    "span": {
+      "start": 1983,
+      "end": 1983
+    },
+    "teams": [
+      "gdc_millers"
+    ],
+    "people": [
+      "per_elias_voss"
+    ],
+    "summary": "Milwaukee pitcher Elias Voss wins 24 games and throws three no-hitters in one season. His glove becomes a famous league artifact.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Milwaukee pitcher Elias Voss had a legendary 1983 season.",
+        "year": 1983,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "Elias Voss's glove is a famous league artifact.",
+        "year": 1983,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "In 1983 Voss won 24 games and threw three no-hitters.",
+        "year": 1983,
+        "tier": "specialist"
+      }
+    ],
+    "tags": [
+      "legend",
+      "record",
+      "pitching"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "specialist",
+      "label": "specialist detail, broadly known headline"
+    },
+    "unknowns": [],
+    "constraints": [],
+    "outcomes": [],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Anchor events / gdc-1983-001"
+      }
+    ]
+  },
+  {
+    "id": "gdc-1998-001",
+    "league": "gdc",
+    "title": "The Boston Collapse",
+    "year": 1998,
+    "span": {
+      "start": 1998,
+      "end": 1998
+    },
+    "teams": [
+      "gdc_lamplighters",
+      "gdc_firebirds"
+    ],
+    "people": [
+      "per_marco_salazar"
+    ],
+    "summary": "Boston leads Phoenix 3-1 in the Founders Cup, loses the next three games, and Phoenix wins Game Seven on a ninth-inning double by Marco Salazar. Boston supporters call the defeat The Long October.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Phoenix beat Boston for the 1998 Founders Cup after trailing the series 3-1.",
+        "year": 1998,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "Marco Salazar's ninth-inning double won Game Seven for Phoenix.",
+        "year": 1998,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "Boston supporters call the 1998 defeat The Long October.",
+        "year": 1998,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "championship",
+      "comeback",
+      "heartbreak",
+      "rivalry"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [],
+    "constraints": [],
+    "outcomes": [
+      {
+        "league": "gdc",
+        "season": 1998,
+        "champion": "gdc_firebirds",
+        "runner_up": "gdc_lamplighters"
+      }
+    ],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Anchor events / gdc-1998-001"
+      }
+    ]
+  },
+  {
+    "id": "gdc-2011-001",
+    "league": "gdc",
+    "title": "The Charleston Signal Scandal",
+    "year": 2011,
+    "span": {
+      "start": 2011,
+      "end": 2011
+    },
+    "teams": [
+      "gdc_kingfishers"
+    ],
+    "people": [],
+    "summary": "Investigators find Charleston staff illegally relayed opposing catchers' signs during regular-season games. Two coaches are suspended; investigators find no evidence players knowingly took part. Fans still argue over the team's reputation.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "In 2011 investigators found that Charleston staff illegally relayed opposing catchers' signs during regular-season games.",
+        "year": 2011,
+        "tier": "fan"
+      },
+      {
+        "id": "f2",
+        "text": "Two Charleston coaches were suspended.",
+        "year": 2011,
+        "tier": "fan"
+      },
+      {
+        "id": "f3",
+        "text": "Investigators found no evidence that Charleston players knowingly took part.",
+        "year": 2011,
+        "tier": "fan"
+      }
+    ],
+    "tags": [
+      "controversy",
+      "investigation",
+      "ethics"
+    ],
+    "knowledge": {
+      "headline": "fan",
+      "detail": "fan",
+      "label": "fan and specialist"
+    },
+    "unknowns": [],
+    "constraints": [
+      {
+        "id": "c1",
+        "rule": "Never say or imply that Charleston players were proven to have knowingly taken part."
+      },
+      {
+        "id": "c2",
+        "rule": "Keep the investigation's findings separate from rival fans' accusations."
+      }
+    ],
+    "outcomes": [],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Anchor events / gdc-2011-001"
+      }
+    ]
+  },
+  {
+    "id": "ccl-1974-001",
+    "league": "ccl",
+    "title": "The Crown Court Revolution",
+    "year": 1974,
+    "span": {
+      "start": 1974,
+      "end": 1974
+    },
+    "teams": [],
+    "people": [],
+    "summary": "The league opens with a 24-second shot clock, a three-point arc and player-centered promotion. The championship trophy is nicknamed the Crown.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "The Crown Court League opened in 1974 with a 24-second shot clock and a three-point arc.",
+        "year": 1974,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "The CCL built its promotion around its players.",
+        "year": 1974,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "The CCL championship trophy is nicknamed the Crown.",
+        "year": 1974,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "founding",
+      "rules",
+      "identity"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "How many clubs founded the CCL, and which."
+    ],
+    "constraints": [],
+    "outcomes": [],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Anchor events / ccl-1974-001"
+      }
+    ]
+  },
+  {
+    "id": "ccl-1987-001",
+    "league": "ccl",
+    "title": "The Voltage-Comets War",
+    "year": 1987,
+    "span": {
+      "start": 1987,
+      "end": 1989
+    },
+    "teams": [
+      "ccl_voltage",
+      "ccl_comets"
+    ],
+    "people": [
+      "per_darius_king",
+      "per_leon_mercer"
+    ],
+    "summary": "Los Angeles and Chicago contest three straight finals: Chicago wins in 1987 and 1989; Los Angeles wins in 1988. Darius King and Leon Mercer define the era's rivalry.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Los Angeles and Chicago met in three straight CCL finals, 1987 to 1989.",
+        "year": 1989,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "Chicago won the 1987 final.",
+        "year": 1987,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "Los Angeles won the 1988 final.",
+        "year": 1988,
+        "tier": "casual"
+      },
+      {
+        "id": "f4",
+        "text": "Chicago won the 1989 final.",
+        "year": 1989,
+        "tier": "casual"
+      },
+      {
+        "id": "f5",
+        "text": "Darius King and Leon Mercer defined the rivalry of that era.",
+        "year": 1989,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "rivalry",
+      "dynasty",
+      "finals"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "Which team Darius King played for.",
+      "Which team Leon Mercer played for."
+    ],
+    "constraints": [
+      {
+        "id": "c1",
+        "rule": "Do not place Darius King or Leon Mercer on a team until canon assigns them."
+      }
+    ],
+    "outcomes": [
+      {
+        "league": "ccl",
+        "season": 1987,
+        "champion": "ccl_comets",
+        "runner_up": "ccl_voltage"
+      },
+      {
+        "league": "ccl",
+        "season": 1988,
+        "champion": "ccl_voltage",
+        "runner_up": "ccl_comets"
+      },
+      {
+        "league": "ccl",
+        "season": 1989,
+        "champion": "ccl_comets",
+        "runner_up": "ccl_voltage"
+      }
+    ],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Anchor events / ccl-1987-001"
+      }
+    ]
+  },
+  {
+    "id": "ccl-1996-001",
+    "league": "ccl",
+    "title": "The Las Vegas Miracle",
+    "year": 1996,
+    "span": {
+      "start": 1996,
+      "end": 1996
+    },
+    "teams": [
+      "ccl_dustdevils"
+    ],
+    "people": [
+      "per_calvin_redd"
+    ],
+    "summary": "The lowest-seeded playoff team, Las Vegas, defeats three higher seeds to win its first title. Reserve guard Calvin Redd scores 31 points in the deciding game.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "In 1996 Las Vegas, the lowest-seeded playoff team, won the Crown.",
+        "year": 1996,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "It was the Las Vegas franchise's first title.",
+        "year": 1996,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "Las Vegas beat three higher seeds on the way.",
+        "year": 1996,
+        "tier": "casual"
+      },
+      {
+        "id": "f4",
+        "text": "Reserve guard Calvin Redd scored 31 points in the deciding game.",
+        "year": 1996,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "upset",
+      "championship",
+      "cult hero"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "The 1996 runner-up."
+    ],
+    "constraints": [],
+    "outcomes": [
+      {
+        "league": "ccl",
+        "season": 1996,
+        "champion": "ccl_dustdevils",
+        "runner_up": null
+      }
+    ],
+    "claims": [
+      {
+        "kind": "first_title",
+        "team": "ccl_dustdevils",
+        "season": 1996
+      }
+    ],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Anchor events / ccl-1996-001"
+      }
+    ]
+  },
+  {
+    "id": "ccl-2008-001",
+    "league": "ccl",
+    "title": "The Detroit-Miami Trade",
+    "year": 2008,
+    "span": {
+      "start": 2008,
+      "end": 2012
+    },
+    "teams": [
+      "ccl_forge",
+      "ccl_monsoon"
+    ],
+    "people": [
+      "per_andre_bellamy"
+    ],
+    "summary": "Detroit trades four-time scoring champion Andre Bellamy to Miami for three players and two draft picks. Miami reaches the 2009 finals; Detroit wins the 2012 title with players acquired in the deal.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "In 2008 Detroit traded four-time scoring champion Andre Bellamy to Miami.",
+        "year": 2008,
+        "tier": "fan"
+      },
+      {
+        "id": "f2",
+        "text": "Detroit received three players and two draft picks for Bellamy.",
+        "year": 2008,
+        "tier": "specialist"
+      },
+      {
+        "id": "f3",
+        "text": "Miami reached the 2009 CCL finals.",
+        "year": 2009,
+        "tier": "fan"
+      },
+      {
+        "id": "f4",
+        "text": "Detroit won the 2012 title with players acquired in the Bellamy trade.",
+        "year": 2012,
+        "tier": "fan"
+      }
+    ],
+    "tags": [
+      "trade",
+      "legacy",
+      "roster-building"
+    ],
+    "knowledge": {
+      "headline": "fan",
+      "detail": "specialist",
+      "label": "fan and specialist"
+    },
+    "unknowns": [
+      "The winner of the 2009 finals.",
+      "The 2012 runner-up."
+    ],
+    "constraints": [
+      {
+        "id": "c1",
+        "rule": "Never state or imply who won the 2009 CCL finals."
+      }
+    ],
+    "outcomes": [
+      {
+        "league": "ccl",
+        "season": 2012,
+        "champion": "ccl_forge",
+        "runner_up": null
+      }
+    ],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Anchor events / ccl-2008-001"
+      }
+    ]
+  },
+  {
+    "id": "igl-1976-001",
+    "league": "igl",
+    "title": "The Saturday Pact",
+    "year": 1976,
+    "span": {
+      "start": 1976,
+      "end": 1976
+    },
+    "teams": [],
+    "people": [],
+    "summary": "Eight owners establish the fall league and its Saturday tradition, with the title game called the Iron Bowl.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "In 1976 eight owners founded the Iron Gridiron League as a Saturday fall league.",
+        "year": 1976,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "The IGL title game is the Iron Bowl.",
+        "year": 1976,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "founding",
+      "broadcast",
+      "tradition"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "Which franchises founded the IGL."
+    ],
+    "constraints": [],
+    "outcomes": [],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Anchor events / igl-1976-001"
+      }
+    ]
+  },
+  {
+    "id": "igl-1985-001",
+    "league": "igl",
+    "title": "The Cleveland Wall",
+    "year": 1985,
+    "span": {
+      "start": 1983,
+      "end": 1986
+    },
+    "teams": [
+      "igl_ironclads"
+    ],
+    "people": [],
+    "summary": "Cleveland wins three championships across 1983-1986. In 1985 the Ironclads go 14-0 in the regular season and win the Iron Bowl behind a legendary defense. The other two title years in the span are not yet written.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Cleveland won three Iron Bowls between 1983 and 1986.",
+        "year": 1986,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "In 1985 the Ironclads went 14-0 in the regular season and won the Iron Bowl.",
+        "year": 1985,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "That Cleveland team is remembered for a legendary defense.",
+        "year": 1986,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "dynasty",
+      "defense",
+      "undefeated"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "Which two of 1983, 1984 and 1986 were Cleveland's other titles.",
+      "The 1985 Iron Bowl opponent."
+    ],
+    "constraints": [],
+    "outcomes": [
+      {
+        "league": "igl",
+        "season": 1985,
+        "champion": "igl_ironclads",
+        "runner_up": null
+      }
+    ],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Anchor events / igl-1985-001"
+      }
+    ]
+  },
+  {
+    "id": "igl-1994-001",
+    "league": "igl",
+    "title": "The Phantom Touchdown",
+    "year": 1994,
+    "span": {
+      "start": 1994,
+      "end": 1994
+    },
+    "teams": [
+      "igl_squall",
+      "igl_thunderherd"
+    ],
+    "people": [],
+    "summary": "In the Iron Bowl, a potential late New Orleans winning touchdown is ruled out of bounds against Oklahoma City. Replay is inconclusive; Oklahoma City wins 24-20. The dispute lives on in fan folklore, but the official result is not in doubt.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Oklahoma City beat New Orleans 24-20 in the 1994 Iron Bowl.",
+        "year": 1994,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "A potential late New Orleans winning touchdown was ruled out of bounds.",
+        "year": 1994,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "Replay of the play was inconclusive.",
+        "year": 1994,
+        "tier": "casual"
+      },
+      {
+        "id": "f4",
+        "text": "The official result is not in doubt.",
+        "year": 1994,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "controversy",
+      "championship",
+      "disputed call"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [],
+    "constraints": [
+      {
+        "id": "c1",
+        "rule": "NPCs may disagree with the call, but never say New Orleans officially won."
+      }
+    ],
+    "outcomes": [
+      {
+        "league": "igl",
+        "season": 1994,
+        "champion": "igl_thunderherd",
+        "runner_up": "igl_squall",
+        "score": "24-20"
+      }
+    ],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Anchor events / igl-1994-001"
+      }
+    ]
+  },
+  {
+    "id": "igl-2016-001",
+    "league": "igl",
+    "title": "The Asheville Run",
+    "year": 2016,
+    "span": {
+      "start": 2015,
+      "end": 2016
+    },
+    "teams": [
+      "igl_highlanders"
+    ],
+    "people": [
+      "per_mason_vale"
+    ],
+    "summary": "Asheville improves from 2-12 in 2015 to Iron Bowl champions in 2016 behind rookie quarterback Mason Vale. The 2016 record and opponent are not yet written.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Asheville went 2-12 in 2015.",
+        "year": 2015,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "Asheville won the 2016 Iron Bowl.",
+        "year": 2016,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "Rookie quarterback Mason Vale led Asheville in 2016.",
+        "year": 2016,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "turnaround",
+      "underdog",
+      "rookie"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "Asheville's 2016 record.",
+      "The 2016 Iron Bowl opponent."
+    ],
+    "constraints": [],
+    "outcomes": [
+      {
+        "league": "igl",
+        "season": 2016,
+        "champion": "igl_highlanders",
+        "runner_up": null
+      }
+    ],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Anchor events / igl-2016-001"
+      }
+    ]
+  },
+  {
+    "id": "fhl-1978-001",
+    "league": "fhl",
+    "title": "The Northern Eight Agreement",
+    "year": 1978,
+    "span": {
+      "start": 1978,
+      "end": 1978
+    },
+    "teams": [],
+    "people": [],
+    "summary": "Eight clubs create shared travel funding and the Frost Cup championship.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "In 1978 eight northern clubs founded the Frostline Hockey League with shared travel funding.",
+        "year": 1978,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "The FHL championship is the Frost Cup, forged from silver and dark iron.",
+        "year": 1978,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "founding",
+      "travel",
+      "tradition"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "Which franchises founded the FHL."
+    ],
+    "constraints": [],
+    "outcomes": [],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Anchor events / fhl-1978-001"
+      }
+    ]
+  },
+  {
+    "id": "fhl-1989-001",
+    "league": "fhl",
+    "title": "The 71-Save Night",
+    "year": 1989,
+    "span": {
+      "start": 1989,
+      "end": 1989
+    },
+    "teams": [
+      "fhl_polars",
+      "fhl_sawblades"
+    ],
+    "people": [
+      "per_viktor_soren"
+    ],
+    "summary": "Anchorage goalie Viktor Soren makes 71 saves in a triple-overtime playoff win against Buffalo. Arena concessions run out of food during the marathon game.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "In 1989 Anchorage goalie Viktor Soren made 71 saves in a playoff win.",
+        "year": 1989,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "The game went to triple overtime, against Buffalo.",
+        "year": 1989,
+        "tier": "specialist"
+      },
+      {
+        "id": "f3",
+        "text": "Arena concessions ran out of food during the game.",
+        "year": 1989,
+        "tier": "specialist"
+      }
+    ],
+    "tags": [
+      "goalie",
+      "record",
+      "playoffs",
+      "endurance"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "specialist",
+      "label": "widely known headline; specialist detail"
+    },
+    "unknowns": [],
+    "constraints": [],
+    "outcomes": [],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Anchor events / fhl-1989-001"
+      }
+    ]
+  },
+  {
+    "id": "fhl-2002-001",
+    "league": "fhl",
+    "title": "The Frozen Border Series",
+    "year": 2002,
+    "span": {
+      "start": 2002,
+      "end": 2002
+    },
+    "teams": [
+      "fhl_borealis",
+      "fhl_yetis"
+    ],
+    "people": [],
+    "summary": "Duluth and Bozeman contest a seven-game Frost Cup series with four overtime games. Bozeman wins Game Seven. The series starts a long rivalry.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Bozeman beat Duluth in seven games for the 2002 Frost Cup.",
+        "year": 2002,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "Four games of the 2002 final went to overtime.",
+        "year": 2002,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "The 2002 final started the Duluth-Bozeman rivalry.",
+        "year": 2002,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "championship",
+      "rivalry",
+      "overtime"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [],
+    "constraints": [],
+    "outcomes": [
+      {
+        "league": "fhl",
+        "season": 2002,
+        "champion": "fhl_yetis",
+        "runner_up": "fhl_borealis",
+        "series": "4-3"
+      }
+    ],
+    "claims": [],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Anchor events / fhl-2002-001"
+      }
+    ]
+  },
+  {
+    "id": "fhl-2019-001",
+    "league": "fhl",
+    "title": "The Burlington Breakthrough",
+    "year": 2019,
+    "span": {
+      "start": 2019,
+      "end": 2019
+    },
+    "teams": [
+      "fhl_snowowls",
+      "fhl_rivets"
+    ],
+    "people": [
+      "per_owen_kessler"
+    ],
+    "summary": "Burlington beats Toledo in six games for the Frost Cup, ending 23 consecutive seasons without a title. Captain Owen Kessler retires after lifting the trophy.",
+    "facts": [
+      {
+        "id": "f1",
+        "text": "Burlington beat Toledo in six games for the 2019 Frost Cup.",
+        "year": 2019,
+        "tier": "casual"
+      },
+      {
+        "id": "f2",
+        "text": "The 2019 title ended 23 consecutive seasons without a championship for Burlington.",
+        "year": 2019,
+        "tier": "casual"
+      },
+      {
+        "id": "f3",
+        "text": "Captain Owen Kessler retired after lifting the 2019 trophy.",
+        "year": 2019,
+        "tier": "casual"
+      }
+    ],
+    "tags": [
+      "championship",
+      "drought",
+      "retirement"
+    ],
+    "knowledge": {
+      "headline": "casual",
+      "detail": "casual",
+      "label": "widely known"
+    },
+    "unknowns": [
+      "The year of Burlington's previous title (1995 is a proposed inference, open question q5)."
+    ],
+    "constraints": [],
+    "outcomes": [
+      {
+        "league": "fhl",
+        "season": 2019,
+        "champion": "fhl_snowowls",
+        "runner_up": "fhl_rivets",
+        "series": "4-2"
+      }
+    ],
+    "claims": [
+      {
+        "kind": "drought",
+        "team": "fhl_snowowls",
+        "from": 1996,
+        "to": 2018,
+        "status": "inference_pending_approval"
+      }
+    ],
+    "status": "draft",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Anchor events / fhl-2019-001"
+      }
+    ]
+  }
+]

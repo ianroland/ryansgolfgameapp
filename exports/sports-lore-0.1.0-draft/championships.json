@@ -1,0 +1,284 @@
+[
+  {
+    "id": "ccl-1987",
+    "league": "ccl",
+    "season": 1987,
+    "trophy": "The Crown",
+    "champion": "ccl_comets",
+    "runner_up": "ccl_voltage",
+    "status": "established",
+    "events": [
+      "ccl-1987-001"
+    ],
+    "notes": "First of three consecutive finals.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "ccl-1988",
+    "league": "ccl",
+    "season": 1988,
+    "trophy": "The Crown",
+    "champion": "ccl_voltage",
+    "runner_up": "ccl_comets",
+    "status": "established",
+    "events": [
+      "ccl-1987-001"
+    ],
+    "notes": "Second of the rivalry trilogy.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "ccl-1989",
+    "league": "ccl",
+    "season": 1989,
+    "trophy": "The Crown",
+    "champion": "ccl_comets",
+    "runner_up": "ccl_voltage",
+    "status": "established",
+    "events": [
+      "ccl-1987-001"
+    ],
+    "notes": "Third of the rivalry trilogy.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "ccl-1996",
+    "league": "ccl",
+    "season": 1996,
+    "trophy": "The Crown",
+    "champion": "ccl_dustdevils",
+    "runner_up": null,
+    "status": "established",
+    "events": [
+      "ccl-1996-001"
+    ],
+    "notes": "Lowest seed wins three playoff rounds. Runner-up not written.",
+    "first_title": true,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "ccl-2009",
+    "league": "ccl",
+    "season": 2009,
+    "trophy": "The Crown",
+    "champion": null,
+    "runner_up": null,
+    "status": "winner_unknown",
+    "events": [
+      "ccl-2008-001"
+    ],
+    "notes": "Miami reached the finals. The winner is not written; do not infer it.",
+    "finalists": [
+      "ccl_monsoon"
+    ],
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "ccl-2012",
+    "league": "ccl",
+    "season": 2012,
+    "trophy": "The Crown",
+    "champion": "ccl_forge",
+    "runner_up": null,
+    "status": "established",
+    "events": [
+      "ccl-2008-001"
+    ],
+    "notes": "Won with players acquired in the Bellamy trade. Runner-up not written.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "gdc-1998",
+    "league": "gdc",
+    "season": 1998,
+    "trophy": "Founders Cup",
+    "champion": "gdc_firebirds",
+    "runner_up": "gdc_lamplighters",
+    "status": "established",
+    "events": [
+      "gdc-1998-001"
+    ],
+    "notes": "Seven-game comeback from 3-1 down.",
+    "series": "4-3",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "igl-1985",
+    "league": "igl",
+    "season": 1985,
+    "trophy": "Iron Bowl",
+    "champion": "igl_ironclads",
+    "runner_up": null,
+    "status": "established",
+    "events": [
+      "igl-1985-001"
+    ],
+    "notes": "Undefeated 14-0 regular season. Opponent not written.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "igl-cle-1983-1986",
+    "league": "igl",
+    "season": null,
+    "trophy": "Iron Bowl",
+    "champion": "igl_ironclads",
+    "runner_up": null,
+    "status": "year_unknown",
+    "events": [
+      "igl-1985-001"
+    ],
+    "notes": "Cleveland's other two titles in 1983-1986. Years not written.",
+    "window": {
+      "from": 1983,
+      "to": 1986,
+      "exclude": [
+        1985
+      ],
+      "count": 2
+    },
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships / Additional facts"
+      }
+    ]
+  },
+  {
+    "id": "igl-1994",
+    "league": "igl",
+    "season": 1994,
+    "trophy": "Iron Bowl",
+    "champion": "igl_thunderherd",
+    "runner_up": "igl_squall",
+    "status": "established",
+    "events": [
+      "igl-1994-001"
+    ],
+    "notes": "24-20; disputed ruling. The official result stands.",
+    "score": "24-20",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "igl-2016",
+    "league": "igl",
+    "season": 2016,
+    "trophy": "Iron Bowl",
+    "champion": "igl_highlanders",
+    "runner_up": null,
+    "status": "established",
+    "events": [
+      "igl-2016-001"
+    ],
+    "notes": "Rookie quarterback Mason Vale. Opponent not written.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "fhl-1995",
+    "league": "fhl",
+    "season": 1995,
+    "trophy": "Frost Cup",
+    "champion": "fhl_snowowls",
+    "runner_up": null,
+    "status": "inference_pending_approval",
+    "events": [
+      "fhl-2019-001"
+    ],
+    "notes": "Proposed inference: if the 23-season drought is 1996-2018, Burlington's previous title was 1995. Needs approval (q5).",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "fhl-2002",
+    "league": "fhl",
+    "season": 2002,
+    "trophy": "Frost Cup",
+    "champion": "fhl_yetis",
+    "runner_up": "fhl_borealis",
+    "status": "established",
+    "events": [
+      "fhl-2002-001"
+    ],
+    "notes": "Seven games, four overtimes.",
+    "series": "4-3",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  },
+  {
+    "id": "fhl-2019",
+    "league": "fhl",
+    "season": 2019,
+    "trophy": "Frost Cup",
+    "champion": "fhl_snowowls",
+    "runner_up": "fhl_rivets",
+    "status": "established",
+    "events": [
+      "fhl-2019-001"
+    ],
+    "notes": "Six games; ends a 23-season drought.",
+    "series": "4-2",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Known championships"
+      }
+    ]
+  }
+]

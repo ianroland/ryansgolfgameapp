@@ -1,0 +1,340 @@
+{
+  "$id": "sports-lore/1/events.json",
+  "title": "sports-lore/1 events.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)-\\d{4}-\\d{3}$"
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "title": {
+        "type": "string"
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "span": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "additionalProperties": false
+      },
+      "teams": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        }
+      },
+      "people": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        }
+      },
+      "summary": {
+        "type": "string"
+      },
+      "facts": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "year": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "tier": {
+              "type": "string",
+              "enum": [
+                "casual",
+                "fan",
+                "specialist",
+                "historian"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "year",
+            "tier"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "tags": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "knowledge": {
+        "type": "object",
+        "properties": {
+          "headline": {
+            "type": "string",
+            "enum": [
+              "casual",
+              "fan",
+              "specialist",
+              "historian"
+            ]
+          },
+          "detail": {
+            "type": "string",
+            "enum": [
+              "casual",
+              "fan",
+              "specialist",
+              "historian"
+            ]
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "headline",
+          "detail",
+          "label"
+        ],
+        "additionalProperties": false
+      },
+      "unknowns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "constraints": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "rule"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "outcomes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "league": {
+              "type": "string",
+              "enum": [
+                "gdc",
+                "ccl",
+                "igl",
+                "fhl"
+              ]
+            },
+            "season": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "champion": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "runner_up": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "score": {
+              "type": "string"
+            },
+            "series": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "league",
+            "season",
+            "champion",
+            "runner_up"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "claims": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "first_title"
+                },
+                "team": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+                },
+                "season": {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                }
+              },
+              "required": [
+                "kind",
+                "team",
+                "season"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "drought"
+                },
+                "team": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+                },
+                "from": {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                "to": {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "established",
+                    "inference_pending_approval"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "team",
+                "from",
+                "to",
+                "status"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "draft",
+          "approved"
+        ]
+      },
+      "cite": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "locator": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "source",
+            "locator"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "title",
+      "year",
+      "span",
+      "teams",
+      "people",
+      "summary",
+      "facts",
+      "tags",
+      "knowledge",
+      "unknowns",
+      "constraints",
+      "outcomes",
+      "claims",
+      "status",
+      "cite"
+    ],
+    "additionalProperties": false
+  }
+}

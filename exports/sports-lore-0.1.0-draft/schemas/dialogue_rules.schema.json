@@ -1,0 +1,125 @@
+{
+  "$id": "sports-lore/1/dialogue_rules.json",
+  "title": "sports-lore/1 dialogue_rules.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "tiers": {
+      "minItems": 4,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "casual",
+              "fan",
+              "specialist",
+              "historian"
+            ]
+          },
+          "order": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "order",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "firsthand_min_age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "team_perspectives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          },
+          "events": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            }
+          },
+          "stance": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "team",
+          "events",
+          "stance"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "cite": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "source",
+          "locator"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "tiers",
+    "firsthand_min_age",
+    "rules",
+    "team_perspectives",
+    "cite"
+  ],
+  "additionalProperties": false
+}

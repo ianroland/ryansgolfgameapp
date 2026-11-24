@@ -1,0 +1,106 @@
+{
+  "schema_version": "sports-lore/1",
+  "canon_revision": "0.1.0-draft",
+  "canon_status": "proposed",
+  "pack_id": "ryans_road.sports_lore",
+  "title": "Nationwide Sports Universe: historical canon",
+  "historical_scope": {
+    "from": 1972,
+    "to": 2026
+  },
+  "game_start_year": 2027,
+  "notice": "Original fictional lore, not a claim about real professional sports. Proposed canon: draft until approved. Team names are not legally cleared.",
+  "sources": [
+    {
+      "id": "src.bible",
+      "title": "Ryan's Road to the LPGA: Nationwide Sports Universe Historical Bible",
+      "file": "03_SPORTS_UNIVERSE_HISTORY.md",
+      "revision": "0.1.0-draft",
+      "status": "draft_for_approval"
+    },
+    {
+      "id": "src.registry",
+      "title": "Game team registry (IDs, display names, hex colours)",
+      "file": "src/sports/demo.ts",
+      "revision": "0.18.3",
+      "status": "approved"
+    }
+  ],
+  "files": [
+    "leagues.json",
+    "teams.json",
+    "people.json",
+    "events.json",
+    "rivalries.json",
+    "championships.json",
+    "franchise_history.json",
+    "dialogue_rules.json"
+  ],
+  "open_questions": [
+    {
+      "id": "q1",
+      "text": "Confirm the four founding years and trophy names.",
+      "source": "bible"
+    },
+    {
+      "id": "q2",
+      "text": "Approve or revise the 16 anchor events and named legends.",
+      "source": "bible"
+    },
+    {
+      "id": "q3",
+      "text": "Decide the original 1970s franchises, relocations and expansions. The current 32 cities are not assumed to be founding cities.",
+      "source": "bible"
+    },
+    {
+      "id": "q4",
+      "text": "Fill missing championship years and opponents in a later canon pass.",
+      "source": "bible"
+    },
+    {
+      "id": "q5",
+      "text": "Confirm whether Burlington's pre-2019 Frost Cup was in 1995.",
+      "source": "bible"
+    },
+    {
+      "id": "q6",
+      "text": "Confirm Darius King's and Leon Mercer's CCL teams.",
+      "source": "bible"
+    },
+    {
+      "id": "q7",
+      "text": "Define historic season formats and playoffs only as needed by the anchor facts.",
+      "source": "bible"
+    },
+    {
+      "id": "q8",
+      "text": "Decide how lore is revealed if the game ever starts before 2027. Today every career starts in 2027, so all 1972-2026 lore is past history.",
+      "source": "bible"
+    },
+    {
+      "id": "q9",
+      "text": "The bible gives no founding club count for the CCL (the other three leagues say eight). Confirm.",
+      "source": "import"
+    },
+    {
+      "id": "q10",
+      "text": "The 1996 CCL champion beat three higher seeds, so the 1996 playoffs had at least three rounds. Today's format has two. Confirm the 1996 playoff size.",
+      "source": "import"
+    },
+    {
+      "id": "q11",
+      "text": "Marco Salazar (Phoenix) and Calvin Redd (Las Vegas) are placed on those teams by reading the event text. Confirm.",
+      "source": "import"
+    },
+    {
+      "id": "q12",
+      "text": "Events name teams by their current city (for example 'Milwaukee pitcher', 1983). The import reads these as the current franchises playing in those cities in those years. Confirm, or say which events refer to earlier franchises.",
+      "source": "import"
+    },
+    {
+      "id": "q13",
+      "text": "IGL football rookie quarterback Mason Vale shares a surname with cocktail server Celeste Vale. No relation is established. Confirm or rename.",
+      "source": "import"
+    }
+  ]
+}

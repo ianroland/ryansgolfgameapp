@@ -180,3 +180,7 @@
 - **Still placeholder:** his line ("Lines are posted. Take your time.") keeps the Placeholder tag.
 - **Mismatch to fix in NPC Factory:** the pack lists Emmett as a **roulette dealer**, and all 21 of his dialogue lines are roulette puns. Those lines are not used here. Desert Palms roulette is already Monique's table. The pack should be re-exported with Emmett as the sportsbook clerk and sportsbook-appropriate lines. The pack itself was not edited.
 - **Pack status:** a development build (`productionReady: false`). Only the portraits were taken from it; no pack data is imported at runtime.
+
+## Sports history canon (draft, read-only)
+
+The `sports-lore/1` historical layer is in `src/sports/lore/` (see `docs/sports-lore/SPORTS_LORE.md`). The sportsbook History board now shows draft canon instead of invented demo champions. It never touches the engine, odds, bankroll or saves.

@@ -1,0 +1,245 @@
+[
+  {
+    "id": "per_elias_voss",
+    "name": "Elias Voss",
+    "league": "gdc",
+    "roles": [
+      "pitcher"
+    ],
+    "affiliations": [
+      {
+        "team": "gdc_millers",
+        "from": 1983,
+        "to": 1983,
+        "basis": "stated"
+      }
+    ],
+    "events": [
+      "gdc-1983-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ]
+  },
+  {
+    "id": "per_marco_salazar",
+    "name": "Marco Salazar",
+    "league": "gdc",
+    "roles": [
+      "player"
+    ],
+    "affiliations": [
+      {
+        "team": "gdc_firebirds",
+        "from": 1998,
+        "to": 1998,
+        "basis": "implied"
+      }
+    ],
+    "events": [
+      "gdc-1998-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ],
+    "notes": "Hit the Game Seven winning double for Phoenix. His team is read from the event text (open question q11). Position not written."
+  },
+  {
+    "id": "per_darius_king",
+    "name": "Darius King",
+    "league": "ccl",
+    "roles": [
+      "player"
+    ],
+    "affiliations": [],
+    "events": [
+      "ccl-1987-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ],
+    "notes": "Team not yet established (open question q6). Do not assign him to Los Angeles or Chicago."
+  },
+  {
+    "id": "per_leon_mercer",
+    "name": "Leon Mercer",
+    "league": "ccl",
+    "roles": [
+      "player"
+    ],
+    "affiliations": [],
+    "events": [
+      "ccl-1987-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ],
+    "notes": "Team not yet established (open question q6). Do not assign him to Los Angeles or Chicago."
+  },
+  {
+    "id": "per_calvin_redd",
+    "name": "Calvin Redd",
+    "league": "ccl",
+    "roles": [
+      "guard",
+      "reserve"
+    ],
+    "affiliations": [
+      {
+        "team": "ccl_dustdevils",
+        "from": 1996,
+        "to": 1996,
+        "basis": "implied"
+      }
+    ],
+    "events": [
+      "ccl-1996-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ],
+    "notes": "Scored 31 points in the 1996 deciding game. His team is read from the event text (open question q11)."
+  },
+  {
+    "id": "per_andre_bellamy",
+    "name": "Andre Bellamy",
+    "league": "ccl",
+    "roles": [
+      "scorer"
+    ],
+    "affiliations": [
+      {
+        "team": "ccl_forge",
+        "from": null,
+        "to": 2008,
+        "basis": "stated"
+      },
+      {
+        "team": "ccl_monsoon",
+        "from": 2008,
+        "to": null,
+        "basis": "stated"
+      }
+    ],
+    "events": [
+      "ccl-2008-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ],
+    "notes": "Four-time scoring champion; the seasons of those titles are not written."
+  },
+  {
+    "id": "per_mason_vale",
+    "name": "Mason Vale",
+    "league": "igl",
+    "roles": [
+      "quarterback"
+    ],
+    "affiliations": [
+      {
+        "team": "igl_highlanders",
+        "from": 2016,
+        "to": 2016,
+        "basis": "stated"
+      }
+    ],
+    "events": [
+      "igl-2016-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ],
+    "notes": "A rookie in 2016. No relation to cocktail server Celeste Vale is established (open question q13)."
+  },
+  {
+    "id": "per_viktor_soren",
+    "name": "Viktor Soren",
+    "league": "fhl",
+    "roles": [
+      "goalie"
+    ],
+    "affiliations": [
+      {
+        "team": "fhl_polars",
+        "from": 1989,
+        "to": 1989,
+        "basis": "stated"
+      }
+    ],
+    "events": [
+      "fhl-1989-001"
+    ],
+    "career_status": "unknown",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ]
+  },
+  {
+    "id": "per_owen_kessler",
+    "name": "Owen Kessler",
+    "league": "fhl",
+    "roles": [
+      "captain"
+    ],
+    "affiliations": [
+      {
+        "team": "fhl_snowowls",
+        "from": 2019,
+        "to": 2019,
+        "basis": "stated"
+      }
+    ],
+    "events": [
+      "fhl-2019-001"
+    ],
+    "career_status": "retired",
+    "birth_year": null,
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "anchor events"
+      }
+    ],
+    "notes": "Retired after lifting the 2019 Frost Cup."
+  }
+]

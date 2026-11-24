@@ -1,0 +1,182 @@
+{
+  "tiers": [
+    {
+      "id": "casual",
+      "order": 0,
+      "description": "Knows major famous outcomes and general team identities. No obscure stat recall by default."
+    },
+    {
+      "id": "fan",
+      "order": 1,
+      "description": "Knows rivalries, famous championships, and their own team's notable events, in the leagues they follow."
+    },
+    {
+      "id": "specialist",
+      "order": 2,
+      "description": "Knows relevant stats, plays, investigations and personnel within the leagues they follow."
+    },
+    {
+      "id": "historian",
+      "order": 3,
+      "description": "Broad cross-league knowledge, precise dates, and a careful line between fact and rumor."
+    }
+  ],
+  "firsthand_min_age": 8,
+  "rules": [
+    {
+      "id": "r1",
+      "text": "Historical knowledge is gated by the in-game sports year. An NPC never knows a fact dated in or after the current sports year."
+    },
+    {
+      "id": "r2",
+      "text": "A line claiming firsthand attendance must be plausible for the NPC's age at the time (proposed minimum age 8)."
+    },
+    {
+      "id": "r3",
+      "text": "Personality can shape opinion, never the official facts."
+    },
+    {
+      "id": "r4",
+      "text": "Every lore-based line must reference one or more event IDs."
+    },
+    {
+      "id": "r5",
+      "text": "Live scores, injuries, betting lines and bankroll values are injected by the game, never written into NPC lines."
+    },
+    {
+      "id": "r6",
+      "text": "Unwritten history stays unwritten: no invented champions, records or founding clubs, and an absent record is not a drought."
+    },
+    {
+      "id": "r7",
+      "text": "Game-simulated seasons (2027 on) belong to one save and are never presented as shared canon."
+    }
+  ],
+  "team_perspectives": [
+    {
+      "team": "gdc_lamplighters",
+      "events": [
+        "gdc-1998-001"
+      ],
+      "stance": "Sensitive about late-inning leads since The Long October."
+    },
+    {
+      "team": "gdc_firebirds",
+      "events": [
+        "gdc-1998-001"
+      ],
+      "stance": "Celebrates the 1998 comeback."
+    },
+    {
+      "team": "gdc_millers",
+      "events": [
+        "gdc-1983-001"
+      ],
+      "stance": "Traditionalists revere Elias Voss."
+    },
+    {
+      "team": "gdc_kingfishers",
+      "events": [
+        "gdc-2011-001"
+      ],
+      "stance": "Separates the investigation's findings from rival fans' accusations."
+    },
+    {
+      "team": "ccl_voltage",
+      "events": [
+        "ccl-1987-001"
+      ],
+      "stance": "Older fans join the King-versus-Mercer debate."
+    },
+    {
+      "team": "ccl_comets",
+      "events": [
+        "ccl-1987-001"
+      ],
+      "stance": "Older fans join the King-versus-Mercer debate."
+    },
+    {
+      "team": "ccl_dustdevils",
+      "events": [
+        "ccl-1996-001"
+      ],
+      "stance": "Treasures the 1996 run."
+    },
+    {
+      "team": "ccl_forge",
+      "events": [
+        "ccl-2008-001"
+      ],
+      "stance": "Calls the Bellamy trade vindication."
+    },
+    {
+      "team": "ccl_monsoon",
+      "events": [
+        "ccl-2008-001"
+      ],
+      "stance": "Remembers Bellamy's arrival fondly."
+    },
+    {
+      "team": "igl_ironclads",
+      "events": [
+        "igl-1985-001"
+      ],
+      "stance": "Prizes defense above all."
+    },
+    {
+      "team": "igl_squall",
+      "events": [
+        "igl-1994-001"
+      ],
+      "stance": "Still argues the 1994 ruling, while accepting the official result."
+    },
+    {
+      "team": "igl_thunderherd",
+      "events": [
+        "igl-1994-001"
+      ],
+      "stance": "Cites the official score."
+    },
+    {
+      "team": "igl_highlanders",
+      "events": [
+        "igl-2016-001"
+      ],
+      "stance": "Remembers the sudden reversal of fortune."
+    },
+    {
+      "team": "fhl_polars",
+      "events": [
+        "fhl-1989-001"
+      ],
+      "stance": "Compares every goalie to Viktor Soren."
+    },
+    {
+      "team": "fhl_borealis",
+      "events": [
+        "fhl-2002-001"
+      ],
+      "stance": "Argues about the 2002 overtimes."
+    },
+    {
+      "team": "fhl_yetis",
+      "events": [
+        "fhl-2002-001"
+      ],
+      "stance": "Argues about the 2002 overtimes."
+    },
+    {
+      "team": "fhl_snowowls",
+      "events": [
+        "fhl-2019-001"
+      ],
+      "stance": "Speaks of 2019 as a generational relief."
+    }
+  ],
+  "cite": [
+    {
+      "source": "src.bible",
+      "locator": "NPC Factory use and voice boundaries"
+    }
+  ]
+}

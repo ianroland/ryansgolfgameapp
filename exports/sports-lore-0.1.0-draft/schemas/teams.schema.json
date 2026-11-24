@@ -1,0 +1,88 @@
+{
+  "$id": "sports-lore/1/teams.json",
+  "title": "sports-lore/1 teams.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "city": {
+        "type": "string"
+      },
+      "state": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 2
+      },
+      "nickname": {
+        "type": "string"
+      },
+      "display_name": {
+        "type": "string"
+      },
+      "colors_named": {
+        "minItems": 2,
+        "maxItems": 2,
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "active",
+          "relocated",
+          "retired"
+        ]
+      },
+      "cite": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "locator": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "source",
+            "locator"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "city",
+      "state",
+      "nickname",
+      "display_name",
+      "colors_named",
+      "status",
+      "cite"
+    ],
+    "additionalProperties": false
+  }
+}

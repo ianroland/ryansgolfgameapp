@@ -2007,6 +2007,11 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .sb-list li { display: grid; gap: 2px; padding: 6px 8px; background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--sb-crt-text); border-radius: 4px; }
 .sb-list li b { color: #fff; }
 .sb-list em { font-style: normal; font-size: 12px; opacity: 0.8; }
+.sb-history { display: grid; gap: 8px; }
+.sb-hist-head { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.sb-hist-head b { color: #fff; }
+.sb-history i { opacity: 0.6; }
+.sb-history tr[data-status='inference_pending_approval'] td, .sb-history tr[data-status='year_unknown'] td, .sb-history tr[data-status='winner_unknown'] td { opacity: 0.85; font-style: italic; }
 .sb-tag { font-size: 11px; text-transform: uppercase; opacity: 0.8; }
 .sb-empty { margin: 6px 0; opacity: 0.85; }
 .sb-foot { margin: 10px 0 0; font-size: 11px; opacity: 0.7; }

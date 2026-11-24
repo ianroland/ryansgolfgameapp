@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.18.4",
+   "date": "2026-11-23",
+   "title": "Fifty years of sports history",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The sportsbook History board now tells each league's story: when it was founded, its trophy, the champions on record and its most famous moments, from the 71-Save Night to the Phantom Touchdown. This history is still a draft."
+    },
+    {
+     "tag": "improved",
+     "text": "Seasons the history hasn't covered yet are shown as unwritten instead of with made-up champions."
+    }
+   ]
+  },
+  {
    "version": "0.18.3",
    "date": "2026-11-23",
    "title": "Emmett takes the sportsbook counter",

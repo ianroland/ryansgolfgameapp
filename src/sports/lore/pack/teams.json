@@ -1,0 +1,610 @@
+[
+  {
+    "id": "gdc_lamplighters",
+    "league": "gdc",
+    "city": "Boston",
+    "state": "MA",
+    "nickname": "Lamplighters",
+    "display_name": "Boston Lamplighters",
+    "colors_named": [
+      "navy",
+      "brass"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "gdc_ore_haulers",
+    "league": "gdc",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "nickname": "Ore Haulers",
+    "display_name": "Pittsburgh Ore Haulers",
+    "colors_named": [
+      "copper",
+      "charcoal"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "gdc_gilas",
+    "league": "gdc",
+    "city": "Tucson",
+    "state": "AZ",
+    "nickname": "Gilas",
+    "display_name": "Tucson Gilas",
+    "colors_named": [
+      "orange",
+      "black"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "gdc_paddlers",
+    "league": "gdc",
+    "city": "St. Louis",
+    "state": "MO",
+    "nickname": "Paddlers",
+    "display_name": "St. Louis Paddlers",
+    "colors_named": [
+      "teal",
+      "white"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "gdc_firebirds",
+    "league": "gdc",
+    "city": "Phoenix",
+    "state": "AZ",
+    "nickname": "Firebirds",
+    "display_name": "Phoenix Firebirds",
+    "colors_named": [
+      "red",
+      "gold"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "gdc_loons",
+    "league": "gdc",
+    "city": "Minneapolis",
+    "state": "MN",
+    "nickname": "Loons",
+    "display_name": "Minneapolis Loons",
+    "colors_named": [
+      "forest green",
+      "cream"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "gdc_millers",
+    "league": "gdc",
+    "city": "Milwaukee",
+    "state": "WI",
+    "nickname": "Millers",
+    "display_name": "Milwaukee Millers",
+    "colors_named": [
+      "wheat",
+      "brown"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "gdc_kingfishers",
+    "league": "gdc",
+    "city": "Charleston",
+    "state": "SC",
+    "nickname": "Kingfishers",
+    "display_name": "Charleston Kingfishers",
+    "colors_named": [
+      "royal blue",
+      "orange"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "GDC / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_voltage",
+    "league": "ccl",
+    "city": "Los Angeles",
+    "state": "CA",
+    "nickname": "Voltage",
+    "display_name": "Los Angeles Voltage",
+    "colors_named": [
+      "electric blue",
+      "black"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_monsoon",
+    "league": "ccl",
+    "city": "Miami",
+    "state": "FL",
+    "nickname": "Monsoon",
+    "display_name": "Miami Monsoon",
+    "colors_named": [
+      "silver",
+      "storm purple"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_anchors",
+    "league": "ccl",
+    "city": "Baltimore",
+    "state": "MD",
+    "nickname": "Anchors",
+    "display_name": "Baltimore Anchors",
+    "colors_named": [
+      "navy",
+      "red"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_jackrabbits",
+    "league": "ccl",
+    "city": "Denver",
+    "state": "CO",
+    "nickname": "Jackrabbits",
+    "display_name": "Denver Jackrabbits",
+    "colors_named": [
+      "sage",
+      "tan"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_comets",
+    "league": "ccl",
+    "city": "Chicago",
+    "state": "IL",
+    "nickname": "Comets",
+    "display_name": "Chicago Comets",
+    "colors_named": [
+      "purple",
+      "white"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_dustdevils",
+    "league": "ccl",
+    "city": "Las Vegas",
+    "state": "NV",
+    "nickname": "Dustdevils",
+    "display_name": "Las Vegas Dustdevils",
+    "colors_named": [
+      "sand",
+      "rust"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_forge",
+    "league": "ccl",
+    "city": "Detroit",
+    "state": "MI",
+    "nickname": "Forge",
+    "display_name": "Detroit Forge",
+    "colors_named": [
+      "steel",
+      "orange"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "ccl_satellites",
+    "league": "ccl",
+    "city": "Seattle",
+    "state": "WA",
+    "nickname": "Satellites",
+    "display_name": "Seattle Satellites",
+    "colors_named": [
+      "black",
+      "cyan"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "CCL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_thunderherd",
+    "league": "igl",
+    "city": "Oklahoma City",
+    "state": "OK",
+    "nickname": "Thunderherd",
+    "display_name": "Oklahoma City Thunderherd",
+    "colors_named": [
+      "brown",
+      "gold"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_undertow",
+    "league": "igl",
+    "city": "Jacksonville",
+    "state": "FL",
+    "nickname": "Undertow",
+    "display_name": "Jacksonville Undertow",
+    "colors_named": [
+      "sea green",
+      "navy"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_rockslides",
+    "league": "igl",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "nickname": "Rockslides",
+    "display_name": "Salt Lake City Rockslides",
+    "colors_named": [
+      "red rock",
+      "gray"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_harvesters",
+    "league": "igl",
+    "city": "Omaha",
+    "state": "NE",
+    "nickname": "Harvesters",
+    "display_name": "Omaha Harvesters",
+    "colors_named": [
+      "gold",
+      "green"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_highlanders",
+    "league": "igl",
+    "city": "Asheville",
+    "state": "NC",
+    "nickname": "Highlanders",
+    "display_name": "Asheville Highlanders",
+    "colors_named": [
+      "tartan green",
+      "white"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_squall",
+    "league": "igl",
+    "city": "New Orleans",
+    "state": "LA",
+    "nickname": "Squall",
+    "display_name": "New Orleans Squall",
+    "colors_named": [
+      "aqua",
+      "gray"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_smokejumpers",
+    "league": "igl",
+    "city": "Portland",
+    "state": "OR",
+    "nickname": "Smokejumpers",
+    "display_name": "Portland Smokejumpers",
+    "colors_named": [
+      "orange",
+      "black"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "igl_ironclads",
+    "league": "igl",
+    "city": "Cleveland",
+    "state": "OH",
+    "nickname": "Ironclads",
+    "display_name": "Cleveland Ironclads",
+    "colors_named": [
+      "iron",
+      "crimson"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "IGL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_polars",
+    "league": "fhl",
+    "city": "Anchorage",
+    "state": "AK",
+    "nickname": "Polars",
+    "display_name": "Anchorage Polars",
+    "colors_named": [
+      "white",
+      "ice blue"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_narwhals",
+    "league": "fhl",
+    "city": "Providence",
+    "state": "RI",
+    "nickname": "Narwhals",
+    "display_name": "Providence Narwhals",
+    "colors_named": [
+      "teal",
+      "silver"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_sawblades",
+    "league": "fhl",
+    "city": "Buffalo",
+    "state": "NY",
+    "nickname": "Sawblades",
+    "display_name": "Buffalo Sawblades",
+    "colors_named": [
+      "green",
+      "steel"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_borealis",
+    "league": "fhl",
+    "city": "Duluth",
+    "state": "MN",
+    "nickname": "Borealis",
+    "display_name": "Duluth Borealis",
+    "colors_named": [
+      "green",
+      "violet"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_floes",
+    "league": "fhl",
+    "city": "Portland",
+    "state": "ME",
+    "nickname": "Floes",
+    "display_name": "Portland Floes",
+    "colors_named": [
+      "white",
+      "navy"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_yetis",
+    "league": "fhl",
+    "city": "Bozeman",
+    "state": "MT",
+    "nickname": "Yetis",
+    "display_name": "Bozeman Yetis",
+    "colors_named": [
+      "white",
+      "purple"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_rivets",
+    "league": "fhl",
+    "city": "Toledo",
+    "state": "OH",
+    "nickname": "Rivets",
+    "display_name": "Toledo Rivets",
+    "colors_named": [
+      "steel",
+      "yellow"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  },
+  {
+    "id": "fhl_snowowls",
+    "league": "fhl",
+    "city": "Burlington",
+    "state": "VT",
+    "nickname": "Snowowls",
+    "display_name": "Burlington Snowowls",
+    "colors_named": [
+      "white",
+      "gold"
+    ],
+    "status": "active",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "FHL / Current franchises"
+      }
+    ]
+  }
+]

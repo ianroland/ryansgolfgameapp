@@ -1,0 +1,167 @@
+{
+  "$id": "sports-lore/1/championships.json",
+  "title": "sports-lore/1 championships.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "season": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "trophy": {
+        "type": "string"
+      },
+      "champion": {
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "runner_up": {
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "established",
+          "winner_unknown",
+          "year_unknown",
+          "inference_pending_approval"
+        ]
+      },
+      "events": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        }
+      },
+      "notes": {
+        "type": "string"
+      },
+      "first_title": {
+        "type": "boolean"
+      },
+      "finalists": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        }
+      },
+      "window": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          "to": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          "exclude": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            }
+          },
+          "count": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "exclude",
+          "count"
+        ],
+        "additionalProperties": false
+      },
+      "score": {
+        "type": "string"
+      },
+      "series": {
+        "type": "string"
+      },
+      "cite": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "locator": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "source",
+            "locator"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "season",
+      "trophy",
+      "champion",
+      "runner_up",
+      "status",
+      "events",
+      "notes",
+      "cite"
+    ],
+    "additionalProperties": false
+  }
+}

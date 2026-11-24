@@ -1,0 +1,150 @@
+{
+  "$id": "sports-lore/1/manifest.json",
+  "title": "sports-lore/1 manifest.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "canon_revision": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+    },
+    "canon_status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "approved",
+        "deprecated"
+      ]
+    },
+    "pack_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "historical_scope": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        },
+        "to": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "additionalProperties": false
+    },
+    "game_start_year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2200
+    },
+    "notice": {
+      "type": "string"
+    },
+    "sources": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "file",
+          "revision",
+          "status"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "source"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "hashes": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "x-export": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {}
+    }
+  },
+  "required": [
+    "schema_version",
+    "canon_revision",
+    "canon_status",
+    "pack_id",
+    "title",
+    "historical_scope",
+    "game_start_year",
+    "notice",
+    "sources",
+    "files",
+    "open_questions"
+  ],
+  "additionalProperties": false
+}

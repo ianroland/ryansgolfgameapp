@@ -1,0 +1,532 @@
+[
+  {
+    "team": "gdc_lamplighters",
+    "status": "active",
+    "current_city": "Boston",
+    "current_state": "MA",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1998,
+        "event": "gdc-1998-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "gdc_ore_haulers",
+    "status": "active",
+    "current_city": "Pittsburgh",
+    "current_state": "PA",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "gdc_gilas",
+    "status": "active",
+    "current_city": "Tucson",
+    "current_state": "AZ",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "gdc_paddlers",
+    "status": "active",
+    "current_city": "St. Louis",
+    "current_state": "MO",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "gdc_firebirds",
+    "status": "active",
+    "current_city": "Phoenix",
+    "current_state": "AZ",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1998,
+        "event": "gdc-1998-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "gdc_loons",
+    "status": "active",
+    "current_city": "Minneapolis",
+    "current_state": "MN",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "gdc_millers",
+    "status": "active",
+    "current_city": "Milwaukee",
+    "current_state": "WI",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1983,
+        "event": "gdc-1983-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "gdc_kingfishers",
+    "status": "active",
+    "current_city": "Charleston",
+    "current_state": "SC",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2011,
+        "event": "gdc-2011-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_voltage",
+    "status": "active",
+    "current_city": "Los Angeles",
+    "current_state": "CA",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1987,
+        "event": "ccl-1987-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_monsoon",
+    "status": "active",
+    "current_city": "Miami",
+    "current_state": "FL",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2008,
+        "event": "ccl-2008-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_anchors",
+    "status": "active",
+    "current_city": "Baltimore",
+    "current_state": "MD",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_jackrabbits",
+    "status": "active",
+    "current_city": "Denver",
+    "current_state": "CO",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_comets",
+    "status": "active",
+    "current_city": "Chicago",
+    "current_state": "IL",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1987,
+        "event": "ccl-1987-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_dustdevils",
+    "status": "active",
+    "current_city": "Las Vegas",
+    "current_state": "NV",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1996,
+        "event": "ccl-1996-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_forge",
+    "status": "active",
+    "current_city": "Detroit",
+    "current_state": "MI",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2008,
+        "event": "ccl-2008-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "ccl_satellites",
+    "status": "active",
+    "current_city": "Seattle",
+    "current_state": "WA",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_thunderherd",
+    "status": "active",
+    "current_city": "Oklahoma City",
+    "current_state": "OK",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1994,
+        "event": "igl-1994-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_undertow",
+    "status": "active",
+    "current_city": "Jacksonville",
+    "current_state": "FL",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_rockslides",
+    "status": "active",
+    "current_city": "Salt Lake City",
+    "current_state": "UT",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_harvesters",
+    "status": "active",
+    "current_city": "Omaha",
+    "current_state": "NE",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_highlanders",
+    "status": "active",
+    "current_city": "Asheville",
+    "current_state": "NC",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2016,
+        "event": "igl-2016-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_squall",
+    "status": "active",
+    "current_city": "New Orleans",
+    "current_state": "LA",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1994,
+        "event": "igl-1994-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_smokejumpers",
+    "status": "active",
+    "current_city": "Portland",
+    "current_state": "OR",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "igl_ironclads",
+    "status": "active",
+    "current_city": "Cleveland",
+    "current_state": "OH",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1985,
+        "event": "igl-1985-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_polars",
+    "status": "active",
+    "current_city": "Anchorage",
+    "current_state": "AK",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1989,
+        "event": "fhl-1989-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_narwhals",
+    "status": "active",
+    "current_city": "Providence",
+    "current_state": "RI",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_sawblades",
+    "status": "active",
+    "current_city": "Buffalo",
+    "current_state": "NY",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 1989,
+        "event": "fhl-1989-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_borealis",
+    "status": "active",
+    "current_city": "Duluth",
+    "current_state": "MN",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2002,
+        "event": "fhl-2002-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_floes",
+    "status": "active",
+    "current_city": "Portland",
+    "current_state": "ME",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_yetis",
+    "status": "active",
+    "current_city": "Bozeman",
+    "current_state": "MT",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2002,
+        "event": "fhl-2002-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_rivets",
+    "status": "active",
+    "current_city": "Toledo",
+    "current_state": "OH",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2019,
+        "event": "fhl-2019-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  },
+  {
+    "team": "fhl_snowowls",
+    "status": "active",
+    "current_city": "Burlington",
+    "current_state": "VT",
+    "current_since": null,
+    "founding_city": null,
+    "founding_member": null,
+    "relocations": null,
+    "retired_year": null,
+    "attested_in_current_city": [
+      {
+        "year": 2019,
+        "event": "fhl-2019-001",
+        "basis": "named_by_current_city"
+      }
+    ],
+    "notes": "Founding city, founding membership and relocation history are unwritten (open question q3)."
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "ccl-voltage-comets",
+    "league": "ccl",
+    "teams": [
+      "ccl_voltage",
+      "ccl_comets"
+    ],
+    "events": [
+      "ccl-1987-001"
+    ],
+    "intensity": "high",
+    "basis": "Three consecutive finals, 1987-1989.",
+    "summary": "Los Angeles and Chicago met in three straight finals; Chicago won two, Los Angeles one.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Rivalry registry"
+      }
+    ]
+  },
+  {
+    "id": "gdc-lamplighters-firebirds",
+    "league": "gdc",
+    "teams": [
+      "gdc_lamplighters",
+      "gdc_firebirds"
+    ],
+    "events": [
+      "gdc-1998-001"
+    ],
+    "intensity": "high",
+    "basis": "The 1998 Founders Cup comeback.",
+    "summary": "Boston still carries the grievance of The Long October; Phoenix celebrates the comeback.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Rivalry registry"
+      }
+    ]
+  },
+  {
+    "id": "igl-squall-thunderherd",
+    "league": "igl",
+    "teams": [
+      "igl_squall",
+      "igl_thunderherd"
+    ],
+    "events": [
+      "igl-1994-001"
+    ],
+    "intensity": "high",
+    "basis": "The disputed 1994 Iron Bowl touchdown.",
+    "summary": "New Orleans fans still argue the ruling; Oklahoma City fans point to the official score.",
+    "interpretation": "contested call, official result fixed",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Rivalry registry"
+      }
+    ]
+  },
+  {
+    "id": "fhl-borealis-yetis",
+    "league": "fhl",
+    "teams": [
+      "fhl_borealis",
+      "fhl_yetis"
+    ],
+    "events": [
+      "fhl-2002-001"
+    ],
+    "intensity": "high",
+    "basis": "The 2002 seven-game Frost Cup final with four overtimes.",
+    "summary": "Duluth and Bozeman fans still argue about the 2002 overtimes.",
+    "cite": [
+      {
+        "source": "src.bible",
+        "locator": "Rivalry registry"
+      }
+    ]
+  }
+]

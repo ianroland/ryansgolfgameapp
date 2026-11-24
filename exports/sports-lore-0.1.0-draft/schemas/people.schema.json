@@ -1,0 +1,148 @@
+{
+  "$id": "sports-lore/1/people.json",
+  "title": "sports-lore/1 people.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+      },
+      "name": {
+        "type": "string"
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "affiliations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "team": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "from": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "to": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "enum": [
+                "stated",
+                "implied"
+              ]
+            }
+          },
+          "required": [
+            "team",
+            "from",
+            "to",
+            "basis"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "events": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+        }
+      },
+      "career_status": {
+        "type": "string",
+        "enum": [
+          "active",
+          "retired",
+          "unknown"
+        ]
+      },
+      "birth_year": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "notes": {
+        "type": "string"
+      },
+      "cite": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "locator": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "source",
+            "locator"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "league",
+      "roles",
+      "affiliations",
+      "events",
+      "career_status",
+      "birth_year",
+      "cite"
+    ],
+    "additionalProperties": false
+  }
+}

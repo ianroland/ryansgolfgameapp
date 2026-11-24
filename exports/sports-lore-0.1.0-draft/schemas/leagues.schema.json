@@ -1,0 +1,195 @@
+{
+  "$id": "sports-lore/1/leagues.json",
+  "title": "sports-lore/1 leagues.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "minItems": 4,
+  "maxItems": 4,
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "name": {
+        "type": "string"
+      },
+      "short": {
+        "type": "string"
+      },
+      "sport": {
+        "type": "string",
+        "enum": [
+          "baseball",
+          "basketball",
+          "football",
+          "hockey"
+        ]
+      },
+      "founded": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "identity": {
+        "type": "string"
+      },
+      "trophy": {
+        "type": "string"
+      },
+      "founding": {
+        "type": "object",
+        "properties": {
+          "charter_city": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "founding_clubs": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "founding_franchise_ids": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "founding_event": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+          }
+        },
+        "required": [
+          "charter_city",
+          "founding_clubs",
+          "founding_franchise_ids",
+          "founding_event"
+        ],
+        "additionalProperties": false
+      },
+      "summary": {
+        "type": "string"
+      },
+      "current_format": {
+        "type": "object",
+        "properties": {
+          "teams": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "games_per_team": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "effective_year": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "teams",
+          "games_per_team",
+          "effective_year"
+        ],
+        "additionalProperties": false
+      },
+      "known_historic_formats": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "season": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "fact": {
+              "type": "string"
+            },
+            "event": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            }
+          },
+          "required": [
+            "season",
+            "fact",
+            "event"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "cite": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+            },
+            "locator": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "source",
+            "locator"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "short",
+      "sport",
+      "founded",
+      "identity",
+      "trophy",
+      "founding",
+      "summary",
+      "current_format",
+      "known_historic_formats",
+      "cite"
+    ],
+    "additionalProperties": false
+  }
+}

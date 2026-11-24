@@ -8,11 +8,12 @@
  */
 import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import {
-  DEMO_MARGIN, demoHistory, demoNews, demoScores, demoSlate, demoStandings, fmtAmerican, LEAGUES, leagueById, teamById,
+  DEMO_MARGIN, demoNews, demoScores, demoSlate, demoStandings, fmtAmerican, LEAGUES, leagueById, teamById,
   type DemoGame, type DemoLine, type LeagueId,
 } from '../../sports/demo';
 import { parlayCheck, potentialReturn, selectionKey, SLIP_RULES, stakeCheck, toggleSelection, type Selection } from '../../sports/slip';
 import { LOUNGE_LAYOUT, LOUNGE_SIZE, LOUNGES, rectPct, type ClerkExpression, type NativeRect } from '../../sports/themes';
+import { leagueTimeline, sportsYearForSeason } from '../../sports/lore/service';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
 import { useCasinoLocation } from '../casino/casinoLocation';
@@ -266,16 +267,7 @@ export function Sportsbook() {
                 </ul>
               )}
 
-              {view === 'history' && (
-                <table className="sb-table" data-testid="sb-history">
-                  <thead><tr><th>Sport</th><th>Season</th><th>Champion</th><th>MVP</th></tr></thead>
-                  <tbody>
-                    {demoHistory().map((h, i) => (
-                      <tr key={i}><td>{SPORT_LABEL[leagueById(h.league).sport]}</td><td>{h.season}</td><td>{teamLabel(h.team)}</td><td>{h.mvp}</td></tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
+              {view === 'history' && <LeagueHistory league={league} year={sportsYearForSeason(state.career.season)} />}
 
               {view === 'tickets' &&
                 (tickets.length === 0 ? (
@@ -381,5 +373,53 @@ function FragmentRows({ g, lineBtn, open, toggle, unit }: { g: DemoGame; lineBtn
         </tr>
       )}
     </>
+  );
+}
+
+/**
+ * League history from the sports-lore canon (draft until approved). Read-only: it shows only what
+ * the canon has written, marks proposed inferences as such, and counts the rest as unwritten.
+ * Seasons from 2027 on will come from the save's own simulated ledger (Phase 4), not from canon.
+ */
+function LeagueHistory({ league, year }: { league: LeagueId; year: number }) {
+  const t = leagueTimeline(league, { year, tier: 'historian' });
+  const written = t.ledger.filter((r) => r.status !== 'unwritten');
+  const draft = t.canonStatus !== 'approved';
+  return (
+    <div className="sb-history" data-testid="sb-history">
+      <p className="sb-hist-head">
+        <b>{t.name}</b> · founded {t.founded} · {t.trophy} · “{t.identity}”
+        {draft && <span className="rpg-draft" title={`Proposed canon ${t.canonRevision}, not yet approved`}>Draft canon</span>}
+      </p>
+      <table className="sb-table" data-testid="sb-history-ledger">
+        <thead><tr><th>Season</th><th>Champion</th><th>Final opponent</th></tr></thead>
+        <tbody>
+          {written.map((r) => (
+            <tr key={r.season} data-status={r.status}>
+              <td>{r.season}</td>
+              {r.status === 'established' && (<><td>{teamLabel(r.champion)}</td><td>{r.runnerUp ? teamLabel(r.runnerUp) : <i>Not written</i>}</td></>)}
+              {r.status === 'winner_unknown' && (<><td><i>Not written</i></td><td>Finalist: {r.finalists.map(teamLabel).join(', ')}</td></>)}
+              {r.status === 'inference_pending_approval' && (<><td>{teamLabel(r.champion)} <span className="sb-tag">proposed</span></td><td><i>Not written</i></td></>)}
+              {r.status === 'simulated' && (<><td>{teamLabel(r.champion)}</td><td>{r.runnerUp ? teamLabel(r.runnerUp) : '—'}</td></>)}
+            </tr>
+          ))}
+          {t.undatedTitles.map((u) => (
+            <tr key={u.record} data-status="year_unknown"><td>{u.from}–{u.to}</td><td>{teamLabel(u.champion)} ×{u.count}</td><td><i>Years not written</i></td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="sb-foot" data-testid="sb-history-unwritten">{t.counts.unwritten} of {t.ledger.length} seasons since {t.founded} are not written yet.</p>
+      <ul className="sb-list" data-testid="sb-history-events">
+        {t.events.map((e) => (
+          <li key={e.id}>
+            <b>{e.span.start === e.span.end ? e.span.start : `${e.span.start}–${e.span.end}`} · {e.title}</b>
+            <span>{e.summary}</span>
+          </li>
+        ))}
+      </ul>
+      {t.rivalries.length > 0 && (
+        <p className="sb-foot">Rivalries: {t.rivalries.map((r) => r.teams.map((x) => teamById(x).name).join(' vs ')).join(' · ')}</p>
+      )}
+    </div>
   );
 }

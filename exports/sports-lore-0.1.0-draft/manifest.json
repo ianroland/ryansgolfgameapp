@@ -1,0 +1,131 @@
+{
+  "schema_version": "sports-lore/1",
+  "canon_revision": "0.1.0-draft",
+  "canon_status": "proposed",
+  "pack_id": "ryans_road.sports_lore",
+  "title": "Nationwide Sports Universe: historical canon",
+  "historical_scope": {
+    "from": 1972,
+    "to": 2026
+  },
+  "game_start_year": 2027,
+  "notice": "Original fictional lore, not a claim about real professional sports. Proposed canon: draft until approved. Team names are not legally cleared.",
+  "sources": [
+    {
+      "id": "src.bible",
+      "title": "Ryan's Road to the LPGA: Nationwide Sports Universe Historical Bible",
+      "file": "03_SPORTS_UNIVERSE_HISTORY.md",
+      "revision": "0.1.0-draft",
+      "status": "draft_for_approval"
+    },
+    {
+      "id": "src.registry",
+      "title": "Game team registry (IDs, display names, hex colours)",
+      "file": "src/sports/demo.ts",
+      "revision": "0.18.3",
+      "status": "approved"
+    }
+  ],
+  "files": [
+    "leagues.json",
+    "teams.json",
+    "people.json",
+    "events.json",
+    "rivalries.json",
+    "championships.json",
+    "franchise_history.json",
+    "dialogue_rules.json"
+  ],
+  "open_questions": [
+    {
+      "id": "q1",
+      "text": "Confirm the four founding years and trophy names.",
+      "source": "bible"
+    },
+    {
+      "id": "q2",
+      "text": "Approve or revise the 16 anchor events and named legends.",
+      "source": "bible"
+    },
+    {
+      "id": "q3",
+      "text": "Decide the original 1970s franchises, relocations and expansions. The current 32 cities are not assumed to be founding cities.",
+      "source": "bible"
+    },
+    {
+      "id": "q4",
+      "text": "Fill missing championship years and opponents in a later canon pass.",
+      "source": "bible"
+    },
+    {
+      "id": "q5",
+      "text": "Confirm whether Burlington's pre-2019 Frost Cup was in 1995.",
+      "source": "bible"
+    },
+    {
+      "id": "q6",
+      "text": "Confirm Darius King's and Leon Mercer's CCL teams.",
+      "source": "bible"
+    },
+    {
+      "id": "q7",
+      "text": "Define historic season formats and playoffs only as needed by the anchor facts.",
+      "source": "bible"
+    },
+    {
+      "id": "q8",
+      "text": "Decide how lore is revealed if the game ever starts before 2027. Today every career starts in 2027, so all 1972-2026 lore is past history.",
+      "source": "bible"
+    },
+    {
+      "id": "q9",
+      "text": "The bible gives no founding club count for the CCL (the other three leagues say eight). Confirm.",
+      "source": "import"
+    },
+    {
+      "id": "q10",
+      "text": "The 1996 CCL champion beat three higher seeds, so the 1996 playoffs had at least three rounds. Today's format has two. Confirm the 1996 playoff size.",
+      "source": "import"
+    },
+    {
+      "id": "q11",
+      "text": "Marco Salazar (Phoenix) and Calvin Redd (Las Vegas) are placed on those teams by reading the event text. Confirm.",
+      "source": "import"
+    },
+    {
+      "id": "q12",
+      "text": "Events name teams by their current city (for example 'Milwaukee pitcher', 1983). The import reads these as the current franchises playing in those cities in those years. Confirm, or say which events refer to earlier franchises.",
+      "source": "import"
+    },
+    {
+      "id": "q13",
+      "text": "IGL football rookie quarterback Mason Vale shares a surname with cocktail server Celeste Vale. No relation is established. Confirm or rename.",
+      "source": "import"
+    }
+  ],
+  "hashes": {
+    "README.md": "sha256-d57a04543dd44ca640719d2303e56450bed65f218ed1839670320c8c801a6909",
+    "championships.json": "sha256-8b0619798e62a6987510f8800f1343cfc8a5398e8084dcce66180fe9b1e6df10",
+    "dialogue_rules.json": "sha256-282a7ec06b59d41a3a3b46de02179f84e4a16d7df619bcb22d2da8e7501ab516",
+    "events.json": "sha256-0b44ed9ec15aeaf7b50e4bb6804bf7a5bd84dff6304848f7280a7333272fe8f3",
+    "franchise_history.json": "sha256-affecb9eb616e01ae1c8d8a489bdf462b34454ab154146252fe5b9b510b2ff52",
+    "leagues.json": "sha256-a4af2a1601187215b6723afdbb899fed1f1ff6b22cad6953be0729302a96ad84",
+    "people.json": "sha256-861930118025455571e5a0eb8bc79ae54b8575d1d279eafb8d1be38dc1d74e99",
+    "rivalries.json": "sha256-1a04bdc13c742e3cb00b49e3309a27ae42b4465e2063ede8d6644eae62093373",
+    "schemas/championships.schema.json": "sha256-a8ac0cd79f416273f271f28ed716bd74be114e62f36f9f8d07dada4374d38db3",
+    "schemas/dialogue_rules.schema.json": "sha256-28bb82869e7460c55af1f4137c9389f2f4ee192ac335e696593c659d8129f6da",
+    "schemas/events.schema.json": "sha256-fd907ad2bc9fdfd2e8b6c575743d699dec4bd8950dfc7abbb11623694a7d03c7",
+    "schemas/franchise_history.schema.json": "sha256-53bf126c1eeeaba1e433a2930a48999895dd983e8cc91a180cf446123b4768b3",
+    "schemas/leagues.schema.json": "sha256-e757ae592178e8f0fee720bf66fc0f5b0fcc072f26715ffdf12653afcbd9b85f",
+    "schemas/manifest.schema.json": "sha256-1f5d4a612b60983dd61c0a47d537eee31f24acd7cefb859264078bc6b8772302",
+    "schemas/people.schema.json": "sha256-139a7dd4ddf95c13687f27851b91160150e38dee55c66492a94fe75cabfd098d",
+    "schemas/rivalries.schema.json": "sha256-7cd699fb6ed163362c7a22503010d195e20866dfb1f07d6264e59c0e4197c96b",
+    "schemas/teams.schema.json": "sha256-5a637c2e46d5d8ee7c4d881c1c1d564abf5ff935726ff38e468aec01b978df39",
+    "teams.json": "sha256-8c3459820f8b1bc325ff51de33fbc908e69b1c1a8251ca1e3ca22a3d9dabc6c3"
+  },
+  "x-export": {
+    "exported_by": "Ryan's Road to the LPGA",
+    "game_version": "0.18.4",
+    "contract": "sports-lore/1"
+  }
+}
