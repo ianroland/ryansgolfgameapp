@@ -41,11 +41,18 @@ export function playFootball(id: string, home: string, away: string, homeRoster:
   const A = unit(awayRoster);
   const box = boxOf([...A.dressed, ...H.dressed].map((p) => p.id));
   const score = { home: 0, away: 0 };
+  const tz = () => ({ drives: 0, passTd: 0, rushTd: 0, fga: 0, fgm: 0, pat: 0, defTd: 0 });
+  const tally = { home: tz(), away: tz() };
 
   /** One drive; returns points scored by the offence (or −7 for a defensive touchdown). */
   const drive = (off: Unit, def: Unit, isHome: boolean): { off: number; def: number } => {
     const adj = (off.offense - def.defense) * C.matchupScale + (isHome && !ctx.neutral ? C.homeEdge : 0);
-    if (r.chance(C.defensiveScore)) return { off: 0, def: 7 };
+    const t = tally[isHome ? 'home' : 'away'];
+    t.drives++;
+    if (r.chance(C.defensiveScore)) {
+      tally[isHome ? 'away' : 'home'].defTd++;
+      return { off: 0, def: 7 };
+    }
     if (r.chance(Math.max(0.05, C.touchdown + adj))) {
       // Who scored: a pass (quarterback + receiver) or a run.
       if (r.chance(C.passShare) && off.receivers.length) {
@@ -53,18 +60,23 @@ export function playFootball(id: string, home: string, away: string, homeRoster:
         box.add(rec.id, 'td');
         box.points(rec.id, 6);
         if (off.qb) box.add(off.qb.id, 'passTd');
+        t.passTd++;
       } else if (off.rbs[0]) {
+        t.rushTd++;
         const rb = off.rbs[r.chance(0.8) || off.rbs.length < 2 ? 0 : 1];
         box.add(rb.id, 'td');
         box.points(rb.id, 6);
       }
       const pat = r.chance(C.patPct);
+      if (pat) t.pat++;
       if (pat && off.kicker) box.points(off.kicker.id, 1);
       return { off: pat ? 7 : 6, def: 0 };
     }
     if (r.chance(C.fieldGoalTry)) {
+      t.fga++;
       const make = C.fieldGoal.base + (off.kicker?.attrs.skill ?? 50) * C.fieldGoal.skill;
       if (r.chance(Math.min(0.97, make))) {
+        t.fgm++;
         if (off.kicker) {
           box.points(off.kicker.id, 3);
           box.add(off.kicker.id, 'fg');
@@ -112,6 +124,7 @@ export function playFootball(id: string, home: string, away: string, homeRoster:
     ot,
     ...(score.home === score.away ? { tie: true } : {}),
     ...(ctx.neutral ? { neutral: true } : {}),
+    detail: { home: { ...tally.home, qb: H.qb?.id ?? '' }, away: { ...tally.away, qb: A.qb?.id ?? '' } },
     box: lines,
   };
 }

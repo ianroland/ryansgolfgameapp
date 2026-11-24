@@ -13,13 +13,28 @@ import type { HistoryData, HPlayer, HSeason } from './data';
 
 export const HISTORY_SEED = 19_721_974;
 
+/** Legends play like legends: extra talent for the bible's named players (overall points). */
+export const ANCHOR_BOOST: Record<string, number> = {
+  gdc_elias_voss: 14, fhl_viktor_soren: 14, ccl_andre_bellamy: 16, ccl_darius_king: 12, ccl_leon_mercer: 12,
+  gdc_marco_salazar: 8, igl_mason_vale: 10, fhl_owen_kessler: 8, ccl_calvin_redd: 4,
+};
+/** Fixed roster ranks for anchors in a season (1 = best). Calvin Redd was a reserve: first off the bench. */
+export const ANCHOR_RANK: Record<string, Record<string, number>> = { 'ccl-1996': { ccl_calvin_redd: 6 } };
+/**
+ * Andre Bellamy was a four-time scoring champion before the 2008 trade: his scoring seasons
+ * (a larger shot share). The tests check he leads the league in exactly these years.
+ */
+export const ANCHOR_USAGE: Record<string, Record<string, number>> = Object.fromEntries(
+  [2002, 2003, 2005, 2007].map((y) => [`ccl-${y}`, { ccl_andre_bellamy: 1.9 }]),
+);
+
 /** Team strength in overall points from its record (a .750 team is about +8). */
 const STRENGTH: Record<Sport, number> = { baseball: 24, basketball: 34, football: 30, hockey: 28 };
 const clamp = (v: number, lo = 25, hi = 99) => Math.max(lo, Math.min(hi, Math.round(v)));
 
 function level(sport: Sport, p: HPlayer, year: number, teamOffset: number): number {
   const r = stream(HISTORY_SEED, 'talent', p.i);
-  const talent = 60 + r.normal() * SPORTS_CONFIG.generation[sport].playerSpread;
+  const talent = 60 + r.normal() * SPORTS_CONFIG.generation[sport].playerSpread + (ANCHOR_BOOST[p.i] ?? 0);
   const peakR = stream(HISTORY_SEED, 'peak', p.i);
   const [p0, p1] = PEAK_AGE[sport];
   const peak = peakR.int(p0, p1);
@@ -69,14 +84,36 @@ export function historyRoster(data: HistoryData, season: HSeason, teamId: string
     const p = data.players[ix];
     return { p, lvl: level(sport, p, season.year, offset) };
   }).sort((a, b) => b.lvl - a.lvl || a.p.i.localeCompare(b.p.i));
+  for (const [pid, rank] of Object.entries(ANCHOR_RANK[season.id] ?? {})) {
+    const at = ranked.findIndex((x) => x.p.i === pid);
+    if (at < 0) continue;
+    const [me] = ranked.splice(at, 1);
+    // Sit between the players ranked just above and below.
+    const above = ranked[rank - 2]?.lvl ?? me.lvl + 1;
+    const below = ranked[rank - 1]?.lvl ?? me.lvl - 1;
+    me.lvl = (above + below) / 2;
+    ranked.splice(rank - 1, 0, me);
+  }
   const pos = mapPositions(sport, ranked);
-  return ranked.map(({ p, lvl }) => {
+  const players = ranked.map(({ p, lvl }) => {
     const ep = pos.get(p.i) ?? p.p;
     const attrs = attrsFor(sport, ep, lvl, p.i, season.year);
+    const usage = ANCHOR_USAGE[season.id]?.[p.i];
+    if (usage) attrs.usage = usage;
     return {
       id: p.i, teamId, name: p.n, sport, pos: ep, age: season.year - p.b, attrs,
       overall: overallFor(sport, SPECS[sport].some((s) => s.pos === ep) ? ep : SPECS[sport][0].pos, attrs),
       potential: 0, peakAge: 0, tag: 'none', injuryGames: 0,
     } satisfies Player;
   });
+  // Fixed ranks also hold for the engine, which orders its rotation by overall rating.
+  for (const [pid, rank] of Object.entries(ANCHOR_RANK[season.id] ?? {})) {
+    const me = players.find((x) => x.id === pid);
+    if (!me) continue;
+    const others = players.filter((x) => x !== me).map((x) => x.overall).sort((a, b) => b - a);
+    const above = others[rank - 2] ?? me.overall + 1;
+    const below = others[rank - 1] ?? me.overall - 1;
+    me.overall = (above + below) / 2 - (above === below ? 0.01 : 0);
+  }
+  return players;
 }

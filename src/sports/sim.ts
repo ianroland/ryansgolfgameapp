@@ -26,6 +26,11 @@ export interface GameResult {
   neutral?: boolean;
   /** Everyone who played (zero lines included). */
   box: PlayerLine[];
+  /**
+   * Exact team-level and pitching events recorded without extra randomness (so recording them
+   * never changes a result). Used to derive full stat lines for history (Phase C).
+   */
+  detail?: { home: Record<string, number | string>; away: Record<string, number | string> };
 }
 
 export interface GameContext {
@@ -34,6 +39,9 @@ export interface GameContext {
   /** Each team's game number this season (0-based), e.g. for pitcher and goalie rotation. */
   homeGameNo: number;
   awayGameNo: number;
+  /** History only: force a starting pitcher (by id) and the outs he must pitch. The live engine never sets these. */
+  starter?: { home?: string; away?: string };
+  starterOuts?: { home?: number; away?: number };
 }
 
 export type Simulator = (id: string, home: string, away: string, homeRoster: readonly Player[], awayRoster: readonly Player[], r: Rng, ctx: GameContext) => GameResult;

@@ -22,22 +22,26 @@ interface Side {
   next: number;
 }
 
-function side(roster: readonly Player[], gameNo: number, r: Rng): Side {
+function side(roster: readonly Player[], gameNo: number, r: Rng, forceStarter?: string, forceOuts?: number): Side {
   const lineup = available(roster, ...HITTERS).slice(0, 9);
   // Short of nine healthy hitters: pitchers fill in (weak bats, as in an emergency).
   if (lineup.length < 9) lineup.push(...available(roster, 'RP', 'SP').slice(0, 9 - lineup.length));
   const starters = available(roster, 'SP').sort((a, b) => a.id.localeCompare(b.id));
-  const starter = starters.length ? starters[gameNo % starters.length] : available(roster, 'RP')[0];
+  const forced = forceStarter ? roster.find((p) => p.id === forceStarter) : undefined;
+  const starter = forced ?? (starters.length ? starters[gameNo % starters.length] : available(roster, 'RP')[0]);
   const s = C.starterInnings;
   const innings = Math.max(s.min, Math.min(s.max, s.base + (starter.attrs.stamina / 100) * s.stamina + r.normal() * s.sd));
   const pen = available(roster, 'RP');
   const pitch = (p: Player) => p.attrs.velocity * 0.5 + p.attrs.control * 0.5;
-  return { lineup, starter, starterOuts: Math.round(innings * 3), bullpen: avg(pen, pitch, 55), next: 0 };
+  return { lineup, starter, starterOuts: forceOuts ?? Math.round(innings * 3), bullpen: avg(pen, pitch, 55), next: 0 };
 }
 
 export function playBaseball(id: string, home: string, away: string, homeRoster: readonly Player[], awayRoster: readonly Player[], r: Rng, ctx: GameContext): GameResult {
-  const H = side(homeRoster, ctx.homeGameNo, r);
-  const A = side(awayRoster, ctx.awayGameNo, r);
+  const H = side(homeRoster, ctx.homeGameNo, r, ctx.starter?.home, ctx.starterOuts?.home);
+  const A = side(awayRoster, ctx.awayGameNo, r, ctx.starter?.away, ctx.starterOuts?.away);
+  // Pitching lines for each fielding side: the starter, and the bullpen as a whole.
+  const pl = () => ({ outs: 0, h: 0, r: 0, bb: 0, k: 0, hr: 0 });
+  const pitching = { home: { sp: pl(), bp: pl() }, away: { sp: pl(), bp: pl() } };
   const box = boxOf([...A.lineup, ...H.lineup].map((p) => p.id));
   const score = { home: 0, away: 0 };
   const outsPitched = { home: 0, away: 0 };
@@ -49,9 +53,11 @@ export function playBaseball(id: string, home: string, away: string, homeRoster:
     let outs = 0;
     // bases[0] = first, [1] = second, [2] = third. From the 10th, the previous batter starts on second.
     const bases: (string | null)[] = [null, inning >= 10 && C.ghostRunner ? bat.lineup[(bat.next + bat.lineup.length - 1) % bat.lineup.length].id : null, null];
+    const line = () => pitching[fk as 'home'][outsPitched[fk] < fieldSide.starterOuts ? 'sp' : 'bp'];
     const run = (runner: string | null, batter: string) => {
       if (!runner) return;
       score[k]++;
+      line().r++;
       box.add(runner, 'r');
       box.add(batter, 'rbi');
       box.points(batter, 1);
@@ -79,12 +85,17 @@ export function playBaseball(id: string, home: string, away: string, homeRoster:
       const outcome = r.weighted([...ws, inPlayOut]);
       const bid = batter.id;
       const pa = (stat: string) => box.add(bid, stat);
+      const pline = line();
+      if (outcome !== 1) pa('ab');
       if (outcome === 0) {
         pa('k');
+        pline.k++;
+        pline.outs++;
         outs++;
         outsPitched[fk]++;
       } else if (outcome === 1) {
         pa('bb');
+        pline.bb++;
         // Forced runners only.
         if (bases[0]) {
           if (bases[1]) {
@@ -96,6 +107,7 @@ export function playBaseball(id: string, home: string, away: string, homeRoster:
         bases[0] = bid;
       } else if (outcome === 2) {
         pa('h');
+        pline.h++;
         run(bases[2], bid);
         bases[2] = null;
         if (bases[1]) {
@@ -107,6 +119,8 @@ export function playBaseball(id: string, home: string, away: string, homeRoster:
         bases[0] = bid;
       } else if (outcome === 3) {
         pa('h');
+        pa('2b');
+        pline.h++;
         run(bases[2], bid);
         run(bases[1], bid);
         bases[2] = null;
@@ -119,20 +133,26 @@ export function playBaseball(id: string, home: string, away: string, homeRoster:
         bases[1] = bid;
       } else if (outcome === 4) {
         pa('h');
+        pa('3b');
+        pline.h++;
         for (const b of [2, 1, 0]) run(bases[b], bid);
         bases.fill(null);
         bases[2] = bid;
       } else if (outcome === 5) {
         pa('h');
         pa('hr');
+        pline.h++;
+        pline.hr++;
         for (const b of [2, 1, 0]) run(bases[b], bid);
         bases.fill(null);
         run(bid, bid);
       } else {
         // Ball in play, out: maybe a sacrifice fly or a double play.
+        pline.outs++;
         outs++;
         outsPitched[fk]++;
         if (outs < 3 && bases[0] && r.chance(C.doublePlay)) {
+          pline.outs++;
           outs++;
           outsPitched[fk]++;
           bases[0] = null;
@@ -160,6 +180,10 @@ export function playBaseball(id: string, home: string, away: string, homeRoster:
     awayScore: score.away,
     ot: Math.max(0, inning - 9),
     ...(ctx.neutral ? { neutral: true } : {}),
+    detail: {
+      home: { starter: H.starter.id, ...Object.fromEntries(Object.entries(pitching.home.sp).map(([k2, v]) => [`sp_${k2}`, v])), ...Object.fromEntries(Object.entries(pitching.home.bp).map(([k2, v]) => [`bp_${k2}`, v])) },
+      away: { starter: A.starter.id, ...Object.fromEntries(Object.entries(pitching.away.sp).map(([k2, v]) => [`sp_${k2}`, v])), ...Object.fromEntries(Object.entries(pitching.away.bp).map(([k2, v]) => [`bp_${k2}`, v])) },
+    },
     box: box.lines().map((l) => ({ ...l, extra: { ...l.extra, v: (l.extra!.h ?? 0) + 2 * (l.extra!.hr ?? 0) + (l.extra!.rbi ?? 0) + (l.extra!.r ?? 0) + (l.extra!.bb ?? 0) * 0.5 } })),
   };
 }

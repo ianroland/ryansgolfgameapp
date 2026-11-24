@@ -130,6 +130,7 @@ export function playHockey(id: string, home: string, away: string, homeRoster: r
     ot,
     ...(so ? { so } : {}),
     ...(ctx.neutral ? { neutral: true } : {}),
+    detail: { home: { goalie: H.goalieId ?? '' }, away: { goalie: A.goalieId ?? '' } },
     box: box.lines().map((l) => ({ ...l, extra: { ...l.extra, v: (l.extra!.g ?? 0) * 1.2 + (l.extra!.a ?? 0) } })),
   };
 }

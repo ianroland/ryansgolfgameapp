@@ -14,7 +14,7 @@ import type { Player } from '../players';
 import { stream, type Rng } from '../rng';
 import { seasonSchedule } from '../schedule';
 import { HOME_PATTERN, SIMULATORS } from '../season';
-import type { GameResult } from '../sim';
+import type { GameContext, GameResult } from '../sim';
 import type { HistoryData, HSeason } from './data';
 import { HISTORY_SEED, historyRoster } from './rosters';
 
@@ -27,6 +27,8 @@ export interface HGame {
   playoff: boolean;
   round?: 'semifinal' | 'final';
   seriesId?: string;
+  /** The last game of its series. */
+  decider?: boolean;
   home: string;
   away: string;
   winner: string;
@@ -65,13 +67,15 @@ interface SeriesAnchor {
   overtime?: number[];
   /** Exact final score [winner, loser] for a single game. */
   score?: [number, number];
-  /** One game won by the series winner in exactly `periods` overtime periods. */
-  marathon?: { periods: number; event: string };
+  /** One game won by the series winner in exactly `periods` overtime periods, with this goalie in net. */
+  marathon?: { periods: number; event: string; goalie?: string };
+  /** A player who must record this box stat (>= 1) in the given game. */
+  feat?: { game: number; player: string; stat: string };
   events: string[];
 }
 export const SERIES_ANCHORS: Record<string, SeriesAnchor> = {
   // Boston led 3-1, Phoenix won the last three.
-  'gdc-1998:final': { pattern: [false, true, false, false, true, true, true], events: ['gdc-1998-001'] },
+  'gdc-1998:final': { pattern: [false, true, false, false, true, true, true], feat: { game: 6, player: 'gdc_marco_salazar', stat: '2b' }, events: ['gdc-1998-001'] },
   // Seven games, four overtimes, Bozeman won Game 7.
   'fhl-2002:final': { pattern: [true, false, false, true, true, false, true], overtime: [1, 3, 4, 6], events: ['fhl-2002-001'] },
   // Burlington in six.
@@ -79,7 +83,7 @@ export const SERIES_ANCHORS: Record<string, SeriesAnchor> = {
   // Oklahoma City 24, New Orleans 20.
   'igl-1994:final': { score: [24, 20], events: ['igl-1994-001'] },
   // Anchorage beat Buffalo in a triple-overtime playoff game (Soren's 71 saves: Phase C).
-  'fhl-1989:semifinal:fhl_polars': { marathon: { periods: 3, event: 'fhl-1989-001' }, events: ['fhl-1989-001'] },
+  'fhl-1989:semifinal:fhl_polars': { marathon: { periods: 3, event: 'fhl-1989-001', goalie: 'fhl_viktor_soren' }, events: ['fhl-1989-001'] },
   'ccl-1987:final': { events: ['ccl-1987-001'] },
   'ccl-1988:final': { events: ['ccl-1987-001'] },
   'ccl-1989:final': { events: ['ccl-1987-001'] },
@@ -87,6 +91,13 @@ export const SERIES_ANCHORS: Record<string, SeriesAnchor> = {
   'igl-1985:final': { events: ['igl-1985-001'] },
   'igl-2016:final': { events: ['igl-2016-001'] },
 };
+
+/**
+ * Elias Voss, 1983 (owner decision): 13-1 with three no-hitters. He starts 14 of the Millers'
+ * 42 games (every third game or so): 13 they win, 1 they lose. His starts are deep (the decision
+ * is his); three of the wins are complete-game no-hitters.
+ */
+export const VOSS = { season: 'gdc-1983', team: 'gdc_millers', player: 'gdc_elias_voss', wins: 13, losses: 1, noHitters: 3, event: 'gdc-1983-001' } as const;
 
 const MAX_ATTEMPTS = 400;
 const MAX_ANCHOR_ATTEMPTS = 60_000;
@@ -96,9 +107,13 @@ const MAX_ANCHOR_ATTEMPTS = 60_000;
  * strength-weighted guess and repairs it with augmenting paths (b-matching); always succeeds
  * when the targets are realisable on the schedule, which the reconciliation guaranteed.
  */
-export function assignWinners(games: { home: string; away: string }[], target: Record<string, number>, r: Rng): string[] {
+export function assignWinners(games: { home: string; away: string }[], target: Record<string, number>, r: Rng, fixed: Map<number, string> = new Map()): string[] {
   const cap = { ...target };
   const winner: (string | null)[] = games.map(() => null);
+  for (const [i, t] of fixed) {
+    winner[i] = t;
+    cap[t]--;
+  }
   const byTeam = new Map<string, number[]>();
   games.forEach((g, i) => {
     for (const t of [g.home, g.away]) byTeam.set(t, [...(byTeam.get(t) ?? []), i]);
@@ -108,6 +123,7 @@ export function assignWinners(games: { home: string; away: string }[], target: R
   // Greedy first pass in a seeded order.
   const order = games.map((_, i) => i).sort(() => r.next() - 0.5);
   for (const i of order) {
+    if (fixed.has(i)) continue;
     const { home, away } = games[i];
     const pHome = share(home) / (share(home) + share(away) || 1);
     const first = r.chance(pHome) ? home : away;
@@ -131,7 +147,7 @@ export function assignWinners(games: { home: string; away: string }[], target: R
         prevTeam.set(t, g);
         if (cap[t] > 0) { end = t; break; }
         for (const j of byTeam.get(t)!) {
-          if (winner[j] === t && !seenGames.has(j)) {
+          if (winner[j] === t && !seenGames.has(j) && !fixed.has(j)) {
             seenGames.add(j);
             prevGame.set(j, t);
             queue.push(j);
@@ -173,18 +189,44 @@ export function historySeason(data: HistoryData, season: HSeason): HistorySeason
   const cal = SPORTS_CONFIG.calendar[sport];
   const fmt = SEASON_FORMAT[sport];
   const schedule = seasonSchedule([...teams].sort(), fmt.meetingsPerOpponent, stream(HISTORY_SEED, 'schedule', season.id), `${lg}:h${season.year}`, cal.seriesLength);
-  const winners = assignWinners(schedule, Object.fromEntries(teams.map((t) => [t, season.records[t][0]])), stream(HISTORY_SEED, 'winners', season.id));
+  // Voss's starts are fixed first: every third Millers game, 13 wins and 1 loss (his 8th start).
+  const fixed = new Map<number, string>();
+  const vossPlan = new Map<number, 'win' | 'nohit' | 'loss'>();
+  if (season.id === VOSS.season) {
+    const mine = schedule.map((g, i) => ({ g, i })).filter(({ g }) => g.home === VOSS.team || g.away === VOSS.team);
+    const slots = Array.from({ length: VOSS.wins + VOSS.losses }, (_, k) => k * 3);
+    slots.forEach((n, k) => {
+      const { g, i } = mine[n];
+      const loss = k === 7;
+      fixed.set(i, loss ? (g.home === VOSS.team ? g.away : g.home) : VOSS.team);
+      vossPlan.set(n, loss ? 'loss' : [2, 6, 10].includes(k) ? 'nohit' : 'win');
+    });
+  }
+  const winners = assignWinners(schedule, Object.fromEntries(teams.map((t) => [t, season.records[t][0]])), stream(HISTORY_SEED, 'winners', season.id), fixed);
   const played = new Map(teams.map((t) => [t, 0]));
   let attempts = 0;
+  const otherStarters = season.id === VOSS.season ? rosters.get(VOSS.team)!.filter((p) => p.pos === 'SP' && p.id !== VOSS.player).map((p) => p.id).sort() : [];
+  let otherNext = 0;
   const regular: HGame[] = schedule.map((g, i) => {
     const w = winners[i];
-    const ctx = { neutral: false, playoff: false, homeGameNo: played.get(g.home)!, awayGameNo: played.get(g.away)! };
+    const ctx: GameContext = { neutral: false, playoff: false, homeGameNo: played.get(g.home)!, awayGameNo: played.get(g.away)! };
+    let plan: 'win' | 'nohit' | 'loss' | undefined;
+    if (season.id === VOSS.season && (g.home === VOSS.team || g.away === VOSS.team)) {
+      const side = g.home === VOSS.team ? 'home' : 'away';
+      plan = vossPlan.get(played.get(VOSS.team)!);
+      const sr = stream(HISTORY_SEED, 'voss', g.id);
+      ctx.starter = { [side]: plan ? VOSS.player : otherStarters[otherNext++ % otherStarters.length] };
+      if (plan) ctx.starterOuts = { [side]: plan === 'nohit' ? 27 : sr.int(18, 27) };
+    }
+    const oppSide = g.home === VOSS.team ? 'away' : 'home'; // the side batting against Voss
     const { result, tries } = simulateAs(sport, g.id, g.home, g.away, rosters.get(g.home)!, rosters.get(g.away)!, ctx,
-      (r) => r.homeScore !== r.awayScore && (r.homeScore > r.awayScore) === (w === g.home), MAX_ATTEMPTS);
+      (r) => r.homeScore !== r.awayScore && (r.homeScore > r.awayScore) === (w === g.home)
+        && (plan !== 'nohit' || (Number(r.detail?.[oppSide === 'home' ? 'away' : 'home'].bp_outs ?? 1) === 0 && r.box.filter((b) => (oppSide === 'home' ? rosters.get(g.home)! : rosters.get(g.away)!).some((p) => p.id === b.playerId)).every((b) => !b.extra?.h))),
+      plan === 'nohit' ? MAX_ANCHOR_ATTEMPTS : MAX_ATTEMPTS);
     attempts += tries;
     played.set(g.home, played.get(g.home)! + 1);
     played.set(g.away, played.get(g.away)! + 1);
-    return { id: g.id, league: lg, year: season.year, day: g.round, playoff: false, home: g.home, away: g.away, winner: w, loser: w === g.home ? g.away : g.home, result, events: [], provenance: 'generated' };
+    return { id: g.id, league: lg, year: season.year, day: g.round, playoff: false, home: g.home, away: g.away, winner: w, loser: w === g.home ? g.away : g.home, result, events: plan ? [VOSS.event] : [], provenance: 'generated' };
   });
 
   // Playoffs: 1 v 4 and 2 v 3, then the final. The ledger decides who advances.
@@ -219,8 +261,8 @@ export function historySeason(data: HistoryData, season: HSeason): HistorySeason
       const [home, away] = highHome ? [high, low] : [low, high];
       const w = winnerWon ? winner : loser;
       const gid = `${id}:g${i + 1}`;
-      const ctx = { neutral, playoff: true, homeGameNo: played.get(home)!, awayGameNo: played.get(away)! };
-      const special = anchor && (anchor.overtime || anchor.score || (anchor.marathon && i === marathonAt));
+      const ctx: GameContext = { neutral, playoff: true, homeGameNo: played.get(home)!, awayGameNo: played.get(away)! };
+      const special = anchor && (anchor.overtime || anchor.score || (anchor.marathon && i === marathonAt) || (anchor.feat && i === anchor.feat.game));
       const ok = (res: GameResult) => {
         if (res.homeScore === res.awayScore || (res.homeScore > res.awayScore) !== (w === home)) return false;
         if (anchor?.overtime && (anchor.overtime.includes(i) ? !res.ot : res.ot)) return false;
@@ -229,15 +271,20 @@ export function historySeason(data: HistoryData, season: HSeason): HistorySeason
           const ls = w === home ? res.awayScore : res.homeScore;
           if (ws !== anchor.score[0] || ls !== anchor.score[1]) return false;
         }
-        if (anchor?.marathon && i === marathonAt && res.ot !== anchor.marathon.periods) return false;
+        if (anchor?.marathon && i === marathonAt) {
+          if (res.ot !== anchor.marathon.periods) return false;
+          const side = w === home ? 'home' : 'away';
+          if (anchor.marathon.goalie && res.detail?.[side].goalie !== anchor.marathon.goalie) return false;
+        }
+        if (anchor?.feat && i === anchor.feat.game && !(res.box.find((b) => b.playerId === anchor.feat!.player)?.extra?.[anchor.feat.stat])) return false;
         return true;
       };
       const { result, tries } = simulateAs(sport, gid, home, away, rosters.get(home)!, rosters.get(away)!, ctx, ok, special ? MAX_ANCHOR_ATTEMPTS : MAX_ATTEMPTS);
       attempts += tries;
       played.set(home, played.get(home)! + 1);
       played.set(away, played.get(away)! + 1);
-      const events = anchor ? (anchor.marathon ? (i === marathonAt ? [anchor.marathon.event] : []) : anchor.events) : [];
-      return { id: gid, league: lg, year: season.year, day: i, playoff: true, round, seriesId: id, home, away, winner: w, loser: w === home ? away : home, result, events, provenance: 'generated' };
+      const events = anchor ? (anchor.marathon ? (i === marathonAt ? [anchor.marathon.event] : []) : anchor.feat ? (i === anchor.feat.game ? anchor.events : []) : anchor.events) : [];
+      return { id: gid, league: lg, year: season.year, day: i, playoff: true, round, seriesId: id, ...(i === pattern.length - 1 ? { decider: true } : {}), home, away, winner: w, loser: w === home ? away : home, result, events, provenance: 'generated' };
     });
     const wins = { [winner]: pattern.filter(Boolean).length, [loser]: pattern.filter((x) => !x).length };
     return { id, round, high, low, bestOf, winner, loser, wins, games };
