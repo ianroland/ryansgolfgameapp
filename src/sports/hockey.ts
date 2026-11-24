@@ -76,7 +76,19 @@ export function playHockey(id: string, home: string, away: string, homeRoster: r
   }
   let ot = 0;
   let so = false;
-  if (score.home === score.away) {
+  if (score.home === score.away && ctx.playoff) {
+    // Playoffs: full 20-minute sudden-death periods until someone scores, no shootout. `ot` counts periods.
+    while (score.home === score.away && ot < 12) {
+      ot++;
+      const hs = shots(H, A);
+      const as = shots(A, H);
+      for (let i = 0; i < Math.max(hs, as) && score.home === score.away; i++) {
+        if (i < hs && shot(H, A, true)) score.home++;
+        else if (i < as && shot(A, H, false)) score.away++;
+      }
+    }
+    if (score.home === score.away) score[r.chance(0.5) ? 'home' : 'away']++; // a 12th overtime never ends level
+  } else if (score.home === score.away) {
     ot = 1;
     const total = Math.max(1, Math.round((C.otShots.mean + r.normal() * C.otShots.sd) * 2));
     for (let i = 0; i < total && score.home === score.away; i++) {

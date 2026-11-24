@@ -120,7 +120,7 @@ export interface LeagueSeason {
 export type BasketballSeason = LeagueSeason;
 
 /** Home games for the higher seed, by series length. */
-const HOME_PATTERN: Record<Sport, Record<number, boolean[]>> = {
+export const HOME_PATTERN: Record<Sport, Record<number, boolean[]>> = {
   basketball: { 5: [true, true, false, false, true], 7: [true, true, false, false, true, false, true] },
   hockey: { 5: [true, true, false, false, true], 7: [true, true, false, false, true, false, true] },
   baseball: { 5: [true, true, false, false, true], 7: [true, true, false, false, false, true, true] },
