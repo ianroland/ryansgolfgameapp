@@ -88,3 +88,38 @@
 | 13 | Save schema v4 migration (sports tables only) | Open (Phase 4) |
 | 14 | Art list and sizes (`ASSET_MANIFEST.md`) | Open |
 | 15 | Keep the demo tab visible on the live site (labelled "demo") until Phase 3 | **New**; currently visible |
+
+## Phase 2a result (implemented): basketball engine
+
+- **Pure engine, nothing visible yet.** No UI, save or ledger changes.
+- **Files** in `src/sports/`:
+  - `rng.ts`: seeded streams per purpose.
+  - `config.ts`: tunable numbers (PROPOSED).
+  - `names.ts`: original name generator.
+  - `players.ts`: rosters and attributes.
+  - `schedule.ts`: circle-method balanced schedules plus a validator.
+  - `basketball.ts`: possession simulation.
+  - `season.ts`: world, season, standings and tiebreakers, playoffs, awards.
+- **World:** 8 CCL franchises, each with 10 players (two per position), team quality hidden. Players have age, attributes, overall, hidden potential and peak age, and a personality tag.
+- **Season:**
+  - 28 games per team (4 per opponent, 2 home and 2 away). Weeks 2–15 of Ryan's season, two rounds a week. Playoffs in weeks 16–17.
+  - Injuries sit players and weaken teams.
+  - Standings use win %, then head-to-head within the tied group, then point difference, then a seeded draw.
+  - Playoffs: 1 v 4 and 2 v 3, best-of-5, then a best-of-7 final. Higher seeds host games 1, 2, 5 and 7.
+  - Awards: MVP and Finals MVP.
+- **Measured** over 24 seeded seasons:
+
+| Measure | Result |
+|---|---|
+| Points per game (both teams) | about 214 |
+| Home win rate | about 57% |
+| Overtime | 1–10% of games |
+| Team quality vs record | correlation above 0.5 |
+| Injuries per season | 2–25 |
+| Time per season | about 50 ms |
+
+- **Determinism:** the same seed reproduces the world and the whole season exactly.
+- **Tests:** `tests/sportsEngine.test.ts` (18).
+- **Not yet built:** other sports, the off-season (draft, development, aging, trades, retirements), odds, saving, the calendar hook, and UI wiring. The sportsbook screens still show demo data.
+
+**Next:** Phase 2b. Baseball, football and hockey simulations on the same framework, then Phase 2c, the off-season.
