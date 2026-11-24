@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.0",
+   "date": "2026-11-24",
+   "title": "Video poker and keno",
+   "items": [
+    {
+     "tag": "new",
+     "text": "A new Video Poker & Keno machine on the casino floor: one cabinet, two games, switch between them on top. No dealer, but the drink server still comes round."
+    },
+    {
+     "tag": "new",
+     "text": "Video poker is Jacks or Better on the full-pay 9/6 table: hold cards (tap them or press 1–5), draw, and bet max for the 4,000-coin Royal Flush. A dealt hand is still waiting for you after a reload."
+    },
+    {
+     "tag": "new",
+     "text": "Keno: pick 1 to 10 of 80 numbers, twenty balls are drawn and the pay card pays on how many you catch. Quick pick, and your ticket stays picked for the next game."
+    },
+    {
+     "tag": "new",
+     "text": "Each casino's machine has its own look: Desert Palms keno with palms and a sunset, plus White Buffalo and Morongo Sky versions ready for when those casinos open. In-game money only."
+    }
+   ]
+  },
+  {
    "version": "0.19.12",
    "date": "2026-11-24",
    "title": "Sports history moves into the sportsbook",

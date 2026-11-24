@@ -18,6 +18,8 @@ import {
   type BaccaratBets, type BaccaratHand, type BaccaratHistoryEntry, type ShoeState,
 } from '../casino/baccarat';
 import { betBlocker as threeCardBlocker, newDeck, settle3, type PendingThreeCard, type ThreeCardResult } from '../casino/threeCard';
+import { betBlocker as vpBlocker, dealVP, settleVP, VP_MAX_RETURN, vpStake, type PendingVideoPoker, type VideoPokerResult } from '../casino/videoPoker';
+import { betBlocker as kenoBlocker, drawBalls, KENO_MAX_RETURN, settleKeno, type KenoResult } from '../casino/keno';
 import * as engine from '../career/engine';
 import { CareerRuleError } from '../career/engine';
 import type { CareerState } from '../career/types';
@@ -28,10 +30,10 @@ import type { CareerService } from './careerService';
 import type { EconomyService } from './economyService';
 import type { Notifier } from './notifier';
 
-export type CasinoGame = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds' | 'baccarat' | 'threecard';
+export type CasinoGame = 'blackjack' | 'slots' | 'craps' | 'roulette' | 'greyhounds' | 'baccarat' | 'threecard' | 'videopoker' | 'keno';
 
 /** Most a round can return per dollar wagered in it (roulette: straight up, 35 to 1 plus the stake). */
-const MAX_RETURN: Record<CasinoGame, number> = { blackjack: 2.5, slots: 400, craps: 4, roulette: 36, greyhounds: 31, baccarat: 9, threecard: 41 };
+const MAX_RETURN: Record<CasinoGame, number> = { blackjack: 2.5, slots: 400, craps: 4, roulette: 36, greyhounds: 31, baccarat: 9, threecard: 41, videopoker: VP_MAX_RETURN, keno: KENO_MAX_RETURN };
 
 /** The greyhound race bet on and decided but not yet paid, if any (kept on the career so a reload can't lose it). */
 export function pendingRace(c: CareerState): PendingRace | null {
@@ -59,6 +61,11 @@ export const baccaratShoe = (c: CareerState) => readJson<ShoeState>(c.flags.bacc
 export const baccaratHistory = (c: CareerState) => readJson<BaccaratHistoryEntry[]>(c.flags.baccaratHistory) ?? [];
 /** The Three Card Poker hand dealt and waiting for Play or Fold, if any (additive flag; survives a reload). */
 export const pendingThreeCard = (c: CareerState) => readJson<PendingThreeCard>(c.flags.threeCardPending);
+/** The video poker hand dealt and waiting for holds, if any (additive flag; survives a reload). */
+export const pendingVideoPoker = (c: CareerState) => readJson<PendingVideoPoker>(c.flags.videoPokerPending);
+/** The last keno draws, newest first (additive flag): each game's twenty balls. */
+export const kenoHistory = (c: CareerState) => readJson<number[][]>(c.flags.kenoHistory) ?? [];
+export const KENO_HISTORY = 10;
 
 export interface BaccaratRound {
   roundId: string;
@@ -292,6 +299,83 @@ export class CasinoService {
       }
       await this.db.careers.put(next);
       return { pending, result, staked };
+    });
+    this.announce(unlocked);
+    return out;
+  }
+
+  /**
+   * Video poker: takes the bet and deals five cards from a freshly shuffled deck. The hand is
+   * saved on the career, so a reload comes back to the same cards waiting for holds. The
+   * replacement cards are only drawn when the player draws.
+   */
+  async startVideoPoker(denom: number, coins: number): Promise<PendingVideoPoker> {
+    return this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      if (pendingVideoPoker(c)) throw new DomainError('CAREER_RULE', 'Finish the hand on the screen first');
+      const block = vpBlocker(denom, coins, await this.economy.getBalance(c.playerId));
+      if (block) throw new DomainError('CAREER_RULE', block);
+      const pending: PendingVideoPoker = { roundId: newId('casino_videopoker'), denom, coins, cards: dealVP(), v: 1 };
+      const stake = vpStake(denom, coins);
+      await this.economy.post({ ownerId: c.playerId, amount: -stake, type: 'casino', sourceId: pending.roundId, idempotencyKey: `casino:${pending.roundId}:bet:main` });
+      const next = engine.recordCasino(c, stake, 0);
+      next.flags.videoPokerPending = JSON.stringify(pending);
+      await this.db.careers.put(next);
+      return pending;
+    });
+  }
+
+  /** Draws for the saved hand (keeping the held cards) and pays it once. Calling it again returns null. */
+  async finishVideoPoker(roundId: string, held: boolean[]): Promise<{ pending: PendingVideoPoker; result: VideoPokerResult; staked: number } | null> {
+    const unlocked: string[] = [];
+    const out = await this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.db.careers.get('career');
+      if (!c) throw new DomainError('NO_PROFILE', 'No career found');
+      const pending = pendingVideoPoker(c);
+      if (!pending || pending.roundId !== roundId) return null;
+      const result = settleVP(pending, held);
+      const staked = vpStake(pending.denom, pending.coins);
+      if (result.payout > staked * MAX_RETURN.videopoker) throw new DomainError('CAREER_RULE', 'Payout exceeds what this hand can return');
+      if (result.payout > 0) await this.economy.post({ ownerId: c.playerId, amount: result.payout, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:pay:main` });
+      let next = engine.recordCasino(c, 0, result.payout, { biggestWin: result.payout - staked });
+      delete next.flags.videoPokerPending;
+      if (result.payout > staked) {
+        const o = engine.withAchievements({ career: next, money: [] });
+        unlocked.push(...(o.unlocked ?? []));
+        next = o.career;
+      }
+      await this.db.careers.put(next);
+      return { pending, result, staked };
+    });
+    this.announce(unlocked);
+    return out;
+  }
+
+  /**
+   * Keno: one game, start to finish, in a single step. The bet is debited and the return
+   * credited in the same transaction, so a reload or a double click can never take or pay a
+   * game twice. The last ten draws are kept on the career for the board.
+   */
+  async playKeno(picks: number[], bet: number): Promise<{ roundId: string; result: KenoResult }> {
+    const unlocked: string[] = [];
+    const out = await this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      const block = kenoBlocker(picks, bet, await this.economy.getBalance(c.playerId));
+      if (block) throw new DomainError('CAREER_RULE', block);
+      const result = settleKeno(picks, bet, drawBalls());
+      if (result.payout > bet * MAX_RETURN.keno) throw new DomainError('CAREER_RULE', 'Payout exceeds what this game can return');
+      const roundId = newId('casino_keno');
+      await this.economy.post({ ownerId: c.playerId, amount: -bet, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:bet:main` });
+      if (result.payout > 0) await this.economy.post({ ownerId: c.playerId, amount: result.payout, type: 'casino', sourceId: roundId, idempotencyKey: `casino:${roundId}:pay:main` });
+      let next = engine.recordCasino(c, bet, result.payout, { biggestWin: result.payout - bet });
+      next.flags.kenoHistory = JSON.stringify([result.drawn, ...kenoHistory(c)].slice(0, KENO_HISTORY));
+      if (result.payout > bet) {
+        const o = engine.withAchievements({ career: next, money: [] });
+        unlocked.push(...(o.unlocked ?? []));
+        next = o.career;
+      }
+      await this.db.careers.put(next);
+      return { roundId, result };
     });
     this.announce(unlocked);
     return out;

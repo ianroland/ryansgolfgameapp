@@ -17,6 +17,7 @@ import { formatMoney } from '../format';
 import { boxStyle, casinoArt } from './casinoArt';
 import { Greyhounds } from './Greyhounds';
 import { Sportsbook } from '../sportsbook/Sportsbook';
+import { VideoMachine } from './Machines';
 import { BetChip, PlayingCard } from './TableBits';
 import { Baccarat, ThreeCard } from './WWTables';
 import { DialogueBox, MoniqueRest, MoniqueSprite, REACH_MS, useMonique } from './Monique';
@@ -787,7 +788,7 @@ export function CasinoPanel() {
       <section className="hub-card casino-head" style={{ backgroundImage: `linear-gradient(90deg, rgba(20,8,30,0.92) 0%, rgba(20,8,30,0.55) 45%, rgba(20,8,30,0.1) 100%), url(${exterior.url})` }}>
         <div className="casino-brand">
           <img className="casino-logo" src={logo.url} alt="Desert Palms Casino" draggable={false} />
-          <p className="muted">Blackjack, slots, craps, roulette, baccarat, Three Card Poker and greyhound racing. In-game money only.</p>
+          <p className="muted">Blackjack, slots, video poker, keno, craps, roulette, baccarat, Three Card Poker and greyhound racing. In-game money only.</p>
         </div>
         <dl className="casino-stats">
           <div><dt>Bank</dt><dd>{formatMoney(state.balance)}</dd></div>
@@ -834,6 +835,7 @@ export function CasinoPanel() {
           {game === 'threecard' && <ThreeCard />}
           {game === 'greyhounds' && <Greyhounds onLeave={() => setGame('blackjack')} />}
           {game === 'sportsbook' && <Sportsbook />}
+          {game === 'machines' && <VideoMachine />}
         </>
       )}
     </main>

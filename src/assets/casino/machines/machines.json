@@ -1,0 +1,366 @@
+{
+ "base_vp_marquee": {
+  "w": 402,
+  "h": 170
+ },
+ "base_vp_screen": {
+  "w": 371,
+  "h": 174,
+  "slice": [
+   20,
+   24,
+   22,
+   24
+  ],
+  "fill": true
+ },
+ "base_vp_paytable": {
+  "w": 421,
+  "h": 316,
+  "values_x": [
+   241,
+   403
+  ],
+  "rows_y": [
+   63,
+   92,
+   117,
+   143,
+   168,
+   193,
+   218,
+   243,
+   269,
+   298
+  ]
+ },
+ "base_vp_cards": {
+  "w": 832,
+  "h": 360,
+  "cols": 13,
+  "rows": 4
+ },
+ "base_vp_back": {
+  "w": 87,
+  "h": 118
+ },
+ "base_vp_hold_off": {
+  "w": 69,
+  "h": 63
+ },
+ "base_vp_hold_on": {
+  "w": 69,
+  "h": 60
+ },
+ "base_vp_deal": {
+  "w": 113,
+  "h": 84
+ },
+ "base_vp_deal_lit": {
+  "w": 113,
+  "h": 84
+ },
+ "base_vp_draw": {
+  "w": 115,
+  "h": 84
+ },
+ "base_vp_draw_lit": {
+  "w": 115,
+  "h": 84
+ },
+ "base_vp_bet": {
+  "w": 115,
+  "h": 84
+ },
+ "base_vp_bet_lit": {
+  "w": 115,
+  "h": 84
+ },
+ "base_vp_sparkles": {
+  "w": 465,
+  "h": 112,
+  "frames": 5,
+  "frame_w": 93
+ },
+ "base_keno_marquee": {
+  "w": 502,
+  "h": 166
+ },
+ "base_keno_draw": {
+  "w": 200,
+  "h": 90
+ },
+ "base_keno_clear": {
+  "w": 201,
+  "h": 90
+ },
+ "base_meter_bet": {
+  "w": 179,
+  "h": 80,
+  "box": [
+   66,
+   10,
+   172,
+   68
+  ]
+ },
+ "base_meter_win": {
+  "w": 206,
+  "h": 88,
+  "box": [
+   74,
+   16,
+   198,
+   76
+  ]
+ },
+ "base_keno_paycard": {
+  "w": 421,
+  "h": 183,
+  "slice": [
+   55,
+   22,
+   18,
+   22
+  ],
+  "fill": false
+ },
+ "base_keno_balls": {
+  "w": 640,
+  "h": 512,
+  "cols": 10,
+  "rows": 8
+ },
+ "base_keno_sparkles": {
+  "w": 1529,
+  "h": 126,
+  "frames": 11,
+  "frame_w": 139
+ },
+ "dp_keno_marquee": {
+  "w": 457,
+  "h": 218
+ },
+ "dp_keno_frame": {
+  "w": 642,
+  "h": 209,
+  "slice": [
+   20,
+   97,
+   22,
+   97
+  ],
+  "fill": true
+ },
+ "dp_keno_paycard": {
+  "w": 395,
+  "h": 307,
+  "slice": [
+   90,
+   23,
+   22,
+   27
+  ],
+  "fill": false
+ },
+ "dp_keno_draw": {
+  "w": 190,
+  "h": 104
+ },
+ "dp_keno_clear": {
+  "w": 194,
+  "h": 103
+ },
+ "dp_keno_band": {
+  "w": 1163,
+  "h": 109
+ },
+ "dp_keno_sparkles": {
+  "w": 710,
+  "h": 130,
+  "frames": 5,
+  "frame_w": 142
+ },
+ "wb_vp_marquee": {
+  "w": 396,
+  "h": 243
+ },
+ "wb_vp_screen": {
+  "w": 384,
+  "h": 218,
+  "slice": [
+   28,
+   36,
+   28,
+   35
+  ],
+  "fill": true
+ },
+ "wb_vp_payframe": {
+  "w": 418,
+  "h": 382,
+  "slice": [
+   96,
+   28,
+   30,
+   28
+  ],
+  "fill": false
+ },
+ "wb_vp_cards": {
+  "w": 832,
+  "h": 364,
+  "cols": 13,
+  "rows": 4
+ },
+ "wb_vp_back": {
+  "w": 146,
+  "h": 124
+ },
+ "wb_vp_hold_off": {
+  "w": 68,
+  "h": 60
+ },
+ "wb_vp_hold_on": {
+  "w": 68,
+  "h": 57
+ },
+ "wb_vp_deal": {
+  "w": 172,
+  "h": 94
+ },
+ "wb_vp_draw": {
+  "w": 174,
+  "h": 94
+ },
+ "wb_vp_bet": {
+  "w": 283,
+  "h": 99
+ },
+ "wb_vp_sparkles": {
+  "w": 490,
+  "h": 103,
+  "frames": 5,
+  "frame_w": 98
+ },
+ "ms_sign": {
+  "w": 455,
+  "h": 158
+ },
+ "ms_keno_sign": {
+  "w": 210,
+  "h": 103
+ },
+ "ms_vp_sign": {
+  "w": 214,
+  "h": 104
+ },
+ "ms_keno_frame": {
+  "w": 260,
+  "h": 217,
+  "slice": [
+   44,
+   28,
+   40,
+   29
+  ],
+  "fill": true
+ },
+ "ms_vp_screen": {
+  "w": 248,
+  "h": 218,
+  "slice": [
+   47,
+   28,
+   37,
+   29
+  ],
+  "fill": true
+ },
+ "ms_keno_paycard": {
+  "w": 276,
+  "h": 194,
+  "slice": [
+   50,
+   20,
+   21,
+   19
+  ],
+  "fill": false
+ },
+ "ms_vp_payframe": {
+  "w": 249,
+  "h": 247,
+  "slice": [
+   50,
+   19,
+   16,
+   20
+  ],
+  "fill": false
+ },
+ "ms_keno_draw": {
+  "w": 152,
+  "h": 49
+ },
+ "ms_keno_clear": {
+  "w": 129,
+  "h": 49
+ },
+ "ms_keno_draw_lit": {
+  "w": 141,
+  "h": 51
+ },
+ "ms_keno_clear_lit": {
+  "w": 137,
+  "h": 50
+ },
+ "ms_vp_hold_off": {
+  "w": 72,
+  "h": 55
+ },
+ "ms_vp_hold_on": {
+  "w": 73,
+  "h": 53
+ },
+ "ms_vp_deal": {
+  "w": 138,
+  "h": 53
+ },
+ "ms_vp_deal_lit": {
+  "w": 138,
+  "h": 55
+ },
+ "ms_vp_draw": {
+  "w": 139,
+  "h": 53
+ },
+ "ms_vp_draw_lit": {
+  "w": 139,
+  "h": 55
+ },
+ "ms_vp_bet": {
+  "w": 133,
+  "h": 53
+ },
+ "ms_vp_bet_lit": {
+  "w": 133,
+  "h": 55
+ },
+ "ms_vp_back": {
+  "w": 111,
+  "h": 164
+ },
+ "ms_keno_sparkles": {
+  "w": 290,
+  "h": 59,
+  "frames": 5,
+  "frame_w": 58
+ },
+ "ms_vp_sparkles": {
+  "w": 348,
+  "h": 77,
+  "frames": 4,
+  "frame_w": 87
+ }
+}
