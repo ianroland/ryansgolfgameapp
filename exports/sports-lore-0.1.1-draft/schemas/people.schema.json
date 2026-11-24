@@ -65,7 +65,8 @@
               "type": "string",
               "enum": [
                 "stated",
-                "implied"
+                "implied",
+                "confirmed"
               ]
             }
           },

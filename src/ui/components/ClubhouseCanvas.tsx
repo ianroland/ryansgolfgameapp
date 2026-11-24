@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { destroyGame } from '../../game/destroyGame';
 import type * as Phaser from 'phaser';
 import { ClubhouseScene, createClubhouseGame, type SceneCallbacks, type SceneViewModel } from '../../game/ClubhouseScene';
 
@@ -26,7 +27,7 @@ export function ClubhouseCanvas({ vm, label, ...callbacks }: Props) {
     const game: Phaser.Game = createClubhouseGame(hostRef.current!, scene);
     return () => {
       sceneRef.current = null;
-      game.destroy(true);
+      destroyGame(game);
     };
   }, []);
 

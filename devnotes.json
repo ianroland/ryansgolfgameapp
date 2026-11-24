@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.18.5",
+   "date": "2026-11-23",
+   "title": "A history board you can read",
+   "items": [
+    {
+     "tag": "fix",
+     "text": "On iPhone and iPad, scenes like Biff's driving range could lose their pictures after a long session. The golf course and clubhouse now hand their graphics memory back when you leave them."
+    },
+    {
+     "tag": "improved",
+     "text": "The sportsbook History board is now split into About, Champions, Moments, Legends and Teams, so nothing hides below the screen. Tap a team to see its titles, big moments, rivals and how its fans talk."
+    },
+    {
+     "tag": "improved",
+     "text": "Sports history updates: the basketball league had eight founding clubs, and Las Vegas beat two higher seeds on its 1996 title run."
+    },
+    {
+     "tag": "fix",
+     "text": "On phones, the driving range no longer repeats at the top of the picture during Biff's long-drive challenge."
+    }
+   ]
+  },
+  {
    "version": "0.18.4",
    "date": "2026-11-23",
    "title": "Fifty years of sports history",

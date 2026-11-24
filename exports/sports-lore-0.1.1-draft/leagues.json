@@ -43,7 +43,7 @@
     "trophy": "The Crown",
     "founding": {
       "charter_city": null,
-      "founding_clubs": null,
+      "founding_clubs": 8,
       "founding_franchise_ids": null,
       "founding_event": "ccl-1974-001"
     },
@@ -53,17 +53,15 @@
       "games_per_team": 28,
       "effective_year": null
     },
-    "known_historic_formats": [
-      {
-        "season": 1996,
-        "fact": "The playoffs had at least three rounds (the champion beat three higher seeds).",
-        "event": "ccl-1996-001"
-      }
-    ],
+    "known_historic_formats": [],
     "cite": [
       {
         "source": "src.bible",
         "locator": "CCL"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23"
       }
     ]
   },

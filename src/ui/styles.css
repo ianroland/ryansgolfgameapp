@@ -1014,8 +1014,9 @@ kbd { display: inline-block; min-width: 22px; padding: 0 6px; font-family: var(-
 .enc-title { margin: 0; font-family: var(--head); font-size: 30px; text-transform: uppercase; color: var(--gold); text-shadow: 2px 2px 0 var(--ink); }
 .enc-tools { margin-left: auto; display: flex; gap: 8px; }
 .btn.small { padding: 4px 10px; font-size: 14px; }
-.enc-stage { position: relative; height: clamp(180px, 31vw, 300px); background-size: cover; background-position: 50% 50%; border-bottom: 3px solid var(--ink); overflow: hidden; image-rendering: pixelated; animation: enc-pan 24s ease-in-out infinite alternate; transition: background-size 0.6s ease; }
-.enc.zoom .enc-stage { background-size: 115%; }
+.enc-stage { --enc-h: clamp(180px, 31vw, 300px); position: relative; height: var(--enc-h); background-size: cover; background-repeat: no-repeat; background-position: 50% 50%; border-bottom: 3px solid var(--ink); overflow: hidden; image-rendering: pixelated; animation: enc-pan 24s ease-in-out infinite alternate; transition: background-size 0.6s ease; }
+/* Zoom in 15% but never below what fills the frame's height (scene art is 737x232, about 3.18:1). */
+.enc.zoom .enc-stage { background-size: max(115%, calc(var(--enc-h) * 3.18 * 1.15)) auto; }
 .actor { position: absolute; bottom: 4%; transition: filter 0.2s, transform 0.2s; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.35)); }
 .actor.left { left: 18%; animation: enc-in-left 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
 .actor.right { right: 18%; animation: enc-in-right 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) 0.1s both; }
@@ -2007,7 +2008,20 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .sb-list li { display: grid; gap: 2px; padding: 6px 8px; background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--sb-crt-text); border-radius: 4px; }
 .sb-list li b { color: #fff; }
 .sb-list em { font-style: normal; font-size: 12px; opacity: 0.8; }
-.sb-history { display: grid; gap: 8px; }
+.sb-history { display: grid; gap: 8px; align-content: start; }
+.sb-hist-tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.sb-hist-tabs button { padding: 3px 9px; font: inherit; font-size: 0.9em; color: var(--sb-crt-text); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 4px; cursor: pointer; }
+.sb-hist-tabs button.on { color: #000; background: var(--sb-crt-text); border-color: var(--sb-crt-text); }
+.sb-hist-body { display: grid; gap: 6px; }
+.sb-hist-body p { margin: 0; }
+.sb-hist-teams { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.sb-hist-team { display: grid; grid-template-columns: 14px 1fr; gap: 2px 8px; align-items: center; padding: 6px 8px; text-align: left; font: inherit; color: inherit; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 4px; cursor: pointer; }
+.sb-hist-team:hover, .sb-hist-team:focus-visible { border-color: var(--sb-crt-text); }
+.sb-hist-team em { grid-column: 2; font-style: normal; font-size: 0.85em; opacity: 0.75; }
+.sb-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.5); }
+.sb-hist-back { padding: 1px 8px; font: inherit; color: var(--sb-crt-text); background: none; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; }
+.sb-hist-voice { font-style: italic; color: #fff; }
+.sb-crt { scrollbar-width: thin; scrollbar-color: var(--sb-crt-text) rgba(0, 0, 0, 0.3); }
 .sb-hist-head { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .sb-hist-head b { color: #fff; }
 .sb-history i { opacity: 0.6; }

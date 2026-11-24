@@ -1,6 +1,6 @@
 # Sports lore: historical canon layer (`sports-lore/1`)
 
-**Status:** canon revision `0.1.0-draft`, status `proposed`. Source: `03_SPORTS_UNIVERSE_HISTORY.md` (draft for approval). Original fictional lore; team names are not legally cleared.
+**Status:** canon revision `0.1.1-draft`, status `proposed`. Source: `03_SPORTS_UNIVERSE_HISTORY.md` (draft for approval). Original fictional lore; team names are not legally cleared.
 
 This is a read-only reference layer. It never changes simulation RNG, standings, odds, betting outcomes, the bankroll, saves or the game clock. Tests enforce this (see below).
 
@@ -14,7 +14,7 @@ This is a read-only reference layer. It never changes simulation RNG, standings,
 | `src/sports/lore/service.ts` | Lookups, year and tier gating, UI and NPC selectors, the simulated-ledger merge |
 | `src/sports/lore/importPack.ts` | Importing a revised pack (version, hash and id-stability checks) |
 | `src/sports/lore/exportPack.ts` | Building the sanitized NPC Factory knowledge pack (build time only) |
-| `exports/sports-lore-0.1.0-draft/` | The exported knowledge pack for NPC Factory, with JSON Schemas (draft 2020-12) |
+| `exports/sports-lore-0.1.1-draft/` | The exported knowledge pack for NPC Factory, with JSON Schemas (draft 2020-12) |
 | `tests/sportsLore.test.ts` | Acceptance tests (26) |
 
 Regenerate the export with `npm run lore:export`. A test fails if the committed export is out of date.
@@ -28,7 +28,7 @@ Regenerate the export with `npm run lore:export`. A test fails if the committed 
 
 ## What the canon records, and what it leaves open
 
-- **Leagues:** founding year, trophy, identity, charter city where stated, founding club count where stated, current format, and the few historic format facts the anchors imply (IGL 14 games in 1985 and 2015; best-of-seven finals in GDC 1998 and FHL 2002; at least three CCL playoff rounds in 1996). Modern schedule lengths are not applied to history.
+- **Leagues:** founding year, trophy, identity, charter city where stated, founding club count where stated, current format, and the few historic format facts the anchors imply (IGL 14 games in 1985 and 2015; best-of-seven finals in GDC 1998 and FHL 2002). Modern schedule lengths are not applied to history.
 - **Teams:** the current 32, identical to the game registry (ids, leagues, cities). Registry hex colours stay in `src/sports/demo.ts`; the lore adds the named colours.
 - **Events:** the 16 anchors. Each has dated facts with a knowledge tier, tags, unknowns, dialogue constraints, structured outcomes and claims (first title, drought), and citations back to the bible.
 - **Championships:** 11 established results. Also:
@@ -54,11 +54,12 @@ Seasons from 2027 on are simulated per save. They go in a separate ledger namesp
 
 ## In the game today
 
-The sportsbook **History** board now shows the selected league's canon:
-- founding, trophy and identity;
-- the written champions, with proposed and unknown entries marked;
-- a count of unwritten seasons;
-- the anchor moments and rivalries.
+The sportsbook **History** board shows the selected league's canon in five sections, each sized to fit the board:
+- **About:** identity, backstory, founding and rivalries.
+- **Champions:** the written results, proposed and unknown entries marked, and a count of unwritten seasons.
+- **Moments:** the anchor events, newest first.
+- **Legends:** the named players, their teams (or "not written yet") and their moments.
+- **Teams:** all eight franchises; each opens a card with titles, finals lost, moments, rivals and how its fans talk.
 
 It is tagged **Draft canon**. The earlier demo champions (invented 2024–2026 winners and MVPs) were removed, because canon leaves those seasons unwritten.
 
@@ -83,3 +84,17 @@ if (!r.ok) console.table(r.issues); // nothing is applied unless ok
 - the events they could have attended.
 
 Live scores, injuries, lines and bankroll values are injected by the game, never written into lines.
+
+## Decisions
+
+Answers from the game owner on 2026-11-23 (canon revision `0.1.1-draft`; also in `manifest.resolved_questions`):
+
+| Question | Answer |
+|---|---|
+| q9 CCL founding clubs | Eight, like the other leagues. |
+| q10 1996 Las Vegas run | They beat **two** higher seeds, not three. The canon text was changed from the bible, so no special 1996 playoff format is needed. |
+| q11 Salazar and Redd | Confirmed: Phoenix and Las Vegas. |
+| q12 Cities in events | Confirmed: they mean today's franchises, already playing in those cities. |
+| q13 Mason Vale / Celeste Vale | Fine as is; no relation. |
+
+Still open: the bible's eight approval questions (q1–q8). The canon stays `proposed` until those are approved.

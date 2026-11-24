@@ -274,6 +274,12 @@
         "text": "The CCL championship trophy is nicknamed the Crown.",
         "year": 1974,
         "tier": "casual"
+      },
+      {
+        "id": "f4",
+        "text": "Eight clubs founded the Crown Court League.",
+        "year": 1974,
+        "tier": "fan"
       }
     ],
     "tags": [
@@ -287,7 +293,7 @@
       "label": "widely known"
     },
     "unknowns": [
-      "How many clubs founded the CCL, and which."
+      "Which franchises founded the CCL."
     ],
     "constraints": [],
     "outcomes": [],
@@ -297,6 +303,10 @@
       {
         "source": "src.bible",
         "locator": "CCL / Anchor events / ccl-1974-001"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23"
       }
     ]
   },
@@ -414,7 +424,7 @@
     "people": [
       "per_calvin_redd"
     ],
-    "summary": "The lowest-seeded playoff team, Las Vegas, defeats three higher seeds to win its first title. Reserve guard Calvin Redd scores 31 points in the deciding game.",
+    "summary": "The lowest-seeded playoff team, Las Vegas, defeats two higher seeds to win its first title. Reserve guard Calvin Redd scores 31 points in the deciding game.",
     "facts": [
       {
         "id": "f1",
@@ -430,7 +440,7 @@
       },
       {
         "id": "f3",
-        "text": "Las Vegas beat three higher seeds on the way.",
+        "text": "Las Vegas beat two higher seeds on the way.",
         "year": 1996,
         "tier": "casual"
       },
@@ -475,6 +485,10 @@
       {
         "source": "src.bible",
         "locator": "CCL / Anchor events / ccl-1996-001"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23"
       }
     ]
   },

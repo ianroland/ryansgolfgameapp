@@ -1,4 +1,5 @@
 import { appearanceOf, resolveLook } from '../../story/appearance';
+import { destroyGame } from '../../game/destroyGame';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type * as Phaser from 'phaser';
 import { achievementById } from '../../career/achievements';
@@ -99,7 +100,7 @@ function HolePlayer({ setup, onComplete, onSimRest }: { setup: HoleSetup; onComp
     if (import.meta.env.DEV) (window as unknown as { wtgRound: unknown }).wtgRound = scene;
     return () => {
       sceneRef.current = null;
-      game.destroy(true);
+      destroyGame(game);
     };
   }, []);
 

@@ -67,12 +67,16 @@
     "events": [
       "ccl-1996-001"
     ],
-    "notes": "Lowest seed wins three playoff rounds. Runner-up not written.",
+    "notes": "Lowest seed beats two higher seeds. Runner-up not written.",
     "first_title": true,
     "cite": [
       {
         "source": "src.bible",
         "locator": "Known championships"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23"
       }
     ]
   },

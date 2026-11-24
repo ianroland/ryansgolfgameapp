@@ -28,6 +28,8 @@ export const manifestSchema = z
     sources: z.array(z.object({ id, title: z.string(), file: z.string(), revision: z.string(), status: z.string() }).strict()).min(1),
     files: z.array(z.string()),
     open_questions: z.array(z.object({ id: z.string(), text: z.string(), source: z.string() }).strict()),
+    /** Questions the game owner has answered, kept so readers can see why canon changed. */
+    resolved_questions: z.array(z.object({ id: z.string(), text: z.string(), answer: z.string(), date: z.string() }).strict()).optional(),
     /** Added by the exporter: SHA-256 of each file, and export metadata. */
     hashes: z.record(z.string(), z.string()).optional(),
     'x-export': z.record(z.string(), z.unknown()).optional(),
@@ -73,7 +75,7 @@ export const teamSchema = z
   .strict();
 
 const affiliation = z
-  .object({ team: id, from: year.nullable(), to: year.nullable(), basis: z.enum(['stated', 'implied']) })
+  .object({ team: id, from: year.nullable(), to: year.nullable(), basis: z.enum(['stated', 'implied', 'confirmed']) })
   .strict();
 export const personSchema = z
   .object({

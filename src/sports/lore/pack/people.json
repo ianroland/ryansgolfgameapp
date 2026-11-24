@@ -38,7 +38,7 @@
         "team": "gdc_firebirds",
         "from": 1998,
         "to": 1998,
-        "basis": "implied"
+        "basis": "confirmed"
       }
     ],
     "events": [
@@ -50,9 +50,13 @@
       {
         "source": "src.bible",
         "locator": "anchor events"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23"
       }
     ],
-    "notes": "Hit the Game Seven winning double for Phoenix. His team is read from the event text (open question q11). Position not written."
+    "notes": "Hit the Game Seven winning double for Phoenix."
   },
   {
     "id": "per_darius_king",
@@ -109,7 +113,7 @@
         "team": "ccl_dustdevils",
         "from": 1996,
         "to": 1996,
-        "basis": "implied"
+        "basis": "confirmed"
       }
     ],
     "events": [
@@ -121,9 +125,13 @@
       {
         "source": "src.bible",
         "locator": "anchor events"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23"
       }
     ],
-    "notes": "Scored 31 points in the 1996 deciding game. His team is read from the event text (open question q11)."
+    "notes": "Scored 31 points in the 1996 deciding game."
   },
   {
     "id": "per_andre_bellamy",
@@ -183,9 +191,13 @@
       {
         "source": "src.bible",
         "locator": "anchor events"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23"
       }
     ],
-    "notes": "A rookie in 2016. No relation to cocktail server Celeste Vale is established (open question q13)."
+    "notes": "A rookie in 2016. Shares a surname with cocktail server Celeste Vale; no relation."
   },
   {
     "id": "per_viktor_soren",
