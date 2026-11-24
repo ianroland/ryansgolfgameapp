@@ -30,7 +30,7 @@ import { ChipButton } from './Chips';
 import { DealerDialoguePanel, SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
 import { ServerPanel, signalRoundComplete } from './ServerPanel';
 import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
-import { CARD_LAYOUTS, type CardGame, type CardScene } from '../../expansion/tableThemes';
+import { type CardGame, type CardLayouts, type CardScene } from '../../expansion/tableThemes';
 
 const urls = import.meta.glob<string>('../../assets/casino/ww/*.png', { eager: true, query: '?url', import: 'default' });
 export const wwArt = (name: string) => urls[`../../assets/casino/ww/${name}.png`];
@@ -43,8 +43,6 @@ const META = meta as unknown as Record<string, Size> & {
 };
 
 const CHIPS = [5, 10, 25, 100, 500];
-const BAC_L = CARD_LAYOUTS.baccarat;
-const TC_L = CARD_LAYOUTS.three_card_poker;
 export const WW_NAMES: Record<WWDealer, string> = { waifu: 'Waifu', winston: 'Winston' };
 
 // ───────────────────────── Shared stage ─────────────────────────
@@ -277,7 +275,9 @@ function dealOrder(r: BaccaratRound) {
 export function Baccarat() {
   const { state, services, run } = useGame();
   const chat = useDealerChat<WaifuEvent>('waifu', WAIFU_FACE, WAIFU_POSE);
-  const scene = useCardScene();
+  const scene = useCardScene('baccarat');
+  // Layout fractions on this casino's scene (only read when there is a scene).
+  const BAC_L = (scene?.layout ?? {}) as CardLayouts['baccarat'];
   const [chip, setChip] = useState(25);
   const [bets, setBets] = useState<BaccaratBets>({});
   const [last, setLast] = useState<BaccaratBets>({});
@@ -466,7 +466,8 @@ const TC_SPOTS = { ante: [112, 113, 87, 46], play: [226, 115, 85, 44], pairplus:
 export function ThreeCard() {
   const { state, services, run } = useGame();
   const chat = useDealerChat<WinstonEvent>('winston', WINSTON_FACE, WINSTON_POSE);
-  const scene = useCardScene();
+  const scene = useCardScene('three_card_poker');
+  const TC_L = (scene?.layout ?? {}) as CardLayouts['three_card_poker'];
   const pending = pendingThreeCard(state.career);
   const [chip, setChip] = useState(10);
   const [ante, setAnte] = useState(10);

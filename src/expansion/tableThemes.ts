@@ -2,74 +2,110 @@
  * Casino table art, per casino (data-driven). Purely visual: geometry here places cards, chips
  * and betting zones over the art; every rule, limit and payout stays in src/casino/*.
  *
- * Card tables (CASINO_CARD_TABLES_V1): one environment scene per casino, shared by Blackjack,
- * Three Card Poker and Baccarat. Scenes were only trimmed of the concept sheet's border strips
- * (tools/prep_card_scenes.py), never scaled. `viewTop` hides room above the table (never the
- * table, rail or front emblem); `felt` is the felt's box in scene pixels, which each game's
- * layout (fractions of that box) is placed in. A casino without a scene uses the previous
- * tables, which stay as the fallback.
+ * Card tables v2 (approved 2026-11-24): one scene per casino and game, cut from the supplied 3x3
+ * sheet by tools/cut_card_tables_v2.py (crop only). The felt prints each game's betting spots, so
+ * the game's zones sit over the printed ones as invisible hit areas (`printedZones`). Layouts are
+ * fractions of the whole scene ([centre x, centre y, w, h]) and are per scene, because the three
+ * casinos' tables differ slightly.
+ *
+ * Two printed details don't match the game and are handled here, not by changing rules:
+ *  - Blackjack's felt says "Dealer hits soft 17"; the dealer stands on all 17s. `ruleCover`
+ *    covers that printed line with the real rule, in the felt's colour.
+ *  - Three Card Poker's felt has two seats; the game plays one hand, on the left seat.
  */
 import type { LocationId } from './unlocks';
 
 export type CardGame = 'blackjack' | 'baccarat' | 'three_card_poker';
+export type FeltBox = [number, number, number, number];
 
-export interface CardScene {
+export interface CardLayouts {
+  blackjack: { dealer: FeltBox; rules: FeltBox; hands: FeltBox };
+  baccarat: { playerCards: FeltBox; bankerCards: FeltBox; result: FeltBox; player: FeltBox; tie: FeltBox; banker: FeltBox };
+  three_card_poker: { dealer: FeltBox; dealerRank: FeltBox; player: FeltBox; playerRank: FeltBox; result: FeltBox; ante: FeltBox; play: FeltBox; pairplus: FeltBox };
+}
+
+export interface CardScene<G extends CardGame = CardGame> {
   location: LocationId;
+  game: G;
   url: string;
   /** Scene size in pixels. */
   size: [number, number];
-  /** Rows of room above the table that are not shown. */
+  /** Rows of room above the table that are not shown (0: the whole scene shows). */
   viewTop: number;
-  /** Felt box in scene pixels: x, y, w, h. */
+  /** Box (scene pixels) the layout's fractions are measured in: here, the whole scene. */
   felt: [number, number, number, number];
+  layout: CardLayouts[G];
+  /** The felt prints the betting spots: zones are drawn as invisible hit areas over them. */
+  printedZones: boolean;
+  /** Blackjack only: the printed rule line to cover with the game's real rule, and the felt colour. */
+  ruleCover?: { box: FeltBox; felt: string };
 }
 
-const scenes = import.meta.glob<string>('../assets/casino/tables/*/card_scene.png', { eager: true, query: '?url', import: 'default' });
-const url = (loc: LocationId) => scenes[`../assets/casino/tables/${loc}/card_scene.png`];
+const files = import.meta.glob<string>('../assets/casino/tables/*/*_scene.webp', { eager: true, query: '?url', import: 'default' });
+const sceneUrl = (loc: LocationId, game: CardGame) => files[`../assets/casino/tables/${loc}/${game}_scene.webp`];
 
-const VIEW_TOP = 120;
+const SIZES: Record<LocationId, number> = { desert_palms: 507, white_buffalo: 492, morongo_sky: 503 };
+const HEIGHTS: Record<CardGame, number> = { blackjack: 322, three_card_poker: 300, baccarat: 315 };
+const FELT_COLOUR: Record<LocationId, string> = { desert_palms: '#01461a', white_buffalo: '#013e43', morongo_sky: '#3c0155' };
 
-export const CARD_SCENES: Record<LocationId, CardScene> = {
-  desert_palms: { location: 'desert_palms', url: url('desert_palms'), size: [588, 554], viewTop: VIEW_TOP, felt: [48, 231, 495, 150] },
-  white_buffalo: { location: 'white_buffalo', url: url('white_buffalo'), size: [572, 554], viewTop: VIEW_TOP, felt: [52, 238, 496, 143] },
-  morongo_sky: { location: 'morongo_sky', url: url('morongo_sky'), size: [565, 554], viewTop: VIEW_TOP, felt: [63, 235, 488, 149] },
+const LAYOUTS: { [L in LocationId]: CardLayouts } = {
+  desert_palms: {
+    blackjack: { dealer: [0.5, 0.31, 0.5, 0.2], rules: [0.49, 0.515, 0.42, 0.08], hands: [0.5, 0.635, 0.8, 0.26] },
+    three_card_poker: {
+      dealer: [0.5, 0.225, 0.22, 0.18], dealerRank: [0.71, 0.225, 0.2, 0.07],
+      player: [0.31, 0.355, 0.22, 0.18], playerRank: [0.125, 0.355, 0.2, 0.07], result: [0.71, 0.4, 0.3, 0.08],
+      pairplus: [0.215, 0.53, 0.1, 0.15], ante: [0.31, 0.53, 0.085, 0.14], play: [0.425, 0.53, 0.095, 0.14],
+    },
+    baccarat: {
+      playerCards: [0.22, 0.31, 0.24, 0.18], bankerCards: [0.78, 0.31, 0.24, 0.18], result: [0.5, 0.405, 0.4, 0.08],
+      player: [0.295, 0.52, 0.27, 0.16], tie: [0.495, 0.52, 0.12, 0.19], banker: [0.73, 0.52, 0.3, 0.16],
+    },
+  },
+  white_buffalo: {
+    blackjack: { dealer: [0.5, 0.325, 0.5, 0.2], rules: [0.49, 0.535, 0.42, 0.08], hands: [0.5, 0.655, 0.8, 0.26] },
+    three_card_poker: {
+      dealer: [0.5, 0.235, 0.22, 0.18], dealerRank: [0.71, 0.235, 0.2, 0.07],
+      player: [0.3, 0.375, 0.22, 0.18], playerRank: [0.115, 0.375, 0.2, 0.07], result: [0.71, 0.42, 0.3, 0.08],
+      pairplus: [0.195, 0.55, 0.1, 0.15], ante: [0.3, 0.55, 0.085, 0.14], play: [0.41, 0.55, 0.095, 0.14],
+    },
+    baccarat: {
+      playerCards: [0.21, 0.31, 0.24, 0.18], bankerCards: [0.79, 0.31, 0.24, 0.18], result: [0.5, 0.415, 0.4, 0.08],
+      player: [0.28, 0.535, 0.28, 0.16], tie: [0.495, 0.535, 0.14, 0.19], banker: [0.72, 0.535, 0.3, 0.16],
+    },
+  },
+  morongo_sky: {
+    blackjack: { dealer: [0.5, 0.33, 0.5, 0.2], rules: [0.49, 0.525, 0.42, 0.08], hands: [0.5, 0.635, 0.8, 0.26] },
+    three_card_poker: {
+      dealer: [0.5, 0.225, 0.22, 0.18], dealerRank: [0.71, 0.225, 0.2, 0.07],
+      player: [0.31, 0.355, 0.22, 0.18], playerRank: [0.125, 0.355, 0.2, 0.07], result: [0.71, 0.4, 0.3, 0.08],
+      pairplus: [0.19, 0.53, 0.1, 0.15], ante: [0.31, 0.535, 0.085, 0.14], play: [0.41, 0.53, 0.095, 0.14],
+    },
+    baccarat: {
+      playerCards: [0.21, 0.31, 0.24, 0.18], bankerCards: [0.79, 0.31, 0.24, 0.18], result: [0.5, 0.405, 0.4, 0.08],
+      player: [0.275, 0.515, 0.3, 0.16], tie: [0.495, 0.505, 0.13, 0.19], banker: [0.715, 0.515, 0.3, 0.16],
+    },
+  },
 };
 
-export function cardSceneFor(location: LocationId): CardScene | null {
-  const s = CARD_SCENES[location];
+const make = <G extends CardGame>(location: LocationId, game: G): CardScene<G> => {
+  const size: [number, number] = [SIZES[location], HEIGHTS[game]];
+  return {
+    location, game, url: sceneUrl(location, game), size, viewTop: 0, felt: [0, 0, size[0], size[1]],
+    layout: LAYOUTS[location][game], printedZones: true,
+    ...(game === 'blackjack' ? { ruleCover: { box: LAYOUTS[location].blackjack.rules, felt: FELT_COLOUR[location] } } : {}),
+  };
+};
+
+export const CARD_SCENES: { [L in LocationId]: { [G in CardGame]: CardScene<G> } } = {
+  desert_palms: { blackjack: make('desert_palms', 'blackjack'), three_card_poker: make('desert_palms', 'three_card_poker'), baccarat: make('desert_palms', 'baccarat') },
+  white_buffalo: { blackjack: make('white_buffalo', 'blackjack'), three_card_poker: make('white_buffalo', 'three_card_poker'), baccarat: make('white_buffalo', 'baccarat') },
+  morongo_sky: { blackjack: make('morongo_sky', 'blackjack'), three_card_poker: make('morongo_sky', 'three_card_poker'), baccarat: make('morongo_sky', 'baccarat') },
+};
+
+export function cardSceneFor<G extends CardGame>(location: LocationId, game: G): CardScene<G> | null {
+  const s = CARD_SCENES[location]?.[game] as CardScene<G> | undefined;
   return s?.url ? s : null;
 }
-
-/**
- * Where things sit on the felt, as fractions of the felt box: [centre x, centre y, width, height].
- * One layout per game, shared by all three casinos.
- */
-export type FeltBox = [number, number, number, number];
-export const CARD_LAYOUTS = {
-  blackjack: {
-    dealer: [0.5, 0.22, 0.6, 0.3] as FeltBox,
-    rules: [0.5, 0.47, 0.62, 0.09] as FeltBox,
-    hands: [0.5, 0.71, 0.8, 0.32] as FeltBox,
-  },
-  baccarat: {
-    playerCards: [0.3, 0.25, 0.3, 0.3] as FeltBox,
-    bankerCards: [0.7, 0.25, 0.3, 0.3] as FeltBox,
-    result: [0.5, 0.46, 0.5, 0.1] as FeltBox,
-    player: [0.27, 0.68, 0.22, 0.28] as FeltBox,
-    tie: [0.5, 0.68, 0.2, 0.28] as FeltBox,
-    banker: [0.73, 0.68, 0.22, 0.28] as FeltBox,
-  },
-  three_card_poker: {
-    dealer: [0.5, 0.19, 0.3, 0.28] as FeltBox,
-    dealerRank: [0.22, 0.19, 0.22, 0.1] as FeltBox,
-    player: [0.5, 0.51, 0.3, 0.28] as FeltBox,
-    playerRank: [0.22, 0.51, 0.22, 0.1] as FeltBox,
-    result: [0.78, 0.36, 0.26, 0.1] as FeltBox,
-    ante: [0.335, 0.81, 0.13, 0.2] as FeltBox,
-    play: [0.5, 0.81, 0.13, 0.2] as FeltBox,
-    pairplus: [0.665, 0.81, 0.13, 0.2] as FeltBox,
-  },
-} as const;
 
 /**
  * Craps scenes (CASINO_CRAPS_TABLES_V1): full 1672x941 scenes, shown whole (never cropped).

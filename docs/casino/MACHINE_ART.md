@@ -38,11 +38,11 @@ The source sheets are kept unchanged in `art/source_sheets/machines/`. `tools/cu
 - No White Buffalo keno art.
 - No art for the coin-value buttons, Bet Max, Quick Pick or the game switch. These are CSS, styled to match.
 
-## Card tables v2 (`card_tables_v2_concept.png`): not integrated
+## Card tables v2 (`card_tables_v2_concept.png`): in the game since 0.20.1
 
-These are nine new blackjack, Three Card Poker and baccarat table looks, three per casino. They would replace the current, approved card scenes, so they wait for approval. Two of them also disagree with the game:
+`tools/cut_card_tables_v2.py` cuts the sheet into nine scenes, one per casino and game: `src/assets/casino/tables/<casino>/<game>_scene.webp`. It only crops: the top row's casino-name banners and the grid lines are left out. Layouts are per scene, in `src/expansion/tableThemes.ts`. The previous shared scenes are kept in `art/retired/card_scenes_v1/`, and `?tables=legacy` still shows the oldest tables in development builds.
 
-- Blackjack's felt reads **"DEALER HITS SOFT 17"**, but the game's dealer **stands on all 17s**. That's a rules change, not art.
-- Three Card Poker's felt has **two seats** (two Pair Plus / Ante / Play sets), but the game plays one hand.
-
-Each table is also about 512×340 inside a shared sheet, smaller than the current scenes (about 570×550).
+- **Printed spots:** the felts print the betting spots, so the game's zones are invisible hit areas over them. Chips land on the printed spots, and a winning spot glows.
+- **Blackjack:** the felt reads "Dealer hits soft 17", but the dealer **stands on all 17s** (rules unchanged). In game, that printed line is covered with "Dealer stands on all 17s" in the felt's colour (`ruleCover`). **Art fix wanted:** the felt line should read "Dealer stands on all 17s".
+- **Three Card Poker:** the felt prints two seats. The game plays one hand on the left seat, and the right seat stays empty.
+- **Size:** the scenes are about 500×300–320 (the old shared scene was 588×554, with more of the room above the table shown).

@@ -43,14 +43,14 @@ export const LOUNGES: Record<LocationId, LoungeTheme> = {
     name: 'Firelight Lounge',
     tokens: { bg1: '#2b1408', bg2: '#0d3b3e', neon: '#ff9a3c', trim: '#c9793a', crt: '#0a1414', crtText: '#7ff0e6', accent: '#3fb6b0', panel: '#1f120a' },
     art: { background: slot('white_buffalo', 'bg_lounge.png'), boardFrame: slot('white_buffalo', 'odds_board_frame.png'), clerk: null },
-    playable: false,
+    playable: true,
   },
   morongo_sky: {
     location: 'morongo_sky',
     name: 'Skybox',
     tokens: { bg1: '#1a0633', bg2: '#06061a', neon: '#b25cff', trim: '#e4c35a', crt: '#08051a', crtText: '#d9b8ff', accent: '#e4e6f0', panel: '#140828' },
     art: { background: slot('morongo_sky', 'bg_lounge.png'), boardFrame: slot('morongo_sky', 'odds_board_frame.png'), clerk: null },
-    playable: false,
+    playable: true,
   },
 };
 

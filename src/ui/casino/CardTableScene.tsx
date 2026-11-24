@@ -1,5 +1,5 @@
 /**
- * A casino's card-table scene (shared by Blackjack, Baccarat and Three Card Poker), with a felt
+ * A casino's card-table scene (one per game: Blackjack, Baccarat, Three Card Poker), with a felt
  * layer the game draws its cards, chips, zones and labels on. The scene image is never stretched:
  * the box has the scene's aspect ratio (minus the hidden room above the table) and the image fills
  * it at its own proportions. Presentation only.
@@ -8,10 +8,10 @@ import type { CSSProperties, ReactNode } from 'react';
 import { cardSceneFor, type CardGame, type CardScene, type FeltBox } from '../../expansion/tableThemes';
 import { devLegacyTables, useCasinoLocation } from './casinoLocation';
 
-/** The scene for the current casino, or null to use the previous table art. */
-export function useCardScene(): CardScene | null {
+/** The current casino's scene for a game, or null to use the previous table art. */
+export function useCardScene<G extends CardGame>(game: G): CardScene<G> | null {
   const loc = useCasinoLocation();
-  return devLegacyTables() ? null : cardSceneFor(loc);
+  return devLegacyTables() ? null : cardSceneFor(loc, game);
 }
 
 /** Absolute placement of a felt box: [centre x, centre y, w, h] as fractions of the felt. */
@@ -26,7 +26,7 @@ export function CardTableScene({ scene, game, testId, children }: { scene: CardS
   const viewH = h - scene.viewTop;
   const [fx, fy, fw, fh] = scene.felt;
   return (
-    <div className={`card-scene loc-${scene.location} cs-${game}`} style={{ aspectRatio: `${w} / ${viewH}` }} data-testid={testId} data-scene={scene.location}>
+    <div className={`card-scene loc-${scene.location} cs-${game}${scene.printedZones ? ' printed' : ''}`} style={{ aspectRatio: `${w} / ${viewH}` }} data-testid={testId} data-scene={scene.location}>
       <img
         className="card-scene-img"
         src={scene.url}

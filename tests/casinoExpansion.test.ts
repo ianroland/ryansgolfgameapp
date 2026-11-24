@@ -11,7 +11,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { totalReturn } from '../src/casino/baccarat';
 import { isDomainError } from '../src/core/errors';
-import { LOCATIONS, isUnlocked, unlockThreshold } from '../src/expansion/locations';
+import { casinoAt, LOCATIONS, isUnlocked, unlockThreshold } from '../src/expansion/locations';
 import { deriveFromLedger, UNLOCK_RULES } from '../src/expansion/unlocks';
 import { DEALERS } from '../src/npc/registry';
 import {
@@ -508,5 +508,36 @@ describe('casino chip themes (Chip Pack V7)', () => {
       const d = join(__dirname, dir);
       for (const f of readdirSync(d).filter((x) => x.endsWith('.ts'))) expect(readFileSync(join(d, f), 'utf8'), f).not.toMatch(/chipThemes/);
     }
+  });
+});
+
+describe('opening the White Buffalo and Morongo Sky floors (0.20.1)', () => {
+  it('all three floors are open with the full set of games', () => {
+    const ids = LOCATIONS[0].games.map((g) => g.id);
+    for (const l of LOCATIONS) {
+      expect(l.status, l.id).toBe('open');
+      expect(l.games.map((g) => g.id), l.id).toEqual(ids);
+    }
+  });
+
+  it('a locked casino is refused; once unlocked, a night there uses one activity and moving casinos that night is free', async () => {
+    const { s } = await newCareer();
+    const locked = await s.casino.visit('white_buffalo').catch((e) => e);
+    expect(isDomainError(locked, 'CAREER_RULE')).toBe(true);
+    expect(casinoAt(await s.career.getCareer())).toBe('desert_palms');
+    await add(s, 100_000 - START);
+    expect(await unlockIds(s)).toEqual([WB]);
+    const before = await s.career.getCareer();
+    await s.casino.visit('white_buffalo');
+    const c1 = await s.career.getCareer();
+    expect(casinoAt(c1)).toBe('white_buffalo');
+    expect(c1.actionsUsed).toBe(before.actionsUsed + 1);
+    await s.casino.visit('desert_palms');
+    const c2 = await s.career.getCareer();
+    expect(casinoAt(c2)).toBe('desert_palms');
+    expect(c2.actionsUsed).toBe(c1.actionsUsed);
+    expect(c2.energy).toBe(c1.energy);
+    expect(isDomainError(await s.casino.visit('morongo_sky').catch((e) => e), 'CAREER_RULE')).toBe(true);
+    s.db.close();
   });
 });

@@ -1,4 +1,4 @@
-/** Which casino the player is in, for presentation (chip art). Desert Palms is the only open floor. */
+/** Which casino the player is in, for presentation (tables, chips, machines). Set by the lobby (career flag `casinoAt`). */
 import { createContext, useContext } from 'react';
 import type { LocationId } from '../../expansion/unlocks';
 

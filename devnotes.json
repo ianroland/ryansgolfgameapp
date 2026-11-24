@@ -2,6 +2,25 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.1",
+   "date": "2026-11-24",
+   "title": "New card tables, and two more casinos open",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "New tables for Blackjack, Three Card Poker and Baccarat at every casino, each with its own printed felt, chip rack, deck and shoe. Chips land on the printed spots. The dealer still stands on all 17s."
+    },
+    {
+     "tag": "new",
+     "text": "The White Buffalo and Morongo Sky are open. Reach $100,000 or $1,000,000 in the bank to unlock them, then pick one in the lobby: every game is there, on that casino's own tables, machines and chips, with its own drink server. The Desert Palms dealers and Emmett cover the shifts until those casinos hire their own."
+    },
+    {
+     "tag": "new",
+     "text": "A night out still uses one activity; once you're in, walking over to another unlocked casino that night is free. The White Buffalo and Morongo Sky sportsbooks take bigger bets ($2,500 and $10,000)."
+    }
+   ]
+  },
+  {
    "version": "0.20.0",
    "date": "2026-11-24",
    "title": "Video poker and keno",

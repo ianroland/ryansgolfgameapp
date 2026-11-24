@@ -23,6 +23,8 @@ import { isAlbatross } from '../records/albatross';
 import { appearanceBlocker, storyOf } from '../story/appearance';
 import { encounterById, nextEncounter, walkEncounter } from '../story/encounters';
 import type { Appearance } from '../story/types';
+import { casinoAt, locationById } from '../expansion/locations';
+import type { LocationId } from '../expansion/unlocks';
 import { STAT_KEYS, STAT_LABELS, type CareerState, type InboxItem, type PersonId, type RoundMode, type StatKey } from './types';
 
 export interface MoneyOp {
@@ -242,16 +244,27 @@ export function casinoBlocker(c: CareerState): string | null {
   return null;
 }
 
-export function visitCasino(prev: CareerState): Outcome {
-  if (prev.flags.casinoVisit === casinoWeekKey(prev)) return { career: prev, money: [] };
+/**
+ * A night at a casino: one weekly activity and some energy. Once inside for the week, moving to
+ * another casino (`at`) is free. Whether `at` is unlocked is checked by CasinoService.
+ */
+export function visitCasino(prev: CareerState, at: LocationId = 'desert_palms'): Outcome {
+  const name = locationById(at).name;
+  if (prev.flags.casinoVisit === casinoWeekKey(prev)) {
+    if (casinoAt(prev) === at) return { career: prev, money: [] };
+    const c = clone(prev);
+    c.flags.casinoAt = at;
+    return { career: c, money: [], message: `Over to ${name}` };
+  }
   const block = casinoBlocker(prev);
   if (block) fail(block);
   const c = clone(prev);
   c.flags.casinoVisit = casinoWeekKey(c);
+  c.flags.casinoAt = at;
   c.actionsUsed += 1;
   c.energy = clamp(c.energy - CASINO_ENERGY, 0, 100);
   c.flags.casinoVisits = Number(c.flags.casinoVisits ?? 0) + 1;
-  return { career: c, money: [], message: 'A night out at Desert Palms' };
+  return { career: c, money: [], message: `A night out at ${name}` };
 }
 
 /** Records casino results on the career (for stats, stories, achievements). */

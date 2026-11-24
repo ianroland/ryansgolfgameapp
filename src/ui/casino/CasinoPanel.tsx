@@ -26,7 +26,7 @@ import { BigWinOverlay, celebrateWin } from './BigWin';
 import { DEALER_NAMES, DealerDialogue, type DealerLine } from './DealerDialogue';
 import { TipTray } from './Tipping';
 import { CardTableScene, feltAt, useCardScene } from './CardTableScene';
-import { CARD_LAYOUTS, crapsSceneFor, rouletteSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
+import { crapsSceneFor, rouletteSceneFor, type CrapsScene, type Pt, type Rect } from '../../expansion/tableThemes';
 import { boardCell, RouletteBoard } from './RouletteBoard';
 import { SHOW_TABLE_DEALER_SPRITES } from './DealerPanel';
 import { ServerPanel, signalRoundComplete } from './ServerPanel';
@@ -34,7 +34,8 @@ import { ChipButton, ChipImg } from './Chips';
 import { CasinoLocationContext, devChipPreview, devLegacyTables, useCasinoLocation } from './casinoLocation';
 import { chipAsset } from '../../expansion/chipThemes';
 import { CasinoLobby } from './CasinoLobby';
-import { LOCATIONS, type CasinoGameId } from '../../expansion/locations';
+import { casinoAt, locationById, type CasinoGameId } from '../../expansion/locations';
+import { ART as LOBBY_ART } from './CasinoLobby';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
 import { pendingRace } from '../../services/casinoService';
 
@@ -47,7 +48,6 @@ import { pendingRace } from '../../services/casinoService';
 type Game = CasinoGameId;
 
 const CHIPS = [5, 10, 25, 100, 500];
-const BJ_L = CARD_LAYOUTS.blackjack;
 /** Wide scenes (craps, roulette) also put the dealer beside the table on wide screens (tested: fits one screen). */
 const WIDE_SIDE = true;
 
@@ -163,7 +163,7 @@ function Blackjack() {
   const playing = table.phase === 'player';
   const h = table.hands[table.active];
   const dealerShown = table.holeHidden && playing ? [table.dealer[0]] : table.dealer;
-  const scene = useCardScene();
+  const scene = useCardScene('blackjack');
   const dealerTotal = table.dealer.length > 0 && <span className="felt-total">Dealer {handValue(dealerShown).total}</span>;
   const dealerCards = (
     <div className="cards">
@@ -194,12 +194,17 @@ function Blackjack() {
       <div className="table-layout side">
       {scene ? (
         <CardTableScene scene={scene} game="blackjack" testId="bj-felt">
-          <div className="cs-block cs-row" style={feltAt(BJ_L.dealer)}>
+          <div className="cs-block cs-row" style={feltAt(scene.layout.dealer)}>
             {dealerTotal}
             {dealerCards}
           </div>
-          <p className="cs-rules" style={feltAt(BJ_L.rules)}>Blackjack pays 3 to 2 · Dealer stands on all 17s</p>
-          <div className={`cs-block cs-row felt-hands n${Math.max(1, table.hands.length)}`} style={feltAt(BJ_L.hands)}>{hands}</div>
+          {scene.ruleCover ? (
+            // The felt prints "Dealer hits soft 17"; this game's dealer stands on all 17s, so that line is covered with the real rule.
+            <p className="cs-rules cs-rule-cover" style={{ ...feltAt(scene.ruleCover.box, true), '--felt': scene.ruleCover.felt } as CSSProperties} data-testid="bj-rule">Dealer stands on all 17s</p>
+          ) : (
+            <p className="cs-rules" style={feltAt(scene.layout.rules)}>Blackjack pays 3 to 2 · Dealer stands on all 17s</p>
+          )}
+          <div className={`cs-block cs-row felt-hands n${Math.max(1, table.hands.length)}`} style={feltAt(scene.layout.hands)}>{hands}</div>
         </CardTableScene>
       ) : (
         <div className={`table-stage ${SHOW_TABLE_DEALER_SPRITES ? '' : 'no-dealer'}`}>
@@ -760,8 +765,6 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
 
 // ───────────────────────── Casino floor ─────────────────────────
 
-const DESERT_PALMS = LOCATIONS.find((l) => l.id === 'desert_palms')!;
-
 export function CasinoPanel() {
   const { state, services, run, notify } = useGame();
   const c = state.career;
@@ -778,16 +781,23 @@ export function CasinoPanel() {
   }, [pending?.roundId, inside]);
   const block = casinoBlocker(c);
   const net = casinoNet(c);
-  const exterior = casinoArt('casino_exterior');
+  // The casino Ryan is in (or, in development, a previewed one). Everything on the floor follows it.
+  const at = devChipPreview() ?? casinoAt(c);
+  const here = locationById(at);
+  const exterior = at === 'desert_palms' ? casinoArt('casino_exterior').url : LOBBY_ART[at].art;
   const logo = casinoArt('casino_logo');
 
   return (
-    <CasinoLocationContext.Provider value={devChipPreview() ?? 'desert_palms'}>
+    <CasinoLocationContext.Provider value={at}>
     <main className="casino">
       <BigWinOverlay />
-      <section className="hub-card casino-head" style={{ backgroundImage: `linear-gradient(90deg, rgba(20,8,30,0.92) 0%, rgba(20,8,30,0.55) 45%, rgba(20,8,30,0.1) 100%), url(${exterior.url})` }}>
+      <section className={`hub-card casino-head loc-${at}`} style={{ backgroundImage: `linear-gradient(90deg, rgba(20,8,30,0.92) 0%, rgba(20,8,30,0.55) 45%, rgba(20,8,30,0.1) 100%), url(${exterior})` }}>
         <div className="casino-brand">
-          <img className="casino-logo" src={logo.url} alt="Desert Palms Casino" draggable={false} />
+          {at === 'desert_palms' ? (
+            <img className="casino-logo" src={logo.url} alt="Desert Palms Casino" draggable={false} />
+          ) : (
+            <p className="casino-name" data-testid="casino-name">{here.name}</p>
+          )}
           <p className="muted">Blackjack, slots, video poker, keno, craps, roulette, baccarat, Three Card Poker and greyhound racing. In-game money only.</p>
         </div>
         <dl className="casino-stats">
@@ -801,7 +811,7 @@ export function CasinoPanel() {
 
       {!inside ? (
         <section className="hub-card casino-door">
-          <img className="door-art" src={exterior.url} alt="The Desert Palms entrance, palms and fountains lit up at night" draggable={false} />
+          <img className="door-art" src={exterior} alt={`The ${here.name.replace(/^The /, '')} entrance at night`} draggable={false} />
           <div>
             <h2 className="hub-title">A night out?</h2>
             <p>Spending the evening at the casino uses <b>one of this week&rsquo;s activities</b> and {CASINO_ENERGY} energy. Once you&rsquo;re in, play as much as you like until next week.</p>
@@ -809,8 +819,10 @@ export function CasinoPanel() {
               className="btn primary"
               disabled={!!block}
               onClick={async () => {
-                const o = await run(() => services.casino.visit());
-                if (o) notify({ kind: 'info', title: 'Welcome to Desert Palms' });
+                // The real casino (a development preview only changes the pictures).
+                const real = casinoAt(c);
+                const o = await run(() => services.casino.visit(real));
+                if (o) notify({ kind: 'info', title: `Welcome to ${locationById(real).name}` });
               }}
               data-testid="casino-enter"
             >
@@ -822,7 +834,7 @@ export function CasinoPanel() {
       ) : (
         <>
           <nav className="subtabs casino-tabs" id="casino-games" aria-label="Casino games">
-            {DESERT_PALMS.games.map((g) => (
+            {here.games.map((g) => (
               <button key={g.id} className={game === g.id ? 'on' : ''} onClick={() => setGame(g.id)} data-testid={`casino-${g.id}`}>{g.label}</button>
             ))}
           </nav>

@@ -21,6 +21,8 @@ import { betBlocker as threeCardBlocker, newDeck, settle3, type PendingThreeCard
 import { betBlocker as vpBlocker, dealVP, settleVP, VP_MAX_RETURN, vpStake, type PendingVideoPoker, type VideoPokerResult } from '../casino/videoPoker';
 import { betBlocker as kenoBlocker, drawBalls, KENO_MAX_RETURN, settleKeno, type KenoResult } from '../casino/keno';
 import * as engine from '../career/engine';
+import { locationById } from '../expansion/locations';
+import type { LocationId } from '../expansion/unlocks';
 import { CareerRuleError } from '../career/engine';
 import type { CareerState } from '../career/types';
 import { DomainError } from '../core/errors';
@@ -93,9 +95,15 @@ export class CasinoService {
     private readonly notifier: Notifier,
   ) {}
 
-  /** Uses one weekly activity (free if already visited this week). */
-  async visit() {
-    return this.career.runStep((c) => engine.visitCasino(c));
+  /**
+   * A night at a casino: uses one weekly activity (free if already in a casino this week, which
+   * also lets Ryan move between casinos). A casino other than Desert Palms must be unlocked.
+   */
+  async visit(at: LocationId = 'desert_palms') {
+    const loc = locationById(at);
+    if (loc.status !== 'open') throw new DomainError('CAREER_RULE', `${loc.name} isn't open yet`);
+    if (loc.unlock && !(await this.db.unlocks.get(loc.unlock))) throw new DomainError('CAREER_RULE', `${loc.name} is still locked`);
+    return this.career.runStep((c) => engine.visitCasino(c, at));
   }
 
   newRoundId(game: CasinoGame) {

@@ -2,8 +2,9 @@
  * Casino lobby (Casino Secrets & Rivalries, Slice 1): pick a casino.
  *
  * Desert Palms is open from the start; The White Buffalo and Morongo Sky unlock permanently the
- * first time the bank reaches $100,000 and $1,000,000 (CONFIRMED). Their floors aren't built
- * yet, so an unlocked one says "opening soon".
+ * first time the bank reaches $100,000 and $1,000,000 (CONFIRMED). All three floors are open:
+ * choosing one goes there (a night out uses one weekly activity; once in, moving between
+ * casinos that night is free).
  *
  * Art (CASINO_LOBBY_ASSET_PACK_V1, prototype): each card is the casino's 1200x520 panel, the
  * transparent locked overlay when locked, and the transparent gold frame, stacked at the art's
@@ -14,7 +15,7 @@
  */
 import { useEffect, useRef } from 'react';
 import { casinoBlocker, casinoWeekKey } from '../../career/engine';
-import { isUnlocked, LOCATIONS, unlockThreshold, type LocationDef } from '../../expansion/locations';
+import { casinoAt, isUnlocked, locationById, LOCATIONS, unlockThreshold, type LocationDef } from '../../expansion/locations';
 import { requestCasinoMusic } from '../../expansion/music';
 import type { LocationId } from '../../expansion/unlocks';
 import { useGame } from '../GameContext';
@@ -26,7 +27,7 @@ import msArt from '../../assets/casino/lobby/morongo_sky_art.webp';
 import wbLock from '../../assets/casino/lobby/white_buffalo_locked.png';
 import msLock from '../../assets/casino/lobby/morongo_sky_locked.png';
 
-const ART: Record<LocationId, { art: string; locked: string | null }> = {
+export const ART: Record<LocationId, { art: string; locked: string | null }> = {
   desert_palms: { art: dpArt, locked: null },
   white_buffalo: { art: wbArt, locked: wbLock },
   morongo_sky: { art: msArt, locked: msLock },
@@ -46,28 +47,31 @@ export function CasinoLobby({ onPlayHere }: { onPlayHere?: () => void }) {
   const block = casinoBlocker(c);
   const cards = useRef<(HTMLButtonElement | null)[]>([]);
 
+  const at = casinoAt(c);
   // Music hook for the future soundtrack system: the lobby of the casino Ryan is in.
   useEffect(() => {
-    requestCasinoMusic(LOCATIONS[0].music.lobby);
+    requestCasinoMusic(locationById(at).music.lobby);
     return () => requestCasinoMusic(null);
-  }, []);
+  }, [at]);
 
   const choose = async (l: LocationDef) => {
-    if (l.status === 'open') {
-      if (inside) return onPlayHere?.();
-      if (block) return notify({ kind: 'info', title: 'Not tonight', body: block });
-      const o = await run(() => services.casino.visit());
-      if (o) notify({ kind: 'info', title: `Welcome to ${l.name}` });
-      return;
-    }
     if (!isUnlocked(l, unlocked)) {
       return notify({ kind: 'info', title: `${l.name} is locked`, body: `It opens the first time your bank reaches ${formatMoney(unlockThreshold(l)!)}.` });
     }
-    if (!seen.get(l.id)) {
+    if (l.status !== 'open') {
+      return notify({ kind: 'info', title: `${l.name} is unlocked`, body: 'Its doors open in a future update. Your unlock is saved for good.' });
+    }
+    if (!seen.get(l.id) && l.unlock) {
       await services.expansion.markSeen(l.id).catch(() => {});
       await refresh();
     }
-    notify({ kind: 'info', title: `${l.name} is unlocked`, body: 'Its doors open in a future update. Your unlock is saved for good.' });
+    if (inside && at === l.id) return onPlayHere?.();
+    if (!inside && block) return notify({ kind: 'info', title: 'Not tonight', body: block });
+    const o = await run(() => services.casino.visit(l.id));
+    if (o) {
+      notify({ kind: 'info', title: `Welcome to ${l.name}` });
+      onPlayHere?.();
+    }
   };
 
   const focusCard = (i: number) => cards.current[(i + LOCATIONS.length) % LOCATIONS.length]?.focus();
@@ -107,19 +111,21 @@ export function CasinoLobby({ onPlayHere }: { onPlayHere?: () => void }) {
     <nav className="casino-lobby" aria-label="Casinos" data-testid="casino-lobby">
       {LOCATIONS.map((l, i) => {
         const isOpen = isUnlocked(l, unlocked);
-        const here = l.status === 'open';
+        // `here`: open to Ryan tonight (unlocked and its floor built). `current`: where he is.
+        const here = isOpen && l.status === 'open';
+        const current = here && inside && at === l.id;
         const threshold = unlockThreshold(l);
-        const fresh = isOpen && !here && !seen.get(l.id);
+        const fresh = here && !!l.unlock && !seen.get(l.id);
         const art = ART[l.id];
-        const status = here ? (inside ? 'You are here' : 'Open tonight') : isOpen ? 'Unlocked · opening soon' : 'Locked';
-        const action = here ? (inside ? 'Play here' : 'Head inside') : isOpen ? 'Coming soon' : `Reach ${formatMoney(threshold!)}`;
+        const status = current ? 'You are here' : here ? 'Open tonight' : isOpen ? 'Unlocked · opening soon' : 'Locked';
+        const action = current ? 'Play here' : here ? (inside ? 'Go here' : 'Head inside') : isOpen ? 'Coming soon' : `Reach ${formatMoney(threshold!)}`;
         return (
           <button
             key={l.id}
             ref={(el) => {
               cards.current[i] = el;
             }}
-            className={`lobby-card ${here ? 'here' : isOpen ? 'unlocked' : 'locked'} ${here && inside ? 'current' : ''}`}
+            className={`lobby-card ${here ? 'here' : isOpen ? 'unlocked' : 'locked'} ${current ? 'current' : ''}`}
             onClick={() => choose(l)}
             onKeyDown={(e) => {
               if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -130,7 +136,7 @@ export function CasinoLobby({ onPlayHere }: { onPlayHere?: () => void }) {
                 focusCard(i - 1);
               }
             }}
-            aria-current={here && inside ? 'page' : undefined}
+            aria-current={current ? 'page' : undefined}
             aria-label={`${l.name}. ${status}.${!isOpen && threshold ? ` Opens the first time your bank reaches ${formatMoney(threshold)}.` : ''}`}
             data-testid={`lobby-${l.id}`}
             data-state={here ? 'open' : isOpen ? 'unlocked' : 'locked'}

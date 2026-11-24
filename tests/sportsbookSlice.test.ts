@@ -117,11 +117,11 @@ describe('bet slip maths', () => {
 });
 
 describe('lounge themes and the sandbox boundary', () => {
-  it('every casino has a complete theme; only Desert Palms is playable in this slice', () => {
+  it('every casino has a complete theme, and every lounge is playable (0.20.1 opens all three floors)', () => {
     for (const t of Object.values(LOUNGES)) {
       expect(Object.keys(t.tokens).sort()).toEqual(['accent', 'bg1', 'bg2', 'crt', 'crtText', 'neon', 'panel', 'trim']);
     }
-    expect(Object.values(LOUNGES).filter((t) => t.playable).map((t) => t.location)).toEqual(['desert_palms']);
+    expect(Object.values(LOUNGES).filter((t) => t.playable).map((t) => t.location)).toEqual(['desert_palms', 'white_buffalo', 'morongo_sky']);
   });
 
   it('the asset manifest lists every required asset with exact sizes', () => {
