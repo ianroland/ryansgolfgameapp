@@ -1,0 +1,188 @@
+{
+  "$id": "sports-lore/2/history/players.json",
+  "title": "sports-lore/2 history/players.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "name": {
+        "type": "string"
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "position": {
+        "type": "string"
+      },
+      "birth_year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "debut": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "final_season": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "teams": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "team": {
+              "type": "string",
+              "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+            },
+            "from": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            },
+            "to": {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2200
+            }
+          },
+          "required": [
+            "team",
+            "from",
+            "to"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "status_2027": {
+        "type": "string",
+        "enum": [
+          "active",
+          "reserve",
+          "retired",
+          "unplayed"
+        ]
+      },
+      "bible_person": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "hall_of_fame": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "year": {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2200
+              },
+              "pathway": {
+                "type": "string",
+                "enum": [
+                  "statistical",
+                  "legends"
+                ]
+              }
+            },
+            "required": [
+              "year",
+              "pathway"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "draft": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "year": {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2200
+              },
+              "round": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "pick": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "overall": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "team": {
+                "type": "string",
+                "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+              }
+            },
+            "required": [
+              "year",
+              "round",
+              "pick",
+              "overall",
+              "team"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "league",
+      "position",
+      "birth_year",
+      "debut",
+      "final_season",
+      "teams",
+      "status_2027",
+      "bible_person",
+      "hall_of_fame",
+      "draft"
+    ],
+    "additionalProperties": false
+  }
+}

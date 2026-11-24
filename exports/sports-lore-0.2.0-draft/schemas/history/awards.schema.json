@@ -1,0 +1,57 @@
+{
+  "$id": "sports-lore/2/history/awards.json",
+  "title": "sports-lore/2 history/awards.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "award": {
+        "type": "string"
+      },
+      "athlete_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "team": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "value": {
+        "type": "number"
+      },
+      "basis": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "year",
+      "award",
+      "athlete_id",
+      "team",
+      "value",
+      "basis"
+    ],
+    "additionalProperties": false
+  }
+}

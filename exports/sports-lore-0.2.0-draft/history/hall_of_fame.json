@@ -1,0 +1,1082 @@
+[
+ {
+  "id": "fhl_p0652",
+  "athlete_id": "fhl_p0652",
+  "league": "fhl",
+  "year": 2027,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 306,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0653",
+  "athlete_id": "fhl_p0653",
+  "league": "fhl",
+  "year": 2027,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 275,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003543",
+  "athlete_id": "igl_generated_003543",
+  "league": "igl",
+  "year": 2027,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2615,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0191",
+  "athlete_id": "ccl_p0191",
+  "league": "ccl",
+  "year": 2027,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 12693,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_001138",
+  "athlete_id": "fhl_generated_001138",
+  "league": "fhl",
+  "year": 2027,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 302,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0276",
+  "athlete_id": "ccl_p0276",
+  "league": "ccl",
+  "year": 2026,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 13894,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_002206",
+  "athlete_id": "gdc_generated_002206",
+  "league": "gdc",
+  "year": 2026,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1465,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0274",
+  "athlete_id": "ccl_p0274",
+  "league": "ccl",
+  "year": 2026,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 13299,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_generated_000357",
+  "athlete_id": "ccl_generated_000357",
+  "league": "ccl",
+  "year": 2026,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 12088,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_002188",
+  "athlete_id": "gdc_generated_002188",
+  "league": "gdc",
+  "year": 2026,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1587,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003524",
+  "athlete_id": "igl_generated_003524",
+  "league": "igl",
+  "year": 2025,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1701,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003432",
+  "athlete_id": "igl_generated_003432",
+  "league": "igl",
+  "year": 2024,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 3054,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_owen_kessler",
+  "athlete_id": "fhl_owen_kessler",
+  "league": "fhl",
+  "year": 2024,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 342,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0045",
+  "athlete_id": "gdc_p0045",
+  "league": "gdc",
+  "year": 2024,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1506,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003502",
+  "athlete_id": "igl_generated_003502",
+  "league": "igl",
+  "year": 2024,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1619,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_001100",
+  "athlete_id": "fhl_generated_001100",
+  "league": "fhl",
+  "year": 2024,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 320,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0127",
+  "athlete_id": "gdc_p0127",
+  "league": "gdc",
+  "year": 2023,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1650,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003448",
+  "athlete_id": "igl_generated_003448",
+  "league": "igl",
+  "year": 2023,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2004,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0589",
+  "athlete_id": "fhl_p0589",
+  "league": "fhl",
+  "year": 2023,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 413,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0150",
+  "athlete_id": "gdc_p0150",
+  "league": "gdc",
+  "year": 2022,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1656,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0171",
+  "athlete_id": "gdc_p0171",
+  "league": "gdc",
+  "year": 2022,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1469,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_andre_bellamy",
+  "athlete_id": "ccl_andre_bellamy",
+  "league": "ccl",
+  "year": 2019,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 16050,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003334",
+  "athlete_id": "igl_generated_003334",
+  "league": "igl",
+  "year": 2018,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2223,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0545",
+  "athlete_id": "fhl_p0545",
+  "league": "fhl",
+  "year": 2018,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 369,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003359",
+  "athlete_id": "igl_generated_003359",
+  "league": "igl",
+  "year": 2018,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2640,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0231",
+  "athlete_id": "ccl_p0231",
+  "league": "ccl",
+  "year": 2017,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 14029,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0461",
+  "athlete_id": "igl_p0461",
+  "league": "igl",
+  "year": 2017,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1690,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_002005",
+  "athlete_id": "gdc_generated_002005",
+  "league": "gdc",
+  "year": 2016,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1533,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003297",
+  "athlete_id": "igl_generated_003297",
+  "league": "igl",
+  "year": 2016,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2820,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0671",
+  "athlete_id": "fhl_p0671",
+  "league": "fhl",
+  "year": 2016,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 275,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0208",
+  "athlete_id": "ccl_p0208",
+  "league": "ccl",
+  "year": 2016,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 14604,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003279",
+  "athlete_id": "igl_generated_003279",
+  "league": "igl",
+  "year": 2016,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2336,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0334",
+  "athlete_id": "ccl_p0334",
+  "league": "ccl",
+  "year": 2015,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 13053,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0588",
+  "athlete_id": "fhl_p0588",
+  "league": "fhl",
+  "year": 2015,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 273,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0418",
+  "athlete_id": "igl_p0418",
+  "league": "igl",
+  "year": 2013,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2588,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003219",
+  "athlete_id": "igl_generated_003219",
+  "league": "igl",
+  "year": 2013,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1763,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0439",
+  "athlete_id": "igl_p0439",
+  "league": "igl",
+  "year": 2013,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 3527,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0441",
+  "athlete_id": "igl_p0441",
+  "league": "igl",
+  "year": 2013,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1692,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003170",
+  "athlete_id": "igl_generated_003170",
+  "league": "igl",
+  "year": 2013,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2007,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_000918",
+  "athlete_id": "fhl_generated_000918",
+  "league": "fhl",
+  "year": 2012,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 277,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_001924",
+  "athlete_id": "gdc_generated_001924",
+  "league": "gdc",
+  "year": 2011,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1481,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0038",
+  "athlete_id": "gdc_p0038",
+  "league": "gdc",
+  "year": 2010,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1679,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_000871",
+  "athlete_id": "fhl_generated_000871",
+  "league": "fhl",
+  "year": 2010,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 276,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0163",
+  "athlete_id": "gdc_p0163",
+  "league": "gdc",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1625,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0058",
+  "athlete_id": "gdc_p0058",
+  "league": "gdc",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2119,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_001878",
+  "athlete_id": "gdc_generated_001878",
+  "league": "gdc",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1472,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0312",
+  "athlete_id": "ccl_p0312",
+  "league": "ccl",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 13098,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_marco_salazar",
+  "athlete_id": "gdc_marco_salazar",
+  "league": "gdc",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2096,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0059",
+  "athlete_id": "gdc_p0059",
+  "league": "gdc",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1486,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_003064",
+  "athlete_id": "igl_generated_003064",
+  "league": "igl",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2488,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0164",
+  "athlete_id": "gdc_p0164",
+  "league": "gdc",
+  "year": 2009,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1995,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0144",
+  "athlete_id": "gdc_p0144",
+  "league": "gdc",
+  "year": 2008,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1724,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0080",
+  "athlete_id": "gdc_p0080",
+  "league": "gdc",
+  "year": 2008,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1852,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0143",
+  "athlete_id": "gdc_p0143",
+  "league": "gdc",
+  "year": 2008,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2022,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0227",
+  "athlete_id": "ccl_p0227",
+  "league": "ccl",
+  "year": 2006,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 13424,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0228",
+  "athlete_id": "ccl_p0228",
+  "league": "ccl",
+  "year": 2006,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 14062,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0396",
+  "athlete_id": "igl_p0396",
+  "league": "igl",
+  "year": 2006,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2563,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0121",
+  "athlete_id": "gdc_p0121",
+  "league": "gdc",
+  "year": 2005,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1631,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_000795",
+  "athlete_id": "fhl_generated_000795",
+  "league": "fhl",
+  "year": 2004,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 277,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002947",
+  "athlete_id": "igl_generated_002947",
+  "league": "igl",
+  "year": 2003,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2060,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002953",
+  "athlete_id": "igl_generated_002953",
+  "league": "igl",
+  "year": 2003,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1946,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_viktor_soren",
+  "athlete_id": "fhl_viktor_soren",
+  "league": "fhl",
+  "year": 2003,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 397,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002893",
+  "athlete_id": "igl_generated_002893",
+  "league": "igl",
+  "year": 2002,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 3390,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0624",
+  "athlete_id": "fhl_p0624",
+  "league": "fhl",
+  "year": 2001,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 329,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0622",
+  "athlete_id": "fhl_p0622",
+  "league": "fhl",
+  "year": 2001,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 403,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_darius_king",
+  "athlete_id": "ccl_darius_king",
+  "league": "ccl",
+  "year": 2000,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 14227,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0664",
+  "athlete_id": "fhl_p0664",
+  "league": "fhl",
+  "year": 2000,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 287,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0665",
+  "athlete_id": "fhl_p0665",
+  "league": "fhl",
+  "year": 2000,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 398,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0308",
+  "athlete_id": "ccl_p0308",
+  "league": "ccl",
+  "year": 2000,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 13764,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0540",
+  "athlete_id": "fhl_p0540",
+  "league": "fhl",
+  "year": 2000,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 377,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002836",
+  "athlete_id": "igl_generated_002836",
+  "league": "igl",
+  "year": 2000,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2757,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0666",
+  "athlete_id": "fhl_p0666",
+  "league": "fhl",
+  "year": 2000,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 286,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002804",
+  "athlete_id": "igl_generated_002804",
+  "league": "igl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1866,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0182",
+  "athlete_id": "ccl_p0182",
+  "league": "ccl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 12527,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0013",
+  "athlete_id": "gdc_p0013",
+  "league": "gdc",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1762,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0391",
+  "athlete_id": "igl_p0391",
+  "league": "igl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2014,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002788",
+  "athlete_id": "igl_generated_002788",
+  "league": "igl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 3179,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0370",
+  "athlete_id": "igl_p0370",
+  "league": "igl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1863,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_leon_mercer",
+  "athlete_id": "ccl_leon_mercer",
+  "league": "ccl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 16698,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "ccl_p0183",
+  "athlete_id": "ccl_p0183",
+  "league": "ccl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 15200,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002908",
+  "athlete_id": "igl_generated_002908",
+  "league": "igl",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1730,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0055",
+  "athlete_id": "gdc_p0055",
+  "league": "gdc",
+  "year": 1999,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1475,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0139",
+  "athlete_id": "gdc_p0139",
+  "league": "gdc",
+  "year": 1998,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1510,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_001684",
+  "athlete_id": "gdc_generated_001684",
+  "league": "gdc",
+  "year": 1998,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1543,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_000653",
+  "athlete_id": "fhl_generated_000653",
+  "league": "fhl",
+  "year": 1998,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 275,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_000652",
+  "athlete_id": "fhl_generated_000652",
+  "league": "fhl",
+  "year": 1998,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 301,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0517",
+  "athlete_id": "fhl_p0517",
+  "league": "fhl",
+  "year": 1998,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 301,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_elias_voss",
+  "athlete_id": "gdc_elias_voss",
+  "league": "gdc",
+  "year": 1997,
+  "pathway": "legends",
+  "basis": "Three no-hitters in the 1983 season (13–1)",
+  "score": 558,
+  "provenance": "approved_canon"
+ },
+ {
+  "id": "gdc_p0078",
+  "athlete_id": "gdc_p0078",
+  "league": "gdc",
+  "year": 1997,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1469,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0076",
+  "athlete_id": "gdc_p0076",
+  "league": "gdc",
+  "year": 1997,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1856,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_001662",
+  "athlete_id": "gdc_generated_001662",
+  "league": "gdc",
+  "year": 1997,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1545,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002690",
+  "athlete_id": "igl_generated_002690",
+  "league": "igl",
+  "year": 1995,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1614,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002758",
+  "athlete_id": "igl_generated_002758",
+  "league": "igl",
+  "year": 1995,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2353,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_p0601",
+  "athlete_id": "fhl_p0601",
+  "league": "fhl",
+  "year": 1994,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 276,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002754",
+  "athlete_id": "igl_generated_002754",
+  "league": "igl",
+  "year": 1994,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1971,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002698",
+  "athlete_id": "igl_generated_002698",
+  "league": "igl",
+  "year": 1993,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1920,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "fhl_generated_000558",
+  "athlete_id": "fhl_generated_000558",
+  "league": "fhl",
+  "year": 1993,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 275,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0137",
+  "athlete_id": "gdc_p0137",
+  "league": "gdc",
+  "year": 1991,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1859,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002532",
+  "athlete_id": "igl_generated_002532",
+  "league": "igl",
+  "year": 1991,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 3032,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0138",
+  "athlete_id": "gdc_p0138",
+  "league": "gdc",
+  "year": 1991,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1943,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002556",
+  "athlete_id": "igl_generated_002556",
+  "league": "igl",
+  "year": 1991,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1976,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0389",
+  "athlete_id": "igl_p0389",
+  "league": "igl",
+  "year": 1990,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2188,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0053",
+  "athlete_id": "gdc_p0053",
+  "league": "gdc",
+  "year": 1989,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1533,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0054",
+  "athlete_id": "gdc_p0054",
+  "league": "gdc",
+  "year": 1989,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1604,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_generated_002483",
+  "athlete_id": "igl_generated_002483",
+  "league": "igl",
+  "year": 1988,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 2737,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "igl_p0346",
+  "athlete_id": "igl_p0346",
+  "league": "igl",
+  "year": 1988,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1938,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_p0159",
+  "athlete_id": "gdc_p0159",
+  "league": "gdc",
+  "year": 1988,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1867,
+  "provenance": "derived_statistic"
+ },
+ {
+  "id": "gdc_generated_001413",
+  "athlete_id": "gdc_generated_001413",
+  "league": "gdc",
+  "year": 1985,
+  "pathway": "statistical",
+  "basis": null,
+  "score": 1582,
+  "provenance": "derived_statistic"
+ }
+]

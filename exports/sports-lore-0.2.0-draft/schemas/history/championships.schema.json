@@ -1,0 +1,103 @@
+{
+  "$id": "sports-lore/2/history/championships.json",
+  "title": "sports-lore/2 history/championships.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "trophy": {
+        "type": "string"
+      },
+      "champion": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "runner_up": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "result": {
+        "type": "string"
+      },
+      "series_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "deciding_game": {
+        "type": "string",
+        "minLength": 1
+      },
+      "championship_mvp": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "participants": {
+        "minItems": 4,
+        "maxItems": 4,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+        }
+      },
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "provenance": {
+        "type": "string",
+        "enum": [
+          "approved_canon",
+          "proposed_canon",
+          "derived_statistic",
+          "generated_history"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "year",
+      "trophy",
+      "champion",
+      "runner_up",
+      "result",
+      "series_id",
+      "deciding_game",
+      "championship_mvp",
+      "participants",
+      "events",
+      "provenance"
+    ],
+    "additionalProperties": false
+  }
+}

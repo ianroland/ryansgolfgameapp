@@ -1,0 +1,108 @@
+{
+  "$id": "sports-lore/2/history/seasons.json",
+  "title": "sports-lore/2 history/seasons.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "games_per_team": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      },
+      "standings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "team": {
+              "type": "string",
+              "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+            },
+            "w": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "l": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "team",
+            "w",
+            "l"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "seeds": {
+        "minItems": 4,
+        "maxItems": 4,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+        }
+      },
+      "champion": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "runner_up": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "origin": {
+        "type": "string"
+      },
+      "adjusted": {
+        "type": "boolean"
+      },
+      "provenance": {
+        "type": "string",
+        "enum": [
+          "approved_canon",
+          "proposed_canon",
+          "derived_statistic",
+          "generated_history"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "year",
+      "games_per_team",
+      "standings",
+      "seeds",
+      "champion",
+      "runner_up",
+      "origin",
+      "adjusted",
+      "provenance"
+    ],
+    "additionalProperties": false
+  }
+}

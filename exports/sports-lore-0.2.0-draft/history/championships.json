@@ -1,0 +1,4210 @@
+[
+ {
+  "id": "gdc-1972",
+  "league": "gdc",
+  "year": 1972,
+  "trophy": "Founders Cup",
+  "champion": "gdc_gilas",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-3",
+  "series_id": "gdc:h1972:po:final:gdc_gilas-gdc_kingfishers",
+  "deciding_game": "gdc:h1972:po:final:gdc_gilas-gdc_kingfishers:g7",
+  "championship_mvp": "gdc_generated_001391",
+  "participants": [
+   "gdc_millers",
+   "gdc_ore_haulers",
+   "gdc_gilas",
+   "gdc_kingfishers"
+  ],
+  "events": [
+   "gdc-1972-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1973",
+  "league": "gdc",
+  "year": 1973,
+  "trophy": "Founders Cup",
+  "champion": "gdc_gilas",
+  "runner_up": "gdc_loons",
+  "result": "4-2",
+  "series_id": "gdc:h1973:po:final:gdc_gilas-gdc_loons",
+  "deciding_game": "gdc:h1973:po:final:gdc_gilas-gdc_loons:g6",
+  "championship_mvp": "gdc_generated_001396",
+  "participants": [
+   "gdc_gilas",
+   "gdc_loons",
+   "gdc_lamplighters",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1974",
+  "league": "ccl",
+  "year": 1974,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_jackrabbits",
+  "result": "4-2",
+  "series_id": "ccl:h1974:po:final:ccl_anchors-ccl_jackrabbits",
+  "deciding_game": "ccl:h1974:po:final:ccl_anchors-ccl_jackrabbits:g6",
+  "championship_mvp": "ccl_generated_000007",
+  "participants": [
+   "ccl_anchors",
+   "ccl_monsoon",
+   "ccl_jackrabbits",
+   "ccl_voltage"
+  ],
+  "events": [
+   "ccl-1974-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1974",
+  "league": "gdc",
+  "year": 1974,
+  "trophy": "Founders Cup",
+  "champion": "gdc_gilas",
+  "runner_up": "gdc_paddlers",
+  "result": "4-3",
+  "series_id": "gdc:h1974:po:final:gdc_paddlers-gdc_gilas",
+  "deciding_game": "gdc:h1974:po:final:gdc_paddlers-gdc_gilas:g7",
+  "championship_mvp": "gdc_generated_001392",
+  "participants": [
+   "gdc_paddlers",
+   "gdc_kingfishers",
+   "gdc_gilas",
+   "gdc_ore_haulers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1975",
+  "league": "ccl",
+  "year": 1975,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_forge",
+  "result": "4-0",
+  "series_id": "ccl:h1975:po:final:ccl_anchors-ccl_forge",
+  "deciding_game": "ccl:h1975:po:final:ccl_anchors-ccl_forge:g4",
+  "championship_mvp": "ccl_generated_000007",
+  "participants": [
+   "ccl_anchors",
+   "ccl_dustdevils",
+   "ccl_forge",
+   "ccl_comets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1975",
+  "league": "gdc",
+  "year": 1975,
+  "trophy": "Founders Cup",
+  "champion": "gdc_gilas",
+  "runner_up": "gdc_paddlers",
+  "result": "4-1",
+  "series_id": "gdc:h1975:po:final:gdc_gilas-gdc_paddlers",
+  "deciding_game": "gdc:h1975:po:final:gdc_gilas-gdc_paddlers:g5",
+  "championship_mvp": "gdc_generated_001391",
+  "participants": [
+   "gdc_gilas",
+   "gdc_paddlers",
+   "gdc_firebirds",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1976",
+  "league": "ccl",
+  "year": 1976,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_voltage",
+  "result": "4-0",
+  "series_id": "ccl:h1976:po:final:ccl_monsoon-ccl_voltage",
+  "deciding_game": "ccl:h1976:po:final:ccl_monsoon-ccl_voltage:g4",
+  "championship_mvp": "ccl_p0199",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_jackrabbits",
+   "ccl_voltage",
+   "ccl_satellites"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1976",
+  "league": "gdc",
+  "year": 1976,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-1",
+  "series_id": "gdc:h1976:po:final:gdc_loons-gdc_kingfishers",
+  "deciding_game": "gdc:h1976:po:final:gdc_loons-gdc_kingfishers:g5",
+  "championship_mvp": "gdc_generated_001450",
+  "participants": [
+   "gdc_loons",
+   "gdc_kingfishers",
+   "gdc_firebirds",
+   "gdc_ore_haulers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1976",
+  "league": "igl",
+  "year": 1976,
+  "trophy": "Iron Bowl",
+  "champion": "igl_harvesters",
+  "runner_up": "igl_ironclads",
+  "result": "41-24",
+  "series_id": "igl:h1976:po:final:igl_harvesters-igl_ironclads",
+  "deciding_game": "igl:h1976:po:final:igl_harvesters-igl_ironclads:g1",
+  "championship_mvp": "igl_generated_002487",
+  "participants": [
+   "igl_harvesters",
+   "igl_highlanders",
+   "igl_ironclads",
+   "igl_undertow"
+  ],
+  "events": [
+   "igl-1976-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1977",
+  "league": "ccl",
+  "year": 1977,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_forge",
+  "result": "4-1",
+  "series_id": "ccl:h1977:po:final:ccl_voltage-ccl_forge",
+  "deciding_game": "ccl:h1977:po:final:ccl_voltage-ccl_forge:g5",
+  "championship_mvp": "ccl_generated_000068",
+  "participants": [
+   "ccl_anchors",
+   "ccl_satellites",
+   "ccl_voltage",
+   "ccl_forge"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1977",
+  "league": "gdc",
+  "year": 1977,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_firebirds",
+  "result": "4-3",
+  "series_id": "gdc:h1977:po:final:gdc_kingfishers-gdc_firebirds",
+  "deciding_game": "gdc:h1977:po:final:gdc_kingfishers-gdc_firebirds:g7",
+  "championship_mvp": "gdc_generated_001539",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_lamplighters",
+   "gdc_firebirds",
+   "gdc_gilas"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1977",
+  "league": "igl",
+  "year": 1977,
+  "trophy": "Iron Bowl",
+  "champion": "igl_harvesters",
+  "runner_up": "igl_ironclads",
+  "result": "30-17",
+  "series_id": "igl:h1977:po:final:igl_harvesters-igl_ironclads",
+  "deciding_game": "igl:h1977:po:final:igl_harvesters-igl_ironclads:g1",
+  "championship_mvp": "igl_p0409",
+  "participants": [
+   "igl_harvesters",
+   "igl_highlanders",
+   "igl_ironclads",
+   "igl_undertow"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1978",
+  "league": "ccl",
+  "year": 1978,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-2",
+  "series_id": "ccl:h1978:po:final:ccl_dustdevils-ccl_voltage",
+  "deciding_game": "ccl:h1978:po:final:ccl_dustdevils-ccl_voltage:g6",
+  "championship_mvp": "ccl_generated_000067",
+  "participants": [
+   "ccl_dustdevils",
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_forge"
+  ],
+  "events": [],
+  "provenance": "approved_canon"
+ },
+ {
+  "id": "fhl-1978",
+  "league": "fhl",
+  "year": 1978,
+  "trophy": "Frost Cup",
+  "champion": "fhl_floes",
+  "runner_up": "fhl_borealis",
+  "result": "4-1",
+  "series_id": "fhl:h1978:po:final:fhl_floes-fhl_borealis",
+  "deciding_game": "fhl:h1978:po:final:fhl_floes-fhl_borealis:g5",
+  "championship_mvp": "fhl_generated_000513",
+  "participants": [
+   "fhl_floes",
+   "fhl_snowowls",
+   "fhl_borealis",
+   "fhl_rivets"
+  ],
+  "events": [
+   "fhl-1978-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1978",
+  "league": "gdc",
+  "year": 1978,
+  "trophy": "Founders Cup",
+  "champion": "gdc_gilas",
+  "runner_up": "gdc_firebirds",
+  "result": "4-2",
+  "series_id": "gdc:h1978:po:final:gdc_firebirds-gdc_gilas",
+  "deciding_game": "gdc:h1978:po:final:gdc_firebirds-gdc_gilas:g6",
+  "championship_mvp": "gdc_p0054",
+  "participants": [
+   "gdc_loons",
+   "gdc_paddlers",
+   "gdc_firebirds",
+   "gdc_gilas"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1978",
+  "league": "igl",
+  "year": 1978,
+  "trophy": "Iron Bowl",
+  "champion": "igl_undertow",
+  "runner_up": "igl_ironclads",
+  "result": "17-13",
+  "series_id": "igl:h1978:po:final:igl_undertow-igl_ironclads",
+  "deciding_game": "igl:h1978:po:final:igl_undertow-igl_ironclads:g1",
+  "championship_mvp": "igl_p0368",
+  "participants": [
+   "igl_undertow",
+   "igl_ironclads",
+   "igl_harvesters",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1979",
+  "league": "ccl",
+  "year": 1979,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_comets",
+  "result": "4-2",
+  "series_id": "ccl:h1979:po:final:ccl_satellites-ccl_comets",
+  "deciding_game": "ccl:h1979:po:final:ccl_satellites-ccl_comets:g6",
+  "championship_mvp": "ccl_generated_000060",
+  "participants": [
+   "ccl_jackrabbits",
+   "ccl_dustdevils",
+   "ccl_satellites",
+   "ccl_comets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1979",
+  "league": "fhl",
+  "year": 1979,
+  "trophy": "Frost Cup",
+  "champion": "fhl_yetis",
+  "runner_up": "fhl_borealis",
+  "result": "4-1",
+  "series_id": "fhl:h1979:po:final:fhl_yetis-fhl_borealis",
+  "deciding_game": "fhl:h1979:po:final:fhl_yetis-fhl_borealis:g5",
+  "championship_mvp": "fhl_p0619",
+  "participants": [
+   "fhl_yetis",
+   "fhl_snowowls",
+   "fhl_borealis",
+   "fhl_floes"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1979",
+  "league": "gdc",
+  "year": 1979,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_gilas",
+  "result": "4-2",
+  "series_id": "gdc:h1979:po:final:gdc_firebirds-gdc_gilas",
+  "deciding_game": "gdc:h1979:po:final:gdc_firebirds-gdc_gilas:g6",
+  "championship_mvp": "gdc_generated_001381",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_millers",
+   "gdc_gilas",
+   "gdc_paddlers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1979",
+  "league": "igl",
+  "year": 1979,
+  "trophy": "Iron Bowl",
+  "champion": "igl_harvesters",
+  "runner_up": "igl_highlanders",
+  "result": "28-20",
+  "series_id": "igl:h1979:po:final:igl_harvesters-igl_highlanders",
+  "deciding_game": "igl:h1979:po:final:igl_harvesters-igl_highlanders:g1",
+  "championship_mvp": "igl_generated_002483",
+  "participants": [
+   "igl_harvesters",
+   "igl_rockslides",
+   "igl_highlanders",
+   "igl_undertow"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1980",
+  "league": "ccl",
+  "year": 1980,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_voltage",
+  "result": "4-1",
+  "series_id": "ccl:h1980:po:final:ccl_anchors-ccl_voltage",
+  "deciding_game": "ccl:h1980:po:final:ccl_anchors-ccl_voltage:g5",
+  "championship_mvp": "ccl_generated_000002",
+  "participants": [
+   "ccl_comets",
+   "ccl_anchors",
+   "ccl_jackrabbits",
+   "ccl_voltage"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1980",
+  "league": "fhl",
+  "year": 1980,
+  "trophy": "Frost Cup",
+  "champion": "fhl_sawblades",
+  "runner_up": "fhl_narwhals",
+  "result": "4-2",
+  "series_id": "fhl:h1980:po:final:fhl_sawblades-fhl_narwhals",
+  "deciding_game": "fhl:h1980:po:final:fhl_sawblades-fhl_narwhals:g6",
+  "championship_mvp": "fhl_generated_000582",
+  "participants": [
+   "fhl_borealis",
+   "fhl_sawblades",
+   "fhl_yetis",
+   "fhl_narwhals"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1980",
+  "league": "gdc",
+  "year": 1980,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_gilas",
+  "result": "4-1",
+  "series_id": "gdc:h1980:po:final:gdc_kingfishers-gdc_gilas",
+  "deciding_game": "gdc:h1980:po:final:gdc_kingfishers-gdc_gilas:g5",
+  "championship_mvp": "gdc_generated_001419",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_paddlers",
+   "gdc_gilas",
+   "gdc_lamplighters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1980",
+  "league": "igl",
+  "year": 1980,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_highlanders",
+  "result": "55-17",
+  "series_id": "igl:h1980:po:final:igl_thunderherd-igl_highlanders",
+  "deciding_game": "igl:h1980:po:final:igl_thunderherd-igl_highlanders:g1",
+  "championship_mvp": "igl_generated_002633",
+  "participants": [
+   "igl_squall",
+   "igl_thunderherd",
+   "igl_undertow",
+   "igl_highlanders"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1981",
+  "league": "ccl",
+  "year": 1981,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_satellites",
+  "result": "4-1",
+  "series_id": "ccl:h1981:po:final:ccl_voltage-ccl_satellites",
+  "deciding_game": "ccl:h1981:po:final:ccl_voltage-ccl_satellites:g5",
+  "championship_mvp": "ccl_p0179",
+  "participants": [
+   "ccl_voltage",
+   "ccl_satellites",
+   "ccl_dustdevils",
+   "ccl_comets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1981",
+  "league": "fhl",
+  "year": 1981,
+  "trophy": "Frost Cup",
+  "champion": "fhl_sawblades",
+  "runner_up": "fhl_rivets",
+  "result": "4-3",
+  "series_id": "fhl:h1981:po:final:fhl_sawblades-fhl_rivets",
+  "deciding_game": "fhl:h1981:po:final:fhl_sawblades-fhl_rivets:g7",
+  "championship_mvp": "fhl_p0556",
+  "participants": [
+   "fhl_sawblades",
+   "fhl_rivets",
+   "fhl_floes",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1981",
+  "league": "gdc",
+  "year": 1981,
+  "trophy": "Founders Cup",
+  "champion": "gdc_millers",
+  "runner_up": "gdc_firebirds",
+  "result": "4-1",
+  "series_id": "gdc:h1981:po:final:gdc_millers-gdc_firebirds",
+  "deciding_game": "gdc:h1981:po:final:gdc_millers-gdc_firebirds:g5",
+  "championship_mvp": "gdc_generated_001563",
+  "participants": [
+   "gdc_millers",
+   "gdc_paddlers",
+   "gdc_firebirds",
+   "gdc_lamplighters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1981",
+  "league": "igl",
+  "year": 1981,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_rockslides",
+  "result": "24-14",
+  "series_id": "igl:h1981:po:final:igl_highlanders-igl_rockslides",
+  "deciding_game": "igl:h1981:po:final:igl_highlanders-igl_rockslides:g1",
+  "championship_mvp": "igl_p0431",
+  "participants": [
+   "igl_highlanders",
+   "igl_thunderherd",
+   "igl_rockslides",
+   "igl_ironclads"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1982",
+  "league": "ccl",
+  "year": 1982,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_jackrabbits",
+  "result": "4-2",
+  "series_id": "ccl:h1982:po:final:ccl_voltage-ccl_jackrabbits",
+  "deciding_game": "ccl:h1982:po:final:ccl_voltage-ccl_jackrabbits:g6",
+  "championship_mvp": "ccl_generated_000094",
+  "participants": [
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_forge",
+   "ccl_dustdevils"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1982",
+  "league": "fhl",
+  "year": 1982,
+  "trophy": "Frost Cup",
+  "champion": "fhl_yetis",
+  "runner_up": "fhl_floes",
+  "result": "4-1",
+  "series_id": "fhl:h1982:po:final:fhl_yetis-fhl_floes",
+  "deciding_game": "fhl:h1982:po:final:fhl_yetis-fhl_floes:g5",
+  "championship_mvp": "fhl_generated_000600",
+  "participants": [
+   "fhl_yetis",
+   "fhl_polars",
+   "fhl_floes",
+   "fhl_sawblades"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1982",
+  "league": "gdc",
+  "year": 1982,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_ore_haulers",
+  "result": "4-1",
+  "series_id": "gdc:h1982:po:final:gdc_firebirds-gdc_ore_haulers",
+  "deciding_game": "gdc:h1982:po:final:gdc_firebirds-gdc_ore_haulers:g5",
+  "championship_mvp": "gdc_p0096",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_gilas",
+   "gdc_ore_haulers",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1982",
+  "league": "igl",
+  "year": 1982,
+  "trophy": "Iron Bowl",
+  "champion": "igl_harvesters",
+  "runner_up": "igl_smokejumpers",
+  "result": "30-19",
+  "series_id": "igl:h1982:po:final:igl_harvesters-igl_smokejumpers",
+  "deciding_game": "igl:h1982:po:final:igl_harvesters-igl_smokejumpers:g1",
+  "championship_mvp": "igl_generated_002481",
+  "participants": [
+   "igl_harvesters",
+   "igl_thunderherd",
+   "igl_smokejumpers",
+   "igl_highlanders"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1983",
+  "league": "ccl",
+  "year": 1983,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_forge",
+  "result": "4-1",
+  "series_id": "ccl:h1983:po:final:ccl_satellites-ccl_forge",
+  "deciding_game": "ccl:h1983:po:final:ccl_satellites-ccl_forge:g5",
+  "championship_mvp": "ccl_generated_000103",
+  "participants": [
+   "ccl_satellites",
+   "ccl_monsoon",
+   "ccl_forge",
+   "ccl_voltage"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1983",
+  "league": "fhl",
+  "year": 1983,
+  "trophy": "Frost Cup",
+  "champion": "fhl_snowowls",
+  "runner_up": "fhl_rivets",
+  "result": "4-2",
+  "series_id": "fhl:h1983:po:final:fhl_snowowls-fhl_rivets",
+  "deciding_game": "fhl:h1983:po:final:fhl_snowowls-fhl_rivets:g6",
+  "championship_mvp": "fhl_p0665",
+  "participants": [
+   "fhl_yetis",
+   "fhl_polars",
+   "fhl_snowowls",
+   "fhl_rivets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1983",
+  "league": "gdc",
+  "year": 1983,
+  "trophy": "Founders Cup",
+  "champion": "gdc_millers",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-1",
+  "series_id": "gdc:h1983:po:final:gdc_millers-gdc_kingfishers",
+  "deciding_game": "gdc:h1983:po:final:gdc_millers-gdc_kingfishers:g5",
+  "championship_mvp": "gdc_p0137",
+  "participants": [
+   "gdc_loons",
+   "gdc_millers",
+   "gdc_gilas",
+   "gdc_kingfishers"
+  ],
+  "events": [
+   "gdc-1983-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1983",
+  "league": "igl",
+  "year": 1983,
+  "trophy": "Iron Bowl",
+  "champion": "igl_ironclads",
+  "runner_up": "igl_squall",
+  "result": "13-10",
+  "series_id": "igl:h1983:po:final:igl_ironclads-igl_squall",
+  "deciding_game": "igl:h1983:po:final:igl_ironclads-igl_squall:g1",
+  "championship_mvp": "igl_generated_002742",
+  "participants": [
+   "igl_ironclads",
+   "igl_smokejumpers",
+   "igl_squall",
+   "igl_harvesters"
+  ],
+  "events": [
+   "igl-1985-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1984",
+  "league": "ccl",
+  "year": 1984,
+  "trophy": "The Crown",
+  "champion": "ccl_forge",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-1",
+  "series_id": "ccl:h1984:po:final:ccl_forge-ccl_dustdevils",
+  "deciding_game": "ccl:h1984:po:final:ccl_forge-ccl_dustdevils:g5",
+  "championship_mvp": "ccl_generated_000110",
+  "participants": [
+   "ccl_forge",
+   "ccl_dustdevils",
+   "ccl_satellites",
+   "ccl_jackrabbits"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1984",
+  "league": "fhl",
+  "year": 1984,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_polars",
+  "result": "4-3",
+  "series_id": "fhl:h1984:po:final:fhl_polars-fhl_rivets",
+  "deciding_game": "fhl:h1984:po:final:fhl_polars-fhl_rivets:g7",
+  "championship_mvp": "fhl_generated_000559",
+  "participants": [
+   "fhl_polars",
+   "fhl_rivets",
+   "fhl_snowowls",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1984",
+  "league": "gdc",
+  "year": 1984,
+  "trophy": "Founders Cup",
+  "champion": "gdc_millers",
+  "runner_up": "gdc_paddlers",
+  "result": "4-3",
+  "series_id": "gdc:h1984:po:final:gdc_millers-gdc_paddlers",
+  "deciding_game": "gdc:h1984:po:final:gdc_millers-gdc_paddlers:g7",
+  "championship_mvp": "gdc_p0140",
+  "participants": [
+   "gdc_millers",
+   "gdc_paddlers",
+   "gdc_firebirds",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1984",
+  "league": "igl",
+  "year": 1984,
+  "trophy": "Iron Bowl",
+  "champion": "igl_undertow",
+  "runner_up": "igl_squall",
+  "result": "45-24",
+  "series_id": "igl:h1984:po:final:igl_squall-igl_undertow",
+  "deciding_game": "igl:h1984:po:final:igl_squall-igl_undertow:g1",
+  "championship_mvp": "igl_generated_002727",
+  "participants": [
+   "igl_squall",
+   "igl_undertow",
+   "igl_rockslides",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1985",
+  "league": "ccl",
+  "year": 1985,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-1",
+  "series_id": "ccl:h1985:po:final:ccl_voltage-ccl_dustdevils",
+  "deciding_game": "ccl:h1985:po:final:ccl_voltage-ccl_dustdevils:g5",
+  "championship_mvp": "ccl_darius_king",
+  "participants": [
+   "ccl_voltage",
+   "ccl_dustdevils",
+   "ccl_jackrabbits",
+   "ccl_comets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1985",
+  "league": "fhl",
+  "year": 1985,
+  "trophy": "Frost Cup",
+  "champion": "fhl_yetis",
+  "runner_up": "fhl_floes",
+  "result": "4-1",
+  "series_id": "fhl:h1985:po:final:fhl_yetis-fhl_floes",
+  "deciding_game": "fhl:h1985:po:final:fhl_yetis-fhl_floes:g5",
+  "championship_mvp": "fhl_generated_000620",
+  "participants": [
+   "fhl_yetis",
+   "fhl_snowowls",
+   "fhl_floes",
+   "fhl_narwhals"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1985",
+  "league": "gdc",
+  "year": 1985,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-0",
+  "series_id": "gdc:h1985:po:final:gdc_lamplighters-gdc_kingfishers",
+  "deciding_game": "gdc:h1985:po:final:gdc_lamplighters-gdc_kingfishers:g4",
+  "championship_mvp": "gdc_generated_001609",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_lamplighters",
+   "gdc_millers",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1985",
+  "league": "igl",
+  "year": 1985,
+  "trophy": "Iron Bowl",
+  "champion": "igl_ironclads",
+  "runner_up": "igl_harvesters",
+  "result": "42-10",
+  "series_id": "igl:h1985:po:final:igl_ironclads-igl_harvesters",
+  "deciding_game": "igl:h1985:po:final:igl_ironclads-igl_harvesters:g1",
+  "championship_mvp": "igl_generated_002691",
+  "participants": [
+   "igl_ironclads",
+   "igl_harvesters",
+   "igl_squall",
+   "igl_rockslides"
+  ],
+  "events": [
+   "igl-1985-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1986",
+  "league": "ccl",
+  "year": 1986,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_satellites",
+  "result": "4-3",
+  "series_id": "ccl:h1986:po:final:ccl_voltage-ccl_satellites",
+  "deciding_game": "ccl:h1986:po:final:ccl_voltage-ccl_satellites:g7",
+  "championship_mvp": "ccl_p0183",
+  "participants": [
+   "ccl_voltage",
+   "ccl_anchors",
+   "ccl_satellites",
+   "ccl_monsoon"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1986",
+  "league": "fhl",
+  "year": 1986,
+  "trophy": "Frost Cup",
+  "champion": "fhl_sawblades",
+  "runner_up": "fhl_narwhals",
+  "result": "4-0",
+  "series_id": "fhl:h1986:po:final:fhl_sawblades-fhl_narwhals",
+  "deciding_game": "fhl:h1986:po:final:fhl_sawblades-fhl_narwhals:g4",
+  "championship_mvp": "fhl_p0561",
+  "participants": [
+   "fhl_sawblades",
+   "fhl_floes",
+   "fhl_narwhals",
+   "fhl_yetis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1986",
+  "league": "gdc",
+  "year": 1986,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_paddlers",
+  "result": "4-3",
+  "series_id": "gdc:h1986:po:final:gdc_firebirds-gdc_paddlers",
+  "deciding_game": "gdc:h1986:po:final:gdc_firebirds-gdc_paddlers:g7",
+  "championship_mvp": "gdc_generated_001686",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_loons",
+   "gdc_paddlers",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1986",
+  "league": "igl",
+  "year": 1986,
+  "trophy": "Iron Bowl",
+  "champion": "igl_ironclads",
+  "runner_up": "igl_undertow",
+  "result": "24-23",
+  "series_id": "igl:h1986:po:final:igl_ironclads-igl_undertow",
+  "deciding_game": "igl:h1986:po:final:igl_ironclads-igl_undertow:g1",
+  "championship_mvp": "igl_generated_002532",
+  "participants": [
+   "igl_ironclads",
+   "igl_squall",
+   "igl_undertow",
+   "igl_smokejumpers"
+  ],
+  "events": [
+   "igl-1985-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1987",
+  "league": "ccl",
+  "year": 1987,
+  "trophy": "The Crown",
+  "champion": "ccl_comets",
+  "runner_up": "ccl_voltage",
+  "result": "4-3",
+  "series_id": "ccl:h1987:po:final:ccl_comets-ccl_voltage",
+  "deciding_game": "ccl:h1987:po:final:ccl_comets-ccl_voltage:g7",
+  "championship_mvp": "ccl_leon_mercer",
+  "participants": [
+   "ccl_comets",
+   "ccl_voltage",
+   "ccl_anchors",
+   "ccl_forge"
+  ],
+  "events": [
+   "ccl-1987-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1987",
+  "league": "fhl",
+  "year": 1987,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_snowowls",
+  "result": "4-2",
+  "series_id": "fhl:h1987:po:final:fhl_snowowls-fhl_rivets",
+  "deciding_game": "fhl:h1987:po:final:fhl_snowowls-fhl_rivets:g6",
+  "championship_mvp": "fhl_p0644",
+  "participants": [
+   "fhl_snowowls",
+   "fhl_sawblades",
+   "fhl_rivets",
+   "fhl_yetis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1987",
+  "league": "gdc",
+  "year": 1987,
+  "trophy": "Founders Cup",
+  "champion": "gdc_lamplighters",
+  "runner_up": "gdc_firebirds",
+  "result": "4-2",
+  "series_id": "gdc:h1987:po:final:gdc_lamplighters-gdc_firebirds",
+  "deciding_game": "gdc:h1987:po:final:gdc_lamplighters-gdc_firebirds:g6",
+  "championship_mvp": "gdc_p0013",
+  "participants": [
+   "gdc_lamplighters",
+   "gdc_millers",
+   "gdc_firebirds",
+   "gdc_ore_haulers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1987",
+  "league": "igl",
+  "year": 1987,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_thunderherd",
+  "result": "24-23",
+  "series_id": "igl:h1987:po:final:igl_squall-igl_thunderherd",
+  "deciding_game": "igl:h1987:po:final:igl_squall-igl_thunderherd:g1",
+  "championship_mvp": "igl_generated_002700",
+  "participants": [
+   "igl_squall",
+   "igl_thunderherd",
+   "igl_harvesters",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1988",
+  "league": "ccl",
+  "year": 1988,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_comets",
+  "result": "4-2",
+  "series_id": "ccl:h1988:po:final:ccl_voltage-ccl_comets",
+  "deciding_game": "ccl:h1988:po:final:ccl_voltage-ccl_comets:g6",
+  "championship_mvp": "ccl_p0183",
+  "participants": [
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_comets",
+   "ccl_monsoon"
+  ],
+  "events": [
+   "ccl-1987-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1988",
+  "league": "fhl",
+  "year": 1988,
+  "trophy": "Frost Cup",
+  "champion": "fhl_polars",
+  "runner_up": "fhl_yetis",
+  "result": "4-0",
+  "series_id": "fhl:h1988:po:final:fhl_polars-fhl_yetis",
+  "deciding_game": "fhl:h1988:po:final:fhl_polars-fhl_yetis:g4",
+  "championship_mvp": "fhl_generated_000693",
+  "participants": [
+   "fhl_polars",
+   "fhl_yetis",
+   "fhl_narwhals",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1988",
+  "league": "gdc",
+  "year": 1988,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-0",
+  "series_id": "gdc:h1988:po:final:gdc_firebirds-gdc_lamplighters",
+  "deciding_game": "gdc:h1988:po:final:gdc_firebirds-gdc_lamplighters:g4",
+  "championship_mvp": "gdc_p0098",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_lamplighters",
+   "gdc_millers",
+   "gdc_gilas"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1988",
+  "league": "igl",
+  "year": 1988,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_rockslides",
+  "result": "20-13",
+  "series_id": "igl:h1988:po:final:igl_squall-igl_rockslides",
+  "deciding_game": "igl:h1988:po:final:igl_squall-igl_rockslides:g1",
+  "championship_mvp": "igl_generated_002700",
+  "participants": [
+   "igl_squall",
+   "igl_rockslides",
+   "igl_ironclads",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1989",
+  "league": "ccl",
+  "year": 1989,
+  "trophy": "The Crown",
+  "champion": "ccl_comets",
+  "runner_up": "ccl_voltage",
+  "result": "4-2",
+  "series_id": "ccl:h1989:po:final:ccl_comets-ccl_voltage",
+  "deciding_game": "ccl:h1989:po:final:ccl_comets-ccl_voltage:g6",
+  "championship_mvp": "ccl_leon_mercer",
+  "participants": [
+   "ccl_comets",
+   "ccl_jackrabbits",
+   "ccl_voltage",
+   "ccl_monsoon"
+  ],
+  "events": [
+   "ccl-1987-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1989",
+  "league": "fhl",
+  "year": 1989,
+  "trophy": "Frost Cup",
+  "champion": "fhl_polars",
+  "runner_up": "fhl_narwhals",
+  "result": "4-1",
+  "series_id": "fhl:h1989:po:final:fhl_narwhals-fhl_polars",
+  "deciding_game": "fhl:h1989:po:final:fhl_narwhals-fhl_polars:g5",
+  "championship_mvp": "fhl_generated_000748",
+  "participants": [
+   "fhl_narwhals",
+   "fhl_sawblades",
+   "fhl_polars",
+   "fhl_snowowls"
+  ],
+  "events": [
+   "fhl-1989-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1989",
+  "league": "gdc",
+  "year": 1989,
+  "trophy": "Founders Cup",
+  "champion": "gdc_paddlers",
+  "runner_up": "gdc_gilas",
+  "result": "4-3",
+  "series_id": "gdc:h1989:po:final:gdc_paddlers-gdc_gilas",
+  "deciding_game": "gdc:h1989:po:final:gdc_paddlers-gdc_gilas:g7",
+  "championship_mvp": "gdc_p0076",
+  "participants": [
+   "gdc_paddlers",
+   "gdc_loons",
+   "gdc_gilas",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1989",
+  "league": "igl",
+  "year": 1989,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_harvesters",
+  "result": "41-28",
+  "series_id": "igl:h1989:po:final:igl_harvesters-igl_squall",
+  "deciding_game": "igl:h1989:po:final:igl_harvesters-igl_squall:g1",
+  "championship_mvp": "igl_generated_002909",
+  "participants": [
+   "igl_harvesters",
+   "igl_squall",
+   "igl_thunderherd",
+   "igl_highlanders"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1990",
+  "league": "ccl",
+  "year": 1990,
+  "trophy": "The Crown",
+  "champion": "ccl_comets",
+  "runner_up": "ccl_monsoon",
+  "result": "4-1",
+  "series_id": "ccl:h1990:po:final:ccl_comets-ccl_monsoon",
+  "deciding_game": "ccl:h1990:po:final:ccl_comets-ccl_monsoon:g5",
+  "championship_mvp": "ccl_leon_mercer",
+  "participants": [
+   "ccl_dustdevils",
+   "ccl_comets",
+   "ccl_anchors",
+   "ccl_monsoon"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1990",
+  "league": "fhl",
+  "year": 1990,
+  "trophy": "Frost Cup",
+  "champion": "fhl_yetis",
+  "runner_up": "fhl_floes",
+  "result": "4-1",
+  "series_id": "fhl:h1990:po:final:fhl_yetis-fhl_floes",
+  "deciding_game": "fhl:h1990:po:final:fhl_yetis-fhl_floes:g5",
+  "championship_mvp": "fhl_p0624",
+  "participants": [
+   "fhl_yetis",
+   "fhl_borealis",
+   "fhl_floes",
+   "fhl_polars"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1990",
+  "league": "gdc",
+  "year": 1990,
+  "trophy": "Founders Cup",
+  "champion": "gdc_lamplighters",
+  "runner_up": "gdc_millers",
+  "result": "4-1",
+  "series_id": "gdc:h1990:po:final:gdc_lamplighters-gdc_millers",
+  "deciding_game": "gdc:h1990:po:final:gdc_lamplighters-gdc_millers:g5",
+  "championship_mvp": "gdc_p0017",
+  "participants": [
+   "gdc_lamplighters",
+   "gdc_loons",
+   "gdc_millers",
+   "gdc_paddlers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1990",
+  "league": "igl",
+  "year": 1990,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_ironclads",
+  "result": "35-17",
+  "series_id": "igl:h1990:po:final:igl_squall-igl_ironclads",
+  "deciding_game": "igl:h1990:po:final:igl_squall-igl_ironclads:g1",
+  "championship_mvp": "igl_generated_002908",
+  "participants": [
+   "igl_squall",
+   "igl_harvesters",
+   "igl_ironclads",
+   "igl_thunderherd"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1991",
+  "league": "ccl",
+  "year": 1991,
+  "trophy": "The Crown",
+  "champion": "ccl_comets",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-2",
+  "series_id": "ccl:h1991:po:final:ccl_comets-ccl_dustdevils",
+  "deciding_game": "ccl:h1991:po:final:ccl_comets-ccl_dustdevils:g6",
+  "championship_mvp": "ccl_generated_000153",
+  "participants": [
+   "ccl_comets",
+   "ccl_monsoon",
+   "ccl_dustdevils",
+   "ccl_voltage"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1991",
+  "league": "fhl",
+  "year": 1991,
+  "trophy": "Frost Cup",
+  "champion": "fhl_polars",
+  "runner_up": "fhl_rivets",
+  "result": "4-2",
+  "series_id": "fhl:h1991:po:final:fhl_polars-fhl_rivets",
+  "deciding_game": "fhl:h1991:po:final:fhl_polars-fhl_rivets:g6",
+  "championship_mvp": "fhl_generated_000748",
+  "participants": [
+   "fhl_polars",
+   "fhl_sawblades",
+   "fhl_rivets",
+   "fhl_narwhals"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1991",
+  "league": "gdc",
+  "year": 1991,
+  "trophy": "Founders Cup",
+  "champion": "gdc_lamplighters",
+  "runner_up": "gdc_loons",
+  "result": "4-3",
+  "series_id": "gdc:h1991:po:final:gdc_lamplighters-gdc_loons",
+  "deciding_game": "gdc:h1991:po:final:gdc_lamplighters-gdc_loons:g7",
+  "championship_mvp": "gdc_generated_001738",
+  "participants": [
+   "gdc_lamplighters",
+   "gdc_loons",
+   "gdc_firebirds",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1991",
+  "league": "igl",
+  "year": 1991,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_rockslides",
+  "result": "21-14",
+  "series_id": "igl:h1991:po:final:igl_squall-igl_rockslides",
+  "deciding_game": "igl:h1991:po:final:igl_squall-igl_rockslides:g1",
+  "championship_mvp": "igl_generated_002908",
+  "participants": [
+   "igl_thunderherd",
+   "igl_squall",
+   "igl_smokejumpers",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1992",
+  "league": "ccl",
+  "year": 1992,
+  "trophy": "The Crown",
+  "champion": "ccl_comets",
+  "runner_up": "ccl_forge",
+  "result": "4-0",
+  "series_id": "ccl:h1992:po:final:ccl_comets-ccl_forge",
+  "deciding_game": "ccl:h1992:po:final:ccl_comets-ccl_forge:g4",
+  "championship_mvp": "ccl_generated_000153",
+  "participants": [
+   "ccl_comets",
+   "ccl_forge",
+   "ccl_monsoon",
+   "ccl_satellites"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1992",
+  "league": "fhl",
+  "year": 1992,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_floes",
+  "result": "4-1",
+  "series_id": "fhl:h1992:po:final:fhl_floes-fhl_rivets",
+  "deciding_game": "fhl:h1992:po:final:fhl_floes-fhl_rivets:g5",
+  "championship_mvp": "fhl_generated_000694",
+  "participants": [
+   "fhl_floes",
+   "fhl_rivets",
+   "fhl_borealis",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1992",
+  "league": "gdc",
+  "year": 1992,
+  "trophy": "Founders Cup",
+  "champion": "gdc_millers",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-2",
+  "series_id": "gdc:h1992:po:final:gdc_millers-gdc_kingfishers",
+  "deciding_game": "gdc:h1992:po:final:gdc_millers-gdc_kingfishers:g6",
+  "championship_mvp": "gdc_generated_001799",
+  "participants": [
+   "gdc_millers",
+   "gdc_paddlers",
+   "gdc_kingfishers",
+   "gdc_lamplighters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1992",
+  "league": "igl",
+  "year": 1992,
+  "trophy": "Iron Bowl",
+  "champion": "igl_ironclads",
+  "runner_up": "igl_undertow",
+  "result": "34-24",
+  "series_id": "igl:h1992:po:final:igl_ironclads-igl_undertow",
+  "deciding_game": "igl:h1992:po:final:igl_ironclads-igl_undertow:g1",
+  "championship_mvp": "igl_generated_002893",
+  "participants": [
+   "igl_ironclads",
+   "igl_undertow",
+   "igl_rockslides",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1993",
+  "league": "ccl",
+  "year": 1993,
+  "trophy": "The Crown",
+  "champion": "ccl_comets",
+  "runner_up": "ccl_voltage",
+  "result": "4-0",
+  "series_id": "ccl:h1993:po:final:ccl_comets-ccl_voltage",
+  "deciding_game": "ccl:h1993:po:final:ccl_comets-ccl_voltage:g4",
+  "championship_mvp": "ccl_leon_mercer",
+  "participants": [
+   "ccl_comets",
+   "ccl_satellites",
+   "ccl_voltage",
+   "ccl_anchors"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1993",
+  "league": "fhl",
+  "year": 1993,
+  "trophy": "Frost Cup",
+  "champion": "fhl_yetis",
+  "runner_up": "fhl_snowowls",
+  "result": "4-3",
+  "series_id": "fhl:h1993:po:final:fhl_yetis-fhl_snowowls",
+  "deciding_game": "fhl:h1993:po:final:fhl_yetis-fhl_snowowls:g7",
+  "championship_mvp": "fhl_generated_000702",
+  "participants": [
+   "fhl_yetis",
+   "fhl_snowowls",
+   "fhl_narwhals",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1993",
+  "league": "gdc",
+  "year": 1993,
+  "trophy": "Founders Cup",
+  "champion": "gdc_ore_haulers",
+  "runner_up": "gdc_paddlers",
+  "result": "4-0",
+  "series_id": "gdc:h1993:po:final:gdc_ore_haulers-gdc_paddlers",
+  "deciding_game": "gdc:h1993:po:final:gdc_ore_haulers-gdc_paddlers:g4",
+  "championship_mvp": "gdc_generated_001768",
+  "participants": [
+   "gdc_ore_haulers",
+   "gdc_gilas",
+   "gdc_paddlers",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1993",
+  "league": "igl",
+  "year": 1993,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_smokejumpers",
+  "result": "38-28",
+  "series_id": "igl:h1993:po:final:igl_squall-igl_smokejumpers",
+  "deciding_game": "igl:h1993:po:final:igl_squall-igl_smokejumpers:g1",
+  "championship_mvp": "igl_generated_002947",
+  "participants": [
+   "igl_highlanders",
+   "igl_squall",
+   "igl_thunderherd",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1994",
+  "league": "ccl",
+  "year": 1994,
+  "trophy": "The Crown",
+  "champion": "ccl_comets",
+  "runner_up": "ccl_satellites",
+  "result": "4-2",
+  "series_id": "ccl:h1994:po:final:ccl_satellites-ccl_comets",
+  "deciding_game": "ccl:h1994:po:final:ccl_satellites-ccl_comets:g6",
+  "championship_mvp": "ccl_leon_mercer",
+  "participants": [
+   "ccl_satellites",
+   "ccl_comets",
+   "ccl_voltage",
+   "ccl_monsoon"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1994",
+  "league": "fhl",
+  "year": 1994,
+  "trophy": "Frost Cup",
+  "champion": "fhl_polars",
+  "runner_up": "fhl_snowowls",
+  "result": "4-3",
+  "series_id": "fhl:h1994:po:final:fhl_polars-fhl_snowowls",
+  "deciding_game": "fhl:h1994:po:final:fhl_polars-fhl_snowowls:g7",
+  "championship_mvp": "fhl_generated_000748",
+  "participants": [
+   "fhl_polars",
+   "fhl_narwhals",
+   "fhl_snowowls",
+   "fhl_floes"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1994",
+  "league": "gdc",
+  "year": 1994,
+  "trophy": "Founders Cup",
+  "champion": "gdc_ore_haulers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-2",
+  "series_id": "gdc:h1994:po:final:gdc_lamplighters-gdc_ore_haulers",
+  "deciding_game": "gdc:h1994:po:final:gdc_lamplighters-gdc_ore_haulers:g6",
+  "championship_mvp": "gdc_generated_001768",
+  "participants": [
+   "gdc_lamplighters",
+   "gdc_ore_haulers",
+   "gdc_paddlers",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1994",
+  "league": "igl",
+  "year": 1994,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_squall",
+  "result": "24-20",
+  "series_id": "igl:h1994:po:final:igl_thunderherd-igl_squall",
+  "deciding_game": "igl:h1994:po:final:igl_thunderherd-igl_squall:g1",
+  "championship_mvp": "igl_generated_002989",
+  "participants": [
+   "igl_thunderherd",
+   "igl_harvesters",
+   "igl_squall",
+   "igl_smokejumpers"
+  ],
+  "events": [
+   "igl-1994-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1995",
+  "league": "ccl",
+  "year": 1995,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_forge",
+  "result": "4-3",
+  "series_id": "ccl:h1995:po:final:ccl_anchors-ccl_forge",
+  "deciding_game": "ccl:h1995:po:final:ccl_anchors-ccl_forge:g7",
+  "championship_mvp": "ccl_p0228",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_satellites",
+   "ccl_anchors",
+   "ccl_forge"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1995",
+  "league": "fhl",
+  "year": 1995,
+  "trophy": "Frost Cup",
+  "champion": "fhl_snowowls",
+  "runner_up": "fhl_floes",
+  "result": "4-0",
+  "series_id": "fhl:h1995:po:final:fhl_snowowls-fhl_floes",
+  "deciding_game": "fhl:h1995:po:final:fhl_snowowls-fhl_floes:g4",
+  "championship_mvp": "fhl_generated_000835",
+  "participants": [
+   "fhl_snowowls",
+   "fhl_borealis",
+   "fhl_floes",
+   "fhl_narwhals"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1995",
+  "league": "gdc",
+  "year": 1995,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-0",
+  "series_id": "gdc:h1995:po:final:gdc_loons-gdc_kingfishers",
+  "deciding_game": "gdc:h1995:po:final:gdc_loons-gdc_kingfishers:g4",
+  "championship_mvp": "gdc_p0122",
+  "participants": [
+   "gdc_loons",
+   "gdc_gilas",
+   "gdc_kingfishers",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1995",
+  "league": "igl",
+  "year": 1995,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_harvesters",
+  "result": "37-31",
+  "series_id": "igl:h1995:po:final:igl_harvesters-igl_thunderherd",
+  "deciding_game": "igl:h1995:po:final:igl_harvesters-igl_thunderherd:g1",
+  "championship_mvp": "igl_generated_002949",
+  "participants": [
+   "igl_harvesters",
+   "igl_undertow",
+   "igl_thunderherd",
+   "igl_ironclads"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1996",
+  "league": "ccl",
+  "year": 1996,
+  "trophy": "The Crown",
+  "champion": "ccl_dustdevils",
+  "runner_up": "ccl_jackrabbits",
+  "result": "4-1",
+  "series_id": "ccl:h1996:po:final:ccl_jackrabbits-ccl_dustdevils",
+  "deciding_game": "ccl:h1996:po:final:ccl_jackrabbits-ccl_dustdevils:g5",
+  "championship_mvp": "ccl_p0291",
+  "participants": [
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_forge",
+   "ccl_dustdevils"
+  ],
+  "events": [
+   "ccl-1996-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1996",
+  "league": "fhl",
+  "year": 1996,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_polars",
+  "result": "4-3",
+  "series_id": "fhl:h1996:po:final:fhl_narwhals-fhl_polars",
+  "deciding_game": "fhl:h1996:po:final:fhl_narwhals-fhl_polars:g7",
+  "championship_mvp": "fhl_generated_000817",
+  "participants": [
+   "fhl_narwhals",
+   "fhl_sawblades",
+   "fhl_polars",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1996",
+  "league": "gdc",
+  "year": 1996,
+  "trophy": "Founders Cup",
+  "champion": "gdc_ore_haulers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-3",
+  "series_id": "gdc:h1996:po:final:gdc_ore_haulers-gdc_lamplighters",
+  "deciding_game": "gdc:h1996:po:final:gdc_ore_haulers-gdc_lamplighters:g7",
+  "championship_mvp": "gdc_generated_001926",
+  "participants": [
+   "gdc_ore_haulers",
+   "gdc_firebirds",
+   "gdc_lamplighters",
+   "gdc_gilas"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1996",
+  "league": "igl",
+  "year": 1996,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_rockslides",
+  "result": "38-35",
+  "series_id": "igl:h1996:po:final:igl_thunderherd-igl_rockslides",
+  "deciding_game": "igl:h1996:po:final:igl_thunderherd-igl_rockslides:g1",
+  "championship_mvp": "igl_generated_003068",
+  "participants": [
+   "igl_undertow",
+   "igl_thunderherd",
+   "igl_smokejumpers",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1997",
+  "league": "ccl",
+  "year": 1997,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_monsoon",
+  "result": "4-3",
+  "series_id": "ccl:h1997:po:final:ccl_satellites-ccl_monsoon",
+  "deciding_game": "ccl:h1997:po:final:ccl_satellites-ccl_monsoon:g7",
+  "championship_mvp": "ccl_p0333",
+  "participants": [
+   "ccl_satellites",
+   "ccl_monsoon",
+   "ccl_anchors",
+   "ccl_jackrabbits"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1997",
+  "league": "fhl",
+  "year": 1997,
+  "trophy": "Frost Cup",
+  "champion": "fhl_borealis",
+  "runner_up": "fhl_snowowls",
+  "result": "4-3",
+  "series_id": "fhl:h1997:po:final:fhl_borealis-fhl_snowowls",
+  "deciding_game": "fhl:h1997:po:final:fhl_borealis-fhl_snowowls:g7",
+  "championship_mvp": "fhl_p0583",
+  "participants": [
+   "fhl_sawblades",
+   "fhl_borealis",
+   "fhl_floes",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1997",
+  "league": "gdc",
+  "year": 1997,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_paddlers",
+  "result": "4-0",
+  "series_id": "gdc:h1997:po:final:gdc_kingfishers-gdc_paddlers",
+  "deciding_game": "gdc:h1997:po:final:gdc_kingfishers-gdc_paddlers:g4",
+  "championship_mvp": "gdc_generated_001878",
+  "participants": [
+   "gdc_gilas",
+   "gdc_kingfishers",
+   "gdc_millers",
+   "gdc_paddlers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1997",
+  "league": "igl",
+  "year": 1997,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_ironclads",
+  "result": "24-16",
+  "series_id": "igl:h1997:po:final:igl_thunderherd-igl_ironclads",
+  "deciding_game": "igl:h1997:po:final:igl_thunderherd-igl_ironclads:g1",
+  "championship_mvp": "igl_generated_003068",
+  "participants": [
+   "igl_squall",
+   "igl_thunderherd",
+   "igl_harvesters",
+   "igl_ironclads"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1998",
+  "league": "ccl",
+  "year": 1998,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_anchors",
+  "result": "4-3",
+  "series_id": "ccl:h1998:po:final:ccl_satellites-ccl_anchors",
+  "deciding_game": "ccl:h1998:po:final:ccl_satellites-ccl_anchors:g7",
+  "championship_mvp": "ccl_p0331",
+  "participants": [
+   "ccl_satellites",
+   "ccl_anchors",
+   "ccl_forge",
+   "ccl_voltage"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1998",
+  "league": "fhl",
+  "year": 1998,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_yetis",
+  "result": "4-1",
+  "series_id": "fhl:h1998:po:final:fhl_rivets-fhl_yetis",
+  "deciding_game": "fhl:h1998:po:final:fhl_rivets-fhl_yetis:g5",
+  "championship_mvp": "fhl_p0646",
+  "participants": [
+   "fhl_sawblades",
+   "fhl_rivets",
+   "fhl_snowowls",
+   "fhl_yetis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1998",
+  "league": "gdc",
+  "year": 1998,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-3",
+  "series_id": "gdc:h1998:po:final:gdc_firebirds-gdc_lamplighters",
+  "deciding_game": "gdc:h1998:po:final:gdc_firebirds-gdc_lamplighters:g7",
+  "championship_mvp": "gdc_generated_001837",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_kingfishers",
+   "gdc_lamplighters",
+   "gdc_ore_haulers"
+  ],
+  "events": [
+   "gdc-1998-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1998",
+  "league": "igl",
+  "year": 1998,
+  "trophy": "Iron Bowl",
+  "champion": "igl_rockslides",
+  "runner_up": "igl_undertow",
+  "result": "24-17",
+  "series_id": "igl:h1998:po:final:igl_undertow-igl_rockslides",
+  "deciding_game": "igl:h1998:po:final:igl_undertow-igl_rockslides:g1",
+  "championship_mvp": "igl_generated_003115",
+  "participants": [
+   "igl_undertow",
+   "igl_rockslides",
+   "igl_thunderherd",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-1999",
+  "league": "ccl",
+  "year": 1999,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_monsoon",
+  "result": "4-2",
+  "series_id": "ccl:h1999:po:final:ccl_satellites-ccl_monsoon",
+  "deciding_game": "ccl:h1999:po:final:ccl_satellites-ccl_monsoon:g6",
+  "championship_mvp": "ccl_generated_000253",
+  "participants": [
+   "ccl_satellites",
+   "ccl_dustdevils",
+   "ccl_monsoon",
+   "ccl_comets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-1999",
+  "league": "fhl",
+  "year": 1999,
+  "trophy": "Frost Cup",
+  "champion": "fhl_polars",
+  "runner_up": "fhl_narwhals",
+  "result": "4-0",
+  "series_id": "fhl:h1999:po:final:fhl_polars-fhl_narwhals",
+  "deciding_game": "fhl:h1999:po:final:fhl_polars-fhl_narwhals:g4",
+  "championship_mvp": "fhl_generated_000823",
+  "participants": [
+   "fhl_floes",
+   "fhl_yetis",
+   "fhl_polars",
+   "fhl_narwhals"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-1999",
+  "league": "gdc",
+  "year": 1999,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_loons",
+  "result": "4-0",
+  "series_id": "gdc:h1999:po:final:gdc_firebirds-gdc_loons",
+  "deciding_game": "gdc:h1999:po:final:gdc_firebirds-gdc_loons:g4",
+  "championship_mvp": "gdc_generated_001940",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_millers",
+   "gdc_loons",
+   "gdc_gilas"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-1999",
+  "league": "igl",
+  "year": 1999,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_ironclads",
+  "result": "27-17",
+  "series_id": "igl:h1999:po:final:igl_squall-igl_ironclads",
+  "deciding_game": "igl:h1999:po:final:igl_squall-igl_ironclads:g1",
+  "championship_mvp": "igl_p0459",
+  "participants": [
+   "igl_squall",
+   "igl_harvesters",
+   "igl_ironclads",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2000",
+  "league": "ccl",
+  "year": 2000,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_forge",
+  "result": "4-1",
+  "series_id": "ccl:h2000:po:final:ccl_forge-ccl_satellites",
+  "deciding_game": "ccl:h2000:po:final:ccl_forge-ccl_satellites:g5",
+  "championship_mvp": "ccl_p0331",
+  "participants": [
+   "ccl_jackrabbits",
+   "ccl_forge",
+   "ccl_voltage",
+   "ccl_satellites"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2000",
+  "league": "fhl",
+  "year": 2000,
+  "trophy": "Frost Cup",
+  "champion": "fhl_borealis",
+  "runner_up": "fhl_narwhals",
+  "result": "4-3",
+  "series_id": "fhl:h2000:po:final:fhl_borealis-fhl_narwhals",
+  "deciding_game": "fhl:h2000:po:final:fhl_borealis-fhl_narwhals:g7",
+  "championship_mvp": "fhl_generated_000924",
+  "participants": [
+   "fhl_borealis",
+   "fhl_rivets",
+   "fhl_narwhals",
+   "fhl_sawblades"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2000",
+  "league": "gdc",
+  "year": 2000,
+  "trophy": "Founders Cup",
+  "champion": "gdc_millers",
+  "runner_up": "gdc_gilas",
+  "result": "4-1",
+  "series_id": "gdc:h2000:po:final:gdc_gilas-gdc_millers",
+  "deciding_game": "gdc:h2000:po:final:gdc_gilas-gdc_millers:g5",
+  "championship_mvp": "gdc_generated_001886",
+  "participants": [
+   "gdc_gilas",
+   "gdc_ore_haulers",
+   "gdc_millers",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2000",
+  "league": "igl",
+  "year": 2000,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_ironclads",
+  "result": "27-16",
+  "series_id": "igl:h2000:po:final:igl_squall-igl_ironclads",
+  "deciding_game": "igl:h2000:po:final:igl_squall-igl_ironclads:g1",
+  "championship_mvp": "igl_generated_003064",
+  "participants": [
+   "igl_squall",
+   "igl_undertow",
+   "igl_ironclads",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2001",
+  "league": "ccl",
+  "year": 2001,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_forge",
+  "result": "4-2",
+  "series_id": "ccl:h2001:po:final:ccl_voltage-ccl_forge",
+  "deciding_game": "ccl:h2001:po:final:ccl_voltage-ccl_forge:g6",
+  "championship_mvp": "ccl_p0189",
+  "participants": [
+   "ccl_anchors",
+   "ccl_voltage",
+   "ccl_comets",
+   "ccl_forge"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2001",
+  "league": "fhl",
+  "year": 2001,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_sawblades",
+  "result": "4-0",
+  "series_id": "fhl:h2001:po:final:fhl_narwhals-fhl_sawblades",
+  "deciding_game": "fhl:h2001:po:final:fhl_narwhals-fhl_sawblades:g4",
+  "championship_mvp": "fhl_generated_000878",
+  "participants": [
+   "fhl_narwhals",
+   "fhl_sawblades",
+   "fhl_borealis",
+   "fhl_floes"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2001",
+  "league": "gdc",
+  "year": 2001,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-0",
+  "series_id": "gdc:h2001:po:final:gdc_loons-gdc_lamplighters",
+  "deciding_game": "gdc:h2001:po:final:gdc_loons-gdc_lamplighters:g4",
+  "championship_mvp": "gdc_generated_001881",
+  "participants": [
+   "gdc_loons",
+   "gdc_kingfishers",
+   "gdc_lamplighters",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2001",
+  "league": "igl",
+  "year": 2001,
+  "trophy": "Iron Bowl",
+  "champion": "igl_undertow",
+  "runner_up": "igl_thunderherd",
+  "result": "10-9",
+  "series_id": "igl:h2001:po:final:igl_undertow-igl_thunderherd",
+  "deciding_game": "igl:h2001:po:final:igl_undertow-igl_thunderherd:g1",
+  "championship_mvp": "igl_generated_003206",
+  "participants": [
+   "igl_squall",
+   "igl_undertow",
+   "igl_highlanders",
+   "igl_thunderherd"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2002",
+  "league": "ccl",
+  "year": 2002,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_voltage",
+  "result": "4-2",
+  "series_id": "ccl:h2002:po:final:ccl_satellites-ccl_voltage",
+  "deciding_game": "ccl:h2002:po:final:ccl_satellites-ccl_voltage:g6",
+  "championship_mvp": "ccl_generated_000253",
+  "participants": [
+   "ccl_satellites",
+   "ccl_comets",
+   "ccl_voltage",
+   "ccl_anchors"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2002",
+  "league": "fhl",
+  "year": 2002,
+  "trophy": "Frost Cup",
+  "champion": "fhl_yetis",
+  "runner_up": "fhl_borealis",
+  "result": "4-3",
+  "series_id": "fhl:h2002:po:final:fhl_borealis-fhl_yetis",
+  "deciding_game": "fhl:h2002:po:final:fhl_borealis-fhl_yetis:g7",
+  "championship_mvp": "fhl_generated_000872",
+  "participants": [
+   "fhl_borealis",
+   "fhl_polars",
+   "fhl_yetis",
+   "fhl_sawblades"
+  ],
+  "events": [
+   "fhl-2002-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2002",
+  "league": "gdc",
+  "year": 2002,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_gilas",
+  "result": "4-3",
+  "series_id": "gdc:h2002:po:final:gdc_firebirds-gdc_gilas",
+  "deciding_game": "gdc:h2002:po:final:gdc_firebirds-gdc_gilas:g7",
+  "championship_mvp": "gdc_generated_001940",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_gilas",
+   "gdc_paddlers",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2002",
+  "league": "igl",
+  "year": 2002,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_ironclads",
+  "result": "24-17",
+  "series_id": "igl:h2002:po:final:igl_ironclads-igl_thunderherd",
+  "deciding_game": "igl:h2002:po:final:igl_ironclads-igl_thunderherd:g1",
+  "championship_mvp": "igl_generated_003219",
+  "participants": [
+   "igl_ironclads",
+   "igl_squall",
+   "igl_thunderherd",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2003",
+  "league": "ccl",
+  "year": 2003,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_satellites",
+  "result": "4-2",
+  "series_id": "ccl:h2003:po:final:ccl_monsoon-ccl_satellites",
+  "deciding_game": "ccl:h2003:po:final:ccl_monsoon-ccl_satellites:g6",
+  "championship_mvp": "ccl_p0208",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_anchors",
+   "ccl_satellites",
+   "ccl_jackrabbits"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2003",
+  "league": "fhl",
+  "year": 2003,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_polars",
+  "result": "4-1",
+  "series_id": "fhl:h2003:po:final:fhl_narwhals-fhl_polars",
+  "deciding_game": "fhl:h2003:po:final:fhl_narwhals-fhl_polars:g5",
+  "championship_mvp": "fhl_p0545",
+  "participants": [
+   "fhl_borealis",
+   "fhl_narwhals",
+   "fhl_sawblades",
+   "fhl_polars"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2003",
+  "league": "gdc",
+  "year": 2003,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_gilas",
+  "result": "4-0",
+  "series_id": "gdc:h2003:po:final:gdc_firebirds-gdc_gilas",
+  "deciding_game": "gdc:h2003:po:final:gdc_firebirds-gdc_gilas:g4",
+  "championship_mvp": "gdc_marco_salazar",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_millers",
+   "gdc_gilas",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2003",
+  "league": "igl",
+  "year": 2003,
+  "trophy": "Iron Bowl",
+  "champion": "igl_smokejumpers",
+  "runner_up": "igl_ironclads",
+  "result": "34-23",
+  "series_id": "igl:h2003:po:final:igl_smokejumpers-igl_ironclads",
+  "deciding_game": "igl:h2003:po:final:igl_smokejumpers-igl_ironclads:g1",
+  "championship_mvp": "igl_generated_003297",
+  "participants": [
+   "igl_harvesters",
+   "igl_undertow",
+   "igl_smokejumpers",
+   "igl_ironclads"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2004",
+  "league": "ccl",
+  "year": 2004,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-2",
+  "series_id": "ccl:h2004:po:final:ccl_dustdevils-ccl_anchors",
+  "deciding_game": "ccl:h2004:po:final:ccl_dustdevils-ccl_anchors:g6",
+  "championship_mvp": "ccl_p0231",
+  "participants": [
+   "ccl_dustdevils",
+   "ccl_anchors",
+   "ccl_forge",
+   "ccl_comets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2004",
+  "league": "fhl",
+  "year": 2004,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_floes",
+  "result": "4-2",
+  "series_id": "fhl:h2004:po:final:fhl_narwhals-fhl_floes",
+  "deciding_game": "fhl:h2004:po:final:fhl_narwhals-fhl_floes:g6",
+  "championship_mvp": "fhl_generated_000937",
+  "participants": [
+   "fhl_snowowls",
+   "fhl_narwhals",
+   "fhl_rivets",
+   "fhl_floes"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2004",
+  "league": "gdc",
+  "year": 2004,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_millers",
+  "result": "4-2",
+  "series_id": "gdc:h2004:po:final:gdc_firebirds-gdc_millers",
+  "deciding_game": "gdc:h2004:po:final:gdc_firebirds-gdc_millers:g6",
+  "championship_mvp": "gdc_marco_salazar",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_gilas",
+   "gdc_millers",
+   "gdc_lamplighters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2004",
+  "league": "igl",
+  "year": 2004,
+  "trophy": "Iron Bowl",
+  "champion": "igl_harvesters",
+  "runner_up": "igl_highlanders",
+  "result": "35-20",
+  "series_id": "igl:h2004:po:final:igl_highlanders-igl_harvesters",
+  "deciding_game": "igl:h2004:po:final:igl_highlanders-igl_harvesters:g1",
+  "championship_mvp": "igl_p0418",
+  "participants": [
+   "igl_smokejumpers",
+   "igl_highlanders",
+   "igl_undertow",
+   "igl_harvesters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2005",
+  "league": "ccl",
+  "year": 2005,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_voltage",
+  "result": "4-3",
+  "series_id": "ccl:h2005:po:final:ccl_monsoon-ccl_voltage",
+  "deciding_game": "ccl:h2005:po:final:ccl_monsoon-ccl_voltage:g7",
+  "championship_mvp": "ccl_generated_000275",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_voltage",
+   "ccl_anchors",
+   "ccl_satellites"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2005",
+  "league": "fhl",
+  "year": 2005,
+  "trophy": "Frost Cup",
+  "champion": "fhl_borealis",
+  "runner_up": "fhl_sawblades",
+  "result": "4-2",
+  "series_id": "fhl:h2005:po:final:fhl_sawblades-fhl_borealis",
+  "deciding_game": "fhl:h2005:po:final:fhl_sawblades-fhl_borealis:g6",
+  "championship_mvp": "fhl_generated_000918",
+  "participants": [
+   "fhl_sawblades",
+   "fhl_borealis",
+   "fhl_narwhals",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2005",
+  "league": "gdc",
+  "year": 2005,
+  "trophy": "Founders Cup",
+  "champion": "gdc_firebirds",
+  "runner_up": "gdc_millers",
+  "result": "4-1",
+  "series_id": "gdc:h2005:po:final:gdc_firebirds-gdc_millers",
+  "deciding_game": "gdc:h2005:po:final:gdc_firebirds-gdc_millers:g5",
+  "championship_mvp": "gdc_generated_001940",
+  "participants": [
+   "gdc_firebirds",
+   "gdc_millers",
+   "gdc_lamplighters",
+   "gdc_gilas"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2005",
+  "league": "igl",
+  "year": 2005,
+  "trophy": "Iron Bowl",
+  "champion": "igl_smokejumpers",
+  "runner_up": "igl_rockslides",
+  "result": "28-16",
+  "series_id": "igl:h2005:po:final:igl_smokejumpers-igl_rockslides",
+  "deciding_game": "igl:h2005:po:final:igl_smokejumpers-igl_rockslides:g1",
+  "championship_mvp": "igl_generated_003245",
+  "participants": [
+   "igl_highlanders",
+   "igl_smokejumpers",
+   "igl_undertow",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2006",
+  "league": "ccl",
+  "year": 2006,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-1",
+  "series_id": "ccl:h2006:po:final:ccl_monsoon-ccl_dustdevils",
+  "deciding_game": "ccl:h2006:po:final:ccl_monsoon-ccl_dustdevils:g5",
+  "championship_mvp": "ccl_generated_000267",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_voltage",
+   "ccl_dustdevils",
+   "ccl_anchors"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2006",
+  "league": "fhl",
+  "year": 2006,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_rivets",
+  "result": "4-3",
+  "series_id": "fhl:h2006:po:final:fhl_rivets-fhl_narwhals",
+  "deciding_game": "fhl:h2006:po:final:fhl_rivets-fhl_narwhals:g7",
+  "championship_mvp": "fhl_generated_001038",
+  "participants": [
+   "fhl_borealis",
+   "fhl_rivets",
+   "fhl_polars",
+   "fhl_narwhals"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2006",
+  "league": "gdc",
+  "year": 2006,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_loons",
+  "result": "4-1",
+  "series_id": "gdc:h2006:po:final:gdc_kingfishers-gdc_loons",
+  "deciding_game": "gdc:h2006:po:final:gdc_kingfishers-gdc_loons:g5",
+  "championship_mvp": "gdc_generated_001976",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_loons",
+   "gdc_paddlers",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2006",
+  "league": "igl",
+  "year": 2006,
+  "trophy": "Iron Bowl",
+  "champion": "igl_smokejumpers",
+  "runner_up": "igl_ironclads",
+  "result": "30-10",
+  "series_id": "igl:h2006:po:final:igl_smokejumpers-igl_ironclads",
+  "deciding_game": "igl:h2006:po:final:igl_smokejumpers-igl_ironclads:g1",
+  "championship_mvp": "igl_generated_003297",
+  "participants": [
+   "igl_smokejumpers",
+   "igl_highlanders",
+   "igl_ironclads",
+   "igl_undertow"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2007",
+  "league": "ccl",
+  "year": 2007,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_voltage",
+  "result": "4-2",
+  "series_id": "ccl:h2007:po:final:ccl_monsoon-ccl_voltage",
+  "deciding_game": "ccl:h2007:po:final:ccl_monsoon-ccl_voltage:g6",
+  "championship_mvp": "ccl_generated_000275",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_forge",
+   "ccl_voltage",
+   "ccl_jackrabbits"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2007",
+  "league": "fhl",
+  "year": 2007,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_rivets",
+  "result": "4-3",
+  "series_id": "fhl:h2007:po:final:fhl_rivets-fhl_narwhals",
+  "deciding_game": "fhl:h2007:po:final:fhl_rivets-fhl_narwhals:g7",
+  "championship_mvp": "fhl_generated_000977",
+  "participants": [
+   "fhl_rivets",
+   "fhl_narwhals",
+   "fhl_sawblades",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2007",
+  "league": "gdc",
+  "year": 2007,
+  "trophy": "Founders Cup",
+  "champion": "gdc_lamplighters",
+  "runner_up": "gdc_gilas",
+  "result": "4-2",
+  "series_id": "gdc:h2007:po:final:gdc_lamplighters-gdc_gilas",
+  "deciding_game": "gdc:h2007:po:final:gdc_lamplighters-gdc_gilas:g6",
+  "championship_mvp": "gdc_generated_002020",
+  "participants": [
+   "gdc_lamplighters",
+   "gdc_loons",
+   "gdc_gilas",
+   "gdc_firebirds"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2007",
+  "league": "igl",
+  "year": 2007,
+  "trophy": "Iron Bowl",
+  "champion": "igl_ironclads",
+  "runner_up": "igl_harvesters",
+  "result": "40-21",
+  "series_id": "igl:h2007:po:final:igl_ironclads-igl_harvesters",
+  "deciding_game": "igl:h2007:po:final:igl_ironclads-igl_harvesters:g1",
+  "championship_mvp": "igl_generated_003313",
+  "participants": [
+   "igl_ironclads",
+   "igl_highlanders",
+   "igl_harvesters",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2008",
+  "league": "ccl",
+  "year": 2008,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-1",
+  "series_id": "ccl:h2008:po:final:ccl_monsoon-ccl_dustdevils",
+  "deciding_game": "ccl:h2008:po:final:ccl_monsoon-ccl_dustdevils:g5",
+  "championship_mvp": "ccl_p0208",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_satellites",
+   "ccl_dustdevils",
+   "ccl_comets"
+  ],
+  "events": [
+   "ccl-2008-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2008",
+  "league": "fhl",
+  "year": 2008,
+  "trophy": "Frost Cup",
+  "champion": "fhl_sawblades",
+  "runner_up": "fhl_borealis",
+  "result": "4-0",
+  "series_id": "fhl:h2008:po:final:fhl_borealis-fhl_sawblades",
+  "deciding_game": "fhl:h2008:po:final:fhl_borealis-fhl_sawblades:g4",
+  "championship_mvp": "fhl_generated_000990",
+  "participants": [
+   "fhl_borealis",
+   "fhl_sawblades",
+   "fhl_narwhals",
+   "fhl_yetis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2008",
+  "league": "gdc",
+  "year": 2008,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-1",
+  "series_id": "gdc:h2008:po:final:gdc_kingfishers-gdc_lamplighters",
+  "deciding_game": "gdc:h2008:po:final:gdc_kingfishers-gdc_lamplighters:g5",
+  "championship_mvp": "gdc_generated_002107",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_lamplighters",
+   "gdc_millers",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2008",
+  "league": "igl",
+  "year": 2008,
+  "trophy": "Iron Bowl",
+  "champion": "igl_smokejumpers",
+  "runner_up": "igl_harvesters",
+  "result": "21-6",
+  "series_id": "igl:h2008:po:final:igl_smokejumpers-igl_harvesters",
+  "deciding_game": "igl:h2008:po:final:igl_smokejumpers-igl_harvesters:g1",
+  "championship_mvp": "igl_generated_003297",
+  "participants": [
+   "igl_smokejumpers",
+   "igl_undertow",
+   "igl_harvesters",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2009",
+  "league": "ccl",
+  "year": 2009,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_jackrabbits",
+  "result": "4-2",
+  "series_id": "ccl:h2009:po:final:ccl_monsoon-ccl_jackrabbits",
+  "deciding_game": "ccl:h2009:po:final:ccl_monsoon-ccl_jackrabbits:g6",
+  "championship_mvp": "ccl_generated_000323",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_anchors",
+   "ccl_jackrabbits",
+   "ccl_comets"
+  ],
+  "events": [
+   "ccl-2008-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2009",
+  "league": "fhl",
+  "year": 2009,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_sawblades",
+  "result": "4-0",
+  "series_id": "fhl:h2009:po:final:fhl_narwhals-fhl_sawblades",
+  "deciding_game": "fhl:h2009:po:final:fhl_narwhals-fhl_sawblades:g4",
+  "championship_mvp": "fhl_p0547",
+  "participants": [
+   "fhl_rivets",
+   "fhl_floes",
+   "fhl_narwhals",
+   "fhl_sawblades"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2009",
+  "league": "gdc",
+  "year": 2009,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_paddlers",
+  "result": "4-3",
+  "series_id": "gdc:h2009:po:final:gdc_kingfishers-gdc_paddlers",
+  "deciding_game": "gdc:h2009:po:final:gdc_kingfishers-gdc_paddlers:g7",
+  "championship_mvp": "gdc_generated_002108",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_paddlers",
+   "gdc_ore_haulers",
+   "gdc_lamplighters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2009",
+  "league": "igl",
+  "year": 2009,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_squall",
+  "result": "24-19",
+  "series_id": "igl:h2009:po:final:igl_squall-igl_thunderherd",
+  "deciding_game": "igl:h2009:po:final:igl_squall-igl_thunderherd:g1",
+  "championship_mvp": "igl_generated_003363",
+  "participants": [
+   "igl_squall",
+   "igl_thunderherd",
+   "igl_smokejumpers",
+   "igl_highlanders"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2010",
+  "league": "ccl",
+  "year": 2010,
+  "trophy": "The Crown",
+  "champion": "ccl_monsoon",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-1",
+  "series_id": "ccl:h2010:po:final:ccl_monsoon-ccl_dustdevils",
+  "deciding_game": "ccl:h2010:po:final:ccl_monsoon-ccl_dustdevils:g5",
+  "championship_mvp": "ccl_generated_000268",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_forge",
+   "ccl_dustdevils",
+   "ccl_satellites"
+  ],
+  "events": [
+   "ccl-2008-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2010",
+  "league": "fhl",
+  "year": 2010,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_borealis",
+  "result": "4-0",
+  "series_id": "fhl:h2010:po:final:fhl_rivets-fhl_borealis",
+  "deciding_game": "fhl:h2010:po:final:fhl_rivets-fhl_borealis:g4",
+  "championship_mvp": "fhl_generated_001056",
+  "participants": [
+   "fhl_rivets",
+   "fhl_polars",
+   "fhl_borealis",
+   "fhl_yetis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2010",
+  "league": "gdc",
+  "year": 2010,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_paddlers",
+  "result": "4-3",
+  "series_id": "gdc:h2010:po:final:gdc_loons-gdc_paddlers",
+  "deciding_game": "gdc:h2010:po:final:gdc_loons-gdc_paddlers:g7",
+  "championship_mvp": "gdc_generated_002147",
+  "participants": [
+   "gdc_loons",
+   "gdc_lamplighters",
+   "gdc_paddlers",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2010",
+  "league": "igl",
+  "year": 2010,
+  "trophy": "Iron Bowl",
+  "champion": "igl_smokejumpers",
+  "runner_up": "igl_harvesters",
+  "result": "13-10",
+  "series_id": "igl:h2010:po:final:igl_smokejumpers-igl_harvesters",
+  "deciding_game": "igl:h2010:po:final:igl_smokejumpers-igl_harvesters:g1",
+  "championship_mvp": "igl_generated_003244",
+  "participants": [
+   "igl_smokejumpers",
+   "igl_undertow",
+   "igl_harvesters",
+   "igl_thunderherd"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2011",
+  "league": "ccl",
+  "year": 2011,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_forge",
+  "result": "4-2",
+  "series_id": "ccl:h2011:po:final:ccl_anchors-ccl_forge",
+  "deciding_game": "ccl:h2011:po:final:ccl_anchors-ccl_forge:g6",
+  "championship_mvp": "ccl_generated_000314",
+  "participants": [
+   "ccl_anchors",
+   "ccl_dustdevils",
+   "ccl_forge",
+   "ccl_comets"
+  ],
+  "events": [
+   "ccl-2008-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2011",
+  "league": "fhl",
+  "year": 2011,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_narwhals",
+  "result": "4-1",
+  "series_id": "fhl:h2011:po:final:fhl_rivets-fhl_narwhals",
+  "deciding_game": "fhl:h2011:po:final:fhl_rivets-fhl_narwhals:g5",
+  "championship_mvp": "fhl_generated_001059",
+  "participants": [
+   "fhl_borealis",
+   "fhl_floes",
+   "fhl_rivets",
+   "fhl_narwhals"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2011",
+  "league": "gdc",
+  "year": 2011,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_loons",
+  "result": "4-1",
+  "series_id": "gdc:h2011:po:final:gdc_kingfishers-gdc_loons",
+  "deciding_game": "gdc:h2011:po:final:gdc_kingfishers-gdc_loons:g5",
+  "championship_mvp": "gdc_generated_002108",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_gilas",
+   "gdc_loons",
+   "gdc_firebirds"
+  ],
+  "events": [
+   "gdc-2011-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2011",
+  "league": "igl",
+  "year": 2011,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_ironclads",
+  "result": "24-7",
+  "series_id": "igl:h2011:po:final:igl_highlanders-igl_ironclads",
+  "deciding_game": "igl:h2011:po:final:igl_highlanders-igl_ironclads:g1",
+  "championship_mvp": "igl_generated_003461",
+  "participants": [
+   "igl_highlanders",
+   "igl_smokejumpers",
+   "igl_ironclads",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2012",
+  "league": "ccl",
+  "year": 2012,
+  "trophy": "The Crown",
+  "champion": "ccl_forge",
+  "runner_up": "ccl_satellites",
+  "result": "4-3",
+  "series_id": "ccl:h2012:po:final:ccl_forge-ccl_satellites",
+  "deciding_game": "ccl:h2012:po:final:ccl_forge-ccl_satellites:g7",
+  "championship_mvp": "ccl_p0316",
+  "participants": [
+   "ccl_forge",
+   "ccl_monsoon",
+   "ccl_satellites",
+   "ccl_dustdevils"
+  ],
+  "events": [
+   "ccl-2008-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2012",
+  "league": "fhl",
+  "year": 2012,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_borealis",
+  "result": "4-2",
+  "series_id": "fhl:h2012:po:final:fhl_rivets-fhl_borealis",
+  "deciding_game": "fhl:h2012:po:final:fhl_rivets-fhl_borealis:g6",
+  "championship_mvp": "fhl_generated_001085",
+  "participants": [
+   "fhl_floes",
+   "fhl_sawblades",
+   "fhl_rivets",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2012",
+  "league": "gdc",
+  "year": 2012,
+  "trophy": "Founders Cup",
+  "champion": "gdc_gilas",
+  "runner_up": "gdc_millers",
+  "result": "4-1",
+  "series_id": "gdc:h2012:po:final:gdc_gilas-gdc_millers",
+  "deciding_game": "gdc:h2012:po:final:gdc_gilas-gdc_millers:g5",
+  "championship_mvp": "gdc_p0066",
+  "participants": [
+   "gdc_gilas",
+   "gdc_millers",
+   "gdc_kingfishers",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2012",
+  "league": "igl",
+  "year": 2012,
+  "trophy": "Iron Bowl",
+  "champion": "igl_rockslides",
+  "runner_up": "igl_highlanders",
+  "result": "24-14",
+  "series_id": "igl:h2012:po:final:igl_rockslides-igl_highlanders",
+  "deciding_game": "igl:h2012:po:final:igl_rockslides-igl_highlanders:g1",
+  "championship_mvp": "igl_generated_003449",
+  "participants": [
+   "igl_rockslides",
+   "igl_highlanders",
+   "igl_undertow",
+   "igl_harvesters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2013",
+  "league": "ccl",
+  "year": 2013,
+  "trophy": "The Crown",
+  "champion": "ccl_jackrabbits",
+  "runner_up": "ccl_comets",
+  "result": "4-3",
+  "series_id": "ccl:h2013:po:final:ccl_jackrabbits-ccl_comets",
+  "deciding_game": "ccl:h2013:po:final:ccl_jackrabbits-ccl_comets:g7",
+  "championship_mvp": "ccl_generated_000340",
+  "participants": [
+   "ccl_jackrabbits",
+   "ccl_voltage",
+   "ccl_comets",
+   "ccl_monsoon"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2013",
+  "league": "fhl",
+  "year": 2013,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_borealis",
+  "result": "4-2",
+  "series_id": "fhl:h2013:po:final:fhl_rivets-fhl_borealis",
+  "deciding_game": "fhl:h2013:po:final:fhl_rivets-fhl_borealis:g6",
+  "championship_mvp": "fhl_generated_001168",
+  "participants": [
+   "fhl_floes",
+   "fhl_polars",
+   "fhl_rivets",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2013",
+  "league": "gdc",
+  "year": 2013,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_ore_haulers",
+  "result": "4-1",
+  "series_id": "gdc:h2013:po:final:gdc_ore_haulers-gdc_loons",
+  "deciding_game": "gdc:h2013:po:final:gdc_ore_haulers-gdc_loons:g5",
+  "championship_mvp": "gdc_generated_002060",
+  "participants": [
+   "gdc_ore_haulers",
+   "gdc_loons",
+   "gdc_lamplighters",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2013",
+  "league": "igl",
+  "year": 2013,
+  "trophy": "Iron Bowl",
+  "champion": "igl_rockslides",
+  "runner_up": "igl_highlanders",
+  "result": "31-10",
+  "series_id": "igl:h2013:po:final:igl_rockslides-igl_highlanders",
+  "deciding_game": "igl:h2013:po:final:igl_rockslides-igl_highlanders:g1",
+  "championship_mvp": "igl_generated_003449",
+  "participants": [
+   "igl_rockslides",
+   "igl_undertow",
+   "igl_highlanders",
+   "igl_thunderherd"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2014",
+  "league": "ccl",
+  "year": 2014,
+  "trophy": "The Crown",
+  "champion": "ccl_forge",
+  "runner_up": "ccl_satellites",
+  "result": "4-2",
+  "series_id": "ccl:h2014:po:final:ccl_satellites-ccl_forge",
+  "deciding_game": "ccl:h2014:po:final:ccl_satellites-ccl_forge:g6",
+  "championship_mvp": "ccl_generated_000304",
+  "participants": [
+   "ccl_satellites",
+   "ccl_monsoon",
+   "ccl_forge",
+   "ccl_jackrabbits"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2014",
+  "league": "fhl",
+  "year": 2014,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_sawblades",
+  "result": "4-3",
+  "series_id": "fhl:h2014:po:final:fhl_rivets-fhl_sawblades",
+  "deciding_game": "fhl:h2014:po:final:fhl_rivets-fhl_sawblades:g7",
+  "championship_mvp": "fhl_generated_001101",
+  "participants": [
+   "fhl_rivets",
+   "fhl_sawblades",
+   "fhl_narwhals",
+   "fhl_polars"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2014",
+  "league": "gdc",
+  "year": 2014,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-2",
+  "series_id": "gdc:h2014:po:final:gdc_loons-gdc_kingfishers",
+  "deciding_game": "gdc:h2014:po:final:gdc_loons-gdc_kingfishers:g6",
+  "championship_mvp": "gdc_generated_002223",
+  "participants": [
+   "gdc_loons",
+   "gdc_kingfishers",
+   "gdc_ore_haulers",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2014",
+  "league": "igl",
+  "year": 2014,
+  "trophy": "Iron Bowl",
+  "champion": "igl_rockslides",
+  "runner_up": "igl_highlanders",
+  "result": "34-27",
+  "series_id": "igl:h2014:po:final:igl_highlanders-igl_rockslides",
+  "deciding_game": "igl:h2014:po:final:igl_highlanders-igl_rockslides:g1",
+  "championship_mvp": "igl_generated_003585",
+  "participants": [
+   "igl_squall",
+   "igl_smokejumpers",
+   "igl_highlanders",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2015",
+  "league": "ccl",
+  "year": 2015,
+  "trophy": "The Crown",
+  "champion": "ccl_jackrabbits",
+  "runner_up": "ccl_voltage",
+  "result": "4-0",
+  "series_id": "ccl:h2015:po:final:ccl_jackrabbits-ccl_voltage",
+  "deciding_game": "ccl:h2015:po:final:ccl_jackrabbits-ccl_voltage:g4",
+  "championship_mvp": "ccl_generated_000376",
+  "participants": [
+   "ccl_jackrabbits",
+   "ccl_dustdevils",
+   "ccl_voltage",
+   "ccl_monsoon"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2015",
+  "league": "fhl",
+  "year": 2015,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_narwhals",
+  "result": "4-1",
+  "series_id": "fhl:h2015:po:final:fhl_narwhals-fhl_rivets",
+  "deciding_game": "fhl:h2015:po:final:fhl_narwhals-fhl_rivets:g5",
+  "championship_mvp": "fhl_generated_001192",
+  "participants": [
+   "fhl_borealis",
+   "fhl_polars",
+   "fhl_narwhals",
+   "fhl_rivets"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2015",
+  "league": "gdc",
+  "year": 2015,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-3",
+  "series_id": "gdc:h2015:po:final:gdc_loons-gdc_kingfishers",
+  "deciding_game": "gdc:h2015:po:final:gdc_loons-gdc_kingfishers:g7",
+  "championship_mvp": "gdc_generated_002159",
+  "participants": [
+   "gdc_loons",
+   "gdc_kingfishers",
+   "gdc_gilas",
+   "gdc_ore_haulers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2015",
+  "league": "igl",
+  "year": 2015,
+  "trophy": "Iron Bowl",
+  "champion": "igl_rockslides",
+  "runner_up": "igl_harvesters",
+  "result": "26-21",
+  "series_id": "igl:h2015:po:final:igl_harvesters-igl_rockslides",
+  "deciding_game": "igl:h2015:po:final:igl_harvesters-igl_rockslides:g1",
+  "championship_mvp": "igl_generated_003587",
+  "participants": [
+   "igl_squall",
+   "igl_ironclads",
+   "igl_harvesters",
+   "igl_rockslides"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2016",
+  "league": "ccl",
+  "year": 2016,
+  "trophy": "The Crown",
+  "champion": "ccl_jackrabbits",
+  "runner_up": "ccl_voltage",
+  "result": "4-1",
+  "series_id": "ccl:h2016:po:final:ccl_voltage-ccl_jackrabbits",
+  "deciding_game": "ccl:h2016:po:final:ccl_voltage-ccl_jackrabbits:g5",
+  "championship_mvp": "ccl_generated_000376",
+  "participants": [
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_monsoon",
+   "ccl_dustdevils"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2016",
+  "league": "fhl",
+  "year": 2016,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_floes",
+  "result": "4-1",
+  "series_id": "fhl:h2016:po:final:fhl_rivets-fhl_floes",
+  "deciding_game": "fhl:h2016:po:final:fhl_rivets-fhl_floes:g5",
+  "championship_mvp": "fhl_generated_001170",
+  "participants": [
+   "fhl_rivets",
+   "fhl_sawblades",
+   "fhl_floes",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2016",
+  "league": "gdc",
+  "year": 2016,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_ore_haulers",
+  "result": "4-2",
+  "series_id": "gdc:h2016:po:final:gdc_kingfishers-gdc_ore_haulers",
+  "deciding_game": "gdc:h2016:po:final:gdc_kingfishers-gdc_ore_haulers:g6",
+  "championship_mvp": "gdc_generated_002188",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_millers",
+   "gdc_ore_haulers",
+   "gdc_lamplighters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2016",
+  "league": "igl",
+  "year": 2016,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_harvesters",
+  "result": "10-7",
+  "series_id": "igl:h2016:po:final:igl_highlanders-igl_harvesters",
+  "deciding_game": "igl:h2016:po:final:igl_highlanders-igl_harvesters:g1",
+  "championship_mvp": "igl_generated_003439",
+  "participants": [
+   "igl_thunderherd",
+   "igl_highlanders",
+   "igl_rockslides",
+   "igl_harvesters"
+  ],
+  "events": [
+   "igl-2016-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2017",
+  "league": "ccl",
+  "year": 2017,
+  "trophy": "The Crown",
+  "champion": "ccl_jackrabbits",
+  "runner_up": "ccl_voltage",
+  "result": "4-0",
+  "series_id": "ccl:h2017:po:final:ccl_voltage-ccl_jackrabbits",
+  "deciding_game": "ccl:h2017:po:final:ccl_voltage-ccl_jackrabbits:g4",
+  "championship_mvp": "ccl_p0257",
+  "participants": [
+   "ccl_voltage",
+   "ccl_dustdevils",
+   "ccl_jackrabbits",
+   "ccl_satellites"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2017",
+  "league": "fhl",
+  "year": 2017,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_sawblades",
+  "result": "4-0",
+  "series_id": "fhl:h2017:po:final:fhl_rivets-fhl_sawblades",
+  "deciding_game": "fhl:h2017:po:final:fhl_rivets-fhl_sawblades:g4",
+  "championship_mvp": "fhl_p0652",
+  "participants": [
+   "fhl_rivets",
+   "fhl_sawblades",
+   "fhl_floes",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2017",
+  "league": "gdc",
+  "year": 2017,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-0",
+  "series_id": "gdc:h2017:po:final:gdc_lamplighters-gdc_loons",
+  "deciding_game": "gdc:h2017:po:final:gdc_lamplighters-gdc_loons:g4",
+  "championship_mvp": "gdc_generated_002283",
+  "participants": [
+   "gdc_paddlers",
+   "gdc_lamplighters",
+   "gdc_ore_haulers",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2017",
+  "league": "igl",
+  "year": 2017,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_ironclads",
+  "result": "41-35",
+  "series_id": "igl:h2017:po:final:igl_ironclads-igl_highlanders",
+  "deciding_game": "igl:h2017:po:final:igl_ironclads-igl_highlanders:g1",
+  "championship_mvp": "igl_generated_003439",
+  "participants": [
+   "igl_ironclads",
+   "igl_highlanders",
+   "igl_harvesters",
+   "igl_thunderherd"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2018",
+  "league": "ccl",
+  "year": 2018,
+  "trophy": "The Crown",
+  "champion": "ccl_jackrabbits",
+  "runner_up": "ccl_voltage",
+  "result": "4-1",
+  "series_id": "ccl:h2018:po:final:ccl_jackrabbits-ccl_voltage",
+  "deciding_game": "ccl:h2018:po:final:ccl_jackrabbits-ccl_voltage:g5",
+  "championship_mvp": "ccl_p0255",
+  "participants": [
+   "ccl_jackrabbits",
+   "ccl_anchors",
+   "ccl_voltage",
+   "ccl_forge"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2018",
+  "league": "fhl",
+  "year": 2018,
+  "trophy": "Frost Cup",
+  "champion": "fhl_rivets",
+  "runner_up": "fhl_sawblades",
+  "result": "4-1",
+  "series_id": "fhl:h2018:po:final:fhl_rivets-fhl_sawblades",
+  "deciding_game": "fhl:h2018:po:final:fhl_rivets-fhl_sawblades:g5",
+  "championship_mvp": "fhl_generated_001191",
+  "participants": [
+   "fhl_rivets",
+   "fhl_yetis",
+   "fhl_sawblades",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2018",
+  "league": "gdc",
+  "year": 2018,
+  "trophy": "Founders Cup",
+  "champion": "gdc_loons",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-2",
+  "series_id": "gdc:h2018:po:final:gdc_kingfishers-gdc_loons",
+  "deciding_game": "gdc:h2018:po:final:gdc_kingfishers-gdc_loons:g6",
+  "championship_mvp": "gdc_generated_002284",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_loons",
+   "gdc_lamplighters",
+   "gdc_firebirds"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2018",
+  "league": "igl",
+  "year": 2018,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_thunderherd",
+  "result": "35-27",
+  "series_id": "igl:h2018:po:final:igl_thunderherd-igl_highlanders",
+  "deciding_game": "igl:h2018:po:final:igl_thunderherd-igl_highlanders:g1",
+  "championship_mvp": "igl_generated_003439",
+  "participants": [
+   "igl_thunderherd",
+   "igl_rockslides",
+   "igl_highlanders",
+   "igl_harvesters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2019",
+  "league": "ccl",
+  "year": 2019,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_jackrabbits",
+  "result": "4-3",
+  "series_id": "ccl:h2019:po:final:ccl_satellites-ccl_jackrabbits",
+  "deciding_game": "ccl:h2019:po:final:ccl_satellites-ccl_jackrabbits:g7",
+  "championship_mvp": "ccl_generated_000406",
+  "participants": [
+   "ccl_anchors",
+   "ccl_dustdevils",
+   "ccl_satellites",
+   "ccl_jackrabbits"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2019",
+  "league": "fhl",
+  "year": 2019,
+  "trophy": "Frost Cup",
+  "champion": "fhl_snowowls",
+  "runner_up": "fhl_rivets",
+  "result": "4-2",
+  "series_id": "fhl:h2019:po:final:fhl_snowowls-fhl_rivets",
+  "deciding_game": "fhl:h2019:po:final:fhl_snowowls-fhl_rivets:g6",
+  "championship_mvp": "fhl_generated_001128",
+  "participants": [
+   "fhl_snowowls",
+   "fhl_sawblades",
+   "fhl_rivets",
+   "fhl_borealis"
+  ],
+  "events": [
+   "fhl-2019-001"
+  ],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2019",
+  "league": "gdc",
+  "year": 2019,
+  "trophy": "Founders Cup",
+  "champion": "gdc_paddlers",
+  "runner_up": "gdc_gilas",
+  "result": "4-2",
+  "series_id": "gdc:h2019:po:final:gdc_paddlers-gdc_gilas",
+  "deciding_game": "gdc:h2019:po:final:gdc_paddlers-gdc_gilas:g6",
+  "championship_mvp": "gdc_generated_002325",
+  "participants": [
+   "gdc_paddlers",
+   "gdc_millers",
+   "gdc_gilas",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2019",
+  "league": "igl",
+  "year": 2019,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_harvesters",
+  "result": "38-20",
+  "series_id": "igl:h2019:po:final:igl_harvesters-igl_highlanders",
+  "deciding_game": "igl:h2019:po:final:igl_harvesters-igl_highlanders:g1",
+  "championship_mvp": "igl_p0446",
+  "participants": [
+   "igl_harvesters",
+   "igl_highlanders",
+   "igl_rockslides",
+   "igl_undertow"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2020",
+  "league": "ccl",
+  "year": 2020,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_comets",
+  "result": "4-2",
+  "series_id": "ccl:h2020:po:final:ccl_voltage-ccl_comets",
+  "deciding_game": "ccl:h2020:po:final:ccl_voltage-ccl_comets:g6",
+  "championship_mvp": "ccl_generated_000357",
+  "participants": [
+   "ccl_voltage",
+   "ccl_anchors",
+   "ccl_comets",
+   "ccl_monsoon"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2020",
+  "league": "fhl",
+  "year": 2020,
+  "trophy": "Frost Cup",
+  "champion": "fhl_floes",
+  "runner_up": "fhl_polars",
+  "result": "4-3",
+  "series_id": "fhl:h2020:po:final:fhl_polars-fhl_floes",
+  "deciding_game": "fhl:h2020:po:final:fhl_polars-fhl_floes:g7",
+  "championship_mvp": "fhl_p0614",
+  "participants": [
+   "fhl_polars",
+   "fhl_snowowls",
+   "fhl_floes",
+   "fhl_yetis"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2020",
+  "league": "gdc",
+  "year": 2020,
+  "trophy": "Founders Cup",
+  "champion": "gdc_paddlers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-1",
+  "series_id": "gdc:h2020:po:final:gdc_lamplighters-gdc_paddlers",
+  "deciding_game": "gdc:h2020:po:final:gdc_lamplighters-gdc_paddlers:g5",
+  "championship_mvp": "gdc_generated_002234",
+  "participants": [
+   "gdc_lamplighters",
+   "gdc_paddlers",
+   "gdc_firebirds",
+   "gdc_ore_haulers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2020",
+  "league": "igl",
+  "year": 2020,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_squall",
+  "result": "22-14",
+  "series_id": "igl:h2020:po:final:igl_squall-igl_highlanders",
+  "deciding_game": "igl:h2020:po:final:igl_squall-igl_highlanders:g1",
+  "championship_mvp": "igl_generated_003575",
+  "participants": [
+   "igl_thunderherd",
+   "igl_smokejumpers",
+   "igl_squall",
+   "igl_highlanders"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2021",
+  "league": "ccl",
+  "year": 2021,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_satellites",
+  "result": "4-3",
+  "series_id": "ccl:h2021:po:final:ccl_anchors-ccl_satellites",
+  "deciding_game": "ccl:h2021:po:final:ccl_anchors-ccl_satellites:g7",
+  "championship_mvp": "ccl_generated_000430",
+  "participants": [
+   "ccl_anchors",
+   "ccl_jackrabbits",
+   "ccl_satellites",
+   "ccl_dustdevils"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2021",
+  "league": "fhl",
+  "year": 2021,
+  "trophy": "Frost Cup",
+  "champion": "fhl_narwhals",
+  "runner_up": "fhl_snowowls",
+  "result": "4-1",
+  "series_id": "fhl:h2021:po:final:fhl_narwhals-fhl_snowowls",
+  "deciding_game": "fhl:h2021:po:final:fhl_narwhals-fhl_snowowls:g5",
+  "championship_mvp": "fhl_generated_001186",
+  "participants": [
+   "fhl_narwhals",
+   "fhl_snowowls",
+   "fhl_polars",
+   "fhl_floes"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2021",
+  "league": "gdc",
+  "year": 2021,
+  "trophy": "Founders Cup",
+  "champion": "gdc_paddlers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-3",
+  "series_id": "gdc:h2021:po:final:gdc_paddlers-gdc_lamplighters",
+  "deciding_game": "gdc:h2021:po:final:gdc_paddlers-gdc_lamplighters:g7",
+  "championship_mvp": "gdc_generated_002234",
+  "participants": [
+   "gdc_paddlers",
+   "gdc_loons",
+   "gdc_lamplighters",
+   "gdc_ore_haulers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2021",
+  "league": "igl",
+  "year": 2021,
+  "trophy": "Iron Bowl",
+  "champion": "igl_squall",
+  "runner_up": "igl_smokejumpers",
+  "result": "31-10",
+  "series_id": "igl:h2021:po:final:igl_squall-igl_smokejumpers",
+  "deciding_game": "igl:h2021:po:final:igl_squall-igl_smokejumpers:g1",
+  "championship_mvp": "igl_generated_003752",
+  "participants": [
+   "igl_harvesters",
+   "igl_squall",
+   "igl_ironclads",
+   "igl_smokejumpers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2022",
+  "league": "ccl",
+  "year": 2022,
+  "trophy": "The Crown",
+  "champion": "ccl_anchors",
+  "runner_up": "ccl_satellites",
+  "result": "4-2",
+  "series_id": "ccl:h2022:po:final:ccl_anchors-ccl_satellites",
+  "deciding_game": "ccl:h2022:po:final:ccl_anchors-ccl_satellites:g6",
+  "championship_mvp": "ccl_generated_000430",
+  "participants": [
+   "ccl_voltage",
+   "ccl_anchors",
+   "ccl_forge",
+   "ccl_satellites"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2022",
+  "league": "fhl",
+  "year": 2022,
+  "trophy": "Frost Cup",
+  "champion": "fhl_floes",
+  "runner_up": "fhl_rivets",
+  "result": "4-2",
+  "series_id": "fhl:h2022:po:final:fhl_rivets-fhl_floes",
+  "deciding_game": "fhl:h2022:po:final:fhl_rivets-fhl_floes:g6",
+  "championship_mvp": "fhl_p0615",
+  "participants": [
+   "fhl_rivets",
+   "fhl_floes",
+   "fhl_sawblades",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2022",
+  "league": "gdc",
+  "year": 2022,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_loons",
+  "result": "4-2",
+  "series_id": "gdc:h2022:po:final:gdc_kingfishers-gdc_loons",
+  "deciding_game": "gdc:h2022:po:final:gdc_kingfishers-gdc_loons:g6",
+  "championship_mvp": "gdc_p0174",
+  "participants": [
+   "gdc_kingfishers",
+   "gdc_ore_haulers",
+   "gdc_loons",
+   "gdc_gilas"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2022",
+  "league": "igl",
+  "year": 2022,
+  "trophy": "Iron Bowl",
+  "champion": "igl_undertow",
+  "runner_up": "igl_ironclads",
+  "result": "56-24",
+  "series_id": "igl:h2022:po:final:igl_undertow-igl_ironclads",
+  "deciding_game": "igl:h2022:po:final:igl_undertow-igl_ironclads:g1",
+  "championship_mvp": "igl_p0383",
+  "participants": [
+   "igl_undertow",
+   "igl_smokejumpers",
+   "igl_ironclads",
+   "igl_harvesters"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2023",
+  "league": "ccl",
+  "year": 2023,
+  "trophy": "The Crown",
+  "champion": "ccl_jackrabbits",
+  "runner_up": "ccl_monsoon",
+  "result": "4-1",
+  "series_id": "ccl:h2023:po:final:ccl_monsoon-ccl_jackrabbits",
+  "deciding_game": "ccl:h2023:po:final:ccl_monsoon-ccl_jackrabbits:g5",
+  "championship_mvp": "ccl_generated_000438",
+  "participants": [
+   "ccl_monsoon",
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_anchors"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2023",
+  "league": "fhl",
+  "year": 2023,
+  "trophy": "Frost Cup",
+  "champion": "fhl_floes",
+  "runner_up": "fhl_narwhals",
+  "result": "4-3",
+  "series_id": "fhl:h2023:po:final:fhl_floes-fhl_narwhals",
+  "deciding_game": "fhl:h2023:po:final:fhl_floes-fhl_narwhals:g7",
+  "championship_mvp": "fhl_generated_001266",
+  "participants": [
+   "fhl_floes",
+   "fhl_narwhals",
+   "fhl_borealis",
+   "fhl_polars"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2023",
+  "league": "gdc",
+  "year": 2023,
+  "trophy": "Founders Cup",
+  "champion": "gdc_ore_haulers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-2",
+  "series_id": "gdc:h2023:po:final:gdc_ore_haulers-gdc_lamplighters",
+  "deciding_game": "gdc:h2023:po:final:gdc_ore_haulers-gdc_lamplighters:g6",
+  "championship_mvp": "gdc_generated_002380",
+  "participants": [
+   "gdc_ore_haulers",
+   "gdc_lamplighters",
+   "gdc_paddlers",
+   "gdc_loons"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2023",
+  "league": "igl",
+  "year": 2023,
+  "trophy": "Iron Bowl",
+  "champion": "igl_thunderherd",
+  "runner_up": "igl_undertow",
+  "result": "14-6",
+  "series_id": "igl:h2023:po:final:igl_undertow-igl_thunderherd",
+  "deciding_game": "igl:h2023:po:final:igl_undertow-igl_thunderherd:g1",
+  "championship_mvp": "igl_generated_003759",
+  "participants": [
+   "igl_rockslides",
+   "igl_harvesters",
+   "igl_undertow",
+   "igl_thunderherd"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2024",
+  "league": "ccl",
+  "year": 2024,
+  "trophy": "The Crown",
+  "champion": "ccl_forge",
+  "runner_up": "ccl_dustdevils",
+  "result": "4-1",
+  "series_id": "ccl:h2024:po:final:ccl_forge-ccl_dustdevils",
+  "deciding_game": "ccl:h2024:po:final:ccl_forge-ccl_dustdevils:g5",
+  "championship_mvp": "ccl_generated_000425",
+  "participants": [
+   "ccl_forge",
+   "ccl_comets",
+   "ccl_dustdevils",
+   "ccl_voltage"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2024",
+  "league": "fhl",
+  "year": 2024,
+  "trophy": "Frost Cup",
+  "champion": "fhl_floes",
+  "runner_up": "fhl_narwhals",
+  "result": "4-3",
+  "series_id": "fhl:h2024:po:final:fhl_floes-fhl_narwhals",
+  "deciding_game": "fhl:h2024:po:final:fhl_floes-fhl_narwhals:g7",
+  "championship_mvp": "fhl_p0613",
+  "participants": [
+   "fhl_floes",
+   "fhl_narwhals",
+   "fhl_borealis",
+   "fhl_polars"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2024",
+  "league": "gdc",
+  "year": 2024,
+  "trophy": "Founders Cup",
+  "champion": "gdc_lamplighters",
+  "runner_up": "gdc_loons",
+  "result": "4-1",
+  "series_id": "gdc:h2024:po:final:gdc_lamplighters-gdc_loons",
+  "deciding_game": "gdc:h2024:po:final:gdc_lamplighters-gdc_loons:g5",
+  "championship_mvp": "gdc_generated_002443",
+  "participants": [
+   "gdc_lamplighters",
+   "gdc_paddlers",
+   "gdc_loons",
+   "gdc_firebirds"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2024",
+  "league": "igl",
+  "year": 2024,
+  "trophy": "Iron Bowl",
+  "champion": "igl_highlanders",
+  "runner_up": "igl_undertow",
+  "result": "41-17",
+  "series_id": "igl:h2024:po:final:igl_undertow-igl_highlanders",
+  "deciding_game": "igl:h2024:po:final:igl_undertow-igl_highlanders:g1",
+  "championship_mvp": "igl_p0447",
+  "participants": [
+   "igl_undertow",
+   "igl_highlanders",
+   "igl_thunderherd",
+   "igl_ironclads"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "ccl-2025",
+  "league": "ccl",
+  "year": 2025,
+  "trophy": "The Crown",
+  "champion": "ccl_voltage",
+  "runner_up": "ccl_satellites",
+  "result": "4-2",
+  "series_id": "ccl:h2025:po:final:ccl_satellites-ccl_voltage",
+  "deciding_game": "ccl:h2025:po:final:ccl_satellites-ccl_voltage:g6",
+  "championship_mvp": "ccl_generated_000469",
+  "participants": [
+   "ccl_satellites",
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_dustdevils"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "fhl-2025",
+  "league": "fhl",
+  "year": 2025,
+  "trophy": "Frost Cup",
+  "champion": "fhl_floes",
+  "runner_up": "fhl_sawblades",
+  "result": "4-3",
+  "series_id": "fhl:h2025:po:final:fhl_floes-fhl_sawblades",
+  "deciding_game": "fhl:h2025:po:final:fhl_floes-fhl_sawblades:g7",
+  "championship_mvp": "fhl_p0614",
+  "participants": [
+   "fhl_floes",
+   "fhl_sawblades",
+   "fhl_narwhals",
+   "fhl_snowowls"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2025",
+  "league": "gdc",
+  "year": 2025,
+  "trophy": "Founders Cup",
+  "champion": "gdc_paddlers",
+  "runner_up": "gdc_kingfishers",
+  "result": "4-3",
+  "series_id": "gdc:h2025:po:final:gdc_paddlers-gdc_kingfishers",
+  "deciding_game": "gdc:h2025:po:final:gdc_paddlers-gdc_kingfishers:g7",
+  "championship_mvp": "gdc_p0089",
+  "participants": [
+   "gdc_paddlers",
+   "gdc_kingfishers",
+   "gdc_gilas",
+   "gdc_millers"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "igl-2025",
+  "league": "igl",
+  "year": 2025,
+  "trophy": "Iron Bowl",
+  "champion": "igl_rockslides",
+  "runner_up": "igl_undertow",
+  "result": "38-13",
+  "series_id": "igl:h2025:po:final:igl_rockslides-igl_undertow",
+  "deciding_game": "igl:h2025:po:final:igl_rockslides-igl_undertow:g1",
+  "championship_mvp": "igl_p0404",
+  "participants": [
+   "igl_squall",
+   "igl_rockslides",
+   "igl_ironclads",
+   "igl_undertow"
+  ],
+  "events": [],
+  "provenance": "proposed_canon"
+ },
+ {
+  "id": "gdc-2026",
+  "league": "gdc",
+  "year": 2026,
+  "trophy": "Founders Cup",
+  "champion": "gdc_kingfishers",
+  "runner_up": "gdc_lamplighters",
+  "result": "4-2",
+  "series_id": "gdc:h2026:po:final:gdc_lamplighters-gdc_kingfishers",
+  "deciding_game": "gdc:h2026:po:final:gdc_lamplighters-gdc_kingfishers:g6",
+  "championship_mvp": "gdc_generated_002330",
+  "participants": [
+   "gdc_gilas",
+   "gdc_ore_haulers",
+   "gdc_lamplighters",
+   "gdc_kingfishers"
+  ],
+  "events": [],
+  "provenance": "generated_history"
+ },
+ {
+  "id": "ccl-2026",
+  "league": "ccl",
+  "year": 2026,
+  "trophy": "The Crown",
+  "champion": "ccl_satellites",
+  "runner_up": "ccl_jackrabbits",
+  "result": "4-3",
+  "series_id": "ccl:h2026:po:final:ccl_satellites-ccl_jackrabbits",
+  "deciding_game": "ccl:h2026:po:final:ccl_satellites-ccl_jackrabbits:g7",
+  "championship_mvp": "ccl_generated_000407",
+  "participants": [
+   "ccl_satellites",
+   "ccl_voltage",
+   "ccl_jackrabbits",
+   "ccl_monsoon"
+  ],
+  "events": [],
+  "provenance": "generated_history"
+ },
+ {
+  "id": "igl-2026",
+  "league": "igl",
+  "year": 2026,
+  "trophy": "Iron Bowl",
+  "champion": "igl_rockslides",
+  "runner_up": "igl_harvesters",
+  "result": "48-14",
+  "series_id": "igl:h2026:po:final:igl_rockslides-igl_harvesters",
+  "deciding_game": "igl:h2026:po:final:igl_rockslides-igl_harvesters:g1",
+  "championship_mvp": "igl_generated_003810",
+  "participants": [
+   "igl_rockslides",
+   "igl_smokejumpers",
+   "igl_harvesters",
+   "igl_thunderherd"
+  ],
+  "events": [],
+  "provenance": "generated_history"
+ },
+ {
+  "id": "fhl-2026",
+  "league": "fhl",
+  "year": 2026,
+  "trophy": "Frost Cup",
+  "champion": "fhl_borealis",
+  "runner_up": "fhl_rivets",
+  "result": "4-3",
+  "series_id": "fhl:h2026:po:final:fhl_rivets-fhl_borealis",
+  "deciding_game": "fhl:h2026:po:final:fhl_rivets-fhl_borealis:g7",
+  "championship_mvp": "fhl_generated_001295",
+  "participants": [
+   "fhl_narwhals",
+   "fhl_floes",
+   "fhl_rivets",
+   "fhl_borealis"
+  ],
+  "events": [],
+  "provenance": "generated_history"
+ }
+]

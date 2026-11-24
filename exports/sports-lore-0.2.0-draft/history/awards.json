@@ -1,0 +1,8192 @@
+[
+ {
+  "id": "gdc-1972:mvp",
+  "league": "gdc",
+  "year": 1972,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001400",
+  "team": "gdc_gilas",
+  "value": 176.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1972:poy",
+  "league": "gdc",
+  "year": 1972,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001503",
+  "team": "gdc_paddlers",
+  "value": 44,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1972:cmvp",
+  "league": "gdc",
+  "year": 1972,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001391",
+  "team": "gdc_gilas",
+  "value": 32,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1973:mvp",
+  "league": "gdc",
+  "year": 1973,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001413",
+  "team": "gdc_kingfishers",
+  "value": 176.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1973:poy",
+  "league": "gdc",
+  "year": 1973,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001503",
+  "team": "gdc_paddlers",
+  "value": 61.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1973:cmvp",
+  "league": "gdc",
+  "year": 1973,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001396",
+  "team": "gdc_gilas",
+  "value": 31.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1974:mvp",
+  "league": "ccl",
+  "year": 1974,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000007",
+  "team": "ccl_anchors",
+  "value": 1161,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1974:dpoy",
+  "league": "ccl",
+  "year": 1974,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000025",
+  "team": "ccl_dustdevils",
+  "value": 233,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1974:cmvp",
+  "league": "ccl",
+  "year": 1974,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000007",
+  "team": "ccl_anchors",
+  "value": 246,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1974:mvp",
+  "league": "gdc",
+  "year": 1974,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001505",
+  "team": "gdc_paddlers",
+  "value": 187.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1974:poy",
+  "league": "gdc",
+  "year": 1974,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001441",
+  "team": "gdc_loons",
+  "value": 59,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1974:cmvp",
+  "league": "gdc",
+  "year": 1974,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001392",
+  "team": "gdc_gilas",
+  "value": 28.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1975:mvp",
+  "league": "ccl",
+  "year": 1975,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 1172.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1975:dpoy",
+  "league": "ccl",
+  "year": 1975,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 244.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1975:cmvp",
+  "league": "ccl",
+  "year": 1975,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000007",
+  "team": "ccl_anchors",
+  "value": 151.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1975:mvp",
+  "league": "gdc",
+  "year": 1975,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001396",
+  "team": "gdc_gilas",
+  "value": 203.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1975:poy",
+  "league": "gdc",
+  "year": 1975,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001385",
+  "team": "gdc_gilas",
+  "value": 60.9,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1975:cmvp",
+  "league": "gdc",
+  "year": 1975,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001391",
+  "team": "gdc_gilas",
+  "value": 22,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1976:mvp",
+  "league": "ccl",
+  "year": 1976,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000046",
+  "team": "ccl_monsoon",
+  "value": 1186.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1976:dpoy",
+  "league": "ccl",
+  "year": 1976,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000060",
+  "team": "ccl_satellites",
+  "value": 236.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1976:cmvp",
+  "league": "ccl",
+  "year": 1976,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0199",
+  "team": "ccl_monsoon",
+  "value": 166.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1976:mvp",
+  "league": "gdc",
+  "year": 1976,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001413",
+  "team": "gdc_kingfishers",
+  "value": 269.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1976:poy",
+  "league": "gdc",
+  "year": 1976,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001442",
+  "team": "gdc_loons",
+  "value": 70.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1976:roy",
+  "league": "gdc",
+  "year": 1976,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001520",
+  "team": "gdc_lamplighters",
+  "value": 94,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1976:cmvp",
+  "league": "gdc",
+  "year": 1976,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001450",
+  "team": "gdc_loons",
+  "value": 26.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1976:mvp",
+  "league": "igl",
+  "year": 1976,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002483",
+  "team": "igl_harvesters",
+  "value": 423.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1976:dpoy",
+  "league": "igl",
+  "year": 1976,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002674",
+  "team": "igl_undertow",
+  "value": 161,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1976:cmvp",
+  "league": "igl",
+  "year": 1976,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002487",
+  "team": "igl_harvesters",
+  "value": 37.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1977:mvp",
+  "league": "ccl",
+  "year": 1977,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000000",
+  "team": "ccl_anchors",
+  "value": 1196.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1977:dpoy",
+  "league": "ccl",
+  "year": 1977,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 239,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1977:cmvp",
+  "league": "ccl",
+  "year": 1977,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000068",
+  "team": "ccl_voltage",
+  "value": 192.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1977:mvp",
+  "league": "gdc",
+  "year": 1977,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0159",
+  "team": "gdc_kingfishers",
+  "value": 193.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1977:poy",
+  "league": "gdc",
+  "year": 1977,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_p0157",
+  "team": "gdc_kingfishers",
+  "value": 52.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1977:roy",
+  "league": "gdc",
+  "year": 1977,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001533",
+  "team": "gdc_gilas",
+  "value": 133,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1977:cmvp",
+  "league": "gdc",
+  "year": 1977,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001539",
+  "team": "gdc_kingfishers",
+  "value": 38.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1977:mvp",
+  "league": "igl",
+  "year": 1977,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002483",
+  "team": "igl_harvesters",
+  "value": 393.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1977:dpoy",
+  "league": "igl",
+  "year": 1977,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002650",
+  "team": "igl_thunderherd",
+  "value": 175,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1977:cmvp",
+  "league": "igl",
+  "year": 1977,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0409",
+  "team": "igl_harvesters",
+  "value": 18.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1978:mvp",
+  "league": "ccl",
+  "year": 1978,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000026",
+  "team": "ccl_dustdevils",
+  "value": 1281.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1978:dpoy",
+  "league": "ccl",
+  "year": 1978,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000060",
+  "team": "ccl_satellites",
+  "value": 240,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1978:roy",
+  "league": "ccl",
+  "year": 1978,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000079",
+  "team": "ccl_forge",
+  "value": 955,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1978:cmvp",
+  "league": "ccl",
+  "year": 1978,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000067",
+  "team": "ccl_voltage",
+  "value": 236.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1978:mvp",
+  "league": "fhl",
+  "year": 1978,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000514",
+  "team": "fhl_floes",
+  "value": 34.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1978:goy",
+  "league": "fhl",
+  "year": 1978,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0619",
+  "team": "fhl_yetis",
+  "value": 2.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1978:cmvp",
+  "league": "fhl",
+  "year": 1978,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000513",
+  "team": "fhl_floes",
+  "value": 6.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1978:mvp",
+  "league": "gdc",
+  "year": 1978,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001450",
+  "team": "gdc_loons",
+  "value": 177.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1978:poy",
+  "league": "gdc",
+  "year": 1978,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001559",
+  "team": "gdc_lamplighters",
+  "value": 50.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1978:roy",
+  "league": "gdc",
+  "year": 1978,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001563",
+  "team": "gdc_millers",
+  "value": 109.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1978:cmvp",
+  "league": "gdc",
+  "year": 1978,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0054",
+  "team": "gdc_gilas",
+  "value": 21.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1978:mvp",
+  "league": "igl",
+  "year": 1978,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0368",
+  "team": "igl_undertow",
+  "value": 352.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1978:dpoy",
+  "league": "igl",
+  "year": 1978,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002599",
+  "team": "igl_smokejumpers",
+  "value": 176,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1978:cmvp",
+  "league": "igl",
+  "year": 1978,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0368",
+  "team": "igl_undertow",
+  "value": 18.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1979:mvp",
+  "league": "ccl",
+  "year": 1979,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 1233.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1979:dpoy",
+  "league": "ccl",
+  "year": 1979,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 255,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1979:roy",
+  "league": "ccl",
+  "year": 1979,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 1048.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1979:cmvp",
+  "league": "ccl",
+  "year": 1979,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000060",
+  "team": "ccl_satellites",
+  "value": 248.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1979:mvp",
+  "league": "fhl",
+  "year": 1979,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0619",
+  "team": "fhl_yetis",
+  "value": 39.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1979:goy",
+  "league": "fhl",
+  "year": 1979,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0514",
+  "team": "fhl_polars",
+  "value": 15.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1979:roy",
+  "league": "fhl",
+  "year": 1979,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0601",
+  "team": "fhl_floes",
+  "value": 17.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1979:cmvp",
+  "league": "fhl",
+  "year": 1979,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0619",
+  "team": "fhl_yetis",
+  "value": 8.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1979:mvp",
+  "league": "gdc",
+  "year": 1979,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001381",
+  "team": "gdc_firebirds",
+  "value": 176.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1979:poy",
+  "league": "gdc",
+  "year": 1979,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001370",
+  "team": "gdc_firebirds",
+  "value": 66.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1979:roy",
+  "league": "gdc",
+  "year": 1979,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001570",
+  "team": "gdc_firebirds",
+  "value": 117,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1979:cmvp",
+  "league": "gdc",
+  "year": 1979,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001381",
+  "team": "gdc_firebirds",
+  "value": 32,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1979:mvp",
+  "league": "igl",
+  "year": 1979,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002483",
+  "team": "igl_harvesters",
+  "value": 391.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1979:dpoy",
+  "league": "igl",
+  "year": 1979,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002651",
+  "team": "igl_thunderherd",
+  "value": 176,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1979:roy",
+  "league": "igl",
+  "year": 1979,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_p0391",
+  "team": "igl_rockslides",
+  "value": 136.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1979:cmvp",
+  "league": "igl",
+  "year": 1979,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002483",
+  "team": "igl_harvesters",
+  "value": 21.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1980:mvp",
+  "league": "ccl",
+  "year": 1980,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 1250.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1980:dpoy",
+  "league": "ccl",
+  "year": 1980,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 234.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1980:cmvp",
+  "league": "ccl",
+  "year": 1980,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000002",
+  "team": "ccl_anchors",
+  "value": 205.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1980:mvp",
+  "league": "fhl",
+  "year": 1980,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000571",
+  "team": "fhl_sawblades",
+  "value": 32.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1980:goy",
+  "league": "fhl",
+  "year": 1980,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0619",
+  "team": "fhl_yetis",
+  "value": 15.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1980:roy",
+  "league": "fhl",
+  "year": 1980,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0666",
+  "team": "fhl_snowowls",
+  "value": 23.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1980:cmvp",
+  "league": "fhl",
+  "year": 1980,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000582",
+  "team": "fhl_sawblades",
+  "value": 6.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1980:mvp",
+  "league": "gdc",
+  "year": 1980,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001550",
+  "team": "gdc_paddlers",
+  "value": 173.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1980:poy",
+  "league": "gdc",
+  "year": 1980,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001557",
+  "team": "gdc_kingfishers",
+  "value": 54.9,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1980:roy",
+  "league": "gdc",
+  "year": 1980,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_p0076",
+  "team": "gdc_paddlers",
+  "value": 128,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1980:cmvp",
+  "league": "gdc",
+  "year": 1980,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001419",
+  "team": "gdc_kingfishers",
+  "value": 30.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1980:mvp",
+  "league": "igl",
+  "year": 1980,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002608",
+  "team": "igl_squall",
+  "value": 395.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1980:dpoy",
+  "league": "igl",
+  "year": 1980,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002599",
+  "team": "igl_smokejumpers",
+  "value": 172,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1980:roy",
+  "league": "igl",
+  "year": 1980,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002698",
+  "team": "igl_smokejumpers",
+  "value": 178.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1980:cmvp",
+  "league": "igl",
+  "year": 1980,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002633",
+  "team": "igl_thunderherd",
+  "value": 28.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1981:mvp",
+  "league": "ccl",
+  "year": 1981,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0182",
+  "team": "ccl_voltage",
+  "value": 1179.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1981:dpoy",
+  "league": "ccl",
+  "year": 1981,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 232.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1981:roy",
+  "league": "ccl",
+  "year": 1981,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1063.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1981:cmvp",
+  "league": "ccl",
+  "year": 1981,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0179",
+  "team": "ccl_voltage",
+  "value": 189.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1981:mvp",
+  "league": "fhl",
+  "year": 1981,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0514",
+  "team": "fhl_polars",
+  "value": 38,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1981:goy",
+  "league": "fhl",
+  "year": 1981,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0514",
+  "team": "fhl_polars",
+  "value": 20.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1981:roy",
+  "league": "fhl",
+  "year": 1981,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0560",
+  "team": "fhl_sawblades",
+  "value": 27.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1981:cmvp",
+  "league": "fhl",
+  "year": 1981,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0556",
+  "team": "fhl_sawblades",
+  "value": 10,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1981:mvp",
+  "league": "gdc",
+  "year": 1981,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0137",
+  "team": "gdc_millers",
+  "value": 197.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1981:poy",
+  "league": "gdc",
+  "year": 1981,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001545",
+  "team": "gdc_millers",
+  "value": 56.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1981:roy",
+  "league": "gdc",
+  "year": 1981,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001606",
+  "team": "gdc_gilas",
+  "value": 128.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1981:cmvp",
+  "league": "gdc",
+  "year": 1981,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001563",
+  "team": "gdc_millers",
+  "value": 31.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1981:mvp",
+  "league": "igl",
+  "year": 1981,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0431",
+  "team": "igl_highlanders",
+  "value": 446.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1981:dpoy",
+  "league": "igl",
+  "year": 1981,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002600",
+  "team": "igl_smokejumpers",
+  "value": 165,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1981:roy",
+  "league": "igl",
+  "year": 1981,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002727",
+  "team": "igl_undertow",
+  "value": 172.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1981:cmvp",
+  "league": "igl",
+  "year": 1981,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0431",
+  "team": "igl_highlanders",
+  "value": 19.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1982:mvp",
+  "league": "ccl",
+  "year": 1982,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0183",
+  "team": "ccl_voltage",
+  "value": 1154.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1982:dpoy",
+  "league": "ccl",
+  "year": 1982,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 235.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1982:roy",
+  "league": "ccl",
+  "year": 1982,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000104",
+  "team": "ccl_satellites",
+  "value": 1003.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1982:cmvp",
+  "league": "ccl",
+  "year": 1982,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000094",
+  "team": "ccl_voltage",
+  "value": 219.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1982:mvp",
+  "league": "fhl",
+  "year": 1982,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000581",
+  "team": "fhl_sawblades",
+  "value": 35.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1982:goy",
+  "league": "fhl",
+  "year": 1982,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000600",
+  "team": "fhl_yetis",
+  "value": -5.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1982:roy",
+  "league": "fhl",
+  "year": 1982,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000627",
+  "team": "fhl_sawblades",
+  "value": 16.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1982:cmvp",
+  "league": "fhl",
+  "year": 1982,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000600",
+  "team": "fhl_yetis",
+  "value": 11.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1982:mvp",
+  "league": "gdc",
+  "year": 1982,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001570",
+  "team": "gdc_firebirds",
+  "value": 206,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1982:poy",
+  "league": "gdc",
+  "year": 1982,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001483",
+  "team": "gdc_ore_haulers",
+  "value": 72.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1982:roy",
+  "league": "gdc",
+  "year": 1982,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001627",
+  "team": "gdc_firebirds",
+  "value": 161.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1982:cmvp",
+  "league": "gdc",
+  "year": 1982,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0096",
+  "team": "gdc_firebirds",
+  "value": 36,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1982:mvp",
+  "league": "igl",
+  "year": 1982,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002483",
+  "team": "igl_harvesters",
+  "value": 388.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1982:dpoy",
+  "league": "igl",
+  "year": 1982,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0498",
+  "team": "igl_ironclads",
+  "value": 162,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1982:roy",
+  "league": "igl",
+  "year": 1982,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002758",
+  "team": "igl_thunderherd",
+  "value": 315.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1982:cmvp",
+  "league": "igl",
+  "year": 1982,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002481",
+  "team": "igl_harvesters",
+  "value": 27.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1983:mvp",
+  "league": "ccl",
+  "year": 1983,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0199",
+  "team": "ccl_monsoon",
+  "value": 1208.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1983:dpoy",
+  "league": "ccl",
+  "year": 1983,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 250.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1983:roy",
+  "league": "ccl",
+  "year": 1983,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000110",
+  "team": "ccl_forge",
+  "value": 906.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1983:cmvp",
+  "league": "ccl",
+  "year": 1983,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000103",
+  "team": "ccl_satellites",
+  "value": 208.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1983:mvp",
+  "league": "fhl",
+  "year": 1983,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0622",
+  "team": "fhl_yetis",
+  "value": 35.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1983:goy",
+  "league": "fhl",
+  "year": 1983,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000532",
+  "team": "fhl_polars",
+  "value": 11.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1983:roy",
+  "league": "fhl",
+  "year": 1983,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000629",
+  "team": "fhl_floes",
+  "value": 20,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1983:cmvp",
+  "league": "fhl",
+  "year": 1983,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0665",
+  "team": "fhl_snowowls",
+  "value": 6.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1983:mvp",
+  "league": "gdc",
+  "year": 1983,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001662",
+  "team": "gdc_loons",
+  "value": 185.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1983:poy",
+  "league": "gdc",
+  "year": 1983,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_elias_voss",
+  "team": "gdc_millers",
+  "value": 108.4,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1983:roy",
+  "league": "gdc",
+  "year": 1983,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001662",
+  "team": "gdc_loons",
+  "value": 175.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1983:cmvp",
+  "league": "gdc",
+  "year": 1983,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0137",
+  "team": "gdc_millers",
+  "value": 23.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1983:mvp",
+  "league": "igl",
+  "year": 1983,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002723",
+  "team": "igl_smokejumpers",
+  "value": 414.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1983:dpoy",
+  "league": "igl",
+  "year": 1983,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002688",
+  "team": "igl_highlanders",
+  "value": 164,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1983:roy",
+  "league": "igl",
+  "year": 1983,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002765",
+  "team": "igl_harvesters",
+  "value": 221.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1983:cmvp",
+  "league": "igl",
+  "year": 1983,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002742",
+  "team": "igl_ironclads",
+  "value": 12.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1984:mvp",
+  "league": "ccl",
+  "year": 1984,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000110",
+  "team": "ccl_forge",
+  "value": 1162.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1984:dpoy",
+  "league": "ccl",
+  "year": 1984,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 252,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1984:roy",
+  "league": "ccl",
+  "year": 1984,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000130",
+  "team": "ccl_monsoon",
+  "value": 1018,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1984:cmvp",
+  "league": "ccl",
+  "year": 1984,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000110",
+  "team": "ccl_forge",
+  "value": 184.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1984:mvp",
+  "league": "fhl",
+  "year": 1984,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 48.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1984:goy",
+  "league": "fhl",
+  "year": 1984,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 10.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1984:roy",
+  "league": "fhl",
+  "year": 1984,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 40.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1984:cmvp",
+  "league": "fhl",
+  "year": 1984,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000559",
+  "team": "fhl_rivets",
+  "value": 9.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1984:mvp",
+  "league": "gdc",
+  "year": 1984,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001662",
+  "team": "gdc_loons",
+  "value": 168,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1984:poy",
+  "league": "gdc",
+  "year": 1984,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001637",
+  "team": "gdc_millers",
+  "value": 78,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1984:roy",
+  "league": "gdc",
+  "year": 1984,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001684",
+  "team": "gdc_firebirds",
+  "value": 157,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1984:cmvp",
+  "league": "gdc",
+  "year": 1984,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0140",
+  "team": "gdc_millers",
+  "value": 30,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1984:mvp",
+  "league": "igl",
+  "year": 1984,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002779",
+  "team": "igl_squall",
+  "value": 369.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1984:dpoy",
+  "league": "igl",
+  "year": 1984,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0414",
+  "team": "igl_harvesters",
+  "value": 163,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1984:roy",
+  "league": "igl",
+  "year": 1984,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002788",
+  "team": "igl_harvesters",
+  "value": 277.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1984:cmvp",
+  "league": "igl",
+  "year": 1984,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002727",
+  "team": "igl_undertow",
+  "value": 28.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1985:mvp",
+  "league": "ccl",
+  "year": 1985,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0183",
+  "team": "ccl_voltage",
+  "value": 1168.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1985:dpoy",
+  "league": "ccl",
+  "year": 1985,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 237,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1985:roy",
+  "league": "ccl",
+  "year": 1985,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000141",
+  "team": "ccl_monsoon",
+  "value": 957,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1985:cmvp",
+  "league": "ccl",
+  "year": 1985,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_darius_king",
+  "team": "ccl_voltage",
+  "value": 186.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1985:mvp",
+  "league": "fhl",
+  "year": 1985,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000611",
+  "team": "fhl_yetis",
+  "value": 35.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1985:goy",
+  "league": "fhl",
+  "year": 1985,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000498",
+  "team": "fhl_floes",
+  "value": 9.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1985:roy",
+  "league": "fhl",
+  "year": 1985,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000686",
+  "team": "fhl_snowowls",
+  "value": 28.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1985:cmvp",
+  "league": "fhl",
+  "year": 1985,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000620",
+  "team": "fhl_yetis",
+  "value": 11.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1985:mvp",
+  "league": "gdc",
+  "year": 1985,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001610",
+  "team": "gdc_kingfishers",
+  "value": 178,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1985:poy",
+  "league": "gdc",
+  "year": 1985,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001637",
+  "team": "gdc_millers",
+  "value": 64.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1985:roy",
+  "league": "gdc",
+  "year": 1985,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001700",
+  "team": "gdc_gilas",
+  "value": 120,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1985:cmvp",
+  "league": "gdc",
+  "year": 1985,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001609",
+  "team": "gdc_kingfishers",
+  "value": 20.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1985:mvp",
+  "league": "igl",
+  "year": 1985,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002691",
+  "team": "igl_ironclads",
+  "value": 479.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1985:dpoy",
+  "league": "igl",
+  "year": 1985,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0435",
+  "team": "igl_highlanders",
+  "value": 159,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1985:roy",
+  "league": "igl",
+  "year": 1985,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002828",
+  "team": "igl_ironclads",
+  "value": 336.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1985:cmvp",
+  "league": "igl",
+  "year": 1985,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002691",
+  "team": "igl_ironclads",
+  "value": 33.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1986:mvp",
+  "league": "ccl",
+  "year": 1986,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 1233.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1986:dpoy",
+  "league": "ccl",
+  "year": 1986,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 237.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1986:roy",
+  "league": "ccl",
+  "year": 1986,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000143",
+  "team": "ccl_anchors",
+  "value": 1057.9,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1986:cmvp",
+  "league": "ccl",
+  "year": 1986,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0183",
+  "team": "ccl_voltage",
+  "value": 275.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1986:mvp",
+  "league": "fhl",
+  "year": 1986,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0540",
+  "team": "fhl_narwhals",
+  "value": 36.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1986:goy",
+  "league": "fhl",
+  "year": 1986,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000498",
+  "team": "fhl_floes",
+  "value": 0.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1986:roy",
+  "league": "fhl",
+  "year": 1986,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000699",
+  "team": "fhl_sawblades",
+  "value": 23.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1986:cmvp",
+  "league": "fhl",
+  "year": 1986,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0561",
+  "team": "fhl_sawblades",
+  "value": 6.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1986:mvp",
+  "league": "gdc",
+  "year": 1986,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001636",
+  "team": "gdc_loons",
+  "value": 161.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1986:poy",
+  "league": "gdc",
+  "year": 1986,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001613",
+  "team": "gdc_loons",
+  "value": 54.4,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1986:roy",
+  "league": "gdc",
+  "year": 1986,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001728",
+  "team": "gdc_ore_haulers",
+  "value": 106.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1986:cmvp",
+  "league": "gdc",
+  "year": 1986,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001686",
+  "team": "gdc_firebirds",
+  "value": 31,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1986:mvp",
+  "league": "igl",
+  "year": 1986,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002755",
+  "team": "igl_squall",
+  "value": 333.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1986:dpoy",
+  "league": "igl",
+  "year": 1986,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0414",
+  "team": "igl_harvesters",
+  "value": 170,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1986:roy",
+  "league": "igl",
+  "year": 1986,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002875",
+  "team": "igl_squall",
+  "value": 80.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1986:cmvp",
+  "league": "igl",
+  "year": 1986,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002532",
+  "team": "igl_ironclads",
+  "value": 24,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1987:mvp",
+  "league": "ccl",
+  "year": 1987,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1304.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1987:dpoy",
+  "league": "ccl",
+  "year": 1987,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 244,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1987:roy",
+  "league": "ccl",
+  "year": 1987,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000153",
+  "team": "ccl_comets",
+  "value": 1042.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1987:cmvp",
+  "league": "ccl",
+  "year": 1987,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 267.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1987:mvp",
+  "league": "fhl",
+  "year": 1987,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000720",
+  "team": "fhl_snowowls",
+  "value": 39.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1987:goy",
+  "league": "fhl",
+  "year": 1987,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000720",
+  "team": "fhl_snowowls",
+  "value": 13.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1987:roy",
+  "league": "fhl",
+  "year": 1987,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000720",
+  "team": "fhl_snowowls",
+  "value": 35.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1987:cmvp",
+  "league": "fhl",
+  "year": 1987,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0644",
+  "team": "fhl_rivets",
+  "value": 8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1987:mvp",
+  "league": "gdc",
+  "year": 1987,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001749",
+  "team": "gdc_millers",
+  "value": 168.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1987:poy",
+  "league": "gdc",
+  "year": 1987,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001704",
+  "team": "gdc_lamplighters",
+  "value": 48.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1987:roy",
+  "league": "gdc",
+  "year": 1987,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001749",
+  "team": "gdc_millers",
+  "value": 157,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1987:cmvp",
+  "league": "gdc",
+  "year": 1987,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0013",
+  "team": "gdc_lamplighters",
+  "value": 27.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1987:mvp",
+  "league": "igl",
+  "year": 1987,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002788",
+  "team": "igl_harvesters",
+  "value": 362.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1987:dpoy",
+  "league": "igl",
+  "year": 1987,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0372",
+  "team": "igl_undertow",
+  "value": 166,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1987:roy",
+  "league": "igl",
+  "year": 1987,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002893",
+  "team": "igl_ironclads",
+  "value": 347.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1987:cmvp",
+  "league": "igl",
+  "year": 1987,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002700",
+  "team": "igl_squall",
+  "value": 19.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1988:mvp",
+  "league": "ccl",
+  "year": 1988,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1258.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1988:dpoy",
+  "league": "ccl",
+  "year": 1988,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 253,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1988:roy",
+  "league": "ccl",
+  "year": 1988,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0228",
+  "team": "ccl_anchors",
+  "value": 1018.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1988:cmvp",
+  "league": "ccl",
+  "year": 1988,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0183",
+  "team": "ccl_voltage",
+  "value": 242.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1988:mvp",
+  "league": "fhl",
+  "year": 1988,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0519",
+  "team": "fhl_polars",
+  "value": 39.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1988:goy",
+  "league": "fhl",
+  "year": 1988,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": -1.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1988:roy",
+  "league": "fhl",
+  "year": 1988,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000727",
+  "team": "fhl_borealis",
+  "value": 31.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1988:cmvp",
+  "league": "fhl",
+  "year": 1988,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000693",
+  "team": "fhl_polars",
+  "value": 5.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1988:mvp",
+  "league": "gdc",
+  "year": 1988,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001627",
+  "team": "gdc_firebirds",
+  "value": 185.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1988:poy",
+  "league": "gdc",
+  "year": 1988,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001633",
+  "team": "gdc_lamplighters",
+  "value": 82.4,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1988:roy",
+  "league": "gdc",
+  "year": 1988,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_p0080",
+  "team": "gdc_paddlers",
+  "value": 123,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1988:cmvp",
+  "league": "gdc",
+  "year": 1988,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0098",
+  "team": "gdc_firebirds",
+  "value": 17,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1988:mvp",
+  "league": "igl",
+  "year": 1988,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002754",
+  "team": "igl_squall",
+  "value": 415.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1988:dpoy",
+  "league": "igl",
+  "year": 1988,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002793",
+  "team": "igl_highlanders",
+  "value": 161,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1988:roy",
+  "league": "igl",
+  "year": 1988,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002932",
+  "team": "igl_undertow",
+  "value": 240.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1988:cmvp",
+  "league": "igl",
+  "year": 1988,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002700",
+  "team": "igl_squall",
+  "value": 16.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1989:mvp",
+  "league": "ccl",
+  "year": 1989,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1436.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1989:dpoy",
+  "league": "ccl",
+  "year": 1989,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 263.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1989:roy",
+  "league": "ccl",
+  "year": 1989,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000171",
+  "team": "ccl_forge",
+  "value": 805.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1989:cmvp",
+  "league": "ccl",
+  "year": 1989,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 264.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1989:mvp",
+  "league": "fhl",
+  "year": 1989,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 39.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1989:goy",
+  "league": "fhl",
+  "year": 1989,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 15.4,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1989:roy",
+  "league": "fhl",
+  "year": 1989,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000743",
+  "team": "fhl_narwhals",
+  "value": 31.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1989:cmvp",
+  "league": "fhl",
+  "year": 1989,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000748",
+  "team": "fhl_polars",
+  "value": 6.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1989:mvp",
+  "league": "gdc",
+  "year": 1989,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001684",
+  "team": "gdc_firebirds",
+  "value": 177.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1989:poy",
+  "league": "gdc",
+  "year": 1989,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001784",
+  "team": "gdc_paddlers",
+  "value": 51.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1989:roy",
+  "league": "gdc",
+  "year": 1989,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_p0058",
+  "team": "gdc_gilas",
+  "value": 140.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1989:cmvp",
+  "league": "gdc",
+  "year": 1989,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0076",
+  "team": "gdc_paddlers",
+  "value": 30,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1989:mvp",
+  "league": "igl",
+  "year": 1989,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002753",
+  "team": "igl_squall",
+  "value": 363.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1989:dpoy",
+  "league": "igl",
+  "year": 1989,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002873",
+  "team": "igl_smokejumpers",
+  "value": 166,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1989:roy",
+  "league": "igl",
+  "year": 1989,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002953",
+  "team": "igl_undertow",
+  "value": 275.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1989:cmvp",
+  "league": "igl",
+  "year": 1989,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002909",
+  "team": "igl_squall",
+  "value": 28.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1990:mvp",
+  "league": "ccl",
+  "year": 1990,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1247.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1990:dpoy",
+  "league": "ccl",
+  "year": 1990,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 247.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1990:roy",
+  "league": "ccl",
+  "year": 1990,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0205",
+  "team": "ccl_monsoon",
+  "value": 951.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1990:cmvp",
+  "league": "ccl",
+  "year": 1990,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 243,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1990:mvp",
+  "league": "fhl",
+  "year": 1990,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000620",
+  "team": "fhl_yetis",
+  "value": 43.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1990:goy",
+  "league": "fhl",
+  "year": 1990,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000620",
+  "team": "fhl_yetis",
+  "value": 15.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1990:roy",
+  "league": "fhl",
+  "year": 1990,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000756",
+  "team": "fhl_borealis",
+  "value": 23.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1990:cmvp",
+  "league": "fhl",
+  "year": 1990,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0624",
+  "team": "fhl_yetis",
+  "value": 8.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1990:mvp",
+  "league": "gdc",
+  "year": 1990,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001738",
+  "team": "gdc_lamplighters",
+  "value": 201.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1990:poy",
+  "league": "gdc",
+  "year": 1990,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001765",
+  "team": "gdc_millers",
+  "value": 54.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1990:roy",
+  "league": "gdc",
+  "year": 1990,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_p0164",
+  "team": "gdc_kingfishers",
+  "value": 148.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1990:cmvp",
+  "league": "gdc",
+  "year": 1990,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0017",
+  "team": "gdc_lamplighters",
+  "value": 29.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1990:mvp",
+  "league": "igl",
+  "year": 1990,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002908",
+  "team": "igl_squall",
+  "value": 394.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1990:dpoy",
+  "league": "igl",
+  "year": 1990,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002942",
+  "team": "igl_ironclads",
+  "value": 163,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1990:roy",
+  "league": "igl",
+  "year": 1990,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002955",
+  "team": "igl_highlanders",
+  "value": 215.9,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1990:cmvp",
+  "league": "igl",
+  "year": 1990,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002908",
+  "team": "igl_squall",
+  "value": 32.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1991:mvp",
+  "league": "ccl",
+  "year": 1991,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1283.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1991:dpoy",
+  "league": "ccl",
+  "year": 1991,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 243.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1991:roy",
+  "league": "ccl",
+  "year": 1991,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000178",
+  "team": "ccl_forge",
+  "value": 380.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1991:cmvp",
+  "league": "ccl",
+  "year": 1991,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000153",
+  "team": "ccl_comets",
+  "value": 253.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1991:mvp",
+  "league": "fhl",
+  "year": 1991,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000652",
+  "team": "fhl_polars",
+  "value": 41.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1991:goy",
+  "league": "fhl",
+  "year": 1991,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0562",
+  "team": "fhl_sawblades",
+  "value": 2.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1991:roy",
+  "league": "fhl",
+  "year": 1991,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000773",
+  "team": "fhl_borealis",
+  "value": 26,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1991:cmvp",
+  "league": "fhl",
+  "year": 1991,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000748",
+  "team": "fhl_polars",
+  "value": 9.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1991:mvp",
+  "league": "gdc",
+  "year": 1991,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001738",
+  "team": "gdc_lamplighters",
+  "value": 174.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1991:poy",
+  "league": "gdc",
+  "year": 1991,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001786",
+  "team": "gdc_firebirds",
+  "value": 62.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1991:roy",
+  "league": "gdc",
+  "year": 1991,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001809",
+  "team": "gdc_kingfishers",
+  "value": 149.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1991:cmvp",
+  "league": "gdc",
+  "year": 1991,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001738",
+  "team": "gdc_lamplighters",
+  "value": 27,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1991:mvp",
+  "league": "igl",
+  "year": 1991,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002836",
+  "team": "igl_rockslides",
+  "value": 342.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1991:dpoy",
+  "league": "igl",
+  "year": 1991,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002873",
+  "team": "igl_smokejumpers",
+  "value": 162,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1991:roy",
+  "league": "igl",
+  "year": 1991,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_002970",
+  "team": "igl_highlanders",
+  "value": 343.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1991:cmvp",
+  "league": "igl",
+  "year": 1991,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002908",
+  "team": "igl_squall",
+  "value": 20.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1992:mvp",
+  "league": "ccl",
+  "year": 1992,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1312,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1992:dpoy",
+  "league": "ccl",
+  "year": 1992,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 246,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1992:roy",
+  "league": "ccl",
+  "year": 1992,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000187",
+  "team": "ccl_satellites",
+  "value": 986.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1992:cmvp",
+  "league": "ccl",
+  "year": 1992,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000153",
+  "team": "ccl_comets",
+  "value": 174.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1992:mvp",
+  "league": "fhl",
+  "year": 1992,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000707",
+  "team": "fhl_borealis",
+  "value": 34.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1992:goy",
+  "league": "fhl",
+  "year": 1992,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0646",
+  "team": "fhl_rivets",
+  "value": 4.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1992:roy",
+  "league": "fhl",
+  "year": 1992,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000787",
+  "team": "fhl_narwhals",
+  "value": 27,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1992:cmvp",
+  "league": "fhl",
+  "year": 1992,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000694",
+  "team": "fhl_rivets",
+  "value": 7.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1992:mvp",
+  "league": "gdc",
+  "year": 1992,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0076",
+  "team": "gdc_paddlers",
+  "value": 196.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1992:poy",
+  "league": "gdc",
+  "year": 1992,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001696",
+  "team": "gdc_paddlers",
+  "value": 60.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1992:roy",
+  "league": "gdc",
+  "year": 1992,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001820",
+  "team": "gdc_firebirds",
+  "value": 112.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1992:cmvp",
+  "league": "gdc",
+  "year": 1992,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001799",
+  "team": "gdc_millers",
+  "value": 31.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1992:mvp",
+  "league": "igl",
+  "year": 1992,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002893",
+  "team": "igl_ironclads",
+  "value": 349.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1992:dpoy",
+  "league": "igl",
+  "year": 1992,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0435",
+  "team": "igl_highlanders",
+  "value": 160,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1992:roy",
+  "league": "igl",
+  "year": 1992,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003009",
+  "team": "igl_rockslides",
+  "value": 283.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1992:cmvp",
+  "league": "igl",
+  "year": 1992,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002893",
+  "team": "igl_ironclads",
+  "value": 40.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1993:mvp",
+  "league": "ccl",
+  "year": 1993,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 1315.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1993:dpoy",
+  "league": "ccl",
+  "year": 1993,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 251.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1993:roy",
+  "league": "ccl",
+  "year": 1993,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000191",
+  "team": "ccl_dustdevils",
+  "value": 982.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1993:cmvp",
+  "league": "ccl",
+  "year": 1993,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 186.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1993:mvp",
+  "league": "fhl",
+  "year": 1993,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000795",
+  "team": "fhl_yetis",
+  "value": 34.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1993:goy",
+  "league": "fhl",
+  "year": 1993,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000795",
+  "team": "fhl_yetis",
+  "value": 10.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1993:roy",
+  "league": "fhl",
+  "year": 1993,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000805",
+  "team": "fhl_polars",
+  "value": 16.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1993:cmvp",
+  "league": "fhl",
+  "year": 1993,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000702",
+  "team": "fhl_yetis",
+  "value": 8.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1993:mvp",
+  "league": "gdc",
+  "year": 1993,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001820",
+  "team": "gdc_firebirds",
+  "value": 159.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1993:poy",
+  "league": "gdc",
+  "year": 1993,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001788",
+  "team": "gdc_gilas",
+  "value": 45.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1993:roy",
+  "league": "gdc",
+  "year": 1993,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001870",
+  "team": "gdc_paddlers",
+  "value": 129,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1993:cmvp",
+  "league": "gdc",
+  "year": 1993,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001768",
+  "team": "gdc_ore_haulers",
+  "value": 18,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1993:mvp",
+  "league": "igl",
+  "year": 1993,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002949",
+  "team": "igl_thunderherd",
+  "value": 352,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1993:dpoy",
+  "league": "igl",
+  "year": 1993,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0414",
+  "team": "igl_harvesters",
+  "value": 176,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1993:roy",
+  "league": "igl",
+  "year": 1993,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003029",
+  "team": "igl_ironclads",
+  "value": 120.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1993:cmvp",
+  "league": "igl",
+  "year": 1993,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002947",
+  "team": "igl_squall",
+  "value": 29.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1994:mvp",
+  "league": "ccl",
+  "year": 1994,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000170",
+  "team": "ccl_satellites",
+  "value": 1323.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1994:dpoy",
+  "league": "ccl",
+  "year": 1994,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000170",
+  "team": "ccl_satellites",
+  "value": 240.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1994:roy",
+  "league": "ccl",
+  "year": 1994,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000203",
+  "team": "ccl_jackrabbits",
+  "value": 398.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1994:cmvp",
+  "league": "ccl",
+  "year": 1994,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 260.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1994:mvp",
+  "league": "fhl",
+  "year": 1994,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000720",
+  "team": "fhl_snowowls",
+  "value": 43.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1994:goy",
+  "league": "fhl",
+  "year": 1994,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000720",
+  "team": "fhl_snowowls",
+  "value": 21.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1994:roy",
+  "league": "fhl",
+  "year": 1994,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000818",
+  "team": "fhl_narwhals",
+  "value": 26,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1994:cmvp",
+  "league": "fhl",
+  "year": 1994,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000748",
+  "team": "fhl_polars",
+  "value": 7.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1994:mvp",
+  "league": "gdc",
+  "year": 1994,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001847",
+  "team": "gdc_lamplighters",
+  "value": 162.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1994:poy",
+  "league": "gdc",
+  "year": 1994,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001828",
+  "team": "gdc_millers",
+  "value": 63.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1994:roy",
+  "league": "gdc",
+  "year": 1994,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001878",
+  "team": "gdc_kingfishers",
+  "value": 125,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1994:cmvp",
+  "league": "gdc",
+  "year": 1994,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001768",
+  "team": "gdc_ore_haulers",
+  "value": 21,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1994:mvp",
+  "league": "igl",
+  "year": 1994,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003068",
+  "team": "igl_thunderherd",
+  "value": 354.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1994:dpoy",
+  "league": "igl",
+  "year": 1994,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_002838",
+  "team": "igl_rockslides",
+  "value": 155,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1994:roy",
+  "league": "igl",
+  "year": 1994,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003068",
+  "team": "igl_thunderherd",
+  "value": 314.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1994:cmvp",
+  "league": "igl",
+  "year": 1994,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002989",
+  "team": "igl_thunderherd",
+  "value": 20.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1995:mvp",
+  "league": "ccl",
+  "year": 1995,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0227",
+  "team": "ccl_anchors",
+  "value": 1179.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1995:dpoy",
+  "league": "ccl",
+  "year": 1995,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0228",
+  "team": "ccl_anchors",
+  "value": 232.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1995:roy",
+  "league": "ccl",
+  "year": 1995,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000213",
+  "team": "ccl_forge",
+  "value": 996.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1995:cmvp",
+  "league": "ccl",
+  "year": 1995,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0228",
+  "team": "ccl_anchors",
+  "value": 288.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1995:mvp",
+  "league": "fhl",
+  "year": 1995,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000785",
+  "team": "fhl_borealis",
+  "value": 33.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1995:goy",
+  "league": "fhl",
+  "year": 1995,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0541",
+  "team": "fhl_narwhals",
+  "value": 8.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1995:roy",
+  "league": "fhl",
+  "year": 1995,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000847",
+  "team": "fhl_snowowls",
+  "value": 17.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1995:cmvp",
+  "league": "fhl",
+  "year": 1995,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000835",
+  "team": "fhl_snowowls",
+  "value": 7.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1995:mvp",
+  "league": "gdc",
+  "year": 1995,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0121",
+  "team": "gdc_loons",
+  "value": 191.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1995:poy",
+  "league": "gdc",
+  "year": 1995,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001823",
+  "team": "gdc_gilas",
+  "value": 42.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1995:roy",
+  "league": "gdc",
+  "year": 1995,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001909",
+  "team": "gdc_lamplighters",
+  "value": 102,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1995:cmvp",
+  "league": "gdc",
+  "year": 1995,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0122",
+  "team": "gdc_loons",
+  "value": 34,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1995:mvp",
+  "league": "igl",
+  "year": 1995,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002997",
+  "team": "igl_harvesters",
+  "value": 393.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1995:dpoy",
+  "league": "igl",
+  "year": 1995,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003011",
+  "team": "igl_rockslides",
+  "value": 167,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1995:roy",
+  "league": "igl",
+  "year": 1995,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003083",
+  "team": "igl_ironclads",
+  "value": 76.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1995:cmvp",
+  "league": "igl",
+  "year": 1995,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_002949",
+  "team": "igl_thunderherd",
+  "value": 37.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1996:mvp",
+  "league": "ccl",
+  "year": 1996,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000158",
+  "team": "ccl_jackrabbits",
+  "value": 1132.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1996:dpoy",
+  "league": "ccl",
+  "year": 1996,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0228",
+  "team": "ccl_anchors",
+  "value": 226,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1996:roy",
+  "league": "ccl",
+  "year": 1996,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000231",
+  "team": "ccl_forge",
+  "value": 918.9,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1996:cmvp",
+  "league": "ccl",
+  "year": 1996,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0291",
+  "team": "ccl_dustdevils",
+  "value": 183.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1996:mvp",
+  "league": "fhl",
+  "year": 1996,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0541",
+  "team": "fhl_narwhals",
+  "value": 38.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1996:goy",
+  "league": "fhl",
+  "year": 1996,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0541",
+  "team": "fhl_narwhals",
+  "value": 6.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1996:roy",
+  "league": "fhl",
+  "year": 1996,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000871",
+  "team": "fhl_snowowls",
+  "value": 26.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1996:cmvp",
+  "league": "fhl",
+  "year": 1996,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000817",
+  "team": "fhl_narwhals",
+  "value": 7.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1996:mvp",
+  "league": "gdc",
+  "year": 1996,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001768",
+  "team": "gdc_ore_haulers",
+  "value": 176.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1996:poy",
+  "league": "gdc",
+  "year": 1996,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001875",
+  "team": "gdc_kingfishers",
+  "value": 77.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1996:roy",
+  "league": "gdc",
+  "year": 1996,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001926",
+  "team": "gdc_ore_haulers",
+  "value": 157.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1996:cmvp",
+  "league": "gdc",
+  "year": 1996,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001926",
+  "team": "gdc_ore_haulers",
+  "value": 28,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1996:mvp",
+  "league": "igl",
+  "year": 1996,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003070",
+  "team": "igl_undertow",
+  "value": 419.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1996:dpoy",
+  "league": "igl",
+  "year": 1996,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003050",
+  "team": "igl_highlanders",
+  "value": 153,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1996:roy",
+  "league": "igl",
+  "year": 1996,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003115",
+  "team": "igl_rockslides",
+  "value": 268.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1996:cmvp",
+  "league": "igl",
+  "year": 1996,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003068",
+  "team": "igl_thunderherd",
+  "value": 27.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1997:mvp",
+  "league": "ccl",
+  "year": 1997,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0205",
+  "team": "ccl_monsoon",
+  "value": 1185.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1997:dpoy",
+  "league": "ccl",
+  "year": 1997,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0290",
+  "team": "ccl_dustdevils",
+  "value": 237,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1997:roy",
+  "league": "ccl",
+  "year": 1997,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0334",
+  "team": "ccl_satellites",
+  "value": 1044.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1997:cmvp",
+  "league": "ccl",
+  "year": 1997,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0333",
+  "team": "ccl_satellites",
+  "value": 272.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1997:mvp",
+  "league": "fhl",
+  "year": 1997,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000888",
+  "team": "fhl_sawblades",
+  "value": 41,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1997:goy",
+  "league": "fhl",
+  "year": 1997,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000888",
+  "team": "fhl_sawblades",
+  "value": 11.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1997:roy",
+  "league": "fhl",
+  "year": 1997,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000888",
+  "team": "fhl_sawblades",
+  "value": 37,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1997:cmvp",
+  "league": "fhl",
+  "year": 1997,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0583",
+  "team": "fhl_borealis",
+  "value": 8.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1997:mvp",
+  "league": "gdc",
+  "year": 1997,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001903",
+  "team": "gdc_gilas",
+  "value": 175.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1997:poy",
+  "league": "gdc",
+  "year": 1997,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001904",
+  "team": "gdc_kingfishers",
+  "value": 38.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1997:roy",
+  "league": "gdc",
+  "year": 1997,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001932",
+  "team": "gdc_lamplighters",
+  "value": 141,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1997:cmvp",
+  "league": "gdc",
+  "year": 1997,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001878",
+  "team": "gdc_kingfishers",
+  "value": 22.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1997:mvp",
+  "league": "igl",
+  "year": 1997,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_002947",
+  "team": "igl_squall",
+  "value": 343.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1997:dpoy",
+  "league": "igl",
+  "year": 1997,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003146",
+  "team": "igl_rockslides",
+  "value": 160,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1997:roy",
+  "league": "igl",
+  "year": 1997,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_p0439",
+  "team": "igl_highlanders",
+  "value": 289.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1997:cmvp",
+  "league": "igl",
+  "year": 1997,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003068",
+  "team": "igl_thunderherd",
+  "value": 23.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1998:mvp",
+  "league": "ccl",
+  "year": 1998,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0333",
+  "team": "ccl_satellites",
+  "value": 1214.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1998:dpoy",
+  "league": "ccl",
+  "year": 1998,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 240,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1998:roy",
+  "league": "ccl",
+  "year": 1998,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000245",
+  "team": "ccl_jackrabbits",
+  "value": 863.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1998:cmvp",
+  "league": "ccl",
+  "year": 1998,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0331",
+  "team": "ccl_satellites",
+  "value": 273.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1998:mvp",
+  "league": "fhl",
+  "year": 1998,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000795",
+  "team": "fhl_yetis",
+  "value": 33.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1998:goy",
+  "league": "fhl",
+  "year": 1998,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000795",
+  "team": "fhl_yetis",
+  "value": 16,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1998:roy",
+  "league": "fhl",
+  "year": 1998,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0566",
+  "team": "fhl_sawblades",
+  "value": 22.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1998:cmvp",
+  "league": "fhl",
+  "year": 1998,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0646",
+  "team": "fhl_rivets",
+  "value": 9.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1998:mvp",
+  "league": "gdc",
+  "year": 1998,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_marco_salazar",
+  "team": "gdc_firebirds",
+  "value": 223.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1998:poy",
+  "league": "gdc",
+  "year": 1998,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001808",
+  "team": "gdc_kingfishers",
+  "value": 51.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1998:roy",
+  "league": "gdc",
+  "year": 1998,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 175,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1998:cmvp",
+  "league": "gdc",
+  "year": 1998,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001837",
+  "team": "gdc_firebirds",
+  "value": 23.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1998:mvp",
+  "league": "igl",
+  "year": 1998,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003034",
+  "team": "igl_smokejumpers",
+  "value": 326.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1998:dpoy",
+  "league": "igl",
+  "year": 1998,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003150",
+  "team": "igl_smokejumpers",
+  "value": 166,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1998:roy",
+  "league": "igl",
+  "year": 1998,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003177",
+  "team": "igl_thunderherd",
+  "value": 292.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1998:cmvp",
+  "league": "igl",
+  "year": 1998,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003115",
+  "team": "igl_rockslides",
+  "value": 20,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-1999:mvp",
+  "league": "ccl",
+  "year": 1999,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000210",
+  "team": "ccl_comets",
+  "value": 1097.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-1999:dpoy",
+  "league": "ccl",
+  "year": 1999,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 235,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-1999:roy",
+  "league": "ccl",
+  "year": 1999,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 1040.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-1999:cmvp",
+  "league": "ccl",
+  "year": 1999,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000253",
+  "team": "ccl_satellites",
+  "value": 251.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-1999:mvp",
+  "league": "fhl",
+  "year": 1999,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000760",
+  "team": "fhl_narwhals",
+  "value": 40.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-1999:goy",
+  "league": "fhl",
+  "year": 1999,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000760",
+  "team": "fhl_narwhals",
+  "value": 23.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-1999:roy",
+  "league": "fhl",
+  "year": 1999,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0649",
+  "team": "fhl_rivets",
+  "value": 23.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-1999:cmvp",
+  "league": "fhl",
+  "year": 1999,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000823",
+  "team": "fhl_polars",
+  "value": 8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-1999:mvp",
+  "league": "gdc",
+  "year": 1999,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001804",
+  "team": "gdc_firebirds",
+  "value": 206,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-1999:poy",
+  "league": "gdc",
+  "year": 1999,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_p0103",
+  "team": "gdc_firebirds",
+  "value": 36.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-1999:roy",
+  "league": "gdc",
+  "year": 1999,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001961",
+  "team": "gdc_kingfishers",
+  "value": 118.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-1999:cmvp",
+  "league": "gdc",
+  "year": 1999,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 27,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-1999:mvp",
+  "league": "igl",
+  "year": 1999,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003172",
+  "team": "igl_smokejumpers",
+  "value": 317.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-1999:dpoy",
+  "league": "igl",
+  "year": 1999,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003179",
+  "team": "igl_thunderherd",
+  "value": 159,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-1999:roy",
+  "league": "igl",
+  "year": 1999,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003206",
+  "team": "igl_undertow",
+  "value": 249.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-1999:cmvp",
+  "league": "igl",
+  "year": 1999,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0459",
+  "team": "igl_squall",
+  "value": 23.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2000:mvp",
+  "league": "ccl",
+  "year": 2000,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000215",
+  "team": "ccl_jackrabbits",
+  "value": 1206.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2000:dpoy",
+  "league": "ccl",
+  "year": 2000,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000200",
+  "team": "ccl_comets",
+  "value": 232,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2000:roy",
+  "league": "ccl",
+  "year": 2000,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000256",
+  "team": "ccl_comets",
+  "value": 391.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2000:cmvp",
+  "league": "ccl",
+  "year": 2000,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0331",
+  "team": "ccl_satellites",
+  "value": 187.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2000:mvp",
+  "league": "fhl",
+  "year": 2000,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000918",
+  "team": "fhl_borealis",
+  "value": 40.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2000:goy",
+  "league": "fhl",
+  "year": 2000,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000918",
+  "team": "fhl_borealis",
+  "value": 9.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2000:roy",
+  "league": "fhl",
+  "year": 2000,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000918",
+  "team": "fhl_borealis",
+  "value": 35.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2000:cmvp",
+  "league": "fhl",
+  "year": 2000,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000924",
+  "team": "fhl_borealis",
+  "value": 8.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2000:mvp",
+  "league": "gdc",
+  "year": 2000,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0037",
+  "team": "gdc_ore_haulers",
+  "value": 174.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2000:poy",
+  "league": "gdc",
+  "year": 2000,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001947",
+  "team": "gdc_loons",
+  "value": 67.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2000:roy",
+  "league": "gdc",
+  "year": 2000,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001976",
+  "team": "gdc_kingfishers",
+  "value": 79.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2000:cmvp",
+  "league": "gdc",
+  "year": 2000,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001886",
+  "team": "gdc_millers",
+  "value": 28,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2000:mvp",
+  "league": "igl",
+  "year": 2000,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003064",
+  "team": "igl_squall",
+  "value": 346.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2000:dpoy",
+  "league": "igl",
+  "year": 2000,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003179",
+  "team": "igl_thunderherd",
+  "value": 166,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2000:roy",
+  "league": "igl",
+  "year": 2000,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003219",
+  "team": "igl_thunderherd",
+  "value": 200,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2000:cmvp",
+  "league": "igl",
+  "year": 2000,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003064",
+  "team": "igl_squall",
+  "value": 27.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2001:mvp",
+  "league": "ccl",
+  "year": 2001,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 1218.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2001:dpoy",
+  "league": "ccl",
+  "year": 2001,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 253,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2001:roy",
+  "league": "ccl",
+  "year": 2001,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000269",
+  "team": "ccl_satellites",
+  "value": 1000.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2001:cmvp",
+  "league": "ccl",
+  "year": 2001,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 246.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2001:mvp",
+  "league": "fhl",
+  "year": 2001,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000912",
+  "team": "fhl_narwhals",
+  "value": 41.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2001:goy",
+  "league": "fhl",
+  "year": 2001,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 2.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2001:roy",
+  "league": "fhl",
+  "year": 2001,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 28.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2001:cmvp",
+  "league": "fhl",
+  "year": 2001,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000878",
+  "team": "fhl_narwhals",
+  "value": 10.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2001:mvp",
+  "league": "gdc",
+  "year": 2001,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001950",
+  "team": "gdc_loons",
+  "value": 174.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2001:poy",
+  "league": "gdc",
+  "year": 2001,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001966",
+  "team": "gdc_loons",
+  "value": 51.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2001:roy",
+  "league": "gdc",
+  "year": 2001,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_001999",
+  "team": "gdc_loons",
+  "value": 135.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2001:cmvp",
+  "league": "gdc",
+  "year": 2001,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001881",
+  "team": "gdc_loons",
+  "value": 26.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2001:mvp",
+  "league": "igl",
+  "year": 2001,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003206",
+  "team": "igl_undertow",
+  "value": 350.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2001:dpoy",
+  "league": "igl",
+  "year": 2001,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003179",
+  "team": "igl_thunderherd",
+  "value": 166,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2001:roy",
+  "league": "igl",
+  "year": 2001,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003239",
+  "team": "igl_rockslides",
+  "value": 257.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2001:cmvp",
+  "league": "igl",
+  "year": 2001,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003206",
+  "team": "igl_undertow",
+  "value": 18.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2002:mvp",
+  "league": "ccl",
+  "year": 2002,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_andre_bellamy",
+  "team": "ccl_forge",
+  "value": 1250.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2002:dpoy",
+  "league": "ccl",
+  "year": 2002,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 235,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2002:roy",
+  "league": "ccl",
+  "year": 2002,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000273",
+  "team": "ccl_jackrabbits",
+  "value": 1036.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2002:cmvp",
+  "league": "ccl",
+  "year": 2002,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000253",
+  "team": "ccl_satellites",
+  "value": 251.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2002:mvp",
+  "league": "fhl",
+  "year": 2002,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000874",
+  "team": "fhl_yetis",
+  "value": 36.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2002:goy",
+  "league": "fhl",
+  "year": 2002,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000843",
+  "team": "fhl_rivets",
+  "value": 1.4,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2002:roy",
+  "league": "fhl",
+  "year": 2002,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000970",
+  "team": "fhl_yetis",
+  "value": 22,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2002:cmvp",
+  "league": "fhl",
+  "year": 2002,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000872",
+  "team": "fhl_yetis",
+  "value": 9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2002:mvp",
+  "league": "gdc",
+  "year": 2002,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 210,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2002:poy",
+  "league": "gdc",
+  "year": 2002,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001929",
+  "team": "gdc_firebirds",
+  "value": 68.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2002:roy",
+  "league": "gdc",
+  "year": 2002,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002024",
+  "team": "gdc_millers",
+  "value": 140,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2002:cmvp",
+  "league": "gdc",
+  "year": 2002,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 31.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2002:mvp",
+  "league": "igl",
+  "year": 2002,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003034",
+  "team": "igl_smokejumpers",
+  "value": 326.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2002:dpoy",
+  "league": "igl",
+  "year": 2002,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003150",
+  "team": "igl_smokejumpers",
+  "value": 157,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2002:roy",
+  "league": "igl",
+  "year": 2002,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003279",
+  "team": "igl_squall",
+  "value": 258.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2002:cmvp",
+  "league": "igl",
+  "year": 2002,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003219",
+  "team": "igl_thunderherd",
+  "value": 20.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2003:mvp",
+  "league": "ccl",
+  "year": 2003,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 1177.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2003:dpoy",
+  "league": "ccl",
+  "year": 2003,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 237.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2003:roy",
+  "league": "ccl",
+  "year": 2003,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000285",
+  "team": "ccl_voltage",
+  "value": 1031.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2003:cmvp",
+  "league": "ccl",
+  "year": 2003,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 218.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2003:mvp",
+  "league": "fhl",
+  "year": 2003,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0588",
+  "team": "fhl_borealis",
+  "value": 39.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2003:goy",
+  "league": "fhl",
+  "year": 2003,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000913",
+  "team": "fhl_polars",
+  "value": 20.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2003:roy",
+  "league": "fhl",
+  "year": 2003,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_000992",
+  "team": "fhl_sawblades",
+  "value": 21.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2003:cmvp",
+  "league": "fhl",
+  "year": 2003,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0545",
+  "team": "fhl_narwhals",
+  "value": 10,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2003:mvp",
+  "league": "gdc",
+  "year": 2003,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002034",
+  "team": "gdc_firebirds",
+  "value": 204.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2003:poy",
+  "league": "gdc",
+  "year": 2003,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001918",
+  "team": "gdc_gilas",
+  "value": 48.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2003:roy",
+  "league": "gdc",
+  "year": 2003,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002034",
+  "team": "gdc_firebirds",
+  "value": 181.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2003:cmvp",
+  "league": "gdc",
+  "year": 2003,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_marco_salazar",
+  "team": "gdc_firebirds",
+  "value": 24.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2003:mvp",
+  "league": "igl",
+  "year": 2003,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0418",
+  "team": "igl_harvesters",
+  "value": 380,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2003:dpoy",
+  "league": "igl",
+  "year": 2003,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003054",
+  "team": "igl_ironclads",
+  "value": 162,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2003:roy",
+  "league": "igl",
+  "year": 2003,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003297",
+  "team": "igl_smokejumpers",
+  "value": 284.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2003:cmvp",
+  "league": "igl",
+  "year": 2003,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003297",
+  "team": "igl_smokejumpers",
+  "value": 33.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2004:mvp",
+  "league": "ccl",
+  "year": 2004,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000252",
+  "team": "ccl_dustdevils",
+  "value": 1357.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2004:dpoy",
+  "league": "ccl",
+  "year": 2004,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000252",
+  "team": "ccl_dustdevils",
+  "value": 243.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2004:roy",
+  "league": "ccl",
+  "year": 2004,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000293",
+  "team": "ccl_jackrabbits",
+  "value": 1035.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2004:cmvp",
+  "league": "ccl",
+  "year": 2004,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 248,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2004:mvp",
+  "league": "fhl",
+  "year": 2004,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 38.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2004:goy",
+  "league": "fhl",
+  "year": 2004,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 18.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2004:roy",
+  "league": "fhl",
+  "year": 2004,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001008",
+  "team": "fhl_polars",
+  "value": 25,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2004:cmvp",
+  "league": "fhl",
+  "year": 2004,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 12.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2004:mvp",
+  "league": "gdc",
+  "year": 2004,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 184.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2004:poy",
+  "league": "gdc",
+  "year": 2004,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_p0124",
+  "team": "gdc_loons",
+  "value": 49.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2004:roy",
+  "league": "gdc",
+  "year": 2004,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002059",
+  "team": "gdc_loons",
+  "value": 136,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2004:cmvp",
+  "league": "gdc",
+  "year": 2004,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_marco_salazar",
+  "team": "gdc_firebirds",
+  "value": 36.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2004:mvp",
+  "league": "igl",
+  "year": 2004,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003297",
+  "team": "igl_smokejumpers",
+  "value": 329.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2004:dpoy",
+  "league": "igl",
+  "year": 2004,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003050",
+  "team": "igl_highlanders",
+  "value": 156,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2004:roy",
+  "league": "igl",
+  "year": 2004,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003313",
+  "team": "igl_ironclads",
+  "value": 245.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2004:cmvp",
+  "league": "igl",
+  "year": 2004,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0418",
+  "team": "igl_harvesters",
+  "value": 22.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2005:mvp",
+  "league": "ccl",
+  "year": 2005,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 1203.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2005:dpoy",
+  "league": "ccl",
+  "year": 2005,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 243.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2005:roy",
+  "league": "ccl",
+  "year": 2005,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000298",
+  "team": "ccl_comets",
+  "value": 998.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2005:cmvp",
+  "league": "ccl",
+  "year": 2005,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000275",
+  "team": "ccl_monsoon",
+  "value": 240.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2005:mvp",
+  "league": "fhl",
+  "year": 2005,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000871",
+  "team": "fhl_snowowls",
+  "value": 32.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2005:goy",
+  "league": "fhl",
+  "year": 2005,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000918",
+  "team": "fhl_borealis",
+  "value": 7.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2005:roy",
+  "league": "fhl",
+  "year": 2005,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001018",
+  "team": "fhl_floes",
+  "value": 27.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2005:cmvp",
+  "league": "fhl",
+  "year": 2005,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000918",
+  "team": "fhl_borealis",
+  "value": 9.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2005:mvp",
+  "league": "gdc",
+  "year": 2005,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002012",
+  "team": "gdc_firebirds",
+  "value": 193.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2005:poy",
+  "league": "gdc",
+  "year": 2005,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_001917",
+  "team": "gdc_firebirds",
+  "value": 51.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2005:roy",
+  "league": "gdc",
+  "year": 2005,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002080",
+  "team": "gdc_kingfishers",
+  "value": 107.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2005:cmvp",
+  "league": "gdc",
+  "year": 2005,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 25,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2005:mvp",
+  "league": "igl",
+  "year": 2005,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0439",
+  "team": "igl_highlanders",
+  "value": 370.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2005:dpoy",
+  "league": "igl",
+  "year": 2005,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003179",
+  "team": "igl_thunderherd",
+  "value": 173,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2005:roy",
+  "league": "igl",
+  "year": 2005,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003367",
+  "team": "igl_undertow",
+  "value": 307.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2005:cmvp",
+  "league": "igl",
+  "year": 2005,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003245",
+  "team": "igl_smokejumpers",
+  "value": 27.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2006:mvp",
+  "league": "ccl",
+  "year": 2006,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 1250.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2006:dpoy",
+  "league": "ccl",
+  "year": 2006,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000300",
+  "team": "ccl_dustdevils",
+  "value": 236,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2006:roy",
+  "league": "ccl",
+  "year": 2006,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 1103.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2006:cmvp",
+  "league": "ccl",
+  "year": 2006,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000267",
+  "team": "ccl_monsoon",
+  "value": 203,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2006:mvp",
+  "league": "fhl",
+  "year": 2006,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000903",
+  "team": "fhl_rivets",
+  "value": 33.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2006:goy",
+  "league": "fhl",
+  "year": 2006,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000913",
+  "team": "fhl_polars",
+  "value": 11.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2006:roy",
+  "league": "fhl",
+  "year": 2006,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001038",
+  "team": "fhl_narwhals",
+  "value": 30.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2006:cmvp",
+  "league": "fhl",
+  "year": 2006,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001038",
+  "team": "fhl_narwhals",
+  "value": 10,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2006:mvp",
+  "league": "gdc",
+  "year": 2006,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002069",
+  "team": "gdc_paddlers",
+  "value": 185.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2006:poy",
+  "league": "gdc",
+  "year": 2006,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002053",
+  "team": "gdc_kingfishers",
+  "value": 62.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2006:roy",
+  "league": "gdc",
+  "year": 2006,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002108",
+  "team": "gdc_kingfishers",
+  "value": 152.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2006:cmvp",
+  "league": "gdc",
+  "year": 2006,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_001976",
+  "team": "gdc_kingfishers",
+  "value": 29,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2006:mvp",
+  "league": "igl",
+  "year": 2006,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0439",
+  "team": "igl_highlanders",
+  "value": 344.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2006:dpoy",
+  "league": "igl",
+  "year": 2006,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003183",
+  "team": "igl_harvesters",
+  "value": 159,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2006:roy",
+  "league": "igl",
+  "year": 2006,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003377",
+  "team": "igl_smokejumpers",
+  "value": 113,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2006:cmvp",
+  "league": "igl",
+  "year": 2006,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003297",
+  "team": "igl_smokejumpers",
+  "value": 22,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2007:mvp",
+  "league": "ccl",
+  "year": 2007,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_andre_bellamy",
+  "team": "ccl_forge",
+  "value": 1276,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2007:dpoy",
+  "league": "ccl",
+  "year": 2007,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 230.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2007:roy",
+  "league": "ccl",
+  "year": 2007,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000324",
+  "team": "ccl_monsoon",
+  "value": 1022.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2007:cmvp",
+  "league": "ccl",
+  "year": 2007,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000275",
+  "team": "ccl_monsoon",
+  "value": 217,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2007:mvp",
+  "league": "fhl",
+  "year": 2007,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 36.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2007:goy",
+  "league": "fhl",
+  "year": 2007,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 15.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2007:roy",
+  "league": "fhl",
+  "year": 2007,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001052",
+  "team": "fhl_narwhals",
+  "value": 26.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2007:cmvp",
+  "league": "fhl",
+  "year": 2007,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000977",
+  "team": "fhl_narwhals",
+  "value": 8.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2007:mvp",
+  "league": "gdc",
+  "year": 2007,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_001999",
+  "team": "gdc_loons",
+  "value": 166.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2007:poy",
+  "league": "gdc",
+  "year": 2007,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002128",
+  "team": "gdc_loons",
+  "value": 58.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2007:roy",
+  "league": "gdc",
+  "year": 2007,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_p0045",
+  "team": "gdc_ore_haulers",
+  "value": 123.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2007:cmvp",
+  "league": "gdc",
+  "year": 2007,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002020",
+  "team": "gdc_lamplighters",
+  "value": 34.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2007:mvp",
+  "league": "igl",
+  "year": 2007,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0439",
+  "team": "igl_highlanders",
+  "value": 367.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2007:dpoy",
+  "league": "igl",
+  "year": 2007,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003266",
+  "team": "igl_ironclads",
+  "value": 154,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2007:roy",
+  "league": "igl",
+  "year": 2007,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003402",
+  "team": "igl_rockslides",
+  "value": 173.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2007:cmvp",
+  "league": "igl",
+  "year": 2007,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003313",
+  "team": "igl_ironclads",
+  "value": 27.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2008:mvp",
+  "league": "ccl",
+  "year": 2008,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000253",
+  "team": "ccl_satellites",
+  "value": 1201.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2008:dpoy",
+  "league": "ccl",
+  "year": 2008,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000253",
+  "team": "ccl_satellites",
+  "value": 232,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2008:roy",
+  "league": "ccl",
+  "year": 2008,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0274",
+  "team": "ccl_comets",
+  "value": 1011.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2008:cmvp",
+  "league": "ccl",
+  "year": 2008,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 191.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2008:mvp",
+  "league": "fhl",
+  "year": 2008,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000946",
+  "team": "fhl_sawblades",
+  "value": 35,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2008:goy",
+  "league": "fhl",
+  "year": 2008,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0547",
+  "team": "fhl_narwhals",
+  "value": 3.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2008:roy",
+  "league": "fhl",
+  "year": 2008,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001075",
+  "team": "fhl_snowowls",
+  "value": 26.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2008:cmvp",
+  "league": "fhl",
+  "year": 2008,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_000990",
+  "team": "fhl_sawblades",
+  "value": 8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2008:mvp",
+  "league": "gdc",
+  "year": 2008,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002107",
+  "team": "gdc_kingfishers",
+  "value": 180,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2008:poy",
+  "league": "gdc",
+  "year": 2008,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002126",
+  "team": "gdc_lamplighters",
+  "value": 39.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2008:roy",
+  "league": "gdc",
+  "year": 2008,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002144",
+  "team": "gdc_lamplighters",
+  "value": 116,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2008:cmvp",
+  "league": "gdc",
+  "year": 2008,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002107",
+  "team": "gdc_kingfishers",
+  "value": 29,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2008:mvp",
+  "league": "igl",
+  "year": 2008,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003240",
+  "team": "igl_rockslides",
+  "value": 332.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2008:dpoy",
+  "league": "igl",
+  "year": 2008,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0506",
+  "team": "igl_ironclads",
+  "value": 164,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2008:roy",
+  "league": "igl",
+  "year": 2008,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003420",
+  "team": "igl_highlanders",
+  "value": 136,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2008:cmvp",
+  "league": "igl",
+  "year": 2008,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003297",
+  "team": "igl_smokejumpers",
+  "value": 21.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2009:mvp",
+  "league": "ccl",
+  "year": 2009,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 1137.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2009:dpoy",
+  "league": "ccl",
+  "year": 2009,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 250,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2009:roy",
+  "league": "ccl",
+  "year": 2009,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000334",
+  "team": "ccl_dustdevils",
+  "value": 877.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2009:cmvp",
+  "league": "ccl",
+  "year": 2009,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000323",
+  "team": "ccl_monsoon",
+  "value": 218.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2009:mvp",
+  "league": "fhl",
+  "year": 2009,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001085",
+  "team": "fhl_rivets",
+  "value": 34.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2009:goy",
+  "league": "fhl",
+  "year": 2009,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0568",
+  "team": "fhl_sawblades",
+  "value": 12.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2009:roy",
+  "league": "fhl",
+  "year": 2009,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001085",
+  "team": "fhl_rivets",
+  "value": 31.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2009:cmvp",
+  "league": "fhl",
+  "year": 2009,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0547",
+  "team": "fhl_narwhals",
+  "value": 8.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2009:mvp",
+  "league": "gdc",
+  "year": 2009,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002081",
+  "team": "gdc_kingfishers",
+  "value": 163.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2009:poy",
+  "league": "gdc",
+  "year": 2009,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002053",
+  "team": "gdc_kingfishers",
+  "value": 53.9,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2009:roy",
+  "league": "gdc",
+  "year": 2009,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002164",
+  "team": "gdc_ore_haulers",
+  "value": 131.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2009:cmvp",
+  "league": "gdc",
+  "year": 2009,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002108",
+  "team": "gdc_kingfishers",
+  "value": 33.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2009:mvp",
+  "league": "igl",
+  "year": 2009,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003359",
+  "team": "igl_squall",
+  "value": 400.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2009:dpoy",
+  "league": "igl",
+  "year": 2009,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003371",
+  "team": "igl_highlanders",
+  "value": 152,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2009:roy",
+  "league": "igl",
+  "year": 2009,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003432",
+  "team": "igl_harvesters",
+  "value": 279.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2009:cmvp",
+  "league": "igl",
+  "year": 2009,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003363",
+  "team": "igl_thunderherd",
+  "value": 14.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2010:mvp",
+  "league": "ccl",
+  "year": 2010,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 1224.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2010:dpoy",
+  "league": "ccl",
+  "year": 2010,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000300",
+  "team": "ccl_dustdevils",
+  "value": 237,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2010:roy",
+  "league": "ccl",
+  "year": 2010,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000340",
+  "team": "ccl_jackrabbits",
+  "value": 908.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2010:cmvp",
+  "league": "ccl",
+  "year": 2010,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000268",
+  "team": "ccl_monsoon",
+  "value": 197,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2010:mvp",
+  "league": "fhl",
+  "year": 2010,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_000960",
+  "team": "fhl_polars",
+  "value": 34.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2010:goy",
+  "league": "fhl",
+  "year": 2010,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 6.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2010:roy",
+  "league": "fhl",
+  "year": 2010,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001107",
+  "team": "fhl_snowowls",
+  "value": 29.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2010:cmvp",
+  "league": "fhl",
+  "year": 2010,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001056",
+  "team": "fhl_rivets",
+  "value": 7.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2010:mvp",
+  "league": "gdc",
+  "year": 2010,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0024",
+  "team": "gdc_lamplighters",
+  "value": 196.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2010:poy",
+  "league": "gdc",
+  "year": 2010,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002119",
+  "team": "gdc_firebirds",
+  "value": 39.9,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2010:roy",
+  "league": "gdc",
+  "year": 2010,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002166",
+  "team": "gdc_gilas",
+  "value": 116.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2010:cmvp",
+  "league": "gdc",
+  "year": 2010,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002147",
+  "team": "gdc_loons",
+  "value": 41.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2010:mvp",
+  "league": "igl",
+  "year": 2010,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003297",
+  "team": "igl_smokejumpers",
+  "value": 331.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2010:dpoy",
+  "league": "igl",
+  "year": 2010,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0359",
+  "team": "igl_thunderherd",
+  "value": 152,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2010:roy",
+  "league": "igl",
+  "year": 2010,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003476",
+  "team": "igl_undertow",
+  "value": 305.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2010:cmvp",
+  "league": "igl",
+  "year": 2010,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003244",
+  "team": "igl_smokejumpers",
+  "value": 12.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2011:mvp",
+  "league": "ccl",
+  "year": 2011,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 1177.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2011:dpoy",
+  "league": "ccl",
+  "year": 2011,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000300",
+  "team": "ccl_dustdevils",
+  "value": 245.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2011:roy",
+  "league": "ccl",
+  "year": 2011,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 1082.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2011:cmvp",
+  "league": "ccl",
+  "year": 2011,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000314",
+  "team": "ccl_anchors",
+  "value": 231.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2011:mvp",
+  "league": "fhl",
+  "year": 2011,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 35.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2011:goy",
+  "league": "fhl",
+  "year": 2011,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 12,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2011:roy",
+  "league": "fhl",
+  "year": 2011,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001112",
+  "team": "fhl_borealis",
+  "value": 21.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2011:cmvp",
+  "league": "fhl",
+  "year": 2011,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001059",
+  "team": "fhl_rivets",
+  "value": 6.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2011:mvp",
+  "league": "gdc",
+  "year": 2011,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0171",
+  "team": "gdc_kingfishers",
+  "value": 181.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2011:poy",
+  "league": "gdc",
+  "year": 2011,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002186",
+  "team": "gdc_kingfishers",
+  "value": 31.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2011:roy",
+  "league": "gdc",
+  "year": 2011,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002195",
+  "team": "gdc_loons",
+  "value": 124.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2011:cmvp",
+  "league": "gdc",
+  "year": 2011,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002108",
+  "team": "gdc_kingfishers",
+  "value": 33,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2011:mvp",
+  "league": "igl",
+  "year": 2011,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003396",
+  "team": "igl_highlanders",
+  "value": 383.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2011:dpoy",
+  "league": "igl",
+  "year": 2011,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0506",
+  "team": "igl_ironclads",
+  "value": 149,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2011:roy",
+  "league": "igl",
+  "year": 2011,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003497",
+  "team": "igl_thunderherd",
+  "value": 256.9,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2011:cmvp",
+  "league": "igl",
+  "year": 2011,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003461",
+  "team": "igl_highlanders",
+  "value": 20.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2012:mvp",
+  "league": "ccl",
+  "year": 2012,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000304",
+  "team": "ccl_forge",
+  "value": 1156.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2012:dpoy",
+  "league": "ccl",
+  "year": 2012,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 243,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2012:roy",
+  "league": "ccl",
+  "year": 2012,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000360",
+  "team": "ccl_dustdevils",
+  "value": 939.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2012:cmvp",
+  "league": "ccl",
+  "year": 2012,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0316",
+  "team": "ccl_forge",
+  "value": 292.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2012:mvp",
+  "league": "fhl",
+  "year": 2012,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 36.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2012:goy",
+  "league": "fhl",
+  "year": 2012,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 18.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2012:roy",
+  "league": "fhl",
+  "year": 2012,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001140",
+  "team": "fhl_sawblades",
+  "value": 22.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2012:cmvp",
+  "league": "fhl",
+  "year": 2012,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001085",
+  "team": "fhl_rivets",
+  "value": 7.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2012:mvp",
+  "league": "gdc",
+  "year": 2012,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002166",
+  "team": "gdc_gilas",
+  "value": 182.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2012:poy",
+  "league": "gdc",
+  "year": 2012,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_p0124",
+  "team": "gdc_loons",
+  "value": 38.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2012:roy",
+  "league": "gdc",
+  "year": 2012,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002206",
+  "team": "gdc_firebirds",
+  "value": 133.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2012:cmvp",
+  "league": "gdc",
+  "year": 2012,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0066",
+  "team": "gdc_gilas",
+  "value": 32.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2012:mvp",
+  "league": "igl",
+  "year": 2012,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003468",
+  "team": "igl_smokejumpers",
+  "value": 328.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2012:dpoy",
+  "league": "igl",
+  "year": 2012,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003522",
+  "team": "igl_smokejumpers",
+  "value": 157,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2012:roy",
+  "league": "igl",
+  "year": 2012,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003520",
+  "team": "igl_smokejumpers",
+  "value": 280.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2012:cmvp",
+  "league": "igl",
+  "year": 2012,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003449",
+  "team": "igl_rockslides",
+  "value": 24.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2013:mvp",
+  "league": "ccl",
+  "year": 2013,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 1200.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2013:dpoy",
+  "league": "ccl",
+  "year": 2013,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 245,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2013:roy",
+  "league": "ccl",
+  "year": 2013,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000376",
+  "team": "ccl_jackrabbits",
+  "value": 1008.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2013:cmvp",
+  "league": "ccl",
+  "year": 2013,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000340",
+  "team": "ccl_jackrabbits",
+  "value": 262.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2013:mvp",
+  "league": "fhl",
+  "year": 2013,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001157",
+  "team": "fhl_floes",
+  "value": 31.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2013:goy",
+  "league": "fhl",
+  "year": 2013,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 12.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2013:roy",
+  "league": "fhl",
+  "year": 2013,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001170",
+  "team": "fhl_rivets",
+  "value": 29,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2013:cmvp",
+  "league": "fhl",
+  "year": 2013,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001168",
+  "team": "fhl_rivets",
+  "value": 8.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2013:mvp",
+  "league": "gdc",
+  "year": 2013,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002223",
+  "team": "gdc_loons",
+  "value": 187.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2013:poy",
+  "league": "gdc",
+  "year": 2013,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002131",
+  "team": "gdc_ore_haulers",
+  "value": 57.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2013:roy",
+  "league": "gdc",
+  "year": 2013,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002249",
+  "team": "gdc_paddlers",
+  "value": 128,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2013:cmvp",
+  "league": "gdc",
+  "year": 2013,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002060",
+  "team": "gdc_loons",
+  "value": 27.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2013:mvp",
+  "league": "igl",
+  "year": 2013,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003449",
+  "team": "igl_rockslides",
+  "value": 383.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2013:dpoy",
+  "league": "igl",
+  "year": 2013,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0506",
+  "team": "igl_ironclads",
+  "value": 158,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2013:roy",
+  "league": "igl",
+  "year": 2013,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003543",
+  "team": "igl_ironclads",
+  "value": 295.9,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2013:cmvp",
+  "league": "igl",
+  "year": 2013,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003449",
+  "team": "igl_rockslides",
+  "value": 21.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2014:mvp",
+  "league": "ccl",
+  "year": 2014,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0337",
+  "team": "ccl_satellites",
+  "value": 1130.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2014:dpoy",
+  "league": "ccl",
+  "year": 2014,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 251,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2014:roy",
+  "league": "ccl",
+  "year": 2014,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000384",
+  "team": "ccl_dustdevils",
+  "value": 1049,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2014:cmvp",
+  "league": "ccl",
+  "year": 2014,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000304",
+  "team": "ccl_forge",
+  "value": 247,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2014:mvp",
+  "league": "fhl",
+  "year": 2014,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0652",
+  "team": "fhl_rivets",
+  "value": 34.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2014:goy",
+  "league": "fhl",
+  "year": 2014,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001159",
+  "team": "fhl_polars",
+  "value": 13.4,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2014:roy",
+  "league": "fhl",
+  "year": 2014,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001195",
+  "team": "fhl_yetis",
+  "value": 23.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2014:cmvp",
+  "league": "fhl",
+  "year": 2014,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001101",
+  "team": "fhl_rivets",
+  "value": 8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2014:mvp",
+  "league": "gdc",
+  "year": 2014,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002169",
+  "team": "gdc_kingfishers",
+  "value": 195.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2014:poy",
+  "league": "gdc",
+  "year": 2014,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002128",
+  "team": "gdc_loons",
+  "value": 44.9,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2014:roy",
+  "league": "gdc",
+  "year": 2014,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002262",
+  "team": "gdc_loons",
+  "value": 126,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2014:cmvp",
+  "league": "gdc",
+  "year": 2014,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002223",
+  "team": "gdc_loons",
+  "value": 35,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2014:mvp",
+  "league": "igl",
+  "year": 2014,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003468",
+  "team": "igl_smokejumpers",
+  "value": 382.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2014:dpoy",
+  "league": "igl",
+  "year": 2014,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003537",
+  "team": "igl_harvesters",
+  "value": 160,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2014:roy",
+  "league": "igl",
+  "year": 2014,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003575",
+  "team": "igl_highlanders",
+  "value": 291.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2014:cmvp",
+  "league": "igl",
+  "year": 2014,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003585",
+  "team": "igl_rockslides",
+  "value": 33.1,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2015:mvp",
+  "league": "ccl",
+  "year": 2015,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000376",
+  "team": "ccl_jackrabbits",
+  "value": 1362.8,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2015:dpoy",
+  "league": "ccl",
+  "year": 2015,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 241,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2015:roy",
+  "league": "ccl",
+  "year": 2015,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0277",
+  "team": "ccl_comets",
+  "value": 919.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2015:cmvp",
+  "league": "ccl",
+  "year": 2015,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000376",
+  "team": "ccl_jackrabbits",
+  "value": 162.7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2015:mvp",
+  "league": "fhl",
+  "year": 2015,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001181",
+  "team": "fhl_borealis",
+  "value": 38.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2015:goy",
+  "league": "fhl",
+  "year": 2015,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 6.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2015:roy",
+  "league": "fhl",
+  "year": 2015,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0551",
+  "team": "fhl_narwhals",
+  "value": 23.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2015:cmvp",
+  "league": "fhl",
+  "year": 2015,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001192",
+  "team": "fhl_rivets",
+  "value": 6.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2015:mvp",
+  "league": "gdc",
+  "year": 2015,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002262",
+  "team": "gdc_loons",
+  "value": 206.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2015:poy",
+  "league": "gdc",
+  "year": 2015,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002133",
+  "team": "gdc_ore_haulers",
+  "value": 46.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2015:roy",
+  "league": "gdc",
+  "year": 2015,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002284",
+  "team": "gdc_loons",
+  "value": 126,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2015:cmvp",
+  "league": "gdc",
+  "year": 2015,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002159",
+  "team": "gdc_loons",
+  "value": 40,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2015:mvp",
+  "league": "igl",
+  "year": 2015,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003432",
+  "team": "igl_harvesters",
+  "value": 360.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2015:dpoy",
+  "league": "igl",
+  "year": 2015,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003522",
+  "team": "igl_smokejumpers",
+  "value": 162,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2015:roy",
+  "league": "igl",
+  "year": 2015,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003618",
+  "team": "igl_thunderherd",
+  "value": 271.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2015:cmvp",
+  "league": "igl",
+  "year": 2015,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003587",
+  "team": "igl_rockslides",
+  "value": 19.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2016:mvp",
+  "league": "ccl",
+  "year": 2016,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 1390.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2016:dpoy",
+  "league": "ccl",
+  "year": 2016,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 266,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2016:roy",
+  "league": "ccl",
+  "year": 2016,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0237",
+  "team": "ccl_anchors",
+  "value": 977,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2016:cmvp",
+  "league": "ccl",
+  "year": 2016,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000376",
+  "team": "ccl_jackrabbits",
+  "value": 214.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2016:mvp",
+  "league": "fhl",
+  "year": 2016,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001168",
+  "team": "fhl_rivets",
+  "value": 33.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2016:goy",
+  "league": "fhl",
+  "year": 2016,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001081",
+  "team": "fhl_floes",
+  "value": 13.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2016:roy",
+  "league": "fhl",
+  "year": 2016,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0657",
+  "team": "fhl_rivets",
+  "value": 22,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2016:cmvp",
+  "league": "fhl",
+  "year": 2016,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001170",
+  "team": "fhl_rivets",
+  "value": 8.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2016:mvp",
+  "league": "gdc",
+  "year": 2016,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0150",
+  "team": "gdc_millers",
+  "value": 170.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2016:poy",
+  "league": "gdc",
+  "year": 2016,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002183",
+  "team": "gdc_gilas",
+  "value": 36.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2016:roy",
+  "league": "gdc",
+  "year": 2016,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002294",
+  "team": "gdc_gilas",
+  "value": 152.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2016:cmvp",
+  "league": "gdc",
+  "year": 2016,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002188",
+  "team": "gdc_kingfishers",
+  "value": 35,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2016:mvp",
+  "league": "igl",
+  "year": 2016,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003548",
+  "team": "igl_rockslides",
+  "value": 320.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2016:dpoy",
+  "league": "igl",
+  "year": 2016,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_p0485",
+  "team": "igl_smokejumpers",
+  "value": 142,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2016:roy",
+  "league": "igl",
+  "year": 2016,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_p0363",
+  "team": "igl_thunderherd",
+  "value": 269.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2016:cmvp",
+  "league": "igl",
+  "year": 2016,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003439",
+  "team": "igl_highlanders",
+  "value": 19.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2017:mvp",
+  "league": "ccl",
+  "year": 2017,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000407",
+  "team": "ccl_satellites",
+  "value": 1153.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2017:dpoy",
+  "league": "ccl",
+  "year": 2017,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0234",
+  "team": "ccl_anchors",
+  "value": 239,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2017:roy",
+  "league": "ccl",
+  "year": 2017,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000407",
+  "team": "ccl_satellites",
+  "value": 1129.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2017:cmvp",
+  "league": "ccl",
+  "year": 2017,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0257",
+  "team": "ccl_jackrabbits",
+  "value": 162.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2017:mvp",
+  "league": "fhl",
+  "year": 2017,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001100",
+  "team": "fhl_rivets",
+  "value": 41.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2017:goy",
+  "league": "fhl",
+  "year": 2017,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001141",
+  "team": "fhl_snowowls",
+  "value": 6.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2017:roy",
+  "league": "fhl",
+  "year": 2017,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_p0615",
+  "team": "fhl_floes",
+  "value": 21.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2017:cmvp",
+  "league": "fhl",
+  "year": 2017,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0652",
+  "team": "fhl_rivets",
+  "value": 8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2017:mvp",
+  "league": "gdc",
+  "year": 2017,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002206",
+  "team": "gdc_firebirds",
+  "value": 166.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2017:poy",
+  "league": "gdc",
+  "year": 2017,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002136",
+  "team": "gdc_paddlers",
+  "value": 47.6,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2017:roy",
+  "league": "gdc",
+  "year": 2017,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002321",
+  "team": "gdc_ore_haulers",
+  "value": 132.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2017:cmvp",
+  "league": "gdc",
+  "year": 2017,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002283",
+  "team": "gdc_loons",
+  "value": 24,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2017:mvp",
+  "league": "igl",
+  "year": 2017,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003432",
+  "team": "igl_harvesters",
+  "value": 364.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2017:dpoy",
+  "league": "igl",
+  "year": 2017,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003611",
+  "team": "igl_rockslides",
+  "value": 161,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2017:roy",
+  "league": "igl",
+  "year": 2017,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003645",
+  "team": "igl_harvesters",
+  "value": 251.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2017:cmvp",
+  "league": "igl",
+  "year": 2017,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003439",
+  "team": "igl_highlanders",
+  "value": 31.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2018:mvp",
+  "league": "ccl",
+  "year": 2018,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 1286.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2018:dpoy",
+  "league": "ccl",
+  "year": 2018,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 251,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2018:roy",
+  "league": "ccl",
+  "year": 2018,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000416",
+  "team": "ccl_satellites",
+  "value": 990.9,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2018:cmvp",
+  "league": "ccl",
+  "year": 2018,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_p0255",
+  "team": "ccl_jackrabbits",
+  "value": 201.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2018:mvp",
+  "league": "fhl",
+  "year": 2018,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001138",
+  "team": "fhl_rivets",
+  "value": 30.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2018:goy",
+  "league": "fhl",
+  "year": 2018,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001102",
+  "team": "fhl_sawblades",
+  "value": 5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2018:roy",
+  "league": "fhl",
+  "year": 2018,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001228",
+  "team": "fhl_borealis",
+  "value": 25,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2018:cmvp",
+  "league": "fhl",
+  "year": 2018,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001191",
+  "team": "fhl_rivets",
+  "value": 14.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2018:mvp",
+  "league": "gdc",
+  "year": 2018,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002188",
+  "team": "gdc_kingfishers",
+  "value": 214.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2018:poy",
+  "league": "gdc",
+  "year": 2018,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002172",
+  "team": "gdc_loons",
+  "value": 66.4,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2018:roy",
+  "league": "gdc",
+  "year": 2018,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002330",
+  "team": "gdc_kingfishers",
+  "value": 161,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2018:cmvp",
+  "league": "gdc",
+  "year": 2018,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002284",
+  "team": "gdc_loons",
+  "value": 24,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2018:mvp",
+  "league": "igl",
+  "year": 2018,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0363",
+  "team": "igl_thunderherd",
+  "value": 333.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2018:dpoy",
+  "league": "igl",
+  "year": 2018,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003444",
+  "team": "igl_highlanders",
+  "value": 147,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2018:roy",
+  "league": "igl",
+  "year": 2018,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003685",
+  "team": "igl_squall",
+  "value": 179.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2018:cmvp",
+  "league": "igl",
+  "year": 2018,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003439",
+  "team": "igl_highlanders",
+  "value": 33.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2019:mvp",
+  "league": "ccl",
+  "year": 2019,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000395",
+  "team": "ccl_anchors",
+  "value": 1239.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2019:dpoy",
+  "league": "ccl",
+  "year": 2019,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0321",
+  "team": "ccl_forge",
+  "value": 234,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2019:roy",
+  "league": "ccl",
+  "year": 2019,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000428",
+  "team": "ccl_satellites",
+  "value": 978.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2019:cmvp",
+  "league": "ccl",
+  "year": 2019,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000406",
+  "team": "ccl_satellites",
+  "value": 271.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2019:mvp",
+  "league": "fhl",
+  "year": 2019,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001143",
+  "team": "fhl_snowowls",
+  "value": 39.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2019:goy",
+  "league": "fhl",
+  "year": 2019,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001102",
+  "team": "fhl_sawblades",
+  "value": 7.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2019:roy",
+  "league": "fhl",
+  "year": 2019,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001250",
+  "team": "fhl_narwhals",
+  "value": 34.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2019:cmvp",
+  "league": "fhl",
+  "year": 2019,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001128",
+  "team": "fhl_snowowls",
+  "value": 6.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2019:mvp",
+  "league": "gdc",
+  "year": 2019,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002177",
+  "team": "gdc_millers",
+  "value": 175.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2019:poy",
+  "league": "gdc",
+  "year": 2019,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002273",
+  "team": "gdc_paddlers",
+  "value": 58.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2019:roy",
+  "league": "gdc",
+  "year": 2019,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002350",
+  "team": "gdc_gilas",
+  "value": 135,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2019:cmvp",
+  "league": "gdc",
+  "year": 2019,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002325",
+  "team": "gdc_paddlers",
+  "value": 31.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2019:mvp",
+  "league": "igl",
+  "year": 2019,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003688",
+  "team": "igl_undertow",
+  "value": 367.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2019:dpoy",
+  "league": "igl",
+  "year": 2019,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003623",
+  "team": "igl_undertow",
+  "value": 169,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2019:roy",
+  "league": "igl",
+  "year": 2019,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003697",
+  "team": "igl_ironclads",
+  "value": 215.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2019:cmvp",
+  "league": "igl",
+  "year": 2019,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0446",
+  "team": "igl_highlanders",
+  "value": 28.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2020:mvp",
+  "league": "ccl",
+  "year": 2020,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 1263,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2020:dpoy",
+  "league": "ccl",
+  "year": 2020,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 251.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2020:roy",
+  "league": "ccl",
+  "year": 2020,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000430",
+  "team": "ccl_anchors",
+  "value": 1082.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2020:cmvp",
+  "league": "ccl",
+  "year": 2020,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 245.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2020:mvp",
+  "league": "fhl",
+  "year": 2020,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001278",
+  "team": "fhl_snowowls",
+  "value": 29.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2020:goy",
+  "league": "fhl",
+  "year": 2020,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001213",
+  "team": "fhl_yetis",
+  "value": 5.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2020:roy",
+  "league": "fhl",
+  "year": 2020,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001278",
+  "team": "fhl_snowowls",
+  "value": 28.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2020:cmvp",
+  "league": "fhl",
+  "year": 2020,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0614",
+  "team": "fhl_floes",
+  "value": 7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2020:mvp",
+  "league": "gdc",
+  "year": 2020,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002321",
+  "team": "gdc_ore_haulers",
+  "value": 181,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2020:poy",
+  "league": "gdc",
+  "year": 2020,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002254",
+  "team": "gdc_gilas",
+  "value": 49.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2020:roy",
+  "league": "gdc",
+  "year": 2020,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002380",
+  "team": "gdc_ore_haulers",
+  "value": 110,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2020:cmvp",
+  "league": "gdc",
+  "year": 2020,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002234",
+  "team": "gdc_paddlers",
+  "value": 24.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2020:mvp",
+  "league": "igl",
+  "year": 2020,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003618",
+  "team": "igl_thunderherd",
+  "value": 422.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2020:dpoy",
+  "league": "igl",
+  "year": 2020,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003611",
+  "team": "igl_rockslides",
+  "value": 166,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2020:roy",
+  "league": "igl",
+  "year": 2020,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003727",
+  "team": "igl_rockslides",
+  "value": 174.2,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2020:cmvp",
+  "league": "igl",
+  "year": 2020,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003575",
+  "team": "igl_highlanders",
+  "value": 21.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2021:mvp",
+  "league": "ccl",
+  "year": 2021,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0237",
+  "team": "ccl_anchors",
+  "value": 1344.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2021:dpoy",
+  "league": "ccl",
+  "year": 2021,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 241.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2021:roy",
+  "league": "ccl",
+  "year": 2021,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000448",
+  "team": "ccl_satellites",
+  "value": 956.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2021:cmvp",
+  "league": "ccl",
+  "year": 2021,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000430",
+  "team": "ccl_anchors",
+  "value": 280.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2021:mvp",
+  "league": "fhl",
+  "year": 2021,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0551",
+  "team": "fhl_narwhals",
+  "value": 37.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2021:goy",
+  "league": "fhl",
+  "year": 2021,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0526",
+  "team": "fhl_polars",
+  "value": -4.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2021:roy",
+  "league": "fhl",
+  "year": 2021,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001291",
+  "team": "fhl_sawblades",
+  "value": 27.6,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2021:cmvp",
+  "league": "fhl",
+  "year": 2021,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001186",
+  "team": "fhl_narwhals",
+  "value": 7,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2021:mvp",
+  "league": "gdc",
+  "year": 2021,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002251",
+  "team": "gdc_paddlers",
+  "value": 173.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2021:poy",
+  "league": "gdc",
+  "year": 2021,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002311",
+  "team": "gdc_firebirds",
+  "value": 53.1,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2021:roy",
+  "league": "gdc",
+  "year": 2021,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002398",
+  "team": "gdc_paddlers",
+  "value": 132.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2021:cmvp",
+  "league": "gdc",
+  "year": 2021,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002234",
+  "team": "gdc_paddlers",
+  "value": 27.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2021:mvp",
+  "league": "igl",
+  "year": 2021,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0468",
+  "team": "igl_squall",
+  "value": 389.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2021:dpoy",
+  "league": "igl",
+  "year": 2021,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003711",
+  "team": "igl_thunderherd",
+  "value": 166,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2021:roy",
+  "league": "igl",
+  "year": 2021,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003752",
+  "team": "igl_squall",
+  "value": 267.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2021:cmvp",
+  "league": "igl",
+  "year": 2021,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003752",
+  "team": "igl_squall",
+  "value": 21.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2022:mvp",
+  "league": "ccl",
+  "year": 2022,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000430",
+  "team": "ccl_anchors",
+  "value": 1247.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2022:dpoy",
+  "league": "ccl",
+  "year": 2022,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000430",
+  "team": "ccl_anchors",
+  "value": 239,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2022:roy",
+  "league": "ccl",
+  "year": 2022,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000456",
+  "team": "ccl_voltage",
+  "value": 1009.9,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2022:cmvp",
+  "league": "ccl",
+  "year": 2022,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000430",
+  "team": "ccl_anchors",
+  "value": 263.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2022:mvp",
+  "league": "fhl",
+  "year": 2022,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0655",
+  "team": "fhl_rivets",
+  "value": 33.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2022:goy",
+  "league": "fhl",
+  "year": 2022,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_p0526",
+  "team": "fhl_polars",
+  "value": 5.9,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2022:roy",
+  "league": "fhl",
+  "year": 2022,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001313",
+  "team": "fhl_rivets",
+  "value": 28.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2022:cmvp",
+  "league": "fhl",
+  "year": 2022,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0615",
+  "team": "fhl_floes",
+  "value": 8.6,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2022:mvp",
+  "league": "gdc",
+  "year": 2022,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0173",
+  "team": "gdc_kingfishers",
+  "value": 177.5,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2022:poy",
+  "league": "gdc",
+  "year": 2022,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002319",
+  "team": "gdc_ore_haulers",
+  "value": 55.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2022:roy",
+  "league": "gdc",
+  "year": 2022,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002423",
+  "team": "gdc_millers",
+  "value": 139.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2022:cmvp",
+  "league": "gdc",
+  "year": 2022,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0174",
+  "team": "gdc_kingfishers",
+  "value": 33.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2022:mvp",
+  "league": "igl",
+  "year": 2022,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003666",
+  "team": "igl_undertow",
+  "value": 406.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2022:dpoy",
+  "league": "igl",
+  "year": 2022,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003611",
+  "team": "igl_rockslides",
+  "value": 160,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2022:roy",
+  "league": "igl",
+  "year": 2022,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003791",
+  "team": "igl_thunderherd",
+  "value": 262.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2022:cmvp",
+  "league": "igl",
+  "year": 2022,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0383",
+  "team": "igl_undertow",
+  "value": 39.4,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2023:mvp",
+  "league": "ccl",
+  "year": 2023,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_p0215",
+  "team": "ccl_monsoon",
+  "value": 1178.2,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2023:dpoy",
+  "league": "ccl",
+  "year": 2023,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000469",
+  "team": "ccl_voltage",
+  "value": 233,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2023:roy",
+  "league": "ccl",
+  "year": 2023,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_generated_000469",
+  "team": "ccl_voltage",
+  "value": 1055.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2023:cmvp",
+  "league": "ccl",
+  "year": 2023,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000438",
+  "team": "ccl_jackrabbits",
+  "value": 186,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2023:mvp",
+  "league": "fhl",
+  "year": 2023,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001250",
+  "team": "fhl_narwhals",
+  "value": 34.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2023:goy",
+  "league": "fhl",
+  "year": 2023,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001245",
+  "team": "fhl_borealis",
+  "value": 13.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2023:roy",
+  "league": "fhl",
+  "year": 2023,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001329",
+  "team": "fhl_narwhals",
+  "value": 21.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2023:cmvp",
+  "league": "fhl",
+  "year": 2023,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001266",
+  "team": "fhl_floes",
+  "value": 9.2,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2023:mvp",
+  "league": "gdc",
+  "year": 2023,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_p0026",
+  "team": "gdc_lamplighters",
+  "value": 174.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2023:poy",
+  "league": "gdc",
+  "year": 2023,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002305",
+  "team": "gdc_ore_haulers",
+  "value": 52.2,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2023:roy",
+  "league": "gdc",
+  "year": 2023,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002433",
+  "team": "gdc_firebirds",
+  "value": 138,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2023:cmvp",
+  "league": "gdc",
+  "year": 2023,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002380",
+  "team": "gdc_ore_haulers",
+  "value": 25,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2023:mvp",
+  "league": "igl",
+  "year": 2023,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003745",
+  "team": "igl_rockslides",
+  "value": 477.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2023:dpoy",
+  "league": "igl",
+  "year": 2023,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003756",
+  "team": "igl_squall",
+  "value": 188,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2023:roy",
+  "league": "igl",
+  "year": 2023,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003809",
+  "team": "igl_ironclads",
+  "value": 282.1,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2023:cmvp",
+  "league": "igl",
+  "year": 2023,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003759",
+  "team": "igl_thunderherd",
+  "value": 15,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2024:mvp",
+  "league": "ccl",
+  "year": 2024,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000423",
+  "team": "ccl_forge",
+  "value": 1255.6,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2024:dpoy",
+  "league": "ccl",
+  "year": 2024,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_generated_000469",
+  "team": "ccl_voltage",
+  "value": 226,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2024:roy",
+  "league": "ccl",
+  "year": 2024,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0196",
+  "team": "ccl_voltage",
+  "value": 992,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2024:cmvp",
+  "league": "ccl",
+  "year": 2024,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000425",
+  "team": "ccl_forge",
+  "value": 233.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2024:mvp",
+  "league": "fhl",
+  "year": 2024,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0614",
+  "team": "fhl_floes",
+  "value": 37.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2024:goy",
+  "league": "fhl",
+  "year": 2024,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001319",
+  "team": "fhl_floes",
+  "value": 0.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2024:roy",
+  "league": "fhl",
+  "year": 2024,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001344",
+  "team": "fhl_narwhals",
+  "value": 26.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2024:cmvp",
+  "league": "fhl",
+  "year": 2024,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0613",
+  "team": "fhl_floes",
+  "value": 17,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2024:mvp",
+  "league": "gdc",
+  "year": 2024,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002391",
+  "team": "gdc_lamplighters",
+  "value": 173.3,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2024:poy",
+  "league": "gdc",
+  "year": 2024,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002372",
+  "team": "gdc_lamplighters",
+  "value": 46.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2024:roy",
+  "league": "gdc",
+  "year": 2024,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002455",
+  "team": "gdc_firebirds",
+  "value": 141.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2024:cmvp",
+  "league": "gdc",
+  "year": 2024,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002443",
+  "team": "gdc_lamplighters",
+  "value": 21,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2024:mvp",
+  "league": "igl",
+  "year": 2024,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003666",
+  "team": "igl_undertow",
+  "value": 356.4,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2024:dpoy",
+  "league": "igl",
+  "year": 2024,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003756",
+  "team": "igl_squall",
+  "value": 173,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2024:roy",
+  "league": "igl",
+  "year": 2024,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003834",
+  "team": "igl_harvesters",
+  "value": 272.3,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2024:cmvp",
+  "league": "igl",
+  "year": 2024,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0447",
+  "team": "igl_highlanders",
+  "value": 32,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2025:mvp",
+  "league": "ccl",
+  "year": 2025,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000407",
+  "team": "ccl_satellites",
+  "value": 1330.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2025:dpoy",
+  "league": "ccl",
+  "year": 2025,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0257",
+  "team": "ccl_jackrabbits",
+  "value": 223.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2025:roy",
+  "league": "ccl",
+  "year": 2025,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_p0260",
+  "team": "ccl_jackrabbits",
+  "value": 978,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2025:cmvp",
+  "league": "ccl",
+  "year": 2025,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000469",
+  "team": "ccl_voltage",
+  "value": 243.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2025:mvp",
+  "league": "fhl",
+  "year": 2025,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_p0614",
+  "team": "fhl_floes",
+  "value": 44.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2025:goy",
+  "league": "fhl",
+  "year": 2025,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001217",
+  "team": "fhl_floes",
+  "value": 6.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2025:roy",
+  "league": "fhl",
+  "year": 2025,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_generated_001358",
+  "team": "fhl_snowowls",
+  "value": 23.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2025:cmvp",
+  "league": "fhl",
+  "year": 2025,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_p0614",
+  "team": "fhl_floes",
+  "value": 7.8,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2025:mvp",
+  "league": "gdc",
+  "year": 2025,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002432",
+  "team": "gdc_paddlers",
+  "value": 166.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2025:poy",
+  "league": "gdc",
+  "year": 2025,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_p0091",
+  "team": "gdc_paddlers",
+  "value": 51.8,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2025:roy",
+  "league": "gdc",
+  "year": 2025,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_generated_002475",
+  "team": "gdc_lamplighters",
+  "value": 123,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2025:cmvp",
+  "league": "gdc",
+  "year": 2025,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_p0089",
+  "team": "gdc_paddlers",
+  "value": 25,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2025:mvp",
+  "league": "igl",
+  "year": 2025,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_p0468",
+  "team": "igl_squall",
+  "value": 423.1,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2025:dpoy",
+  "league": "igl",
+  "year": 2025,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003731",
+  "team": "igl_smokejumpers",
+  "value": 183,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2025:roy",
+  "league": "igl",
+  "year": 2025,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_generated_003872",
+  "team": "igl_smokejumpers",
+  "value": 218.7,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2025:cmvp",
+  "league": "igl",
+  "year": 2025,
+  "award": "Championship MVP",
+  "athlete_id": "igl_p0404",
+  "team": "igl_rockslides",
+  "value": 23.9,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "gdc-2026:mvp",
+  "league": "gdc",
+  "year": 2026,
+  "award": "Most Valuable Player",
+  "athlete_id": "gdc_generated_002340",
+  "team": "gdc_ore_haulers",
+  "value": 169.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "gdc-2026:poy",
+  "league": "gdc",
+  "year": 2026,
+  "award": "Pitcher of the Year",
+  "athlete_id": "gdc_generated_002319",
+  "team": "gdc_ore_haulers",
+  "value": 63.7,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "gdc-2026:roy",
+  "league": "gdc",
+  "year": 2026,
+  "award": "Rookie of the Year",
+  "athlete_id": "gdc_d2026_035",
+  "team": "gdc_gilas",
+  "value": 151.5,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "gdc-2026:cmvp",
+  "league": "gdc",
+  "year": 2026,
+  "award": "Championship MVP",
+  "athlete_id": "gdc_generated_002330",
+  "team": "gdc_kingfishers",
+  "value": 36.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "ccl-2026:mvp",
+  "league": "ccl",
+  "year": 2026,
+  "award": "Most Valuable Player",
+  "athlete_id": "ccl_generated_000407",
+  "team": "ccl_satellites",
+  "value": 1351,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "ccl-2026:dpoy",
+  "league": "ccl",
+  "year": 2026,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "ccl_p0260",
+  "team": "ccl_jackrabbits",
+  "value": 242.5,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "ccl-2026:roy",
+  "league": "ccl",
+  "year": 2026,
+  "award": "Rookie of the Year",
+  "athlete_id": "ccl_d2026_015",
+  "team": "ccl_dustdevils",
+  "value": 1000,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "ccl-2026:cmvp",
+  "league": "ccl",
+  "year": 2026,
+  "award": "Championship MVP",
+  "athlete_id": "ccl_generated_000407",
+  "team": "ccl_satellites",
+  "value": 272.3,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "igl-2026:mvp",
+  "league": "igl",
+  "year": 2026,
+  "award": "Most Valuable Player",
+  "athlete_id": "igl_generated_003810",
+  "team": "igl_rockslides",
+  "value": 368.7,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "igl-2026:dpoy",
+  "league": "igl",
+  "year": 2026,
+  "award": "Defensive Player of the Year",
+  "athlete_id": "igl_generated_003699",
+  "team": "igl_ironclads",
+  "value": 171,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "igl-2026:roy",
+  "league": "igl",
+  "year": 2026,
+  "award": "Rookie of the Year",
+  "athlete_id": "igl_d2026_039",
+  "team": "igl_undertow",
+  "value": 318.8,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "igl-2026:cmvp",
+  "league": "igl",
+  "year": 2026,
+  "award": "Championship MVP",
+  "athlete_id": "igl_generated_003810",
+  "team": "igl_rockslides",
+  "value": 30.5,
+  "basis": "value in the final series"
+ },
+ {
+  "id": "fhl-2026:mvp",
+  "league": "fhl",
+  "year": 2026,
+  "award": "Most Valuable Player",
+  "athlete_id": "fhl_generated_001266",
+  "team": "fhl_floes",
+  "value": 37.9,
+  "basis": "season value × team success"
+ },
+ {
+  "id": "fhl-2026:goy",
+  "league": "fhl",
+  "year": 2026,
+  "award": "Goaltender of the Year",
+  "athlete_id": "fhl_generated_001338",
+  "team": "fhl_snowowls",
+  "value": 3.3,
+  "basis": "defensive or pitching value"
+ },
+ {
+  "id": "fhl-2026:roy",
+  "league": "fhl",
+  "year": 2026,
+  "award": "Rookie of the Year",
+  "athlete_id": "fhl_d2026_031",
+  "team": "fhl_floes",
+  "value": 32.4,
+  "basis": "season value, first season"
+ },
+ {
+  "id": "fhl-2026:cmvp",
+  "league": "fhl",
+  "year": 2026,
+  "award": "Championship MVP",
+  "athlete_id": "fhl_generated_001295",
+  "team": "fhl_borealis",
+  "value": 9,
+  "basis": "value in the final series"
+ }
+]

@@ -1,0 +1,63 @@
+{
+  "$id": "sports-lore/2/history/drafts.json",
+  "title": "sports-lore/2 history/drafts.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "round": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      },
+      "pick": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      },
+      "overall": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      },
+      "athlete_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "team": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "year",
+      "round",
+      "pick",
+      "overall",
+      "athlete_id",
+      "team"
+    ],
+    "additionalProperties": false
+  }
+}

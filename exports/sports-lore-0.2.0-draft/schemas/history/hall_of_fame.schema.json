@@ -1,0 +1,72 @@
+{
+  "$id": "sports-lore/2/history/hall_of_fame.json",
+  "title": "sports-lore/2 history/hall_of_fame.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "athlete_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "pathway": {
+        "type": "string",
+        "enum": [
+          "statistical",
+          "legends"
+        ]
+      },
+      "basis": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "score": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "provenance": {
+        "type": "string",
+        "enum": [
+          "approved_canon",
+          "proposed_canon",
+          "derived_statistic",
+          "generated_history"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "athlete_id",
+      "league",
+      "year",
+      "pathway",
+      "basis",
+      "score",
+      "provenance"
+    ],
+    "additionalProperties": false
+  }
+}

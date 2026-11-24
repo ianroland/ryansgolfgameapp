@@ -1,0 +1,179 @@
+{
+  "$id": "sports-lore/2/knowledge/facts.json",
+  "title": "sports-lore/2 knowledge/facts.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^f\\.[a-z_]+\\.[A-Za-z0-9_.:-]+$"
+      },
+      "kind": {
+        "type": "string",
+        "enum": [
+          "championship",
+          "final",
+          "semifinal",
+          "comeback",
+          "award",
+          "leader",
+          "standings",
+          "franchise",
+          "drought",
+          "grudge",
+          "rivalry",
+          "record",
+          "hall_of_fame",
+          "legend",
+          "draft",
+          "trade"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "known_from": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "teams": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+        }
+      },
+      "athletes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "rivalry": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "tier": {
+        "type": "string",
+        "enum": [
+          "casual",
+          "fan",
+          "specialist",
+          "historian"
+        ]
+      },
+      "text": {
+        "type": "string",
+        "minLength": 1
+      },
+      "data": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "refs": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "provenance": {
+        "type": "string",
+        "enum": [
+          "approved_canon",
+          "proposed_canon",
+          "derived_statistic",
+          "generated_history"
+        ]
+      },
+      "uses": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "sportsbook",
+            "favorite_team",
+            "rivalry",
+            "championship_memory",
+            "legend",
+            "grudge",
+            "trivia"
+          ]
+        }
+      }
+    },
+    "required": [
+      "id",
+      "kind",
+      "year",
+      "known_from",
+      "league",
+      "teams",
+      "athletes",
+      "events",
+      "rivalry",
+      "tier",
+      "text",
+      "data",
+      "refs",
+      "provenance",
+      "uses"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$id": "sports-lore/2/history/leaders.json",
+  "title": "sports-lore/2 history/leaders.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "stat": {
+        "type": "string"
+      },
+      "athlete_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "team": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "value": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "year",
+      "stat",
+      "athlete_id",
+      "team",
+      "value"
+    ],
+    "additionalProperties": false
+  }
+}

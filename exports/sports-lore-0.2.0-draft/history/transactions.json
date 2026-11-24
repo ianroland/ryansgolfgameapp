@@ -1,0 +1,13 @@
+[
+ {
+  "id": "ccl-2008:ccl_andre_bellamy",
+  "league": "ccl",
+  "year": 2008,
+  "type": "trade",
+  "athlete_id": "ccl_andre_bellamy",
+  "from": "ccl_forge",
+  "to": "ccl_monsoon",
+  "note": "Detroit received three players and two draft picks (the players are not yet identified in the data)",
+  "event": "ccl-2008-001"
+ }
+]

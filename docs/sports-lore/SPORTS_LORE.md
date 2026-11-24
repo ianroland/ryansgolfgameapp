@@ -16,7 +16,7 @@ This is a read-only reference layer. It never changes simulation RNG, standings,
 | `src/sports/lore/service.ts` | Lookups, year and tier gating, UI and NPC selectors, the simulated-ledger merge |
 | `src/sports/lore/importPack.ts` | Importing a revised pack (version, hash and id-stability checks) |
 | `src/sports/lore/exportPack.ts` | Building the sanitized NPC Factory knowledge pack (build time only) |
-| `exports/sports-lore-0.1.1-draft/` | The exported knowledge pack for NPC Factory, with JSON Schemas (draft 2020-12) |
+| `exports/sports-lore-0.2.0-draft/` | The NPC Factory knowledge pack: the bible files (sports-lore/1, unchanged) plus the generated history and knowledge facts (sports-lore/2), with JSON Schemas (draft 2020-12). See `NPC_EXPORT_REPORT.md` and `NPC_FACTORY_PROMPT.md` |
 | `tests/sportsLore.test.ts` | Acceptance tests (26) |
 
 Regenerate the export with `npm run lore:export`. A test fails if the committed export is out of date.

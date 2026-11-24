@@ -1,0 +1,75 @@
+{
+  "$id": "sports-lore/2/history/player_careers.json",
+  "title": "sports-lore/2 history/player_careers.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "athlete_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "seasons": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      },
+      "first": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "last": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "teams": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+        }
+      },
+      "regular": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "type": "number"
+        }
+      },
+      "playoffs": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "type": "number"
+        }
+      }
+    },
+    "required": [
+      "athlete_id",
+      "league",
+      "seasons",
+      "first",
+      "last",
+      "teams",
+      "regular",
+      "playoffs"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -157,7 +157,7 @@
   },
   "x-export": {
     "exported_by": "Ryan's Road to the LPGA",
-    "game_version": "0.19.4",
+    "game_version": "0.19.11",
     "contract": "sports-lore/1"
   }
 }

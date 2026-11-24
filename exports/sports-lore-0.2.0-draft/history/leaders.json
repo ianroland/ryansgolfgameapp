@@ -1,0 +1,7562 @@
+[
+ {
+  "id": "gdc-1972:avg",
+  "league": "gdc",
+  "year": 1972,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001488",
+  "team": "gdc_ore_haulers",
+  "value": 0.365
+ },
+ {
+  "id": "gdc-1972:hr",
+  "league": "gdc",
+  "year": 1972,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001400",
+  "team": "gdc_gilas",
+  "value": 13
+ },
+ {
+  "id": "gdc-1972:rbi",
+  "league": "gdc",
+  "year": 1972,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0053",
+  "team": "gdc_gilas",
+  "value": 37
+ },
+ {
+  "id": "gdc-1972:era",
+  "league": "gdc",
+  "year": 1972,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001503",
+  "team": "gdc_paddlers",
+  "value": 2.172
+ },
+ {
+  "id": "gdc-1972:w",
+  "league": "gdc",
+  "year": 1972,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001480",
+  "team": "gdc_ore_haulers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1972:so",
+  "league": "gdc",
+  "year": 1972,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001406",
+  "team": "gdc_kingfishers",
+  "value": 76
+ },
+ {
+  "id": "gdc-1973:avg",
+  "league": "gdc",
+  "year": 1973,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001413",
+  "team": "gdc_kingfishers",
+  "value": 0.346
+ },
+ {
+  "id": "gdc-1973:hr",
+  "league": "gdc",
+  "year": 1973,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001413",
+  "team": "gdc_kingfishers",
+  "value": 16
+ },
+ {
+  "id": "gdc-1973:rbi",
+  "league": "gdc",
+  "year": 1973,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001391",
+  "team": "gdc_gilas",
+  "value": 40
+ },
+ {
+  "id": "gdc-1973:era",
+  "league": "gdc",
+  "year": 1973,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001503",
+  "team": "gdc_paddlers",
+  "value": 1.641
+ },
+ {
+  "id": "gdc-1973:w",
+  "league": "gdc",
+  "year": 1973,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001385",
+  "team": "gdc_gilas",
+  "value": 9
+ },
+ {
+  "id": "gdc-1973:so",
+  "league": "gdc",
+  "year": 1973,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001442",
+  "team": "gdc_loons",
+  "value": 82
+ },
+ {
+  "id": "ccl-1974:ppg",
+  "league": "ccl",
+  "year": 1974,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000046",
+  "team": "ccl_monsoon",
+  "value": 20.036
+ },
+ {
+  "id": "ccl-1974:rpg",
+  "league": "ccl",
+  "year": 1974,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0199",
+  "team": "ccl_monsoon",
+  "value": 8.964
+ },
+ {
+  "id": "ccl-1974:apg",
+  "league": "ccl",
+  "year": 1974,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 5.393
+ },
+ {
+  "id": "gdc-1974:avg",
+  "league": "gdc",
+  "year": 1974,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001505",
+  "team": "gdc_paddlers",
+  "value": 0.387
+ },
+ {
+  "id": "gdc-1974:hr",
+  "league": "gdc",
+  "year": 1974,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001495",
+  "team": "gdc_ore_haulers",
+  "value": 12
+ },
+ {
+  "id": "gdc-1974:rbi",
+  "league": "gdc",
+  "year": 1974,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001415",
+  "team": "gdc_kingfishers",
+  "value": 37
+ },
+ {
+  "id": "gdc-1974:era",
+  "league": "gdc",
+  "year": 1974,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001441",
+  "team": "gdc_loons",
+  "value": 1.729
+ },
+ {
+  "id": "gdc-1974:w",
+  "league": "gdc",
+  "year": 1974,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001385",
+  "team": "gdc_gilas",
+  "value": 9
+ },
+ {
+  "id": "gdc-1974:so",
+  "league": "gdc",
+  "year": 1974,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001442",
+  "team": "gdc_loons",
+  "value": 85
+ },
+ {
+  "id": "ccl-1975:ppg",
+  "league": "ccl",
+  "year": 1975,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 20.714
+ },
+ {
+  "id": "ccl-1975:rpg",
+  "league": "ccl",
+  "year": 1975,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000070",
+  "team": "ccl_voltage",
+  "value": 9.179
+ },
+ {
+  "id": "ccl-1975:apg",
+  "league": "ccl",
+  "year": 1975,
+  "stat": "apg",
+  "athlete_id": "ccl_p0178",
+  "team": "ccl_voltage",
+  "value": 5.786
+ },
+ {
+  "id": "gdc-1975:avg",
+  "league": "gdc",
+  "year": 1975,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001391",
+  "team": "gdc_gilas",
+  "value": 0.358
+ },
+ {
+  "id": "gdc-1975:hr",
+  "league": "gdc",
+  "year": 1975,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001396",
+  "team": "gdc_gilas",
+  "value": 15
+ },
+ {
+  "id": "gdc-1975:rbi",
+  "league": "gdc",
+  "year": 1975,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0075",
+  "team": "gdc_paddlers",
+  "value": 42
+ },
+ {
+  "id": "gdc-1975:era",
+  "league": "gdc",
+  "year": 1975,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001366",
+  "team": "gdc_firebirds",
+  "value": 1.957
+ },
+ {
+  "id": "gdc-1975:w",
+  "league": "gdc",
+  "year": 1975,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001385",
+  "team": "gdc_gilas",
+  "value": 10
+ },
+ {
+  "id": "gdc-1975:so",
+  "league": "gdc",
+  "year": 1975,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001422",
+  "team": "gdc_lamplighters",
+  "value": 80
+ },
+ {
+  "id": "ccl-1976:ppg",
+  "league": "ccl",
+  "year": 1976,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000067",
+  "team": "ccl_voltage",
+  "value": 20.071
+ },
+ {
+  "id": "ccl-1976:rpg",
+  "league": "ccl",
+  "year": 1976,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000025",
+  "team": "ccl_dustdevils",
+  "value": 10.25
+ },
+ {
+  "id": "ccl-1976:apg",
+  "league": "ccl",
+  "year": 1976,
+  "stat": "apg",
+  "athlete_id": "ccl_p0304",
+  "team": "ccl_forge",
+  "value": 5.357
+ },
+ {
+  "id": "gdc-1976:avg",
+  "league": "gdc",
+  "year": 1976,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001413",
+  "team": "gdc_kingfishers",
+  "value": 0.406
+ },
+ {
+  "id": "gdc-1976:hr",
+  "league": "gdc",
+  "year": 1976,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001413",
+  "team": "gdc_kingfishers",
+  "value": 20
+ },
+ {
+  "id": "gdc-1976:rbi",
+  "league": "gdc",
+  "year": 1976,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001413",
+  "team": "gdc_kingfishers",
+  "value": 48
+ },
+ {
+  "id": "gdc-1976:era",
+  "league": "gdc",
+  "year": 1976,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001461",
+  "team": "gdc_millers",
+  "value": 1.714
+ },
+ {
+  "id": "gdc-1976:w",
+  "league": "gdc",
+  "year": 1976,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001442",
+  "team": "gdc_loons",
+  "value": 9
+ },
+ {
+  "id": "gdc-1976:so",
+  "league": "gdc",
+  "year": 1976,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001406",
+  "team": "gdc_kingfishers",
+  "value": 82
+ },
+ {
+  "id": "igl-1976:pass_yds",
+  "league": "igl",
+  "year": 1976,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0409",
+  "team": "igl_harvesters",
+  "value": 3759
+ },
+ {
+  "id": "igl-1976:rush_yds",
+  "league": "igl",
+  "year": 1976,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002483",
+  "team": "igl_harvesters",
+  "value": 2076
+ },
+ {
+  "id": "igl-1976:rec_yds",
+  "league": "igl",
+  "year": 1976,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002487",
+  "team": "igl_harvesters",
+  "value": 1110
+ },
+ {
+  "id": "igl-1976:sacks",
+  "league": "igl",
+  "year": 1976,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002521",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "ccl-1977:ppg",
+  "league": "ccl",
+  "year": 1977,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000000",
+  "team": "ccl_anchors",
+  "value": 20.25
+ },
+ {
+  "id": "ccl-1977:rpg",
+  "league": "ccl",
+  "year": 1977,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000034",
+  "team": "ccl_forge",
+  "value": 9.964
+ },
+ {
+  "id": "ccl-1977:apg",
+  "league": "ccl",
+  "year": 1977,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000046",
+  "team": "ccl_monsoon",
+  "value": 5.679
+ },
+ {
+  "id": "gdc-1977:avg",
+  "league": "gdc",
+  "year": 1977,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001380",
+  "team": "gdc_firebirds",
+  "value": 0.365
+ },
+ {
+  "id": "gdc-1977:hr",
+  "league": "gdc",
+  "year": 1977,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001383",
+  "team": "gdc_firebirds",
+  "value": 13
+ },
+ {
+  "id": "gdc-1977:rbi",
+  "league": "gdc",
+  "year": 1977,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0159",
+  "team": "gdc_kingfishers",
+  "value": 36
+ },
+ {
+  "id": "gdc-1977:era",
+  "league": "gdc",
+  "year": 1977,
+  "stat": "era",
+  "athlete_id": "gdc_p0157",
+  "team": "gdc_kingfishers",
+  "value": 2.109
+ },
+ {
+  "id": "gdc-1977:w",
+  "league": "gdc",
+  "year": 1977,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001403",
+  "team": "gdc_kingfishers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1977:so",
+  "league": "gdc",
+  "year": 1977,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001503",
+  "team": "gdc_paddlers",
+  "value": 78
+ },
+ {
+  "id": "igl-1977:pass_yds",
+  "league": "igl",
+  "year": 1977,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0409",
+  "team": "igl_harvesters",
+  "value": 3822
+ },
+ {
+  "id": "igl-1977:rush_yds",
+  "league": "igl",
+  "year": 1977,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002532",
+  "team": "igl_ironclads",
+  "value": 2083
+ },
+ {
+  "id": "igl-1977:rec_yds",
+  "league": "igl",
+  "year": 1977,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002637",
+  "team": "igl_thunderherd",
+  "value": 1002
+ },
+ {
+  "id": "igl-1977:sacks",
+  "league": "igl",
+  "year": 1977,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002623",
+  "team": "igl_squall",
+  "value": 14
+ },
+ {
+  "id": "ccl-1978:ppg",
+  "league": "ccl",
+  "year": 1978,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 19.643
+ },
+ {
+  "id": "ccl-1978:rpg",
+  "league": "ccl",
+  "year": 1978,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000007",
+  "team": "ccl_anchors",
+  "value": 9.75
+ },
+ {
+  "id": "ccl-1978:apg",
+  "league": "ccl",
+  "year": 1978,
+  "stat": "apg",
+  "athlete_id": "ccl_p0304",
+  "team": "ccl_forge",
+  "value": 5.179
+ },
+ {
+  "id": "fhl-1978:g",
+  "league": "fhl",
+  "year": 1978,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000514",
+  "team": "fhl_floes",
+  "value": 17
+ },
+ {
+  "id": "fhl-1978:pts",
+  "league": "fhl",
+  "year": 1978,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000594",
+  "team": "fhl_snowowls",
+  "value": 29
+ },
+ {
+  "id": "fhl-1978:sv_pct",
+  "league": "fhl",
+  "year": 1978,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0514",
+  "team": "fhl_polars",
+  "value": 0.909
+ },
+ {
+  "id": "gdc-1978:avg",
+  "league": "gdc",
+  "year": 1978,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001552",
+  "team": "gdc_paddlers",
+  "value": 0.35
+ },
+ {
+  "id": "gdc-1978:hr",
+  "league": "gdc",
+  "year": 1978,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001450",
+  "team": "gdc_loons",
+  "value": 14
+ },
+ {
+  "id": "gdc-1978:rbi",
+  "league": "gdc",
+  "year": 1978,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001379",
+  "team": "gdc_firebirds",
+  "value": 40
+ },
+ {
+  "id": "gdc-1978:era",
+  "league": "gdc",
+  "year": 1978,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001543",
+  "team": "gdc_loons",
+  "value": 2.008
+ },
+ {
+  "id": "gdc-1978:w",
+  "league": "gdc",
+  "year": 1978,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001369",
+  "team": "gdc_firebirds",
+  "value": 7
+ },
+ {
+  "id": "gdc-1978:so",
+  "league": "gdc",
+  "year": 1978,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001461",
+  "team": "gdc_millers",
+  "value": 74
+ },
+ {
+  "id": "igl-1978:pass_yds",
+  "league": "igl",
+  "year": 1978,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002656",
+  "team": "igl_undertow",
+  "value": 3709
+ },
+ {
+  "id": "igl-1978:rush_yds",
+  "league": "igl",
+  "year": 1978,
+  "stat": "rush_yds",
+  "athlete_id": "igl_p0473",
+  "team": "igl_smokejumpers",
+  "value": 2136
+ },
+ {
+  "id": "igl-1978:rec_yds",
+  "league": "igl",
+  "year": 1978,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002637",
+  "team": "igl_thunderherd",
+  "value": 1082
+ },
+ {
+  "id": "igl-1978:sacks",
+  "league": "igl",
+  "year": 1978,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002520",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "ccl-1979:ppg",
+  "league": "ccl",
+  "year": 1979,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0283",
+  "team": "ccl_dustdevils",
+  "value": 19.536
+ },
+ {
+  "id": "ccl-1979:rpg",
+  "league": "ccl",
+  "year": 1979,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 10.5
+ },
+ {
+  "id": "ccl-1979:apg",
+  "league": "ccl",
+  "year": 1979,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 6.357
+ },
+ {
+  "id": "fhl-1979:g",
+  "league": "fhl",
+  "year": 1979,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000497",
+  "team": "fhl_borealis",
+  "value": 15
+ },
+ {
+  "id": "fhl-1979:pts",
+  "league": "fhl",
+  "year": 1979,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000589",
+  "team": "fhl_snowowls",
+  "value": 27
+ },
+ {
+  "id": "fhl-1979:sv_pct",
+  "league": "fhl",
+  "year": 1979,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0514",
+  "team": "fhl_polars",
+  "value": 0.927
+ },
+ {
+  "id": "gdc-1979:avg",
+  "league": "gdc",
+  "year": 1979,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001381",
+  "team": "gdc_firebirds",
+  "value": 0.37
+ },
+ {
+  "id": "gdc-1979:hr",
+  "league": "gdc",
+  "year": 1979,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001432",
+  "team": "gdc_lamplighters",
+  "value": 12
+ },
+ {
+  "id": "gdc-1979:rbi",
+  "league": "gdc",
+  "year": 1979,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001447",
+  "team": "gdc_loons",
+  "value": 38
+ },
+ {
+  "id": "gdc-1979:era",
+  "league": "gdc",
+  "year": 1979,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001370",
+  "team": "gdc_firebirds",
+  "value": 1.645
+ },
+ {
+  "id": "gdc-1979:w",
+  "league": "gdc",
+  "year": 1979,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001370",
+  "team": "gdc_firebirds",
+  "value": 9
+ },
+ {
+  "id": "gdc-1979:so",
+  "league": "gdc",
+  "year": 1979,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001366",
+  "team": "gdc_firebirds",
+  "value": 74
+ },
+ {
+  "id": "igl-1979:pass_yds",
+  "league": "igl",
+  "year": 1979,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0430",
+  "team": "igl_highlanders",
+  "value": 3764
+ },
+ {
+  "id": "igl-1979:rush_yds",
+  "league": "igl",
+  "year": 1979,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002508",
+  "team": "igl_highlanders",
+  "value": 2211
+ },
+ {
+  "id": "igl-1979:rec_yds",
+  "league": "igl",
+  "year": 1979,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002512",
+  "team": "igl_highlanders",
+  "value": 1197
+ },
+ {
+  "id": "igl-1979:sacks",
+  "league": "igl",
+  "year": 1979,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002520",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "ccl-1980:ppg",
+  "league": "ccl",
+  "year": 1980,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 20.714
+ },
+ {
+  "id": "ccl-1980:rpg",
+  "league": "ccl",
+  "year": 1980,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0199",
+  "team": "ccl_monsoon",
+  "value": 9.107
+ },
+ {
+  "id": "ccl-1980:apg",
+  "league": "ccl",
+  "year": 1980,
+  "stat": "apg",
+  "athlete_id": "ccl_p0199",
+  "team": "ccl_monsoon",
+  "value": 5.643
+ },
+ {
+  "id": "fhl-1980:g",
+  "league": "fhl",
+  "year": 1980,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000571",
+  "team": "fhl_sawblades",
+  "value": 14
+ },
+ {
+  "id": "fhl-1980:pts",
+  "league": "fhl",
+  "year": 1980,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000571",
+  "team": "fhl_sawblades",
+  "value": 28
+ },
+ {
+  "id": "fhl-1980:sv_pct",
+  "league": "fhl",
+  "year": 1980,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0619",
+  "team": "fhl_yetis",
+  "value": 0.922
+ },
+ {
+  "id": "gdc-1980:avg",
+  "league": "gdc",
+  "year": 1980,
+  "stat": "avg",
+  "athlete_id": "gdc_p0075",
+  "team": "gdc_paddlers",
+  "value": 0.335
+ },
+ {
+  "id": "gdc-1980:hr",
+  "league": "gdc",
+  "year": 1980,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001497",
+  "team": "gdc_ore_haulers",
+  "value": 15
+ },
+ {
+  "id": "gdc-1980:rbi",
+  "league": "gdc",
+  "year": 1980,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001420",
+  "team": "gdc_kingfishers",
+  "value": 36
+ },
+ {
+  "id": "gdc-1980:era",
+  "league": "gdc",
+  "year": 1980,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001426",
+  "team": "gdc_lamplighters",
+  "value": 1.95
+ },
+ {
+  "id": "gdc-1980:w",
+  "league": "gdc",
+  "year": 1980,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001502",
+  "team": "gdc_paddlers",
+  "value": 8
+ },
+ {
+  "id": "gdc-1980:so",
+  "league": "gdc",
+  "year": 1980,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001499",
+  "team": "gdc_paddlers",
+  "value": 85
+ },
+ {
+  "id": "igl-1980:pass_yds",
+  "league": "igl",
+  "year": 1980,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0451",
+  "team": "igl_squall",
+  "value": 3556
+ },
+ {
+  "id": "igl-1980:rush_yds",
+  "league": "igl",
+  "year": 1980,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002608",
+  "team": "igl_squall",
+  "value": 1986
+ },
+ {
+  "id": "igl-1980:rec_yds",
+  "league": "igl",
+  "year": 1980,
+  "stat": "rec_yds",
+  "athlete_id": "igl_p0390",
+  "team": "igl_rockslides",
+  "value": 987
+ },
+ {
+  "id": "igl-1980:sacks",
+  "league": "igl",
+  "year": 1980,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002521",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "ccl-1981:ppg",
+  "league": "ccl",
+  "year": 1981,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0241",
+  "team": "ccl_jackrabbits",
+  "value": 20.071
+ },
+ {
+  "id": "ccl-1981:rpg",
+  "league": "ccl",
+  "year": 1981,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0182",
+  "team": "ccl_voltage",
+  "value": 10
+ },
+ {
+  "id": "ccl-1981:apg",
+  "league": "ccl",
+  "year": 1981,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000036",
+  "team": "ccl_jackrabbits",
+  "value": 5.036
+ },
+ {
+  "id": "fhl-1981:g",
+  "league": "fhl",
+  "year": 1981,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000577",
+  "team": "fhl_sawblades",
+  "value": 17
+ },
+ {
+  "id": "fhl-1981:pts",
+  "league": "fhl",
+  "year": 1981,
+  "stat": "pts",
+  "athlete_id": "fhl_p0601",
+  "team": "fhl_floes",
+  "value": 29
+ },
+ {
+  "id": "fhl-1981:sv_pct",
+  "league": "fhl",
+  "year": 1981,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0514",
+  "team": "fhl_polars",
+  "value": 0.925
+ },
+ {
+  "id": "gdc-1981:avg",
+  "league": "gdc",
+  "year": 1981,
+  "stat": "avg",
+  "athlete_id": "gdc_p0137",
+  "team": "gdc_millers",
+  "value": 0.344
+ },
+ {
+  "id": "gdc-1981:hr",
+  "league": "gdc",
+  "year": 1981,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001521",
+  "team": "gdc_lamplighters",
+  "value": 13
+ },
+ {
+  "id": "gdc-1981:rbi",
+  "league": "gdc",
+  "year": 1981,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0137",
+  "team": "gdc_millers",
+  "value": 43
+ },
+ {
+  "id": "gdc-1981:era",
+  "league": "gdc",
+  "year": 1981,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001545",
+  "team": "gdc_millers",
+  "value": 1.82
+ },
+ {
+  "id": "gdc-1981:w",
+  "league": "gdc",
+  "year": 1981,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001461",
+  "team": "gdc_millers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1981:so",
+  "league": "gdc",
+  "year": 1981,
+  "stat": "so",
+  "athlete_id": "gdc_elias_voss",
+  "team": "gdc_millers",
+  "value": 88
+ },
+ {
+  "id": "igl-1981:pass_yds",
+  "league": "igl",
+  "year": 1981,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0430",
+  "team": "igl_highlanders",
+  "value": 3698
+ },
+ {
+  "id": "igl-1981:rush_yds",
+  "league": "igl",
+  "year": 1981,
+  "stat": "rush_yds",
+  "athlete_id": "igl_p0431",
+  "team": "igl_highlanders",
+  "value": 2088
+ },
+ {
+  "id": "igl-1981:rec_yds",
+  "league": "igl",
+  "year": 1981,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002487",
+  "team": "igl_harvesters",
+  "value": 1045
+ },
+ {
+  "id": "igl-1981:sacks",
+  "league": "igl",
+  "year": 1981,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002687",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "ccl-1982:ppg",
+  "league": "ccl",
+  "year": 1982,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 22.179
+ },
+ {
+  "id": "ccl-1982:rpg",
+  "league": "ccl",
+  "year": 1982,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000104",
+  "team": "ccl_satellites",
+  "value": 9.036
+ },
+ {
+  "id": "ccl-1982:apg",
+  "league": "ccl",
+  "year": 1982,
+  "stat": "apg",
+  "athlete_id": "ccl_p0305",
+  "team": "ccl_forge",
+  "value": 5.071
+ },
+ {
+  "id": "fhl-1982:g",
+  "league": "fhl",
+  "year": 1982,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000527",
+  "team": "fhl_narwhals",
+  "value": 17
+ },
+ {
+  "id": "fhl-1982:pts",
+  "league": "fhl",
+  "year": 1982,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000581",
+  "team": "fhl_sawblades",
+  "value": 31
+ },
+ {
+  "id": "fhl-1982:sv_pct",
+  "league": "fhl",
+  "year": 1982,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0556",
+  "team": "fhl_sawblades",
+  "value": 0.898
+ },
+ {
+  "id": "gdc-1982:avg",
+  "league": "gdc",
+  "year": 1982,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001539",
+  "team": "gdc_kingfishers",
+  "value": 0.349
+ },
+ {
+  "id": "gdc-1982:hr",
+  "league": "gdc",
+  "year": 1982,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001627",
+  "team": "gdc_firebirds",
+  "value": 16
+ },
+ {
+  "id": "gdc-1982:rbi",
+  "league": "gdc",
+  "year": 1982,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001627",
+  "team": "gdc_firebirds",
+  "value": 45
+ },
+ {
+  "id": "gdc-1982:era",
+  "league": "gdc",
+  "year": 1982,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001483",
+  "team": "gdc_ore_haulers",
+  "value": 1.523
+ },
+ {
+  "id": "gdc-1982:w",
+  "league": "gdc",
+  "year": 1982,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001483",
+  "team": "gdc_ore_haulers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1982:so",
+  "league": "gdc",
+  "year": 1982,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001461",
+  "team": "gdc_millers",
+  "value": 74
+ },
+ {
+  "id": "igl-1982:pass_yds",
+  "league": "igl",
+  "year": 1982,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0346",
+  "team": "igl_thunderherd",
+  "value": 3522
+ },
+ {
+  "id": "igl-1982:rush_yds",
+  "league": "igl",
+  "year": 1982,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002708",
+  "team": "igl_undertow",
+  "value": 1961
+ },
+ {
+  "id": "igl-1982:rec_yds",
+  "league": "igl",
+  "year": 1982,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002585",
+  "team": "igl_smokejumpers",
+  "value": 1028
+ },
+ {
+  "id": "igl-1982:sacks",
+  "league": "igl",
+  "year": 1982,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002670",
+  "team": "igl_undertow",
+  "value": 14
+ },
+ {
+  "id": "ccl-1983:ppg",
+  "league": "ccl",
+  "year": 1983,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0199",
+  "team": "ccl_monsoon",
+  "value": 20.464
+ },
+ {
+  "id": "ccl-1983:rpg",
+  "league": "ccl",
+  "year": 1983,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000013",
+  "team": "ccl_comets",
+  "value": 10.143
+ },
+ {
+  "id": "ccl-1983:apg",
+  "league": "ccl",
+  "year": 1983,
+  "stat": "apg",
+  "athlete_id": "ccl_p0199",
+  "team": "ccl_monsoon",
+  "value": 5.786
+ },
+ {
+  "id": "fhl-1983:g",
+  "league": "fhl",
+  "year": 1983,
+  "stat": "g",
+  "athlete_id": "fhl_p0622",
+  "team": "fhl_yetis",
+  "value": 17
+ },
+ {
+  "id": "fhl-1983:pts",
+  "league": "fhl",
+  "year": 1983,
+  "stat": "pts",
+  "athlete_id": "fhl_p0622",
+  "team": "fhl_yetis",
+  "value": 30
+ },
+ {
+  "id": "fhl-1983:sv_pct",
+  "league": "fhl",
+  "year": 1983,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000532",
+  "team": "fhl_polars",
+  "value": 0.925
+ },
+ {
+  "id": "gdc-1983:avg",
+  "league": "gdc",
+  "year": 1983,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001662",
+  "team": "gdc_loons",
+  "value": 0.355
+ },
+ {
+  "id": "gdc-1983:hr",
+  "league": "gdc",
+  "year": 1983,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001599",
+  "team": "gdc_ore_haulers",
+  "value": 14
+ },
+ {
+  "id": "gdc-1983:rbi",
+  "league": "gdc",
+  "year": 1983,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001521",
+  "team": "gdc_lamplighters",
+  "value": 35
+ },
+ {
+  "id": "gdc-1983:era",
+  "league": "gdc",
+  "year": 1983,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001559",
+  "team": "gdc_lamplighters",
+  "value": 1.75
+ },
+ {
+  "id": "gdc-1983:w",
+  "league": "gdc",
+  "year": 1983,
+  "stat": "w",
+  "athlete_id": "gdc_elias_voss",
+  "team": "gdc_millers",
+  "value": 13
+ },
+ {
+  "id": "gdc-1983:so",
+  "league": "gdc",
+  "year": 1983,
+  "stat": "so",
+  "athlete_id": "gdc_elias_voss",
+  "team": "gdc_millers",
+  "value": 128
+ },
+ {
+  "id": "igl-1983:pass_yds",
+  "league": "igl",
+  "year": 1983,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002690",
+  "team": "igl_ironclads",
+  "value": 3429
+ },
+ {
+  "id": "igl-1983:rush_yds",
+  "league": "igl",
+  "year": 1983,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002723",
+  "team": "igl_smokejumpers",
+  "value": 1995
+ },
+ {
+  "id": "igl-1983:rec_yds",
+  "league": "igl",
+  "year": 1983,
+  "stat": "rec_yds",
+  "athlete_id": "igl_p0496",
+  "team": "igl_ironclads",
+  "value": 1085
+ },
+ {
+  "id": "igl-1983:sacks",
+  "league": "igl",
+  "year": 1983,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002648",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-1984:ppg",
+  "league": "ccl",
+  "year": 1984,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000080",
+  "team": "ccl_monsoon",
+  "value": 20.643
+ },
+ {
+  "id": "ccl-1984:rpg",
+  "league": "ccl",
+  "year": 1984,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 9.607
+ },
+ {
+  "id": "ccl-1984:apg",
+  "league": "ccl",
+  "year": 1984,
+  "stat": "apg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 5.429
+ },
+ {
+  "id": "fhl-1984:g",
+  "league": "fhl",
+  "year": 1984,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000497",
+  "team": "fhl_borealis",
+  "value": 22
+ },
+ {
+  "id": "fhl-1984:pts",
+  "league": "fhl",
+  "year": 1984,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000554",
+  "team": "fhl_rivets",
+  "value": 36
+ },
+ {
+  "id": "fhl-1984:sv_pct",
+  "league": "fhl",
+  "year": 1984,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 0.916
+ },
+ {
+  "id": "gdc-1984:avg",
+  "league": "gdc",
+  "year": 1984,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001662",
+  "team": "gdc_loons",
+  "value": 0.368
+ },
+ {
+  "id": "gdc-1984:hr",
+  "league": "gdc",
+  "year": 1984,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001592",
+  "team": "gdc_loons",
+  "value": 11
+ },
+ {
+  "id": "gdc-1984:rbi",
+  "league": "gdc",
+  "year": 1984,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001622",
+  "team": "gdc_paddlers",
+  "value": 40
+ },
+ {
+  "id": "gdc-1984:era",
+  "league": "gdc",
+  "year": 1984,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001637",
+  "team": "gdc_millers",
+  "value": 1.274
+ },
+ {
+  "id": "gdc-1984:w",
+  "league": "gdc",
+  "year": 1984,
+  "stat": "w",
+  "athlete_id": "gdc_p0136",
+  "team": "gdc_millers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1984:so",
+  "league": "gdc",
+  "year": 1984,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001620",
+  "team": "gdc_paddlers",
+  "value": 77
+ },
+ {
+  "id": "igl-1984:pass_yds",
+  "league": "igl",
+  "year": 1984,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002727",
+  "team": "igl_undertow",
+  "value": 3517
+ },
+ {
+  "id": "igl-1984:rush_yds",
+  "league": "igl",
+  "year": 1984,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002558",
+  "team": "igl_rockslides",
+  "value": 2124
+ },
+ {
+  "id": "igl-1984:rec_yds",
+  "league": "igl",
+  "year": 1984,
+  "stat": "rec_yds",
+  "athlete_id": "igl_p0370",
+  "team": "igl_undertow",
+  "value": 1065
+ },
+ {
+  "id": "igl-1984:sacks",
+  "league": "igl",
+  "year": 1984,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002520",
+  "team": "igl_highlanders",
+  "value": 13
+ },
+ {
+  "id": "ccl-1985:ppg",
+  "league": "ccl",
+  "year": 1985,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 20.429
+ },
+ {
+  "id": "ccl-1985:rpg",
+  "league": "ccl",
+  "year": 1985,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 9.75
+ },
+ {
+  "id": "ccl-1985:apg",
+  "league": "ccl",
+  "year": 1985,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 5.107
+ },
+ {
+  "id": "fhl-1985:g",
+  "league": "fhl",
+  "year": 1985,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000611",
+  "team": "fhl_yetis",
+  "value": 17
+ },
+ {
+  "id": "fhl-1985:pts",
+  "league": "fhl",
+  "year": 1985,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000558",
+  "team": "fhl_rivets",
+  "value": 30
+ },
+ {
+  "id": "fhl-1985:sv_pct",
+  "league": "fhl",
+  "year": 1985,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000498",
+  "team": "fhl_floes",
+  "value": 0.914
+ },
+ {
+  "id": "gdc-1985:avg",
+  "league": "gdc",
+  "year": 1985,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001691",
+  "team": "gdc_kingfishers",
+  "value": 0.337
+ },
+ {
+  "id": "gdc-1985:hr",
+  "league": "gdc",
+  "year": 1985,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001610",
+  "team": "gdc_kingfishers",
+  "value": 15
+ },
+ {
+  "id": "gdc-1985:rbi",
+  "league": "gdc",
+  "year": 1985,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0120",
+  "team": "gdc_loons",
+  "value": 39
+ },
+ {
+  "id": "gdc-1985:era",
+  "league": "gdc",
+  "year": 1985,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001637",
+  "team": "gdc_millers",
+  "value": 1.436
+ },
+ {
+  "id": "gdc-1985:w",
+  "league": "gdc",
+  "year": 1985,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001633",
+  "team": "gdc_lamplighters",
+  "value": 9
+ },
+ {
+  "id": "gdc-1985:so",
+  "league": "gdc",
+  "year": 1985,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001538",
+  "team": "gdc_kingfishers",
+  "value": 82
+ },
+ {
+  "id": "igl-1985:pass_yds",
+  "league": "igl",
+  "year": 1985,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002828",
+  "team": "igl_ironclads",
+  "value": 3748
+ },
+ {
+  "id": "igl-1985:rush_yds",
+  "league": "igl",
+  "year": 1985,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002691",
+  "team": "igl_ironclads",
+  "value": 2317
+ },
+ {
+  "id": "igl-1985:rec_yds",
+  "league": "igl",
+  "year": 1985,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002756",
+  "team": "igl_squall",
+  "value": 976
+ },
+ {
+  "id": "igl-1985:sacks",
+  "league": "igl",
+  "year": 1985,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002777",
+  "team": "igl_smokejumpers",
+  "value": 14
+ },
+ {
+  "id": "ccl-1986:ppg",
+  "league": "ccl",
+  "year": 1986,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 20.679
+ },
+ {
+  "id": "ccl-1986:rpg",
+  "league": "ccl",
+  "year": 1986,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 9.929
+ },
+ {
+  "id": "ccl-1986:apg",
+  "league": "ccl",
+  "year": 1986,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000143",
+  "team": "ccl_anchors",
+  "value": 5.107
+ },
+ {
+  "id": "fhl-1986:g",
+  "league": "fhl",
+  "year": 1986,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000558",
+  "team": "fhl_rivets",
+  "value": 17
+ },
+ {
+  "id": "fhl-1986:pts",
+  "league": "fhl",
+  "year": 1986,
+  "stat": "pts",
+  "athlete_id": "fhl_p0540",
+  "team": "fhl_narwhals",
+  "value": 32
+ },
+ {
+  "id": "fhl-1986:sv_pct",
+  "league": "fhl",
+  "year": 1986,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000498",
+  "team": "fhl_floes",
+  "value": 0.906
+ },
+ {
+  "id": "gdc-1986:avg",
+  "league": "gdc",
+  "year": 1986,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001684",
+  "team": "gdc_firebirds",
+  "value": 0.354
+ },
+ {
+  "id": "gdc-1986:hr",
+  "league": "gdc",
+  "year": 1986,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001583",
+  "team": "gdc_firebirds",
+  "value": 13
+ },
+ {
+  "id": "gdc-1986:rbi",
+  "league": "gdc",
+  "year": 1986,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001583",
+  "team": "gdc_firebirds",
+  "value": 36
+ },
+ {
+  "id": "gdc-1986:era",
+  "league": "gdc",
+  "year": 1986,
+  "stat": "era",
+  "athlete_id": "gdc_elias_voss",
+  "team": "gdc_millers",
+  "value": 1.738
+ },
+ {
+  "id": "gdc-1986:w",
+  "league": "gdc",
+  "year": 1986,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001620",
+  "team": "gdc_paddlers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1986:so",
+  "league": "gdc",
+  "year": 1986,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001613",
+  "team": "gdc_loons",
+  "value": 79
+ },
+ {
+  "id": "igl-1986:pass_yds",
+  "league": "igl",
+  "year": 1986,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002753",
+  "team": "igl_squall",
+  "value": 3534
+ },
+ {
+  "id": "igl-1986:rush_yds",
+  "league": "igl",
+  "year": 1986,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002741",
+  "team": "igl_highlanders",
+  "value": 1925
+ },
+ {
+  "id": "igl-1986:rec_yds",
+  "league": "igl",
+  "year": 1986,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002685",
+  "team": "igl_highlanders",
+  "value": 978
+ },
+ {
+  "id": "igl-1986:sacks",
+  "league": "igl",
+  "year": 1986,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002520",
+  "team": "igl_highlanders",
+  "value": 13
+ },
+ {
+  "id": "ccl-1987:ppg",
+  "league": "ccl",
+  "year": 1987,
+  "stat": "ppg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 20.214
+ },
+ {
+  "id": "ccl-1987:rpg",
+  "league": "ccl",
+  "year": 1987,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000082",
+  "team": "ccl_anchors",
+  "value": 9.893
+ },
+ {
+  "id": "ccl-1987:apg",
+  "league": "ccl",
+  "year": 1987,
+  "stat": "apg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 5.25
+ },
+ {
+  "id": "fhl-1987:g",
+  "league": "fhl",
+  "year": 1987,
+  "stat": "g",
+  "athlete_id": "fhl_p0645",
+  "team": "fhl_rivets",
+  "value": 17
+ },
+ {
+  "id": "fhl-1987:pts",
+  "league": "fhl",
+  "year": 1987,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000556",
+  "team": "fhl_rivets",
+  "value": 31
+ },
+ {
+  "id": "fhl-1987:sv_pct",
+  "league": "fhl",
+  "year": 1987,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000720",
+  "team": "fhl_snowowls",
+  "value": 0.916
+ },
+ {
+  "id": "gdc-1987:avg",
+  "league": "gdc",
+  "year": 1987,
+  "stat": "avg",
+  "athlete_id": "gdc_p0098",
+  "team": "gdc_firebirds",
+  "value": 0.356
+ },
+ {
+  "id": "gdc-1987:hr",
+  "league": "gdc",
+  "year": 1987,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001627",
+  "team": "gdc_firebirds",
+  "value": 12
+ },
+ {
+  "id": "gdc-1987:rbi",
+  "league": "gdc",
+  "year": 1987,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0162",
+  "team": "gdc_kingfishers",
+  "value": 41
+ },
+ {
+  "id": "gdc-1987:era",
+  "league": "gdc",
+  "year": 1987,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001590",
+  "team": "gdc_loons",
+  "value": 2.443
+ },
+ {
+  "id": "gdc-1987:w",
+  "league": "gdc",
+  "year": 1987,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001704",
+  "team": "gdc_lamplighters",
+  "value": 9
+ },
+ {
+  "id": "gdc-1987:so",
+  "league": "gdc",
+  "year": 1987,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001666",
+  "team": "gdc_millers",
+  "value": 84
+ },
+ {
+  "id": "igl-1987:pass_yds",
+  "league": "igl",
+  "year": 1987,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002828",
+  "team": "igl_ironclads",
+  "value": 3458
+ },
+ {
+  "id": "igl-1987:rush_yds",
+  "league": "igl",
+  "year": 1987,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002893",
+  "team": "igl_ironclads",
+  "value": 2117
+ },
+ {
+  "id": "igl-1987:rec_yds",
+  "league": "igl",
+  "year": 1987,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002742",
+  "team": "igl_ironclads",
+  "value": 957
+ },
+ {
+  "id": "igl-1987:sacks",
+  "league": "igl",
+  "year": 1987,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002832",
+  "team": "igl_ironclads",
+  "value": 14
+ },
+ {
+  "id": "ccl-1988:ppg",
+  "league": "ccl",
+  "year": 1988,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000101",
+  "team": "ccl_jackrabbits",
+  "value": 20.857
+ },
+ {
+  "id": "ccl-1988:rpg",
+  "league": "ccl",
+  "year": 1988,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 9.929
+ },
+ {
+  "id": "ccl-1988:apg",
+  "league": "ccl",
+  "year": 1988,
+  "stat": "apg",
+  "athlete_id": "ccl_p0204",
+  "team": "ccl_monsoon",
+  "value": 5.536
+ },
+ {
+  "id": "fhl-1988:g",
+  "league": "fhl",
+  "year": 1988,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000697",
+  "team": "fhl_rivets",
+  "value": 22
+ },
+ {
+  "id": "fhl-1988:pts",
+  "league": "fhl",
+  "year": 1988,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000697",
+  "team": "fhl_rivets",
+  "value": 34
+ },
+ {
+  "id": "fhl-1988:sv_pct",
+  "league": "fhl",
+  "year": 1988,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 0.903
+ },
+ {
+  "id": "gdc-1988:avg",
+  "league": "gdc",
+  "year": 1988,
+  "stat": "avg",
+  "athlete_id": "gdc_p0017",
+  "team": "gdc_lamplighters",
+  "value": 0.349
+ },
+ {
+  "id": "gdc-1988:hr",
+  "league": "gdc",
+  "year": 1988,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001607",
+  "team": "gdc_gilas",
+  "value": 11
+ },
+ {
+  "id": "gdc-1988:rbi",
+  "league": "gdc",
+  "year": 1988,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0098",
+  "team": "gdc_firebirds",
+  "value": 36
+ },
+ {
+  "id": "gdc-1988:era",
+  "league": "gdc",
+  "year": 1988,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001633",
+  "team": "gdc_lamplighters",
+  "value": 1.268
+ },
+ {
+  "id": "gdc-1988:w",
+  "league": "gdc",
+  "year": 1988,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001633",
+  "team": "gdc_lamplighters",
+  "value": 9
+ },
+ {
+  "id": "gdc-1988:so",
+  "league": "gdc",
+  "year": 1988,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001666",
+  "team": "gdc_millers",
+  "value": 83
+ },
+ {
+  "id": "igl-1988:pass_yds",
+  "league": "igl",
+  "year": 1988,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002932",
+  "team": "igl_undertow",
+  "value": 3372
+ },
+ {
+  "id": "igl-1988:rush_yds",
+  "league": "igl",
+  "year": 1988,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002754",
+  "team": "igl_squall",
+  "value": 2081
+ },
+ {
+  "id": "igl-1988:rec_yds",
+  "league": "igl",
+  "year": 1988,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002764",
+  "team": "igl_undertow",
+  "value": 982
+ },
+ {
+  "id": "igl-1988:sacks",
+  "league": "igl",
+  "year": 1988,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002811",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-1989:ppg",
+  "league": "ccl",
+  "year": 1989,
+  "stat": "ppg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 21.786
+ },
+ {
+  "id": "ccl-1989:rpg",
+  "league": "ccl",
+  "year": 1989,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 10.536
+ },
+ {
+  "id": "ccl-1989:apg",
+  "league": "ccl",
+  "year": 1989,
+  "stat": "apg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 5.536
+ },
+ {
+  "id": "fhl-1989:g",
+  "league": "fhl",
+  "year": 1989,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000736",
+  "team": "fhl_sawblades",
+  "value": 18
+ },
+ {
+  "id": "fhl-1989:pts",
+  "league": "fhl",
+  "year": 1989,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000743",
+  "team": "fhl_narwhals",
+  "value": 29
+ },
+ {
+  "id": "fhl-1989:sv_pct",
+  "league": "fhl",
+  "year": 1989,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_viktor_soren",
+  "team": "fhl_polars",
+  "value": 0.927
+ },
+ {
+  "id": "gdc-1989:avg",
+  "league": "gdc",
+  "year": 1989,
+  "stat": "avg",
+  "athlete_id": "gdc_p0078",
+  "team": "gdc_paddlers",
+  "value": 0.358
+ },
+ {
+  "id": "gdc-1989:hr",
+  "league": "gdc",
+  "year": 1989,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001610",
+  "team": "gdc_kingfishers",
+  "value": 14
+ },
+ {
+  "id": "gdc-1989:rbi",
+  "league": "gdc",
+  "year": 1989,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001700",
+  "team": "gdc_gilas",
+  "value": 40
+ },
+ {
+  "id": "gdc-1989:era",
+  "league": "gdc",
+  "year": 1989,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001697",
+  "team": "gdc_paddlers",
+  "value": 2.077
+ },
+ {
+  "id": "gdc-1989:w",
+  "league": "gdc",
+  "year": 1989,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001689",
+  "team": "gdc_kingfishers",
+  "value": 8
+ },
+ {
+  "id": "gdc-1989:so",
+  "league": "gdc",
+  "year": 1989,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001625",
+  "team": "gdc_firebirds",
+  "value": 81
+ },
+ {
+  "id": "igl-1989:pass_yds",
+  "league": "igl",
+  "year": 1989,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002753",
+  "team": "igl_squall",
+  "value": 3843
+ },
+ {
+  "id": "igl-1989:rush_yds",
+  "league": "igl",
+  "year": 1989,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002754",
+  "team": "igl_squall",
+  "value": 2206
+ },
+ {
+  "id": "igl-1989:rec_yds",
+  "league": "igl",
+  "year": 1989,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002909",
+  "team": "igl_squall",
+  "value": 1143
+ },
+ {
+  "id": "igl-1989:sacks",
+  "league": "igl",
+  "year": 1989,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002872",
+  "team": "igl_smokejumpers",
+  "value": 13
+ },
+ {
+  "id": "ccl-1990:ppg",
+  "league": "ccl",
+  "year": 1990,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000130",
+  "team": "ccl_monsoon",
+  "value": 19.643
+ },
+ {
+  "id": "ccl-1990:rpg",
+  "league": "ccl",
+  "year": 1990,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 9.929
+ },
+ {
+  "id": "ccl-1990:apg",
+  "league": "ccl",
+  "year": 1990,
+  "stat": "apg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 5.214
+ },
+ {
+  "id": "fhl-1990:g",
+  "league": "fhl",
+  "year": 1990,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000664",
+  "team": "fhl_yetis",
+  "value": 21
+ },
+ {
+  "id": "fhl-1990:pts",
+  "league": "fhl",
+  "year": 1990,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000664",
+  "team": "fhl_yetis",
+  "value": 31
+ },
+ {
+  "id": "fhl-1990:sv_pct",
+  "league": "fhl",
+  "year": 1990,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000620",
+  "team": "fhl_yetis",
+  "value": 0.923
+ },
+ {
+  "id": "gdc-1990:avg",
+  "league": "gdc",
+  "year": 1990,
+  "stat": "avg",
+  "athlete_id": "gdc_p0058",
+  "team": "gdc_gilas",
+  "value": 0.361
+ },
+ {
+  "id": "gdc-1990:hr",
+  "league": "gdc",
+  "year": 1990,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001738",
+  "team": "gdc_lamplighters",
+  "value": 15
+ },
+ {
+  "id": "gdc-1990:rbi",
+  "league": "gdc",
+  "year": 1990,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001738",
+  "team": "gdc_lamplighters",
+  "value": 50
+ },
+ {
+  "id": "gdc-1990:era",
+  "league": "gdc",
+  "year": 1990,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001765",
+  "team": "gdc_millers",
+  "value": 1.828
+ },
+ {
+  "id": "gdc-1990:w",
+  "league": "gdc",
+  "year": 1990,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001704",
+  "team": "gdc_lamplighters",
+  "value": 9
+ },
+ {
+  "id": "gdc-1990:so",
+  "league": "gdc",
+  "year": 1990,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001666",
+  "team": "gdc_millers",
+  "value": 85
+ },
+ {
+  "id": "igl-1990:pass_yds",
+  "league": "igl",
+  "year": 1990,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002947",
+  "team": "igl_squall",
+  "value": 3453
+ },
+ {
+  "id": "igl-1990:rush_yds",
+  "league": "igl",
+  "year": 1990,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002903",
+  "team": "igl_smokejumpers",
+  "value": 1982
+ },
+ {
+  "id": "igl-1990:rec_yds",
+  "league": "igl",
+  "year": 1990,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002806",
+  "team": "igl_thunderherd",
+  "value": 992
+ },
+ {
+  "id": "igl-1990:sacks",
+  "league": "igl",
+  "year": 1990,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002891",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "ccl-1991:ppg",
+  "league": "ccl",
+  "year": 1991,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000143",
+  "team": "ccl_anchors",
+  "value": 20.714
+ },
+ {
+  "id": "ccl-1991:rpg",
+  "league": "ccl",
+  "year": 1991,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000153",
+  "team": "ccl_comets",
+  "value": 9.607
+ },
+ {
+  "id": "ccl-1991:apg",
+  "league": "ccl",
+  "year": 1991,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000127",
+  "team": "ccl_monsoon",
+  "value": 5.679
+ },
+ {
+  "id": "fhl-1991:g",
+  "league": "fhl",
+  "year": 1991,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000652",
+  "team": "fhl_polars",
+  "value": 22
+ },
+ {
+  "id": "fhl-1991:pts",
+  "league": "fhl",
+  "year": 1991,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000652",
+  "team": "fhl_polars",
+  "value": 32
+ },
+ {
+  "id": "fhl-1991:sv_pct",
+  "league": "fhl",
+  "year": 1991,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0562",
+  "team": "fhl_sawblades",
+  "value": 0.908
+ },
+ {
+  "id": "gdc-1991:avg",
+  "league": "gdc",
+  "year": 1991,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001763",
+  "team": "gdc_kingfishers",
+  "value": 0.358
+ },
+ {
+  "id": "gdc-1991:hr",
+  "league": "gdc",
+  "year": 1991,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001738",
+  "team": "gdc_lamplighters",
+  "value": 13
+ },
+ {
+  "id": "gdc-1991:rbi",
+  "league": "gdc",
+  "year": 1991,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001796",
+  "team": "gdc_loons",
+  "value": 34
+ },
+ {
+  "id": "gdc-1991:era",
+  "league": "gdc",
+  "year": 1991,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001786",
+  "team": "gdc_firebirds",
+  "value": 1.125
+ },
+ {
+  "id": "gdc-1991:w",
+  "league": "gdc",
+  "year": 1991,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001722",
+  "team": "gdc_lamplighters",
+  "value": 8
+ },
+ {
+  "id": "gdc-1991:so",
+  "league": "gdc",
+  "year": 1991,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001661",
+  "team": "gdc_loons",
+  "value": 77
+ },
+ {
+  "id": "igl-1991:pass_yds",
+  "league": "igl",
+  "year": 1991,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002888",
+  "team": "igl_highlanders",
+  "value": 3610
+ },
+ {
+  "id": "igl-1991:rush_yds",
+  "league": "igl",
+  "year": 1991,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002949",
+  "team": "igl_thunderherd",
+  "value": 2150
+ },
+ {
+  "id": "igl-1991:rec_yds",
+  "league": "igl",
+  "year": 1991,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002865",
+  "team": "igl_rockslides",
+  "value": 990
+ },
+ {
+  "id": "igl-1991:sacks",
+  "league": "igl",
+  "year": 1991,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002901",
+  "team": "igl_rockslides",
+  "value": 17
+ },
+ {
+  "id": "ccl-1992:ppg",
+  "league": "ccl",
+  "year": 1992,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000150",
+  "team": "ccl_voltage",
+  "value": 20.714
+ },
+ {
+  "id": "ccl-1992:rpg",
+  "league": "ccl",
+  "year": 1992,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 9.464
+ },
+ {
+  "id": "ccl-1992:apg",
+  "league": "ccl",
+  "year": 1992,
+  "stat": "apg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 5.5
+ },
+ {
+  "id": "fhl-1992:g",
+  "league": "fhl",
+  "year": 1992,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000740",
+  "team": "fhl_yetis",
+  "value": 19
+ },
+ {
+  "id": "fhl-1992:pts",
+  "league": "fhl",
+  "year": 1992,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000707",
+  "team": "fhl_borealis",
+  "value": 31
+ },
+ {
+  "id": "fhl-1992:sv_pct",
+  "league": "fhl",
+  "year": 1992,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0646",
+  "team": "fhl_rivets",
+  "value": 0.915
+ },
+ {
+  "id": "gdc-1992:avg",
+  "league": "gdc",
+  "year": 1992,
+  "stat": "avg",
+  "athlete_id": "gdc_p0015",
+  "team": "gdc_lamplighters",
+  "value": 0.35
+ },
+ {
+  "id": "gdc-1992:hr",
+  "league": "gdc",
+  "year": 1992,
+  "stat": "hr",
+  "athlete_id": "gdc_p0076",
+  "team": "gdc_paddlers",
+  "value": 14
+ },
+ {
+  "id": "gdc-1992:rbi",
+  "league": "gdc",
+  "year": 1992,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0163",
+  "team": "gdc_kingfishers",
+  "value": 40
+ },
+ {
+  "id": "gdc-1992:era",
+  "league": "gdc",
+  "year": 1992,
+  "stat": "era",
+  "athlete_id": "gdc_elias_voss",
+  "team": "gdc_millers",
+  "value": 1.846
+ },
+ {
+  "id": "gdc-1992:w",
+  "league": "gdc",
+  "year": 1992,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001720",
+  "team": "gdc_kingfishers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1992:so",
+  "league": "gdc",
+  "year": 1992,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001722",
+  "team": "gdc_lamplighters",
+  "value": 80
+ },
+ {
+  "id": "igl-1992:pass_yds",
+  "league": "igl",
+  "year": 1992,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002804",
+  "team": "igl_thunderherd",
+  "value": 3435
+ },
+ {
+  "id": "igl-1992:rush_yds",
+  "league": "igl",
+  "year": 1992,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002903",
+  "team": "igl_smokejumpers",
+  "value": 1977
+ },
+ {
+  "id": "igl-1992:rec_yds",
+  "league": "igl",
+  "year": 1992,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002904",
+  "team": "igl_smokejumpers",
+  "value": 1004
+ },
+ {
+  "id": "igl-1992:sacks",
+  "league": "igl",
+  "year": 1992,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002845",
+  "team": "igl_squall",
+  "value": 14
+ },
+ {
+  "id": "ccl-1993:ppg",
+  "league": "ccl",
+  "year": 1993,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0291",
+  "team": "ccl_dustdevils",
+  "value": 20.357
+ },
+ {
+  "id": "ccl-1993:rpg",
+  "league": "ccl",
+  "year": 1993,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 10.179
+ },
+ {
+  "id": "ccl-1993:apg",
+  "league": "ccl",
+  "year": 1993,
+  "stat": "apg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 5.286
+ },
+ {
+  "id": "fhl-1993:g",
+  "league": "fhl",
+  "year": 1993,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000751",
+  "team": "fhl_rivets",
+  "value": 17
+ },
+ {
+  "id": "fhl-1993:pts",
+  "league": "fhl",
+  "year": 1993,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000756",
+  "team": "fhl_borealis",
+  "value": 30
+ },
+ {
+  "id": "fhl-1993:sv_pct",
+  "league": "fhl",
+  "year": 1993,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000795",
+  "team": "fhl_yetis",
+  "value": 0.92
+ },
+ {
+  "id": "gdc-1993:avg",
+  "league": "gdc",
+  "year": 1993,
+  "stat": "avg",
+  "athlete_id": "gdc_p0122",
+  "team": "gdc_loons",
+  "value": 0.353
+ },
+ {
+  "id": "gdc-1993:hr",
+  "league": "gdc",
+  "year": 1993,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001820",
+  "team": "gdc_firebirds",
+  "value": 15
+ },
+ {
+  "id": "gdc-1993:rbi",
+  "league": "gdc",
+  "year": 1993,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0018",
+  "team": "gdc_lamplighters",
+  "value": 34
+ },
+ {
+  "id": "gdc-1993:era",
+  "league": "gdc",
+  "year": 1993,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001775",
+  "team": "gdc_kingfishers",
+  "value": 2.613
+ },
+ {
+  "id": "gdc-1993:w",
+  "league": "gdc",
+  "year": 1993,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001788",
+  "team": "gdc_gilas",
+  "value": 9
+ },
+ {
+  "id": "gdc-1993:so",
+  "league": "gdc",
+  "year": 1993,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001828",
+  "team": "gdc_millers",
+  "value": 80
+ },
+ {
+  "id": "igl-1993:pass_yds",
+  "league": "igl",
+  "year": 1993,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0417",
+  "team": "igl_harvesters",
+  "value": 3493
+ },
+ {
+  "id": "igl-1993:rush_yds",
+  "league": "igl",
+  "year": 1993,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002953",
+  "team": "igl_undertow",
+  "value": 1949
+ },
+ {
+  "id": "igl-1993:rec_yds",
+  "league": "igl",
+  "year": 1993,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002983",
+  "team": "igl_squall",
+  "value": 966
+ },
+ {
+  "id": "igl-1993:sacks",
+  "league": "igl",
+  "year": 1993,
+  "stat": "sacks",
+  "athlete_id": "igl_p0500",
+  "team": "igl_ironclads",
+  "value": 14
+ },
+ {
+  "id": "ccl-1994:ppg",
+  "league": "ccl",
+  "year": 1994,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000170",
+  "team": "ccl_satellites",
+  "value": 21.964
+ },
+ {
+  "id": "ccl-1994:rpg",
+  "league": "ccl",
+  "year": 1994,
+  "stat": "rpg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 9.393
+ },
+ {
+  "id": "ccl-1994:apg",
+  "league": "ccl",
+  "year": 1994,
+  "stat": "apg",
+  "athlete_id": "ccl_leon_mercer",
+  "team": "ccl_comets",
+  "value": 5.929
+ },
+ {
+  "id": "fhl-1994:g",
+  "league": "fhl",
+  "year": 1994,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000748",
+  "team": "fhl_polars",
+  "value": 15
+ },
+ {
+  "id": "fhl-1994:pts",
+  "league": "fhl",
+  "year": 1994,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000748",
+  "team": "fhl_polars",
+  "value": 26
+ },
+ {
+  "id": "fhl-1994:sv_pct",
+  "league": "fhl",
+  "year": 1994,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000720",
+  "team": "fhl_snowowls",
+  "value": 0.922
+ },
+ {
+  "id": "gdc-1994:avg",
+  "league": "gdc",
+  "year": 1994,
+  "stat": "avg",
+  "athlete_id": "gdc_p0058",
+  "team": "gdc_gilas",
+  "value": 0.335
+ },
+ {
+  "id": "gdc-1994:hr",
+  "league": "gdc",
+  "year": 1994,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001820",
+  "team": "gdc_firebirds",
+  "value": 12
+ },
+ {
+  "id": "gdc-1994:rbi",
+  "league": "gdc",
+  "year": 1994,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001862",
+  "team": "gdc_ore_haulers",
+  "value": 33
+ },
+ {
+  "id": "gdc-1994:era",
+  "league": "gdc",
+  "year": 1994,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001788",
+  "team": "gdc_gilas",
+  "value": 1.918
+ },
+ {
+  "id": "gdc-1994:w",
+  "league": "gdc",
+  "year": 1994,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001775",
+  "team": "gdc_kingfishers",
+  "value": 8
+ },
+ {
+  "id": "gdc-1994:so",
+  "league": "gdc",
+  "year": 1994,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001784",
+  "team": "gdc_paddlers",
+  "value": 86
+ },
+ {
+  "id": "igl-1994:pass_yds",
+  "league": "igl",
+  "year": 1994,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002918",
+  "team": "igl_harvesters",
+  "value": 3824
+ },
+ {
+  "id": "igl-1994:rush_yds",
+  "league": "igl",
+  "year": 1994,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003068",
+  "team": "igl_thunderherd",
+  "value": 2033
+ },
+ {
+  "id": "igl-1994:rec_yds",
+  "league": "igl",
+  "year": 1994,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002920",
+  "team": "igl_harvesters",
+  "value": 1055
+ },
+ {
+  "id": "igl-1994:sacks",
+  "league": "igl",
+  "year": 1994,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002923",
+  "team": "igl_harvesters",
+  "value": 14
+ },
+ {
+  "id": "ccl-1995:ppg",
+  "league": "ccl",
+  "year": 1995,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0333",
+  "team": "ccl_satellites",
+  "value": 20.536
+ },
+ {
+  "id": "ccl-1995:rpg",
+  "league": "ccl",
+  "year": 1995,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0227",
+  "team": "ccl_anchors",
+  "value": 9.571
+ },
+ {
+  "id": "ccl-1995:apg",
+  "league": "ccl",
+  "year": 1995,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000155",
+  "team": "ccl_jackrabbits",
+  "value": 5.143
+ },
+ {
+  "id": "fhl-1995:g",
+  "league": "fhl",
+  "year": 1995,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000744",
+  "team": "fhl_narwhals",
+  "value": 18
+ },
+ {
+  "id": "fhl-1995:pts",
+  "league": "fhl",
+  "year": 1995,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000726",
+  "team": "fhl_borealis",
+  "value": 31
+ },
+ {
+  "id": "fhl-1995:sv_pct",
+  "league": "fhl",
+  "year": 1995,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0604",
+  "team": "fhl_floes",
+  "value": 0.914
+ },
+ {
+  "id": "gdc-1995:avg",
+  "league": "gdc",
+  "year": 1995,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001799",
+  "team": "gdc_millers",
+  "value": 0.35
+ },
+ {
+  "id": "gdc-1995:hr",
+  "league": "gdc",
+  "year": 1995,
+  "stat": "hr",
+  "athlete_id": "gdc_p0038",
+  "team": "gdc_ore_haulers",
+  "value": 15
+ },
+ {
+  "id": "gdc-1995:rbi",
+  "league": "gdc",
+  "year": 1995,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001851",
+  "team": "gdc_loons",
+  "value": 36
+ },
+ {
+  "id": "gdc-1995:era",
+  "league": "gdc",
+  "year": 1995,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001848",
+  "team": "gdc_loons",
+  "value": 1.992
+ },
+ {
+  "id": "gdc-1995:w",
+  "league": "gdc",
+  "year": 1995,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001781",
+  "team": "gdc_loons",
+  "value": 8
+ },
+ {
+  "id": "gdc-1995:so",
+  "league": "gdc",
+  "year": 1995,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001784",
+  "team": "gdc_paddlers",
+  "value": 77
+ },
+ {
+  "id": "igl-1995:pass_yds",
+  "league": "igl",
+  "year": 1995,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0354",
+  "team": "igl_thunderherd",
+  "value": 3649
+ },
+ {
+  "id": "igl-1995:rush_yds",
+  "league": "igl",
+  "year": 1995,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002893",
+  "team": "igl_ironclads",
+  "value": 1957
+ },
+ {
+  "id": "igl-1995:rec_yds",
+  "league": "igl",
+  "year": 1995,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002989",
+  "team": "igl_thunderherd",
+  "value": 1024
+ },
+ {
+  "id": "igl-1995:sacks",
+  "league": "igl",
+  "year": 1995,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002974",
+  "team": "igl_ironclads",
+  "value": 13
+ },
+ {
+  "id": "ccl-1996:ppg",
+  "league": "ccl",
+  "year": 1996,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0291",
+  "team": "ccl_dustdevils",
+  "value": 20.393
+ },
+ {
+  "id": "ccl-1996:rpg",
+  "league": "ccl",
+  "year": 1996,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0228",
+  "team": "ccl_anchors",
+  "value": 9.286
+ },
+ {
+  "id": "ccl-1996:apg",
+  "league": "ccl",
+  "year": 1996,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000164",
+  "team": "ccl_voltage",
+  "value": 5.107
+ },
+ {
+  "id": "fhl-1996:g",
+  "league": "fhl",
+  "year": 1996,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000744",
+  "team": "fhl_narwhals",
+  "value": 17
+ },
+ {
+  "id": "fhl-1996:pts",
+  "league": "fhl",
+  "year": 1996,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000722",
+  "team": "fhl_snowowls",
+  "value": 29
+ },
+ {
+  "id": "fhl-1996:sv_pct",
+  "league": "fhl",
+  "year": 1996,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0562",
+  "team": "fhl_sawblades",
+  "value": 0.913
+ },
+ {
+  "id": "gdc-1996:avg",
+  "league": "gdc",
+  "year": 1996,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001926",
+  "team": "gdc_ore_haulers",
+  "value": 0.374
+ },
+ {
+  "id": "gdc-1996:hr",
+  "league": "gdc",
+  "year": 1996,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001768",
+  "team": "gdc_ore_haulers",
+  "value": 15
+ },
+ {
+  "id": "gdc-1996:rbi",
+  "league": "gdc",
+  "year": 1996,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001815",
+  "team": "gdc_ore_haulers",
+  "value": 33
+ },
+ {
+  "id": "gdc-1996:era",
+  "league": "gdc",
+  "year": 1996,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001875",
+  "team": "gdc_kingfishers",
+  "value": 1.185
+ },
+ {
+  "id": "gdc-1996:w",
+  "league": "gdc",
+  "year": 1996,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001800",
+  "team": "gdc_ore_haulers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1996:so",
+  "league": "gdc",
+  "year": 1996,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001784",
+  "team": "gdc_paddlers",
+  "value": 78
+ },
+ {
+  "id": "igl-1996:pass_yds",
+  "league": "igl",
+  "year": 1996,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002932",
+  "team": "igl_undertow",
+  "value": 3838
+ },
+ {
+  "id": "igl-1996:rush_yds",
+  "league": "igl",
+  "year": 1996,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003070",
+  "team": "igl_undertow",
+  "value": 2027
+ },
+ {
+  "id": "igl-1996:rec_yds",
+  "league": "igl",
+  "year": 1996,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003029",
+  "team": "igl_ironclads",
+  "value": 1068
+ },
+ {
+  "id": "igl-1996:sacks",
+  "league": "igl",
+  "year": 1996,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002891",
+  "team": "igl_highlanders",
+  "value": 13
+ },
+ {
+  "id": "ccl-1997:ppg",
+  "league": "ccl",
+  "year": 1997,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0227",
+  "team": "ccl_anchors",
+  "value": 19.357
+ },
+ {
+  "id": "ccl-1997:rpg",
+  "league": "ccl",
+  "year": 1997,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000231",
+  "team": "ccl_forge",
+  "value": 9.857
+ },
+ {
+  "id": "ccl-1997:apg",
+  "league": "ccl",
+  "year": 1997,
+  "stat": "apg",
+  "athlete_id": "ccl_p0205",
+  "team": "ccl_monsoon",
+  "value": 5.179
+ },
+ {
+  "id": "fhl-1997:g",
+  "league": "fhl",
+  "year": 1997,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000744",
+  "team": "fhl_narwhals",
+  "value": 18
+ },
+ {
+  "id": "fhl-1997:pts",
+  "league": "fhl",
+  "year": 1997,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000744",
+  "team": "fhl_narwhals",
+  "value": 30
+ },
+ {
+  "id": "fhl-1997:sv_pct",
+  "league": "fhl",
+  "year": 1997,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0667",
+  "team": "fhl_snowowls",
+  "value": 0.917
+ },
+ {
+  "id": "gdc-1997:avg",
+  "league": "gdc",
+  "year": 1997,
+  "stat": "avg",
+  "athlete_id": "gdc_p0058",
+  "team": "gdc_gilas",
+  "value": 0.388
+ },
+ {
+  "id": "gdc-1997:hr",
+  "league": "gdc",
+  "year": 1997,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001903",
+  "team": "gdc_gilas",
+  "value": 15
+ },
+ {
+  "id": "gdc-1997:rbi",
+  "league": "gdc",
+  "year": 1997,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001903",
+  "team": "gdc_gilas",
+  "value": 40
+ },
+ {
+  "id": "gdc-1997:era",
+  "league": "gdc",
+  "year": 1997,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001863",
+  "team": "gdc_paddlers",
+  "value": 2.842
+ },
+ {
+  "id": "gdc-1997:w",
+  "league": "gdc",
+  "year": 1997,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001904",
+  "team": "gdc_kingfishers",
+  "value": 9
+ },
+ {
+  "id": "gdc-1997:so",
+  "league": "gdc",
+  "year": 1997,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001863",
+  "team": "gdc_paddlers",
+  "value": 72
+ },
+ {
+  "id": "igl-1997:pass_yds",
+  "league": "igl",
+  "year": 1997,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_002947",
+  "team": "igl_squall",
+  "value": 3556
+ },
+ {
+  "id": "igl-1997:rush_yds",
+  "league": "igl",
+  "year": 1997,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_002893",
+  "team": "igl_ironclads",
+  "value": 2067
+ },
+ {
+  "id": "igl-1997:rec_yds",
+  "league": "igl",
+  "year": 1997,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_002983",
+  "team": "igl_squall",
+  "value": 1075
+ },
+ {
+  "id": "igl-1997:sacks",
+  "league": "igl",
+  "year": 1997,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003023",
+  "team": "igl_harvesters",
+  "value": 13
+ },
+ {
+  "id": "ccl-1998:ppg",
+  "league": "ccl",
+  "year": 1998,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0290",
+  "team": "ccl_dustdevils",
+  "value": 20.786
+ },
+ {
+  "id": "ccl-1998:rpg",
+  "league": "ccl",
+  "year": 1998,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000203",
+  "team": "ccl_jackrabbits",
+  "value": 9.214
+ },
+ {
+  "id": "ccl-1998:apg",
+  "league": "ccl",
+  "year": 1998,
+  "stat": "apg",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 5.357
+ },
+ {
+  "id": "fhl-1998:g",
+  "league": "fhl",
+  "year": 1998,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000831",
+  "team": "fhl_sawblades",
+  "value": 19
+ },
+ {
+  "id": "fhl-1998:pts",
+  "league": "fhl",
+  "year": 1998,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000831",
+  "team": "fhl_sawblades",
+  "value": 25
+ },
+ {
+  "id": "fhl-1998:sv_pct",
+  "league": "fhl",
+  "year": 1998,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0646",
+  "team": "fhl_rivets",
+  "value": 0.923
+ },
+ {
+  "id": "gdc-1998:avg",
+  "league": "gdc",
+  "year": 1998,
+  "stat": "avg",
+  "athlete_id": "gdc_marco_salazar",
+  "team": "gdc_firebirds",
+  "value": 0.372
+ },
+ {
+  "id": "gdc-1998:hr",
+  "league": "gdc",
+  "year": 1998,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001809",
+  "team": "gdc_kingfishers",
+  "value": 14
+ },
+ {
+  "id": "gdc-1998:rbi",
+  "league": "gdc",
+  "year": 1998,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001837",
+  "team": "gdc_firebirds",
+  "value": 40
+ },
+ {
+  "id": "gdc-1998:era",
+  "league": "gdc",
+  "year": 1998,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001808",
+  "team": "gdc_kingfishers",
+  "value": 2.502
+ },
+ {
+  "id": "gdc-1998:w",
+  "league": "gdc",
+  "year": 1998,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001917",
+  "team": "gdc_firebirds",
+  "value": 9
+ },
+ {
+  "id": "gdc-1998:so",
+  "league": "gdc",
+  "year": 1998,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001947",
+  "team": "gdc_loons",
+  "value": 85
+ },
+ {
+  "id": "igl-1998:pass_yds",
+  "league": "igl",
+  "year": 1998,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0396",
+  "team": "igl_rockslides",
+  "value": 3703
+ },
+ {
+  "id": "igl-1998:rush_yds",
+  "league": "igl",
+  "year": 1998,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003064",
+  "team": "igl_squall",
+  "value": 1969
+ },
+ {
+  "id": "igl-1998:rec_yds",
+  "league": "igl",
+  "year": 1998,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003061",
+  "team": "igl_smokejumpers",
+  "value": 1031
+ },
+ {
+  "id": "igl-1998:sacks",
+  "league": "igl",
+  "year": 1998,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002991",
+  "team": "igl_thunderherd",
+  "value": 13
+ },
+ {
+  "id": "ccl-1999:ppg",
+  "league": "ccl",
+  "year": 1999,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000210",
+  "team": "ccl_comets",
+  "value": 19.786
+ },
+ {
+  "id": "ccl-1999:rpg",
+  "league": "ccl",
+  "year": 1999,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000200",
+  "team": "ccl_comets",
+  "value": 9.393
+ },
+ {
+  "id": "ccl-1999:apg",
+  "league": "ccl",
+  "year": 1999,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000215",
+  "team": "ccl_jackrabbits",
+  "value": 4.929
+ },
+ {
+  "id": "fhl-1999:g",
+  "league": "fhl",
+  "year": 1999,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000895",
+  "team": "fhl_yetis",
+  "value": 18
+ },
+ {
+  "id": "fhl-1999:pts",
+  "league": "fhl",
+  "year": 1999,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000758",
+  "team": "fhl_floes",
+  "value": 29
+ },
+ {
+  "id": "fhl-1999:sv_pct",
+  "league": "fhl",
+  "year": 1999,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000760",
+  "team": "fhl_narwhals",
+  "value": 0.933
+ },
+ {
+  "id": "gdc-1999:avg",
+  "league": "gdc",
+  "year": 1999,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 0.357
+ },
+ {
+  "id": "gdc-1999:hr",
+  "league": "gdc",
+  "year": 1999,
+  "stat": "hr",
+  "athlete_id": "gdc_p0121",
+  "team": "gdc_loons",
+  "value": 16
+ },
+ {
+  "id": "gdc-1999:rbi",
+  "league": "gdc",
+  "year": 1999,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001837",
+  "team": "gdc_firebirds",
+  "value": 41
+ },
+ {
+  "id": "gdc-1999:era",
+  "league": "gdc",
+  "year": 1999,
+  "stat": "era",
+  "athlete_id": "gdc_p0103",
+  "team": "gdc_firebirds",
+  "value": 2.741
+ },
+ {
+  "id": "gdc-1999:w",
+  "league": "gdc",
+  "year": 1999,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001917",
+  "team": "gdc_firebirds",
+  "value": 9
+ },
+ {
+  "id": "gdc-1999:so",
+  "league": "gdc",
+  "year": 1999,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001865",
+  "team": "gdc_paddlers",
+  "value": 91
+ },
+ {
+  "id": "igl-1999:pass_yds",
+  "league": "igl",
+  "year": 1999,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0459",
+  "team": "igl_squall",
+  "value": 3640
+ },
+ {
+  "id": "igl-1999:rush_yds",
+  "league": "igl",
+  "year": 1999,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003172",
+  "team": "igl_smokejumpers",
+  "value": 1993
+ },
+ {
+  "id": "igl-1999:rec_yds",
+  "league": "igl",
+  "year": 1999,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003036",
+  "team": "igl_squall",
+  "value": 1055
+ },
+ {
+  "id": "igl-1999:sacks",
+  "league": "igl",
+  "year": 1999,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_002991",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-2000:ppg",
+  "league": "ccl",
+  "year": 2000,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0336",
+  "team": "ccl_satellites",
+  "value": 19.964
+ },
+ {
+  "id": "ccl-2000:rpg",
+  "league": "ccl",
+  "year": 2000,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0333",
+  "team": "ccl_satellites",
+  "value": 9.143
+ },
+ {
+  "id": "ccl-2000:apg",
+  "league": "ccl",
+  "year": 2000,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000213",
+  "team": "ccl_forge",
+  "value": 5.607
+ },
+ {
+  "id": "fhl-2000:g",
+  "league": "fhl",
+  "year": 2000,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000866",
+  "team": "fhl_sawblades",
+  "value": 20
+ },
+ {
+  "id": "fhl-2000:pts",
+  "league": "fhl",
+  "year": 2000,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000785",
+  "team": "fhl_borealis",
+  "value": 29
+ },
+ {
+  "id": "fhl-2000:sv_pct",
+  "league": "fhl",
+  "year": 2000,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000760",
+  "team": "fhl_narwhals",
+  "value": 0.915
+ },
+ {
+  "id": "gdc-2000:avg",
+  "league": "gdc",
+  "year": 2000,
+  "stat": "avg",
+  "athlete_id": "gdc_p0121",
+  "team": "gdc_loons",
+  "value": 0.351
+ },
+ {
+  "id": "gdc-2000:hr",
+  "league": "gdc",
+  "year": 2000,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001926",
+  "team": "gdc_ore_haulers",
+  "value": 17
+ },
+ {
+  "id": "gdc-2000:rbi",
+  "league": "gdc",
+  "year": 2000,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0037",
+  "team": "gdc_ore_haulers",
+  "value": 45
+ },
+ {
+  "id": "gdc-2000:era",
+  "league": "gdc",
+  "year": 2000,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001947",
+  "team": "gdc_loons",
+  "value": 1.718
+ },
+ {
+  "id": "gdc-2000:w",
+  "league": "gdc",
+  "year": 2000,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001832",
+  "team": "gdc_ore_haulers",
+  "value": 8
+ },
+ {
+  "id": "gdc-2000:so",
+  "league": "gdc",
+  "year": 2000,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001947",
+  "team": "gdc_loons",
+  "value": 80
+ },
+ {
+  "id": "igl-2000:pass_yds",
+  "league": "igl",
+  "year": 2000,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0459",
+  "team": "igl_squall",
+  "value": 3675
+ },
+ {
+  "id": "igl-2000:rush_yds",
+  "league": "igl",
+  "year": 2000,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003064",
+  "team": "igl_squall",
+  "value": 1982
+ },
+ {
+  "id": "igl-2000:rec_yds",
+  "league": "igl",
+  "year": 2000,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003036",
+  "team": "igl_squall",
+  "value": 1074
+ },
+ {
+  "id": "igl-2000:sacks",
+  "league": "igl",
+  "year": 2000,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003073",
+  "team": "igl_undertow",
+  "value": 14
+ },
+ {
+  "id": "ccl-2001:ppg",
+  "league": "ccl",
+  "year": 2001,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000267",
+  "team": "ccl_monsoon",
+  "value": 20.179
+ },
+ {
+  "id": "ccl-2001:rpg",
+  "league": "ccl",
+  "year": 2001,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0228",
+  "team": "ccl_anchors",
+  "value": 9.786
+ },
+ {
+  "id": "ccl-2001:apg",
+  "league": "ccl",
+  "year": 2001,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000213",
+  "team": "ccl_forge",
+  "value": 5.143
+ },
+ {
+  "id": "fhl-2001:g",
+  "league": "fhl",
+  "year": 2001,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000912",
+  "team": "fhl_narwhals",
+  "value": 17
+ },
+ {
+  "id": "fhl-2001:pts",
+  "league": "fhl",
+  "year": 2001,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000912",
+  "team": "fhl_narwhals",
+  "value": 33
+ },
+ {
+  "id": "fhl-2001:sv_pct",
+  "league": "fhl",
+  "year": 2001,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 0.908
+ },
+ {
+  "id": "gdc-2001:avg",
+  "league": "gdc",
+  "year": 2001,
+  "stat": "avg",
+  "athlete_id": "gdc_p0164",
+  "team": "gdc_kingfishers",
+  "value": 0.35
+ },
+ {
+  "id": "gdc-2001:hr",
+  "league": "gdc",
+  "year": 2001,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001932",
+  "team": "gdc_lamplighters",
+  "value": 12
+ },
+ {
+  "id": "gdc-2001:rbi",
+  "league": "gdc",
+  "year": 2001,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001821",
+  "team": "gdc_firebirds",
+  "value": 38
+ },
+ {
+  "id": "gdc-2001:era",
+  "league": "gdc",
+  "year": 2001,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001966",
+  "team": "gdc_loons",
+  "value": 2.177
+ },
+ {
+  "id": "gdc-2001:w",
+  "league": "gdc",
+  "year": 2001,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001933",
+  "team": "gdc_loons",
+  "value": 9
+ },
+ {
+  "id": "gdc-2001:so",
+  "league": "gdc",
+  "year": 2001,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001875",
+  "team": "gdc_kingfishers",
+  "value": 80
+ },
+ {
+  "id": "igl-2001:pass_yds",
+  "league": "igl",
+  "year": 2001,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003047",
+  "team": "igl_highlanders",
+  "value": 3302
+ },
+ {
+  "id": "igl-2001:rush_yds",
+  "league": "igl",
+  "year": 2001,
+  "stat": "rush_yds",
+  "athlete_id": "igl_p0418",
+  "team": "igl_harvesters",
+  "value": 1894
+ },
+ {
+  "id": "igl-2001:rec_yds",
+  "league": "igl",
+  "year": 2001,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003152",
+  "team": "igl_squall",
+  "value": 937
+ },
+ {
+  "id": "igl-2001:sacks",
+  "league": "igl",
+  "year": 2001,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003252",
+  "team": "igl_thunderherd",
+  "value": 15
+ },
+ {
+  "id": "ccl-2002:ppg",
+  "league": "ccl",
+  "year": 2002,
+  "stat": "ppg",
+  "athlete_id": "ccl_andre_bellamy",
+  "team": "ccl_forge",
+  "value": 27.929
+ },
+ {
+  "id": "ccl-2002:rpg",
+  "league": "ccl",
+  "year": 2002,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 9.964
+ },
+ {
+  "id": "ccl-2002:apg",
+  "league": "ccl",
+  "year": 2002,
+  "stat": "apg",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 5.821
+ },
+ {
+  "id": "fhl-2002:g",
+  "league": "fhl",
+  "year": 2002,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000874",
+  "team": "fhl_yetis",
+  "value": 20
+ },
+ {
+  "id": "fhl-2002:pts",
+  "league": "fhl",
+  "year": 2002,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000874",
+  "team": "fhl_yetis",
+  "value": 31
+ },
+ {
+  "id": "fhl-2002:sv_pct",
+  "league": "fhl",
+  "year": 2002,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000843",
+  "team": "fhl_rivets",
+  "value": 0.907
+ },
+ {
+  "id": "gdc-2002:avg",
+  "league": "gdc",
+  "year": 2002,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 0.369
+ },
+ {
+  "id": "gdc-2002:hr",
+  "league": "gdc",
+  "year": 2002,
+  "stat": "hr",
+  "athlete_id": "gdc_p0059",
+  "team": "gdc_gilas",
+  "value": 12
+ },
+ {
+  "id": "gdc-2002:rbi",
+  "league": "gdc",
+  "year": 2002,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002008",
+  "team": "gdc_firebirds",
+  "value": 37
+ },
+ {
+  "id": "gdc-2002:era",
+  "league": "gdc",
+  "year": 2002,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001929",
+  "team": "gdc_firebirds",
+  "value": 1.435
+ },
+ {
+  "id": "gdc-2002:w",
+  "league": "gdc",
+  "year": 2002,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001917",
+  "team": "gdc_firebirds",
+  "value": 9
+ },
+ {
+  "id": "gdc-2002:so",
+  "league": "gdc",
+  "year": 2002,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001917",
+  "team": "gdc_firebirds",
+  "value": 74
+ },
+ {
+  "id": "igl-2002:pass_yds",
+  "league": "igl",
+  "year": 2002,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003279",
+  "team": "igl_squall",
+  "value": 3288
+ },
+ {
+  "id": "igl-2002:rush_yds",
+  "league": "igl",
+  "year": 2002,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003064",
+  "team": "igl_squall",
+  "value": 1899
+ },
+ {
+  "id": "igl-2002:rec_yds",
+  "league": "igl",
+  "year": 2002,
+  "stat": "rec_yds",
+  "athlete_id": "igl_p0441",
+  "team": "igl_highlanders",
+  "value": 937
+ },
+ {
+  "id": "igl-2002:sacks",
+  "league": "igl",
+  "year": 2002,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003161",
+  "team": "igl_harvesters",
+  "value": 14
+ },
+ {
+  "id": "ccl-2003:ppg",
+  "league": "ccl",
+  "year": 2003,
+  "stat": "ppg",
+  "athlete_id": "ccl_andre_bellamy",
+  "team": "ccl_forge",
+  "value": 25.75
+ },
+ {
+  "id": "ccl-2003:rpg",
+  "league": "ccl",
+  "year": 2003,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 9.714
+ },
+ {
+  "id": "ccl-2003:apg",
+  "league": "ccl",
+  "year": 2003,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000213",
+  "team": "ccl_forge",
+  "value": 5.821
+ },
+ {
+  "id": "fhl-2003:g",
+  "league": "fhl",
+  "year": 2003,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000879",
+  "team": "fhl_narwhals",
+  "value": 20
+ },
+ {
+  "id": "fhl-2003:pts",
+  "league": "fhl",
+  "year": 2003,
+  "stat": "pts",
+  "athlete_id": "fhl_p0588",
+  "team": "fhl_borealis",
+  "value": 33
+ },
+ {
+  "id": "fhl-2003:sv_pct",
+  "league": "fhl",
+  "year": 2003,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000913",
+  "team": "fhl_polars",
+  "value": 0.921
+ },
+ {
+  "id": "gdc-2003:avg",
+  "league": "gdc",
+  "year": 2003,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002034",
+  "team": "gdc_firebirds",
+  "value": 0.379
+ },
+ {
+  "id": "gdc-2003:hr",
+  "league": "gdc",
+  "year": 2003,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001945",
+  "team": "gdc_lamplighters",
+  "value": 14
+ },
+ {
+  "id": "gdc-2003:rbi",
+  "league": "gdc",
+  "year": 2003,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_001886",
+  "team": "gdc_millers",
+  "value": 38
+ },
+ {
+  "id": "gdc-2003:era",
+  "league": "gdc",
+  "year": 2003,
+  "stat": "era",
+  "athlete_id": "gdc_p0103",
+  "team": "gdc_firebirds",
+  "value": 2.1
+ },
+ {
+  "id": "gdc-2003:w",
+  "league": "gdc",
+  "year": 2003,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001917",
+  "team": "gdc_firebirds",
+  "value": 10
+ },
+ {
+  "id": "gdc-2003:so",
+  "league": "gdc",
+  "year": 2003,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001929",
+  "team": "gdc_firebirds",
+  "value": 77
+ },
+ {
+  "id": "igl-2003:pass_yds",
+  "league": "igl",
+  "year": 2003,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003285",
+  "team": "igl_undertow",
+  "value": 3503
+ },
+ {
+  "id": "igl-2003:rush_yds",
+  "league": "igl",
+  "year": 2003,
+  "stat": "rush_yds",
+  "athlete_id": "igl_p0418",
+  "team": "igl_harvesters",
+  "value": 2046
+ },
+ {
+  "id": "igl-2003:rec_yds",
+  "league": "igl",
+  "year": 2003,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003108",
+  "team": "igl_harvesters",
+  "value": 965
+ },
+ {
+  "id": "igl-2003:sacks",
+  "league": "igl",
+  "year": 2003,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003272",
+  "team": "igl_rockslides",
+  "value": 15
+ },
+ {
+  "id": "ccl-2004:ppg",
+  "league": "ccl",
+  "year": 2004,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000252",
+  "team": "ccl_dustdevils",
+  "value": 22.571
+ },
+ {
+  "id": "ccl-2004:rpg",
+  "league": "ccl",
+  "year": 2004,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000293",
+  "team": "ccl_jackrabbits",
+  "value": 9.786
+ },
+ {
+  "id": "ccl-2004:apg",
+  "league": "ccl",
+  "year": 2004,
+  "stat": "apg",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 5.357
+ },
+ {
+  "id": "fhl-2004:g",
+  "league": "fhl",
+  "year": 2004,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000890",
+  "team": "fhl_sawblades",
+  "value": 18
+ },
+ {
+  "id": "fhl-2004:pts",
+  "league": "fhl",
+  "year": 2004,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000890",
+  "team": "fhl_sawblades",
+  "value": 30
+ },
+ {
+  "id": "fhl-2004:sv_pct",
+  "league": "fhl",
+  "year": 2004,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 0.927
+ },
+ {
+  "id": "gdc-2004:avg",
+  "league": "gdc",
+  "year": 2004,
+  "stat": "avg",
+  "athlete_id": "gdc_marco_salazar",
+  "team": "gdc_firebirds",
+  "value": 0.342
+ },
+ {
+  "id": "gdc-2004:hr",
+  "league": "gdc",
+  "year": 2004,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 13
+ },
+ {
+  "id": "gdc-2004:rbi",
+  "league": "gdc",
+  "year": 2004,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002009",
+  "team": "gdc_firebirds",
+  "value": 41
+ },
+ {
+  "id": "gdc-2004:era",
+  "league": "gdc",
+  "year": 2004,
+  "stat": "era",
+  "athlete_id": "gdc_p0124",
+  "team": "gdc_loons",
+  "value": 1.972
+ },
+ {
+  "id": "gdc-2004:w",
+  "league": "gdc",
+  "year": 2004,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001936",
+  "team": "gdc_millers",
+  "value": 8
+ },
+ {
+  "id": "gdc-2004:so",
+  "league": "gdc",
+  "year": 2004,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001947",
+  "team": "gdc_loons",
+  "value": 78
+ },
+ {
+  "id": "igl-2004:pass_yds",
+  "league": "igl",
+  "year": 2004,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003219",
+  "team": "igl_thunderherd",
+  "value": 3505
+ },
+ {
+  "id": "igl-2004:rush_yds",
+  "league": "igl",
+  "year": 2004,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003239",
+  "team": "igl_rockslides",
+  "value": 1878
+ },
+ {
+  "id": "igl-2004:rec_yds",
+  "league": "igl",
+  "year": 2004,
+  "stat": "rec_yds",
+  "athlete_id": "igl_p0441",
+  "team": "igl_highlanders",
+  "value": 1047
+ },
+ {
+  "id": "igl-2004:sacks",
+  "league": "igl",
+  "year": 2004,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003238",
+  "team": "igl_ironclads",
+  "value": 14
+ },
+ {
+  "id": "ccl-2005:ppg",
+  "league": "ccl",
+  "year": 2005,
+  "stat": "ppg",
+  "athlete_id": "ccl_andre_bellamy",
+  "team": "ccl_forge",
+  "value": 27.857
+ },
+ {
+  "id": "ccl-2005:rpg",
+  "league": "ccl",
+  "year": 2005,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0208",
+  "team": "ccl_monsoon",
+  "value": 9.821
+ },
+ {
+  "id": "ccl-2005:apg",
+  "league": "ccl",
+  "year": 2005,
+  "stat": "apg",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 5.536
+ },
+ {
+  "id": "fhl-2005:g",
+  "league": "fhl",
+  "year": 2005,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001018",
+  "team": "fhl_floes",
+  "value": 19
+ },
+ {
+  "id": "fhl-2005:pts",
+  "league": "fhl",
+  "year": 2005,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000871",
+  "team": "fhl_snowowls",
+  "value": 29
+ },
+ {
+  "id": "fhl-2005:sv_pct",
+  "league": "fhl",
+  "year": 2005,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000918",
+  "team": "fhl_borealis",
+  "value": 0.915
+ },
+ {
+  "id": "gdc-2005:avg",
+  "league": "gdc",
+  "year": 2005,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_001940",
+  "team": "gdc_firebirds",
+  "value": 0.326
+ },
+ {
+  "id": "gdc-2005:hr",
+  "league": "gdc",
+  "year": 2005,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002012",
+  "team": "gdc_firebirds",
+  "value": 13
+ },
+ {
+  "id": "gdc-2005:rbi",
+  "league": "gdc",
+  "year": 2005,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002009",
+  "team": "gdc_firebirds",
+  "value": 36
+ },
+ {
+  "id": "gdc-2005:era",
+  "league": "gdc",
+  "year": 2005,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002042",
+  "team": "gdc_loons",
+  "value": 2.077
+ },
+ {
+  "id": "gdc-2005:w",
+  "league": "gdc",
+  "year": 2005,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001917",
+  "team": "gdc_firebirds",
+  "value": 9
+ },
+ {
+  "id": "gdc-2005:so",
+  "league": "gdc",
+  "year": 2005,
+  "stat": "so",
+  "athlete_id": "gdc_generated_001929",
+  "team": "gdc_firebirds",
+  "value": 72
+ },
+ {
+  "id": "igl-2005:pass_yds",
+  "league": "igl",
+  "year": 2005,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003186",
+  "team": "igl_highlanders",
+  "value": 3711
+ },
+ {
+  "id": "igl-2005:rush_yds",
+  "league": "igl",
+  "year": 2005,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003367",
+  "team": "igl_undertow",
+  "value": 2014
+ },
+ {
+  "id": "igl-2005:rec_yds",
+  "league": "igl",
+  "year": 2005,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003341",
+  "team": "igl_highlanders",
+  "value": 1104
+ },
+ {
+  "id": "igl-2005:sacks",
+  "league": "igl",
+  "year": 2005,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003272",
+  "team": "igl_rockslides",
+  "value": 15
+ },
+ {
+  "id": "ccl-2006:ppg",
+  "league": "ccl",
+  "year": 2006,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000298",
+  "team": "ccl_comets",
+  "value": 20.643
+ },
+ {
+  "id": "ccl-2006:rpg",
+  "league": "ccl",
+  "year": 2006,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000300",
+  "team": "ccl_dustdevils",
+  "value": 10.071
+ },
+ {
+  "id": "ccl-2006:apg",
+  "league": "ccl",
+  "year": 2006,
+  "stat": "apg",
+  "athlete_id": "ccl_p0189",
+  "team": "ccl_voltage",
+  "value": 5.357
+ },
+ {
+  "id": "fhl-2006:g",
+  "league": "fhl",
+  "year": 2006,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001018",
+  "team": "fhl_floes",
+  "value": 16
+ },
+ {
+  "id": "fhl-2006:pts",
+  "league": "fhl",
+  "year": 2006,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000903",
+  "team": "fhl_rivets",
+  "value": 30
+ },
+ {
+  "id": "fhl-2006:sv_pct",
+  "league": "fhl",
+  "year": 2006,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000918",
+  "team": "fhl_borealis",
+  "value": 0.915
+ },
+ {
+  "id": "gdc-2006:avg",
+  "league": "gdc",
+  "year": 2006,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002069",
+  "team": "gdc_paddlers",
+  "value": 0.384
+ },
+ {
+  "id": "gdc-2006:hr",
+  "league": "gdc",
+  "year": 2006,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002002",
+  "team": "gdc_millers",
+  "value": 15
+ },
+ {
+  "id": "gdc-2006:rbi",
+  "league": "gdc",
+  "year": 2006,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002069",
+  "team": "gdc_paddlers",
+  "value": 48
+ },
+ {
+  "id": "gdc-2006:era",
+  "league": "gdc",
+  "year": 2006,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002053",
+  "team": "gdc_kingfishers",
+  "value": 1.525
+ },
+ {
+  "id": "gdc-2006:w",
+  "league": "gdc",
+  "year": 2006,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002042",
+  "team": "gdc_loons",
+  "value": 9
+ },
+ {
+  "id": "gdc-2006:so",
+  "league": "gdc",
+  "year": 2006,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002021",
+  "team": "gdc_loons",
+  "value": 81
+ },
+ {
+  "id": "igl-2006:pass_yds",
+  "league": "igl",
+  "year": 2006,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003334",
+  "team": "igl_harvesters",
+  "value": 3556
+ },
+ {
+  "id": "igl-2006:rush_yds",
+  "league": "igl",
+  "year": 2006,
+  "stat": "rush_yds",
+  "athlete_id": "igl_p0439",
+  "team": "igl_highlanders",
+  "value": 2003
+ },
+ {
+  "id": "igl-2006:rec_yds",
+  "league": "igl",
+  "year": 2006,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003307",
+  "team": "igl_harvesters",
+  "value": 1049
+ },
+ {
+  "id": "igl-2006:sacks",
+  "league": "igl",
+  "year": 2006,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003323",
+  "team": "igl_smokejumpers",
+  "value": 14
+ },
+ {
+  "id": "ccl-2007:ppg",
+  "league": "ccl",
+  "year": 2007,
+  "stat": "ppg",
+  "athlete_id": "ccl_andre_bellamy",
+  "team": "ccl_forge",
+  "value": 25.071
+ },
+ {
+  "id": "ccl-2007:rpg",
+  "league": "ccl",
+  "year": 2007,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000251",
+  "team": "ccl_comets",
+  "value": 9.25
+ },
+ {
+  "id": "ccl-2007:apg",
+  "league": "ccl",
+  "year": 2007,
+  "stat": "apg",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 5.964
+ },
+ {
+  "id": "fhl-2007:g",
+  "league": "fhl",
+  "year": 2007,
+  "stat": "g",
+  "athlete_id": "fhl_owen_kessler",
+  "team": "fhl_snowowls",
+  "value": 20
+ },
+ {
+  "id": "fhl-2007:pts",
+  "league": "fhl",
+  "year": 2007,
+  "stat": "pts",
+  "athlete_id": "fhl_owen_kessler",
+  "team": "fhl_snowowls",
+  "value": 29
+ },
+ {
+  "id": "fhl-2007:sv_pct",
+  "league": "fhl",
+  "year": 2007,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_000937",
+  "team": "fhl_narwhals",
+  "value": 0.919
+ },
+ {
+  "id": "gdc-2007:avg",
+  "league": "gdc",
+  "year": 2007,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002063",
+  "team": "gdc_millers",
+  "value": 0.384
+ },
+ {
+  "id": "gdc-2007:hr",
+  "league": "gdc",
+  "year": 2007,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002024",
+  "team": "gdc_millers",
+  "value": 15
+ },
+ {
+  "id": "gdc-2007:rbi",
+  "league": "gdc",
+  "year": 2007,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002101",
+  "team": "gdc_firebirds",
+  "value": 35
+ },
+ {
+  "id": "gdc-2007:era",
+  "league": "gdc",
+  "year": 2007,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002128",
+  "team": "gdc_loons",
+  "value": 1.77
+ },
+ {
+  "id": "gdc-2007:w",
+  "league": "gdc",
+  "year": 2007,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002025",
+  "team": "gdc_ore_haulers",
+  "value": 8
+ },
+ {
+  "id": "gdc-2007:so",
+  "league": "gdc",
+  "year": 2007,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002021",
+  "team": "gdc_loons",
+  "value": 75
+ },
+ {
+  "id": "igl-2007:pass_yds",
+  "league": "igl",
+  "year": 2007,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003170",
+  "team": "igl_rockslides",
+  "value": 3649
+ },
+ {
+  "id": "igl-2007:rush_yds",
+  "league": "igl",
+  "year": 2007,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003359",
+  "team": "igl_squall",
+  "value": 2055
+ },
+ {
+  "id": "igl-2007:rec_yds",
+  "league": "igl",
+  "year": 2007,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003402",
+  "team": "igl_rockslides",
+  "value": 1017
+ },
+ {
+  "id": "igl-2007:sacks",
+  "league": "igl",
+  "year": 2007,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003349",
+  "team": "igl_ironclads",
+  "value": 14
+ },
+ {
+  "id": "ccl-2008:ppg",
+  "league": "ccl",
+  "year": 2008,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 21.214
+ },
+ {
+  "id": "ccl-2008:rpg",
+  "league": "ccl",
+  "year": 2008,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 9.857
+ },
+ {
+  "id": "ccl-2008:apg",
+  "league": "ccl",
+  "year": 2008,
+  "stat": "apg",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 5.607
+ },
+ {
+  "id": "fhl-2008:g",
+  "league": "fhl",
+  "year": 2008,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000941",
+  "team": "fhl_rivets",
+  "value": 18
+ },
+ {
+  "id": "fhl-2008:pts",
+  "league": "fhl",
+  "year": 2008,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000946",
+  "team": "fhl_sawblades",
+  "value": 30
+ },
+ {
+  "id": "fhl-2008:sv_pct",
+  "league": "fhl",
+  "year": 2008,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0547",
+  "team": "fhl_narwhals",
+  "value": 0.909
+ },
+ {
+  "id": "gdc-2008:avg",
+  "league": "gdc",
+  "year": 2008,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002064",
+  "team": "gdc_millers",
+  "value": 0.339
+ },
+ {
+  "id": "gdc-2008:hr",
+  "league": "gdc",
+  "year": 2008,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002094",
+  "team": "gdc_millers",
+  "value": 13
+ },
+ {
+  "id": "gdc-2008:rbi",
+  "league": "gdc",
+  "year": 2008,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0063",
+  "team": "gdc_gilas",
+  "value": 37
+ },
+ {
+  "id": "gdc-2008:era",
+  "league": "gdc",
+  "year": 2008,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002090",
+  "team": "gdc_millers",
+  "value": 2.455
+ },
+ {
+  "id": "gdc-2008:w",
+  "league": "gdc",
+  "year": 2008,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002086",
+  "team": "gdc_lamplighters",
+  "value": 8
+ },
+ {
+  "id": "gdc-2008:so",
+  "league": "gdc",
+  "year": 2008,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002033",
+  "team": "gdc_firebirds",
+  "value": 77
+ },
+ {
+  "id": "igl-2008:pass_yds",
+  "league": "igl",
+  "year": 2008,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003279",
+  "team": "igl_squall",
+  "value": 3626
+ },
+ {
+  "id": "igl-2008:rush_yds",
+  "league": "igl",
+  "year": 2008,
+  "stat": "rush_yds",
+  "athlete_id": "igl_p0439",
+  "team": "igl_highlanders",
+  "value": 1972
+ },
+ {
+  "id": "igl-2008:rec_yds",
+  "league": "igl",
+  "year": 2008,
+  "stat": "rec_yds",
+  "athlete_id": "igl_p0461",
+  "team": "igl_squall",
+  "value": 1034
+ },
+ {
+  "id": "igl-2008:sacks",
+  "league": "igl",
+  "year": 2008,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003296",
+  "team": "igl_rockslides",
+  "value": 14
+ },
+ {
+  "id": "ccl-2009:ppg",
+  "league": "ccl",
+  "year": 2009,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 21.214
+ },
+ {
+  "id": "ccl-2009:rpg",
+  "league": "ccl",
+  "year": 2009,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 9.964
+ },
+ {
+  "id": "ccl-2009:apg",
+  "league": "ccl",
+  "year": 2009,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 5.357
+ },
+ {
+  "id": "fhl-2009:g",
+  "league": "fhl",
+  "year": 2009,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001068",
+  "team": "fhl_floes",
+  "value": 19
+ },
+ {
+  "id": "fhl-2009:pts",
+  "league": "fhl",
+  "year": 2009,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000960",
+  "team": "fhl_polars",
+  "value": 33
+ },
+ {
+  "id": "fhl-2009:sv_pct",
+  "league": "fhl",
+  "year": 2009,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0568",
+  "team": "fhl_sawblades",
+  "value": 0.914
+ },
+ {
+  "id": "gdc-2009:avg",
+  "league": "gdc",
+  "year": 2009,
+  "stat": "avg",
+  "athlete_id": "gdc_p0150",
+  "team": "gdc_millers",
+  "value": 0.335
+ },
+ {
+  "id": "gdc-2009:hr",
+  "league": "gdc",
+  "year": 2009,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002081",
+  "team": "gdc_kingfishers",
+  "value": 12
+ },
+ {
+  "id": "gdc-2009:rbi",
+  "league": "gdc",
+  "year": 2009,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002108",
+  "team": "gdc_kingfishers",
+  "value": 35
+ },
+ {
+  "id": "gdc-2009:era",
+  "league": "gdc",
+  "year": 2009,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002053",
+  "team": "gdc_kingfishers",
+  "value": 2.166
+ },
+ {
+  "id": "gdc-2009:w",
+  "league": "gdc",
+  "year": 2009,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002053",
+  "team": "gdc_kingfishers",
+  "value": 9
+ },
+ {
+  "id": "gdc-2009:so",
+  "league": "gdc",
+  "year": 2009,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002052",
+  "team": "gdc_kingfishers",
+  "value": 79
+ },
+ {
+  "id": "igl-2009:pass_yds",
+  "league": "igl",
+  "year": 2009,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003244",
+  "team": "igl_smokejumpers",
+  "value": 3634
+ },
+ {
+  "id": "igl-2009:rush_yds",
+  "league": "igl",
+  "year": 2009,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003363",
+  "team": "igl_thunderherd",
+  "value": 2035
+ },
+ {
+  "id": "igl-2009:rec_yds",
+  "league": "igl",
+  "year": 2009,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003420",
+  "team": "igl_highlanders",
+  "value": 994
+ },
+ {
+  "id": "igl-2009:sacks",
+  "league": "igl",
+  "year": 2009,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003330",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-2010:ppg",
+  "league": "ccl",
+  "year": 2010,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 21.643
+ },
+ {
+  "id": "ccl-2010:rpg",
+  "league": "ccl",
+  "year": 2010,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000293",
+  "team": "ccl_jackrabbits",
+  "value": 9.321
+ },
+ {
+  "id": "ccl-2010:apg",
+  "league": "ccl",
+  "year": 2010,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000318",
+  "team": "ccl_voltage",
+  "value": 5.643
+ },
+ {
+  "id": "fhl-2010:g",
+  "league": "fhl",
+  "year": 2010,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001059",
+  "team": "fhl_rivets",
+  "value": 18
+ },
+ {
+  "id": "fhl-2010:pts",
+  "league": "fhl",
+  "year": 2010,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_000960",
+  "team": "fhl_polars",
+  "value": 29
+ },
+ {
+  "id": "fhl-2010:sv_pct",
+  "league": "fhl",
+  "year": 2010,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 0.91
+ },
+ {
+  "id": "gdc-2010:avg",
+  "league": "gdc",
+  "year": 2010,
+  "stat": "avg",
+  "athlete_id": "gdc_p0024",
+  "team": "gdc_lamplighters",
+  "value": 0.383
+ },
+ {
+  "id": "gdc-2010:hr",
+  "league": "gdc",
+  "year": 2010,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002121",
+  "team": "gdc_firebirds",
+  "value": 14
+ },
+ {
+  "id": "gdc-2010:rbi",
+  "league": "gdc",
+  "year": 2010,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002032",
+  "team": "gdc_paddlers",
+  "value": 37
+ },
+ {
+  "id": "gdc-2010:era",
+  "league": "gdc",
+  "year": 2010,
+  "stat": "era",
+  "athlete_id": "gdc_p0124",
+  "team": "gdc_loons",
+  "value": 2.599
+ },
+ {
+  "id": "gdc-2010:w",
+  "league": "gdc",
+  "year": 2010,
+  "stat": "w",
+  "athlete_id": "gdc_generated_001998",
+  "team": "gdc_loons",
+  "value": 10
+ },
+ {
+  "id": "gdc-2010:so",
+  "league": "gdc",
+  "year": 2010,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002085",
+  "team": "gdc_lamplighters",
+  "value": 79
+ },
+ {
+  "id": "igl-2010:pass_yds",
+  "league": "igl",
+  "year": 2010,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003302",
+  "team": "igl_undertow",
+  "value": 3344
+ },
+ {
+  "id": "igl-2010:rush_yds",
+  "league": "igl",
+  "year": 2010,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003476",
+  "team": "igl_undertow",
+  "value": 1937
+ },
+ {
+  "id": "igl-2010:rec_yds",
+  "league": "igl",
+  "year": 2010,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003293",
+  "team": "igl_ironclads",
+  "value": 988
+ },
+ {
+  "id": "igl-2010:sacks",
+  "league": "igl",
+  "year": 2010,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003272",
+  "team": "igl_rockslides",
+  "value": 14
+ },
+ {
+  "id": "ccl-2011:ppg",
+  "league": "ccl",
+  "year": 2011,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0211",
+  "team": "ccl_monsoon",
+  "value": 20.714
+ },
+ {
+  "id": "ccl-2011:rpg",
+  "league": "ccl",
+  "year": 2011,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000334",
+  "team": "ccl_dustdevils",
+  "value": 10
+ },
+ {
+  "id": "ccl-2011:apg",
+  "league": "ccl",
+  "year": 2011,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000298",
+  "team": "ccl_comets",
+  "value": 5.571
+ },
+ {
+  "id": "fhl-2011:g",
+  "league": "fhl",
+  "year": 2011,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001017",
+  "team": "fhl_floes",
+  "value": 19
+ },
+ {
+  "id": "fhl-2011:pts",
+  "league": "fhl",
+  "year": 2011,
+  "stat": "pts",
+  "athlete_id": "fhl_owen_kessler",
+  "team": "fhl_snowowls",
+  "value": 29
+ },
+ {
+  "id": "fhl-2011:sv_pct",
+  "league": "fhl",
+  "year": 2011,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 0.918
+ },
+ {
+  "id": "gdc-2011:avg",
+  "league": "gdc",
+  "year": 2011,
+  "stat": "avg",
+  "athlete_id": "gdc_p0171",
+  "team": "gdc_kingfishers",
+  "value": 0.35
+ },
+ {
+  "id": "gdc-2011:hr",
+  "league": "gdc",
+  "year": 2011,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002009",
+  "team": "gdc_firebirds",
+  "value": 14
+ },
+ {
+  "id": "gdc-2011:rbi",
+  "league": "gdc",
+  "year": 2011,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002074",
+  "team": "gdc_firebirds",
+  "value": 40
+ },
+ {
+  "id": "gdc-2011:era",
+  "league": "gdc",
+  "year": 2011,
+  "stat": "era",
+  "athlete_id": "gdc_generated_001998",
+  "team": "gdc_loons",
+  "value": 2.7
+ },
+ {
+  "id": "gdc-2011:w",
+  "league": "gdc",
+  "year": 2011,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002102",
+  "team": "gdc_gilas",
+  "value": 8
+ },
+ {
+  "id": "gdc-2011:so",
+  "league": "gdc",
+  "year": 2011,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002102",
+  "team": "gdc_gilas",
+  "value": 77
+ },
+ {
+  "id": "igl-2011:pass_yds",
+  "league": "igl",
+  "year": 2011,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003461",
+  "team": "igl_highlanders",
+  "value": 3632
+ },
+ {
+  "id": "igl-2011:rush_yds",
+  "league": "igl",
+  "year": 2011,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003432",
+  "team": "igl_harvesters",
+  "value": 1926
+ },
+ {
+  "id": "igl-2011:rec_yds",
+  "league": "igl",
+  "year": 2011,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003420",
+  "team": "igl_highlanders",
+  "value": 989
+ },
+ {
+  "id": "igl-2011:sacks",
+  "league": "igl",
+  "year": 2011,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003490",
+  "team": "igl_ironclads",
+  "value": 13
+ },
+ {
+  "id": "ccl-2012:ppg",
+  "league": "ccl",
+  "year": 2012,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0231",
+  "team": "ccl_anchors",
+  "value": 19.464
+ },
+ {
+  "id": "ccl-2012:rpg",
+  "league": "ccl",
+  "year": 2012,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 9.643
+ },
+ {
+  "id": "ccl-2012:apg",
+  "league": "ccl",
+  "year": 2012,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000300",
+  "team": "ccl_dustdevils",
+  "value": 5.429
+ },
+ {
+  "id": "fhl-2012:g",
+  "league": "fhl",
+  "year": 2012,
+  "stat": "g",
+  "athlete_id": "fhl_generated_000960",
+  "team": "fhl_polars",
+  "value": 14
+ },
+ {
+  "id": "fhl-2012:pts",
+  "league": "fhl",
+  "year": 2012,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001018",
+  "team": "fhl_floes",
+  "value": 29
+ },
+ {
+  "id": "fhl-2012:sv_pct",
+  "league": "fhl",
+  "year": 2012,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 0.926
+ },
+ {
+  "id": "gdc-2012:avg",
+  "league": "gdc",
+  "year": 2012,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002113",
+  "team": "gdc_ore_haulers",
+  "value": 0.348
+ },
+ {
+  "id": "gdc-2012:hr",
+  "league": "gdc",
+  "year": 2012,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002200",
+  "team": "gdc_paddlers",
+  "value": 17
+ },
+ {
+  "id": "gdc-2012:rbi",
+  "league": "gdc",
+  "year": 2012,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002048",
+  "team": "gdc_gilas",
+  "value": 39
+ },
+ {
+  "id": "gdc-2012:era",
+  "league": "gdc",
+  "year": 2012,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002183",
+  "team": "gdc_gilas",
+  "value": 2.195
+ },
+ {
+  "id": "gdc-2012:w",
+  "league": "gdc",
+  "year": 2012,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002119",
+  "team": "gdc_firebirds",
+  "value": 9
+ },
+ {
+  "id": "gdc-2012:so",
+  "league": "gdc",
+  "year": 2012,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002156",
+  "team": "gdc_kingfishers",
+  "value": 86
+ },
+ {
+  "id": "igl-2012:pass_yds",
+  "league": "igl",
+  "year": 2012,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003520",
+  "team": "igl_smokejumpers",
+  "value": 3700
+ },
+ {
+  "id": "igl-2012:rush_yds",
+  "league": "igl",
+  "year": 2012,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003468",
+  "team": "igl_smokejumpers",
+  "value": 1953
+ },
+ {
+  "id": "igl-2012:rec_yds",
+  "league": "igl",
+  "year": 2012,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003307",
+  "team": "igl_harvesters",
+  "value": 981
+ },
+ {
+  "id": "igl-2012:sacks",
+  "league": "igl",
+  "year": 2012,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003338",
+  "team": "igl_harvesters",
+  "value": 14
+ },
+ {
+  "id": "ccl-2013:ppg",
+  "league": "ccl",
+  "year": 2013,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000315",
+  "team": "ccl_jackrabbits",
+  "value": 19.571
+ },
+ {
+  "id": "ccl-2013:rpg",
+  "league": "ccl",
+  "year": 2013,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 10.036
+ },
+ {
+  "id": "ccl-2013:apg",
+  "league": "ccl",
+  "year": 2013,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000340",
+  "team": "ccl_jackrabbits",
+  "value": 5.107
+ },
+ {
+  "id": "fhl-2013:g",
+  "league": "fhl",
+  "year": 2013,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001157",
+  "team": "fhl_floes",
+  "value": 18
+ },
+ {
+  "id": "fhl-2013:pts",
+  "league": "fhl",
+  "year": 2013,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001112",
+  "team": "fhl_borealis",
+  "value": 28
+ },
+ {
+  "id": "fhl-2013:sv_pct",
+  "league": "fhl",
+  "year": 2013,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 0.914
+ },
+ {
+  "id": "gdc-2013:avg",
+  "league": "gdc",
+  "year": 2013,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002223",
+  "team": "gdc_loons",
+  "value": 0.395
+ },
+ {
+  "id": "gdc-2013:hr",
+  "league": "gdc",
+  "year": 2013,
+  "stat": "hr",
+  "athlete_id": "gdc_p0171",
+  "team": "gdc_kingfishers",
+  "value": 13
+ },
+ {
+  "id": "gdc-2013:rbi",
+  "league": "gdc",
+  "year": 2013,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002223",
+  "team": "gdc_loons",
+  "value": 40
+ },
+ {
+  "id": "gdc-2013:era",
+  "league": "gdc",
+  "year": 2013,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002131",
+  "team": "gdc_ore_haulers",
+  "value": 1.959
+ },
+ {
+  "id": "gdc-2013:w",
+  "league": "gdc",
+  "year": 2013,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002133",
+  "team": "gdc_ore_haulers",
+  "value": 9
+ },
+ {
+  "id": "gdc-2013:so",
+  "league": "gdc",
+  "year": 2013,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002158",
+  "team": "gdc_loons",
+  "value": 72
+ },
+ {
+  "id": "igl-2013:pass_yds",
+  "league": "igl",
+  "year": 2013,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003461",
+  "team": "igl_highlanders",
+  "value": 3569
+ },
+ {
+  "id": "igl-2013:rush_yds",
+  "league": "igl",
+  "year": 2013,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003396",
+  "team": "igl_highlanders",
+  "value": 2010
+ },
+ {
+  "id": "igl-2013:rec_yds",
+  "league": "igl",
+  "year": 2013,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003509",
+  "team": "igl_highlanders",
+  "value": 1069
+ },
+ {
+  "id": "igl-2013:sacks",
+  "league": "igl",
+  "year": 2013,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003485",
+  "team": "igl_highlanders",
+  "value": 15
+ },
+ {
+  "id": "ccl-2014:ppg",
+  "league": "ccl",
+  "year": 2014,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0275",
+  "team": "ccl_comets",
+  "value": 20.571
+ },
+ {
+  "id": "ccl-2014:rpg",
+  "league": "ccl",
+  "year": 2014,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 9.571
+ },
+ {
+  "id": "ccl-2014:apg",
+  "league": "ccl",
+  "year": 2014,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 5.357
+ },
+ {
+  "id": "fhl-2014:g",
+  "league": "fhl",
+  "year": 2014,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001112",
+  "team": "fhl_borealis",
+  "value": 17
+ },
+ {
+  "id": "fhl-2014:pts",
+  "league": "fhl",
+  "year": 2014,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001143",
+  "team": "fhl_snowowls",
+  "value": 27
+ },
+ {
+  "id": "fhl-2014:sv_pct",
+  "league": "fhl",
+  "year": 2014,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0547",
+  "team": "fhl_narwhals",
+  "value": 0.922
+ },
+ {
+  "id": "gdc-2014:avg",
+  "league": "gdc",
+  "year": 2014,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002169",
+  "team": "gdc_kingfishers",
+  "value": 0.392
+ },
+ {
+  "id": "gdc-2014:hr",
+  "league": "gdc",
+  "year": 2014,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002130",
+  "team": "gdc_millers",
+  "value": 12
+ },
+ {
+  "id": "gdc-2014:rbi",
+  "league": "gdc",
+  "year": 2014,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002215",
+  "team": "gdc_kingfishers",
+  "value": 36
+ },
+ {
+  "id": "gdc-2014:era",
+  "league": "gdc",
+  "year": 2014,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002128",
+  "team": "gdc_loons",
+  "value": 2.371
+ },
+ {
+  "id": "gdc-2014:w",
+  "league": "gdc",
+  "year": 2014,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002158",
+  "team": "gdc_loons",
+  "value": 10
+ },
+ {
+  "id": "gdc-2014:so",
+  "league": "gdc",
+  "year": 2014,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002149",
+  "team": "gdc_paddlers",
+  "value": 78
+ },
+ {
+  "id": "igl-2014:pass_yds",
+  "league": "igl",
+  "year": 2014,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003524",
+  "team": "igl_squall",
+  "value": 3600
+ },
+ {
+  "id": "igl-2014:rush_yds",
+  "league": "igl",
+  "year": 2014,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003496",
+  "team": "igl_thunderherd",
+  "value": 1940
+ },
+ {
+  "id": "igl-2014:rec_yds",
+  "league": "igl",
+  "year": 2014,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003470",
+  "team": "igl_smokejumpers",
+  "value": 1046
+ },
+ {
+  "id": "igl-2014:sacks",
+  "league": "igl",
+  "year": 2014,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003338",
+  "team": "igl_harvesters",
+  "value": 14
+ },
+ {
+  "id": "ccl-2015:ppg",
+  "league": "ccl",
+  "year": 2015,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000376",
+  "team": "ccl_jackrabbits",
+  "value": 21.321
+ },
+ {
+  "id": "ccl-2015:rpg",
+  "league": "ccl",
+  "year": 2015,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 10.321
+ },
+ {
+  "id": "ccl-2015:apg",
+  "league": "ccl",
+  "year": 2015,
+  "stat": "apg",
+  "athlete_id": "ccl_p0275",
+  "team": "ccl_comets",
+  "value": 5.214
+ },
+ {
+  "id": "fhl-2015:g",
+  "league": "fhl",
+  "year": 2015,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001054",
+  "team": "fhl_polars",
+  "value": 19
+ },
+ {
+  "id": "fhl-2015:pts",
+  "league": "fhl",
+  "year": 2015,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001181",
+  "team": "fhl_borealis",
+  "value": 31
+ },
+ {
+  "id": "fhl-2015:sv_pct",
+  "league": "fhl",
+  "year": 2015,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 0.914
+ },
+ {
+  "id": "gdc-2015:avg",
+  "league": "gdc",
+  "year": 2015,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002262",
+  "team": "gdc_loons",
+  "value": 0.385
+ },
+ {
+  "id": "gdc-2015:hr",
+  "league": "gdc",
+  "year": 2015,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002215",
+  "team": "gdc_kingfishers",
+  "value": 15
+ },
+ {
+  "id": "gdc-2015:rbi",
+  "league": "gdc",
+  "year": 2015,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002262",
+  "team": "gdc_loons",
+  "value": 49
+ },
+ {
+  "id": "gdc-2015:era",
+  "league": "gdc",
+  "year": 2015,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002133",
+  "team": "gdc_ore_haulers",
+  "value": 1.906
+ },
+ {
+  "id": "gdc-2015:w",
+  "league": "gdc",
+  "year": 2015,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002088",
+  "team": "gdc_loons",
+  "value": 7
+ },
+ {
+  "id": "gdc-2015:so",
+  "league": "gdc",
+  "year": 2015,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002175",
+  "team": "gdc_millers",
+  "value": 83
+ },
+ {
+  "id": "igl-2015:pass_yds",
+  "league": "igl",
+  "year": 2015,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003524",
+  "team": "igl_squall",
+  "value": 3677
+ },
+ {
+  "id": "igl-2015:rush_yds",
+  "league": "igl",
+  "year": 2015,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003468",
+  "team": "igl_smokejumpers",
+  "value": 2117
+ },
+ {
+  "id": "igl-2015:rec_yds",
+  "league": "igl",
+  "year": 2015,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003472",
+  "team": "igl_squall",
+  "value": 1121
+ },
+ {
+  "id": "igl-2015:sacks",
+  "league": "igl",
+  "year": 2015,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003495",
+  "team": "igl_smokejumpers",
+  "value": 15
+ },
+ {
+  "id": "ccl-2016:ppg",
+  "league": "ccl",
+  "year": 2016,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 21.786
+ },
+ {
+  "id": "ccl-2016:rpg",
+  "league": "ccl",
+  "year": 2016,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0275",
+  "team": "ccl_comets",
+  "value": 10.464
+ },
+ {
+  "id": "ccl-2016:apg",
+  "league": "ccl",
+  "year": 2016,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 5.464
+ },
+ {
+  "id": "fhl-2016:g",
+  "league": "fhl",
+  "year": 2016,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001115",
+  "team": "fhl_borealis",
+  "value": 17
+ },
+ {
+  "id": "fhl-2016:pts",
+  "league": "fhl",
+  "year": 2016,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001168",
+  "team": "fhl_rivets",
+  "value": 28
+ },
+ {
+  "id": "fhl-2016:sv_pct",
+  "league": "fhl",
+  "year": 2016,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_001081",
+  "team": "fhl_floes",
+  "value": 0.919
+ },
+ {
+  "id": "gdc-2016:avg",
+  "league": "gdc",
+  "year": 2016,
+  "stat": "avg",
+  "athlete_id": "gdc_p0150",
+  "team": "gdc_millers",
+  "value": 0.365
+ },
+ {
+  "id": "gdc-2016:hr",
+  "league": "gdc",
+  "year": 2016,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002263",
+  "team": "gdc_loons",
+  "value": 12
+ },
+ {
+  "id": "gdc-2016:rbi",
+  "league": "gdc",
+  "year": 2016,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002201",
+  "team": "gdc_paddlers",
+  "value": 38
+ },
+ {
+  "id": "gdc-2016:era",
+  "league": "gdc",
+  "year": 2016,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002183",
+  "team": "gdc_gilas",
+  "value": 2.7
+ },
+ {
+  "id": "gdc-2016:w",
+  "league": "gdc",
+  "year": 2016,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002295",
+  "team": "gdc_kingfishers",
+  "value": 8
+ },
+ {
+  "id": "gdc-2016:so",
+  "league": "gdc",
+  "year": 2016,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002186",
+  "team": "gdc_kingfishers",
+  "value": 70
+ },
+ {
+  "id": "igl-2016:pass_yds",
+  "league": "igl",
+  "year": 2016,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003617",
+  "team": "igl_thunderherd",
+  "value": 3456
+ },
+ {
+  "id": "igl-2016:rush_yds",
+  "league": "igl",
+  "year": 2016,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003548",
+  "team": "igl_rockslides",
+  "value": 1929
+ },
+ {
+  "id": "igl-2016:rec_yds",
+  "league": "igl",
+  "year": 2016,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003550",
+  "team": "igl_rockslides",
+  "value": 1004
+ },
+ {
+  "id": "igl-2016:sacks",
+  "league": "igl",
+  "year": 2016,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003485",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "ccl-2017:ppg",
+  "league": "ccl",
+  "year": 2017,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0257",
+  "team": "ccl_jackrabbits",
+  "value": 20.286
+ },
+ {
+  "id": "ccl-2017:rpg",
+  "league": "ccl",
+  "year": 2017,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000407",
+  "team": "ccl_satellites",
+  "value": 10.143
+ },
+ {
+  "id": "ccl-2017:apg",
+  "league": "ccl",
+  "year": 2017,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000385",
+  "team": "ccl_forge",
+  "value": 5.214
+ },
+ {
+  "id": "fhl-2017:g",
+  "league": "fhl",
+  "year": 2017,
+  "stat": "g",
+  "athlete_id": "fhl_p0529",
+  "team": "fhl_polars",
+  "value": 18
+ },
+ {
+  "id": "fhl-2017:pts",
+  "league": "fhl",
+  "year": 2017,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001100",
+  "team": "fhl_rivets",
+  "value": 35
+ },
+ {
+  "id": "fhl-2017:sv_pct",
+  "league": "fhl",
+  "year": 2017,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0547",
+  "team": "fhl_narwhals",
+  "value": 0.912
+ },
+ {
+  "id": "gdc-2017:avg",
+  "league": "gdc",
+  "year": 2017,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002206",
+  "team": "gdc_firebirds",
+  "value": 0.337
+ },
+ {
+  "id": "gdc-2017:hr",
+  "league": "gdc",
+  "year": 2017,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002206",
+  "team": "gdc_firebirds",
+  "value": 15
+ },
+ {
+  "id": "gdc-2017:rbi",
+  "league": "gdc",
+  "year": 2017,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002279",
+  "team": "gdc_lamplighters",
+  "value": 36
+ },
+ {
+  "id": "gdc-2017:era",
+  "league": "gdc",
+  "year": 2017,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002219",
+  "team": "gdc_lamplighters",
+  "value": 2.301
+ },
+ {
+  "id": "gdc-2017:w",
+  "league": "gdc",
+  "year": 2017,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002136",
+  "team": "gdc_paddlers",
+  "value": 7
+ },
+ {
+  "id": "gdc-2017:so",
+  "league": "gdc",
+  "year": 2017,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002172",
+  "team": "gdc_loons",
+  "value": 74
+ },
+ {
+  "id": "igl-2017:pass_yds",
+  "league": "igl",
+  "year": 2017,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003617",
+  "team": "igl_thunderherd",
+  "value": 3923
+ },
+ {
+  "id": "igl-2017:rush_yds",
+  "league": "igl",
+  "year": 2017,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003486",
+  "team": "igl_ironclads",
+  "value": 1988
+ },
+ {
+  "id": "igl-2017:rec_yds",
+  "league": "igl",
+  "year": 2017,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003645",
+  "team": "igl_harvesters",
+  "value": 1196
+ },
+ {
+  "id": "igl-2017:sacks",
+  "league": "igl",
+  "year": 2017,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003495",
+  "team": "igl_smokejumpers",
+  "value": 14
+ },
+ {
+  "id": "ccl-2018:ppg",
+  "league": "ccl",
+  "year": 2018,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 21.643
+ },
+ {
+  "id": "ccl-2018:rpg",
+  "league": "ccl",
+  "year": 2018,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0255",
+  "team": "ccl_jackrabbits",
+  "value": 10.107
+ },
+ {
+  "id": "ccl-2018:apg",
+  "league": "ccl",
+  "year": 2018,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000385",
+  "team": "ccl_forge",
+  "value": 5.321
+ },
+ {
+  "id": "fhl-2018:g",
+  "league": "fhl",
+  "year": 2018,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001156",
+  "team": "fhl_floes",
+  "value": 16
+ },
+ {
+  "id": "fhl-2018:pts",
+  "league": "fhl",
+  "year": 2018,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001138",
+  "team": "fhl_rivets",
+  "value": 27
+ },
+ {
+  "id": "fhl-2018:sv_pct",
+  "league": "fhl",
+  "year": 2018,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0589",
+  "team": "fhl_borealis",
+  "value": 0.913
+ },
+ {
+  "id": "gdc-2018:avg",
+  "league": "gdc",
+  "year": 2018,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002188",
+  "team": "gdc_kingfishers",
+  "value": 0.368
+ },
+ {
+  "id": "gdc-2018:hr",
+  "league": "gdc",
+  "year": 2018,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002294",
+  "team": "gdc_gilas",
+  "value": 14
+ },
+ {
+  "id": "gdc-2018:rbi",
+  "league": "gdc",
+  "year": 2018,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0172",
+  "team": "gdc_kingfishers",
+  "value": 40
+ },
+ {
+  "id": "gdc-2018:era",
+  "league": "gdc",
+  "year": 2018,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002317",
+  "team": "gdc_loons",
+  "value": 1.563
+ },
+ {
+  "id": "gdc-2018:w",
+  "league": "gdc",
+  "year": 2018,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002186",
+  "team": "gdc_kingfishers",
+  "value": 9
+ },
+ {
+  "id": "gdc-2018:so",
+  "league": "gdc",
+  "year": 2018,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002186",
+  "team": "gdc_kingfishers",
+  "value": 82
+ },
+ {
+  "id": "igl-2018:pass_yds",
+  "league": "igl",
+  "year": 2018,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003461",
+  "team": "igl_highlanders",
+  "value": 3366
+ },
+ {
+  "id": "igl-2018:rush_yds",
+  "league": "igl",
+  "year": 2018,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003666",
+  "team": "igl_undertow",
+  "value": 1950
+ },
+ {
+  "id": "igl-2018:rec_yds",
+  "league": "igl",
+  "year": 2018,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003550",
+  "team": "igl_rockslides",
+  "value": 950
+ },
+ {
+  "id": "igl-2018:sacks",
+  "league": "igl",
+  "year": 2018,
+  "stat": "sacks",
+  "athlete_id": "igl_p0508",
+  "team": "igl_ironclads",
+  "value": 14
+ },
+ {
+  "id": "ccl-2019:ppg",
+  "league": "ccl",
+  "year": 2019,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 20
+ },
+ {
+  "id": "ccl-2019:rpg",
+  "league": "ccl",
+  "year": 2019,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000384",
+  "team": "ccl_dustdevils",
+  "value": 10.143
+ },
+ {
+  "id": "ccl-2019:apg",
+  "league": "ccl",
+  "year": 2019,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000376",
+  "team": "ccl_jackrabbits",
+  "value": 5.25
+ },
+ {
+  "id": "fhl-2019:g",
+  "league": "fhl",
+  "year": 2019,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001106",
+  "team": "fhl_sawblades",
+  "value": 22
+ },
+ {
+  "id": "fhl-2019:pts",
+  "league": "fhl",
+  "year": 2019,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001143",
+  "team": "fhl_snowowls",
+  "value": 31
+ },
+ {
+  "id": "fhl-2019:sv_pct",
+  "league": "fhl",
+  "year": 2019,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_001102",
+  "team": "fhl_sawblades",
+  "value": 0.912
+ },
+ {
+  "id": "gdc-2019:avg",
+  "league": "gdc",
+  "year": 2019,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002294",
+  "team": "gdc_gilas",
+  "value": 0.383
+ },
+ {
+  "id": "gdc-2019:hr",
+  "league": "gdc",
+  "year": 2019,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002185",
+  "team": "gdc_gilas",
+  "value": 13
+ },
+ {
+  "id": "gdc-2019:rbi",
+  "league": "gdc",
+  "year": 2019,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002294",
+  "team": "gdc_gilas",
+  "value": 37
+ },
+ {
+  "id": "gdc-2019:era",
+  "league": "gdc",
+  "year": 2019,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002273",
+  "team": "gdc_paddlers",
+  "value": 1.948
+ },
+ {
+  "id": "gdc-2019:w",
+  "league": "gdc",
+  "year": 2019,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002265",
+  "team": "gdc_millers",
+  "value": 8
+ },
+ {
+  "id": "gdc-2019:so",
+  "league": "gdc",
+  "year": 2019,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002291",
+  "team": "gdc_firebirds",
+  "value": 80
+ },
+ {
+  "id": "igl-2019:pass_yds",
+  "league": "igl",
+  "year": 2019,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003524",
+  "team": "igl_squall",
+  "value": 3693
+ },
+ {
+  "id": "igl-2019:rush_yds",
+  "league": "igl",
+  "year": 2019,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003688",
+  "team": "igl_undertow",
+  "value": 2178
+ },
+ {
+  "id": "igl-2019:rec_yds",
+  "league": "igl",
+  "year": 2019,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003587",
+  "team": "igl_rockslides",
+  "value": 1042
+ },
+ {
+  "id": "igl-2019:sacks",
+  "league": "igl",
+  "year": 2019,
+  "stat": "sacks",
+  "athlete_id": "igl_p0361",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-2020:ppg",
+  "league": "ccl",
+  "year": 2020,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000377",
+  "team": "ccl_jackrabbits",
+  "value": 20.857
+ },
+ {
+  "id": "ccl-2020:rpg",
+  "league": "ccl",
+  "year": 2020,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 9.857
+ },
+ {
+  "id": "ccl-2020:apg",
+  "league": "ccl",
+  "year": 2020,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000384",
+  "team": "ccl_dustdevils",
+  "value": 5.25
+ },
+ {
+  "id": "fhl-2020:g",
+  "league": "fhl",
+  "year": 2020,
+  "stat": "g",
+  "athlete_id": "fhl_p0593",
+  "team": "fhl_borealis",
+  "value": 17
+ },
+ {
+  "id": "fhl-2020:pts",
+  "league": "fhl",
+  "year": 2020,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001157",
+  "team": "fhl_floes",
+  "value": 25
+ },
+ {
+  "id": "fhl-2020:sv_pct",
+  "league": "fhl",
+  "year": 2020,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0652",
+  "team": "fhl_rivets",
+  "value": 0.91
+ },
+ {
+  "id": "gdc-2020:avg",
+  "league": "gdc",
+  "year": 2020,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002232",
+  "team": "gdc_ore_haulers",
+  "value": 0.333
+ },
+ {
+  "id": "gdc-2020:hr",
+  "league": "gdc",
+  "year": 2020,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002234",
+  "team": "gdc_paddlers",
+  "value": 15
+ },
+ {
+  "id": "gdc-2020:rbi",
+  "league": "gdc",
+  "year": 2020,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002234",
+  "team": "gdc_paddlers",
+  "value": 46
+ },
+ {
+  "id": "gdc-2020:era",
+  "league": "gdc",
+  "year": 2020,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002254",
+  "team": "gdc_gilas",
+  "value": 1.819
+ },
+ {
+  "id": "gdc-2020:w",
+  "league": "gdc",
+  "year": 2020,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002202",
+  "team": "gdc_firebirds",
+  "value": 7
+ },
+ {
+  "id": "gdc-2020:so",
+  "league": "gdc",
+  "year": 2020,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002286",
+  "team": "gdc_millers",
+  "value": 79
+ },
+ {
+  "id": "igl-2020:pass_yds",
+  "league": "igl",
+  "year": 2020,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003524",
+  "team": "igl_squall",
+  "value": 3472
+ },
+ {
+  "id": "igl-2020:rush_yds",
+  "league": "igl",
+  "year": 2020,
+  "stat": "rush_yds",
+  "athlete_id": "igl_p0468",
+  "team": "igl_squall",
+  "value": 2001
+ },
+ {
+  "id": "igl-2020:rec_yds",
+  "league": "igl",
+  "year": 2020,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003705",
+  "team": "igl_squall",
+  "value": 982
+ },
+ {
+  "id": "igl-2020:sacks",
+  "league": "igl",
+  "year": 2020,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003695",
+  "team": "igl_harvesters",
+  "value": 14
+ },
+ {
+  "id": "ccl-2021:ppg",
+  "league": "ccl",
+  "year": 2021,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0237",
+  "team": "ccl_anchors",
+  "value": 21.571
+ },
+ {
+  "id": "ccl-2021:rpg",
+  "league": "ccl",
+  "year": 2021,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 10.321
+ },
+ {
+  "id": "ccl-2021:apg",
+  "league": "ccl",
+  "year": 2021,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000357",
+  "team": "ccl_voltage",
+  "value": 5.179
+ },
+ {
+  "id": "fhl-2021:g",
+  "league": "fhl",
+  "year": 2021,
+  "stat": "g",
+  "athlete_id": "fhl_p0656",
+  "team": "fhl_rivets",
+  "value": 19
+ },
+ {
+  "id": "fhl-2021:pts",
+  "league": "fhl",
+  "year": 2021,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001199",
+  "team": "fhl_floes",
+  "value": 31
+ },
+ {
+  "id": "fhl-2021:sv_pct",
+  "league": "fhl",
+  "year": 2021,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0526",
+  "team": "fhl_polars",
+  "value": 0.899
+ },
+ {
+  "id": "gdc-2021:avg",
+  "league": "gdc",
+  "year": 2021,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002251",
+  "team": "gdc_paddlers",
+  "value": 0.342
+ },
+ {
+  "id": "gdc-2021:hr",
+  "league": "gdc",
+  "year": 2021,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002266",
+  "team": "gdc_millers",
+  "value": 12
+ },
+ {
+  "id": "gdc-2021:rbi",
+  "league": "gdc",
+  "year": 2021,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002340",
+  "team": "gdc_ore_haulers",
+  "value": 37
+ },
+ {
+  "id": "gdc-2021:era",
+  "league": "gdc",
+  "year": 2021,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002311",
+  "team": "gdc_firebirds",
+  "value": 1.669
+ },
+ {
+  "id": "gdc-2021:w",
+  "league": "gdc",
+  "year": 2021,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002273",
+  "team": "gdc_paddlers",
+  "value": 9
+ },
+ {
+  "id": "gdc-2021:so",
+  "league": "gdc",
+  "year": 2021,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002317",
+  "team": "gdc_loons",
+  "value": 85
+ },
+ {
+  "id": "igl-2021:pass_yds",
+  "league": "igl",
+  "year": 2021,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0425",
+  "team": "igl_harvesters",
+  "value": 3845
+ },
+ {
+  "id": "igl-2021:rush_yds",
+  "league": "igl",
+  "year": 2021,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003691",
+  "team": "igl_harvesters",
+  "value": 2000
+ },
+ {
+  "id": "igl-2021:rec_yds",
+  "league": "igl",
+  "year": 2021,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003685",
+  "team": "igl_squall",
+  "value": 1050
+ },
+ {
+  "id": "igl-2021:sacks",
+  "league": "igl",
+  "year": 2021,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003565",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-2022:ppg",
+  "league": "ccl",
+  "year": 2022,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0277",
+  "team": "ccl_comets",
+  "value": 20
+ },
+ {
+  "id": "ccl-2022:rpg",
+  "league": "ccl",
+  "year": 2022,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0237",
+  "team": "ccl_anchors",
+  "value": 9.786
+ },
+ {
+  "id": "ccl-2022:apg",
+  "league": "ccl",
+  "year": 2022,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000430",
+  "team": "ccl_anchors",
+  "value": 5.536
+ },
+ {
+  "id": "fhl-2022:g",
+  "league": "fhl",
+  "year": 2022,
+  "stat": "g",
+  "athlete_id": "fhl_p0656",
+  "team": "fhl_rivets",
+  "value": 16
+ },
+ {
+  "id": "fhl-2022:pts",
+  "league": "fhl",
+  "year": 2022,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001156",
+  "team": "fhl_floes",
+  "value": 29
+ },
+ {
+  "id": "fhl-2022:sv_pct",
+  "league": "fhl",
+  "year": 2022,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0526",
+  "team": "fhl_polars",
+  "value": 0.913
+ },
+ {
+  "id": "gdc-2022:avg",
+  "league": "gdc",
+  "year": 2022,
+  "stat": "avg",
+  "athlete_id": "gdc_p0047",
+  "team": "gdc_ore_haulers",
+  "value": 0.365
+ },
+ {
+  "id": "gdc-2022:hr",
+  "league": "gdc",
+  "year": 2022,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002252",
+  "team": "gdc_paddlers",
+  "value": 13
+ },
+ {
+  "id": "gdc-2022:rbi",
+  "league": "gdc",
+  "year": 2022,
+  "stat": "rbi",
+  "athlete_id": "gdc_p0173",
+  "team": "gdc_kingfishers",
+  "value": 40
+ },
+ {
+  "id": "gdc-2022:era",
+  "league": "gdc",
+  "year": 2022,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002319",
+  "team": "gdc_ore_haulers",
+  "value": 2.25
+ },
+ {
+  "id": "gdc-2022:w",
+  "league": "gdc",
+  "year": 2022,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002305",
+  "team": "gdc_ore_haulers",
+  "value": 8
+ },
+ {
+  "id": "gdc-2022:so",
+  "league": "gdc",
+  "year": 2022,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002317",
+  "team": "gdc_loons",
+  "value": 79
+ },
+ {
+  "id": "igl-2022:pass_yds",
+  "league": "igl",
+  "year": 2022,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0509",
+  "team": "igl_ironclads",
+  "value": 3645
+ },
+ {
+  "id": "igl-2022:rush_yds",
+  "league": "igl",
+  "year": 2022,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003666",
+  "team": "igl_undertow",
+  "value": 2034
+ },
+ {
+  "id": "igl-2022:rec_yds",
+  "league": "igl",
+  "year": 2022,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003713",
+  "team": "igl_undertow",
+  "value": 1079
+ },
+ {
+  "id": "igl-2022:sacks",
+  "league": "igl",
+  "year": 2022,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003767",
+  "team": "igl_undertow",
+  "value": 13
+ },
+ {
+  "id": "ccl-2023:ppg",
+  "league": "ccl",
+  "year": 2023,
+  "stat": "ppg",
+  "athlete_id": "ccl_p0257",
+  "team": "ccl_jackrabbits",
+  "value": 20.643
+ },
+ {
+  "id": "ccl-2023:rpg",
+  "league": "ccl",
+  "year": 2023,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000430",
+  "team": "ccl_anchors",
+  "value": 9.536
+ },
+ {
+  "id": "ccl-2023:apg",
+  "league": "ccl",
+  "year": 2023,
+  "stat": "apg",
+  "athlete_id": "ccl_p0257",
+  "team": "ccl_jackrabbits",
+  "value": 5.607
+ },
+ {
+  "id": "fhl-2023:g",
+  "league": "fhl",
+  "year": 2023,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001250",
+  "team": "fhl_narwhals",
+  "value": 16
+ },
+ {
+  "id": "fhl-2023:pts",
+  "league": "fhl",
+  "year": 2023,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001250",
+  "team": "fhl_narwhals",
+  "value": 29
+ },
+ {
+  "id": "fhl-2023:sv_pct",
+  "league": "fhl",
+  "year": 2023,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_001245",
+  "team": "fhl_borealis",
+  "value": 0.919
+ },
+ {
+  "id": "gdc-2023:avg",
+  "league": "gdc",
+  "year": 2023,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002368",
+  "team": "gdc_kingfishers",
+  "value": 0.335
+ },
+ {
+  "id": "gdc-2023:hr",
+  "league": "gdc",
+  "year": 2023,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002398",
+  "team": "gdc_paddlers",
+  "value": 13
+ },
+ {
+  "id": "gdc-2023:rbi",
+  "league": "gdc",
+  "year": 2023,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002340",
+  "team": "gdc_ore_haulers",
+  "value": 37
+ },
+ {
+  "id": "gdc-2023:era",
+  "league": "gdc",
+  "year": 2023,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002319",
+  "team": "gdc_ore_haulers",
+  "value": 2.239
+ },
+ {
+  "id": "gdc-2023:w",
+  "league": "gdc",
+  "year": 2023,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002371",
+  "team": "gdc_lamplighters",
+  "value": 9
+ },
+ {
+  "id": "gdc-2023:so",
+  "league": "gdc",
+  "year": 2023,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002305",
+  "team": "gdc_ore_haulers",
+  "value": 85
+ },
+ {
+  "id": "igl-2023:pass_yds",
+  "league": "igl",
+  "year": 2023,
+  "stat": "pass_yds",
+  "athlete_id": "igl_mason_vale",
+  "team": "igl_highlanders",
+  "value": 3732
+ },
+ {
+  "id": "igl-2023:rush_yds",
+  "league": "igl",
+  "year": 2023,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003745",
+  "team": "igl_rockslides",
+  "value": 2232
+ },
+ {
+  "id": "igl-2023:rec_yds",
+  "league": "igl",
+  "year": 2023,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003727",
+  "team": "igl_rockslides",
+  "value": 1128
+ },
+ {
+  "id": "igl-2023:sacks",
+  "league": "igl",
+  "year": 2023,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003825",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-2024:ppg",
+  "league": "ccl",
+  "year": 2024,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000423",
+  "team": "ccl_forge",
+  "value": 20.714
+ },
+ {
+  "id": "ccl-2024:rpg",
+  "league": "ccl",
+  "year": 2024,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000469",
+  "team": "ccl_voltage",
+  "value": 8.821
+ },
+ {
+  "id": "ccl-2024:apg",
+  "league": "ccl",
+  "year": 2024,
+  "stat": "apg",
+  "athlete_id": "ccl_p0257",
+  "team": "ccl_jackrabbits",
+  "value": 5
+ },
+ {
+  "id": "fhl-2024:g",
+  "league": "fhl",
+  "year": 2024,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001313",
+  "team": "fhl_rivets",
+  "value": 18
+ },
+ {
+  "id": "fhl-2024:pts",
+  "league": "fhl",
+  "year": 2024,
+  "stat": "pts",
+  "athlete_id": "fhl_p0614",
+  "team": "fhl_floes",
+  "value": 31
+ },
+ {
+  "id": "fhl-2024:sv_pct",
+  "league": "fhl",
+  "year": 2024,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_001260",
+  "team": "fhl_yetis",
+  "value": 0.908
+ },
+ {
+  "id": "gdc-2024:avg",
+  "league": "gdc",
+  "year": 2024,
+  "stat": "avg",
+  "athlete_id": "gdc_p0173",
+  "team": "gdc_kingfishers",
+  "value": 0.344
+ },
+ {
+  "id": "gdc-2024:hr",
+  "league": "gdc",
+  "year": 2024,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002352",
+  "team": "gdc_kingfishers",
+  "value": 11
+ },
+ {
+  "id": "gdc-2024:rbi",
+  "league": "gdc",
+  "year": 2024,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002443",
+  "team": "gdc_lamplighters",
+  "value": 38
+ },
+ {
+  "id": "gdc-2024:era",
+  "league": "gdc",
+  "year": 2024,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002372",
+  "team": "gdc_lamplighters",
+  "value": 2.662
+ },
+ {
+  "id": "gdc-2024:w",
+  "league": "gdc",
+  "year": 2024,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002371",
+  "team": "gdc_lamplighters",
+  "value": 9
+ },
+ {
+  "id": "gdc-2024:so",
+  "league": "gdc",
+  "year": 2024,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002302",
+  "team": "gdc_millers",
+  "value": 84
+ },
+ {
+  "id": "igl-2024:pass_yds",
+  "league": "igl",
+  "year": 2024,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003743",
+  "team": "igl_ironclads",
+  "value": 3594
+ },
+ {
+  "id": "igl-2024:rush_yds",
+  "league": "igl",
+  "year": 2024,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003666",
+  "team": "igl_undertow",
+  "value": 2049
+ },
+ {
+  "id": "igl-2024:rec_yds",
+  "league": "igl",
+  "year": 2024,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003697",
+  "team": "igl_ironclads",
+  "value": 1093
+ },
+ {
+  "id": "igl-2024:sacks",
+  "league": "igl",
+  "year": 2024,
+  "stat": "sacks",
+  "athlete_id": "igl_p0361",
+  "team": "igl_thunderherd",
+  "value": 14
+ },
+ {
+  "id": "ccl-2025:ppg",
+  "league": "ccl",
+  "year": 2025,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000457",
+  "team": "ccl_voltage",
+  "value": 21.679
+ },
+ {
+  "id": "ccl-2025:rpg",
+  "league": "ccl",
+  "year": 2025,
+  "stat": "rpg",
+  "athlete_id": "ccl_p0302",
+  "team": "ccl_dustdevils",
+  "value": 9.607
+ },
+ {
+  "id": "ccl-2025:apg",
+  "league": "ccl",
+  "year": 2025,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000412",
+  "team": "ccl_forge",
+  "value": 5.143
+ },
+ {
+  "id": "fhl-2025:g",
+  "league": "fhl",
+  "year": 2025,
+  "stat": "g",
+  "athlete_id": "fhl_p0614",
+  "team": "fhl_floes",
+  "value": 19
+ },
+ {
+  "id": "fhl-2025:pts",
+  "league": "fhl",
+  "year": 2025,
+  "stat": "pts",
+  "athlete_id": "fhl_p0614",
+  "team": "fhl_floes",
+  "value": 36
+ },
+ {
+  "id": "fhl-2025:sv_pct",
+  "league": "fhl",
+  "year": 2025,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_generated_001217",
+  "team": "fhl_floes",
+  "value": 0.914
+ },
+ {
+  "id": "gdc-2025:avg",
+  "league": "gdc",
+  "year": 2025,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002349",
+  "team": "gdc_gilas",
+  "value": 0.345
+ },
+ {
+  "id": "gdc-2025:hr",
+  "league": "gdc",
+  "year": 2025,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002436",
+  "team": "gdc_firebirds",
+  "value": 14
+ },
+ {
+  "id": "gdc-2025:rbi",
+  "league": "gdc",
+  "year": 2025,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002431",
+  "team": "gdc_paddlers",
+  "value": 35
+ },
+ {
+  "id": "gdc-2025:era",
+  "league": "gdc",
+  "year": 2025,
+  "stat": "era",
+  "athlete_id": "gdc_p0091",
+  "team": "gdc_paddlers",
+  "value": 1.939
+ },
+ {
+  "id": "gdc-2025:w",
+  "league": "gdc",
+  "year": 2025,
+  "stat": "w",
+  "athlete_id": "gdc_generated_002364",
+  "team": "gdc_paddlers",
+  "value": 8
+ },
+ {
+  "id": "gdc-2025:so",
+  "league": "gdc",
+  "year": 2025,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002372",
+  "team": "gdc_lamplighters",
+  "value": 79
+ },
+ {
+  "id": "igl-2025:pass_yds",
+  "league": "igl",
+  "year": 2025,
+  "stat": "pass_yds",
+  "athlete_id": "igl_generated_003752",
+  "team": "igl_squall",
+  "value": 3728
+ },
+ {
+  "id": "igl-2025:rush_yds",
+  "league": "igl",
+  "year": 2025,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003809",
+  "team": "igl_ironclads",
+  "value": 2165
+ },
+ {
+  "id": "igl-2025:rec_yds",
+  "league": "igl",
+  "year": 2025,
+  "stat": "rec_yds",
+  "athlete_id": "igl_generated_003821",
+  "team": "igl_squall",
+  "value": 1081
+ },
+ {
+  "id": "igl-2025:sacks",
+  "league": "igl",
+  "year": 2025,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003730",
+  "team": "igl_smokejumpers",
+  "value": 13
+ },
+ {
+  "id": "gdc-2026:avg",
+  "league": "gdc",
+  "year": 2026,
+  "stat": "avg",
+  "athlete_id": "gdc_generated_002443",
+  "team": "gdc_lamplighters",
+  "value": 0.341
+ },
+ {
+  "id": "gdc-2026:hr",
+  "league": "gdc",
+  "year": 2026,
+  "stat": "hr",
+  "athlete_id": "gdc_generated_002340",
+  "team": "gdc_ore_haulers",
+  "value": 13
+ },
+ {
+  "id": "gdc-2026:rbi",
+  "league": "gdc",
+  "year": 2026,
+  "stat": "rbi",
+  "athlete_id": "gdc_generated_002473",
+  "team": "gdc_firebirds",
+  "value": 40
+ },
+ {
+  "id": "gdc-2026:era",
+  "league": "gdc",
+  "year": 2026,
+  "stat": "era",
+  "athlete_id": "gdc_generated_002319",
+  "team": "gdc_ore_haulers",
+  "value": 1.531
+ },
+ {
+  "id": "gdc-2026:w",
+  "league": "gdc",
+  "year": 2026,
+  "stat": "w",
+  "athlete_id": "gdc_d2026_051",
+  "team": "gdc_paddlers",
+  "value": 7
+ },
+ {
+  "id": "gdc-2026:so",
+  "league": "gdc",
+  "year": 2026,
+  "stat": "so",
+  "athlete_id": "gdc_generated_002454",
+  "team": "gdc_firebirds",
+  "value": 75
+ },
+ {
+  "id": "ccl-2026:ppg",
+  "league": "ccl",
+  "year": 2026,
+  "stat": "ppg",
+  "athlete_id": "ccl_generated_000401",
+  "team": "ccl_jackrabbits",
+  "value": 20.536
+ },
+ {
+  "id": "ccl-2026:rpg",
+  "league": "ccl",
+  "year": 2026,
+  "stat": "rpg",
+  "athlete_id": "ccl_generated_000407",
+  "team": "ccl_satellites",
+  "value": 9.393
+ },
+ {
+  "id": "ccl-2026:apg",
+  "league": "ccl",
+  "year": 2026,
+  "stat": "apg",
+  "athlete_id": "ccl_generated_000455",
+  "team": "ccl_satellites",
+  "value": 5.321
+ },
+ {
+  "id": "igl-2026:pass_yds",
+  "league": "igl",
+  "year": 2026,
+  "stat": "pass_yds",
+  "athlete_id": "igl_p0509",
+  "team": "igl_ironclads",
+  "value": 3683
+ },
+ {
+  "id": "igl-2026:rush_yds",
+  "league": "igl",
+  "year": 2026,
+  "stat": "rush_yds",
+  "athlete_id": "igl_generated_003810",
+  "team": "igl_rockslides",
+  "value": 1937
+ },
+ {
+  "id": "igl-2026:rec_yds",
+  "league": "igl",
+  "year": 2026,
+  "stat": "rec_yds",
+  "athlete_id": "igl_p0365",
+  "team": "igl_thunderherd",
+  "value": 1031
+ },
+ {
+  "id": "igl-2026:sacks",
+  "league": "igl",
+  "year": 2026,
+  "stat": "sacks",
+  "athlete_id": "igl_generated_003776",
+  "team": "igl_highlanders",
+  "value": 14
+ },
+ {
+  "id": "fhl-2026:g",
+  "league": "fhl",
+  "year": 2026,
+  "stat": "g",
+  "athlete_id": "fhl_generated_001329",
+  "team": "fhl_narwhals",
+  "value": 18
+ },
+ {
+  "id": "fhl-2026:pts",
+  "league": "fhl",
+  "year": 2026,
+  "stat": "pts",
+  "athlete_id": "fhl_generated_001266",
+  "team": "fhl_floes",
+  "value": 33
+ },
+ {
+  "id": "fhl-2026:sv_pct",
+  "league": "fhl",
+  "year": 2026,
+  "stat": "sv_pct",
+  "athlete_id": "fhl_p0553",
+  "team": "fhl_narwhals",
+  "value": 0.905
+ }
+]

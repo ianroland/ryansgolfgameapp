@@ -1,0 +1,141 @@
+{
+  "$id": "sports-lore/2/live_context",
+  "title": "sports-lore/2 live context (run time, never stored)",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "contract": {
+      "type": "string",
+      "const": "sports-lore/2"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2200
+    },
+    "week": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "scope": {
+      "type": "string",
+      "const": "save"
+    },
+    "leagues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "league": {
+            "type": "string",
+            "enum": [
+              "gdc",
+              "ccl",
+              "igl",
+              "fhl"
+            ]
+          },
+          "standings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "team": {
+                  "type": "string",
+                  "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+                },
+                "w": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "l": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "t": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "otl": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "team",
+                "w",
+                "l",
+                "t",
+                "otl"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "recent": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "week": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "home": {
+                  "type": "string",
+                  "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+                },
+                "away": {
+                  "type": "string",
+                  "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+                },
+                "home_score": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "away_score": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "id",
+                "week",
+                "home",
+                "away",
+                "home_score",
+                "away_score"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "league",
+          "standings",
+          "recent"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "contract",
+    "year",
+    "week",
+    "scope",
+    "leagues"
+  ],
+  "additionalProperties": false
+}

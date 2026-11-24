@@ -1,0 +1,130 @@
+{
+  "$id": "sports-lore/2/history/records.json",
+  "title": "sports-lore/2 history/records.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "kind": {
+        "type": "string",
+        "enum": [
+          "season",
+          "career",
+          "game",
+          "team"
+        ]
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "category": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "rank": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      },
+      "athlete_id": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "team": {
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "year": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2200
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "span": {
+        "anyOf": [
+          {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2200
+              },
+              {
+                "type": "integer",
+                "minimum": 1900,
+                "maximum": 2200
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "value": {
+        "type": "number"
+      },
+      "provenance": {
+        "type": "string",
+        "enum": [
+          "approved_canon",
+          "proposed_canon",
+          "derived_statistic",
+          "generated_history"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "kind",
+      "league",
+      "category",
+      "label",
+      "rank",
+      "athlete_id",
+      "team",
+      "year",
+      "span",
+      "value",
+      "provenance"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -281,13 +281,15 @@ describe('export and import (NPC Factory knowledge pack)', () => {
     expect(compareRevision('0.1.0-draft', '0.1.0')).toBeLessThan(0);
   });
 
-  it('the committed export in exports/ is current', () => {
-    const dir = join(__dirname, '../exports/sports-lore-0.1.3-draft');
-    const onDisk = (readdirSync(dir, { recursive: true }) as string[]).filter((f) => f.includes('.')).map((f) => f.replaceAll('\\', '/')).sort();
+  it('the committed export carries the current bible files unchanged (beside the sports-lore/2 extension)', () => {
+    const dir = join(__dirname, '../exports/sports-lore-0.2.0-draft');
+    const onDisk = new Set((readdirSync(dir, { recursive: true }) as string[]).filter((f) => f.includes('.')).map((f) => f.replaceAll('\\', '/')));
     const pkgVersion = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8')).version;
     const fresh = buildKnowledgePack(L, pkgVersion).files;
-    expect(onDisk).toEqual(Object.keys(fresh).sort());
-    for (const f of onDisk) if (f !== 'manifest.json') expect(readFileSync(join(dir, f), 'utf8'), f).toBe(fresh[f]);
+    for (const f of Object.keys(fresh)) {
+      expect(onDisk.has(f), f).toBe(true);
+      if (f !== 'manifest.json') expect(readFileSync(join(dir, f), 'utf8'), f).toBe(fresh[f]);
+    }
   });
 });
 

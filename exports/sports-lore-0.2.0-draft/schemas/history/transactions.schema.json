@@ -1,0 +1,73 @@
+{
+  "$id": "sports-lore/2/history/transactions.json",
+  "title": "sports-lore/2 history/transactions.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "league": {
+        "type": "string",
+        "enum": [
+          "gdc",
+          "ccl",
+          "igl",
+          "fhl"
+        ]
+      },
+      "year": {
+        "type": "integer",
+        "minimum": 1900,
+        "maximum": 2200
+      },
+      "type": {
+        "type": "string"
+      },
+      "athlete_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "from": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "to": {
+        "type": "string",
+        "pattern": "^(gdc|ccl|igl|fhl)_[a-z_]+$"
+      },
+      "note": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "event": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "league",
+      "year",
+      "type",
+      "athlete_id",
+      "from",
+      "to",
+      "note",
+      "event"
+    ],
+    "additionalProperties": false
+  }
+}
