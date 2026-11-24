@@ -46,7 +46,7 @@ function useSessionState<K extends 'tickets' | 'slip'>(key: K): [(typeof session
 
 const SPORT_LABEL = { baseball: 'Baseball', basketball: 'Basketball', football: 'Football', hockey: 'Hockey' } as const;
 
-const teamLabel = (id: string) => { const t = teamById(id); return `${t.city} ${t.name}`; };
+const teamLabel = (id: string) => teamById(id).displayName;
 const lineLabel = (g: DemoGame, l: DemoLine) => {
   if (l.market === 'moneyline') return `${teamById(l.side === 'home' ? g.home : g.away).name} ML`;
   if (l.market === 'spread') return `${teamById(l.side === 'home' ? g.home : g.away).name} ${l.point! > 0 ? '+' : ''}${l.point}`;
@@ -333,8 +333,8 @@ function FragmentRows({ g, lineBtn, open, toggle, unit }: { g: DemoGame; lineBtn
       <tr className="sb-game" data-testid={`sb-game-${g.id}`}>
         <td>
           <button className="sb-matchup" onClick={toggle} aria-expanded={open} data-testid={`sb-matchup-${g.id}`}>
-            <span><i style={{ background: away.colors[0] }} />{away.city} {away.name}</span>
-            <span><i style={{ background: home.colors[0] }} />@ {home.city} {home.name}</span>
+            <span><i style={{ background: away.colors[0] }} />{away.displayName}</span>
+            <span><i style={{ background: home.colors[0] }} />@ {home.displayName}</span>
             <em>{g.when}</em>
           </button>
         </td>

@@ -73,8 +73,8 @@
 
 | # | Decision | Status |
 |---|---|---|
-| 1 | League and team names (the design's §4 working names); trademark clearance | **Open** (a guard test blocks major-league nicknames only) |
-| 2 | Season lengths for the 30-week year: basketball 28, hockey 28, baseball 42, football 14 games; 2–3 playoff weeks | **Open** (proposed above) |
+| 1 | League and team names | **Approved 2026-11-23:** nationwide alignment, 32 teams (design §4). Trademark clearance still **open**. |
+| 2 | Season lengths: baseball 42 (6 per opponent), basketball 28 (4), football 14 (2), hockey 28 (4); balanced home and away | **Approved 2026-11-23** (`SEASON_FORMAT` in `src/sports/demo.ts`). Playoff length still open. |
 | 3 | Roster sizes (about 680 active players) | Open |
 | 4 | House margin 4.5% overround (configurable; realised hold is reported separately) | Open |
 | 5 | Stake limits $5 to $1,000 at Desert Palms; parlay cap 100× or $50,000 | Open |

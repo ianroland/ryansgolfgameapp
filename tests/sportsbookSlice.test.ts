@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { decimalOf, demoSlate, LEAGUES, TEAMS, teamsOf, toAmerican } from '../src/sports/demo';
+import { decimalOf, demoSlate, LEAGUES, SEASON_FORMAT, TEAMS, teamById, teamsOf, toAmerican } from '../src/sports/demo';
 import { parlayCheck, potentialReturn, SLIP_RULES, stakeCheck, toggleSelection, type Selection } from '../src/sports/slip';
 import { LOUNGES } from '../src/sports/themes';
 
@@ -12,7 +12,7 @@ describe('sportsbook demo data (Phase 1)', () => {
     expect(LEAGUES.map((l) => l.short)).toEqual(['GDC', 'CCL', 'IGL', 'FHL']);
     for (const l of LEAGUES) expect(teamsOf(l.id)).toHaveLength(8);
     expect(new Set(TEAMS.map((t) => t.id)).size).toBe(32);
-    expect(new Set(TEAMS.map((t) => `${t.city} ${t.name}`)).size).toBe(32);
+    expect(new Set(TEAMS.map((t) => t.displayName)).size).toBe(32);
   });
 
   it('no team uses a major-league nickname (guard only; a full clearance check is still needed)', () => {
@@ -37,6 +37,50 @@ describe('sportsbook demo data (Phase 1)', () => {
     expect(toAmerican(0.5)).toBe(-100);
     expect(decimalOf(150)).toBe(2.5);
     expect(decimalOf(-200)).toBe(1.5);
+  });
+});
+
+describe('nationwide sports universe (approved 2026-11-23)', () => {
+  const APPROVED: Record<string, string> = {
+    gdc_lamplighters: 'Boston Lamplighters', gdc_ore_haulers: 'Pittsburgh Ore Haulers', gdc_gilas: 'Tucson Gilas', gdc_paddlers: 'St. Louis Paddlers',
+    gdc_firebirds: 'Phoenix Firebirds', gdc_loons: 'Minneapolis Loons', gdc_millers: 'Milwaukee Millers', gdc_kingfishers: 'Charleston Kingfishers',
+    ccl_voltage: 'Los Angeles Voltage', ccl_monsoon: 'Miami Monsoon', ccl_anchors: 'Baltimore Anchors', ccl_jackrabbits: 'Denver Jackrabbits',
+    ccl_comets: 'Chicago Comets', ccl_dustdevils: 'Las Vegas Dustdevils', ccl_forge: 'Detroit Forge', ccl_satellites: 'Seattle Satellites',
+    igl_thunderherd: 'Oklahoma City Thunderherd', igl_undertow: 'Jacksonville Undertow', igl_rockslides: 'Salt Lake City Rockslides', igl_harvesters: 'Omaha Harvesters',
+    igl_highlanders: 'Asheville Highlanders', igl_squall: 'New Orleans Squall', igl_smokejumpers: 'Portland Smokejumpers', igl_ironclads: 'Cleveland Ironclads',
+    fhl_polars: 'Anchorage Polars', fhl_narwhals: 'Providence Narwhals', fhl_sawblades: 'Buffalo Sawblades', fhl_borealis: 'Duluth Borealis',
+    fhl_floes: 'Portland Floes (Maine)', fhl_yetis: 'Bozeman Yetis', fhl_rivets: 'Toledo Rivets', fhl_snowowls: 'Burlington Snowowls (Vermont)',
+  };
+
+  it('all 32 teams use the approved ids and full names, in their leagues', () => {
+    expect(Object.fromEntries(TEAMS.map((t) => [t.id, t.displayName]))).toEqual(APPROVED);
+    for (const t of TEAMS) expect(t.id.startsWith(`${t.league}_`)).toBe(true);
+  });
+
+  it('every team has a city and a two-letter state; the two Portlands are told apart', () => {
+    for (const t of TEAMS) expect(t.state, t.id).toMatch(/^[A-Z]{2}$/);
+    expect([teamById('igl_smokejumpers').city, teamById('igl_smokejumpers').state]).toEqual(['Portland', 'OR']);
+    expect([teamById('fhl_floes').city, teamById('fhl_floes').state]).toEqual(['Portland', 'ME']);
+    expect(new Set(TEAMS.map((t) => t.short)).size).toBe(32);
+  });
+
+  it('the rename kept every franchise: same nicknames, colours and demo strengths as before', () => {
+    expect(teamById('gdc_lamplighters')).toMatchObject({ name: 'Lamplighters', colors: ['#1d2f6b', '#c9a24a'], legacyKey: 'gdc_phl' });
+    expect(teamById('gdc_ore_haulers').name).toBe('Ore Haulers');
+    expect(new Set(TEAMS.map((t) => t.legacyKey)).size).toBe(32);
+  });
+
+  it('approved season format: balanced, equal home and away against every opponent', () => {
+    expect(SEASON_FORMAT).toEqual({
+      baseball: { gamesPerTeam: 42, meetingsPerOpponent: 6 },
+      basketball: { gamesPerTeam: 28, meetingsPerOpponent: 4 },
+      football: { gamesPerTeam: 14, meetingsPerOpponent: 2 },
+      hockey: { gamesPerTeam: 28, meetingsPerOpponent: 4 },
+    });
+    for (const f of Object.values(SEASON_FORMAT)) {
+      expect(f.gamesPerTeam).toBe(7 * f.meetingsPerOpponent);
+      expect(f.meetingsPerOpponent % 2).toBe(0);
+    }
   });
 });
 

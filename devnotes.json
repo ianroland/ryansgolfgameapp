@@ -2,6 +2,21 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.18.2",
+      "date": "2026-11-23",
+      "title": "Sportsbook goes nationwide",
+      "items": [
+        {
+          "tag": "improved",
+          "text": "The 32 sportsbook teams now play out of cities across the country, from the Boston Lamplighters to the Seattle Satellites. Nicknames and team colours are unchanged."
+        },
+        {
+          "tag": "improved",
+          "text": "Season lengths are set: baseball 42 games, basketball 28, football 14 and hockey 28, with every team meeting every opponent equally at home and away."
+        }
+      ]
+    },
+    {
       "version": "0.18.1",
       "date": "2026-11-23",
       "title": "Sportsbook lounges get their real look",

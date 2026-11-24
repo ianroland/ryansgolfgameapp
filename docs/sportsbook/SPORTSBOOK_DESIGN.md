@@ -86,63 +86,65 @@ src/ui/sports/                    phone app + sportsbook lounge screens
 - **Season lengths** are compressed from real sports (8 teams; fewer games) to keep the world small and readable.
 - **Off-season:** trades, free agency and retirements happen in each league's off-season window.
 
-## 4. Leagues and teams (original; working names)
+## 4. Leagues and teams (APPROVED 2026-11-23: nationwide)
 
-Every name below is original and invented for this game. **Before release, every league and team name needs a clearance check against existing leagues, franchises (including minor-league and college teams) and trademarks.** I've avoided real franchise nicknames, but I can't certify clearance.
+The nationwide alignment supersedes the earlier fictional-city proposal.
 
-All cities are fictional and use the game's desert/West flavour.
+- **Team IDs** are stable franchise ids (league + nickname). A city change only updates the display name.
+- **Team identity in the UI:** colour squares. League logos and team crests are deferred.
+- **Clearance:** these names are fictional and **not legally cleared** for commercial release. Worth checking first: *Phoenix Firebirds*, which was the name of a real minor-league baseball team, and *Oklahoma City Thunderherd*, which sits close to an existing Oklahoma City franchise name.
 
-### Grand Diamond Circuit (GDC): baseball
+### Grand Diamond Circuit (GDC): baseball, 42 games (6 per opponent)
 
-| Team | City | Colours | Crest idea |
+| Team ID | Official name | City | Colours |
 |---|---|---|---|
-| Lamplighters | Port Halcyon | navy / brass | harbour lamp |
-| Ore Haulers | Copper Flats | copper / charcoal | mine cart |
-| Gilas | Saguaro Bay | orange / black | gila lizard |
-| Paddlers | Riverbend | teal / white | crossed oars |
-| Firebirds | Cinder Peak | red / gold | flaming bird |
-| Loons | Lake Verity | forest / cream | diving loon |
-| Millers | North Marigold | wheat / brown | millstone |
-| Kingfishers | Tidewater | royal blue / orange | kingfisher |
+| `gdc_lamplighters` | Boston Lamplighters | Boston, MA | navy / brass |
+| `gdc_ore_haulers` | Pittsburgh Ore Haulers | Pittsburgh, PA | copper / charcoal |
+| `gdc_gilas` | Tucson Gilas | Tucson, AZ | orange / black |
+| `gdc_paddlers` | St. Louis Paddlers | St. Louis, MO | teal / white |
+| `gdc_firebirds` | Phoenix Firebirds | Phoenix, AZ | red / gold |
+| `gdc_loons` | Minneapolis Loons | Minneapolis, MN | forest green / cream |
+| `gdc_millers` | Milwaukee Millers | Milwaukee, WI | wheat / brown |
+| `gdc_kingfishers` | Charleston Kingfishers | Charleston, SC | royal blue / orange |
 
-### Crown Court League (CCL): basketball
+### Crown Court League (CCL): basketball, 28 games (4 per opponent)
 
-| Team | City | Colours | Crest idea |
+| Team ID | Official name | City | Colours |
 |---|---|---|---|
-| Voltage | Neon Coast | electric blue / black | lightning ball |
-| Monsoon | Silver Mesa | silver / storm purple | rain cloud |
-| Anchors | Harbor City | navy / red | anchor |
-| Jackrabbits | Juniper Falls | sage / tan | jackrabbit |
-| Comets | Calderon Heights | purple / white | comet |
-| Dustdevils | Dune Hollow | sand / rust | whirlwind |
-| Forge | Ironvale | steel / orange | anvil |
-| Satellites | Starlight Junction | black / cyan | satellite dish |
+| `ccl_voltage` | Los Angeles Voltage | Los Angeles, CA | electric blue / black |
+| `ccl_monsoon` | Miami Monsoon | Miami, FL | silver / storm purple |
+| `ccl_anchors` | Baltimore Anchors | Baltimore, MD | navy / red |
+| `ccl_jackrabbits` | Denver Jackrabbits | Denver, CO | sage / tan |
+| `ccl_comets` | Chicago Comets | Chicago, IL | purple / white |
+| `ccl_dustdevils` | Las Vegas Dustdevils | Las Vegas, NV | sand / rust |
+| `ccl_forge` | Detroit Forge | Detroit, MI | steel / orange |
+| `ccl_satellites` | Seattle Satellites | Seattle, WA | black / cyan |
 
-### Iron Gridiron League (IGL): football
+### Iron Gridiron League (IGL): football, 14 games (2 per opponent)
 
-| Team | City | Colours | Crest idea |
+| Team ID | Official name | City | Colours |
 |---|---|---|---|
-| Thunderherd | Badlands | brown / gold | stampede |
-| Undertow | Coastal Reach | sea green / navy | breaking wave |
-| Rockslides | Redrock Canyon | red rock / grey | boulders |
-| Harvesters | Prairie Crown | gold / green | sickle and wheat |
-| Highlanders | Summit Ridge | tartan green / white | mountain peak |
-| Squall | Gulfshore | aqua / grey | storm swirl |
-| Smokejumpers | Ember Valley | orange / black | parachute and flame |
-| Ironclads | Old Mill | iron / crimson | riveted shield |
+| `igl_thunderherd` | Oklahoma City Thunderherd | Oklahoma City, OK | brown / gold |
+| `igl_undertow` | Jacksonville Undertow | Jacksonville, FL | sea green / navy |
+| `igl_rockslides` | Salt Lake City Rockslides | Salt Lake City, UT | red rock / grey |
+| `igl_harvesters` | Omaha Harvesters | Omaha, NE | gold / green |
+| `igl_highlanders` | Asheville Highlanders | Asheville, NC | tartan green / white |
+| `igl_squall` | New Orleans Squall | New Orleans, LA | aqua / grey |
+| `igl_smokejumpers` | Portland Smokejumpers | Portland, OR | orange / black |
+| `igl_ironclads` | Cleveland Ironclads | Cleveland, OH | iron / crimson |
 
-### Frostline Hockey League (FHL): hockey
+### Frostline Hockey League (FHL): hockey, 28 games (4 per opponent)
 
-| Team | City | Colours | Crest idea |
+| Team ID | Official name | City | Colours |
 |---|---|---|---|
-| Polars | Glacier Point | white / ice blue | polar bear |
-| Narwhals | Northwind | teal / silver | narwhal |
-| Sawblades | Pinecrest | green / steel | sawblade |
-| Borealis | Aurora Bay | green / violet | aurora |
-| Floes | Ice Harbor | white / navy | ice floe |
-| Yetis | Frostfield | white / purple | yeti |
-| Rivets | Steelport | steel / yellow | rivet |
-| Snowowls | Crystal Lake | white / gold | snowy owl |
+| `fhl_polars` | Anchorage Polars | Anchorage, AK | white / ice blue |
+| `fhl_narwhals` | Providence Narwhals | Providence, RI | teal / silver |
+| `fhl_sawblades` | Buffalo Sawblades | Buffalo, NY | green / steel |
+| `fhl_borealis` | Duluth Borealis | Duluth, MN | green / violet |
+| `fhl_floes` | Portland Floes (Maine) | Portland, ME | white / navy |
+| `fhl_yetis` | Bozeman Yetis | Bozeman, MT | white / purple |
+| `fhl_rivets` | Toledo Rivets | Toledo, OH | steel / yellow |
+| `fhl_snowowls` | Burlington Snowowls (Vermont) | Burlington, VT | white / gold |
 
 ## 5. Players
 

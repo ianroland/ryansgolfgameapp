@@ -15,14 +15,23 @@ export type LeagueId = 'gdc' | 'ccl' | 'igl' | 'fhl';
 export type Sport = 'baseball' | 'basketball' | 'football' | 'hockey';
 
 export interface DemoTeam {
+  /** Stable franchise id (league + nickname). Never changes when a team's city does. */
   id: string;
   league: LeagueId;
+  /** Home city and state (two-letter code; disambiguates e.g. Portland, OR vs Portland, ME). */
   city: string;
+  state: string;
+  /** Nickname. */
   name: string;
+  /** Official full display name, used everywhere in the UI. */
+  displayName: string;
+  /** Short code shown in tight spaces (city-based). */
   short: string;
   colors: [string, string];
-  /** Demo strength 40-90 (hashed from the id; not the engine's ratings). */
+  /** Demo strength 40-90 (not the engine's ratings). Hashed from `legacyKey`, so the demo is unchanged by renames. */
   rating: number;
+  /** The id this franchise had in the v0.18.0 demo (hash key for demo data only). */
+  legacyKey: string;
 }
 
 export interface LeagueDef {
@@ -47,44 +56,64 @@ export const LEAGUES: readonly LeagueDef[] = [
   { id: 'fhl', name: 'Frostline Hockey League', short: 'FHL', sport: 'hockey', spreadName: 'Puck line', unit: 'goals', baseTotal: 5.5, spreadScale: 1, fixedSpread: 1.5 },
 ];
 
-const T = (league: LeagueId, city: string, name: string, short: string, c1: string, c2: string): DemoTeam => {
-  const id = `${league}_${short.toLowerCase()}`;
-  return { id, league, city, name, short, colors: [c1, c2], rating: 40 + (hashString(`demo-rating:${id}`) % 51) };
+/**
+ * Regular-season format (approved 2026-11-23): 8 teams per league, a balanced schedule with
+ * every opponent met the same number of times, half at home and half away.
+ */
+export const SEASON_FORMAT: Record<Sport, { gamesPerTeam: number; meetingsPerOpponent: number }> = {
+  baseball: { gamesPerTeam: 42, meetingsPerOpponent: 6 },
+  basketball: { gamesPerTeam: 28, meetingsPerOpponent: 4 },
+  football: { gamesPerTeam: 14, meetingsPerOpponent: 2 },
+  hockey: { gamesPerTeam: 28, meetingsPerOpponent: 4 },
 };
 
+const T = (league: LeagueId, nickname: string, city: string, state: string, displayName: string, short: string, legacyKey: string, c1: string, c2: string): DemoTeam => ({
+  id: `${league}_${nickname}`,
+  league,
+  city,
+  state,
+  name: nickname.split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' '),
+  displayName,
+  short,
+  colors: [c1, c2],
+  rating: 40 + (hashString(`demo-rating:${legacyKey}`) % 51),
+  legacyKey,
+});
+
+/** The nationwide sports universe (approved 2026-11-23). Names are fictional and not yet legally cleared. */
 export const TEAMS: readonly DemoTeam[] = [
-  T('gdc', 'Port Halcyon', 'Lamplighters', 'PHL', '#1d2f6b', '#c9a24a'),
-  T('gdc', 'Copper Flats', 'Ore Haulers', 'CFO', '#b8642c', '#2b2b2b'),
-  T('gdc', 'Saguaro Bay', 'Gilas', 'SBG', '#e2701d', '#141414'),
-  T('gdc', 'Riverbend', 'Paddlers', 'RBP', '#1f8a8a', '#f4f4f4'),
-  T('gdc', 'Cinder Peak', 'Firebirds', 'CPF', '#c41f2a', '#f2c230'),
-  T('gdc', 'Lake Verity', 'Loons', 'LVL', '#1f4d2b', '#efe6cc'),
-  T('gdc', 'North Marigold', 'Millers', 'NMM', '#d9b86a', '#5a3a1e'),
-  T('gdc', 'Tidewater', 'Kingfishers', 'TWK', '#2050c0', '#f08a24'),
-  T('ccl', 'Neon Coast', 'Voltage', 'NCV', '#1e7bff', '#0b0b0b'),
-  T('ccl', 'Silver Mesa', 'Monsoon', 'SMM', '#b8bcc6', '#5b3a8c'),
-  T('ccl', 'Harbor City', 'Anchors', 'HCA', '#14285a', '#c8202f'),
-  T('ccl', 'Juniper Falls', 'Jackrabbits', 'JFJ', '#8aa27a', '#c9a77a'),
-  T('ccl', 'Calderon Heights', 'Comets', 'CHC', '#5d2a8e', '#f4f4f4'),
-  T('ccl', 'Dune Hollow', 'Dustdevils', 'DHD', '#d8b879', '#9a3c1c'),
-  T('ccl', 'Ironvale', 'Forge', 'IVF', '#6f7783', '#ef7a1a'),
-  T('ccl', 'Starlight Junction', 'Satellites', 'SJS', '#111111', '#2fd5e8'),
-  T('igl', 'Badlands', 'Thunderherd', 'BLT', '#6a4022', '#e0b02c'),
-  T('igl', 'Coastal Reach', 'Undertow', 'CRU', '#2e8b6e', '#132a52'),
-  T('igl', 'Redrock Canyon', 'Rockslides', 'RCR', '#a8432b', '#8a8f96'),
-  T('igl', 'Prairie Crown', 'Harvesters', 'PCH', '#d6a92a', '#2c6b2f'),
-  T('igl', 'Summit Ridge', 'Highlanders', 'SRH', '#1f6a3a', '#f4f4f4'),
-  T('igl', 'Gulfshore', 'Squall', 'GSS', '#35b6c4', '#6e7681'),
-  T('igl', 'Ember Valley', 'Smokejumpers', 'EVS', '#ef6c1a', '#1a1a1a'),
-  T('igl', 'Old Mill', 'Ironclads', 'OMI', '#5d6670', '#a3162a'),
-  T('fhl', 'Glacier Point', 'Polars', 'GPP', '#f4f8ff', '#7ab8e8'),
-  T('fhl', 'Northwind', 'Narwhals', 'NWN', '#1f8c8c', '#c0c6cc'),
-  T('fhl', 'Pinecrest', 'Sawblades', 'PCS', '#1f5d32', '#8f9aa3'),
-  T('fhl', 'Aurora Bay', 'Borealis', 'ABB', '#27a35a', '#7b3fb5'),
-  T('fhl', 'Ice Harbor', 'Floes', 'IHF', '#eef3fb', '#16305e'),
-  T('fhl', 'Frostfield', 'Yetis', 'FFY', '#f4f4f4', '#5a2d8c'),
-  T('fhl', 'Steelport', 'Rivets', 'SPR', '#7b838c', '#f2c71b'),
-  T('fhl', 'Crystal Lake', 'Snowowls', 'CLS', '#fafafa', '#c9a24a'),
+  T('gdc', 'lamplighters', 'Boston', 'MA', 'Boston Lamplighters', 'BOS', 'gdc_phl', '#1d2f6b', '#c9a24a'),
+  T('gdc', 'ore_haulers', 'Pittsburgh', 'PA', 'Pittsburgh Ore Haulers', 'PIT', 'gdc_cfo', '#b8642c', '#2b2b2b'),
+  T('gdc', 'gilas', 'Tucson', 'AZ', 'Tucson Gilas', 'TUC', 'gdc_sbg', '#e2701d', '#141414'),
+  T('gdc', 'paddlers', 'St. Louis', 'MO', 'St. Louis Paddlers', 'STL', 'gdc_rbp', '#1f8a8a', '#f4f4f4'),
+  T('gdc', 'firebirds', 'Phoenix', 'AZ', 'Phoenix Firebirds', 'PHX', 'gdc_cpf', '#c41f2a', '#f2c230'),
+  T('gdc', 'loons', 'Minneapolis', 'MN', 'Minneapolis Loons', 'MIN', 'gdc_lvl', '#1f4d2b', '#efe6cc'),
+  T('gdc', 'millers', 'Milwaukee', 'WI', 'Milwaukee Millers', 'MIL', 'gdc_nmm', '#d9b86a', '#5a3a1e'),
+  T('gdc', 'kingfishers', 'Charleston', 'SC', 'Charleston Kingfishers', 'CHS', 'gdc_twk', '#2050c0', '#f08a24'),
+  T('ccl', 'voltage', 'Los Angeles', 'CA', 'Los Angeles Voltage', 'LA', 'ccl_ncv', '#1e7bff', '#0b0b0b'),
+  T('ccl', 'monsoon', 'Miami', 'FL', 'Miami Monsoon', 'MIA', 'ccl_smm', '#b8bcc6', '#5b3a8c'),
+  T('ccl', 'anchors', 'Baltimore', 'MD', 'Baltimore Anchors', 'BAL', 'ccl_hca', '#14285a', '#c8202f'),
+  T('ccl', 'jackrabbits', 'Denver', 'CO', 'Denver Jackrabbits', 'DEN', 'ccl_jfj', '#8aa27a', '#c9a77a'),
+  T('ccl', 'comets', 'Chicago', 'IL', 'Chicago Comets', 'CHI', 'ccl_chc', '#5d2a8e', '#f4f4f4'),
+  T('ccl', 'dustdevils', 'Las Vegas', 'NV', 'Las Vegas Dustdevils', 'LV', 'ccl_dhd', '#d8b879', '#9a3c1c'),
+  T('ccl', 'forge', 'Detroit', 'MI', 'Detroit Forge', 'DET', 'ccl_ivf', '#6f7783', '#ef7a1a'),
+  T('ccl', 'satellites', 'Seattle', 'WA', 'Seattle Satellites', 'SEA', 'ccl_sjs', '#111111', '#2fd5e8'),
+  T('igl', 'thunderherd', 'Oklahoma City', 'OK', 'Oklahoma City Thunderherd', 'OKC', 'igl_blt', '#6a4022', '#e0b02c'),
+  T('igl', 'undertow', 'Jacksonville', 'FL', 'Jacksonville Undertow', 'JAX', 'igl_cru', '#2e8b6e', '#132a52'),
+  T('igl', 'rockslides', 'Salt Lake City', 'UT', 'Salt Lake City Rockslides', 'SLC', 'igl_rcr', '#a8432b', '#8a8f96'),
+  T('igl', 'harvesters', 'Omaha', 'NE', 'Omaha Harvesters', 'OMA', 'igl_pch', '#d6a92a', '#2c6b2f'),
+  T('igl', 'highlanders', 'Asheville', 'NC', 'Asheville Highlanders', 'AVL', 'igl_srh', '#1f6a3a', '#f4f4f4'),
+  T('igl', 'squall', 'New Orleans', 'LA', 'New Orleans Squall', 'NO', 'igl_gss', '#35b6c4', '#6e7681'),
+  T('igl', 'smokejumpers', 'Portland', 'OR', 'Portland Smokejumpers', 'POR', 'igl_evs', '#ef6c1a', '#1a1a1a'),
+  T('igl', 'ironclads', 'Cleveland', 'OH', 'Cleveland Ironclads', 'CLE', 'igl_omi', '#5d6670', '#a3162a'),
+  T('fhl', 'polars', 'Anchorage', 'AK', 'Anchorage Polars', 'ANC', 'fhl_gpp', '#f4f8ff', '#7ab8e8'),
+  T('fhl', 'narwhals', 'Providence', 'RI', 'Providence Narwhals', 'PRO', 'fhl_nwn', '#1f8c8c', '#c0c6cc'),
+  T('fhl', 'sawblades', 'Buffalo', 'NY', 'Buffalo Sawblades', 'BUF', 'fhl_pcs', '#1f5d32', '#8f9aa3'),
+  T('fhl', 'borealis', 'Duluth', 'MN', 'Duluth Borealis', 'DUL', 'fhl_abb', '#27a35a', '#7b3fb5'),
+  T('fhl', 'floes', 'Portland', 'ME', 'Portland Floes (Maine)', 'PWM', 'fhl_ihf', '#eef3fb', '#16305e'),
+  T('fhl', 'yetis', 'Bozeman', 'MT', 'Bozeman Yetis', 'BZN', 'fhl_ffy', '#f4f4f4', '#5a2d8c'),
+  T('fhl', 'rivets', 'Toledo', 'OH', 'Toledo Rivets', 'TOL', 'fhl_spr', '#7b838c', '#f2c71b'),
+  T('fhl', 'snowowls', 'Burlington', 'VT', 'Burlington Snowowls (Vermont)', 'BTV', 'fhl_cls', '#fafafa', '#c9a24a'),
 ];
 
 export const teamById = (id: string) => TEAMS.find((t) => t.id === id)!;
@@ -132,7 +161,7 @@ const WHEN = ['Thu 7:05 PM', 'Fri 6:40 PM', 'Sat 1:10 PM', 'Sun 4:25 PM'];
 export function demoSlate(league: LeagueId): DemoGame[] {
   const L = leagueById(league);
   const teams = teamsOf(league);
-  const order = [...teams].sort((a, b) => (hashString(`slate:${a.id}`) % 997) - (hashString(`slate:${b.id}`) % 997));
+  const order = [...teams].sort((a, b) => (hashString(`slate:${a.legacyKey}`) % 997) - (hashString(`slate:${b.legacyKey}`) % 997));
   const games: DemoGame[] = [];
   for (let i = 0; i < 4; i++) {
     const home = order[i * 2];
@@ -143,7 +172,7 @@ export function demoSlate(league: LeagueId): DemoGame[] {
     const pa = (1 - p) * (1 + DEMO_MARGIN / 2);
     const spread = L.fixedSpread ?? Math.max(0.5, Math.round(Math.abs(diff) * L.spreadScale * 2) / 2);
     const favHome = diff >= 0;
-    const total = L.baseTotal + (((hashString(`total:${home.id}:${away.id}`) % 7) - 3) * (L.sport === 'basketball' ? 2 : L.sport === 'football' ? 1 : 0.5));
+    const total = L.baseTotal + (((hashString(`total:${home.legacyKey}:${away.legacyKey}`) % 7) - 3) * (L.sport === 'basketball' ? 2 : L.sport === 'football' ? 1 : 0.5));
     games.push({
       id: `demo:${league}:${home.short}-${away.short}`,
       league,
@@ -173,7 +202,7 @@ export function demoScores(league: LeagueId): DemoFinal[] {
   return [0, 1, 2, 3].map((i) => {
     const home = teams[(i * 3) % 8];
     const away = teams[(i * 3 + 5) % 8];
-    const h = hashString(`score:${home.id}:${away.id}`);
+    const h = hashString(`score:${home.legacyKey}:${away.legacyKey}`);
     const base = Math.round(L.baseTotal / 2);
     const spreadUnits = L.sport === 'basketball' ? 18 : L.sport === 'football' ? 14 : 4;
     const hs = Math.max(0, base + ((h % (spreadUnits * 2 + 1)) - spreadUnits) / 2 | 0);
@@ -187,19 +216,19 @@ export function demoStandings(league: LeagueId): DemoStanding[] {
   return teamsOf(league)
     .map((t) => {
       const w = Math.round(((t.rating - 40) / 50) * 12) + 2;
-      return { team: t.id, w, l: 14 - w, streak: `${hashString(`streak:${t.id}`) % 2 ? 'W' : 'L'}${1 + (hashString(`len:${t.id}`) % 4)}` };
+      return { team: t.id, w, l: 14 - w, streak: `${hashString(`streak:${t.legacyKey}`) % 2 ? 'W' : 'L'}${1 + (hashString(`len:${t.legacyKey}`) % 4)}` };
     })
-    .sort((a, b) => b.w - a.w || a.team.localeCompare(b.team));
+    .sort((a, b) => b.w - a.w || teamById(a.team).legacyKey.localeCompare(teamById(b.team).legacyKey));
 }
 
 export interface DemoNews { league: LeagueId; headline: string; body: string; tag: 'result' | 'injury' | 'trade' | 'milestone' }
 export function demoNews(): DemoNews[] {
-  const t = (id: string) => { const x = teamById(id); return `${x.city} ${x.name}`; };
+  const t = (id: string) => teamById(id).displayName;
   return [
-    { league: 'ccl', tag: 'result', headline: `${t('ccl_ncv')} rally late`, body: 'A 14-2 closing run settles it in the final two minutes. (Demo story.)' },
-    { league: 'fhl', tag: 'injury', headline: `${t('fhl_gpp')} goalie day-to-day`, body: 'Lower-body injury in the second period; listed as questionable. (Demo story.)' },
-    { league: 'gdc', tag: 'milestone', headline: `${t('gdc_cpf')} ace reaches 100 strikeouts`, body: 'Fastest to the mark in club history. (Demo story.)' },
-    { league: 'igl', tag: 'trade', headline: `${t('igl_pch')} add a veteran lineman`, body: 'A depth move ahead of the playoff push. (Demo story.)' },
+    { league: 'ccl', tag: 'result', headline: `${t('ccl_voltage')} rally late`, body: 'A 14-2 closing run settles it in the final two minutes. (Demo story.)' },
+    { league: 'fhl', tag: 'injury', headline: `${t('fhl_polars')} goalie day-to-day`, body: 'Lower-body injury in the second period; listed as questionable. (Demo story.)' },
+    { league: 'gdc', tag: 'milestone', headline: `${t('gdc_firebirds')} ace reaches 100 strikeouts`, body: 'Fastest to the mark in club history. (Demo story.)' },
+    { league: 'igl', tag: 'trade', headline: `${t('igl_harvesters')} add a veteran lineman`, body: 'A depth move ahead of the playoff push. (Demo story.)' },
   ];
 }
 
