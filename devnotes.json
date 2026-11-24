@@ -2,6 +2,25 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.19.9",
+   "date": "2026-11-24",
+   "title": "The Sports History Board",
+   "items": [
+    {
+     "tag": "new",
+     "text": "A new Sports History tab: fifty-plus years of the four leagues in one almanac. Browse every season's standings and playoffs, every champion, award and record, the Hall of Fame and the league's great moments."
+    },
+    {
+     "tag": "new",
+     "text": "Look up any player, from the 1970s founders to this year's rookies, with season-by-season stats, awards and titles. Your career's own seasons appear alongside the history as they're played."
+    },
+    {
+     "tag": "new",
+     "text": "A newspaper-style Year in Review for every completed season."
+    }
+   ]
+  },
+  {
    "version": "0.19.8",
    "date": "2026-11-24",
    "title": "The leagues live on",

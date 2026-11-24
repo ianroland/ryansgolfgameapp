@@ -153,3 +153,12 @@ It's idempotent across repeats, reloads and tabs.
 - A v4 save file can't be imported by v0.19.7 (it refuses newer schema versions).
 - Running v0.19.7 on a v4 database ignores the `sportsYears` table and the v3 flags. Seasons from 2028 would show the fixed rosters again, and a ticket placed on an evolved season would be graded against different games.
 - Before downgrading, settle open tickets or restore an export made with the older version.
+
+## The History Board (Phase E)
+
+The board (`src/ui/history/`, main tab "Sports History") reads this universe through a read-only layer:
+- `src/sports/archive/shared.ts` loads the shared files plus `archive.json` (season lines and playoff series, 1972–2026, derived by `scripts/history/build_archive.ts`).
+- `save.ts` adds the save's stored years and rebuilds any fixed-roster seasons a legacy save played.
+- `board.ts` combines them; every view reads the same season list.
+
+From v0.19.9, stored year summaries include each playoff series (`LeagueYear.series`). See `PHASE_E_REPORT.md`.

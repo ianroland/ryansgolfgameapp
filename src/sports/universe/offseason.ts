@@ -54,6 +54,8 @@ export interface LeagueYear {
   milestones: { i: string; stat: string; value: number }[];
   titleDrought: number | null;
   consecutive: number;
+  /** Playoff series (from v0.19.9; older rows have only `final`): wins [higher seed, lower seed]; games [higher seed at home 1/0, home score, away score, overtime]. */
+  series?: { round: 'semifinal' | 'final'; high: string; low: string; winner: string; wins: [number, number]; games: [number, number, number, number][] }[];
 }
 export interface YearSummary {
   year: number;
@@ -254,6 +256,7 @@ export function runOffseason(prev: UState, input: SeasonInput, seed: number, U: 
       final: { [final.high]: final.wins[0], [final.low]: final.wins[1] },
       awards: hon.awards, leaders: hon.leaders, comebacks, records: verdicts, milestones,
       titleDrought: last === undefined ? null : year - last - 1, consecutive,
+      series: s.playoffs.map((x) => ({ round: x.round, high: x.high, low: x.low, winner: x.winner, wins: [x.wins[0], x.wins[1]] as [number, number], games: x.games.map((g) => [g.home === x.high ? 1 : 0, g.result.homeScore, g.result.awayScore, g.result.ot] as [number, number, number, number]) })),
     };
   }
   steps.push('season final', 'tickets settled (service)', 'standings and champions', 'player stats', 'awards and records');
@@ -380,6 +383,34 @@ export function runOffseason(prev: UState, input: SeasonInput, seed: number, U: 
     hallOfFame: inducted.map((h) => ({ i: h.i, n: h.n, l: h.l, y: h.y, sc: h.sc, pathway: 'statistical' as const })),
   };
   return { next, summary, lines };
+}
+
+/**
+ * Every player's lines for a season that was played, without running an off-season (read-only).
+ * Used to rebuild seasons that a legacy save played on the fixed 2027 rosters before its yearly
+ * off-seasons began (they were never stored): the same games, so the same lines.
+ */
+export function seasonLinesOf(input: SeasonInput): YearLines {
+  const lines: YearLines = {};
+  for (const l of LEAGUE_IDS) {
+    const s = input.leagues[l];
+    const sport = sportOfLeague(l);
+    const rosters = new Map<string, typeof input.world.players>();
+    for (const p of input.world.players) if (p.sport === sport && s.standings.some((r) => r.team === p.teamId)) rosters.set(p.teamId, [...(rosters.get(p.teamId) ?? []), p]);
+    for (const [t, ps] of rosters) for (const p of ps) lines[p.id] = { t, r: {} };
+    const games: [PlayedGame, Series | undefined, number | undefined][] = [...s.regular.map((g) => [g, undefined, undefined] as [PlayedGame, undefined, undefined]), ...s.playoffs.flatMap((x) => x.games.map((g, n) => [g, x, n] as [PlayedGame, Series, number]))];
+    for (const [g, series, n] of games) {
+      const out = new Set(g.pre.out);
+      const avail = new Map([...rosters].filter(([t]) => t === g.home || t === g.away).map(([t, ps]) => [t, ps.filter((p) => !out.has(p.id))]));
+      for (const [pid, ln] of gameLines(toHGame(g, l, input.year, series, n), avail)) {
+        const e = lines[pid];
+        if (!e) continue;
+        if (g.pre.playoff) add((e.p ??= {}), ln);
+        else add(e.r, ln);
+      }
+    }
+  }
+  return lines;
 }
 
 /** Full rosters of the right shape, nobody twice, every rostered player active and on that team. */

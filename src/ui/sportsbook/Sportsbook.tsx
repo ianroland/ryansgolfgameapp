@@ -517,6 +517,7 @@ function LeagueHistory({ league, year }: { league: LeagueId; year: number }) {
     <div className="sb-history" data-testid="sb-history">
       <p className="sb-hist-head">
         <b>{t.name}</b> · founded {t.founded} · {t.trophy}
+        <span className="sb-foot"> Full archive, records and player profiles: the <b>Sports History</b> tab.</span>
         {t.canonStatus !== 'approved' && <span className="rpg-draft" title={`Proposed canon ${t.canonRevision}, not yet approved`}>Draft canon</span>}
       </p>
       <nav className="sb-hist-tabs" aria-label="History sections">

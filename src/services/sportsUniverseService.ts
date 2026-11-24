@@ -102,6 +102,22 @@ export class SportsUniverseService {
     return (await this.db.sportsYears.toArray()).filter((r) => r.chain === chainKey(ref)).sort((a, b) => a.year - b.year).map((r) => JSON.parse(r.summary) as YearSummary);
   }
 
+  /**
+   * Everything the History Board needs from this save, read-only: the stored years (summaries
+   * and player lines) and the newest stored state.
+   */
+  async historyInput(): Promise<{ rows: { year: number; summary: YearSummary; lines: YearLines }[]; state: UState | null }> {
+    const c = await this.db.careers.get('career');
+    const ref = c && evolveRefOf(c);
+    if (!ref) return { rows: [], state: null };
+    const rows = (await this.db.sportsYears.toArray()).filter((r) => r.chain === chainKey(ref)).sort((a, b) => a.year - b.year);
+    const latest = [...rows].reverse().find((r) => r.state);
+    return {
+      rows: rows.map((r) => ({ year: r.year, summary: JSON.parse(r.summary) as YearSummary, lines: JSON.parse(r.lines) as YearLines })),
+      state: latest?.state ? (JSON.parse(latest.state) as UState) : null,
+    };
+  }
+
   /** Player lines for one stored year. */
   async lines(year: number): Promise<YearLines | null> {
     const r = await this.db.sportsYears.get(`sy:${year}`);

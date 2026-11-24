@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { GAME_TITLE, fameLevel } from '../career/config';
 import type { TournamentDef } from '../career/tournament';
 import { getCatalogItem } from '../catalog/items';
@@ -37,9 +37,12 @@ import { encounterMayShow, encounterShouldAutoOpen, useOpenBlockingScreens, type
 import { storyOf } from '../story/appearance';
 import logoUrl from '../assets/logo_ryans_road.webp';
 
+/** The Sports History Board loads on first open (its archive is several MB). */
+const HistoryBoard = lazy(() => import('./history/HistoryBoard'));
+
 /** Clubhouse sub-screens. */
 export type Screen = 'home' | 'store' | 'edit' | 'trophies';
-type Tab = 'career' | 'schedule' | 'stats' | 'records' | 'legacy' | 'shop' | 'people' | 'clubhouse' | 'casino';
+type Tab = 'career' | 'schedule' | 'stats' | 'records' | 'legacy' | 'shop' | 'people' | 'clubhouse' | 'casino' | 'sports';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'career', label: 'Career' },
@@ -51,6 +54,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'people', label: 'People' },
   { id: 'clubhouse', label: 'Home' },
   { id: 'casino', label: 'Casino' },
+  { id: 'sports', label: 'Sports History' },
 ];
 
 const SUBSCREENS: { id: Screen; label: string }[] = [
@@ -232,6 +236,11 @@ export function App() {
           <div hidden={tab !== 'casino'}>
             <CasinoPanel />
           </div>
+          {tab === 'sports' && (
+            <Suspense fallback={<main className="hb"><div className="hb-state" role="status"><p className="hb-loading">Opening the archive…</p></div></main>}>
+              <HistoryBoard />
+            </Suspense>
+          )}
           {tab === 'clubhouse' && (
             <main className="layout">
               <section className="stage-wrap" aria-label="Ryan's home">
