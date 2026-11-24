@@ -2127,8 +2127,9 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
   .sb-clerk-art .sb-clerk-line { font-size: max(10px, 0.8cqw); text-align: center; }
   .sb-clerk-art .sb-clerk-portrait.sb-clerk-img { width: 7.6cqw; height: 7.6cqw; }
   .sb-clerk-art .sb-clerk-text { text-align: center; }
-  .sb-clerk-art .sb-clerk-name { font-size: max(9px, 0.7cqw); }
-  .sb-clerk-art .sb-clerk-line { font-size: max(9px, 0.72cqw); line-height: 1.25; }
+  .sb-clerk-art .sb-clerk-name { font-size: max(9px, 0.78cqw); }
+  /* Emmett's lines, a size up (owner request 2026-11-24); every line still fits the box (checked at 1024-2560px). */
+  .sb-clerk-art .sb-clerk-line { font-size: max(9px, 0.9cqw); line-height: 1.2; }
   .sb-clerk-art .sb-clerk-more { font-size: max(8px, 0.65cqw); }
   .sb-confirm { z-index: 10; }
 }

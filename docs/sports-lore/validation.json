@@ -1,0 +1,150 @@
+{
+ "generated": "2026-11-24",
+ "seasons": 208,
+ "games": 23520,
+ "playoffGames": 2294,
+ "overtimeGames": 2220,
+ "playerGameLines": 659924,
+ "gates": [
+  {
+   "gate": "Season completeness, schedules, team records, playoffs, player assignments, per-game arithmetic, event references",
+   "checked": 208,
+   "failures": 0,
+   "examples": []
+  },
+  {
+   "gate": "Every league season from founding to 2026 is present",
+   "checked": 208,
+   "failures": 0,
+   "examples": []
+  },
+  {
+   "gate": "Career totals equal the sum of season lines (archive v careers.json)",
+   "checked": 4534,
+   "failures": 0,
+   "examples": []
+  },
+  {
+   "gate": "Awards: MVP every season, championship MVP on the champion, rookies in their debut season, no Coach of the Year",
+   "checked": 208,
+   "failures": 0,
+   "examples": []
+  },
+  {
+   "gate": "Hall of Fame: five-year wait, eight seasons, the league bar (statistical); owner-approved Legends only; once per player",
+   "checked": 103,
+   "failures": 0,
+   "examples": []
+  },
+  {
+   "gate": "Records trace to source data (single game, season and career entries)",
+   "checked": 237,
+   "failures": 0,
+   "examples": []
+  },
+  {
+   "gate": "Drafts and transactions agree with player career segments",
+   "checked": 3885,
+   "failures": 0,
+   "examples": []
+  }
+ ],
+ "missingRookieAward": [
+  "gdc-1972",
+  "gdc-1973",
+  "ccl-1974",
+  "gdc-1974",
+  "ccl-1975",
+  "gdc-1975",
+  "ccl-1976",
+  "igl-1976",
+  "ccl-1977",
+  "igl-1977",
+  "fhl-1978",
+  "igl-1978",
+  "ccl-1980"
+ ],
+ "bibleEvents": [
+  {
+   "id": "gdc-1972-001",
+   "title": "The Eight Owners' Agreement",
+   "inGames": false
+  },
+  {
+   "id": "gdc-1983-001",
+   "title": "The Summer of Elias Voss",
+   "inGames": true
+  },
+  {
+   "id": "gdc-1998-001",
+   "title": "The Boston Collapse",
+   "inGames": true
+  },
+  {
+   "id": "gdc-2011-001",
+   "title": "The Charleston Signal Scandal",
+   "inGames": false
+  },
+  {
+   "id": "ccl-1974-001",
+   "title": "The Crown Ball Revolution",
+   "inGames": false
+  },
+  {
+   "id": "ccl-1987-001",
+   "title": "The Voltage-Comets War",
+   "inGames": true
+  },
+  {
+   "id": "ccl-1996-001",
+   "title": "The Las Vegas Miracle",
+   "inGames": true
+  },
+  {
+   "id": "ccl-2008-001",
+   "title": "The Detroit-Miami Trade",
+   "inGames": false
+  },
+  {
+   "id": "igl-1976-001",
+   "title": "The Saturday Pact",
+   "inGames": false
+  },
+  {
+   "id": "igl-1985-001",
+   "title": "The Cleveland Wall",
+   "inGames": true
+  },
+  {
+   "id": "igl-1994-001",
+   "title": "The Phantom Touchdown",
+   "inGames": true
+  },
+  {
+   "id": "igl-2016-001",
+   "title": "The Asheville Run",
+   "inGames": true
+  },
+  {
+   "id": "fhl-1978-001",
+   "title": "The Northern Eight Agreement",
+   "inGames": false
+  },
+  {
+   "id": "fhl-1989-001",
+   "title": "The 71-Save Night",
+   "inGames": true
+  },
+  {
+   "id": "fhl-2002-001",
+   "title": "The Frozen Border Series",
+   "inGames": true
+  },
+  {
+   "id": "fhl-2019-001",
+   "title": "The Burlington Breakthrough",
+   "inGames": true
+  }
+ ],
+ "seconds": 10
+}
