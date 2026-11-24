@@ -1,0 +1,164 @@
+[
+  {
+    "id": "gus_pettibone",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/gus_pettibone/neutral.png",
+    "bytes": 18661
+  },
+  {
+    "id": "gus_pettibone",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/gus_pettibone/happy.png",
+    "bytes": 17685
+  },
+  {
+    "id": "gus_pettibone",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/gus_pettibone/groan.png",
+    "bytes": 20949
+  },
+  {
+    "id": "dee_ruiz",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/dee_ruiz/neutral.png",
+    "bytes": 14722
+  },
+  {
+    "id": "dee_ruiz",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/dee_ruiz/happy.png",
+    "bytes": 13852
+  },
+  {
+    "id": "dee_ruiz",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/dee_ruiz/groan.png",
+    "bytes": 16811
+  },
+  {
+    "id": "wendell_fry",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/wendell_fry/neutral.png",
+    "bytes": 19918
+  },
+  {
+    "id": "wendell_fry",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/wendell_fry/happy.png",
+    "bytes": 18982
+  },
+  {
+    "id": "wendell_fry",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/wendell_fry/groan.png",
+    "bytes": 20562
+  },
+  {
+    "id": "walt_greer",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/walt_greer/neutral.png",
+    "bytes": 20701
+  },
+  {
+    "id": "walt_greer",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/walt_greer/happy.png",
+    "bytes": 19140
+  },
+  {
+    "id": "walt_greer",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/walt_greer/groan.png",
+    "bytes": 20383
+  },
+  {
+    "id": "corinne_bales",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/corinne_bales/neutral.png",
+    "bytes": 19439
+  },
+  {
+    "id": "corinne_bales",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/corinne_bales/happy.png",
+    "bytes": 18694
+  },
+  {
+    "id": "corinne_bales",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/corinne_bales/groan.png",
+    "bytes": 19458
+  },
+  {
+    "id": "toby_fenn",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/toby_fenn/neutral.png",
+    "bytes": 19440
+  },
+  {
+    "id": "toby_fenn",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/toby_fenn/happy.png",
+    "bytes": 18406
+  },
+  {
+    "id": "toby_fenn",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/toby_fenn/groan.png",
+    "bytes": 19748
+  },
+  {
+    "id": "victor_sloane",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/victor_sloane/neutral.png",
+    "bytes": 16067
+  },
+  {
+    "id": "victor_sloane",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/victor_sloane/happy.png",
+    "bytes": 15005
+  },
+  {
+    "id": "victor_sloane",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/victor_sloane/groan.png",
+    "bytes": 17383
+  },
+  {
+    "id": "anika_raman",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/anika_raman/neutral.png",
+    "bytes": 15504
+  },
+  {
+    "id": "anika_raman",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/anika_raman/happy.png",
+    "bytes": 14314
+  },
+  {
+    "id": "anika_raman",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/anika_raman/groan.png",
+    "bytes": 15601
+  },
+  {
+    "id": "rosalind_crane",
+    "face": "neutral",
+    "path": "src/assets/casino/npcs/regulars/rosalind_crane/neutral.png",
+    "bytes": 17857
+  },
+  {
+    "id": "rosalind_crane",
+    "face": "happy",
+    "path": "src/assets/casino/npcs/regulars/rosalind_crane/happy.png",
+    "bytes": 17387
+  },
+  {
+    "id": "rosalind_crane",
+    "face": "groan",
+    "path": "src/assets/casino/npcs/regulars/rosalind_crane/groan.png",
+    "bytes": 19169
+  }
+]

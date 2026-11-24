@@ -19,6 +19,8 @@ import { formatMoney } from '../format';
 import { celebrateWin } from './BigWin';
 import { useCasinoLocation } from './casinoLocation';
 import { ServerPanel, signalRoundComplete } from './ServerPanel';
+import { ShownBalance } from './ShownBalance';
+import { freezeBalance } from './balanceHold';
 import { RANKS, SUITS } from './TableBits';
 import { BALLS, MACHINE_THEMES, METER_BET, METER_WIN, PANEL_BG, pieceMeta, pieceUrl, type Piece } from './machineThemes';
 
@@ -240,11 +242,16 @@ function VideoPoker({ onBusy }: { onBusy: (b: boolean) => void }) {
     if (busy || !pending) return;
     setBusy(true);
     sound.play('ui_click');
+    const release = freezeBalance(state.balance);
     const out = await run(() => services.casino.finishVideoPoker(pending.roundId, held));
-    if (!out) return setBusy(false);
+    if (!out) {
+      release();
+      return setBusy(false);
+    }
     setDone(out);
     setDealKey((k) => k + 1);
     timers.current.push(window.setTimeout(() => {
+      release();
       setBusy(false);
       signalRoundComplete(services);
       const net = out.result.payout - out.staked;
@@ -331,7 +338,7 @@ function VideoPoker({ onBusy }: { onBusy: (b: boolean) => void }) {
             <p className={`vp-status ${win > 0 ? 'win' : ''}`} data-testid="vp-status" aria-live="polite">{status}</p>
           </div>
           <div className="mach-meters">
-            <span className="mach-credit">Credit <b>{formatMoney(state.balance)}</b></span>
+            <span className="mach-credit">Credit <b><ShownBalance real={state.balance} /></b></span>
             <Meter kind={METER_BET} label="Bet" value={formatMoney(vpStake(pending ? pending.denom : denom, shownCoins))} />
             <Meter kind={METER_WIN} label="Win" value={formatMoney(win)} testId="vp-win" />
           </div>
@@ -421,8 +428,13 @@ function Keno({ onBusy }: { onBusy: (b: boolean) => void }) {
     setResult(null);
     setShown(0);
     sound.play('ui_confirm');
+    // Paid at once; the bank on screen waits until the last ball is out.
+    const release = freezeBalance(state.balance - bet);
     const out = await run(() => services.casino.playKeno(picks, bet));
-    if (!out) return setBusy(false);
+    if (!out) {
+      release();
+      return setBusy(false);
+    }
     const r = out.result;
     setResult(r);
     const ticket = new Set(r.picks);
@@ -431,6 +443,7 @@ function Keno({ onBusy }: { onBusy: (b: boolean) => void }) {
       if (ticket.has(n)) sound.play('meter_set', { volume: 0.5 });
     }, (i + 1) * BALL_MS)));
     timers.current.push(window.setTimeout(() => {
+      release();
       setBusy(false);
       signalRoundComplete(services);
       celebrateWin(r.payout - bet, bet);
@@ -498,7 +511,7 @@ function Keno({ onBusy }: { onBusy: (b: boolean) => void }) {
             ))}
           </div>
           <div className="mach-meters">
-            <span className="mach-credit">Credit <b>{formatMoney(state.balance)}</b></span>
+            <span className="mach-credit">Credit <b><ShownBalance real={state.balance} /></b></span>
             <Meter kind={METER_BET} label="Bet" value={formatMoney(bet)} />
             <Meter kind={METER_WIN} label="Win" value={formatMoney(win)} testId="keno-win" />
           </div>

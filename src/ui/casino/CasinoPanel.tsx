@@ -19,6 +19,8 @@ import { Greyhounds } from './Greyhounds';
 import { Sportsbook } from '../sportsbook/Sportsbook';
 import { VideoMachine } from './Machines';
 import { SpinWheel } from './SpinWheel';
+import { ShownBalance } from './ShownBalance';
+import { freezeBalance } from './balanceHold';
 import { BetChip, PlayingCard } from './TableBits';
 import { Baccarat, ThreeCard } from './WWTables';
 import { DialogueBox, MoniqueRest, MoniqueSprite, REACH_MS, useMonique } from './Monique';
@@ -45,6 +47,10 @@ import {
 } from './crapsRegulars';
 import type { LocationId } from '../../expansion/unlocks';
 import { regularPortrait } from './regularPortraits';
+import { SpriteFrame } from '../story/Sprite';
+import { portraitKey } from '../../story/sprites';
+import { RYAN_ID } from '../../story/cast';
+import { appearanceOf } from '../../story/appearance';
 
 /*
  * Presentation only. Every rule, wager and settlement call below is the same
@@ -530,8 +536,10 @@ function Craps() {
     setCall('Dice are out!');
     stick.play('call');
     sound.play('swing', { volume: 0.5 });
+    const release = freezeBalance(state.balance);
     const r = await run(() => services.casino.crapsRoll());
     await new Promise((res) => window.setTimeout(res, 700));
+    release();
     setRolling(false);
     setFrozen(null);
     if (!r) return setBusy(false);
@@ -743,7 +751,7 @@ function Craps() {
             if (who === 'ryan') {
               return (
                 <div key="ryan" className={`cr-seat ryan ${isShooter ? 'shooting' : ''}`} data-testid="craps-seat-ryan">
-                  <span className="cr-badge" style={{ background: '#2f6fd6' }}>R</span>
+                  <span className="cr-badge cr-portrait cr-ryan"><SpriteFrame who={RYAN_ID} frame={portraitKey(RYAN_ID, 'neutral', appearanceOf(state.career))} height={40} /></span>
                   <span className="cr-name">Ryan{isShooter && <em className="cr-dice" title="Has the dice">⚄</em>}</span>
                   <span className="cr-info">You · riding {formatMoney(onTable(table))}</span>
                 </div>
@@ -1096,7 +1104,7 @@ export function CasinoPanel() {
           <p className="muted">Blackjack, slots, video poker, keno, Spin to Win, craps, roulette, baccarat, Three Card Poker and greyhound racing. In-game money only.</p>
         </div>
         <dl className="casino-stats">
-          <div><dt>Bank</dt><dd>{formatMoney(state.balance)}</dd></div>
+          <div><dt>Bank</dt><dd><ShownBalance real={state.balance} /></dd></div>
           <div><dt>Casino all-time</dt><dd className={net >= 0 ? 'pos' : 'neg'}>{formatMoney(net, true)}</dd></div>
           <div><dt>Biggest win</dt><dd>{formatMoney(Number(c.flags.casinoBiggestWin ?? 0))}</dd></div>
         </dl>

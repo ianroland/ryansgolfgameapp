@@ -1,6 +1,6 @@
 # Craps regulars: APPROVED
 
-Version 0.20.4. These are the nine craps regulars (three per casino), with their lines and Stick Lady's streak calls. The owner **approved** all of them on 2026-11-24, and the game shows the lines without a draft tag. Portraits are next, via NPC Factory: see `docs/npc-factory/CRAPS_REGULARS_PORTRAITS.md`. The code is in `src/ui/casino/crapsRegulars.ts` (shooter and mood: `src/casino/crapsShooter.ts`); the lines below are generated from that file, so they match exactly.
+Version 0.20.4. These are the nine craps regulars (three per casino), with their lines and Stick Lady's streak calls. The owner **approved** all of them on 2026-11-24, and the game shows the lines without a draft tag. Portraits: see Status below. The code is in `src/ui/casino/crapsRegulars.ts` (shooter and mood: `src/casino/crapsShooter.ts`); the lines below are generated from that file, so they match exactly.
 
 ## How the table works
 
@@ -20,7 +20,7 @@ Version 0.20.4. These are the nine craps regulars (three per casino), with their
 
 - **Characters, betting styles and lines:** approved (2026-11-24).
 - **Stick Lady's streak calls:** approved (2026-11-24). Her other new craps calls (a Come bet moving, a Place win, a hardway win, a one-roll win) are still drafts.
-- **Portraits:** requested from NPC Factory. The game uses them automatically once they're dropped in.
+- **Portraits:** in the game (0.20.6), from the CRAPS_REGULARS_ASSET_PACK, with three faces each. The face follows the regular's last roll: happy after a win, groan after a loss. Ryan's seat shows her own portrait, which follows her current look.
 
 ## Desert Palms
 

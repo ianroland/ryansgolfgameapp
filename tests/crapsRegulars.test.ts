@@ -108,7 +108,7 @@ describe('the regulars', () => {
 });
 
 describe('approval and portraits', () => {
-  it('the regulars are approved; faces follow the last roll; no portrait files yet means initials', async () => {
+  it('the regulars are approved; faces follow the last roll; every regular has all three portraits', async () => {
     const { REGULARS_STATUS, faceFor } = await import('../src/ui/casino/crapsRegulars');
     const { regularPortrait } = await import('../src/ui/casino/regularPortraits');
     expect(REGULARS_STATUS).toBe('approved');
@@ -116,6 +116,7 @@ describe('approval and portraits', () => {
     expect(faceFor({ ...newRegularState(r), lastNet: 20 })).toBe('happy');
     expect(faceFor({ ...newRegularState(r), lastNet: -10 })).toBe('groan');
     expect(faceFor(newRegularState(r))).toBe('neutral');
-    for (const x of REGULARS) expect(regularPortrait(x.id, 'happy')).toBeNull();
+    for (const x of REGULARS) for (const f of ['neutral', 'happy', 'groan'] as const) expect(regularPortrait(x.id, f), `${x.id} ${f}`).toBeTruthy();
+    expect(regularPortrait('nobody', 'happy')).toBeNull();
   });
 });

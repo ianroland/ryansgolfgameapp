@@ -11,7 +11,6 @@ import { SaveMenu } from './components/SaveMenu';
 import { SoundMenu } from './components/SoundMenu';
 import { sound } from '../audio/sound';
 import { useGame } from './GameContext';
-import { formatMoney } from './format';
 import { HomePanel } from './screens/HomePanel';
 import { StorePanel } from './screens/StorePanel';
 import { EditRoomPanel, type EditSession } from './screens/EditRoomPanel';
@@ -36,6 +35,7 @@ import { EncounterScene } from './story/EncounterScene';
 import { encounterMayShow, encounterShouldAutoOpen, useOpenBlockingScreens, type ScreenState } from './blocking';
 import { storyOf } from '../story/appearance';
 import logoUrl from '../assets/logo_ryans_road.webp';
+import { ShownBalance } from './casino/ShownBalance';
 
 /** The Sports History Board loads on first open (its archive is several MB). */
 
@@ -203,7 +203,7 @@ export function App() {
           </div>
           <div className="balance" aria-live="polite" data-testid="balance">
             <span className="balance-label">Bank</span>
-            <span className="balance-value">{formatMoney(state.balance)}</span>
+            <span className="balance-value"><ShownBalance real={state.balance} /></span>
           </div>
           <SoundMenu />
           <SaveMenu />

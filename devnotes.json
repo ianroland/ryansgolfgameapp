@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.6",
+   "date": "2026-11-24",
+   "title": "Faces at the craps rail, and no more spoilers",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The craps regulars have portraits now: all nine, each grinning after a win and groaning after a loss. Ryan's seat shows her too."
+    },
+    {
+     "tag": "fixed",
+     "text": "Spin to Win no longer gives the result away before the wheel stops: the spin history, the win and every bank figure now wait until it lands, with a short pause before the result. Keno, video poker and craps hold the bank the same way until the last ball, card or die is shown."
+    }
+   ]
+  },
+  {
    "version": "0.20.5",
    "date": "2026-11-24",
    "title": "The regulars are official, and a new welcome",

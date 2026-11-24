@@ -1,5 +1,7 @@
 # NPC Factory brief: craps regulars' portraits
 
+> **Delivered (0.20.6).** CRAPS_REGULARS_ASSET_PACK supplied all 27 files, kept unchanged in `art/source_sheets/regulars_pack/`. The pack's automatic background removal left scraps of neighbouring sheet cells: one-pixel or nine-pixel strips along the top, and slivers on the left (including a gold bracket beside Gus). `tools/clean_regular_portraits.py` clears only those scraps, splitting along the transparent gaps and keeping the character plus anything within 3 px of it. It keeps each file's own palette, so kept pixels are bit-for-bit the pack's. Note that the source cells cropped some heads and shoulders flat at the right or top edge (for example Victor's and Corinne's groan faces); that's in the art itself, not the cleanup.
+
 This brief covers nine portraits for the craps regulars. The owner approved the characters and their lines on 2026-11-24 (see `docs/casino/CRAPS_REGULARS.md`).
 
 The **looks below are proposals**. They follow each regular's approved bio, and the owner can change any of them before or after the art is made.

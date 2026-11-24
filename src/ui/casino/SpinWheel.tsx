@@ -20,6 +20,7 @@ import { celebrateWin } from './BigWin';
 import { useCasinoLocation } from './casinoLocation';
 import { ServerPanel, signalRoundComplete } from './ServerPanel';
 import { polar, rotationFor, SLOT_DEG } from './wheelGeometry';
+import { freezeBalance, useShownBalance } from './balanceHold';
 import ATLAS from '../../assets/casino/spin/atlas.json';
 
 const files = import.meta.glob<string>('../../assets/casino/spin/*.webp', { eager: true, query: '?url', import: 'default' });
@@ -34,6 +35,8 @@ const EMBLEM_NAME: Record<LocationId, string> = { desert_palms: 'Palm', white_bu
 const ink = (s: WheelSymbol) => (s === '1' || s === 'star' ? '#1b1300' : '#fff');
 const symbolName = (s: WheelSymbol, loc: LocationId) => (s === 'emblem' ? EMBLEM_NAME[loc] : s === 'star' ? 'Star' : `$${s}`);
 const SPIN_MS = 4600;
+/** A beat after the wheel stops before the result is announced. */
+const REVEAL_PAUSE_MS = 550;
 
 const reducedMotion = () => typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -99,8 +102,10 @@ export function SpinWheel() {
 
   const staked = wheelStaked(bets);
   const block = betBlocker(bets, state.balance);
-  // While the wheel turns, the meters show the bank before the payout (the result is already saved).
-  const credit = state.balance - (pending ? pending.payout : 0);
+  // The spin is paid before the wheel turns: every bank display holds the after-bet figure until it stops.
+  const credit = useShownBalance(state.balance);
+  // Likewise the history only gains this spin once the wheel has stopped.
+  const shownHistory = pending ? history.slice(1) : history;
 
   const add = (s: WheelSymbol) => {
     if (spinning) return;
@@ -121,8 +126,12 @@ export function SpinWheel() {
     setSpinning(true);
     setShown(null);
     sound.play('ui_confirm');
+    const release = freezeBalance(state.balance - staked);
     const r = await run(() => services.casino.spinWheel(bets));
-    if (!r) return setSpinning(false);
+    if (!r) {
+      release();
+      return setSpinning(false);
+    }
     setPending(r);
     const reduce = reducedMotion();
     setInstant(reduce);
@@ -131,6 +140,7 @@ export function SpinWheel() {
     setRot((from) => rotationFor(r.slot, from, reduce ? 0 : 5, jitter));
     if (!reduce) sound.play('meter_start', { volume: 0.5 });
     timers.current.push(window.setTimeout(() => {
+      release();
       setSpinning(false);
       setPending(null);
       setShown(r);
@@ -139,7 +149,7 @@ export function SpinWheel() {
       const net = r.payout - r.staked;
       celebrateWin(net, r.staked, { jackpot: WHEEL_PAYS[r.symbol] === 40 && r.payout > 0 });
       sound.play(r.payout >= r.staked * 10 && r.payout > 0 ? 'cheer' : r.payout > 0 ? 'cash' : 'ui_click', { volume: 0.6 });
-    }, reduce ? 250 : SPIN_MS + 120));
+    }, reduce ? 250 : SPIN_MS + REVEAL_PAUSE_MS));
   };
 
   // Keyboard: Space or Enter spins (only while this game is on screen and focus isn't on a control).
@@ -263,9 +273,9 @@ export function SpinWheel() {
           {meter('win', formatMoney(shown?.payout ?? 0), 'spin-win')}
         </div>
       </div>
-      {history.length > 0 && (
+      {shownHistory.length > 0 && (
         <div className="spin-history" aria-label="Last spins, newest first" data-testid="spin-history">
-          {history.map((h, i) => {
+          {shownHistory.map((h, i) => {
             const s = h.symbol as WheelSymbol;
             return <span key={i} className="spin-sym" style={{ background: s === 'emblem' ? EMBLEM_COLOUR[loc] : COLOUR[s], color: ink(s) }} title={symbolName(s, loc)}>{s === 'emblem' ? <img src={url(`${loc}_emblem`)} alt={symbolName(s, loc)} /> : s === 'star' ? '★' : s}</span>;
           })}
