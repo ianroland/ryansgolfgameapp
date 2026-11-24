@@ -5,7 +5,7 @@
  * Live numbers come from the engine; nothing here affects odds, results or money.
  */
 import { teamById, type LeagueId } from '../demo';
-import { boardFor, recentFinals, standingsToDate } from '../book';
+import { boardFor, recentFinals, seedOf, standingsToDate, type WorldRef } from '../book';
 import type { ClerkExpression } from '../themes';
 import { bundledLore, canKnow, lore, sportsYearForSeason } from '../lore/service';
 import { EMMETT_LINES } from './emmett';
@@ -41,7 +41,7 @@ export function historyLines(npcId: string, league: LeagueId, year: number): Cle
 }
 
 /** Lines about this season, from the real board. */
-export function liveLines(seed: number, season: number, week: number, league: LeagueId): ClerkLine[] {
+export function liveLines(seed: WorldRef, season: number, week: number, league: LeagueId): ClerkLine[] {
   const out: ClerkLine[] = [];
   const rows = standingsToDate(seed, season, week, league);
   const played = rows.some((r) => r.w + r.l + r.t + r.otl > 0);
@@ -69,7 +69,7 @@ export function liveLines(seed: number, season: number, week: number, league: Le
  * The line to show: mostly history, sometimes the live board. `nonce` moves to the next line
  * (on a league change or a tap); the choice is deterministic for a given position.
  */
-export function clerkLine(npcId: string, ctx: { seed: number; season: number; week: number; league: LeagueId; nonce: number }): ClerkLine | null {
+export function clerkLine(npcId: string, ctx: { seed: WorldRef; season: number; week: number; league: LeagueId; nonce: number }): ClerkLine | null {
   const year = sportsYearForSeason(ctx.season);
   const hist = historyLines(npcId, ctx.league, year);
   const live = liveLines(ctx.seed, ctx.season, ctx.week, ctx.league);
@@ -78,6 +78,6 @@ export function clerkLine(npcId: string, ctx: { seed: number; season: number; we
   const pool = slot === 2 && live.length ? live : hist.length ? hist : live;
   if (!pool.length) return null;
   const turn = Math.floor(ctx.nonce / 3) * (pool === live ? 1 : 2) + (pool === live ? 0 : slot);
-  const order = [...pool].sort((a, b) => hash(`${ctx.seed}:${ctx.season}:${ctx.league}:${a.id}`) - hash(`${ctx.seed}:${ctx.season}:${ctx.league}:${b.id}`));
+  const order = [...pool].sort((a, b) => hash(`${seedOf(ctx.seed)}:${ctx.season}:${ctx.league}:${a.id}`) - hash(`${seedOf(ctx.seed)}:${ctx.season}:${ctx.league}:${b.id}`));
   return order[turn % order.length];
 }

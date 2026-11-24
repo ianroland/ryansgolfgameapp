@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { bookTotalsOf, sportsSeedOf, ticketsOf } from '../src/career/sportsbook';
+import { bookTotalsOf, sportsWorldOf, ticketsOf } from '../src/career/sportsbook';
 import { gradeLeg, settleTicket, type Ticket, type TicketLeg } from '../src/sports/bets';
 import { boardFor, gamesOf, isFinal, priceGame, recentFinals, seasonOf, standingsToDate } from '../src/sports/book';
 import { decimalOf } from '../src/sports/demo';
@@ -108,7 +108,7 @@ describe('real tickets through the ledger', () => {
   it('a bet is charged once, saved, settled on week advance, paid once and reported in the inbox', async () => {
     const { s } = await newCareer();
     const c0 = await s.career.getCareer();
-    const seed = sportsSeedOf(c0);
+    const seed = sportsWorldOf(c0);
     const games = boardFor(seed, c0.season, c0.week, 'gdc').games;
     const before = await s.economy.getBalance(RYAN);
     const picks = [pick(games[0], 'moneyline', 'home'), pick(games[1], 'total', 'under')];
@@ -140,7 +140,7 @@ describe('real tickets through the ledger', () => {
   it('refuses bad bets without charging', async () => {
     const { s } = await newCareer();
     const c = await s.career.getCareer();
-    const g = boardFor(sportsSeedOf(c), c.season, c.week, 'gdc').games[0];
+    const g = boardFor(sportsWorldOf(c), c.season, c.week, 'gdc').games[0];
     const ml = pick(g, 'moneyline', 'home');
     const bal = await s.economy.getBalance(RYAN);
     await expect(s.sportsbook.place({ picks: [ml], stake: 2, parlay: false, lounge: 'desert_palms', requestId: 'a' })).rejects.toThrow(/Minimum/);
@@ -159,7 +159,7 @@ describe('real tickets through the ledger', () => {
   it('higher lounges allow bigger stakes', async () => {
     const { s } = await newCareer();
     const c = await s.career.getCareer();
-    const g = boardFor(sportsSeedOf(c), c.season, c.week, 'gdc').games[0];
+    const g = boardFor(sportsWorldOf(c), c.season, c.week, 'gdc').games[0];
     await s.economy.post({ ownerId: RYAN, amount: 20_000, type: 'prize_money', sourceId: 't', idempotencyKey: 'grant' });
     await expect(s.sportsbook.place({ picks: [pick(g, 'moneyline', 'away')], stake: 2500, parlay: false, lounge: 'white_buffalo', requestId: 'w' })).resolves.toBeTruthy();
     await expect(s.sportsbook.place({ picks: [pick(g, 'moneyline', 'away')], stake: 2600, parlay: false, lounge: 'white_buffalo', requestId: 'x' })).rejects.toThrow(/\$2,500/);

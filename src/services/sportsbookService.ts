@@ -8,7 +8,7 @@
  * never touch them.
  */
 import { DomainError } from '../core/errors';
-import { bookTotalsOf, settleSports, sportsSeedOf, ticketsOf, withBook } from '../career/sportsbook';
+import { bookTotalsOf, migrateSportsWorld, planSportsMigration, settleSports, sportsWorldOf, ticketsOf, withBook } from '../career/sportsbook';
 import { buildTickets, type Ticket } from '../sports/bets';
 import type { MoneyOp } from '../career/engine';
 import type { Selection } from '../sports/slip';
@@ -42,7 +42,7 @@ export class SportsbookService {
       if (mine.length) return { tickets: mine, replayed: true };
       const balance = await this.economy.getBalance(c.playerId);
       const built = buildTickets({
-        seed: sportsSeedOf(c), season: c.season, week: c.week, picks: req.picks, stake: req.stake, parlay: req.parlay,
+        seed: sportsWorldOf(c), season: c.season, week: c.week, picks: req.picks, stake: req.stake, parlay: req.parlay,
         balance, lounge: req.lounge, requestId: req.requestId, openCount: existing.filter((t) => t.status === 'open').length,
       });
       if (!built.ok) throw new DomainError('CAREER_RULE', built.reason);
@@ -54,6 +54,26 @@ export class SportsbookService {
       totals.staked += built.total;
       await this.db.careers.put(withBook(c, [...built.tickets, ...existing], totals));
       return { tickets: built.tickets, replayed: false };
+    });
+  }
+
+  /**
+   * Moves an older save onto the history carry-over rosters (Phase D part 2). First settles every
+   * ticket that is already final under the existing rules (idempotent), then writes the world
+   * marker. The marker only says from which season the new rosters apply; tickets still open
+   * stay open and settle later against the same games they were priced on. Running it again
+   * changes nothing.
+   */
+  async migrateWorld(): Promise<{ migrated: boolean; historyFrom?: number; reason?: string; settled: number; open: number }> {
+    const settled = await this.settleDue();
+    return this.db.transaction('rw', this.db.careers, async () => {
+      const c = await this.db.careers.get('career');
+      if (!c) return { migrated: false, settled: settled.length, open: 0 };
+      const open = ticketsOf(c).filter((t) => t.status === 'open').length;
+      const plan = planSportsMigration(c);
+      if (!plan) return { migrated: false, settled: settled.length, open };
+      await this.db.careers.put(migrateSportsWorld(c));
+      return { migrated: true, historyFrom: plan.historyFrom, reason: plan.reason, settled: settled.length, open };
     });
   }
 

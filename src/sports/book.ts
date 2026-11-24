@@ -10,6 +10,7 @@
 import { DEMO_MARGIN, LEAGUES, leagueById, teamsOf, toAmerican, type DemoGame, type DemoLine, type LeagueId } from './demo';
 import { SPORTS_CONFIG } from './config';
 import { stream } from './rng';
+import { historyWorld } from './liveRosters';
 import { createWorld, playLeagueSeason, SIMULATORS, sportOf, standingsOf, type LeagueSeason, type PlayedGame, type StandingRow, type World } from './season';
 
 export const SHADOW_RUNS = 60;
@@ -27,13 +28,24 @@ export interface BookGame extends DemoGame {
   when: string;
 }
 
+/**
+ * Which world a save's sports run in. A plain seed is the original generated world (every
+ * season, as before Phase D part 2). `{ seed, historyFrom }` is a migrated save: seasons from
+ * `historyFrom` on use the history carry-over rosters (liveRosters.ts), earlier ones the original.
+ */
+export type WorldRef = number | { seed: number; historyFrom: number };
+export const seedOf = (ref: WorldRef) => (typeof ref === 'number' ? ref : ref.seed);
+export const rostersFor = (ref: WorldRef, season: number): 'generated' | 'history' => (typeof ref !== 'number' && season >= ref.historyFrom ? 'history' : 'generated');
+const keyOf = (ref: WorldRef, season: number) => `${seedOf(ref)}:${season}:${rostersFor(ref, season)}`;
+
 // ── Season results (memoized; a season for all four leagues takes ~70 ms) ──
 const seasonCache = new Map<string, { world: World; leagues: Record<LeagueId, LeagueSeason> }>();
-export function seasonOf(seed: number, season: number) {
-  const k = `${seed}:${season}`;
+export function seasonOf(ref: WorldRef, season: number) {
+  const k = keyOf(ref, season);
   let v = seasonCache.get(k);
   if (!v) {
-    const world = createWorld(seed);
+    const seed = seedOf(ref);
+    const world = rostersFor(ref, season) === 'history' ? historyWorld(seed) : createWorld(seed);
     const leagues = Object.fromEntries(LEAGUES.map((l) => [l.id, playLeagueSeason(world, l.id, season)])) as Record<LeagueId, LeagueSeason>;
     v = { world, leagues };
     seasonCache.set(k, v);
@@ -58,7 +70,7 @@ function placeOf(league: LeagueId, g: PlayedGame): { day: number; when: string }
 }
 
 /** Find one game (with its league) in a season. */
-export function findGame(seed: number, season: number, gameId: string): { league: LeagueId; game: PlayedGame } | null {
+export function findGame(seed: WorldRef, season: number, gameId: string): { league: LeagueId; game: PlayedGame } | null {
   const league = gameId.split(':')[0] as LeagueId;
   const s = seasonOf(seed, season).leagues[league];
   const game = s ? gamesOf(s).find((g) => g.id === gameId) : undefined;
@@ -75,12 +87,13 @@ const half = (x: number) => Math.round(x * 2) / 2;
 const priced = (p: number) => toAmerican(Math.min(0.97, Math.max(0.03, p) * (1 + BOOK_MARGIN / 2)));
 
 /** Lines for one game, from SHADOW_RUNS simulations on the real pre-game lineups. */
-export function priceGame(seed: number, season: number, league: LeagueId, g: PlayedGame): DemoLine[] & { pHome: number } {
-  const k = `${seed}:${season}:${g.id}`;
+export function priceGame(ref: WorldRef, season: number, league: LeagueId, g: PlayedGame): DemoLine[] & { pHome: number } {
+  const k = `${keyOf(ref, season)}:${g.id}`;
+  const seed = seedOf(ref);
   const hit = priceCache.get(k);
   if (hit) return hit;
   const sport = sportOf(league);
-  const { world } = seasonOf(seed, season);
+  const { world } = seasonOf(ref, season);
   const out = new Set(g.pre.out);
   const roster = (team: string) => world.players.filter((p) => p.teamId === team).map((p) => ({ ...p, injuryGames: out.has(p.id) ? 1 : 0 }));
   const hr = roster(g.home);
@@ -130,7 +143,7 @@ export function priceGame(seed: number, season: number, league: LeagueId, g: Pla
   return res;
 }
 
-const toBook = (seed: number, season: number, league: LeagueId, g: PlayedGame): BookGame => {
+const toBook = (seed: WorldRef, season: number, league: LeagueId, g: PlayedGame): BookGame => {
   const lines = priceGame(seed, season, league, g);
   const { day, when } = placeOf(league, g);
   return { id: g.id, league, home: g.home, away: g.away, when, homeWinProb: lines.pHome, lines: [...lines], season, week: g.week, day, playoff: g.pre.playoff, neutral: g.pre.neutral };
@@ -140,7 +153,7 @@ const toBook = (seed: number, season: number, league: LeagueId, g: PlayedGame): 
  * The board for a league: this week's games, or (between seasons or on an off week) the next
  * week that has games. Only games that haven't been played yet are ever offered.
  */
-export function boardFor(seed: number, season: number, week: number, league: LeagueId): { week: number | null; games: BookGame[] } {
+export function boardFor(seed: WorldRef, season: number, week: number, league: LeagueId): { week: number | null; games: BookGame[] } {
   const all = gamesOf(seasonOf(seed, season).leagues[league]);
   const next = all.filter((g) => g.week >= week).map((g) => g.week);
   if (!next.length) return { week: null, games: [] };
@@ -149,7 +162,7 @@ export function boardFor(seed: number, season: number, week: number, league: Lea
 }
 
 /** A bettable game by id: null if unknown or already final for this calendar position. */
-export function openGame(seed: number, season: number, week: number, gameId: string): BookGame | null {
+export function openGame(seed: WorldRef, season: number, week: number, gameId: string): BookGame | null {
   const f = findGame(seed, season, gameId);
   if (!f || f.game.week < week) return null;
   return toBook(seed, season, f.league, f.game);
@@ -159,16 +172,16 @@ export function openGame(seed: number, season: number, week: number, gameId: str
 export const isFinal = (gameSeason: number, gameWeek: number, season: number, week: number) => gameSeason < season || (gameSeason === season && gameWeek < week);
 
 /** Finals from the most recent played weeks, newest first. */
-export function recentFinals(seed: number, season: number, week: number, league: LeagueId, weeks = 2): (PlayedGame & { when: string })[] {
+export function recentFinals(seed: WorldRef, season: number, week: number, league: LeagueId, weeks = 2): (PlayedGame & { when: string })[] {
   const played = gamesOf(seasonOf(seed, season).leagues[league]).filter((g) => g.week < week);
   const lastWeeks = [...new Set(played.map((g) => g.week))].sort((a, b) => b - a).slice(0, weeks);
   return played.filter((g) => lastWeeks.includes(g.week)).sort((a, b) => b.week - a.week || placeOf(league, b).day - placeOf(league, a).day).map((g) => ({ ...g, when: placeOf(league, g).when }));
 }
 
 /** Regular-season standings from the games played so far this season. */
-export function standingsToDate(seed: number, season: number, week: number, league: LeagueId): StandingRow[] {
-  const s = seasonOf(seed, season).leagues[league];
+export function standingsToDate(ref: WorldRef, season: number, week: number, league: LeagueId): StandingRow[] {
+  const s = seasonOf(ref, season).leagues[league];
   const played = s.regular.filter((g) => g.week < week);
-  const coin = (team: string) => stream(seed, 'tiebreak', league, season, team).next();
+  const coin = (team: string) => stream(seedOf(ref), 'tiebreak', league, season, team).next();
   return standingsOf(played, teamsOf(league).map((t) => t.id), coin, sportOf(league));
 }

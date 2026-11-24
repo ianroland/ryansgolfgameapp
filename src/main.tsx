@@ -63,6 +63,8 @@ async function boot() {
     // Casino unlocks: recognise ones the bankroll history already earned (idempotent, never removes).
     await services.expansion.reconcile().catch((e) => console.warn('Casino unlock check failed', e));
     await services.career.reconcileFields().catch((e) => console.warn('Tour field check failed', e));
+    // Sports world v2: settle what's final, then mark the save for the history rosters (idempotent).
+    await services.sportsbook.migrateWorld().catch((e) => console.warn('Sports world migration failed', e));
     const initial = await services.career.loadClubhouse();
     if (import.meta.env.DEV) (window as unknown as { wtg: unknown }).wtg = services; // debugging aid
     root.render(

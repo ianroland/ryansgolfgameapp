@@ -29,10 +29,12 @@ export const ANCHOR_USAGE: Record<string, Record<string, number>> = Object.fromE
 );
 
 /** Team strength in overall points from its record (a .750 team is about +8). */
-const STRENGTH: Record<Sport, number> = { baseball: 24, basketball: 34, football: 30, hockey: 28 };
+export const STRENGTH: Record<Sport, number> = { baseball: 24, basketball: 34, football: 30, hockey: 28 };
+/** Team strength from a record (overall points; 0 for a .500 team). */
+export const offsetOf = (sport: Sport, [w, l]: [number, number]) => (w / Math.max(1, w + l) - 0.5) * STRENGTH[sport];
 const clamp = (v: number, lo = 25, hi = 99) => Math.max(lo, Math.min(hi, Math.round(v)));
 
-function level(sport: Sport, p: HPlayer, year: number, teamOffset: number): number {
+export function level(sport: Sport, p: HPlayer, year: number, teamOffset: number): number {
   const r = stream(HISTORY_SEED, 'talent', p.i);
   const talent = 60 + r.normal() * SPORTS_CONFIG.generation[sport].playerSpread + (ANCHOR_BOOST[p.i] ?? 0);
   const peakR = stream(HISTORY_SEED, 'peak', p.i);
@@ -78,8 +80,7 @@ function mapPositions(sport: Sport, ranked: { p: HPlayer; lvl: number }[]): Map<
 /** Engine players for one team in one historical season. */
 export function historyRoster(data: HistoryData, season: HSeason, teamId: string): Player[] {
   const sport = leagueById(season.league).sport;
-  const [w, l] = season.records[teamId];
-  const offset = (w / Math.max(1, w + l) - 0.5) * STRENGTH[sport];
+  const offset = season.offsets?.[teamId] ?? offsetOf(sport, season.records[teamId]);
   const ranked = season.rosters[teamId].map((ix) => {
     const p = data.players[ix];
     return { p, lvl: level(sport, p, season.year, offset) };

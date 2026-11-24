@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.19.7",
+   "date": "2026-11-24",
+   "title": "The leagues' own players take the field",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The sportsbook's 32 teams now field the real players from fifty years of league history, carried through a simulated 2026 season, retirements and two drafts. New careers start with them."
+    },
+    {
+     "tag": "improved",
+     "text": "Existing careers switch at the start of next season if you have bets on this one, so every open ticket settles on exactly the game you bet on. Your bankroll and ticket history are unchanged."
+    }
+   ]
+  },
+  {
    "version": "0.19.6",
    "date": "2026-11-23",
    "title": "Fifty years of awards and records",

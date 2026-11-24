@@ -74,7 +74,8 @@ export function newCareerState(seed = 2027): CareerState {
     form: 0,
     fame: 0,
     relationships,
-    flags: { seed },
+    // New careers start on the history carry-over rosters (sports world v2, from season 1).
+    flags: { seed, sportsWorldV: 2, sportsHistoryFrom: 1 },
     equipment: { ...STARTING_EQUIPMENT },
     owned: [],
     sponsor: null,

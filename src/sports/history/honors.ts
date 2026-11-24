@@ -118,8 +118,9 @@ export function winStreaks(h: HistorySeason): Map<string, number> {
 }
 
 /** Series won after trailing by two or more games (e.g. 1998: 3-1 down). */
-export function comebacks(h: HistorySeason): { seriesId: string; winner: string; loser: string; deficit: string; year: number; league: LeagueId }[] {
-  const out = [];
+export interface Comeback { seriesId: string; winner: string; loser: string; deficit: string; year: number; league: LeagueId; tags?: string[] }
+export function comebacks(h: HistorySeason): Comeback[] {
+  const out: Comeback[] = [];
   for (const x of h.playoffs) {
     let w = 0;
     let l = 0;
@@ -130,7 +131,7 @@ export function comebacks(h: HistorySeason): { seriesId: string; winner: string;
       else l++;
       if (l - w > worst) { worst = l - w; at = `${w}-${l}`; }
     }
-    if (worst >= 2) out.push({ seriesId: x.id, winner: x.winner, loser: x.loser, deficit: at, year: h.season.year, league: h.season.league });
+    if (worst >= 2) out.push({ seriesId: x.id, winner: x.winner, loser: x.loser, deficit: at, year: h.season.year, league: h.season.league, ...(at === LEGENDARY_DEFICIT ? { tags: ['legendary_comeback'] } : {}) });
   }
   return out;
 }
@@ -157,7 +158,13 @@ export function keep(list: RecordEntry[], top = 5): RecordEntry[] {
 // ── Careers: drafts, transactions, retirements, Hall of Fame ──
 export interface DraftPick { league: LeagueId; year: number; round: number; pick: number; overall: number; playerId: string; teamId: string }
 export interface Transaction { league: LeagueId; year: number; type: 'trade' | 'free_agency'; playerId: string; from: string; to: string; note?: string; event?: string }
-export interface HallOfFamer { league: LeagueId; year: number; playerId: string; score: number; seasons: number }
+export interface HallOfFamer {
+  league: LeagueId; year: number; playerId: string; score: number; seasons: number;
+  /** statistical: the career-score rule. legends: a documented exceptional achievement (owner-approved list). */
+  pathway: 'statistical' | 'legends';
+  /** Legends pathway only: the achievement and its lore event. */
+  basis?: string; event?: string;
+}
 
 /**
  * Drafts: a player's draft class is his debut year. Players who debuted in their league's first
@@ -208,7 +215,17 @@ export function transactions(data: HistoryData): Transaction[] {
  * (MVP 40, championship MVP 25, pitching/defensive award 25, rookie 5) and 5 per title.
  */
 export const HOF_RULE = { waitYears: 5, minSeasons: 8, topShare: 0.025 };
-export function hallOfFame(data: HistoryData, careerValue: Map<string, { value: number; seasons: number; titles: number }>, awards: Award[]): HallOfFamer[] {
+/** Historical Legends pathway (owner decision 2026-11-24). Add names only with owner approval. */
+export const HISTORICAL_LEGENDS: { playerId: string; basis: string; event: string }[] = [
+  { playerId: 'gdc_elias_voss', basis: 'Three no-hitters in the 1983 season (13–1)', event: 'gdc-1983-001' },
+];
+/** 0–3 series comebacks: owner-approved as legendary events (2026-11-24), results unchanged. */
+export const LEGENDARY_DEFICIT = '0-3';
+/**
+ * Inductees through `throughYear` (default: the ledger's last season). Later classes use the same
+ * 1972-2025 ranking, so earlier inductees never change.
+ */
+export function hallOfFame(data: HistoryData, careerValue: Map<string, { value: number; seasons: number; titles: number }>, awards: Award[], throughYear = 2025): HallOfFamer[] {
   const bonus = new Map<string, number>();
   const B: Record<string, number> = { 'Most Valuable Player': 40, 'Championship MVP': 25, 'Rookie of the Year': 5 };
   for (const a of awards) bonus.set(a.playerId, (bonus.get(a.playerId) ?? 0) + (B[a.award] ?? 25));
@@ -220,8 +237,16 @@ export function hallOfFame(data: HistoryData, careerValue: Map<string, { value: 
     const cut = Math.max(1, Math.round(data.players.filter((p) => p.l === league).length * HOF_RULE.topShare));
     for (const p of ranked.slice(0, cut)) {
       const year = p.f + HOF_RULE.waitYears;
-      if (p.f <= 2025 - HOF_RULE.waitYears) out.push({ league, year, playerId: p.i, score: Math.round(score(p)), seasons: careerValue.get(p.i)!.seasons });
+      if (p.f <= throughYear - HOF_RULE.waitYears) out.push({ league, year, playerId: p.i, score: Math.round(score(p)), seasons: careerValue.get(p.i)!.seasons, pathway: 'statistical' });
     }
+  }
+  // Historical Legends pathway: documented exceptional achievements, same five-year wait, no
+  // minimum score. Only players the owner has approved are listed; the bible alone is not enough.
+  for (const l of HISTORICAL_LEGENDS) {
+    const p = data.players.find((x) => x.i === l.playerId);
+    if (!p || out.some((x) => x.playerId === l.playerId) || !careerValue.has(p.i)) continue;
+    if (p.f > throughYear - HOF_RULE.waitYears) continue;
+    out.push({ league: p.l, year: p.f + HOF_RULE.waitYears, playerId: p.i, score: Math.round(careerValue.get(p.i)!.value + (bonus.get(p.i) ?? 0) + 5 * careerValue.get(p.i)!.titles), seasons: careerValue.get(p.i)!.seasons, pathway: 'legends', basis: l.basis, event: l.event });
   }
   return out.sort((a, b) => a.year - b.year || a.playerId.localeCompare(b.playerId));
 }

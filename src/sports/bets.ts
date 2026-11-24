@@ -8,7 +8,7 @@
  * of their odds; if every leg pushes or voids the stake comes back. Parlay payout cap applies.
  */
 import { decimalOf, fmtAmerican, teamById, type LeagueId, type Market, type Side } from './demo';
-import { findGame, isFinal, openGame } from './book';
+import { findGame, isFinal, openGame, type WorldRef } from './book';
 import { parlayCheck, SLIP_RULES, type Selection } from './slip';
 import type { PlayedGame } from './season';
 
@@ -68,7 +68,7 @@ export function gradeLeg(leg: Pick<TicketLeg, 'market' | 'side' | 'point'>, hs: 
 }
 
 /** Grade a whole ticket once all its games are final. Returns null while any leg is still open. */
-export function settleTicket(t: Ticket, seed: number, season: number, week: number): Ticket | null {
+export function settleTicket(t: Ticket, seed: WorldRef, season: number, week: number): Ticket | null {
   if (t.status !== 'open') return null;
   if (!t.legs.every((l) => isFinal(l.season, l.week, season, week))) return null;
   const legs = t.legs.map((l): TicketLeg => {
@@ -104,7 +104,7 @@ export type BuildResult = { ok: true; tickets: Ticket[]; total: number } | { ok:
  * game still open at this calendar position, and its line must match the board exactly.
  */
 export function buildTickets(args: {
-  seed: number; season: number; week: number; picks: Selection[]; stake: number; parlay: boolean;
+  seed: WorldRef; season: number; week: number; picks: Selection[]; stake: number; parlay: boolean;
   balance: number; lounge: string; requestId: string; openCount: number;
 }): BuildResult {
   const { seed, season, week, picks, stake, parlay, balance, lounge, requestId, openCount } = args;

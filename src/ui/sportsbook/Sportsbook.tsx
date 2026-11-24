@@ -9,9 +9,9 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { DEMO_MARGIN, demoNews, fmtAmerican, LEAGUES, leagueById, teamById, type DemoGame, type DemoLine, type LeagueId } from '../../sports/demo';
 import { parlayCheck, potentialReturn, selectionKey, SLIP_RULES, toggleSelection, type Selection } from '../../sports/slip';
-import { boardFor, recentFinals, standingsToDate, type BookGame } from '../../sports/book';
+import { boardFor, recentFinals, standingsToDate, type BookGame, type WorldRef } from '../../sports/book';
 import { MAX_STAKE, type Ticket } from '../../sports/bets';
-import { bookTotalsOf, sportsSeedOf, ticketsOf } from '../../career/sportsbook';
+import { bookTotalsOf, sportsWorldOf, ticketsOf } from '../../career/sportsbook';
 import { newId } from '../../core/ids';
 import { clerkLine } from '../../sports/clerks/lines';
 import { LOUNGE_LAYOUT, LOUNGE_SIZE, LOUNGES, rectPct, type ClerkExpression, type NativeRect } from '../../sports/themes';
@@ -63,7 +63,8 @@ export function Sportsbook() {
   const [stake, setStake] = useState(10);
   const [confirming, setConfirming] = useState(false);
   const c = state.career;
-  const seed = sportsSeedOf(c);
+  const worldKey = JSON.stringify(sportsWorldOf(c));
+  const seed = useMemo(() => JSON.parse(worldKey) as WorldRef, [worldKey]);
   const tickets = useMemo(() => ticketsOf(c), [c]);
   const openTickets = tickets.filter((t) => t.status === 'open');
   const board = useMemo(() => boardFor(seed, c.season, c.week, league), [seed, c.season, c.week, league]);
@@ -379,14 +380,14 @@ function FragmentRows({ g, lineBtn, open, toggle, unit }: { g: DemoGame; lineBtn
   );
 }
 
-function monitorLine(seed: number, season: number, week: number, league: LeagueId) {
+function monitorLine(seed: WorldRef, season: number, week: number, league: LeagueId) {
   const b = boardFor(seed, season, week, league);
   const g = b.games[0];
   if (!g) return 'Season over';
   return `${teamById(g.away).short} @ ${teamById(g.home).short} · ${b.week === week ? 'this week' : `Wk ${b.week}`}`;
 }
 
-function Scores({ seed, season, week, league }: { seed: number; season: number; week: number; league: LeagueId }) {
+function Scores({ seed, season, week, league }: { seed: WorldRef; season: number; week: number; league: LeagueId }) {
   const finals = recentFinals(seed, season, week, league);
   if (!finals.length) return <p className="sb-empty" data-testid="sb-scores">No {leagueById(league).name} games played yet this season.</p>;
   return (
@@ -406,7 +407,7 @@ function Scores({ seed, season, week, league }: { seed: number; season: number; 
   );
 }
 
-function Standings({ seed, season, week, league }: { seed: number; season: number; week: number; league: LeagueId }) {
+function Standings({ seed, season, week, league }: { seed: WorldRef; season: number; week: number; league: LeagueId }) {
   const rows = standingsToDate(seed, season, week, league);
   const sport = leagueById(league).sport;
   const played = rows.some((r) => r.w + r.l + r.t + r.otl > 0);

@@ -37,12 +37,17 @@ export interface HSeason {
   seeds: string[];
   champion: string;
   runnerUp: string;
-  /** previous_anchor | new_proposal | inference_proposed | owner_decision */
+  /** previous_anchor | new_proposal | inference_proposed | owner_decision | simulated (2026 on) */
   origin: string;
   /** True if the record was adjusted to fit the playoff format (changes.json). */
   adjusted: boolean;
   /** Team → indexes into the players list. */
   rosters: Record<string, number[]>;
+  /**
+   * Simulated seasons only: team strength (overall points) used to build the rosters, fixed
+   * before the season is played. Ledger seasons derive it from the approved record instead.
+   */
+  offsets?: Record<string, number>;
 }
 
 export interface HistoryData {

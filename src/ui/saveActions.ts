@@ -32,6 +32,7 @@ export async function importSaveFile(services: GameServices, file: File) {
   await services.legacy.reconcile();
   await services.expansion.reconcile();
   await services.career.reconcileFields();
+  await services.sportsbook.migrateWorld();
 }
 
 /** Erases the career and reloads. `autostart` skips the title screen once. */
