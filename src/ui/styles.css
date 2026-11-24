@@ -2030,15 +2030,6 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .sb-sandbox { margin: 6px 0 0; font-size: 11px; opacity: 0.8; }
 .sb-confirm { position: absolute; inset: 0; z-index: 10; display: grid; place-items: center; background: rgba(0, 0, 0, 0.6); }
 .sb-confirm-box { width: min(440px, 92%); padding: 14px; color: #fff; background: var(--sb-panel); border: 3px solid var(--sb-trim); border-radius: 12px; box-shadow: 0 0 0 2px var(--ink), 0 0 24px var(--sb-neon); }
-/* Wide screens: the native 1672:941 stage; content scales with the stage (no pixel distortion). */
-@media (min-width: 900px) {
-  .sb-stage { aspect-ratio: 1672 / 941; }
-  .sb-main { position: absolute; inset: 7.2cqw 1.2cqw 1.2cqw; grid-template-columns: minmax(0, 1fr) minmax(250px, 26cqw); padding: 0; }
-  .sb-hud { position: absolute; inset: 0 0 auto 0; }
-  .sb-board { display: flex; flex-direction: column; min-height: 0; }
-  .sb-crt { flex: 1; min-height: 0; }
-  .sb-side { min-height: 0; overflow: auto; }
-}
 @media (max-width: 899px) {
   .sb-lines thead { display: none; }
   .sb-lines tr.sb-game { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 6px; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
@@ -2048,3 +2039,55 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
   .sb-lines tr.sb-detail { display: block; }
   .sb-confirm { position: fixed; }
 }
+
+/* ── Sportsbook lounge on the production art (1672x941). Live UI is positioned in the art's
+   native coordinates (src/sports/themes.ts LOUNGE_LAYOUT) as percentages, so it scales with the
+   art and nothing is stretched. Phones show the art, then the same controls stacked below. ── */
+.sb-stage { aspect-ratio: auto; background: #000; }
+.sb-scene { position: relative; width: 100%; overflow: hidden; }
+.sb-bg { image-rendering: auto; object-fit: fill; }
+.sb-hud { position: absolute; inset: 0 0 auto 0; z-index: 4; padding: 0.6cqw 1cqw; background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); }
+.sb-onart { display: none; }
+.sb-dock { display: grid; gap: 10px; padding: 10px; background: linear-gradient(180deg, var(--sb-bg1), #0b0610); }
+.sb-dock .sb-crt { min-height: 260px; }
+.sb-dock .sb-clerk { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; padding: 8px; background: var(--sb-panel); }
+@media (max-width: 899px) {
+  .sb-hud { position: relative; background: var(--sb-panel); }
+  .sb-title { font-size: 20px; }
+}
+@media (min-width: 900px) {
+  .sb-onart { display: block; position: absolute; inset: 0; z-index: 2; }
+  .sb-inline { display: none !important; }
+  .sb-dock { display: block; padding: 0; background: none; }
+  .sb-dock > .sb-content, .sb-dock > .sb-slipwrap, .sb-onart > * { position: absolute; left: var(--l); top: var(--t); width: var(--w); height: var(--h); z-index: 3; box-sizing: border-box; }
+  .sb-content { display: flex; }
+  .sb-content .sb-crt { flex: 1; min-height: 0; padding: 0.6cqw 0.9cqw; font-size: max(11px, 0.9cqw); background: rgba(4, 14, 9, 0.9); }
+  .sb-crt-title { font-size: max(12px, 1.15cqw); margin-bottom: 0.4cqw; }
+  .sb-content .sb-table td { padding: 0.25cqw 0.4cqw; }
+  .sb-content .sb-line { min-width: 0; padding: 0.15cqw 0.5cqw; font-size: max(10px, 0.82cqw); }
+  .sb-content .sb-matchup { font-size: max(10px, 0.85cqw); }
+  .sb-content .sb-foot { margin-top: 0.4cqw; font-size: max(9px, 0.7cqw); }
+  .sb-slipwrap .sb-slip { height: 100%; overflow: auto; padding: 0.6cqw 0.8cqw; font-size: max(11px, 0.85cqw); background: rgba(28, 12, 34, 0.92); }
+  .sb-slipwrap .sb-slip-title { font-size: max(12px, 1.1cqw); }
+  .sb-slipwrap .sb-stake { margin: 0.3cqw 0; }
+  .sb-slipwrap .sb-place { padding-top: 0.35cqw; padding-bottom: 0.35cqw; font-size: max(13px, 1.1cqw); }
+  /* The four monitors: league screens drawn on the blank CRTs. */
+  .sb-screen { display: grid; place-content: center; gap: 0.15cqw; padding: 0.3cqw; color: var(--sb-crt-text); text-align: center; background: rgba(6, 20, 60, 0.35); border: 0; border-radius: 0.6cqw; cursor: pointer; text-shadow: 0 0 0.4cqw rgba(125, 255, 176, 0.7); }
+  .sb-screen::after { content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0 2px, transparent 2px 4px); }
+  .sb-screen b { font-family: var(--head); font-size: max(11px, 1.25cqw); line-height: 1; color: #fff; }
+  .sb-screen span { font-size: max(9px, 0.75cqw); text-transform: uppercase; opacity: 0.85; }
+  .sb-screen em { font-style: normal; font-size: max(9px, 0.72cqw); }
+  .sb-screen:hover, .sb-screen:focus-visible { outline: none; box-shadow: inset 0 0 0 0.2cqw rgba(255, 255, 255, 0.7); }
+  .sb-screen.on { background: rgba(30, 120, 70, 0.45); box-shadow: inset 0 0 0 0.25cqw var(--sb-crt-text), 0 0 1.2cqw var(--sb-crt-text); }
+  /* The blank board under the monitors: the menu. */
+  .sb-boardmenu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5cqw 0.7cqw; padding: 0.7cqw 1.2cqw; }
+  .sb-boardmenu button { font-family: var(--head); font-size: max(11px, 1.05cqw); text-transform: uppercase; color: var(--sb-crt-text); background: rgba(0, 0, 0, 0.35); border: 0.12cqw solid rgba(255, 255, 255, 0.28); border-radius: 0.4cqw; cursor: pointer; text-shadow: 0 0 0.4cqw rgba(125, 255, 176, 0.6); }
+  .sb-boardmenu button.on { color: var(--ink); background: var(--sb-trim); border-color: #000; text-shadow: none; }
+  .sb-boardmenu button:focus-visible { outline: 0.2cqw solid #fff; outline-offset: 0.1cqw; }
+  /* Clerk on the pillar. */
+  .sb-clerk-art { display: flex; flex-direction: column; align-items: center; gap: 0.5cqw; padding: 0.6cqw; background: rgba(20, 8, 28, 0.82); border: 0.18cqw solid var(--sb-trim); border-radius: 0.8cqw; }
+  .sb-clerk-art .sb-clerk-portrait { width: 8cqw; height: 8cqw; font-size: max(8px, 0.62cqw); }
+  .sb-clerk-art .sb-clerk-line { font-size: max(10px, 0.8cqw); text-align: center; }
+  .sb-confirm { z-index: 10; }
+}
+@media (min-width: 900px) { .sb-screen b { font-size: max(11px, 1.2cqw); } .sb-screen span { font-size: max(9px, 0.8cqw); } }

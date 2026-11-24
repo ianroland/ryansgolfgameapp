@@ -85,6 +85,27 @@ describe('lounge themes and the sandbox boundary', () => {
     const bg = m.assets.filter((a: { id: string }) => a.id.endsWith('.bg_lounge'));
     expect(bg.map((a: { width: number; height: number }) => [a.width, a.height])).toEqual([[1672, 941], [1672, 941], [1672, 941]]);
     expect(m.assets.find((a: { id: string }) => a.id === 'team_crests').count).toBe(32);
+    // Only the three lounge backgrounds are installed; everything else stays missing.
+    const installed = m.assets.filter((a: { status: string }) => a.status === 'installed').map((a: { id: string }) => a.id).sort();
+    expect(installed).toEqual(['desert_palms.bg_lounge', 'morongo_sky.bg_lounge', 'white_buffalo.bg_lounge']);
+  });
+
+  it('the installed backgrounds are 1672x941 opaque PNGs and each casino theme points at its own', () => {
+    for (const loc of ['desert_palms', 'white_buffalo', 'morongo_sky'] as const) {
+      const buf = readFileSync(join(__dirname, `../src/assets/sportsbook/${loc}/bg_lounge.png`));
+      expect(buf.subarray(0, 8).toString('hex'), loc).toBe('89504e470d0a1a0a');
+      // IHDR: width, height, then colour type 2 (RGB, no alpha channel) with no tRNS chunk = opaque.
+      expect([buf.readUInt32BE(16), buf.readUInt32BE(20)], loc).toEqual([1672, 941]);
+      expect(buf[25], loc).toBe(2);
+      expect(buf.includes(Buffer.from('tRNS')), loc).toBe(false);
+      expect(LOUNGES[loc].art.background, loc).toContain(`${loc}/bg_lounge`);
+    }
+  });
+
+  it('the live UI layout sits inside the 1672x941 art', async () => {
+    const { LOUNGE_LAYOUT } = await import('../src/sports/themes');
+    const rects = [...LOUNGE_LAYOUT.screens, LOUNGE_LAYOUT.board, LOUNGE_LAYOUT.clerk, LOUNGE_LAYOUT.content, LOUNGE_LAYOUT.slip];
+    for (const [x, y, w, h] of rects) expect(x >= 0 && y >= 0 && x + w <= 1672 && y + h <= 941).toBe(true);
   });
 
   it('the demo slice never touches money, saves, NPC state or drinks', () => {

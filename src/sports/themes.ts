@@ -43,3 +43,39 @@ export const LOUNGES: Record<LocationId, LoungeTheme> = {
     playable: false,
   },
 };
+
+/**
+ * Where the live UI sits on the lounge art, in the art's native 1672x941 pixels. Measured from
+ * the three approved backgrounds (they share one layout, within a few pixels): four blank CRT
+ * monitors (league screens), the blank board under them (menu), the right-hand pillar (clerk),
+ * and the lower band over the booths and counter (betting content and bet slip).
+ */
+export type NativeRect = [x: number, y: number, w: number, h: number];
+export const LOUNGE_SIZE = [1672, 941] as const;
+export interface LoungeLayout {
+  screens: [NativeRect, NativeRect, NativeRect, NativeRect];
+  board: NativeRect;
+  clerk: NativeRect;
+  content: NativeRect;
+  slip: NativeRect;
+}
+export const LOUNGE_LAYOUT: LoungeLayout = {
+  screens: [
+    [744, 271, 126, 104],
+    [916, 257, 131, 106],
+    [1091, 244, 147, 114],
+    [1287, 233, 160, 118],
+  ],
+  board: [737, 414, 719, 112],
+  clerk: [1478, 206, 178, 322],
+  content: [16, 546, 1150, 384],
+  slip: [1180, 546, 476, 384],
+};
+
+/** CSS for a native rect as percentages of the lounge. */
+export const rectPct = ([x, y, w, h]: NativeRect) => ({
+  left: `${(x / LOUNGE_SIZE[0]) * 100}%`,
+  top: `${(y / LOUNGE_SIZE[1]) * 100}%`,
+  width: `${(w / LOUNGE_SIZE[0]) * 100}%`,
+  height: `${(h / LOUNGE_SIZE[1]) * 100}%`,
+});

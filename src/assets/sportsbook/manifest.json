@@ -1,6 +1,6 @@
 {
  "version": 1,
- "status": "Phase 1: no production sportsbook art supplied yet; every entry is missing and has a placeholder",
+ "status": "Backgrounds installed for all three lounges (2026-11-23). Every other asset is still missing and uses a placeholder.",
  "assets": [
   {
    "id": "desert_palms.bg_lounge",
@@ -10,10 +10,25 @@
    "height": 941,
    "transparent": false,
    "count": 1,
-   "status": "missing",
-   "placeholder": "CSS/labelled placeholder in the Phase 1 slice",
+   "status": "installed",
+   "placeholder": null,
    "usedIn": "Sportsbook lounge background layer (src/sports/themes.ts art.background)",
-   "notes": "Opaque. Blank CRT/odds screens and empty counter: no text, odds, scores, menus, bankroll or NPC baked in."
+   "notes": "Opaque. Blank CRT/odds screens and empty counter: no text, odds, scores, menus, bankroll or NPC baked in.",
+   "installed": {
+    "date": "2026-11-23",
+    "source": "sportsbook_backgrounds_claude_ready.zip (approved; installed unmodified)",
+    "validated": {
+     "format": "PNG",
+     "size": [
+      1672,
+      941
+     ],
+     "mode": "RGB",
+     "opaque": true,
+     "bakedDynamicContent": "none found (blank CRTs and board; no NPCs)"
+    },
+    "sha256": "7cc4efc6450f415b8f55aec01ab21216be697366892728fa71edc54fc10dde30"
+   }
   },
   {
    "id": "desert_palms.odds_board_frame",
@@ -49,10 +64,25 @@
    "height": 941,
    "transparent": false,
    "count": 1,
-   "status": "missing",
-   "placeholder": "CSS/labelled placeholder in the Phase 1 slice",
+   "status": "installed",
+   "placeholder": null,
    "usedIn": "Sportsbook lounge background layer (src/sports/themes.ts art.background)",
-   "notes": "Opaque. Blank CRT/odds screens and empty counter: no text, odds, scores, menus, bankroll or NPC baked in."
+   "notes": "Opaque. Blank CRT/odds screens and empty counter: no text, odds, scores, menus, bankroll or NPC baked in.",
+   "installed": {
+    "date": "2026-11-23",
+    "source": "sportsbook_backgrounds_claude_ready.zip (approved; installed unmodified)",
+    "validated": {
+     "format": "PNG",
+     "size": [
+      1672,
+      941
+     ],
+     "mode": "RGB",
+     "opaque": true,
+     "bakedDynamicContent": "none found (blank CRTs and board; no NPCs)"
+    },
+    "sha256": "ed8115770db49c808a14106a48d911ebcf1032d3861410bcc016e0a1f0e0fa98"
+   }
   },
   {
    "id": "white_buffalo.odds_board_frame",
@@ -88,10 +118,25 @@
    "height": 941,
    "transparent": false,
    "count": 1,
-   "status": "missing",
-   "placeholder": "CSS/labelled placeholder in the Phase 1 slice",
+   "status": "installed",
+   "placeholder": null,
    "usedIn": "Sportsbook lounge background layer (src/sports/themes.ts art.background)",
-   "notes": "Opaque. Blank CRT/odds screens and empty counter: no text, odds, scores, menus, bankroll or NPC baked in."
+   "notes": "Opaque. Blank CRT/odds screens and empty counter: no text, odds, scores, menus, bankroll or NPC baked in.",
+   "installed": {
+    "date": "2026-11-23",
+    "source": "sportsbook_backgrounds_claude_ready.zip (approved; installed unmodified)",
+    "validated": {
+     "format": "PNG",
+     "size": [
+      1672,
+      941
+     ],
+     "mode": "RGB",
+     "opaque": true,
+     "bakedDynamicContent": "none found (blank CRTs and board; no NPCs)"
+    },
+    "sha256": "19e3e0c5e3c9b8da86fe79e7ed810969df03476f5c3d4bdb34591cdc5ed30fe9"
+   }
   },
   {
    "id": "morongo_sky.odds_board_frame",

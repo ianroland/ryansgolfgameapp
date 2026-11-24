@@ -2,6 +2,25 @@
   "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
   "notes": [
     {
+      "version": "0.18.1",
+      "date": "2026-11-23",
+      "title": "Sportsbook lounges get their real look",
+      "items": [
+        {
+          "tag": "new",
+          "text": "The sportsbook now has its approved lounge art for all three casinos: the Palms Sports Bar, the Firelight Lounge and the Skybox. The four TV screens choose the sport, and the board under them is the menu."
+        },
+        {
+          "tag": "improved",
+          "text": "Sports are named by sport (Baseball, Basketball, Football, Hockey) instead of league initials."
+        },
+        {
+          "tag": "improved",
+          "text": "Your demo bet slip and tickets now stay put when you switch tables or advance the week. They're still demo only and clear if you reload the game."
+        }
+      ]
+    },
+    {
       "version": "0.18.0",
       "date": "2026-11-23",
       "title": "Sportsbook preview (demo)",
