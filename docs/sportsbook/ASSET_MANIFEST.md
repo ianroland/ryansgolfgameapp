@@ -1,6 +1,6 @@
 # Sportsbook asset manifest
 
-Source of truth: `src/assets/sportsbook/manifest.json`. **Status:** the three lounge backgrounds are **installed** (validated 1672×941, PNG, opaque, no baked dynamic content). Every other asset is **missing** and uses a labelled placeholder. Exact pixel sizes; transparency as listed.
+Source of truth: `src/assets/sportsbook/manifest.json`. **Status:** the three lounge backgrounds are **installed** (validated 1672×941, PNG, opaque, no baked dynamic content). League logos and team crests are **deferred**: teams show colour squares and leagues are named by sport. Every other asset is **missing** and uses a labelled placeholder. Exact pixel sizes; transparency as listed.
 
 | Asset | Path | Size (px) | Count | Transparent | Used in | Notes |
 |---|---|---|---|---|---|---|
@@ -13,8 +13,8 @@ Source of truth: `src/assets/sportsbook/manifest.json`. **Status:** the three lo
 | morongo_sky.bg_lounge | `src/assets/sportsbook/morongo_sky/bg_lounge.png` | 1672×941 | 1 | no (opaque) | ✅ INSTALLED · Sportsbook lounge background layer (src/sports/themes.ts art.background) | Opaque. Blank CRT/odds screens and empty counter: no text, odds, scores, menus, bankroll or NPC baked in. |
 | morongo_sky.odds_board_frame | `src/assets/sportsbook/morongo_sky/odds_board_frame.png` | 1200×600 | 1 | yes | Frame around the live CRT board (art.boardFrame), drawn as a 9-slice | 9-slice compatible: corners and edges about 48 px, plain stretchable centre or a transparent centre; no text. |
 | morongo_sky.clerk | `src/assets/sportsbook/morongo_sky/clerk_<expression>.png` | 256×256 | 6 | yes | Clerk portrait slot (DealerDialoguePanel) | Six expressions: friendly, playful, impressed, concerned, annoyed, firm. Ids and names to be set with NPC Factory. |
-| league_logos | `src/assets/sportsbook/shared/leagues/<gdc|ccl|igl|fhl>_512.png` | 512×512 | 4 | yes | League tabs, history, news | Plus a 128x128 export of each (<id>_128.png). League initials only, no other text. |
-| team_crests | `src/assets/sportsbook/shared/crests/<team_id>_256.png` | 256×256 | 32 | yes | Lines, scores, standings, team pages | Plus a 64x64 export (<team_id>_64.png). Must read at 32 px. Team ids are in src/sports/demo.ts. |
+| league_logos | `src/assets/sportsbook/shared/leagues/<gdc|ccl|igl|fhl>_512.png` | 512×512 | 4 | yes | ⏸ DEFERRED (colour squares / sport names for now) · League tabs, history, news | Plus a 128x128 export of each (<id>_128.png). League initials only, no other text. |
+| team_crests | `src/assets/sportsbook/shared/crests/<team_id>_256.png` | 256×256 | 32 | yes | ⏸ DEFERRED (team colour squares for now) · Lines, scores, standings, team pages | Plus a 64x64 export (<team_id>_64.png). Must read at 32 px. Team ids are in src/sports/demo.ts. |
 | ticket_base | `src/assets/sportsbook/shared/ticket_base.png` | 600×300 | 1 | yes | Tickets view, confirm dialog | 9-slice compatible; no printed text. |
 | ticket_stamps | `src/assets/sportsbook/shared/stamp_<win|loss|push|void>.png` | 256×128 | 4 | yes | Settled tickets | Text WIN / LOSS / PUSH / VOID is the only allowed baked text. |
 | phone_frame | `src/assets/sportsbook/shared/phone_frame.png` | 720×1280 | 1 | yes | In-game phone (Phase 4) | Transparent screen area. |

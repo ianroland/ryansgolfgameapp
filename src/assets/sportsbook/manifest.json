@@ -1,6 +1,6 @@
 {
  "version": 1,
- "status": "Backgrounds installed for all three lounges (2026-11-23). Every other asset is still missing and uses a placeholder.",
+ "status": "Backgrounds installed for all three lounges. League logos and team crests deferred (colour squares used). Every other asset is still missing and uses a placeholder.",
  "assets": [
   {
    "id": "desert_palms.bg_lounge",
@@ -172,10 +172,10 @@
    "height": 512,
    "transparent": true,
    "count": 4,
-   "status": "missing",
-   "placeholder": "CSS/labelled placeholder in the Phase 1 slice",
+   "status": "deferred",
+   "placeholder": "Team colour squares (each team's primary colour, from src/sports/demo.ts); leagues named by sport",
    "usedIn": "League tabs, history, news",
-   "notes": "Plus a 128x128 export of each (<id>_128.png). League initials only, no other text."
+   "notes": "Plus a 128x128 export of each (<id>_128.png). League initials only, no other text. Deferred 2026-11-23: not needed for now; may come back later for a richer look."
   },
   {
    "id": "team_crests",
@@ -185,10 +185,10 @@
    "height": 256,
    "transparent": true,
    "count": 32,
-   "status": "missing",
-   "placeholder": "CSS/labelled placeholder in the Phase 1 slice",
+   "status": "deferred",
+   "placeholder": "Team colour squares (each team's primary colour, from src/sports/demo.ts); leagues named by sport",
    "usedIn": "Lines, scores, standings, team pages",
-   "notes": "Plus a 64x64 export (<team_id>_64.png). Must read at 32 px. Team ids are in src/sports/demo.ts."
+   "notes": "Plus a 64x64 export (<team_id>_64.png). Must read at 32 px. Team ids are in src/sports/demo.ts. Deferred 2026-11-23: not needed for now; may come back later for a richer look."
   },
   {
    "id": "ticket_base",

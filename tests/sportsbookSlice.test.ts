@@ -88,6 +88,9 @@ describe('lounge themes and the sandbox boundary', () => {
     // Only the three lounge backgrounds are installed; everything else stays missing.
     const installed = m.assets.filter((a: { status: string }) => a.status === 'installed').map((a: { id: string }) => a.id).sort();
     expect(installed).toEqual(['desert_palms.bg_lounge', 'morongo_sky.bg_lounge', 'white_buffalo.bg_lounge']);
+    // Logos and crests are deferred: teams use colour squares for now.
+    const deferred = m.assets.filter((a: { status: string }) => a.status === 'deferred').map((a: { id: string }) => a.id).sort();
+    expect(deferred).toEqual(['league_logos', 'team_crests']);
   });
 
   it('the installed backgrounds are 1672x941 opaque PNGs and each casino theme points at its own', () => {
