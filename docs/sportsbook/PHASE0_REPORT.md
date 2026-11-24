@@ -184,3 +184,29 @@
 ## Sports history canon (draft, read-only)
 
 The `sports-lore/1` historical layer is in `src/sports/lore/` (see `docs/sports-lore/SPORTS_LORE.md`). The sportsbook History board now shows draft canon instead of invented demo champions. It never touches the engine, odds, bankroll or saves.
+
+## Real bets (built 2026-11-23, approved by the owner: "make bets real")
+
+- **Board:** lines, scores and standings come from the sports engine for the career's world (a fixed seed per career) and calendar (career season S = sports year 2026 + S; career week = league week). A league with no games this week shows its next game week, bettable now.
+- **Odds** (`src/sports/book.ts`):
+  - Each game is priced from 60 shadow simulations on its real pre-game lineups (injuries included), using their own RNG streams. The real result is never touched.
+  - Moneyline carries the 4.5% margin. Baseball and hockey use a ±1.5 run or puck line priced from how often the favourite wins by two or more. Basketball and football use the median margin at −110. Totals use the median total at −110.
+  - Tests check calibration (predicted vs actual home wins within 6%) and that the book's hold stays between −1% and 8%.
+- **Tickets** (`src/sports/bets.ts`, `src/career/sportsbook.ts`, `src/services/sportsbookService.ts`):
+  - Singles become one ticket per pick; a parlay is one ticket of 2–6 legs from different games.
+  - Every pick is re-priced on the server and refused if the line differs, so odds lock exactly as offered.
+  - Stakes run from $5 up to $1,000 at Desert Palms, $2,500 at White Buffalo and $10,000 at Morongo Sky. Parlay payouts are capped at 100× or $50,000. Up to 50 open tickets.
+  - Ledger: `sports_bet` with key `bet:<ticketId>` when placed; `sports_payout` with key `payout:<ticketId>` when won or pushed. Each is written in the same transaction as the ticket, so replays can't charge or pay twice.
+  - Tickets and lifetime totals live in career flags (`sportsTickets`, `sportsTotals`, `sportsSeed`). That means no save migration, and they export and import with the career. The newest 100 settled tickets are kept for history.
+- **Settlement:**
+  - Advancing the week settles every ticket whose games are now final, in the same transaction as the week.
+  - Pushes and void legs refund; a parlay drops pushed legs.
+  - One Inbox message lists each settled ticket with its final scores, and a toast says how many settled.
+- **Tickets screen:** your record (won, lost, push), net on settled bets, open tickets with when they settle, and the history with results and final scores.
+- **Baseball retuned for realistic odds:** team spread 4.5 → 3, and skill weights about 35% softer.
+  - Typical favourite: 66% → 60%.
+  - One game in ten above 87% → above 74%.
+  - Runs, home edge and extra innings are unchanged.
+- **Not yet:**
+  - The off-season (Phase 2c); each season starts from the same generated rosters.
+  - Futures; news from real results (News is still demo copy); the phone app.

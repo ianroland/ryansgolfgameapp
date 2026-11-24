@@ -45,4 +45,6 @@ export const TX_LABELS: Record<string, string> = {
   casino: 'Casino',
   tip: 'Tip (gratuity)',
   drink: "Drink (Tito's Double)",
+  sports_bet: 'Sportsbook bet',
+  sports_payout: 'Sportsbook payout',
 };

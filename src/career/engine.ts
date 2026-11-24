@@ -50,7 +50,8 @@ const clone = (c: CareerState): CareerState => structuredClone(c);
 const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 export const now = (c: CareerState): GameTime => gameDate(c.season, c.week);
 
-function inbox(c: CareerState, title: string, body: string, tone: InboxItem['tone'] = 'neutral') {
+/** Adds an inbox message (newest first, last 40 kept). */
+export function inbox(c: CareerState, title: string, body: string, tone: InboxItem['tone'] = 'neutral') {
   c.inbox = [{ id: `msg_${c.season}_${c.week}_${hashString(title + body + c.inbox.length)}`, at: now(c), title, body, tone }, ...c.inbox].slice(0, 40);
 }
 

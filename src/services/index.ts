@@ -19,6 +19,7 @@ import { LegacyService, registerLegacyAwards } from './legacyService';
 import { ExpansionService } from './expansionService';
 import { NpcService } from './npcService';
 import { DrinkService } from './drinkService';
+import { SportsbookService } from './sportsbookService';
 
 export interface GameServices {
   db: AppDB;
@@ -36,6 +37,7 @@ export interface GameServices {
   expansion: ExpansionService;
   npc: NpcService;
   drinks: DrinkService;
+  sportsbook: SportsbookService;
 }
 
 export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOptions): GameServices {
@@ -64,5 +66,6 @@ export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOpt
     expansion: new ExpansionService(db),
     npc: new NpcService(db, economy),
     drinks: new DrinkService(db, economy),
+    sportsbook: new SportsbookService(db, economy, notifier),
   };
 }

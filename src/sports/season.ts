@@ -54,6 +54,11 @@ export function createWorld(seed: number): World {
 export interface PlayedGame extends ScheduledGame {
   week: number;
   result: GameResult;
+  /**
+   * The state going in: who was out injured and each team's game count (pitching and goalie
+   * rotations). Lets the sportsbook price a game on its real lineups without replaying the season.
+   */
+  pre: { out: string[]; homeGameNo: number; awayGameNo: number; neutral: boolean; playoff: boolean };
 }
 
 export interface StandingRow {
@@ -122,7 +127,7 @@ const HOME_PATTERN: Record<Sport, Record<number, boolean[]>> = {
   football: { 1: [true] },
 };
 
-export function standingsOf(games: readonly PlayedGame[], teamIds: readonly string[], tiebreak: (team: string) => number, sport: Sport = 'basketball'): StandingRow[] {
+export function standingsOf(games: readonly Pick<PlayedGame, 'home' | 'away' | 'result'>[], teamIds: readonly string[], tiebreak: (team: string) => number, sport: Sport = 'basketball'): StandingRow[] {
   const row = new Map<string, StandingRow & { last: string[] }>(
     teamIds.map((t) => [t, { team: t, w: 0, l: 0, t: 0, otl: 0, pts: 0, pf: 0, pa: 0, home: [0, 0], away: [0, 0], streak: '', last: [] }]),
   );
@@ -204,6 +209,7 @@ export function playLeagueSeason(world: World, league: LeagueId, season: number)
     // Exposure is fixed before the game starts.
     const atRisk = new Set([...exposed(sport, hr), ...exposed(sport, ar)].map((p) => p.id));
     const ctx = { neutral, playoff, homeGameNo: gamesPlayed.get(g.home)!, awayGameNo: gamesPlayed.get(g.away)! };
+    const out = [...hr, ...ar].filter((p) => p.injuryGames > 0).map((p) => p.id);
     const result = sim(g.id, g.home, g.away, hr, ar, stream(seed, 'game', g.id), ctx);
     for (const team of [g.home, g.away]) {
       gamesPlayed.set(team, gamesPlayed.get(team)! + 1);
@@ -222,7 +228,7 @@ export function playLeagueSeason(world: World, league: LeagueId, season: number)
         }
       }
     }
-    return { ...g, week, result };
+    return { ...g, week, result, pre: { out, ...ctx } };
   };
 
   const schedule = seasonSchedule(ids, fmt.meetingsPerOpponent, stream(seed, 'schedule', league, season), `${league}:${season}`, cal.seriesLength);

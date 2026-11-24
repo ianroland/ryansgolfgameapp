@@ -2021,6 +2021,19 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .sb-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(255, 255, 255, 0.5); }
 .sb-hist-back { padding: 1px 8px; font: inherit; color: var(--sb-crt-text); background: none; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; }
 .sb-hist-voice { font-style: italic; color: #fff; }
+.sb-note { margin: 0 0 6px; padding: 4px 8px; border-left: 3px solid var(--sb-trim); background: rgba(255, 255, 255, 0.05); }
+.sb-tickets-view { display: grid; gap: 6px; }
+.sb-ticket-sum { margin: 0; }
+.sb-ticket-sum b.pos, .sb-res.won { color: #7dff9a; }
+.sb-ticket-sum b.neg, .sb-res.lost { color: #ff8a8a; }
+.sb-res { font-family: var(--head); letter-spacing: 0.05em; }
+.sb-res.push { color: #ffd76a; }
+.sb-hist-sub { margin: 4px 0 0; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.8; }
+.sb-leg.won { color: #b8ffc6; }
+.sb-leg.lost { color: #ffb3b3; text-decoration: line-through; text-decoration-color: rgba(255, 140, 140, 0.6); }
+.sb-tickets li[data-status='won'] { border-left-color: #7dff9a; }
+.sb-tickets li[data-status='lost'] { border-left-color: #ff8a8a; }
+.sb-tickets li[data-status='push'] { border-left-color: #ffd76a; }
 .sb-crt { scrollbar-width: thin; scrollbar-color: var(--sb-crt-text) rgba(0, 0, 0, 0.3); }
 .sb-hist-head { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .sb-hist-head b { color: #fff; }

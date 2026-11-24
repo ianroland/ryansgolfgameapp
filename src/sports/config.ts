@@ -32,7 +32,7 @@ export const SPORTS_CONFIG = {
   /** Team quality spread at generation (overall points, sd) and player spread around it. */
   generation: {
     basketball: { teamSpread: 5, playerSpread: 8 },
-    baseball: { teamSpread: 4.5, playerSpread: 8 },
+    baseball: { teamSpread: 3, playerSpread: 8 },
     football: { teamSpread: 5, playerSpread: 7 },
     hockey: { teamSpread: 4.5, playerSpread: 7 },
   } as Record<Sport, { teamSpread: number; playerSpread: number }>,
@@ -81,7 +81,7 @@ export const SPORTS_CONFIG = {
     /** Hit rates multiplied by this for the home team. */
     homeEdge: 0.065,
     /** Effect of one attribute point away from 60 on each rate. */
-    scale: { contact: 0.011, power: 0.024, discipline: 0.012, speed: 0.02, pitch: 0.011 },
+    scale: { contact: 0.007, power: 0.016, discipline: 0.008, speed: 0.014, pitch: 0.007 },
     /** Starter innings: base + stamina share + noise; then the bullpen. */
     starterInnings: { base: 4.6, stamina: 2.6, sd: 0.8, min: 3, max: 8 },
     sacFly: 0.3,

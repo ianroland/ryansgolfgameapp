@@ -155,12 +155,15 @@ describe('lounge themes and the sandbox boundary', () => {
     for (const [x, y, w, h] of rects) expect(x >= 0 && y >= 0 && x + w <= 1672 && y + h <= 941).toBe(true);
   });
 
-  it('the demo slice never touches money, saves, NPC state or drinks', () => {
-    const files = [
-      ...readdirSync(join(__dirname, '../src/sports')).map((f) => join(__dirname, '../src/sports', f)),
-      ...readdirSync(join(__dirname, '../src/ui/sportsbook')).map((f) => join(__dirname, '../src/ui/sportsbook', f)),
-    ].filter((f) => /\.tsx?$/.test(f));
-    for (const f of files) expect(readFileSync(f, 'utf8'), f).not.toMatch(/economyService|persistence|services\.|\bnpc\/|servers\/|drinks|\.post\(/);
+  it('sports code never touches money, saves, NPC state or drinks; the lounge reaches money only via services.sportsbook', () => {
+    const sports = readdirSync(join(__dirname, '../src/sports')).filter((f) => /\.tsx?$/.test(f)).map((f) => join(__dirname, '../src/sports', f));
+    for (const f of sports) expect(readFileSync(f, 'utf8'), f).not.toMatch(/economyService|persistence|services\.|\bnpc\/|servers\/|drinks|\.post\(/);
+    const ui = readdirSync(join(__dirname, '../src/ui/sportsbook')).filter((f) => /\.tsx?$/.test(f)).map((f) => join(__dirname, '../src/ui/sportsbook', f));
+    for (const f of ui) {
+      const src = readFileSync(f, 'utf8');
+      expect(src, f).not.toMatch(/economyService|persistence|\bnpc\/|servers\/|drinks|\.post\(/);
+      for (const m of src.matchAll(/services\.(\w+)/g)) expect(m[1], f).toBe('sportsbook');
+    }
   });
 });
 

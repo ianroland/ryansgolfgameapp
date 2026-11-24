@@ -5,6 +5,7 @@
  * a single IndexedDB transaction that also posts the money it produced, so
  * career state and the ledger always move together.
  */
+import { settleSports } from '../career/sportsbook';
 import type { UnlockRecord } from '../expansion/unlocks';
 import type { LocationState, NpcState } from '../npc/types';
 import { achievementById } from '../career/achievements';
@@ -229,8 +230,16 @@ export class CareerService {
     return this.mutate((c, { balance }) => engine.buyLifestyle(c, itemId, balance));
   }
 
-  advanceWeek() {
-    return this.mutate((c, { balance, home }) => engine.advanceWeek(c, { balance, livingCost: home.livingCost, homeEnergy: home.energyBonus }));
+  /** Advances the week, then settles any sportsbook tickets whose games are now final (same transaction). */
+  async advanceWeek() {
+    let settled = 0;
+    const o = await this.mutate((c, { balance, home }) => {
+      const s = settleSports(engine.advanceWeek(c, { balance, livingCost: home.livingCost, homeEnergy: home.energyBonus }));
+      settled = s.settledTickets.length;
+      return s;
+    });
+    if (settled) this.notifier.emit({ kind: 'info', title: `Sportsbook: ${settled} ticket${settled > 1 ? 's' : ''} settled`, body: 'Results are in your Inbox.', refId: `sb:${o.career.season}:${o.career.week}` });
+    return o;
   }
 
   resolveStory(choice: number) {

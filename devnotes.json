@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.19.0",
+   "date": "2026-11-23",
+   "title": "Bets are real",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Sportsbook bets now use your real bankroll. Lines, scores and standings come from the live leagues, and every game shows its week and day."
+    },
+    {
+     "tag": "new",
+     "text": "When you advance the week, finished bets settle and pay out automatically, and a note in your Inbox tells you what won and lost, with the final scores."
+    },
+    {
+     "tag": "new",
+     "text": "The Tickets screen shows your open bets, a full history of settled tickets and your running record and net."
+    },
+    {
+     "tag": "improved",
+     "text": "Baseball games are more evenly matched, so lines look like real baseball."
+    }
+   ]
+  },
+  {
    "version": "0.18.5",
    "date": "2026-11-23",
    "title": "A history board you can read",
