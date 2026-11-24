@@ -1,9 +1,9 @@
-import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { Fragment, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import {
   BJ_LIMITS, canDouble, canSplit, deal, double, handValue, hit, newTable, split, stand, totalPayout,
   type BJState,
 } from '../../casino/blackjack';
-import { amountOn, betBlocker, canTakeDown, CRAPS_LIMITS, onTable, POINTS, type BetOutcome as CrapsOutcome, type CrapsAction, type CrapsTable, type PointNo } from '../../casino/craps';
+import { amountOn, betBlocker, canTakeDown, CRAPS_LIMITS, HARD_PAYS, onTable, POINTS, PROPS, type HardNo, type PropKey, type BetOutcome as CrapsOutcome, type CrapsAction, type CrapsTable, type PointNo } from '../../casino/craps';
 import { PAYTABLE, REEL, SLOT_BETS, spin, SYMBOL_ART, type SlotSymbol } from '../../casino/slots';
 import {
   betBlocker as rouletteBlocker, colorOf, resolveSpin, ROULETTE_LIMITS, spinWheel, spotLabel, totalOn, WHEEL, wins as rouletteWins,
@@ -398,9 +398,24 @@ const LINE_BETS: { a: CrapsAction; name: string; desc: string }[] = [
   { a: { kind: 'dontCome' }, name: "Don't Come", desc: 'Once a point is on: like a new Don’t Pass bet; travels to its own number. Pays 1:1' },
   { a: { kind: 'field' }, name: 'Field', desc: 'One roll: 3, 4, 9, 10, 11 pay 1:1 · 2 pays 2:1 · 12 pays 3:1' },
 ];
+const AREA_NAME: Record<string, string> = Object.fromEntries(LINE_BETS.map((b) => [b.a.kind, b.name]));
+const AREA_DESC: Record<string, string> = {
+  ...Object.fromEntries(LINE_BETS.map((b) => [b.a.kind, b.desc])),
+  place: 'Place bet: pays 9:5 on 4 and 10, 7:5 on 5 and 9, 7:6 on 6 and 8; stays up after a win; loses on a 7',
+};
+/** Number boxes are labelled as on the felt. */
+const NUM_LABEL: Record<PointNo, string> = { 4: '4', 5: '5', 6: 'SIX', 8: '8', 9: 'NINE', 10: '10' };
 const PLACE_PAY: Record<PointNo, string> = { 4: '9:5', 5: '7:5', 6: '7:6', 8: '7:6', 9: '7:5', 10: '9:5' };
 const NUMBER_WORD: Record<PointNo, string> = { 4: 'four', 5: 'five', 6: 'six', 8: 'eight', 9: 'nine', 10: 'ten' };
-const actionKey = (a: CrapsAction) => ('n' in a ? `${a.kind}-${a.n}` : a.kind);
+const actionKey = (a: CrapsAction) => ('n' in a ? `${a.kind}-${a.n}` : 'p' in a ? `prop-${a.p}` : a.kind);
+const HARD_DICE: Record<HardNo, string> = { 4: '⚁⚁', 6: '⚂⚂', 8: '⚃⚃', 10: '⚄⚄' };
+const PROP_BY = Object.fromEntries(PROPS.map((p) => [p.key, p])) as Record<PropKey, (typeof PROPS)[number]>;
+const areaName = (a: CrapsAction) =>
+  a.kind === 'place' ? `Place ${a.n}` : a.kind === 'hard' ? `Hard ${a.n}` : a.kind === 'prop' ? PROP_BY[a.p].name : a.kind === 'horn' ? 'Horn' : AREA_NAME[a.kind];
+const areaDesc = (a: CrapsAction) =>
+  a.kind === 'hard' ? `Hard ${a.n}: the ${a.n} as a pair pays ${HARD_PAYS[a.n]} to 1; loses on the easy ${a.n} or a 7; stays up after a win`
+    : a.kind === 'prop' ? `One roll: ${PROP_BY[a.p].name} pays ${PROP_BY[a.p].pays} to 1 on the next roll only`
+      : a.kind === 'horn' ? 'One roll: your chip on each of 2, 3, 11 and 12 (four chips)' : AREA_DESC[a.kind];
 
 /** Where each point box sits on the drawn table (percent across, measured from the gold box lines on craps_table_v2). */
 const POINT_X: Record<number, number> = { 4: 31.9, 5: 39.2, 6: 46.5, 8: 53.9, 9: 61.2, 10: 68.8 };
@@ -418,6 +433,9 @@ function stickCall(before: number | null, after: number | null, sum: number, out
     if (sum === 2 || sum === 3 || sum === 12) return `Craps, ${sum}! Line away.`;
     return `The point is ${sum}. Mark it!`;
   }
+  const hardWin = outcomes.find((o) => o.bet.startsWith('hard ') && o.result === 'win');
+  if (hardWin) return { text: `${sum} the hard way! Pay the hardway${sum === before ? ' and the line' : ''}.`, draft: true };
+  if (outcomes.some((o) => o.bet.startsWith('prop ') && o.result === 'win') && sum !== 7) return { text: sum === 11 ? 'Yo-leven! Pay the one-roll bets.' : `${sum}! Pay the centre.`, draft: true };
   if (sum === before) return `${sum}, the hard way or easy, winner! Pay the line.`;
   if (sum === 7 && after === null) return 'Seven out. Line away.';
   if (moved) return { text: `${sum}! Come bet goes to the ${NUMBER_WORD[sum as PointNo]}. Shooter rolls again.`, draft: true };
@@ -499,18 +517,43 @@ function Craps() {
       </span>
     ) : null;
 
-  const actionBtn = (a: CrapsAction, label: string, desc: string, cls = '') => {
+  /** An area of the layout. A tap adds the chip; a bet the rules don't allow yet explains why (in the log) instead. */
+  const feltArea = (a: CrapsAction, cls: string, body: ReactNode) => {
+    const on = amountOn(table, a);
+    const block = betBlocker(table, a, chip);
+    const desc = areaDesc(a);
+    const name = areaName(a);
+    return (
+      <div key={actionKey(a)} className={`cl-area ${cls} ${on ? 'has' : ''} ${block && !on ? 'blocked' : ''}`}>
+        <button
+          type="button"
+          className="cl-hit"
+          onClick={() => place(a)}
+          disabled={busy || rolling}
+          aria-disabled={!!block}
+          title={block ?? desc}
+          aria-label={`${name}: ${block ?? desc}${on ? `. On it: ${formatMoney(on)}` : ''}`}
+          data-testid={`craps-${actionKey(a)}`}
+        >
+          {body}
+        </button>
+        {on > 0 && <span className="cl-chip"><BetChip amount={on} /></span>}
+        {on > 0 && canTakeDown(a) && (
+          <button type="button" className="craps-down" onClick={() => down(a)} disabled={busy || rolling} aria-label={`Take down ${name}`} title="Take it down" data-testid={`craps-down-${actionKey(a)}`}>×</button>
+        )}
+      </div>
+    );
+  };
+  /** Small odds / lay button inside a number box (for a Come or Don't Come bet that moved there). */
+  const subBtn = (a: CrapsAction, label: string) => {
     const on = amountOn(table, a);
     const block = betBlocker(table, a, chip);
     return (
-      <span key={actionKey(a)} className={`craps-spot-wrap ${cls}`}>
-        <button className={`craps-spot ${a.kind} ${on ? 'has' : ''}`} onClick={() => place(a)} disabled={busy || rolling || !!block || chip > state.balance} title={block ?? desc} aria-label={`${label}: ${block ?? desc}${on ? `. On it: ${formatMoney(on)}` : ''}`} data-testid={`craps-${actionKey(a)}`}>
-          <span className="spot-name">{label}</span>
-          {on > 0 ? <BetChip amount={on} className="on-spot" /> : <span className="spot-desc">{block && !on ? block : desc}</span>}
+      <span className="cl-subbtns">
+        <button type="button" className={`cl-mini ${block ? 'blocked' : ''}`} onClick={() => place(a)} disabled={busy || rolling} aria-disabled={!!block} title={block ?? `${label}: up to the maximum, no house edge`} data-testid={`craps-${actionKey(a)}`}>
+          + {label}
         </button>
-        {on > 0 && canTakeDown(a) && (
-          <button className="craps-down" onClick={() => down(a)} disabled={busy || rolling} aria-label={`Take down ${label}`} title="Take it down" data-testid={`craps-down-${actionKey(a)}`}>×</button>
-        )}
+        {on > 0 && <button type="button" className="cl-mini down" onClick={() => down(a)} disabled={busy || rolling} aria-label={`Take down ${label}`} data-testid={`craps-down-${actionKey(a)}`}>×</button>}
       </span>
     );
   };
@@ -518,18 +561,36 @@ function Craps() {
   return (
     <section className="hub-card casino-game craps-game">
       <h2 className="hub-title">
-        Craps <span className="muted">${CRAPS_LIMITS.min}–${CRAPS_LIMITS.max} · line, come, place, odds and field</span>
+        Craps <span className="muted">${CRAPS_LIMITS.min}–${CRAPS_LIMITS.max} · hardways and one-roll bets $1–$100</span>
         <span className={`puck ${table.point ? 'on' : ''}`}>{table.point ? `ON ${table.point}` : 'OFF'}</span>
       </h2>
       <div className={`table-layout ${WIDE_SIDE ? 'side' : ''}`}>
       {crapsScene ? (
         <div className={`craps-scene craps-felt loc-${crapsScene.location}`} style={{ aspectRatio: `${crapsScene.size[0]} / ${crapsScene.size[1]}` }} data-testid="craps-felt" data-scene={crapsScene.location}>
           <img className="craps-scene-img" src={crapsScene.url} width={crapsScene.size[0]} height={crapsScene.size[1]} alt="" draggable={false} />
-          {crapsScene.veils.map((r, i) => (
-            <span key={i} className={`craps-veil ${i === crapsScene.veils.length - 1 ? 'main' : ''}`} style={sceneRect(crapsScene, r)} aria-hidden>
-              {i === crapsScene.veils.length - 1 && <em>Hardways and one-roll bets: not at this table yet</em>}
-            </span>
-          ))}
+          {crapsScene.veils.map((r, i) =>
+            i === crapsScene.veils.length - 1 ? (
+              // The painted centre has some wrong payouts: the centre is drawn over it with the real ones, and the bets on it.
+              <div key={i} className="craps-centre-felt" style={sceneRect(crapsScene, r)} aria-hidden data-testid="craps-centre-felt">
+                <b className="ccf-head">Hardways</b>
+                <div className="ccf-hard">
+                  {([6, 10, 8, 4] as HardNo[]).map((n) => (
+                    <span key={n} className={table.hard[n] ? 'on' : ''}><i>{HARD_DICE[n]}</i>{table.hard[n] ? formatMoney(table.hard[n]!) : `${HARD_PAYS[n]} to 1`}</span>
+                  ))}
+                </div>
+                <b className="ccf-head">One roll bets</b>
+                <span className={`ccf-wide red ${table.props.any7 ? 'on' : ''}`}>Any Seven {table.props.any7 ? formatMoney(table.props.any7) : '4 to 1'}</span>
+                <div className="ccf-props">
+                  {(['two', 'three', 'yo', 'twelve'] as PropKey[]).map((p) => (
+                    <span key={p} className={table.props[p] ? 'on' : ''}>{({ two: '2', three: '3', yo: '11', twelve: '12' } as Record<string, string>)[p]}<small>{table.props[p] ? formatMoney(table.props[p]!) : `${PROP_BY[p].pays}:1`}</small></span>
+                  ))}
+                </div>
+                <span className={`ccf-wide red ${table.props.anyCraps ? 'on' : ''}`}>Any Craps {table.props.anyCraps ? formatMoney(table.props.anyCraps) : '7 to 1'}</span>
+              </div>
+            ) : (
+              <span key={i} className="craps-veil" style={sceneRect(crapsScene, r)} aria-hidden />
+            ),
+          )}
           {table.point && <span className="felt-puck" style={boxPt(crapsScene, table.point, 0, -0.3)} data-testid="craps-puck">ON</span>}
           {chipAt('pass', table.pass, scenePt(crapsScene, crapsScene.spots.pass))}
           {chipAt('passOdds', table.passOdds, scenePt(crapsScene, crapsScene.spots.odds))}
@@ -577,22 +638,54 @@ function Craps() {
         <ServerPanel busy={busy || rolling} />
       </div>
       </div>
-      <div className="craps-bets">{LINE_BETS.map((b) => actionBtn(b.a, b.name, b.desc))}</div>
-      <div className="craps-numbers" role="group" aria-label="The numbers: place bets, and odds on come points">
+      {/* The betting layout mirrors one side of the felt: the bar and the numbers on top, then Come, Field, Don't Pass and the Pass Line. */}
+      <div className="craps-board">
+      <div className={`craps-layout loc-${casinoLoc}`} role="group" aria-label="Craps layout: tap an area to put your chip on it" data-testid="craps-layout">
+        {feltArea({ kind: 'dontCome' }, 'cl-dc', <><b>Don&rsquo;t Come</b><b>Bar</b><i>⚅⚅</i></>)}
         {POINTS.map((n) => {
           const cp = table.comePoints[n];
           const dc = table.dontComePoints[n];
           return (
-            <div key={n} className={`craps-num ${table.point === n ? 'is-point' : ''}`} data-testid={`craps-num-${n}`}>
-              <p className="craps-num-head"><b>{n}</b>{table.point === n && <span className="mini-puck">ON</span>}</p>
-              {actionBtn({ kind: 'place', n }, `Place ${n}`, `Pays ${PLACE_PAY[n]}; stays up after a win; loses on a 7`, 'mini')}
-              {cp && <p className="craps-num-line">Come {formatMoney(cp.bet)}{cp.odds ? ` + odds ${formatMoney(cp.odds)}` : ''}</p>}
-              {cp && actionBtn({ kind: 'comeOdds', n }, 'Odds', 'True odds on your Come bet, up to 2×', 'mini')}
-              {dc && <p className="craps-num-line">Don&rsquo;t Come {formatMoney(dc.bet)}{dc.odds ? ` + lay ${formatMoney(dc.odds)}` : ''}</p>}
-              {dc && actionBtn({ kind: 'dontComeOdds', n }, 'Lay', 'Lay odds on your Don’t Come bet', 'mini')}
+            <div key={n} className={`cl-num ${table.point === n ? 'is-point' : ''}`} data-testid={`craps-num-${n}`}>
+              {table.point === n && <span className="cl-puck" aria-label={`The point is ${n}`}>ON</span>}
+              {feltArea({ kind: 'place', n }, 'cl-place', <><span className="cl-numword">{NUM_LABEL[n]}</span><small>Place {PLACE_PAY[n]}</small></>)}
+              {dc && (
+                <div className="cl-sub dc">
+                  <span>DC {formatMoney(dc.bet)}{dc.odds ? ` +${formatMoney(dc.odds)}` : ''}</span>
+                  {subBtn({ kind: 'dontComeOdds', n }, 'Lay')}
+                </div>
+              )}
+              {cp && (
+                <div className="cl-sub">
+                  <span>Come {formatMoney(cp.bet)}{cp.odds ? ` +${formatMoney(cp.odds)}` : ''}</span>
+                  {subBtn({ kind: 'comeOdds', n }, 'Odds')}
+                </div>
+              )}
             </div>
           );
         })}
+        {feltArea({ kind: 'come' }, 'cl-come', <span className="cl-big">Come</span>)}
+        {feltArea({ kind: 'field' }, 'cl-field', (
+          <>
+            <span className="cl-mid">Field</span>
+            <span className="cl-fieldnums"><em>2</em> 3 · 4 · 9 · 10 · 11 <em>12</em></span>
+            <small>2 pays double · 12 pays triple</small>
+          </>
+        ))}
+        {feltArea({ kind: 'dontPass' }, 'cl-dp', <><span className="cl-mid">Don&rsquo;t Pass Bar</span><i>⚅⚅</i></>)}
+        {feltArea({ kind: 'dontOdds' }, 'cl-dpodds', <><span className="cl-small">Lay Odds</span><small>behind Don&rsquo;t Pass</small></>)}
+        {feltArea({ kind: 'pass' }, 'cl-pass', <span className="cl-big">Pass Line</span>)}
+        {feltArea({ kind: 'passOdds' }, 'cl-podds', <><span className="cl-small">Odds</span><small>behind the line · true odds</small></>)}
+      </div>
+      <div className={`craps-centre loc-${casinoLoc}`} role="group" aria-label="Centre of the table: hardways and one-roll bets" data-testid="craps-centre">
+        <p className="cc-head">Hardways</p>
+        {([6, 10, 8, 4] as HardNo[]).map((n) => feltArea({ kind: 'hard', n }, 'cc-hard', <><i className="cc-dice">{HARD_DICE[n]}</i><small>{HARD_PAYS[n]} to 1</small></>))}
+        <p className="cc-head">One roll bets</p>
+        {feltArea({ kind: 'prop', p: 'any7' }, 'cc-wide cc-red', <><span>Any Seven</span><small>4 to 1</small></>)}
+        {(['two', 'three', 'yo', 'twelve'] as PropKey[]).map((p) => feltArea({ kind: 'prop', p }, 'cc-prop', <><i className="cc-dice">{({ two: '⚀⚀', three: '⚀⚁', yo: '⚄⚅', twelve: '⚅⚅' } as Record<string, string>)[p]}</i><small>{PROP_BY[p].pays} to 1</small></>))}
+        {feltArea({ kind: 'horn' }, 'cc-wide', <><span>Horn</span><small>2 · 3 · 11 · 12</small></>)}
+        {feltArea({ kind: 'prop', p: 'anyCraps' }, 'cc-wide cc-red', <><span>Any Craps</span><small>7 to 1</small></>)}
+      </div>
       </div>
       <label className="craps-toggle">
         <input type="checkbox" checked={table.placeOn} disabled={busy || rolling} onChange={(e) => void run(() => services.casino.crapsPlaceOn(e.target.checked))} data-testid="craps-place-on" />
@@ -611,8 +704,8 @@ function Craps() {
         {log.map((l, i) => <li key={i} className={i === 0 ? 'latest' : ''}>{l}</li>)}
       </ul>
       <p className="fineprint">
-        Bets ride from roll to roll and stay on the table if you leave or reload. Place bets and any odds can be taken down (×); line and Come bets stay until decided.
-        Odds on Come bets are off on the come-out roll. Hardways and the one-roll bets come in a later update.
+        Bets ride from roll to roll and stay on the table if you leave or reload. Place bets, hardways, one-roll bets and any odds can be taken down (×); line and Come bets stay until decided.
+        Odds on Come bets are off on the come-out roll; Place bets and hardways are too, unless turned on. One-roll bets are decided by the very next roll. Horn puts your chip on each of 2, 3, 11 and 12.
       </p>
     </section>
   );

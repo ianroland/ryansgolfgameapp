@@ -1,8 +1,9 @@
 /**
- * Craps, step 1 of the full game (0.20.2): Pass Line and Don't Pass with odds, Come and Don't Come
- * with their own points and odds, Place bets on 4, 5, 6, 8, 9 and 10, and the one-roll Field.
- * Hardways and the one-roll proposition bets are step 2. Pure rules; money is handled by
- * CasinoService, which keeps the table on the career so bets ride across rolls and reloads.
+ * Craps, the full game: Pass Line and Don't Pass with odds, Come and Don't Come with their own
+ * points and odds, Place bets on 4, 5, 6, 8, 9 and 10, the Field, the hardways and the one-roll
+ * proposition bets (0.20.3). Big 6/8 is left out (a worse version of placing the 6 or 8). Pure
+ * rules; money is handled by CasinoService, which keeps the table on the career so bets ride
+ * across rolls and reloads.
  *
  * Rules (standard Las Vegas):
  *  - Pass / Don't Pass go down on the come-out roll only. 7 or 11 wins Pass, 2, 3, 12 lose it;
@@ -16,6 +17,11 @@
  *  - Place bets pay 9:5 on 4/10, 7:5 on 5/9, 7:6 on 6/8, stay up after a win (only the win is
  *    paid), lose on a 7, and are off on the come-out roll unless turned on.
  *  - Field (one roll): 3, 4, 9, 10, 11 pay 1:1, 2 pays 2:1, 12 pays 3:1, else loses.
+ *  - Hardways: hard 4 / 10 pay 7:1, hard 6 / 8 pay 9:1 (the number rolled as a pair); they lose on
+ *    the easy way or a 7, stay up after a win, and (like Place bets) are off on the come-out roll
+ *    unless turned on. $1–$100 each.
+ *  - One-roll bets: Any Seven 4:1, Any Craps (2, 3, 12) 7:1, Aces (2) 30:1, Ace-Deuce (3) 15:1,
+ *    Yo (11) 15:1, Twelve 30:1. Horn puts the chip on each of 2, 3, 11 and 12. $1–$100 each.
  * Odd amounts that a ratio can't pay exactly are rounded down, as at a real table.
  */
 import { cryptoInt, type RandomInt } from './random';
@@ -27,6 +33,23 @@ export type PointNo = (typeof POINTS)[number];
 const TRUE_ODDS: Record<PointNo, [number, number]> = { 4: [2, 1], 10: [2, 1], 5: [3, 2], 9: [3, 2], 6: [6, 5], 8: [6, 5] };
 const LAY_ODDS: Record<PointNo, [number, number]> = { 4: [1, 2], 10: [1, 2], 5: [2, 3], 9: [2, 3], 6: [5, 6], 8: [5, 6] };
 const PLACE_PAYS: Record<PointNo, [number, number]> = { 4: [9, 5], 10: [9, 5], 5: [7, 5], 9: [7, 5], 6: [7, 6], 8: [7, 6] };
+
+export const HARD_NUMBERS = [4, 6, 8, 10] as const;
+export type HardNo = (typeof HARD_NUMBERS)[number];
+export const HARD_PAYS: Record<HardNo, number> = { 4: 7, 6: 9, 8: 9, 10: 7 };
+
+export type PropKey = 'any7' | 'anyCraps' | 'two' | 'three' | 'yo' | 'twelve';
+export const PROPS: { key: PropKey; name: string; pays: number; wins: (sum: number) => boolean }[] = [
+  { key: 'any7', name: 'Any Seven', pays: 4, wins: (s) => s === 7 },
+  { key: 'anyCraps', name: 'Any Craps', pays: 7, wins: (s) => s === 2 || s === 3 || s === 12 },
+  { key: 'two', name: 'Aces (2)', pays: 30, wins: (s) => s === 2 },
+  { key: 'three', name: 'Ace-Deuce (3)', pays: 15, wins: (s) => s === 3 },
+  { key: 'yo', name: 'Yo (11)', pays: 15, wins: (s) => s === 11 },
+  { key: 'twelve', name: 'Twelve', pays: 30, wins: (s) => s === 12 },
+];
+/** Horn: the chip goes on each of these. */
+export const HORN: PropKey[] = ['two', 'three', 'yo', 'twelve'];
+export const PROP_LIMITS = { min: 1, max: 100 };
 export const ODDS_MULTIPLE = 2;
 
 /** A bet that has travelled to a number, with its odds. */
@@ -46,18 +69,26 @@ export interface CrapsTable {
   comePoints: Partial<Record<PointNo, NumberBet>>;
   dontComePoints: Partial<Record<PointNo, NumberBet>>;
   place: Partial<Record<PointNo, number>>;
-  /** Place bets work on the come-out roll too. */
+  /** Place bets and hardways work on the come-out roll too. */
   placeOn: boolean;
+  hard: Partial<Record<HardNo, number>>;
+  props: Partial<Record<PropKey, number>>;
 }
 
 export const newTable = (): CrapsTable => ({
   v: 2, point: null, pass: 0, passOdds: 0, dontPass: 0, dontOdds: 0, field: 0, come: 0, dontCome: 0,
-  comePoints: {}, dontComePoints: {}, place: {}, placeOn: false,
+  comePoints: {}, dontComePoints: {}, place: {}, placeOn: false, hard: {}, props: {},
 });
 
 export type CrapsAction =
   | { kind: 'pass' | 'dontPass' | 'passOdds' | 'dontOdds' | 'field' | 'come' | 'dontCome' }
-  | { kind: 'place' | 'comeOdds' | 'dontComeOdds'; n: PointNo };
+  | { kind: 'place' | 'comeOdds' | 'dontComeOdds'; n: PointNo }
+  | { kind: 'hard'; n: HardNo }
+  | { kind: 'prop'; p: PropKey }
+  | { kind: 'horn' };
+
+/** Chips one tap of an action takes from the bank (Horn: the chip on each of four numbers). */
+export const costOf = (a: CrapsAction, chip: number) => (a.kind === 'horn' ? chip * HORN.length : chip);
 
 export const isPoint = (n: number): n is PointNo => (POINTS as readonly number[]).includes(n);
 const ratio = (amount: number, [a, b]: [number, number]) => Math.floor((amount * a) / b);
@@ -72,6 +103,9 @@ export function amountOn(t: CrapsTable, a: CrapsAction): number {
     case 'place': return t.place[a.n] ?? 0;
     case 'comeOdds': return t.comePoints[a.n]?.odds ?? 0;
     case 'dontComeOdds': return t.dontComePoints[a.n]?.odds ?? 0;
+    case 'hard': return t.hard[a.n] ?? 0;
+    case 'prop': return t.props[a.p] ?? 0;
+    case 'horn': return HORN.reduce((s, p) => s + (t.props[p] ?? 0), 0);
     default: return t[a.kind];
   }
 }
@@ -79,6 +113,11 @@ export function amountOn(t: CrapsTable, a: CrapsAction): number {
 /** Why a bet can't go down right now, or null. */
 export function betBlocker(t: CrapsTable, a: CrapsAction, amount: number): string | null {
   if (!Number.isInteger(amount) || amount <= 0) return 'Pick a chip';
+  if (a.kind === 'hard' || a.kind === 'prop' || a.kind === 'horn') {
+    const each = a.kind === 'hard' ? [t.hard[a.n] ?? 0] : a.kind === 'prop' ? [t.props[a.p] ?? 0] : HORN.map((p) => t.props[p] ?? 0);
+    if (each.some((v) => v + amount > PROP_LIMITS.max)) return `Most on one of these is $${PROP_LIMITS.max}`;
+    return null;
+  }
   const now = amountOn(t, a) + amount;
   switch (a.kind) {
     case 'pass':
@@ -121,11 +160,14 @@ export function betBlocker(t: CrapsTable, a: CrapsAction, amount: number): strin
 const formatMax = (n: number) => `$${n.toLocaleString('en-US')}`;
 
 /** Bets that may be taken back down (Place bets and any odds), as at a real table. */
-export const canTakeDown = (a: CrapsAction) => a.kind === 'place' || a.kind === 'passOdds' || a.kind === 'dontOdds' || a.kind === 'comeOdds' || a.kind === 'dontComeOdds';
+export const canTakeDown = (a: CrapsAction) => a.kind === 'place' || a.kind === 'hard' || a.kind === 'prop' || a.kind === 'horn' || a.kind === 'passOdds' || a.kind === 'dontOdds' || a.kind === 'comeOdds' || a.kind === 'dontComeOdds';
 
 export function addBet(t: CrapsTable, a: CrapsAction, amount: number): CrapsTable {
   const n = clone(t);
   if (a.kind === 'place') n.place[a.n] = (n.place[a.n] ?? 0) + amount;
+  else if (a.kind === 'hard') n.hard[a.n] = (n.hard[a.n] ?? 0) + amount;
+  else if (a.kind === 'prop') n.props[a.p] = (n.props[a.p] ?? 0) + amount;
+  else if (a.kind === 'horn') for (const p of HORN) n.props[p] = (n.props[p] ?? 0) + amount;
   else if (a.kind === 'comeOdds') n.comePoints[a.n]!.odds += amount;
   else if (a.kind === 'dontComeOdds') n.dontComePoints[a.n]!.odds += amount;
   else n[a.kind] += amount;
@@ -138,6 +180,9 @@ export function takeDown(t: CrapsTable, a: CrapsAction): { table: CrapsTable; re
   const returned = amountOn(t, a);
   const n = clone(t);
   if (a.kind === 'place') delete n.place[a.n];
+  else if (a.kind === 'hard') delete n.hard[a.n];
+  else if (a.kind === 'prop') delete n.props[a.p];
+  else if (a.kind === 'horn') for (const p of HORN) delete n.props[p];
   else if (a.kind === 'comeOdds') n.comePoints[a.n]!.odds = 0;
   else if (a.kind === 'dontComeOdds') n.dontComePoints[a.n]!.odds = 0;
   else n[a.kind as 'passOdds' | 'dontOdds'] = 0;
@@ -171,6 +216,25 @@ export function resolveRoll(prev: CrapsTable, dice: [number, number]): { table: 
     else if ([3, 4, 9, 10, 11].includes(sum)) push('field', 'win', f, f * 2);
     else push('field', 'lose', f, 0);
     t.field = 0;
+  }
+
+  // One-roll proposition bets.
+  for (const pr of PROPS) {
+    const b = t.props[pr.key];
+    if (!b) continue;
+    push(`prop ${pr.key}`, pr.wins(sum) ? 'win' : 'lose', b, pr.wins(sum) ? b * (pr.pays + 1) : 0);
+  }
+  t.props = {};
+
+  // Hardways: off on the come-out unless turned on; stay up after a win.
+  if (!comeOut || t.placeOn) {
+    const pair = dice[0] === dice[1];
+    for (const n of HARD_NUMBERS) {
+      const b = t.hard[n];
+      if (!b) continue;
+      if (sum === n && pair) push(`hard ${n}`, 'win', 0, b * HARD_PAYS[n]);
+      else if (sum === n || sum === 7) { push(`hard ${n}`, 'lose', b, 0); delete t.hard[n]; }
+    }
   }
 
   // Place bets: off on the come-out unless turned on.
@@ -274,12 +338,14 @@ export function resolveRoll(prev: CrapsTable, dice: [number, number]): { table: 
 /** All chips on the table. */
 export function onTable(t: CrapsTable): number {
   let s = t.pass + t.passOdds + t.dontPass + t.dontOdds + t.field + t.come + t.dontCome;
+  for (const n of HARD_NUMBERS) s += t.hard[n] ?? 0;
+  for (const p of PROPS) s += t.props[p.key] ?? 0;
   for (const n of POINTS) s += (t.place[n] ?? 0) + (t.comePoints[n]?.bet ?? 0) + (t.comePoints[n]?.odds ?? 0) + (t.dontComePoints[n]?.bet ?? 0) + (t.dontComePoints[n]?.odds ?? 0);
   return s;
 }
 
-/** The most one roll can pay back per chip that comes off the table (Field 12: 4x; Place 4: 1.8x a bet that stays up). */
-export const MAX_ROLL_RETURN = 4;
+/** The most one roll can pay back per chip on the table (a 2 or 12 one-roll bet: 31x). */
+export const MAX_ROLL_RETURN = 31;
 
 function clone(t: CrapsTable): CrapsTable {
   return {
@@ -287,6 +353,8 @@ function clone(t: CrapsTable): CrapsTable {
     comePoints: Object.fromEntries(Object.entries(t.comePoints).map(([k, v]) => [k, { ...v! }])),
     dontComePoints: Object.fromEntries(Object.entries(t.dontComePoints).map(([k, v]) => [k, { ...v! }])),
     place: { ...t.place },
+    hard: { ...(t.hard ?? {}) },
+    props: { ...(t.props ?? {}) },
   };
 }
 

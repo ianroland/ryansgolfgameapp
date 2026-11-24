@@ -2456,3 +2456,95 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .spin-history .spin-sym img { width: 20px; height: 20px; }
 @media (max-width: 720px) { .spin-spots { grid-template-columns: repeat(4, minmax(0, 1fr)); } .spin-chip img { width: 52px; } }
 @media (prefers-reduced-motion: reduce) { .spin-won, .spin-status.win { animation: none; } }
+
+/* ── Craps betting layout, shaped like the felt (0.20.3). Felt colour per casino; gold lines. ── */
+.craps-board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr); gap: 10px; margin-top: 12px; }
+.craps-layout, .craps-centre {
+  --felt: #0c5a2c; --felt-2: #08401f; --line: #e9c25a;
+  padding: 8px; border: 3px solid #6b4a1c; border-radius: 16px; background: radial-gradient(ellipse at 50% 40%, var(--felt), var(--felt-2));
+  box-shadow: inset 0 0 0 2px var(--line), 0 6px 0 rgba(0, 0, 0, 0.35);
+}
+.craps-layout.loc-white_buffalo, .craps-centre.loc-white_buffalo { --felt: #0c5257; --felt-2: #063a3e; --line: #e3a65c; }
+.craps-layout.loc-morongo_sky, .craps-centre.loc-morongo_sky { --felt: #3b1466; --felt-2: #260a46; --line: #e4c35a; }
+.craps-layout { display: grid; grid-template-columns: 1.15fr repeat(6, 1fr); grid-template-rows: auto auto auto auto auto; gap: 0; }
+.cl-area { position: relative; display: flex; min-width: 0; border: 2px solid var(--line); margin: -1px 0 0 -1px; }
+.cl-area.has { background: rgba(255, 230, 128, 0.1); }
+.cl-area.blocked .cl-hit { opacity: 0.55; }
+.cl-hit { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px 4px; cursor: pointer;
+  background: none; border: 0; color: #fff6d8; font-family: var(--head); text-transform: uppercase; text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55); line-height: 1; }
+.cl-hit:hover:not(:disabled) { background: rgba(255, 240, 170, 0.12); }
+.cl-hit:disabled { cursor: default; }
+.cl-hit:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.cl-hit small { font-family: var(--body, inherit); font-size: 11px; text-transform: none; color: #f3e2b0; text-shadow: none; opacity: 0.9; }
+.cl-hit i { font-style: normal; font-size: 22px; color: #fff; letter-spacing: -2px; }
+.cl-big { font-size: clamp(26px, 3.4vw, 44px); color: #ffd85a; font-style: italic; }
+.cl-mid { font-size: clamp(18px, 2.2vw, 28px); color: #ffd85a; font-style: italic; }
+.cl-small { font-size: clamp(14px, 1.5vw, 19px); color: #ffd85a; }
+.cl-fieldnums { font-size: clamp(14px, 1.8vw, 22px); letter-spacing: 0.04em; }
+.cl-fieldnums em { font-style: normal; display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; border: 2px solid var(--line); border-radius: 50%; }
+.cl-chip { position: absolute; left: 6px; bottom: 4px; z-index: 1; pointer-events: none; }
+.cl-chip .felt-chip { gap: 3px; }
+.cl-chip .felt-chip img { width: 28px; }
+.cl-chip .felt-chip b { font-size: 12px; }
+.cl-area .craps-down { top: 2px; right: 2px; width: 22px; height: 22px; font-size: 15px; }
+.cl-dc { grid-row: 1; grid-column: 1; }
+.cl-dc .cl-hit { font-size: 15px; color: #ffd85a; }
+.cl-num { position: relative; display: flex; flex-direction: column; grid-row: 1; min-width: 0; border: 2px solid var(--line); margin: -1px 0 0 -1px; }
+.cl-num.is-point { box-shadow: inset 0 0 0 3px #fff; }
+.cl-num > .cl-place { flex: 1; border: 0; margin: 0; min-height: 96px; }
+.cl-numword { font-size: clamp(26px, 3.2vw, 44px); color: #fff6d8; font-style: italic; }
+.cl-puck { position: absolute; top: 3px; left: 50%; z-index: 2; transform: translateX(-50%); padding: 1px 6px; font-family: var(--head); font-size: 12px; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 999px; }
+.cl-sub { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px 4px; padding: 3px 5px; font-size: 11px; color: #fff6d8; background: rgba(0, 0, 0, 0.28); border-top: 1px solid var(--line); }
+.cl-sub.dc { background: rgba(0, 0, 0, 0.45); }
+.cl-subbtns { display: inline-flex; gap: 3px; }
+.cl-mini { padding: 2px 6px; font-size: 11px; color: var(--ink); background: #ffd85a; border: 1px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.cl-mini.blocked { opacity: 0.5; }
+.cl-mini.down { color: #fff; background: #8a1d2a; }
+.cl-mini:disabled { cursor: default; }
+.cl-come { grid-row: 2; grid-column: 1 / -1; min-height: 70px; }
+.cl-field { grid-row: 3; grid-column: 1 / -1; min-height: 70px; }
+.cl-dp { grid-row: 4; grid-column: 1 / 6; }
+.cl-dpodds { grid-row: 4; grid-column: 6 / -1; }
+.cl-pass { grid-row: 5; grid-column: 1 / 6; min-height: 66px; }
+.cl-podds { grid-row: 5; grid-column: 6 / -1; }
+.craps-centre { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-content: start; }
+.cc-head { grid-column: 1 / -1; margin: 4px 0; text-align: center; font-family: var(--head); font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: #ffd85a; }
+.cc-hard { grid-column: span 2; min-height: 64px; }
+.cc-prop { grid-column: span 1; min-height: 58px; }
+.cc-wide { grid-column: 1 / -1; min-height: 48px; }
+.cc-red .cl-hit { background: rgba(170, 20, 30, 0.75); }
+.cc-red .cl-hit:hover:not(:disabled) { background: rgba(200, 30, 40, 0.85); }
+.craps-centre .cl-hit span { font-size: 19px; color: #fff6d8; }
+.cc-dice { font-size: 26px !important; }
+.craps-centre .cl-chip { left: 3px; bottom: 2px; }
+.craps-centre .cl-chip .felt-chip img { width: 22px; }
+@media (max-width: 1000px) { .craps-board { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) {
+  .craps-layout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cl-dc { grid-row: 1; grid-column: 1 / -1; }
+  .cl-dc .cl-hit { flex-direction: row; gap: 8px; }
+  .cl-num { grid-row: auto; }
+  .cl-num > .cl-place { min-height: 70px; }
+  .cl-come, .cl-field { grid-row: auto; }
+  .cl-dp, .cl-pass { grid-row: auto; grid-column: 1 / 3; }
+  .cl-dpodds, .cl-podds { grid-row: auto; grid-column: 3 / -1; }
+  .cl-hit small { font-size: 10px; }
+}
+
+/* The drawn centre on the felt (correct payouts over the painted ones). Sized from the scene (container units). */
+.craps-centre-felt { position: absolute; z-index: 2; display: flex; flex-direction: column; gap: 0.5cqw; padding: 0.9cqw; border-radius: 0.8cqw;
+  background: rgba(8, 62, 34, 0.98); box-shadow: inset 0 0 0 0.2cqw #e9c25a; pointer-events: none; font-family: var(--head); color: #fff6d8; text-transform: uppercase; }
+.loc-white_buffalo .craps-centre-felt { background: rgba(10, 58, 62, 0.98); box-shadow: inset 0 0 0 0.2cqw #e3a65c; }
+.loc-morongo_sky .craps-centre-felt { background: rgba(48, 14, 74, 0.98); }
+.ccf-head { font-weight: 400; text-align: center; font-size: 1.35cqw; letter-spacing: 0.1em; color: #ffd85a; }
+.ccf-hard { display: grid; grid-template-columns: 1fr 1fr; gap: 0.35cqw; flex: 1.4; }
+.ccf-hard span, .ccf-props span, .ccf-wide { display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.2cqw; border: 0.15cqw solid #e9c25a; border-radius: 0.5cqw; }
+.ccf-hard i { font-style: normal; font-size: 2.3cqw; line-height: 1; letter-spacing: -0.2cqw; }
+.ccf-wide { flex: 0.6; flex-direction: row; gap: 0.6cqw; font-size: 1.25cqw; }
+.ccf-wide.red { background: rgba(170, 20, 30, 0.85); }
+.ccf-props { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.35cqw; flex: 0.8; }
+.ccf-props span { font-size: 1.7cqw; line-height: 1; }
+.ccf-props small { font-size: 0.95cqw; }
+.craps-centre-felt .on { background: rgba(255, 220, 90, 0.35); color: #fff; box-shadow: 0 0 0.8cqw rgba(255, 220, 90, 0.8); }
+.craps-layout, .craps-centre { align-items: stretch; } .craps-layout > *, .craps-centre > * { align-self: stretch; }
+.cl-area.has .cl-hit { padding-bottom: 28px; } @media (max-width: 720px) { .cl-chip .felt-chip img { width: 22px; } .cl-chip .felt-chip b { font-size: 11px; } .cl-area.has .cl-hit { padding-bottom: 24px; } }

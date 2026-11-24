@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.3",
+   "date": "2026-11-24",
+   "title": "Craps: the whole table",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Hardways (hard 6 and 8 pay 9 to 1, hard 4 and 10 pay 7 to 1) and the one-roll bets: Any Seven, Any Craps, 2, 3, 11, 12 and the Horn. The centre of every craps table now shows the right payouts and your bets."
+    },
+    {
+     "tag": "improved",
+     "text": "The craps betting area is laid out like the table itself: the Don't Come bar and the numbers across the top, then Come, the Field, Don't Pass and the Pass Line, with the hardways and one-roll bets in the centre."
+    }
+   ]
+  },
+  {
    "version": "0.20.2",
    "date": "2026-11-24",
    "title": "Full craps (part 1) and Spin to Win",

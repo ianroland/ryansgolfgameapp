@@ -6,7 +6,7 @@
  */
 import { BJ_LIMITS } from '../casino/blackjack';
 import {
-  addBet, betBlocker as crapsBlocker, canTakeDown, CRAPS_LIMITS, MAX_ROLL_RETURN, onTable, readTable, resolveRoll, rollDice, takeDown,
+  addBet, betBlocker as crapsBlocker, canTakeDown, costOf, CRAPS_LIMITS, MAX_ROLL_RETURN, onTable, readTable, resolveRoll, rollDice, takeDown,
   type BetOutcome as CrapsOutcome, type CrapsAction, type CrapsTable,
 } from '../casino/craps';
 import { ROULETTE_LIMITS } from '../casino/roulette';
@@ -417,12 +417,13 @@ export class CasinoService {
       const table = crapsTable(c);
       const block = crapsBlocker(table, action, amount);
       if (block) throw new DomainError('CAREER_RULE', block);
-      if ((await this.economy.getBalance(c.playerId)) < amount) throw new DomainError('CAREER_RULE', 'Not enough in the bank');
+      const cost = costOf(action, amount);
+      if ((await this.economy.getBalance(c.playerId)) < cost) throw new DomainError('CAREER_RULE', 'Not enough in the bank');
       const sid = crapsSession(c);
       const k = Number(c.flags.crapsSeq ?? 0) + 1;
-      await this.economy.post({ ownerId: c.playerId, amount: -amount, type: 'casino', sourceId: sid, idempotencyKey: `casino:${sid}:bet:${k}` });
+      await this.economy.post({ ownerId: c.playerId, amount: -cost, type: 'casino', sourceId: sid, idempotencyKey: `casino:${sid}:bet:${k}` });
       const next = addBet(table, action, amount);
-      const career = engine.recordCasino(c, amount, 0);
+      const career = engine.recordCasino(c, cost, 0);
       career.flags.crapsTable = JSON.stringify(next);
       career.flags.crapsSession = sid;
       career.flags.crapsSeq = k;

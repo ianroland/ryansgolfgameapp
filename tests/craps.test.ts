@@ -1,7 +1,7 @@
 /** Craps step 1: rules for every bet, exact house edges computed through the engine, and the table through the casino. */
 import { describe, expect, it } from 'vitest';
 import {
-  addBet, betBlocker, maxLay, newTable, onTable, readTable, resolveRoll, takeDown, type BetOutcome, type CrapsAction, type CrapsTable, type PointNo,
+  addBet, betBlocker, costOf, HORN, maxLay, newTable, PROPS, type HardNo, type PropKey, onTable, readTable, resolveRoll, takeDown, type BetOutcome, type CrapsAction, type CrapsTable, type PointNo,
 } from '../src/casino/craps';
 import { crapsLast, crapsTable } from '../src/services/casinoService';
 import { isDomainError } from '../src/core/errors';
@@ -10,6 +10,14 @@ import { newCareer, reload, RYAN, START } from './helpers';
 const T = (o: Partial<CrapsTable> = {}): CrapsTable => ({ ...newTable(), ...o });
 const roll = (t: CrapsTable, a: number, b: number) => resolveRoll(t, [a, b]);
 const pay = (os: BetOutcome[], bet: string) => os.filter((o) => o.bet === bet).reduce((s, o) => s + o.payout, 0);
+
+/** A Place or hardway win leaves the bet up: that stake is still the player's, so it counts as returned. */
+const standing = (t: CrapsTable, o: BetOutcome) => {
+  if (o.result !== 'win' || o.stake !== 0) return 0;
+  if (o.bet.startsWith('place ')) return t.place[Number(o.bet.slice(6)) as PointNo] ?? 0;
+  if (o.bet.startsWith('hard ')) return t.hard[Number(o.bet.slice(5)) as HardNo] ?? 0;
+  return 0;
+};
 
 /**
  * Exact expected return of a table: follows every dice sequence through the engine until `done`
@@ -27,7 +35,7 @@ function expectedPaid(start: CrapsTable, done: (os: BetOutcome[]) => boolean): n
         const r = resolveRoll(t, [a, b]);
         const q = p / 36;
         // A Place win leaves the bet up: that stake is still the player's, so it counts as returned.
-        paid += q * r.outcomes.reduce((s, o) => s + o.payout + (o.result === 'win' && o.stake === 0 && o.bet.startsWith('place ') ? t.place[Number(o.bet.slice(6)) as PointNo] ?? 0 : 0), 0);
+        paid += q * r.outcomes.reduce((s, o) => s + o.payout + standing(t, o), 0);
         if (!done(r.outcomes)) {
           const key = JSON.stringify(r.table);
           next.set(key, (next.get(key) ?? 0) + q);
@@ -229,5 +237,68 @@ describe('craps through the casino', () => {
   it('an old save (no table, or the old format) opens on an empty table', () => {
     expect(readTable(undefined)).toEqual(newTable());
     expect(readTable('{"point":null,"bets":{"pass":10}}')).toEqual(newTable());
+  });
+});
+
+describe('hardways and one-roll bets', () => {
+  it('a hardway wins only as a pair, stays up, and loses on the easy way or a 7', () => {
+    const t = T({ point: 5, hard: { 6: 10, 8: 10 } });
+    const hard6 = roll(t, 3, 3);
+    expect(hard6.outcomes).toContainEqual({ bet: 'hard 6', result: 'win', stake: 0, payout: 90 });
+    expect(hard6.table.hard[6]).toBe(10);
+    expect(roll(t, 2, 4).outcomes).toContainEqual({ bet: 'hard 6', result: 'lose', stake: 10, payout: 0 });
+    const seven = roll(t, 3, 4);
+    expect(seven.outcomes.filter((o) => o.bet.startsWith('hard')).map((o) => o.result)).toEqual(['lose', 'lose']);
+    expect(roll(T({ point: 5, hard: { 4: 10 } }), 2, 2).outcomes).toContainEqual({ bet: 'hard 4', result: 'win', stake: 0, payout: 70 });
+  });
+
+  it('hardways are off on the come-out unless turned on', () => {
+    expect(roll(T({ hard: { 8: 10 } }), 4, 4).outcomes).toEqual([]);
+    expect(roll(T({ hard: { 8: 10 }, placeOn: true }), 4, 4).outcomes).toContainEqual({ bet: 'hard 8', result: 'win', stake: 0, payout: 90 });
+  });
+
+  it('one-roll bets pay on the next roll only, then come down', () => {
+    const t = T({ props: { any7: 5, anyCraps: 5, two: 1, three: 1, yo: 1, twelve: 1 } });
+    const p = (a: number, b: number) => Object.fromEntries(roll(t, a, b).outcomes.filter((o) => o.bet.startsWith('prop')).map((o) => [o.bet.slice(5), o.payout]));
+    expect(p(3, 4)).toEqual({ any7: 25, anyCraps: 0, two: 0, three: 0, yo: 0, twelve: 0 });
+    expect(p(1, 1)).toEqual({ any7: 0, anyCraps: 40, two: 31, three: 0, yo: 0, twelve: 0 });
+    expect(p(1, 2)).toEqual({ any7: 0, anyCraps: 40, two: 0, three: 16, yo: 0, twelve: 0 });
+    expect(p(5, 6)).toEqual({ any7: 0, anyCraps: 0, two: 0, three: 0, yo: 16, twelve: 0 });
+    expect(p(6, 6)).toEqual({ any7: 0, anyCraps: 40, two: 0, three: 0, yo: 0, twelve: 31 });
+    expect(roll(t, 2, 4).table.props).toEqual({});
+  });
+
+  it('Horn puts the chip on each of 2, 3, 11 and 12 (four chips)', () => {
+    const t = addBet(T(), { kind: 'horn' }, 5);
+    expect(t.props).toEqual({ two: 5, three: 5, yo: 5, twelve: 5 });
+    expect(costOf({ kind: 'horn' }, 5)).toBe(20);
+    expect(HORN).toHaveLength(4);
+    expect(takeDown(t, { kind: 'horn' }).returned).toBe(20);
+  });
+
+  it('limits: $100 most on each', () => {
+    expect(betBlocker(T({ hard: { 6: 100 } }), { kind: 'hard', n: 6 }, 5)).toMatch(/100/);
+    expect(betBlocker(T(), { kind: 'prop', p: 'yo' }, 100)).toBeNull();
+    expect(betBlocker(T({ props: { twelve: 100 } }), { kind: 'horn' }, 5)).toMatch(/100/);
+  });
+
+  it('exact house edges: hard 6/8 9.09%, hard 4/10 11.11%; Any 7 16.67%, Any Craps 11.11%, 2 and 12 13.89%, 3 and 11 11.11%', () => {
+    const close = (got: number, want: number) => expect(got).toBeCloseTo(want, 10);
+    for (const [n, want] of [[6, 1 / 11], [8, 1 / 11], [4, 1 / 9], [10, 1 / 9]] as const) close(edge(T({ point: n === 6 ? 8 : 6, hard: { [n]: 10 } }), 10, `hard ${n}`), want);
+    const want: Record<PropKey, number> = { any7: 1 / 6, anyCraps: 1 / 9, two: 5 / 36, three: 1 / 9, yo: 1 / 9, twelve: 5 / 36 };
+    for (const pr of PROPS) close(edge(T({ props: { [pr.key]: 10 } }), 10, `prop ${pr.key}`), want[pr.key]);
+  }, 60_000);
+
+  it('through the casino: Horn charges four chips once, and the roll pays once', async () => {
+    const { s } = await newCareer();
+    await s.casino.visit();
+    await s.casino.crapsBet({ kind: 'horn' }, 5);
+    await s.casino.crapsBet({ kind: 'hard', n: 8 }, 10);
+    expect(await s.economy.getBalance(RYAN)).toBe(START - 30);
+    const r = await s.casino.crapsRoll();
+    expect(await s.economy.getBalance(RYAN)).toBe(START - 30 + r.paid);
+    expect(crapsTable(await s.career.getCareer()).props).toEqual({});
+    await expect(s.economy.verifyIntegrity(RYAN)).resolves.toBeUndefined();
+    s.db.close();
   });
 });
