@@ -307,7 +307,7 @@ export function gameLines(g: HGame, rosters: Map<string, Player[]>, adj: Adjustm
 }
 
 /** Season stat lines for every rostered player (regular season and playoffs separately). */
-export function seasonStats(data: HistoryData, h: HistorySeason): { players: PlayerSeason[]; adjustments: Adjustment[] } {
+export function seasonStats(data: HistoryData, h: HistorySeason, onGame?: (g: HGame, lines: Map<string, StatLine>) => void): { players: PlayerSeason[]; adjustments: Adjustment[] } {
   const s = h.season;
   const rosters = new Map(Object.keys(s.records).map((t) => [t, historyRoster(data, s, t)]));
   const team = new Map<string, string>();
@@ -317,7 +317,9 @@ export function seasonStats(data: HistoryData, h: HistorySeason): { players: Pla
   const adjustments: Adjustment[] = [];
   const games = [...h.regular, ...h.playoffs.flatMap((x) => x.games)];
   for (const g of games) {
-    for (const [id, l] of gameLines(g, rosters, adjustments)) {
+    const lines = gameLines(g, rosters, adjustments);
+    onGame?.(g, lines);
+    for (const [id, l] of lines) {
       const ps = acc.get(id);
       if (ps) add(g.playoff ? ps.playoffs : ps.regular, l);
     }

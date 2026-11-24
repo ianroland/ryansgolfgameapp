@@ -2,6 +2,17 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.19.6",
+   "date": "2026-11-23",
+   "title": "Fifty years of awards and records",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Behind the scenes, every league now has its full honours history: MVPs, rookies of the year, championship MVPs, stat leaders, record books, draft classes and a proposed Hall of Fame, all worked out from the simulated games. They'll show up at the sportsbook in a later update."
+    }
+   ]
+  },
+  {
    "version": "0.19.5",
    "date": "2026-11-23",
    "title": "New league names",

@@ -61,3 +61,11 @@ export function loadHistoryData(): Promise<HistoryData> {
 }
 
 export const seasonById = (d: HistoryData, league: LeagueId, year: number) => d.seasons.find((s) => s.league === league && s.year === year) ?? null;
+
+/** Awards, leaders, record books, drafts, transactions and Hall of Fame (Phase D, generated). */
+export type HistoryHonors = typeof import('./data/honors.json');
+let honorsCache: Promise<HistoryHonors> | null = null;
+export function loadHistoryHonors(): Promise<HistoryHonors> {
+  honorsCache ??= import('./data/honors.json').then((m) => m.default as unknown as HistoryHonors);
+  return honorsCache;
+}
