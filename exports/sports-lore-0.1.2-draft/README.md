@@ -1,6 +1,6 @@
 # Nationwide Sports Universe: historical canon
 
-- Contract: `sports-lore/1` · canon revision `0.1.1-draft` · status **proposed**
+- Contract: `sports-lore/1` · canon revision `0.1.2-draft` · status **proposed**
 - Scope: 1972-2026. Seasons from 2027 are simulated per save and are not in this pack.
 - Original fictional lore, not a claim about real professional sports. Proposed canon: draft until approved. Team names are not legally cleared.
 

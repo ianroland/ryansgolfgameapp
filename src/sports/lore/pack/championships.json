@@ -85,21 +85,22 @@
     "league": "ccl",
     "season": 2009,
     "trophy": "The Crown",
-    "champion": null,
+    "champion": "ccl_monsoon",
     "runner_up": null,
-    "status": "winner_unknown",
+    "status": "established",
     "events": [
       "ccl-2008-001"
     ],
-    "notes": "Miami reached the finals. The winner is not written; do not infer it.",
+    "notes": "Miami won the 2009 finals (owner decision, from the v0.3/v0.4 ledger). Runner-up not yet imported.",
     "cite": [
       {
         "source": "src.bible",
         "locator": "Known championships"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23 (Phase B)"
       }
-    ],
-    "finalists": [
-      "ccl_monsoon"
     ]
   },
   {

@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.19.2",
+   "date": "2026-11-23",
+   "title": "Emmett knows his history",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Emmett at the Desert Palms sportsbook now talks sports history: legends, famous finals and old grudges for whichever sport you're looking at, plus quick notes on this season. Tap him or press \"Another one\" for the next story."
+    },
+    {
+     "tag": "improved",
+     "text": "Sports history: Elias Voss's legendary 1983 is now 13–1 with three no-hitters, and Miami is the 2009 basketball champion."
+    }
+   ]
+  },
+  {
    "version": "0.19.1",
    "date": "2026-11-23",
    "title": "Tidy counter",

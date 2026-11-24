@@ -1,6 +1,6 @@
 {
   "schema_version": "sports-lore/1",
-  "canon_revision": "0.1.1-draft",
+  "canon_revision": "0.1.2-draft",
   "canon_status": "proposed",
   "pack_id": "ryans_road.sports_lore",
   "title": "Nationwide Sports Universe: historical canon",
@@ -114,6 +114,18 @@
       "id": "q13",
       "text": "IGL football rookie quarterback Mason Vale shares a surname with cocktail server Celeste Vale. No relation is established. Confirm or rename.",
       "answer": "Fine as is: Mason Vale and Celeste Vale share a surname, with no relation.",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "q19",
+      "text": "Elias Voss 'won 24 games' in 1983, but the Millers won 23 of 42.",
+      "answer": "Voss went 13-1 with three no-hitters in 1983.",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "q20",
+      "text": "Who won the 2009 CCL finals?",
+      "answer": "Miami, as the v0.3/v0.4 ledger says.",
       "date": "2026-11-23"
     }
   ]

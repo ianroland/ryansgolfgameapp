@@ -1,6 +1,6 @@
 {
   "schema_version": "sports-lore/1",
-  "canon_revision": "0.1.1-draft",
+  "canon_revision": "0.1.2-draft",
   "canon_status": "proposed",
   "pack_id": "ryans_road.sports_lore",
   "title": "Nationwide Sports Universe: historical canon",
@@ -115,13 +115,25 @@
       "text": "IGL football rookie quarterback Mason Vale shares a surname with cocktail server Celeste Vale. No relation is established. Confirm or rename.",
       "answer": "Fine as is: Mason Vale and Celeste Vale share a surname, with no relation.",
       "date": "2026-11-23"
+    },
+    {
+      "id": "q19",
+      "text": "Elias Voss 'won 24 games' in 1983, but the Millers won 23 of 42.",
+      "answer": "Voss went 13-1 with three no-hitters in 1983.",
+      "date": "2026-11-23"
+    },
+    {
+      "id": "q20",
+      "text": "Who won the 2009 CCL finals?",
+      "answer": "Miami, as the v0.3/v0.4 ledger says.",
+      "date": "2026-11-23"
     }
   ],
   "hashes": {
-    "README.md": "sha256-cdfb079ea33605b5f4676c39d6bcdea5475514d24c551e8dbcc9a99a08dd064f",
-    "championships.json": "sha256-51ef45791c91c0a95ebb32ee104e71b9d4d8448aef9b3f87c7cf2841b0a02a02",
+    "README.md": "sha256-07bfb2c921aed7910537d42186300c2dda0f1618fbdf170c0fd87af1b6c2d686",
+    "championships.json": "sha256-5f8821d19e3a1d7ca2754654825ccb6d44d482f00fbcb6ec390bf08170e5277f",
     "dialogue_rules.json": "sha256-282a7ec06b59d41a3a3b46de02179f84e4a16d7df619bcb22d2da8e7501ab516",
-    "events.json": "sha256-9177396158939865582b6b5360e741310ff8bd2a3c2efc2ee5cb180337f8c921",
+    "events.json": "sha256-ec7a08a62104c34a3bf15dd328a714580769bf4bfa6617f1cd67b4a14d04cabc",
     "franchise_history.json": "sha256-de555c3130bd8b1ca5a97a1bfc829fbe37633d2ab5a8e7ee39499667936a68f7",
     "leagues.json": "sha256-d3f4a1cbd998bdcfc5ccb6d5550c924d4352432aa79ebc4e617e23c5e5a2c955",
     "people.json": "sha256-4c2cd0801eada4194576f1c21992488d17c3adc5ea3c27d71392b7efdf741879",
@@ -139,7 +151,7 @@
   },
   "x-export": {
     "exported_by": "Ryan's Road to the LPGA",
-    "game_version": "0.18.5",
+    "game_version": "0.19.1",
     "contract": "sports-lore/1"
   }
 }

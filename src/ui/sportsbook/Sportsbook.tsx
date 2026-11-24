@@ -13,6 +13,7 @@ import { boardFor, recentFinals, standingsToDate, type BookGame } from '../../sp
 import { MAX_STAKE, type Ticket } from '../../sports/bets';
 import { bookTotalsOf, sportsSeedOf, ticketsOf } from '../../career/sportsbook';
 import { newId } from '../../core/ids';
+import { clerkLine } from '../../sports/clerks/lines';
 import { LOUNGE_LAYOUT, LOUNGE_SIZE, LOUNGES, rectPct, type ClerkExpression, type NativeRect } from '../../sports/themes';
 import { bundledLore, leagueTimeline, lore, sportsYearForSeason, teamHistory } from '../../sports/lore/service';
 import { useGame } from '../GameContext';
@@ -110,9 +111,18 @@ export function Sportsbook() {
     return () => window.clearTimeout(t);
   }, [reaction]);
   const short = slip.length > 0 && charge > state.balance;
-  const expression: ClerkExpression = short ? 'concerned' : reaction ?? 'friendly';
+  // The clerk talks sports history (and this week's board) for the league on screen.
+  const [talk, setTalk] = useState(0);
+  const lastLeague = useRef(league);
+  useEffect(() => {
+    if (lastLeague.current !== league) setTalk((n) => n + 1);
+    lastLeague.current = league;
+  }, [league]);
+  const line = theme.art.clerk ? clerkLine(theme.art.clerk.npcId, { seed, season: c.season, week: c.week, league, nonce: talk }) : null;
+  const expression: ClerkExpression = short ? 'concerned' : reaction ?? line?.mood ?? 'friendly';
   const clerkBody = theme.art.clerk ? (
     <>
+      <button className="sb-clerk-tap" onClick={() => setTalk((n) => n + 1)} aria-label={`Ask ${theme.art.clerk.name} for another story`} data-testid="sb-clerk-next">
       <img
         className="sb-clerk-portrait sb-clerk-img"
         src={theme.art.clerk.portraits[expression]}
@@ -123,9 +133,11 @@ export function Sportsbook() {
         data-expression={expression}
         data-testid="sb-clerk-portrait"
       />
+      </button>
       <div className="sb-clerk-text">
         <span className="sb-clerk-name">{theme.art.clerk.name}</span>
-        <p className="sb-clerk-line">“Lines are posted. Take your time.”</p>
+        <p className="sb-clerk-line" data-testid="sb-clerk-line" data-line={line?.id} data-events={line?.events.join(' ')}>“{line?.text ?? 'Lines are posted. Take your time.'}”</p>
+        <button className="sb-clerk-more" onClick={() => setTalk((n) => n + 1)} data-testid="sb-clerk-more">Another one ›</button>
       </div>
     </>
   ) : (

@@ -69,7 +69,7 @@
     "people": [
       "per_elias_voss"
     ],
-    "summary": "Milwaukee pitcher Elias Voss wins 24 games and throws three no-hitters in one season. His glove becomes a famous league artifact.",
+    "summary": "Milwaukee pitcher Elias Voss goes 13-1 and throws three no-hitters in one season. His glove becomes a famous league artifact.",
     "facts": [
       {
         "id": "f1",
@@ -85,7 +85,7 @@
       },
       {
         "id": "f3",
-        "text": "In 1983 Voss won 24 games and threw three no-hitters.",
+        "text": "In 1983 Voss went 13-1 and threw three no-hitters.",
         "year": 1983,
         "tier": "specialist"
       }
@@ -109,6 +109,10 @@
       {
         "source": "src.bible",
         "locator": "GDC / Anchor events / gdc-1983-001"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23 (Phase B)"
       }
     ]
   },
@@ -508,7 +512,7 @@
     "people": [
       "per_andre_bellamy"
     ],
-    "summary": "Detroit trades four-time scoring champion Andre Bellamy to Miami for three players and two draft picks. Miami reaches the 2009 finals; Detroit wins the 2012 title with players acquired in the deal.",
+    "summary": "Detroit trades four-time scoring champion Andre Bellamy to Miami for three players and two draft picks. Miami wins the 2009 finals; Detroit wins the 2012 title with players acquired in the deal.",
     "facts": [
       {
         "id": "f1",
@@ -524,7 +528,7 @@
       },
       {
         "id": "f3",
-        "text": "Miami reached the 2009 CCL finals.",
+        "text": "Miami won the 2009 CCL finals.",
         "year": 2009,
         "tier": "fan"
       },
@@ -546,16 +550,17 @@
       "label": "fan and specialist"
     },
     "unknowns": [
-      "The winner of the 2009 finals.",
+      "The 2009 runner-up.",
       "The 2012 runner-up."
     ],
-    "constraints": [
-      {
-        "id": "c1",
-        "rule": "Never state or imply who won the 2009 CCL finals."
-      }
-    ],
+    "constraints": [],
     "outcomes": [
+      {
+        "league": "ccl",
+        "season": 2009,
+        "champion": "ccl_monsoon",
+        "runner_up": null
+      },
       {
         "league": "ccl",
         "season": 2012,
@@ -569,6 +574,10 @@
       {
         "source": "src.bible",
         "locator": "CCL / Anchor events / ccl-2008-001"
+      },
+      {
+        "source": "src.decisions",
+        "locator": "2026-11-23 (Phase B)"
       }
     ]
   },

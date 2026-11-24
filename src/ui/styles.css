@@ -2048,6 +2048,9 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .sb-clerk-line { margin: 0; font-size: 15px; color: #fff; }
 .sb-clerk-img { display: block; object-fit: contain; image-rendering: pixelated; border-style: solid; background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.35)); }
 .sb-clerk-name { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--sb-trim); }
+.sb-clerk-tap { padding: 0; border: 0; background: none; cursor: pointer; display: block; }
+.sb-clerk-tap:focus-visible { outline: 2px solid var(--sb-trim); outline-offset: 2px; }
+.sb-clerk-more { margin-top: 4px; padding: 2px 8px; font: inherit; font-size: 11px; color: var(--sb-trim); background: rgba(0, 0, 0, 0.35); border: 1px solid var(--sb-trim); border-radius: 4px; cursor: pointer; }
 .sb-slip { padding: 10px; color: #fff; background: var(--sb-panel); }
 .sb-slip-title { margin: 0 0 6px; font-family: var(--head); font-size: 18px; text-transform: uppercase; color: var(--sb-trim); }
 .sb-slip-legs { display: grid; gap: 4px; margin: 0 0 8px; padding: 0; list-style: none; font-size: 13px; }
@@ -2119,12 +2122,14 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
   .sb-boardmenu button.on { color: var(--ink); background: var(--sb-trim); border-color: #000; text-shadow: none; }
   .sb-boardmenu button:focus-visible { outline: 0.2cqw solid #fff; outline-offset: 0.1cqw; }
   /* Clerk on the pillar. */
-  .sb-clerk-art { display: flex; flex-direction: column; align-items: center; gap: 0.5cqw; padding: 0.6cqw; background: rgba(20, 8, 28, 0.82); border: 0.18cqw solid var(--sb-trim); border-radius: 0.8cqw; }
+  .sb-clerk-art { display: flex; flex-direction: column; align-items: center; gap: 0.3cqw; padding: 0.5cqw; overflow: hidden; background: rgba(20, 8, 28, 0.82); border: 0.18cqw solid var(--sb-trim); border-radius: 0.8cqw; }
   .sb-clerk-art .sb-clerk-portrait { width: 8cqw; height: 8cqw; font-size: max(8px, 0.62cqw); }
   .sb-clerk-art .sb-clerk-line { font-size: max(10px, 0.8cqw); text-align: center; }
-  .sb-clerk-art .sb-clerk-portrait.sb-clerk-img { width: 9.5cqw; height: 9.5cqw; }
+  .sb-clerk-art .sb-clerk-portrait.sb-clerk-img { width: 7.6cqw; height: 7.6cqw; }
   .sb-clerk-art .sb-clerk-text { text-align: center; }
   .sb-clerk-art .sb-clerk-name { font-size: max(9px, 0.7cqw); }
+  .sb-clerk-art .sb-clerk-line { font-size: max(9px, 0.72cqw); line-height: 1.25; }
+  .sb-clerk-art .sb-clerk-more { font-size: max(8px, 0.65cqw); }
   .sb-confirm { z-index: 10; }
 }
 @media (min-width: 900px) { .sb-screen b { font-size: max(11px, 1.2cqw); } .sb-screen span { font-size: max(9px, 0.8cqw); } }
