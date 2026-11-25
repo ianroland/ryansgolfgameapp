@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.9",
+   "date": "2026-11-24",
+   "title": "Tidier tabs, more people",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "Stats and Records now live inside the Legacy tab (Legacy · Stats · Records), so the top bar has 7 tabs instead of 9."
+    },
+    {
+     "tag": "new",
+     "text": "People is grouped: Inner circle, On the course (whoever has challenged Ryan, with the head-to-head and the last run-in), Casino staff (dealers and servers you've met, with their tier, visits and tips), and Casino regulars (the craps regulars at tables you've rolled at)."
+    },
+    {
+     "tag": "new",
+     "text": "Each casino's craps regulars now count Ryan's rolls at their table. The familiarity labels (New face, Nodding terms, Table regular, Rail family) are drafts. Counting starts with this update."
+    },
+    {
+     "tag": "fixed",
+     "text": "Men on the PGA ladder no longer carry the surname form “Petrova”."
+    }
+   ]
+  },
+  {
    "version": "0.20.8",
    "date": "2026-11-24",
    "title": "The road to the PGA Tour",

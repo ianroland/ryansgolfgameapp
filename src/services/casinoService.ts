@@ -26,7 +26,7 @@ import { advanceShooter, readShooter, type ShooterState } from '../casino/crapsS
 import { betBlocker as wheelBlocker, settleWheel, spinSlot, WHEEL_MAX_RETURN, type WheelBets, type WheelResult } from '../casino/wheel';
 import { betBlocker as kenoBlocker, drawBalls, KENO_MAX_RETURN, settleKeno, type KenoResult } from '../casino/keno';
 import * as engine from '../career/engine';
-import { locationById } from '../expansion/locations';
+import { casinoAt, locationById } from '../expansion/locations';
 import type { LocationId } from '../expansion/unlocks';
 import { CareerRuleError } from '../career/engine';
 import type { CareerState } from '../career/types';
@@ -75,6 +75,10 @@ export const crapsTable = (c: CareerState) => readTable(c.flags.crapsTable);
 export interface CrapsLastRoll { dice: [number, number]; message: string; outcomes: CrapsOutcome[]; n: number }
 export const crapsLast = (c: CareerState) => readJson<CrapsLastRoll>(c.flags.crapsLast);
 /** Who has the dice and how their hand is going (additive flag; presentation: it never changes a roll). */
+/** Career flag: craps rolls Ryan has made at one casino. */
+export const crapsRollsKey = (at: LocationId) => `crapsRollsAt:${at}`;
+export const crapsRollsAt = (c: CareerState, at: LocationId) => Number(c.flags[crapsRollsKey(at)] ?? 0);
+
 export const crapsShooter = (c: CareerState): ShooterState => readShooter(c.flags.crapsShooter);
 
 /** Spin to Win: the last spins, newest first (slot and symbol; additive flag), and the last spin in full. */
@@ -485,6 +489,9 @@ export class CasinoService {
       let next = engine.recordCasino(c, 0, paid, { biggestWin: paid - staked });
       next.flags.crapsTable = JSON.stringify(table);
       next.flags.crapsRolls = n;
+      // Rolls at this casino's table: how well its three regulars know Ryan (People screen only).
+      const rollsKey = crapsRollsKey(casinoAt(next));
+      next.flags[rollsKey] = Number(next.flags[rollsKey] ?? 0) + 1;
       next.flags.crapsLast = JSON.stringify({ dice, message, outcomes, n } satisfies CrapsLastRoll);
       const shooterBefore = crapsShooter(c);
       const shooter = advanceShooter(shooterBefore, before.point, dice);

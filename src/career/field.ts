@@ -111,7 +111,8 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
   const r = rng(seed ^ 0x6e6d);
   const fresh = (list: string[]) => {
     for (;;) {
-      const n = `${list[r.int(0, list.length - 1)]} ${LAST[r.int(0, LAST.length - 1)]}`;
+      const raw = `${list[r.int(0, list.length - 1)]} ${LAST[r.int(0, LAST.length - 1)]}`;
+      const n = rules === 'current' && list === MALE_FIRST ? raw.replace(/ Petrova$/, ' Petrov') : raw;
       if (!used.has(n)) {
         used.add(n);
         return n;
@@ -133,6 +134,15 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
       if (g.id !== PLAYER_ID && g.id !== RIVAL.id && female.has(g.name.split(' ')[0])) {
         g.name = fresh(MALE_FIRST);
         changed = true;
+      }
+      // Men's surname form (current rules only; the reference pools keep theirs).
+      if (rules === 'current' && g.id !== PLAYER_ID && g.id !== RIVAL.id && / Petrova$/.test(g.name) && !female.has(g.name.split(' ')[0])) {
+        const n = g.name.replace(/ Petrova$/, ' Petrov');
+        if (!used.has(n)) {
+          used.add(n);
+          g.name = n;
+          changed = true;
+        }
       }
     }
   }

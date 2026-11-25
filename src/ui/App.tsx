@@ -20,17 +20,15 @@ import { CareerHub } from './career/CareerHub';
 import { SchedulePanel } from './career/SchedulePanel';
 import { ShopPanel } from './career/ShopPanel';
 import { PeoplePanel } from './career/PeoplePanel';
-import { StatsPanel } from './career/StatsPanel';
 import { StoryDialog } from './career/StoryDialog';
 import { EnterDialog } from './career/EnterDialog';
 import { TournamentView } from './tournament/TournamentView';
 import { TitleScreen } from './TitleScreen';
 import { HeaderBackdrop, PageBackdrop, useSceneRotation } from './SceneBackdrop';
 import { CasinoPanel } from './casino/CasinoPanel';
-import { RecordsPanel } from './records/RecordsPanel';
+import { LegacyHub, type LegacySection } from './legacy/LegacyHub';
 import { AlbatrossCelebration } from './records/AlbatrossCelebration';
 import { LegacyCelebration } from './legacy/LegacyCelebration';
-import { LegacyPanel } from './legacy/LegacyPanel';
 import { EncounterScene } from './story/EncounterScene';
 import { encounterMayShow, encounterShouldAutoOpen, useOpenBlockingScreens, type ScreenState } from './blocking';
 import { storyOf } from '../story/appearance';
@@ -41,13 +39,11 @@ import { ShownBalance } from './casino/ShownBalance';
 
 /** Clubhouse sub-screens. */
 export type Screen = 'home' | 'store' | 'edit' | 'trophies';
-type Tab = 'career' | 'schedule' | 'stats' | 'records' | 'legacy' | 'shop' | 'people' | 'clubhouse' | 'casino';
+type Tab = 'career' | 'schedule' | 'legacy' | 'shop' | 'people' | 'clubhouse' | 'casino';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'career', label: 'Career' },
   { id: 'schedule', label: 'Schedule' },
-  { id: 'stats', label: 'Stats' },
-  { id: 'records', label: 'Records' },
   { id: 'legacy', label: 'Legacy' },
   { id: 'shop', label: 'Shop' },
   { id: 'people', label: 'People' },
@@ -88,6 +84,7 @@ export function App() {
     }
   });
   const [started, setStarted] = useState(false);
+  const [legacySection, setLegacySection] = useState<LegacySection>('overview');
   // Rotating scenery for the game shell (one timer for page and header; not saved).
   const scenery = useSceneRotation();
 
@@ -226,9 +223,7 @@ export function App() {
 
           {tab === 'career' && <CareerHub onEnter={setEntering} onEncounter={setEncounter} />}
           {tab === 'schedule' && <SchedulePanel onEnter={setEntering} />}
-          {tab === 'stats' && <StatsPanel />}
-          {tab === 'records' && <RecordsPanel />}
-          {tab === 'legacy' && <LegacyPanel onOpenTrophies={() => go('trophies')} />}
+          {tab === 'legacy' && <LegacyHub section={legacySection} onSection={setLegacySection} onOpenTrophies={() => go('trophies')} />}
           {tab === 'shop' && <ShopPanel />}
           {tab === 'people' && <PeoplePanel />}
           <div hidden={tab !== 'casino'}>
@@ -273,7 +268,7 @@ export function App() {
                 )}
                 {screen === 'trophies' && (
                   <p className="legacy-link">
-                    <button className="btn small ghost" onClick={() => goTab('legacy')} data-testid="open-legacy">Career Legacy</button>
+                    <button className="btn small ghost" onClick={() => { setLegacySection('overview'); goTab('legacy'); }} data-testid="open-legacy">Career Legacy</button>
                   </p>
                 )}
                 {screen === 'trophies' && <TrophyPanel pickTrophyId={pickTrophyId} setPickTrophyId={setPickTrophyId} displayInSlot={displayInSlot} go={go} />}
