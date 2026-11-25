@@ -23,11 +23,11 @@ const VENUES: Record<Exclude<TourId, 'qschool'>, string[]> = {
   // Carolina Coast, River Valley, Bluegrass, Peach State, Twin Lakes, Tour Championship
   epson: [DESERT, LINKS, CITY, DESERT, DRY, LAKES, HIGH, CITY, LINKS, LAKES, CITY, DRY, LAKES, HIGH],
   // Sunshine Coast, Desert Palms, Desert Rose (major), Pacific Coast, Bay City, Americas (major), Great Lakes,
-  // Lakeside, Women's Open (major), Heartland, Highland, Alpine Major, Asia Swing, Tour Championship
+  // Lakeside, National Open (major), Heartland, Highland, Alpine (major), Asia Swing, Tour Championship
   lpga: [LINKS, DESERT, DESERT, LINKS, CITY, CITY, LAKES, LAKES, LINKS, CITY, HIGH, HIGH, CITY, HIGH],
 };
 
-/** Q-School: Stage I at the home muni, Stage II in the desert, Q-Series at altitude. */
+/** Q-School: First Stage at the home muni, Second Stage in the desert, Final Stage at altitude. */
 const QSCHOOL_VENUES = [DRY, DESERT, HIGH];
 
 export function courseIdForEvent(tour: TourId, week: number, qStage?: number): string {

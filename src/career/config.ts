@@ -2,8 +2,8 @@
  * Career configuration. Every tour, event and organisation name lives here so
  * the game can be re-skinned (e.g. with fictional names) in one place.
  *
- * Note: "LPGA", "Epson Tour" and "Q-School" refer to real organisations and
- * are trademarks of their owners. Fine for a personal project; swap these
+ * Note: "PGA Tour", "Korn Ferry Tour", "LPGA", "Epson Tour" and "Q-School" refer to real
+ * organisations and are trademarks of their owners. Fine for a personal project; swap these
  * strings for fictional names before any public release.
  */
 
@@ -17,7 +17,22 @@ export const SEASON_WEEKS = 30;
 export const WEEKLY_LIVING_COST = 250;
 export const ACTIONS_PER_WEEK = 3;
 
+/**
+ * Tour ids are stable save keys. Until phase 3 (owner, 2026-11-24: "all PGA talk until phase 3 where
+ * Ryan transitions") the ladder is the PGA path: 'qschool' is PGA Tour Q-School, 'epson' the Korn
+ * Ferry Tour and 'lpga' the PGA Tour, all with men's fields. WOMENS_TOUR_NAMES keeps the LPGA
+ * ladder's names for Kayla now and for phase 3 later.
+ */
 export type TourId = 'amateur' | 'mini' | 'qschool' | 'epson' | 'lpga';
+
+/** The women's ladder (Kayla's tours; Ryan's from phase 3, which isn't built yet). */
+export const WOMENS_TOUR_NAMES: Record<'qschool' | 'epson' | 'lpga', string> = {
+  qschool: 'LPGA Q-School',
+  epson: 'Epson Tour',
+  lpga: 'LPGA Tour',
+};
+/** Kayla's tour name: she only plays the women's tours. */
+export const rivalTourName = (t: TourId) => (t === 'qschool' || t === 'epson' || t === 'lpga' ? WOMENS_TOUR_NAMES[t] : TOURS[t].name);
 
 export interface TourConfig {
   id: TourId;
@@ -49,49 +64,49 @@ export const TOURS: Record<TourId, TourConfig> = {
     purse: 15000, entryFee: 450, travelCost: 150, paidPlaces: 12, prizeMoney: true, fameBase: 1.5, skillPointsBase: 2,
   },
   qschool: {
-    id: 'qschool', name: 'LPGA Q-School', short: 'Q', rounds: 4, fieldSize: 40, ratingMin: 46, ratingMax: 70,
+    id: 'qschool', name: 'PGA Tour Q-School', short: 'Q', rounds: 4, fieldSize: 40, ratingMin: 46, ratingMax: 70,
     purse: 0, entryFee: 0, travelCost: 500, paidPlaces: 0, prizeMoney: false, fameBase: 3, skillPointsBase: 2,
   },
   epson: {
-    id: 'epson', name: 'Epson Tour', short: 'EPSON', rounds: 3, fieldSize: 60, ratingMin: 50, ratingMax: 74,
+    id: 'epson', name: 'Korn Ferry Tour', short: 'KFT', rounds: 3, fieldSize: 60, ratingMin: 50, ratingMax: 74,
     purse: 200000, entryFee: 0, travelCost: 600, cut: { afterRound: 2, top: 30 }, paidPlaces: 30, prizeMoney: true, fameBase: 3, skillPointsBase: 2,
   },
   lpga: {
-    id: 'lpga', name: 'LPGA Tour', short: 'LPGA', rounds: 4, fieldSize: 72, ratingMin: 62, ratingMax: 90,
+    id: 'lpga', name: 'PGA Tour', short: 'PGA', rounds: 4, fieldSize: 72, ratingMin: 62, ratingMax: 90,
     purse: 2000000, entryFee: 0, travelCost: 1500, cut: { afterRound: 2, top: 36 }, paidPlaces: 36, prizeMoney: true, fameBase: 6, skillPointsBase: 3,
   },
 };
 
 export type QStage = 1 | 2 | 3;
 export const QSCHOOL: Record<QStage, { name: string; week: number; entryFee: number; ratingShift: number; advanceFraction: number }> = {
-  1: { name: 'LPGA Q-School · Stage I', week: 20, entryFee: 3500, ratingShift: -4, advanceFraction: 0.35 },
-  2: { name: 'LPGA Q-School · Stage II', week: 24, entryFee: 0, ratingShift: 0, advanceFraction: 0.3 },
-  3: { name: 'LPGA Q-Series', week: 28, entryFee: 0, ratingShift: 1, advanceFraction: 0 },
+  1: { name: 'Q-School · First Stage', week: 20, entryFee: 3500, ratingShift: -4, advanceFraction: 0.35 },
+  2: { name: 'Q-School · Second Stage', week: 24, entryFee: 0, ratingShift: 0, advanceFraction: 0.3 },
+  3: { name: 'Q-School · Final Stage', week: 28, entryFee: 0, ratingShift: 1, advanceFraction: 0 },
 };
-/** Q-Series: top 20 earn an LPGA card; 21–45 earn Epson Tour status. */
+/** Final Stage: top 20 earn a PGA Tour card; 21–45 earn Korn Ferry Tour status. */
 export const QSERIES_LPGA_CARDS = 20;
 export const QSERIES_EPSON_CARDS = 45;
-/** Epson Tour money-list graduates to the LPGA. */
+/** Korn Ferry Tour money-list graduates to the PGA Tour. */
 export const EPSON_GRADUATES = 15;
-/** LPGA money-list rank needed to keep the card. */
+/** PGA Tour money-list rank needed to keep the card. */
 export const LPGA_KEEP_CARD = 100;
 
 interface EventTemplate {
   week: number;
   name: string;
-  /** Designated championship (amateur) or major (LPGA). */
+  /** Designated championship (amateur) or major (top tour). */
   special?: boolean;
 }
 
 export const SCHEDULES: Record<Exclude<TourId, 'qschool'>, EventTemplate[]> = {
   amateur: [
     { week: 2, name: 'Dry Creek City Amateur' },
-    { week: 5, name: "Inland Empire Women's Amateur" },
+    { week: 5, name: 'Inland Empire Amateur' },
     { week: 8, name: 'Desert Springs Amateur' },
     { week: 11, name: 'Coastal Amateur Classic' },
-    { week: 14, name: "SoCal Women's Amateur" },
+    { week: 14, name: 'SoCal Amateur' },
     { week: 18, name: 'Harbor Lights Invitational' },
-    { week: 22, name: "State Women's Amateur Championship", special: true },
+    { week: 22, name: 'State Amateur Championship', special: true },
     { week: 26, name: 'Fall Amateur Classic' },
   ],
   mini: [
@@ -109,14 +124,14 @@ export const SCHEDULES: Record<Exclude<TourId, 'qschool'>, EventTemplate[]> = {
   epson: [
     'Desert Bloom Classic', 'Gulf Coast Championship', 'Magnolia Open', 'Lone Star Classic', 'Prairie Winds Invitational',
     'Lakeshore Classic', 'Mountain Pines Open', 'Heartland Championship', 'Carolina Coast Classic', 'River Valley Open',
-    'Bluegrass Invitational', 'Peach State Classic', 'Twin Lakes Championship', 'Epson Tour Championship',
+    'Bluegrass Invitational', 'Peach State Classic', 'Twin Lakes Championship', 'Korn Ferry Tour Championship',
   ].map((name, i) => ({ week: 2 + i * 2, name, special: i === 13 })),
   lpga: [
     // Week 6, the season's first major: "The Desert Rose Invitational" (Pink Jacket), approved for Career Legacy V1
     // (author, 2026-11-22). Previously the placeholder "The Desert Major"; stored results keep the name they were played under.
     'Sunshine Coast Classic', 'Desert Palms Open', 'The Desert Rose Invitational', 'Pacific Coast Championship', 'Bay City Classic',
-    "Women's Championship of the Americas", 'Great Lakes Open', 'Lakeside Classic', "Women's Open Championship",
-    'Heartland Invitational', 'Highland Classic', 'Evian-style Alpine Major', 'Asia Swing Classic', 'Tour Championship',
+    'Championship of the Americas', 'Great Lakes Open', 'Lakeside Classic', 'National Open Championship',
+    'Heartland Invitational', 'Highland Classic', 'Alpine Championship', 'Asia Swing Classic', 'Tour Championship',
   ].map((name, i) => ({ week: 2 + i * 2, name, special: [2, 5, 8, 11].includes(i) })),
 };
 

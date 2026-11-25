@@ -63,7 +63,7 @@ describe('The Desert Rose Invitational (renamed week-6 major)', () => {
     expect(SCHEDULES.lpga.filter((x) => x.special)).toHaveLength(4); // no fifth major
     // The other three majors keep their names.
     expect(SCHEDULES.lpga.filter((x) => x.special).map((x) => [x.week, x.name])).toEqual([
-      [6, 'The Desert Rose Invitational'], [12, "Women's Championship of the Americas"], [18, "Women's Open Championship"], [24, 'Evian-style Alpine Major'],
+      [6, 'The Desert Rose Invitational'], [12, 'Championship of the Americas'], [18, 'National Open Championship'], [24, 'Alpine Championship'],
     ]);
     expect(SCHEDULES.lpga.some((x) => x.name === 'The Desert Major')).toBe(false);
   });

@@ -19,8 +19,8 @@ import { Bar, FormMeter, TourPill } from './bits';
 
 export function statusLabel(c: CareerState) {
   if (c.status === 'amateur') return 'Amateur';
-  if (c.tourCard === 'lpga') return 'LPGA Tour member';
-  if (c.tourCard === 'epson') return 'Epson Tour member';
+  if (c.tourCard === 'lpga') return 'PGA Tour member';
+  if (c.tourCard === 'epson') return 'Korn Ferry Tour member';
   return 'Professional';
 }
 
@@ -302,7 +302,7 @@ function WeekCard({ onEnter }: { onEnter: (def: TournamentDef) => void }) {
       {confirmPro && (
         <Dialog title="Turn professional?" onClose={() => setConfirmPro(false)}>
           <p>
-            Pros play for prize money on the <b>{TOURS.mini.name}</b> and can enter <b>LPGA Q-School</b> (Stage I in week 20, $3,500 entry). You can&rsquo;t play amateur events again.
+            Pros play for prize money on the <b>{TOURS.mini.name}</b> and can enter <b>{TOURS.qschool.name}</b> (First Stage in week 20, $3,500 entry). You can&rsquo;t play amateur events again.
           </p>
           <p className="muted">Most players turn pro once their skills are in the high 40s and they have some money saved.</p>
           <div className="btn-row">

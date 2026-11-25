@@ -1,6 +1,6 @@
 import { lifestyleById } from '../../career/shop';
 import { RIVAL } from '../../career/field';
-import { TOURS } from '../../career/config';
+import { rivalTourName } from '../../career/config';
 import type { PersonId } from '../../career/types';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
@@ -24,7 +24,7 @@ export function PeoplePanel() {
     // Baba, Ryan's father. The relationship keeps its original save key ('mom') so existing careers keep their hearts.
     { id: 'mom', name: 'Baba (Dad)', role: 'Biggest fan, harshest critic', about: 'Blunt, loving, always on time. He worries about your putting.', show: true },
     { id: 'friend', name: 'Jess', role: 'Best friend', about: "Drags you out when you need it. Films your trick shots.", show: true },
-    { id: 'rival', name: RIVAL.name, role: 'Rival', about: rival ? `Currently on the ${TOURS[rival.tour].name}. Head-to-head: ${Number(c.flags.h2hWins ?? 0)}–${Number(c.flags.h2hLosses ?? 0)}.` : '', show: true },
+    { id: 'rival', name: RIVAL.name, role: 'Rival', about: rival ? `Currently on the ${rivalTourName(rival.tour)}. Head-to-head: ${Number(c.flags.h2hWins ?? 0)}–${Number(c.flags.h2hLosses ?? 0)}.` : '', show: true },
     { id: 'caddie', name: caddie?.name.replace(/^Hire .*\((.*)\)$/, '$1') ?? 'Caddie', role: 'Caddie', about: 'Reads greens and keeps you calm.', show: !!caddie },
     { id: 'agent', name: 'Marty Klein', role: 'Agent', about: 'Talks fast, finds sponsors.', show: c.flags.agent === true },
     { id: 'sponsor', name: c.sponsor?.name ?? 'Sponsor', role: 'Sponsor', about: c.sponsor ? `${formatMoney(c.sponsor.weekly)}/week, ${formatMoney(c.sponsor.winBonus)} per win, through season ${c.sponsor.untilSeason}.` : '', show: !!c.sponsor },

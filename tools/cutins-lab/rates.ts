@@ -16,8 +16,9 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { newCareerState } from '../../src/career/engine';
+import { buildPools } from '../../src/career/field';
 import { TOURS, type TourId } from '../../src/career/config';
-import { activeCourse, completeRound, finalizeTournament, holesToPlay, parsOf, previewRound, seasonSchedule, startTournament, type TournamentDef, type TournamentResult } from '../../src/career/tournament';
+import { activeCourse, completeRound, finalizeTournament, holesToPlay, parsOf, previewRound, seasonSchedule, startTournament, type FieldRules, type TournamentDef, type TournamentResult } from '../../src/career/tournament';
 import type { ActiveTournament, CareerState, RoundMode } from '../../src/career/types';
 import { planRound } from '../../src/cutins/plan';
 import { revealSnapshot } from '../../src/cutins/snapshot';
@@ -35,6 +36,8 @@ export const RYAN_LEVEL: Record<TourId, number> = { amateur: 35, mini: 48, qscho
 /** A career where Ryan and Kayla are both mid-field players of `tour`. */
 export function careerFor(tour: TourId, seed: number): CareerState {
   const c = newCareerState(seed);
+  // The frozen reference dataset's pools (women's names on the women's tours).
+  c.pools = buildPools(seed, 'reference-v1');
   const lvl = RYAN_LEVEL[tour];
   c.stats = { power: lvl, accuracy: lvl, shortGame: lvl, putting: lvl, nerve: lvl, fitness: Math.max(60, lvl) };
   c.energy = 100;
@@ -62,6 +65,8 @@ export interface DriverOptions {
   keepSteps?: boolean;
   /** The A3 "absent" arm: no CI-1 call at all. */
   noSnapshots?: boolean;
+  /** Field rules; default 'reference-v1' (the frozen dataset). The game itself uses 'current'. */
+  rules?: FieldRules;
 }
 
 export interface DriverResult {
@@ -74,7 +79,7 @@ export interface DriverResult {
 }
 
 export function runTournament(def: TournamentDef, c: CareerState, mode: RoundMode, opts: DriverOptions = {}): DriverResult {
-  let a = startTournament(def, c, mode, 'reference-v1') // the frozen reference dataset's field rules;
+  let a = startTournament(def, c, mode, opts.rules ?? 'reference-v1') // the frozen reference dataset's field rules;
   const rounds: RoundTrace[] = [];
   while (a.round < def.rounds) {
     const steps: ActiveTournament[] = [];

@@ -16,10 +16,10 @@ function roadSteps(c: CareerState) {
       label: 'Q-School',
       done: c.tourCard !== 'none' || q.result === 'lpga' || q.result === 'epson',
       now: c.status === 'pro' && c.tourCard === 'none',
-      note: q.nextStage ? `Next: ${QSCHOOL[q.nextStage].name} (week ${QSCHOOL[q.nextStage].week})` : q.result === 'failed' ? 'Out this year. Try again next season.' : 'Stage I → Stage II → Q-Series',
+      note: q.nextStage ? `Next: ${QSCHOOL[q.nextStage].name} (week ${QSCHOOL[q.nextStage].week})` : q.result === 'failed' ? 'Out this year. Try again next season.' : 'First Stage → Second Stage → Final Stage',
     },
-    { label: 'Epson Tour', done: c.tourCard === 'lpga', now: c.tourCard === 'epson', note: `Top ${EPSON_GRADUATES} on the money list graduate.` },
-    { label: 'LPGA Tour', done: false, now: c.tourCard === 'lpga', note: `Stay inside the top ${LPGA_KEEP_CARD} to keep your card.` },
+    { label: TOURS.epson.name, done: c.tourCard === 'lpga', now: c.tourCard === 'epson', note: `Top ${EPSON_GRADUATES} on the money list graduate.` },
+    { label: TOURS.lpga.name, done: false, now: c.tourCard === 'lpga', note: `Stay inside the top ${LPGA_KEEP_CARD} to keep your card.` },
   ];
 }
 
@@ -78,7 +78,7 @@ export function SchedulePanel({ onEnter }: { onEnter: (def: TournamentDef) => vo
 
       <div className="hub-col">
         <section className="hub-card">
-          <h2 className="hub-title">Road to the LPGA</h2>
+          <h2 className="hub-title">Road to the PGA Tour</h2>
           <ol className="road">
             {roadSteps(c).map((s) => (
               <li key={s.label} className={s.done ? 'done' : s.now ? 'now' : ''}>

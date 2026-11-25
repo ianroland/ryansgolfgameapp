@@ -37,6 +37,6 @@ export function Hearts({ value }: { value: number }) {
 }
 
 export function TourPill({ tour }: { tour: string }) {
-  const label: Record<string, string> = { amateur: 'AMATEUR', mini: 'PRO SERIES', qschool: 'Q-SCHOOL', epson: 'EPSON', lpga: 'LPGA' };
+  const label: Record<string, string> = { amateur: 'AMATEUR', mini: 'PRO SERIES', qschool: 'Q-SCHOOL', epson: 'KORN FERRY', lpga: 'PGA TOUR' };
   return <span className={`pill tour-${tour}`}>{label[tour] ?? tour}</span>;
 }

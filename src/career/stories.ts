@@ -153,7 +153,7 @@ export const STORIES: Story[] = [
   {
     id: 'qschool_heads_up', when: (c) => c.status === 'pro' && c.tourCard !== 'lpga' && c.week >= 12 && c.week < 20 && c.flags[`qtip${c.season}`] !== true,
     title: 'Q-School is coming',
-    body: () => '"Stage I is week 20 and the entry is $3,500. Stage II is week 24, Q-Series week 28. Top 20 at Q-Series get an LPGA card." — Coach Dana',
+    body: () => '"First Stage is week 20 and the entry is $3,500. Second Stage is week 24, Final Stage week 28. Top 20 at Final Stage get a PGA Tour card." — Coach Dana',
     choices: [{ label: 'Start saving', hint: '', effects: (c) => ({ flags: { [`qtip${c.season}`]: true } }), result: 'You circle three dates on the calendar.' }],
   },
   {

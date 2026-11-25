@@ -165,18 +165,18 @@ export function eligibility(def: TournamentDef, c: CareerState): { ok: boolean; 
       return c.status === 'amateur' ? { ok: true } : { ok: false, reason: 'Amateurs only' };
     case 'mini':
       if (c.status !== 'pro') return { ok: false, reason: 'Professionals only. Turn pro first.' };
-      return c.tourCard === 'lpga' ? { ok: false, reason: 'LPGA members play the big tour' } : { ok: true };
+      return c.tourCard === 'lpga' ? { ok: false, reason: 'PGA Tour members play the big tour' } : { ok: true };
     case 'qschool':
       if (c.status !== 'pro') return { ok: false, reason: 'Turn pro to enter Q-School' };
-      if (c.tourCard === 'lpga') return { ok: false, reason: 'You already have an LPGA card' };
+      if (c.tourCard === 'lpga') return { ok: false, reason: 'You already have a PGA Tour card' };
       if (c.qschool.season !== c.season || c.qschool.nextStage !== def.qStage) {
-        return { ok: false, reason: def.qStage === 1 ? 'Stage I is open to all pros' : `Advance from Stage ${def.qStage! - 1} first` };
+        return { ok: false, reason: def.qStage === 1 ? 'First Stage is open to all pros' : `Advance from the ${def.qStage === 2 ? 'First' : 'Second'} Stage first` };
       }
       return { ok: true };
     case 'epson':
-      return c.tourCard === 'epson' ? { ok: true } : { ok: false, reason: 'Needs Epson Tour status' };
+      return c.tourCard === 'epson' ? { ok: true } : { ok: false, reason: 'Needs Korn Ferry Tour status' };
     case 'lpga':
-      return c.tourCard === 'lpga' ? { ok: true } : { ok: false, reason: 'Needs an LPGA Tour card' };
+      return c.tourCard === 'lpga' ? { ok: true } : { ok: false, reason: 'Needs a PGA Tour card' };
   }
 }
 
@@ -222,12 +222,12 @@ export function startTournament(def: TournamentDef, c: CareerState, mode: RoundM
   const extras = [{ id: c.playerId, name: PLAYER_NAME, rating: 0 }];
   const rival = Object.values(c.pools).flat().find((g) => g.id === c.rivalId);
   const poolTour: TourId = legacy && def.tour === 'qschool' ? 'mini' : def.tour;
-  // Kayla only plays the women's tours (Q-School on); men's fields never include her.
+  // Kayla only plays the women's tours; Ryan's fields are men's until phase 3, so she isn't in them.
   if (rival && (legacy || !isMensTour(def.tour)) && (rival.tour === poolTour || def.tour === 'qschool' || def.special)) extras.push({ id: rival.id, name: rival.name, rating: rival.rating + def.ratingShift });
   let pool = c.pools[poolTour];
   // Q-School: early stages draw from the mini tours and the Epson Tour's
-  // strugglers; Q-Series is Epson Tour regulars fighting for LPGA cards.
-  // (Women's fields: Q-School hopefuls rather than the men's mini tours.)
+  // strugglers; Final Stage is Korn Ferry regulars fighting for PGA Tour cards.
+  // (Current rules: the Q-School hopefuls pool rather than the mini tour.)
   if (def.tour === 'qschool') pool = def.qStage === 3 ? c.pools.epson : [...(legacy ? c.pools.mini : c.pools.qschool ?? []), ...c.pools.epson.filter((g) => g.rating < 66)];
   const entrants = pickField(pool, def.fieldSize, seed, def.ratingShift, extras);
   const course = courseOf(def);

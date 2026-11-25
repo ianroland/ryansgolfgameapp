@@ -88,3 +88,23 @@ describe('older saves are fixed on load', () => {
     await s.career.loadClubhouse(); // validates every row
   });
 });
+
+describe('Act I: the PGA ladder (owner, 2026-11-24)', () => {
+  it("every tour Ryan can play is a men's field until phase 3; Kayla keeps her own name", async () => {
+    const { TOURS } = await import('../src/career/config');
+    const pools = buildPools(2027);
+    const women = new Set<string>(FIRST_NAMES.women);
+    for (const t of ['qschool', 'epson', 'lpga'] as const) {
+      expect(isMensTour(t)).toBe(true);
+      for (const g of pools[t]) if (g.id !== RIVAL.id) expect(women.has(g.name.split(' ')[0]), `${t}: ${g.name}`).toBe(false);
+    }
+    expect(Object.values(pools).flat().find((g) => g.id === RIVAL.id)?.name).toBe(RIVAL.name);
+    expect([TOURS.qschool.name, TOURS.epson.name, TOURS.lpga.name]).toEqual(['PGA Tour Q-School', 'Korn Ferry Tour', 'PGA Tour']);
+  });
+
+  it('older saves are brought over once (idempotent)', () => {
+    const once = reconcileFieldPools(buildPools(7, 'reference-v1'), 7)!;
+    expect(once).not.toBeNull();
+    expect(reconcileFieldPools(once, 7)).toBeNull();
+  });
+});

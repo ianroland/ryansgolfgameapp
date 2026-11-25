@@ -11,7 +11,7 @@ import type { GameTime, TransactionType } from '../core/types';
 import { ACHIEVEMENTS } from './achievements';
 import {
   ACTIONS_PER_WEEK, EPSON_GRADUATES, gameDate, LPGA_KEEP_CARD, PLAYER_ID, QSCHOOL, QSERIES_EPSON_CARDS,
-  QSERIES_LPGA_CARDS, SEASON_WEEKS, START_AGE, TOURS, fameLevel, type QStage, type TourId,
+  QSERIES_LPGA_CARDS, rivalTourName, SEASON_WEEKS, START_AGE, TOURS, fameLevel, type QStage, type TourId,
 } from './config';
 import { buildPools, evolvePools, RIVAL, rivalTourFor } from './field';
 import { gearById, lifestyleById, STARTING_EQUIPMENT } from './shop';
@@ -337,7 +337,7 @@ export function turnPro(prev: CareerState): Outcome {
     c,
     "You're a professional!",
     c.qschool.nextStage
-      ? 'You can now play the SoCal Pro Series for prize money. Q-School Stage I is in week 20 — the first step to an LPGA card.'
+      ? 'You can now play the SoCal Pro Series for prize money. Q-School First Stage is in week 20 — the first step to a PGA Tour card.'
       : "You can now play the SoCal Pro Series for prize money. This year's Q-School has started; you'll be entered next season.",
     'good',
   );
@@ -522,10 +522,10 @@ export function applyTournamentResult(prev: CareerState, r: TournamentResult): O
       c.qschool.nextStage = null;
       if (me.position <= QSERIES_LPGA_CARDS) {
         c.qschool.result = 'lpga';
-        qNote = ` TOP ${QSERIES_LPGA_CARDS}! You've earned your LPGA Tour card for next season!`;
+        qNote = ` TOP ${QSERIES_LPGA_CARDS}! You've earned your PGA Tour card for next season!`;
       } else if (me.position <= QSERIES_EPSON_CARDS) {
         c.qschool.result = 'epson';
-        qNote = ` You earned Epson Tour status for next season.`;
+        qNote = ` You earned Korn Ferry Tour status for next season.`;
       } else {
         c.qschool.result = 'failed';
         qNote = ' No card this year. Back to the Pro Series.';
@@ -769,25 +769,25 @@ export function seasonRollover(prev: CareerState): CareerState {
   if (c.tourCard === 'lpga') {
     const rank = moneyRank(c, 'lpga');
     if (rank !== null && rank <= LPGA_KEEP_CARD) {
-      lines.push(`You finished #${rank} on the LPGA money list and kept your card.`);
+      lines.push(`You finished #${rank} on the PGA Tour money list and kept your card.`);
       c.flags.keptCard = true;
     } else {
       c.tourCard = 'epson';
-      lines.push(`You finished outside the top ${LPGA_KEEP_CARD} on the LPGA money list and lost your card. Back to the Epson Tour.`);
+      lines.push(`You finished outside the top ${LPGA_KEEP_CARD} on the PGA Tour money list and lost your card. Back to the Korn Ferry Tour.`);
     }
   } else if (c.tourCard === 'epson') {
     const rank = moneyRank(c, 'epson');
     if (rank !== null && rank <= EPSON_GRADUATES) {
       c.tourCard = 'lpga';
-      lines.push(`#${rank} on the Epson Tour money list — you've graduated to the LPGA Tour!`);
+      lines.push(`#${rank} on the Korn Ferry Tour money list — you've graduated to the PGA Tour!`);
     }
   }
   if (c.qschool.result === 'lpga') {
     c.tourCard = 'lpga';
-    lines.push('Your Q-Series finish earns an LPGA Tour card. Welcome to the big leagues.');
+    lines.push('Your Final Stage finish earns a PGA Tour card. Welcome to the big leagues.');
   } else if (c.qschool.result === 'epson' && c.tourCard === 'none') {
     c.tourCard = 'epson';
-    lines.push('Your Q-Series finish earns Epson Tour status.');
+    lines.push('Your Final Stage finish earns Korn Ferry Tour status.');
   }
   if (c.status === 'amateur') {
     const rank = pointsList(c, 100).findIndex((p) => p.id === c.playerId);
@@ -816,7 +816,7 @@ export function seasonRollover(prev: CareerState): CareerState {
     const tour = rivalTourFor(rating);
     for (const k of Object.keys(c.pools) as TourId[]) c.pools[k] = c.pools[k].filter((g) => g.id !== rival.id);
     c.pools[tour].push({ ...rival, rating, tour });
-    if (tour !== rival.tour) lines.push(`${rival.name} moves up to the ${TOURS[tour].name}.`);
+    if (tour !== rival.tour) lines.push(`${rival.name} moves up to the ${rivalTourName(tour)}.`);
   }
 
   // Remember how the season went (for the Stats screen).

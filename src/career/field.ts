@@ -6,7 +6,7 @@ import { rng, type Rng } from '../golf/math';
 import { PLAYER_ID, TOURS, type TourId } from './config';
 import type { PoolGolfer } from './types';
 
-/** Women's tours use these first names (Q-School, Epson Tour, LPGA Tour). */
+/** Women's names: Kayla's tours (and Ryan's ladder from phase 3, which isn't built yet). */
 const FIRST = [
   'Ava', 'Mia', 'Sofia', 'Lena', 'Maya', 'Zoe', 'Nora', 'Ella', 'Chloe', 'Ivy', 'Hana', 'Yuna', 'Mei', 'Priya', 'Ana', 'Lucia', 'Elise', 'Greta',
   'Freya', 'Ingrid', 'Camila', 'Valentina', 'Riley', 'Jordan', 'Sky', 'Tess', 'Brooke', 'Paige', 'Kendra', 'Dani', 'Marisol', 'Noor', 'Leilani',
@@ -27,10 +27,15 @@ const MALE_FIRST = [
 ];
 
 /**
- * Phases 1 and 2 (the Amateur Circuit and the SoCal Pro Series) are men's fields; from LPGA
- * Q-School on, Ryan plays women's fields. Kayla Brooks only plays the women's tours.
+ * Until phase 3 every field Ryan plays is a men's field: the Amateur Circuit, the SoCal Pro Series
+ * and the PGA ladder (PGA Tour Q-School, Korn Ferry Tour, PGA Tour). Owner, 2026-11-24.
+ * Kayla Brooks only plays the women's tours, so she's never in Ryan's fields before phase 3: she
+ * stays in the pools (for her rating and rival news) but is skipped in fields and money lists.
+ * Phase 3 will need its own women's pools; the PGA-ladder pools were renamed to men's names.
  */
-export const MENS_TOURS: ReadonlySet<TourId> = new Set<TourId>(['amateur', 'mini']);
+export const MENS_TOURS: ReadonlySet<TourId> = new Set<TourId>(['amateur', 'mini', 'qschool', 'epson', 'lpga']);
+/** Kayla never sits in these pools (she's moved to her women's tour by rating). */
+const NO_RIVAL_TOURS: ReadonlySet<TourId> = new Set<TourId>(['amateur', 'mini']);
 export const isMensTour = (t: TourId) => MENS_TOURS.has(t);
 
 export const RIVAL = { id: 'golfer_kayla_brooks', name: 'Kayla Brooks' };
@@ -41,7 +46,7 @@ export function rivalTourFor(rating: number): TourId {
 }
 
 const LEGACY_POOL_SIZES: Record<TourId, number> = { amateur: 40, mini: 45, qschool: 0, epson: 90, lpga: 110 };
-/** Women's Q-School hopefuls (added by reconcileFieldPools). */
+/** Q-School hopefuls (added by reconcileFieldPools; men's names until phase 3). */
 const QSCHOOL_POOL_SIZE = 45;
 
 /**
@@ -49,10 +54,18 @@ const QSCHOOL_POOL_SIZE = 45;
  * LPGA pools and every rating are unchanged), then split into men's and women's fields by
  * reconcileFieldPools, which uses its own random stream.
  */
-export function buildPools(seed = 2027): Record<TourId, PoolGolfer[]> {
+export function buildPools(seed = 2027, rules: PoolRules = 'current'): Record<TourId, PoolGolfer[]> {
   const pools = buildLegacyPools(seed);
-  return reconcileFieldPools(pools, seed) ?? pools;
+  return reconcileFieldPools(pools, seed, rules) ?? pools;
 }
+
+/**
+ * 'current': men's names on every tour Ryan plays (until phase 3). 'reference-v1': the pools the
+ * frozen cut-in reference dataset was recorded with (men's names only on the amateur and mini
+ * tours, women's Q-School hopefuls). Only tools/cutins-lab uses 'reference-v1'.
+ */
+export type PoolRules = 'current' | 'reference-v1';
+const REFERENCE_MENS_TOURS: ReadonlySet<TourId> = new Set<TourId>(['amateur', 'mini']);
 
 /** The original generator (one shared name list, Kayla on the amateur tour). */
 function buildLegacyPools(seed: number): Record<TourId, PoolGolfer[]> {
@@ -84,12 +97,13 @@ function buildLegacyPools(seed: number): Record<TourId, PoolGolfer[]> {
 }
 
 /**
- * Brings an older save's pools in line with the men's/women's split: renames women in the
- * men's pools (same ids and ratings, so records and money lists still match), adds the women's
- * Q-School pool if the save has none, and moves Kayla out of the men's tours. Returns null when
+ * Brings an older save's pools in line with the men's fields: renames women in the men's pools
+ * (same ids and ratings, so records and money lists still match; Kayla keeps her name), adds the
+ * Q-School pool if the save has none, and moves Kayla out of the amateur and mini pools. Returns null when
  * nothing needs changing. Deterministic for a save's seed.
  */
-export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: number): Record<TourId, PoolGolfer[]> | null {
+export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: number, rules: PoolRules = 'current'): Record<TourId, PoolGolfer[]> | null {
+  const mens = rules === 'reference-v1' ? REFERENCE_MENS_TOURS : MENS_TOURS;
   const female = new Set(FIRST);
   const next = Object.fromEntries(Object.entries(pools).map(([k, v]) => [k, v.map((g) => ({ ...g }))])) as Record<TourId, PoolGolfer[]>;
   let changed = false;
@@ -104,8 +118,8 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
       }
     }
   };
-  // Kayla leaves the men's tours.
-  for (const t of MENS_TOURS) {
+  // Kayla leaves the amateur and mini pools.
+  for (const t of NO_RIVAL_TOURS) {
     const k = next[t]?.find((g) => g.id === RIVAL.id);
     if (k) {
       next[t] = next[t].filter((g) => g.id !== RIVAL.id);
@@ -114,9 +128,9 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
       changed = true;
     }
   }
-  for (const t of MENS_TOURS) {
+  for (const t of mens) {
     for (const g of next[t] ?? []) {
-      if (g.id !== PLAYER_ID && female.has(g.name.split(' ')[0])) {
+      if (g.id !== PLAYER_ID && g.id !== RIVAL.id && female.has(g.name.split(' ')[0])) {
         g.name = fresh(MALE_FIRST);
         changed = true;
       }
@@ -126,7 +140,7 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
     const cfg = TOURS.qschool;
     const extra = Array.from({ length: QSCHOOL_POOL_SIZE }, (_, i) => ({
       id: `golfer_qs_${i + 1}`,
-      name: fresh(FIRST),
+      name: fresh(rules === 'reference-v1' ? FIRST : MALE_FIRST),
       rating: Math.round(cfg.ratingMin + (cfg.ratingMax - cfg.ratingMin) * Math.pow(r.next(), 0.8)),
       tour: 'qschool' as TourId,
     }));
@@ -221,7 +235,7 @@ export function evolvePools(pools: Record<TourId, PoolGolfer[]>, seasonEarnings:
   const r = rng(seed);
   const next = Object.fromEntries(Object.entries(pools).map(([k, v]) => [k, v.map((g) => ({ ...g }))])) as Record<TourId, PoolGolfer[]>;
   for (const list of Object.values(next)) for (const g of list) if (g.id !== PLAYER_ID) g.rating = Math.max(5, Math.min(97, Math.round(g.rating + r.gauss() * 2 + 0.6)));
-  // Top Epson earners graduate; the weakest LPGA players drop down.
+  // Top Korn Ferry earners graduate; the weakest PGA Tour players drop down.
   const earn = (tour: TourId, g: PoolGolfer) => seasonEarnings[`${tour}:${g.id}`] ?? 0;
   const up = [...next.epson].sort((a, b) => earn('epson', b) - earn('epson', a)).slice(0, 10);
   const down = [...next.lpga].sort((a, b) => earn('lpga', a) - earn('lpga', b)).slice(0, 10);

@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.8",
+   "date": "2026-11-24",
+   "title": "The road to the PGA Tour",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "Until phase 3, Ryan is chasing a PGA Tour card: PGA Tour Q-School (First, Second and Final Stage), then the Korn Ferry Tour, then the PGA Tour. Coach Dana, the inbox, the schedule, trophies and achievements all say so."
+    },
+    {
+     "tag": "improved",
+     "text": "Every field Ryan plays before phase 3 is a men's field, all the way up the ladder. Older saves are brought over on load: same golfers, ids and ratings."
+    },
+    {
+     "tag": "improved",
+     "text": "Kayla stays on the women's tours (LPGA Q-School, Epson Tour, LPGA Tour), so you'll follow her in the news and on the People screen rather than on your leaderboards for now."
+    },
+    {
+     "tag": "improved",
+     "text": "Amateur and major names lost their “Women's”: the Inland Empire Amateur, SoCal Amateur, State Amateur Championship, Championship of the Americas, National Open Championship and Alpine Championship."
+    }
+   ]
+  },
+  {
    "version": "0.20.7",
    "date": "2026-11-24",
    "title": "Baba's got you, once",

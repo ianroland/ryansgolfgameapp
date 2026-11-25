@@ -108,7 +108,7 @@ describe('C1 — presents only CI-1\'s selection, at the boundary just completed
         expect(v.view.momentId).toBe(d.selected);
       }
       // Every CI-1 selection of the tournament appears exactly once.
-      const selected = runTournament(def, c, 'full').rounds.flatMap((rt) => (rt.snap ? planRound(rt.snap, 'fullTv').filter((d) => d.selected).map((d) => d.selected) : []));
+      const selected = runTournament(def, c, 'full', { rules: 'current' }).rounds.flatMap((rt) => (rt.snap ? planRound(rt.snap, 'fullTv').filter((d) => d.selected).map((d) => d.selected) : []));
       expect(p.views.map((v) => v.view.momentId)).toEqual(selected);
       total += p.views.length;
     }
@@ -295,7 +295,7 @@ describe('C8 — the card shows verified data only', () => {
           const text = html.replace(/<[^>]+>/g, ' ').replace(/&#x27;/g, "'").replace(/&amp;/g, '&');
           let rest = ` ${text} `;
           for (const w of [v.label, v.name, ...v.top3.map((r) => r.name)]) rest = rest.split(w).join(' ');
-          for (const w of rest.split(/\s+/).filter(Boolean)) expect(w, `unexpected text "${w}"`).toMatch(/^(HOLE|PAR|SKIP|LPGA|AMATEUR|EPSON|PRO|SERIES|Q-SCHOOL|R\d|T?\d+|[+-]\d+|E|▶)$/);
+          for (const w of rest.split(/\s+/).filter(Boolean)) expect(w, `unexpected text "${w}"`).toMatch(/^(HOLE|PAR|SKIP|PGA|TOUR|KORN|FERRY|AMATEUR|PRO|SERIES|Q-SCHOOL|R\d|T?\d+|[+-]\d+|E|▶)$/);
         }
       }
     }
