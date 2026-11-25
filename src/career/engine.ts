@@ -23,6 +23,7 @@ import { isAlbatross } from '../records/albatross';
 import { appearanceBlocker, storyOf } from '../story/appearance';
 import { encounterById, nextEncounter, walkEncounter } from '../story/encounters';
 import type { Appearance } from '../story/types';
+import { BABA_LOAN, BABA_LOAN_LINES } from '../story/babaLoan';
 import { casinoAt, locationById } from '../expansion/locations';
 import type { LocationId } from '../expansion/unlocks';
 import { STAT_KEYS, STAT_LABELS, type CareerState, type InboxItem, type PersonId, type RoundMode, type StatKey } from './types';
@@ -55,6 +56,38 @@ export const now = (c: CareerState): GameTime => gameDate(c.season, c.week);
 /** Adds an inbox message (newest first, last 40 kept). */
 export function inbox(c: CareerState, title: string, body: string, tone: InboxItem['tone'] = 'neutral') {
   c.inbox = [{ id: `msg_${c.season}_${c.week}_${hashString(title + body + c.inbox.length)}`, at: now(c), title, body, tone }, ...c.inbox].slice(0, 40);
+}
+
+// ───────────────────────── Baba's loan (once per career) ─────────────────────────
+
+export type BabaLoanStatus = 'available' | 'not_needed' | 'taken' | 'repayable' | 'repaid';
+
+/** Where Baba's one-time loan stands for this career, given the bank balance. */
+export function babaLoanStatus(c: CareerState, balance: number): BabaLoanStatus {
+  if (c.flags.babaLoan === 'repaid') return 'repaid';
+  if (c.flags.babaLoan === 'taken') return balance >= BABA_LOAN.repayFrom ? 'repayable' : 'taken';
+  return balance < BABA_LOAN.below ? 'available' : 'not_needed';
+}
+
+export function askBabaLoan(prev: CareerState, balance: number): Outcome {
+  const st = babaLoanStatus(prev, balance);
+  if (st === 'taken' || st === 'repayable' || st === 'repaid') fail('Baba already helped once');
+  if (st === 'not_needed') fail(`Baba's loan is for when the bank is under ${BABA_LOAN.below}`);
+  const c = clone(prev);
+  c.flags.babaLoan = 'taken';
+  c.flags.babaLoanAt = `${c.season}:${c.week}`;
+  inbox(c, 'Baba came through', BABA_LOAN_LINES.inboxTaken, 'good');
+  return { career: c, money: [{ amount: BABA_LOAN.amount, type: 'family_loan', sourceId: 'baba', key: 'baba-loan' }], message: 'Baba sent $500' };
+}
+
+export function repayBabaLoan(prev: CareerState, balance: number): Outcome {
+  if (prev.flags.babaLoan !== 'taken') fail('There is no loan to pay back');
+  if (balance < BABA_LOAN.amount) fail('Not enough in the bank to pay Baba back');
+  const c = clone(prev);
+  c.flags.babaLoan = 'repaid';
+  rel(c, 'mom', 4);
+  inbox(c, 'Paid Baba back', BABA_LOAN_LINES.inboxRepaid, 'good');
+  return { career: c, money: [{ amount: -BABA_LOAN.amount, type: 'family_loan', sourceId: 'baba', key: 'baba-loan-repay' }], message: 'You paid Baba back' };
 }
 
 // ───────────────────────── New career ─────────────────────────
@@ -550,7 +583,7 @@ export function advanceWeek(prev: CareerState, ctx: WeekContext): Outcome {
   if (rent < ctx.livingCost) {
     c.form = clamp(c.form - 3, -10, 10);
     rel(c, 'mom', -2);
-    inbox(c, 'Behind on rent', "You couldn't cover this week's bills. Baba spotted you, and asked twice if you're eating. Work a shift or two.", 'bad');
+    inbox(c, 'Behind on rent', `You couldn't cover this week's bills. Baba spotted you, and asked twice if you're eating. Work a shift or two.${babaLoanStatus(c, balance) === 'available' ? BABA_LOAN_LINES.rentHint : ''}`, 'bad');
   }
 
   c.energy = clamp(c.energy + energyRegen(c, ctx.homeEnergy), 0, 100);
@@ -840,7 +873,7 @@ function albatrossNews(c: CareerState, r: TournamentResult) {
           n += 1;
           inbox(
             c,
-            n === 1 ? `Ryan records her first career albatross at ${course.name}!` : `Albatross #${n} for Ryan`,
+            n === 1 ? `Ryan records his first career albatross at ${course.name}!` : `Albatross #${n} for Ryan`,
             `A ${s} on ${where} in round ${ri + 1} of the ${r.def.name}. It's in the record book for good.`,
             'good',
           );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ACTIONS, actionBlocker, advanceBlocker, entryBlocker, tournamentCosts, type ActionId } from '../../career/engine';
+import { ACTIONS, actionBlocker, babaLoanStatus, advanceBlocker, entryBlocker, tournamentCosts, type ActionId } from '../../career/engine';
 import { ACTIONS_PER_WEEK, fameLevel, FAME_LEVELS, gameDate, SEASON_WEEKS, TOURS } from '../../career/config';
 import { effectiveStats, energyRegen, skillPointCost } from '../../career/stats';
 import { courseOf, eligibility, seasonSchedule, type TournamentDef } from '../../career/tournament';
@@ -7,6 +7,7 @@ import { STAT_KEYS, STAT_LABELS, type CareerState, type StatKey } from '../../ca
 import { appearanceOf, storyOf } from '../../story/appearance';
 import { encounterById } from '../../story/encounters';
 import { RYAN_ID } from '../../story/cast';
+import { BABA_LOAN, BABA_LOAN_LINES } from '../../story/babaLoan';
 import { portraitKey } from '../../story/sprites';
 import { AppearanceDialog } from '../story/AppearanceDialog';
 import { SpriteFrame } from '../story/Sprite';
@@ -69,6 +70,63 @@ export function ProfileCard() {
         </div>
       </dl>
       {c.sponsor && <p className="muted">Sponsor: {c.sponsor.name} · {formatMoney(c.sponsor.weekly)}/wk</p>}
+    </section>
+  );
+}
+
+/** Baba's one-time $500 loan. Shows only when the bank is nearly empty, or when the loan can be paid back. */
+export function BabaLoanCard() {
+  const { state, services, run, notify } = useGame();
+  const status = babaLoanStatus(state.career, state.balance);
+  const [open, setOpen] = useState(false);
+  const [said, setSaid] = useState<string | null>(null);
+  if (status !== 'available' && status !== 'repayable' && !open) return null;
+  const repay = status === 'repayable' || (open && state.career.flags.babaLoan === 'repaid' && said === BABA_LOAN_LINES.repaid);
+  const ask = async () => {
+    const o = await run(() => services.career.askBabaLoan());
+    if (o) { sound.play('cash'); setSaid(BABA_LOAN_LINES.received); notify({ kind: 'info', title: o.message ?? 'Baba sent $500' }); }
+  };
+  const payBack = async () => {
+    const o = await run(() => services.career.repayBabaLoan());
+    if (o) { setSaid(BABA_LOAN_LINES.repaid); notify({ kind: 'info', title: o.message ?? 'You paid Baba back' }); }
+  };
+  const close = () => { setOpen(false); setSaid(null); };
+  return (
+    <section className="hub-card baba-card" aria-label={repay ? BABA_LOAN_LINES.repayTitle : BABA_LOAN_LINES.cardTitle} data-testid="baba-loan-card">
+      <h2 className="hub-title">{repay ? BABA_LOAN_LINES.repayTitle : BABA_LOAN_LINES.cardTitle}</h2>
+      <p>{repay ? BABA_LOAN_LINES.repayBody : BABA_LOAN_LINES.cardBody}</p>
+      <button className="btn" data-testid="baba-loan-open" onClick={() => setOpen(true)}>
+        {repay ? BABA_LOAN_LINES.repay : 'Ask Baba for $500'}
+      </button>
+      {open && (
+        <Dialog title={repay ? BABA_LOAN_LINES.repayTitle : 'Calling Baba'} onClose={close}>
+          <div className="baba-call" data-testid="baba-call">
+            <span className="rpg-draft">Draft lines</span>
+            {said ? (
+              <p className="baba-line">{said}</p>
+            ) : repay ? (
+              <p className="baba-line">{BABA_LOAN_LINES.repayBody}</p>
+            ) : (
+              BABA_LOAN_LINES.call.map((l) => <p key={l} className="baba-line">{l}</p>)
+            )}
+            <div className="baba-actions">
+              {said ? (
+                <button className="btn primary" autoFocus onClick={close}>Done</button>
+              ) : repay ? (
+                <>
+                  <button className="btn primary" data-testid="baba-repay" disabled={state.balance < BABA_LOAN.amount} onClick={payBack}>{BABA_LOAN_LINES.repay}</button>
+                  <button className="btn" onClick={close}>Not yet</button>
+                </>
+              ) : (
+                <>
+                  <button className="btn primary" data-testid="baba-accept" onClick={ask}>{BABA_LOAN_LINES.accept}</button>
+                  <button className="btn" data-testid="baba-decline" onClick={() => setSaid(BABA_LOAN_LINES.declined)}>{BABA_LOAN_LINES.decline}</button>
+                </>
+              )}
+            </div>
+          </div>
+        </Dialog>
+      )}
     </section>
   );
 }
@@ -342,6 +400,7 @@ export function CareerHub({ onEnter, onEncounter }: { onEnter: (def: TournamentD
     <main className="hub">
       <div className="hub-col">
         <ProfileCard />
+        <BabaLoanCard />
         <SkillsCard />
       </div>
       <WeekCard onEnter={onEnter} />

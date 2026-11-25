@@ -47,4 +47,5 @@ export const TX_LABELS: Record<string, string> = {
   drink: "Drink (Tito's Double)",
   sports_bet: 'Sportsbook bet',
   sports_payout: 'Sportsbook payout',
+  family_loan: 'Baba\u2019s loan',
 };

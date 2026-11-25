@@ -56,12 +56,14 @@ export type TransactionType =
   /** A sportsbook stake (key `bet:<ticketId>`). */
   | 'sports_bet'
   /** A sportsbook payout or refund (key `payout:<ticketId>`). */
-  | 'sports_payout';
+  | 'sports_payout'
+  /** Baba's one-time $500 loan (+), and paying it back (−). Keys `baba-loan` and `baba-loan-repay`. */
+  | 'family_loan';
 
 export const TRANSACTION_TYPES: TransactionType[] = [
   'career_start_grant', 'furniture_purchase', 'home_purchase', 'gear_purchase', 'lifestyle_purchase', 'entry_fee',
   'travel', 'prize_money', 'living_costs', 'job_wage', 'sponsor_income', 'story', 'casino', 'tip', 'drink',
-  'sports_bet', 'sports_payout',
+  'sports_bet', 'sports_payout', 'family_loan',
 ];
 
 export interface EconomyTransaction {

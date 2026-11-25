@@ -86,7 +86,7 @@ describe('albatrosses through the tournament pipeline', () => {
     expect(c.totals.eagles).toBe(0); // albatrosses are not eagles
     expect(c.achievements.albatross).toBeTruthy();
     expect(c.achievements.albatross_5).toBeTruthy();
-    expect(c.inbox.some((m) => m.title.startsWith('Ryan records her first career albatross'))).toBe(true);
+    expect(c.inbox.some((m) => m.title.startsWith('Ryan records his first career albatross'))).toBe(true);
 
     // Clubhouse trophies: the first-albatross ball and the five-albatross plaque.
     const ball = await s.db.trophies.get(milestoneTrophyId(RYAN, 'albatross_first'));

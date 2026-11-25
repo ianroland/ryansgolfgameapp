@@ -20,7 +20,7 @@ Version 0.20.4. These are the nine craps regulars (three per casino), with their
 
 - **Characters, betting styles and lines:** approved (2026-11-24).
 - **Stick Lady's streak calls:** approved (2026-11-24). Her other new craps calls (a Come bet moving, a Place win, a hardway win, a one-roll win) are still drafts.
-- **Portraits:** in the game (0.20.6), from the CRAPS_REGULARS_ASSET_PACK, with three faces each. The face follows the regular's last roll: happy after a win, groan after a loss. Ryan's seat shows her own portrait, which follows her current look.
+- **Portraits:** in the game (0.20.6), from the CRAPS_REGULARS_ASSET_PACK, with three faces each. The face follows the regular's last roll: happy after a win, groan after a loss. Ryan's seat shows his own portrait, which follows his current look.
 
 ## Desert Palms
 

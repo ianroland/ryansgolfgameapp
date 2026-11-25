@@ -16,7 +16,7 @@ export async function topUp(s: GameServices, amount: number, key: string) {
 
 /**
  * Plays a tournament through the real services. `score(par)` is what Ryan
- * makes on every hole she plays (default: eagle everything, a sure win).
+ * makes on every hole he plays (default: eagle everything, a sure win).
  */
 export async function playTournament(
   s: GameServices,

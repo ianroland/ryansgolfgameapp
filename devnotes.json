@@ -2,13 +2,32 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.7",
+   "date": "2026-11-24",
+   "title": "Baba's got you, once",
+   "items": [
+    {
+     "tag": "new",
+     "text": "If the bank drops under $100, an “Ask Baba for help” card appears on the Career screen. Baba sends $500, one time per career. The weekly rent warning mentions it while it's unused."
+    },
+    {
+     "tag": "new",
+     "text": "Paying Baba back is optional: no interest, no deadline. Once the bank reaches $1,000 the card offers it, and Baba notices (he pretends not to)."
+    },
+    {
+     "tag": "fixed",
+     "text": "Ryan is “he” in Act I: fixed the albatross headline and a couple of notes that said “her”."
+    }
+   ]
+  },
+  {
    "version": "0.20.6",
    "date": "2026-11-24",
    "title": "Faces at the craps rail, and no more spoilers",
    "items": [
     {
      "tag": "new",
-     "text": "The craps regulars have portraits now: all nine, each grinning after a win and groaning after a loss. Ryan's seat shows her too."
+     "text": "The craps regulars have portraits now: all nine, each grinning after a win and groaning after a loss. Ryan's seat shows his too."
     },
     {
      "tag": "fixed",

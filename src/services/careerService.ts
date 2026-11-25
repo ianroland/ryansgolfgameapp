@@ -226,6 +226,16 @@ export class CareerService {
     return this.mutate((c, { balance }) => engine.buyGear(c, itemId, balance));
   }
 
+  /** Baba's one-time $500 loan (only when the bank is under $100). */
+  askBabaLoan() {
+    return this.mutate((c, { balance }) => engine.askBabaLoan(c, balance));
+  }
+
+  /** Pays Baba's loan back (optional). */
+  repayBabaLoan() {
+    return this.mutate((c, { balance }) => engine.repayBabaLoan(c, balance));
+  }
+
   buyLifestyle(itemId: string) {
     return this.mutate((c, { balance }) => engine.buyLifestyle(c, itemId, balance));
   }

@@ -266,3 +266,9 @@ The full list, with recommendations, is in `BABA_APPROVALS.md`. In short:
 - **Scene placement.** Fix Scene 2's Act and Scene 3's "Championship".
 - **Art rights.** Confirm the Baba sheets are cleared for use in the game.
 - **`lpga_joke` and `fridge_letter`.** Provide their source.
+
+## Baba's loan (0.20.7, lines are DRAFT)
+
+- Once per career, when the bank is under $100, Ryan can ask Baba for $500 (`src/story/babaLoan.ts`). Ledger type `family_loan`, key `baba-loan`.
+- Paying it back is optional, with no interest or deadline. It's offered from $1,000 (key `baba-loan-repay`) and gives a small relationship bump. Baba never asks for it.
+- The lines are drafts in phase 1 voice (*habibi*, he/him for Ryan), awaiting owner approval. They don't mention Mom, and Baba's help never depends on results.
