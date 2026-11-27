@@ -1,6 +1,6 @@
 /**
  * Albatross celebrations. A celebration is shown once per albatross: right
- * away for a hole Ryan played herself, or when the tournament result is
+ * away for a hole Ryan played himself, or when the tournament result is
  * recorded for one that was simulated. Seen IDs are remembered so the same
  * albatross never celebrates twice (best effort: storage may be unavailable).
  */

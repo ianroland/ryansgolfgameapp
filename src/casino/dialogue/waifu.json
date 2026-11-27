@@ -6,159 +6,159 @@
       {
         "id": "waifu_welcome_01",
         "text": "Welcome to baccarat. Player, Banker, or Tie?",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_welcome_02",
         "text": "Good evening. The table is ready.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_welcome_03",
         "text": "A quiet table is a lucky table. Sometimes.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "bet": [
       {
         "id": "waifu_bet_01",
         "text": "Your wager is in. Good luck.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_bet_02",
         "text": "The chips are placed.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_bet_03",
         "text": "Very well. Let us see.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "deal": [
       {
         "id": "waifu_deal_01",
         "text": "Cards are on the way.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_deal_02",
         "text": "Two cards each to begin.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_deal_03",
         "text": "The shoe decides.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "natural": [
       {
         "id": "waifu_natural_01",
         "text": "A natural. No further cards.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_natural_02",
         "text": "Eight or nine. That settles the draw.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "player_win": [
       {
         "id": "waifu_player_win_01",
         "text": "Player wins.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_player_win_02",
         "text": "The Player hand takes it.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "banker_win": [
       {
         "id": "waifu_banker_win_01",
         "text": "Banker takes it.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_banker_win_02",
         "text": "A Banker victory.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "push": [
       {
         "id": "waifu_push_01",
         "text": "A tie. Player and Banker bets push.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_push_02",
         "text": "Neither side takes it this round.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "shuffle": [
       {
         "id": "waifu_shuffle_01",
         "text": "A new shoe, coming up.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_shuffle_02",
         "text": "We will shuffle before the next hand.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "big_win": [
       {
         "id": "waifu_big_win_01",
         "text": "Excellent. Very nicely done.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_big_win_02",
         "text": "A lovely result. Enjoy it.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "loss": [
       {
         "id": "waifu_loss_01",
         "text": "Not this time. Another hand?",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_loss_02",
         "text": "The cards were not with you.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "insufficient_funds": [
       {
         "id": "waifu_insufficient_funds_01",
         "text": "That wager exceeds your balance.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_insufficient_funds_02",
         "text": "Please choose a smaller wager.",
-        "status": "draft"
+        "status": "approved"
       }
     ],
     "return_visit": [
       {
         "id": "waifu_return_visit_01",
         "text": "Welcome back to my table.",
-        "status": "draft"
+        "status": "approved"
       },
       {
         "id": "waifu_return_visit_02",
         "text": "The cards have missed you.",
-        "status": "draft"
+        "status": "approved"
       }
     ]
   }

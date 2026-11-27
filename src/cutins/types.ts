@@ -102,7 +102,7 @@ export interface RevealSnapshot {
   boundaries: number[];
   ryanId: string;
   rivalId: string;
-  /** Golfers still in the field this round (Ryan included if she is). */
+  /** Golfers still in the field this round (Ryan included if he is). */
   alive: string[];
   /** Total to par from completed rounds, per alive golfer. */
   prior: Record<string, number>;

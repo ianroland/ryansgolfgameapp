@@ -1,8 +1,8 @@
 /**
  * Encounter skill challenges: a two-press long-drive meter and a one-press
- * putting meter. Ryan's stats set how far she can hit it and how forgiving the
+ * putting meter. Ryan's stats set how far he can hit it and how forgiving the
  * putt is; the player's timing does the rest. "Sim it" plays the same
- * challenge from her stats with a seeded roll (same result every time).
+ * challenge from his stats with a seeded roll (same result every time).
  */
 import { effectiveStats } from '../career/stats';
 import type { CareerState } from '../career/types';
@@ -32,7 +32,7 @@ export interface PuttResult {
   win: boolean;
 }
 
-/** Ryan's best possible carry-and-roll with her own driver. */
+/** Ryan's best possible carry-and-roll with his own driver. */
 export function maxDrive(c: CareerState): number {
   return Math.round(205 + effectiveStats(c).power * 0.9);
 }

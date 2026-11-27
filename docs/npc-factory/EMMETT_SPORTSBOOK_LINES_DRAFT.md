@@ -1,10 +1,10 @@
-# Emmett Okafor: sportsbook history lines (DRAFT, for approval)
+# Emmett Okafor: sportsbook history lines (approved 2026-11-27)
 
 Desert Palms sportsbook clerk. These are short one-liners in his voice (warm, easygoing, terrible puns, nicknames for everyone).
 - **Source:** `src/sports/clerks/emmett.ts`.
 - **When he says them:** a line appears only once its events are history in the game year. It follows the sport on screen; tap him or press "Another one" for the next.
 - **Live lines:** every third line is about this season, built from real standings and results (the league leader, last week's biggest win, or when the next games are).
-- **Status:** all lines are drafts until you approve them. Say which to change or cut.
+- **Status:** approved by the owner on 2026-11-27.
 
 ## Baseball (GDL)
 

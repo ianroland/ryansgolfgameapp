@@ -198,7 +198,7 @@ export function windsForRound(seed: number, round: number, course: CourseDef) {
   return course.holes.map(() => ({ heading: r.range(0, Math.PI * 2), mph: Math.round(r.range(0, 13) * k) }));
 }
 
-/** Which holes Ryan plays herself this round. */
+/** Which holes Ryan plays himself this round. */
 export function holesToPlay(mode: RoundMode, round: number, PARS: number[]): number[] {
   if (mode === 'sim') return [];
   if (mode === 'full') return PARS.map((_, i) => i);
@@ -260,8 +260,8 @@ const sumRounds = (rounds: number[][]) => rounds.reduce((s, r) => s + r.reduce((
 
 /**
  * The current round's hole scores for everyone still in the field, as they
- * will be recorded: simulated for the field, and for Ryan her played holes
- * with any others simulated from her rating. Deterministic, so the UI can
+ * will be recorded: simulated for the field, and for Ryan his played holes
+ * with any others simulated from his rating. Deterministic, so the UI can
  * reveal it hole by hole and `completeRound` records exactly the same.
  */
 export function previewRound(active: ActiveTournament, def: TournamentDef, c: CareerState): Record<string, number[]> {

@@ -12,11 +12,11 @@ import meta from '../src/assets/casino/ww/ww_meta.json';
 import { decodePng } from './png';
 
 describe('dealer dialogue', () => {
-  it('every event the tables raise has lines, and every line is still a draft', () => {
+  it('every event the tables raise has lines, and every line is approved (owner, 2026-11-27)', () => {
     for (const e of WAIFU_EVENTS) expect(WW_DIALOGUE.waifu.lines[e]?.length, e).toBeGreaterThan(0);
     for (const e of WINSTON_EVENTS) expect(WW_DIALOGUE.winston.lines[e]?.length, e).toBeGreaterThan(0);
     for (const who of ['waifu', 'winston'] as const)
-      for (const lines of Object.values(WW_DIALOGUE[who].lines)) for (const l of lines) expect(l.status).toBe('draft');
+      for (const lines of Object.values(WW_DIALOGUE[who].lines)) for (const l of lines) expect(l.status).toBe('approved');
   });
   it('no phonetic accent or patois in either dealer’s lines', () => {
     const all = Object.values(WW_DIALOGUE.winston.lines).flat().concat(Object.values(WW_DIALOGUE.waifu.lines).flat()).map((l) => l.text);

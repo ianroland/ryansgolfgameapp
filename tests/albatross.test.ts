@@ -107,7 +107,7 @@ describe('albatrosses through the tournament pipeline', () => {
     expect((await s2.career.getCareer()).totals.albatrosses).toBe(expected);
   });
 
-  it('keeps how Ryan holed it, when she played the hole herself', async () => {
+  it('keeps how Ryan holed it, when he played the hole himself', async () => {
     const { s } = await newCareer();
     const def = findTournament('amateur-1-w2')!;
     await setCareer(s, (c) => {

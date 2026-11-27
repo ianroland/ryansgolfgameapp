@@ -7,7 +7,7 @@
  * only for a moment CI-1 selected at the boundary Ryan just completed, claimed
  * once through CI-1's one-use boundary token. Every field shown comes from
  * the verified reveal snapshot at that boundary: the golfer's name, the hole,
- * her strokes and par on it, her position and total, and the top three.
+ * his strokes and par on it, his position and total, and the top three.
  * Nothing is invented: no shot, no distance, no footage, no commentary.
  */
 import { useCallback, useEffect, useRef } from 'react';

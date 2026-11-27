@@ -60,7 +60,7 @@ export interface EncounterDef {
   teaser: string;
   act: Act;
   location: 'driving_range' | 'clubhouse_lounge';
-  /** Cast in the scene besides Ryan. The first one stands opposite her. */
+  /** Cast in the scene besides Ryan. The first one stands opposite him. */
   cast: string[];
   /** Eligible to be offered (it's also never offered once completed). */
   when: (c: CareerState, story: StoryState) => boolean;

@@ -312,7 +312,7 @@ export class CareerService {
     return this.mutate((c) => engine.withdraw(c));
   }
 
-  /** Records strokes for a hole Ryan played herself in the current round. */
+  /** Records strokes for a hole Ryan played himself in the current round. */
   async recordHole(holeIndex: number, strokes: number, shot?: string): Promise<CareerState> {
     return this.db.transaction('rw', this.db.careers, async () => {
       const c = await this.getCareer();

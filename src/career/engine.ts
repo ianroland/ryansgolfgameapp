@@ -861,7 +861,7 @@ const ordinalHole = (n: number) => `${n}${n % 10 === 1 && n !== 11 ? 'st' : n % 
 function albatrossNews(c: CareerState, r: TournamentResult) {
   const course = resultCourse(r);
   const names = new Map(r.entrants.map((e) => [e.id, e.name]));
-  // Totals already include this event: count Ryan's up from where she started it.
+  // Totals already include this event: count Ryan's up from where he started it.
   const mine = (r.scores[r.playerId] ?? []).flat().filter((s, i) => isAlbatross(r.pars[i % r.pars.length], s)).length;
   let n = (c.totals.albatrosses ?? 0) - mine;
   for (const [golferId, rounds] of Object.entries(r.scores)) {

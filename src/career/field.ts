@@ -223,7 +223,7 @@ export function simRound(pars: number[], rating: number, r: Rng, winds: number[]
 }
 
 /**
- * Picks a tournament field from the tour pool (plus Ryan and, if she plays
+ * Picks a tournament field from the tour pool (plus Ryan and, if he plays
  * the same tour, her rival). Deterministic for a seed.
  */
 export function pickField(

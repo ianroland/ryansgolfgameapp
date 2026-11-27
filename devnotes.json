@@ -2,6 +2,25 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.11",
+   "date": "2026-11-27",
+   "title": "Every line approved",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "All dialogue is approved and the “Draft line” tags are gone: Baba's loan, Stick Lady's craps calls, Waifu and Winston, and the dealers' tip thanks."
+    },
+    {
+     "tag": "improved",
+     "text": "Craps: the Come box now says “Opens once a point is set” on the come-out roll, so it no longer looks broken. (As at a real table, Come bets go down only after the point; on the come-out the Pass Line does the same job.)"
+    },
+    {
+     "tag": "fixed",
+     "text": "Tidied the last places that called Ryan “she”."
+    }
+   ]
+  },
+  {
    "version": "0.20.10",
    "date": "2026-11-27",
    "title": "Rail family, approved",

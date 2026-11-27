@@ -7,7 +7,7 @@ import { STAT_KEYS, STAT_LABELS, type CareerState, type StatKey } from '../../ca
 import { appearanceOf, storyOf } from '../../story/appearance';
 import { encounterById } from '../../story/encounters';
 import { RYAN_ID } from '../../story/cast';
-import { BABA_LOAN, BABA_LOAN_LINES } from '../../story/babaLoan';
+import { BABA_LOAN, BABA_LOAN_LINES, BABA_LOAN_STATUS } from '../../story/babaLoan';
 import { portraitKey } from '../../story/sprites';
 import { AppearanceDialog } from '../story/AppearanceDialog';
 import { SpriteFrame } from '../story/Sprite';
@@ -101,7 +101,7 @@ export function BabaLoanCard() {
       {open && (
         <Dialog title={repay ? BABA_LOAN_LINES.repayTitle : 'Calling Baba'} onClose={close}>
           <div className="baba-call" data-testid="baba-call">
-            <span className="rpg-draft">Draft lines</span>
+            {BABA_LOAN_STATUS === 'draft' && <span className="rpg-draft">Draft lines</span>}
             {said ? (
               <p className="baba-line">{said}</p>
             ) : repay ? (

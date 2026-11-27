@@ -128,7 +128,7 @@ export class RecordsService {
 
   /**
    * Makes the albatross table match the verified stored results. Safe to run
-   * any number of times. Also squares Ryan's career totals with her records.
+   * any number of times. Also squares Ryan's career totals with his records.
    */
   async reconcile(ownerId: string = PLAYER_ID): Promise<ReconcileReport> {
     const db = this.db;

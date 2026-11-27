@@ -2,7 +2,7 @@
  * Baba's loan: once per career, when Ryan's bank runs dry, he can call Baba for $500. Paying it back
  * is optional (no interest, no penalty). Owner request 2026-11-24.
  *
- * Every line here is a DRAFT in Baba's canon voice (docs/story/baba/BABA_STORY_BIBLE.md): phase 1,
+ * Every line here is approved (owner, 2026-11-27) and in Baba's canon voice (docs/story/baba/BABA_STORY_BIBLE.md): phase 1,
  * he/him, *habibi*; blunt and funny, never sentimental; his love never depends on results; he never
  * decides for Ryan. No line here misgenders anyone or mentions Mom.
  */
@@ -14,7 +14,7 @@ export const BABA_LOAN = {
   repayFrom: 1000,
 } as const;
 
-export const BABA_LOAN_STATUS = 'draft' as const;
+export const BABA_LOAN_STATUS: 'draft' | 'approved' = 'approved';
 
 export const BABA_LOAN_LINES = {
   cardTitle: 'Ask Baba for help',

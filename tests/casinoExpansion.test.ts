@@ -304,14 +304,14 @@ describe('tipping rules (pure)', () => {
     expect(applyTip({ ...s1, goodwill: GOODWILL_CAP }, 5, 10, 'v1', at).event).toBe('tip_maxed');
   });
 
-  it('every dealer has draft lines for every tip event; no line promises a better game', () => {
+  it('every dealer has approved lines for every tip event; no line promises a better game', () => {
     for (const d of DEALERS) {
       for (const [ev, lines] of Object.entries(TIP_SCRIPTS[d.id])) {
         expect(lines.length, `${d.id} ${ev}`).toBeGreaterThan(0);
         for (const t of lines) expect(t).not.toMatch(/\b(luck(ier)?|win more|better odds|rig)\b/i);
       }
       const l1 = pickTipLine(d.id, 'tip_small', []);
-      expect(l1.status).toBe('draft');
+      expect(l1.status).toBe('approved');
       expect(pickTipLine(d.id, 'tip_small', [l1.id]).id).not.toBe(l1.id);
     }
   });

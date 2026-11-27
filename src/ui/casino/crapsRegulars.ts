@@ -207,7 +207,7 @@ export function seatsAt(loc: LocationId): (Regular | 'ryan')[] {
   return [r[0], r[1], 'ryan', r[2]];
 }
 
-/** Stick Lady's streak calls (drafts). */
+/** Stick Lady's streak calls (approved 2026-11-24). */
 export const STICK_STREAK: Record<'hot' | 'fire' | 'cold' | 'ryanShoots' | 'newShooter', (name: string) => string> = {
   hot: (n) => `We've got a hot shooter, folks! ${n} has the dice working!`,
   fire: (n) => `${n} is ON FIRE! Get your bets down while the dice are hot!`,

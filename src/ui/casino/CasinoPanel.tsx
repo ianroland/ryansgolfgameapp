@@ -470,12 +470,12 @@ function stickCall(before: number | null, after: number | null, sum: number, out
     return `The point is ${sum}. Mark it!`;
   }
   const hardWin = outcomes.find((o) => o.bet.startsWith('hard ') && o.result === 'win');
-  if (hardWin) return { text: `${sum} the hard way! Pay the hardway${sum === before ? ' and the line' : ''}.`, draft: true };
-  if (outcomes.some((o) => o.bet.startsWith('prop ') && o.result === 'win') && sum !== 7) return { text: sum === 11 ? 'Yo-leven! Pay the one-roll bets.' : `${sum}! Pay the centre.`, draft: true };
+  if (hardWin) return { text: `${sum} the hard way! Pay the hardway${sum === before ? ' and the line' : ''}.`, draft: false };
+  if (outcomes.some((o) => o.bet.startsWith('prop ') && o.result === 'win') && sum !== 7) return { text: sum === 11 ? 'Yo-leven! Pay the one-roll bets.' : `${sum}! Pay the centre.`, draft: false };
   if (sum === before) return `${sum}, the hard way or easy, winner! Pay the line.`;
   if (sum === 7 && after === null) return 'Seven out. Line away.';
-  if (moved) return { text: `${sum}! Come bet goes to the ${NUMBER_WORD[sum as PointNo]}. Shooter rolls again.`, draft: true };
-  if (outcomes.some((o) => o.bet.startsWith('place ') && o.result === 'win')) return { text: `${sum}! Pay the place bet. Same shooter.`, draft: true };
+  if (moved) return { text: `${sum}! Come bet goes to the ${NUMBER_WORD[sum as PointNo]}. Shooter rolls again.`, draft: false };
+  if (outcomes.some((o) => o.bet.startsWith('place ') && o.result === 'win')) return { text: `${sum}! Pay the place bet. Same shooter.`, draft: false };
   return `${sum}. No decision. Shooter rolls again.`;
 }
 
@@ -679,7 +679,9 @@ function Craps() {
                 title={block ?? `${areaName(a)}: ${areaDesc(a)}`}
                 aria-label={`${areaName(a)}${block ? ` (${block})` : ''}`}
                 data-testid={i % 2 === 0 ? `felt-${z.kind}` : undefined}
-              />
+              >
+                {block && z.kind === 'come' && <span className="craps-zone-note" data-testid={i % 2 === 0 ? `felt-${z.kind}-note` : undefined}>Opens once a point is set</span>}
+              </button>
             );
           })}
           {[crapsScene.point, crapsScene.point2].filter(Boolean).flatMap((row, r) =>
@@ -832,7 +834,7 @@ function Craps() {
             </div>
           );
         })}
-        {feltArea({ kind: 'come' }, 'cl-come', <span className="cl-big">Come</span>)}
+        {feltArea({ kind: 'come' }, 'cl-come', <><span className="cl-big">Come</span>{table.point === null && <span className="cl-note">after the point</span>}</>)}
         {feltArea({ kind: 'field' }, 'cl-field', (
           <>
             <span className="cl-mid">Field</span>
