@@ -241,9 +241,14 @@ describe('History Board: this save', () => {
     const rookie = all.find((p) => p.i.includes('_d2028_') && p.source === 'save')!;
     expect(rookie.draft?.year).toBe(2028);
     expect(a.linesOf(rookie.i).map((x) => x.year)).toEqual([2028]);
+    // A canon veteran who played on into the save's seasons.
+    const vet = [...a.totals().entries()].find(([id, t]) => !id.includes('_d20') && t.years.slice(-3).join() === '2026,2027,2028')!;
+    expect(vet).toBeTruthy();
+    expect(vet[1].sources.has('save')).toBe(true);
+    // Mason Vale steps away after 2027 (src/sports/storylines.ts): no 2028 season, and the board says why.
     const vale = a.totals().get('igl_mason_vale')!;
-    expect(vale.years.slice(-3)).toEqual([2026, 2027, 2028]);
-    expect(vale.sources.has('save')).toBe(true);
+    expect(vale.years.at(-1)).toBe(2027);
+    expect(a.review(2027)!.storylines?.map((x) => x.kind)).toEqual(['retired']);
   });
 
   it('no spoilers: Hall of Fame classes only up to the current year', () => {

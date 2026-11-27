@@ -100,3 +100,13 @@ Answers from the game owner on 2026-11-23 (canon revision `0.1.1-draft`; also in
 | q13 Mason Vale / Celeste Vale | Fine as is; no relation. |
 
 Still open: the bible's eight approval questions (q1–q8). The canon stays `proposed` until those are approved.
+
+## Mason Vale's arc (owner, 2026-11-27)
+
+"Vale retires but then comes back then gets seriously injured." Built in 0.20.12 (`src/sports/storylines.ts`), the same in every save:
+- **After 2027:** he retires and is listed with the retirements, but he's kept on file (away), not deleted. No Hall of Fame clock yet.
+- **2028:** he sits out.
+- **2029:** he's back with the Asheville Highlanders, and their weakest quarterback goes to the reserves. Six games in he's seriously injured and out for the rest of the season, playoffs included. The sportsbook lists him as out.
+- **2030 on:** he's on the roster again, and from that off-season the ordinary aging and retirement rules apply.
+- The History Board's yearly review has a **Storylines** box with each beat.
+- A save whose sports world had already passed the 2027 off-season before 0.20.12 keeps him active, but still has the 2029 injury.

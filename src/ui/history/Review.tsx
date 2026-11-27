@@ -52,6 +52,12 @@ export function YearInReview({ year: fixed }: { year?: number }) {
               );
             })}
           </div>
+          {r.storylines && r.storylines.length > 0 && (
+            <section className="hb-storylines" data-testid="hb-storylines">
+              <h4>Storylines</h4>
+              <ul className="hb-list">{r.storylines.map((x) => <li key={`${x.i}:${x.kind}`}>{x.note}</li>)}</ul>
+            </section>
+          )}
           <div className="hb-paper-cols hb-paper-foot">
             <section>
               <h4>Retirements{r.retiredTotal !== null && ` (${r.retiredTotal})`}</h4>

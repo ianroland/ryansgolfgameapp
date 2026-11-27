@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.12",
+   "date": "2026-11-27",
+   "title": "Mason Vale's last act",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Sports universe: Mason Vale retires after 2027 and sits out 2028. He's back with the Asheville Highlanders for 2029, and six games in a serious injury ends his season, playoffs included. After that, the ordinary rules take over."
+    },
+    {
+     "tag": "new",
+     "text": "The History Board's yearly review has a Storylines box for beats like these."
+    }
+   ]
+  },
+  {
    "version": "0.20.11",
    "date": "2026-11-27",
    "title": "Every line approved",

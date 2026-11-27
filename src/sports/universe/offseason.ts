@@ -13,7 +13,8 @@
  *
  * Pure and deterministic: same inputs, same output.
  */
-import { SEASON_FORMAT, type LeagueId, type Sport } from '../demo';
+import { SEASON_FORMAT, teamById, type LeagueId, type Sport } from '../demo';
+import { SEASON_ENDING, STORYLINE_NOTE, VALE, VALE_ARC, type Storyline } from '../storylines';
 import { SPORTS_CONFIG } from '../config';
 import { stream } from '../rng';
 import type { LeagueSeason, PlayedGame, Series, World } from '../season';
@@ -63,6 +64,8 @@ export interface YearSummary {
   retired: { i: string; n: string; l: LeagueId; t: string; age: number; seasons: number }[];
   hallOfFame: { i: string; n: string; l: LeagueId; y: number; sc: number; pathway: 'statistical' }[];
   returned: string[];
+  /** Scripted storylines this off-season (src/sports/storylines.ts). Absent in older summaries. */
+  storylines?: Storyline[];
   draft: { l: LeagueId; round: number; pick: number; overall: number; i: string; n: string; pos: string; t: string; age: number; pot: number }[];
   counts: Record<LeagueId, { active: number; rostered: number; reserves: number; retired: number; drafted: number; returned: number }>;
   /** The steps completed, in order (audit trail). */
@@ -265,14 +268,32 @@ export function runOffseason(prev: UState, input: SeasonInput, seed: number, U: 
   const retired: YearSummary['retired'] = [];
   const pending: HofPending[] = [...prev.pending];
   const retireIds = new Set<string>();
+  // Players stepping away for a scripted comeback: off the roster, kept on file.
+  const awayIds = new Set<string>();
+  const storylines: Storyline[] = [];
+  const story = (p: UPlayer, kind: Storyline['kind'], age: number) =>
+    storylines.push({ i: p.i, n: p.n, t: p.t, kind, age, note: STORYLINE_NOTE[kind](p.n, teamById(p.t).name) });
+  // The scripted injury happened during the season just played.
+  if (year === VALE_ARC.injuredIn) {
+    const hurt = input.leagues.igl.injuries.find((e) => e.playerId === VALE && e.games === SEASON_ENDING);
+    const p = players.get(VALE);
+    if (hurt && p) story(p, 'injured', year - p.b);
+  }
   for (const l of LEAGUE_IDS) {
     const games = SEASON_FORMAT[sportOfLeague(l)].gamesPerTeam;
     for (const team of Object.keys(prev.rosters[l]).sort()) {
-      const members = [...players.values()].filter((p) => p.l === l && p.t === team).sort((a, b) => b.L - a.L || a.i.localeCompare(b.i));
+      const members = [...players.values()].filter((p) => p.l === l && p.t === team && !p.x).sort((a, b) => b.L - a.L || a.i.localeCompare(b.i));
       members.forEach((p, idx) => {
         const share = p.r ? 0 : Math.min(1, (appeared.get(p.i) ?? 0) / games);
         const age = year - p.b;
-        const q = retireChance(p, age, { share, rank: members.length > 1 ? idx / (members.length - 1) : 0, seasons: careers[p.i]?.n ?? 0 }, U.hazard[l]);
+        if (p.i === VALE && year === VALE_ARC.retireAfter) {
+          // Scripted: he retires (and says it's for good), but stays on file for the comeback.
+          awayIds.add(p.i);
+          retired.push({ i: p.i, n: p.n, l, t: team, age, seasons: careers[p.i]?.n ?? 0 });
+          story(p, 'retired', age);
+          return;
+        }
+        const q = retireChance(p, age, { share, rank: members.length > 1 ? idx / (members.length - 1) : 0, seasons: careers[p.i]?.n ?? 0 }, U.hazard[l], year);
         if (stream(seed, 'retire', p.i, year).next() < q) {
           retireIds.add(p.i);
           const c = careers[p.i] ?? { n: 0, ti: 0, v: 0, bo: 0, tot: {} };
@@ -284,6 +305,7 @@ export function runOffseason(prev: UState, input: SeasonInput, seed: number, U: 
     }
   }
   for (const id of retireIds) { players.delete(id); delete careers[id]; }
+  for (const id of awayIds) { const p = players.get(id)!; p.x = 1; p.r = 1; }
   const inducted = pending.filter((h) => h.y === nextYear);
   const stillPending = pending.filter((h) => h.y !== nextYear);
   steps.push('retirements', 'hall of fame');
@@ -298,9 +320,19 @@ export function runOffseason(prev: UState, input: SeasonInput, seed: number, U: 
     const sport = sportOfLeague(l);
     const comp = U.composition[l];
     const r: Record<string, string[]> = {};
-    for (const [team, ids] of Object.entries(prev.rosters[l])) r[team] = ids.filter((id) => !retireIds.has(id));
+    for (const [team, ids] of Object.entries(prev.rosters[l])) r[team] = ids.filter((id) => !retireIds.has(id) && !awayIds.has(id));
+    // Scripted comeback: back on his old team; its weakest player at his position goes to the reserves.
+    const back = players.get(VALE);
+    if (l === back?.l && back.x && nextYear === VALE_ARC.returnFor && r[back.t]) {
+      const bench = r[back.t].map((id) => players.get(id)!).filter((q) => q.p === back.p).sort((a, b) => a.L - b.L || a.i.localeCompare(b.i))[0];
+      if (bench) { r[back.t] = r[back.t].filter((id) => id !== bench.i); bench.r = 1; }
+      delete back.x;
+      back.r = 0;
+      r[back.t].push(back.i);
+      story(back, 'comeback', nextYear - back.b);
+    }
     const need = (team: string, pos: string) => comp[pos] - r[team].filter((id) => players.get(id)!.p === pos).length;
-    for (const p of [...players.values()].filter((x) => x.l === l && x.r === 1).sort((a, b) => b.L - a.L || a.i.localeCompare(b.i))) {
+    for (const p of [...players.values()].filter((x) => x.l === l && x.r === 1 && !x.x).sort((a, b) => b.L - a.L || a.i.localeCompare(b.i))) {
       if (r[p.t] && need(p.t, p.p) > 0) { r[p.t].push(p.i); p.r = 0; returned.push(p.i); }
     }
     const teams = Object.keys(r).sort();
@@ -380,6 +412,7 @@ export function runOffseason(prev: UState, input: SeasonInput, seed: number, U: 
   }
   const summary: YearSummary = {
     year, leagues, retired, returned, draft, counts, steps,
+    ...(storylines.length ? { storylines } : {}),
     hallOfFame: inducted.map((h) => ({ i: h.i, n: h.n, l: h.l, y: h.y, sc: h.sc, pathway: 'statistical' as const })),
   };
   return { next, summary, lines };

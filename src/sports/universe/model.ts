@@ -6,6 +6,7 @@
  * itself is in offseason.ts and the per-save chain of seasons in chain.ts. Everything is pure and
  * deterministic from (the previous state, the season's results, the save's sports seed).
  */
+import { VALE, VALE_ARC } from '../storylines';
 import { PEAK_AGE, overallFor, SPECS, type Player } from '../players';
 import { leagueById, type LeagueId, type Sport } from '../demo';
 import type { World } from '../season';
@@ -35,6 +36,8 @@ export interface UPlayer {
   t: string;
   /** 1 = reserve: active but not on a game roster. */
   r: 0 | 1;
+  /** 1 = away: retired for now, kept on file for a scripted comeback (src/sports/storylines.ts). Always with r = 1. */
+  x?: 1;
   /** Development profile: peak age and kind. */
   pk: number;
   k: DevKind;
@@ -159,8 +162,10 @@ export function develop(p: UPlayer, fromYear: number, toYear: number, seed: numb
 }
 
 // ── Retirement ──
-/** Only Mason Vale: his career end awaits an owner decision (Phase D part 2). */
-export const PROTECTED: Record<string, string> = { igl_mason_vale: 'Bible legend still active; his career end awaits an owner decision (Phase D part 2).' };
+/** After the season his scripted arc ends, a protected player takes his chances like anyone else. */
+export const protectionEnded = (id: string, year: number) => id === VALE && year > VALE_ARC.injuredIn;
+/** Only Mason Vale, until his scripted arc ends (src/sports/storylines.ts; owner, 2026-11-27). */
+export const PROTECTED: Record<string, string> = { igl_mason_vale: 'Bible legend: retires after 2027, returns for 2029, seriously injured in 2029; ordinary rules from the 2030 season on.' };
 /** Position wear: running backs leave sooner, quarterbacks and goalies later. */
 const POSITION_RISK: Partial<Record<Sport, Record<string, number>>> = {
   football: { RB: 1.25, QB: 0.85, OL: 0.95 },
@@ -184,8 +189,8 @@ export const hazardAt = (h: [number, number][], age: number) => {
  * adjusted for playing time, recent performance, career length, decline and position.
  * Everyone retires by 44.
  */
-export function retireChance(p: UPlayer, age: number, ctx: RetireContext, hazard: [number, number][]): number {
-  if (PROTECTED[p.i]) return 0;
+export function retireChance(p: UPlayer, age: number, ctx: RetireContext, hazard: [number, number][], year?: number): number {
+  if (PROTECTED[p.i] && (year === undefined || !protectionEnded(p.i, year))) return 0;
   let m = 1;
   if (ctx.share < 0.3) m *= 1.5;
   else if (ctx.share > 0.8) m *= 0.85;

@@ -13,6 +13,7 @@ import { playFootball } from './football';
 import { playHockey } from './hockey';
 import { generateRoster, makeNameGen, type Player } from './players';
 import { stream } from './rng';
+import { scriptedInjury } from './storylines';
 import { seasonSchedule, type ScheduledGame } from './schedule';
 import type { GameResult, Simulator } from './sim';
 
@@ -216,6 +217,13 @@ export function playLeagueSeason(world: World, league: LeagueId, season: number)
       for (const p of rosters.get(team)!) {
         if (p.injuryGames > 0) {
           p.injuryGames--; // sat this one out
+          continue;
+        }
+        // Scripted storylines (src/sports/storylines.ts): hurt in this game, whatever the dice say.
+        const story = scriptedInjury(p.id, season);
+        if (story && gamesPlayed.get(team) === story.afterGame) {
+          p.injuryGames = story.games;
+          injuries.push({ playerId: p.id, teamId: team, gameId: g.id, games: story.games });
           continue;
         }
         if (!atRisk.has(p.id)) continue;

@@ -95,7 +95,11 @@ describe('ten and twenty-five seasons', () => {
           expect(Number.isFinite(p.L)).toBe(true);
           if (!PROTECTED[p.i]) expect(st.year - 1 - p.b).toBeLessThan(44);
         }
-        if (k < outs.length) for (const x of outs[k].summary.retired) retiredEver.add(x.i);
+        if (k < outs.length) {
+          for (const x of outs[k].summary.retired) retiredEver.add(x.i);
+          // Scripted comebacks (src/sports/storylines.ts) are the one way back.
+          for (const x of outs[k].summary.storylines ?? []) if (x.kind === 'comeback') retiredEver.delete(x.i);
+        }
       });
     }
   });
@@ -178,7 +182,7 @@ describe('ten and twenty-five seasons', () => {
       }
     }
     // The canon totals are never rewritten.
-    const vale = long.states.at(-1)!.careers.igl_mason_vale;
+    const vale = [...long.states].reverse().find((st) => st.careers.igl_mason_vale)!.careers.igl_mason_vale;
     expect(vale.tot.pass_yds).toBeGreaterThanOrEqual(careersCanon.igl_mason_vale.r.pass_yds);
   });
 
@@ -220,9 +224,35 @@ describe('ten and twenty-five seasons', () => {
     expect(seen.has('gdc_elias_voss')).toBe(false); // already inducted in canon
   });
 
-  it('Mason Vale is protected; nobody else is', () => {
+  it("Mason Vale's arc (owner, 2026-11-27): retires after 2027, back for 2029, hurt six games in", () => {
     expect(Object.keys(PROTECTED)).toEqual(['igl_mason_vale']);
-    for (const o of long.outs) expect(o.summary.retired.some((x) => x.i === 'igl_mason_vale')).toBe(false);
+    for (const { outs, states, ref } of [ten, long]) {
+      const by = (y: number) => outs.find((o) => o.summary.year === y)!;
+      const st = (y: number) => states.find((x) => x.year === y)!;
+      const rostered = (y: number) => Object.values(st(y).rosters.igl).some((ids) => ids.includes('igl_mason_vale'));
+      // 2027: he retires (listed with the retirements), but he's kept on file, away.
+      expect(by(2027).summary.retired.map((x) => x.i)).toContain('igl_mason_vale');
+      expect(by(2027).summary.storylines?.map((x) => x.kind)).toEqual(['retired']);
+      expect(st(2028).players.find((p) => p.i === 'igl_mason_vale')).toMatchObject({ x: 1, r: 1 });
+      expect(rostered(2028)).toBe(false);
+      expect(seasonOf(ref, 2).world.players.some((p) => p.id === 'igl_mason_vale')).toBe(false);
+      // Nobody else is ever away, and he isn't retired twice before his arc is done.
+      for (const y of [2028]) expect(by(y).summary.retired.some((x) => x.i === 'igl_mason_vale')).toBe(false);
+      // 2029: back on the Highlanders.
+      expect(by(2028).summary.storylines?.map((x) => x.kind)).toEqual(['comeback']);
+      expect(rostered(2029)).toBe(true);
+      expect(st(2029).players.find((p) => p.i === 'igl_mason_vale')!.x).toBeUndefined();
+      // Hurt in his team's sixth game and out for the rest of the year, playoffs included.
+      const s29 = seasonOf(ref, 3).leagues.igl;
+      const hurt = s29.injuries.filter((e) => e.playerId === 'igl_mason_vale');
+      expect(hurt).toHaveLength(1);
+      const team = st(2029).players.find((p) => p.i === 'igl_mason_vale')!.t;
+      const games = [...s29.regular, ...s29.playoffs.flatMap((x) => x.games)].filter((g) => g.home === team || g.away === team);
+      expect(games[5].id).toBe(hurt[0].gameId);
+      for (const g of games.slice(6)) expect(g.pre.out).toContain('igl_mason_vale');
+      expect(by(2029).summary.storylines?.map((x) => x.kind)).toEqual(['injured']);
+      for (const st of states) for (const p of st.players) if (p.i !== 'igl_mason_vale') expect(p.x).toBeUndefined();
+    }
   });
 
   it('is deterministic, and resuming from a stored state gives the same future', () => {

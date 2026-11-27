@@ -125,6 +125,8 @@ export interface Review {
   leagues: { league: LeagueId; champion: string; runnerUp: string; final: [number, number] | null; awards: Award[]; leaders: Leader[]; marks: SeasonView['marks']; comebacks: Comeback[] }[];
   retired: { i: string; n: string; l: LeagueId; seasons: number }[];
   retiredTotal: number | null;
+  /** Scripted storylines that off-season (src/sports/storylines.ts). */
+  storylines?: { i: string; kind: string; note: string }[];
   hof: { i: string; n: string; l: LeagueId; year: number }[];
   draft: { l: LeagueId; n: string; i: string; pos: string; t: string; year: number }[];
   draftTotal: number | null;
@@ -420,6 +422,7 @@ export function buildBoard(shared: SharedArchive, save: SaveHistory | null): Boa
         hof: s.hallOfFame.map((h) => ({ i: h.i, n: h.n, l: h.l, year: h.y })),
         draft: s.draft.filter((d) => d.overall === 1).map((d) => ({ l: d.l, n: d.n, i: d.i, pos: d.pos, t: d.t, year: year + 1 })),
         draftTotal: s.draft.length,
+        ...(s.storylines?.length ? { storylines: s.storylines.map((x) => ({ i: x.i, kind: x.kind, note: x.note })) } : {}),
       };
     }
     if (replayByYear.has(year)) {
