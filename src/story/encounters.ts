@@ -14,6 +14,7 @@ import type { CareerState } from '../career/types';
 import type { Act, Expression, Pose, StoryState } from './types';
 import { ryanSay, type Phase } from './phase';
 import { ACT_TWO } from './actTwo';
+import { ACT_THREE } from './actThree';
 
 export interface Line {
   /** 'ryan', a cast id, or 'narrator'. */
@@ -233,6 +234,7 @@ export const ENCOUNTERS: EncounterDef[] = [
     },
   },
   ...ACT_TWO,
+  ...ACT_THREE,
 ];
 
 export const encounterById = (id: string) => ENCOUNTERS.find((e) => e.id === id);

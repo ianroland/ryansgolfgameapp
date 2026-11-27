@@ -2,6 +2,25 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.23.0",
+   "date": "2026-11-27",
+   "title": "Act III: The Rookie",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Seven Act III scenes: Fresh Start (Baba retires, and the cooler joins the tour), The Ally (Biff's press conference and a dinner-plate ALLY pin), Q-School, Again (Doug and four hundred dentists), Have We Met? (Kayla: “Lot of Ryans in golf”), Not For The Public, The Butter Classic and The Card."
+    },
+    {
+     "tag": "new",
+     "text": "Not For The Public, Baba's canon scene, as written: the gold repair tool, the pitchfork, and the broken wooden tee that does the job."
+    },
+    {
+     "tag": "new",
+     "text": "Earning an LPGA Tour card brings The Card, and Act IV begins."
+    }
+   ]
+  },
+  {
    "version": "0.22.0",
    "date": "2026-11-27",
    "title": "The Next Chapter",

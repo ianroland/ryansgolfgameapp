@@ -85,3 +85,42 @@ describe('phase 3: The Next Chapter opens Act III and the LPGA ladder', () => {
     expect(trophyLook({ ...base, trophyDefinitionId: 'qschool_card', tourName: 'LPGA Q-School' }).name).toBe('LPGA Tour Card');
   });
 });
+
+describe('Act III: The Rookie', () => {
+  it('the scenes follow in order and all play in Act III', async () => {
+    const { ACT_THREE } = await import('../src/story/actThree');
+    expect(ACT_THREE.map((d) => d.id)).toEqual(['act3_fresh_start', 'act3_biff_ally', 'act3_qschool_doug', 'act3_have_we_met', 'act3_not_for_the_public', 'act3_butter_classic', 'act3_the_card']);
+    for (const d of ACT_THREE) expect(d.act).toBe(3);
+  });
+
+  it('Act III opens a week after The Next Chapter, with Baba retired and on tour', async () => {
+    const { s } = await toActThree();
+    const { nextEncounter } = await import('../src/story/encounters');
+    let c = await s.career.getCareer();
+    expect(nextEncounter(c, storyOf(c))?.id).not.toBe('act3_fresh_start');
+    await setCareer(s, (x) => { x.week += 1; });
+    c = await s.career.getCareer();
+    expect(nextEncounter(c, storyOf(c))?.id).toBe('act3_fresh_start');
+  });
+
+  it('earning the LPGA Tour card on the new ladder brings The Card, which opens Act IV', async () => {
+    const { s } = await toActThree();
+    const { nextEncounter } = await import('../src/story/encounters');
+    await setCareer(s, (x) => {
+      x.week += 2;
+      x.qschool = { ...x.qschool, result: 'lpga', nextStage: null };
+      // every earlier Act III scene already played
+      const st = storyOf(x);
+      const done = { outcome: 'x', path: [], season: x.season, week: 1, at: { season: x.season, week: 1, day: 1, slot: 0 } } as never;
+      x.story = { ...st, encounters: { ...st.encounters, act3_fresh_start: done, act3_biff_ally: done, act3_qschool_doug: done, act3_have_we_met: done, act3_not_for_the_public: done, act3_butter_classic: done } };
+    });
+    let c = await s.career.getCareer();
+    expect(nextEncounter(c, storyOf(c))?.id).toBe('act3_the_card');
+    await setCareer(s, (x) => { x.story = { ...storyOf(x), available: 'act3_the_card' }; });
+    await s.career.resolveEncounter('act3_the_card', ['pro']);
+    c = await s.career.getCareer();
+    expect(storyOf(c).act).toBe(4);
+    expect(phaseOf(c)).toBe(3);
+    expect(ladderOf(c)).toBe('lpga');
+  });
+});
