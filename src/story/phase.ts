@@ -21,17 +21,17 @@ export const phaseOf = (c: Pick<CareerState, 'story'>): Phase => phaseOfAct(stor
 export const HAIR_OF_PHASE: Record<Phase, Hair> = { 1: 'curly', 2: 'bald', 3: 'wig' };
 
 const WORDS: Record<Phase, Record<string, string>> = {
-  1: { he: 'he', him: 'him', his: 'his', himself: 'himself', habibi: 'habibi' },
-  2: { he: 'he', him: 'him', his: 'his', himself: 'himself', habibi: 'habibi' },
-  3: { he: 'she', him: 'her', his: 'her', himself: 'herself', habibi: 'habibti' },
+  1: { he: 'he', him: 'him', his: 'his', himself: 'himself', habibi: 'habibi', habibti: 'habibti' },
+  2: { he: 'he', him: 'him', his: 'his', himself: 'himself', habibi: 'habibi', habibti: 'habibti' },
+  3: { he: 'she', him: 'her', his: 'her', himself: 'herself', habibi: 'habibti', habibti: 'habibti' },
 };
 
 /**
  * Fills `{he} {him} {his} {himself} {habibi}` (and capitalised `{He}`, `{His}`, `{Habibi}`) for
- * Ryan's phase. `{his}` is the possessive before a noun ("his putter" / "her putter").
+ * Ryan's phase. `{habibti}` is always *habibti*: for the moment in The Next Chapter where Baba switches. `{his}` is the possessive before a noun ("his putter" / "her putter").
  */
 export function ryanSay(phase: Phase, template: string): string {
-  return template.replace(/\{(he|him|his|himself|habibi|He|Him|His|Himself|Habibi)\}/g, (_, k: string) => {
+  return template.replace(/\{(he|him|his|himself|habibi|habibti|He|Him|His|Himself|Habibi|Habibti)\}/g, (_, k: string) => {
     const w = WORDS[phase][k.toLowerCase()];
     return k[0] === k[0].toUpperCase() ? w[0].toUpperCase() + w.slice(1) : w;
   });

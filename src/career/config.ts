@@ -124,7 +124,7 @@ export const SCHEDULES: Record<Exclude<TourId, 'qschool'>, EventTemplate[]> = {
   epson: [
     'Desert Bloom Classic', 'Gulf Coast Championship', 'Magnolia Open', 'Lone Star Classic', 'Prairie Winds Invitational',
     'Lakeshore Classic', 'Mountain Pines Open', 'Heartland Championship', 'Carolina Coast Classic', 'River Valley Open',
-    'Bluegrass Invitational', 'Peach State Classic', 'Twin Lakes Championship', 'Korn Ferry Tour Championship',
+    'Bluegrass Invitational', 'Peach State Classic', 'Twin Lakes Championship', 'Season Finale Championship',
   ].map((name, i) => ({ week: 2 + i * 2, name, special: i === 13 })),
   lpga: [
     // Week 6, the season's first major: "The Desert Rose Invitational" (Pink Jacket), approved for Career Legacy V1

@@ -476,4 +476,42 @@ export const ACT_TWO: EncounterDef[] = [
       quiet: { summary: 'Walked Kayla to her car. Neither of them said the thing.', tone: 'neutral', effects: { rel: { rival: 4 } }, bonds: { kayla_brooks: 6 }, changes: 'Kayla ♥ · parked on “what if”' },
     },
   },
+  {
+    id: 'act2_the_next_chapter',
+    title: 'The Next Chapter',
+    teaser: 'Baba is still at the muni after dark. Ryan has something to tell him.',
+    act: 2,
+    location: 'course_sunset',
+    cast: ['baba'],
+    // The Act II finale (owner-approved draft, 2026-11-27). It opens Act III and the LPGA ladder.
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_helicopter_dinner') >= 2,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'Sundown at the muni. Baba is repairing ball marks on the practice green with a broken wooden tee. He has been at it for an hour. There are no ball marks left.' },
+          { who: 'baba', expr: 'neutral', pose: 'idle', text: '{Habibi}. You drove two hours. Either the car is broken or something else is.' },
+          { who: 'ryan', expr: 'worried', text: 'Nothing’s broken, Baba.' },
+          { who: 'ryan', expr: 'worried', pose: 'talk', text: 'I’ve been looking for the right way to say this for a long time. There isn’t one. So I’m just going to say it.' },
+          { who: 'narrator', text: 'Baba puts the tee in his pocket. He doesn’t look at his watch.' },
+          { who: 'ryan', expr: 'neutral', pose: 'talk', text: 'I’m a woman, Baba. I think I always have been. I’m tired of playing someone else’s round.' },
+          { who: 'narrator', text: 'A sprinkler comes on three greens over. Neither of them moves.' },
+          { who: 'baba', expr: 'worried', pose: 'sad', text: '…I don’t understand all of this. I’m sixty-one. I mow grass. I understand grass.' },
+          { who: 'ryan', expr: 'worried', text: 'I know.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'But I understand you. Since you were this big, holding a putter upside down.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'Listen to me, {habibi}—' },
+          { who: 'narrator', text: 'He stops. Starts again.' },
+          { who: 'baba', expr: 'happy', pose: 'confident', text: '{Habibti}. …Huh. That’s going to take practice. I practised “Ryan” in the mirror for nine months before you were born. I can practise this for one week.' },
+          { who: 'ryan', expr: 'laughing', text: 'You practised my name?' },
+          { who: 'baba', expr: 'confident', pose: 'talk', text: 'Every day. You think I just say things? Now. Your follow-through is still a crime. That doesn’t change.' },
+          { who: 'narrator', text: 'He hands her a carton of BOBO MILKY.' },
+          { who: 'baba', expr: 'happy', pose: 'give', text: 'Drink. The LPGA is a long walk. You’ll need your bones.' },
+        ],
+        outcome: 'told_baba',
+      },
+    },
+    outcomes: {
+      told_baba: { summary: 'Told Baba. He’s going to practise.', tone: 'good', effects: { rel: { mom: 10 } }, bonds: { baba: 10 }, changes: 'Baba ♥♥ · Act III begins · the LPGA ladder: Q-School, then the Epson Tour', act: 3 },
+    },
+  },
 ];

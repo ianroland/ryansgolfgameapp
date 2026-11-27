@@ -1,3 +1,4 @@
+import { ladderOf, ladderSay } from '../../career/ladder';
 import { useState } from 'react';
 import { tournamentCosts } from '../../career/engine';
 import { QSERIES_EPSON_CARDS, QSERIES_LPGA_CARDS, QSCHOOL, TOURS } from '../../career/config';
@@ -49,7 +50,7 @@ export function EnterDialog({ def, onClose, onEntered }: { def: TournamentDef; o
             <dd>
               {def.qStage < 3
                 ? `Top ${Math.round(QSCHOOL[def.qStage].advanceFraction * 100)}% advance to ${QSCHOOL[(def.qStage + 1) as 2 | 3].name}.`
-                : `Top ${QSERIES_LPGA_CARDS} earn a PGA Tour card. ${QSERIES_LPGA_CARDS + 1}–${QSERIES_EPSON_CARDS} earn Korn Ferry Tour status.`}
+                : ladderSay(ladderOf(state.career), `Top ${QSERIES_LPGA_CARDS} earn a {Top} card. ${QSERIES_LPGA_CARDS + 1}–${QSERIES_EPSON_CARDS} earn {Dev} status.`)}
             </dd>
           </div>
         )}

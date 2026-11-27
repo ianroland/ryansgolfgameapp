@@ -20,6 +20,7 @@ Built in 0.21.0 from the owner-approved outline "Ryan's Road: Acts II–IV Story
 | `act2_monday_goose` | Monday Qualifier | Commissioner Clipboard (and a goose) | 2+ weeks after Rain Delay |
 | `act2_sunday_dinner` | Sunday Dinner | Baba | 1+ week after the goose (0.21.1) |
 | `act2_helicopter_dinner` | Dinner, Interrupted | Kayla, Biff | 4+ weeks after Rain Delay, and after Sunday Dinner |
+| `act2_the_next_chapter` | The Next Chapter | Baba | 2+ weeks after Dinner, Interrupted. **Opens Act III and phase 3** (owner-approved draft, 0.22.0) |
 
 ## Waiting on
 
@@ -27,6 +28,6 @@ Built in 0.21.0 from the owner-approved outline "Ryan's Road: Acts II–IV Story
   - Strips are taken in order and scaled to one standing height.
   - The keying fringe is removed.
   - The portraits' blue squares are keyed out, and the 5 faces are mapped onto the 8 expressions.
-- **The Next Chapter** (the Act II finale, which starts phase 3) is drafted for the owner in the outline doc. It ships together with the phase 3 LPGA tour switch.
+- **The Next Chapter** shipped in 0.22.0, together with the phase 3 switch (`docs/story/PHASE_THREE.md`).
 - **The frozen Story Bible.** The Rejection, The Arnold Palmer Drive and The Dossier slot in when it's available. Act II currently starts right after the first Q-School.
 - **The quiet "What fits" thread.** These scenes are played straight and will go to the owner before they ship.

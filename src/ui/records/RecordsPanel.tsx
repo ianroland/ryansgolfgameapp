@@ -100,7 +100,7 @@ function LogTable({ list, numbered = true, testid }: { list: AlbatrossRecord[]; 
               <td>{a.yards}</td>
               <td className="big">{a.strokes}</td>
               <td className="l">
-                <TourPill tour={a.tour} /> {a.tournamentName}
+                <TourPill tour={a.tour} season={a.season} week={a.week} /> {a.tournamentName}
                 {a.major && <span className="pill gold">Major</span>}
                 {a.shot && <span className="sub">{a.shot}</span>}
               </td>

@@ -1,3 +1,5 @@
+import { useGameMaybe } from '../GameContext';
+import { LADDER, ladderAt, ladderOf } from '../../career/ladder';
 import type { ReactNode } from 'react';
 
 /** Chunky pixel progress bar. */
@@ -36,7 +38,10 @@ export function Hearts({ value }: { value: number }) {
   );
 }
 
-export function TourPill({ tour }: { tour: string }) {
-  const label: Record<string, string> = { amateur: 'AMATEUR', mini: 'PRO SERIES', qschool: 'Q-SCHOOL', epson: 'KORN FERRY', lpga: 'PGA TOUR' };
+/** A tour's pill. Ladder tours are named for the ladder in force then (given a week) or now. */
+export function TourPill({ tour, season, week }: { tour: string; season?: number; week?: number }) {
+  const c = useGameMaybe()?.state.career;
+  const l = !c ? 'pga' : season !== undefined ? ladderAt(c, season, week ?? 0) : ladderOf(c);
+  const label: Record<string, string> = { amateur: 'AMATEUR', mini: 'PRO SERIES', ...LADDER[l].pill };
   return <span className={`pill tour-${tour}`}>{label[tour] ?? tour}</span>;
 }

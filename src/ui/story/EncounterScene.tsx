@@ -58,9 +58,12 @@ function RyanActor({ pose, talking, expr, height, look }: { pose: Pose; talking:
 export function EncounterScene({ id, onClose }: { id: string; onClose: () => void }) {
   const { state, services, run, refresh } = useGame();
   const c = state.career;
-  // Ryan's pronouns and Baba's pet name follow the phase the scene plays in.
-  const def = useMemo(() => localizeEncounter(encounterById(id)!, phaseOf(c)), [id, c]);
-  const look = appearanceOf(c);
+  // The scene plays in the phase and look it started in: its outcome is saved as soon as the
+  // ending is reached, and a scene that changes the phase (The Next Chapter) mustn't change
+  // its own words or Ryan's portrait halfway through.
+  const [startPhase] = useState(() => phaseOf(c));
+  const [look] = useState(() => appearanceOf(c));
+  const def = useMemo(() => localizeEncounter(encounterById(id)!, startPhase), [id, startPhase]);
   const [nodeId, setNodeId] = useState(def.start);
   const [lineIdx, setLineIdx] = useState(0);
   const [typed, setTyped] = useState(0);
@@ -108,6 +111,11 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
     },
     [def, id, run, services],
   );
+
+  // A scene with no choice starts on its ending: save it straight away, as any ending is.
+  useEffect(() => {
+    if ('outcome' in def.nodes[def.start]) void resolve([]);
+  }, [def, resolve]);
 
   const enterNode = useCallback(
     (next: string, nextPath: string[]) => {

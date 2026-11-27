@@ -124,6 +124,9 @@ export function GameProvider({ services, initial, ephemeral = false, children }:
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 
+/** The game context when there is one (static renders and tests have none). */
+export const useGameMaybe = () => useContext(Ctx);
+
 export function useGame() {
   const v = useContext(Ctx);
   if (!v) throw new Error('useGame outside GameProvider');

@@ -13,7 +13,7 @@ import {
   ACTIONS_PER_WEEK, EPSON_GRADUATES, gameDate, LPGA_KEEP_CARD, PLAYER_ID, QSCHOOL, QSERIES_EPSON_CARDS,
   QSERIES_LPGA_CARDS, rivalTourName, SEASON_WEEKS, START_AGE, TOURS, fameLevel, type QStage, type TourId,
 } from './config';
-import { buildPools, evolvePools, RIVAL, rivalTourFor } from './field';
+import { buildPools, evolvePools, lpgaLadderPools, RIVAL, rivalTourFor } from './field';
 import { gearById, lifestyleById, STARTING_EQUIPMENT } from './shop';
 import { clampStat, skillPointCost, trainingGain, travelDiscount, energyRegen } from './stats';
 import { storyById, STORIES, type Effects } from './stories';
@@ -25,6 +25,7 @@ import { encounterById, nextEncounter, walkEncounter } from '../story/encounters
 import type { Appearance } from '../story/types';
 import { BABA_LOAN, BABA_LOAN_LINES } from '../story/babaLoan';
 import { HAIR_OF_PHASE, phaseOf, phaseOfAct, ryanSay } from '../story/phase';
+import { ladderOf, ladderSay, tourName as tourNameOf } from './ladder';
 import { casinoAt, locationById } from '../expansion/locations';
 import type { LocationId } from '../expansion/unlocks';
 import { STAT_KEYS, STAT_LABELS, type CareerState, type InboxItem, type PersonId, type RoundMode, type StatKey } from './types';
@@ -57,6 +58,35 @@ export const now = (c: CareerState): GameTime => gameDate(c.season, c.week);
 /** Adds an inbox message (newest first, last 40 kept). */
 export function inbox(c: CareerState, title: string, body: string, tone: InboxItem['tone'] = 'neutral') {
   c.inbox = [{ id: `msg_${c.season}_${c.week}_${hashString(title + body + c.inbox.length)}`, at: now(c), title, body, tone }, ...c.inbox].slice(0, 40);
+}
+
+// ───────────────────────── Phase 3: the LPGA ladder ─────────────────────────
+
+/**
+ * Ryan moves to the LPGA ladder (Act III): she starts over at LPGA Q-School. The ladder's pools
+ * become women's fields (Kayla back in them), this season's ladder money lists start fresh, and the
+ * all-time money list trades the PGA ladder's golfers for the new ones. Ryan's own money, results,
+ * records and trophies are untouched.
+ */
+export function enterLpgaLadder(c: CareerState) {
+  const seed = Number(c.flags.seed ?? 0);
+  const gone = new Set((['qschool', 'epson', 'lpga'] as const).flatMap((t) => (c.pools[t] ?? []).map((g) => g.id)));
+  gone.delete(RIVAL.id);
+  gone.delete(c.playerId);
+  c.pools = lpgaLadderPools(c.pools, seed);
+  for (const k of Object.keys(c.seasonEarnings)) if (/^(qschool|epson|lpga):/.test(k)) delete c.seasonEarnings[k];
+  const money = { ...careerMoneyOf(c) };
+  for (const id of gone) delete money[id];
+  const arrivals = seedCareerMoney({ ...c, pools: { ...c.pools, mini: [] } });
+  for (const [id, m] of Object.entries(arrivals)) if (id.startsWith('w3_')) money[id] = m;
+  c.careerMoney = money;
+  c.tourCard = 'none';
+  c.qschool = { season: c.season, nextStage: c.status === 'pro' && c.week <= QSCHOOL[1].week ? 1 : null, result: null };
+  c.flags.lpgaFromSeason = c.season;
+  c.flags.lpgaFromWeek = c.week;
+  inbox(c, 'The LPGA ladder', c.qschool.nextStage
+    ? 'New tour, new road: LPGA Q-School First Stage is in week 20. Then the Epson Tour, then the LPGA Tour.'
+    : 'New tour, new road: LPGA Q-School opens next season. Then the Epson Tour, then the LPGA Tour. Until then, the Pro Series.', 'good');
 }
 
 // ───────────────────────── Baba's loan (once per career) ─────────────────────────
@@ -338,7 +368,7 @@ export function turnPro(prev: CareerState): Outcome {
     c,
     "You're a professional!",
     c.qschool.nextStage
-      ? 'You can now play the SoCal Pro Series for prize money. Q-School First Stage is in week 20 — the first step to a PGA Tour card.'
+      ? ladderSay(ladderOf(c), 'You can now play the SoCal Pro Series for prize money. Q-School First Stage is in week 20 — the first step to a {Top} card.')
       : "You can now play the SoCal Pro Series for prize money. This year's Q-School has started; you'll be entered next season.",
     'good',
   );
@@ -434,7 +464,7 @@ export function applyTournamentResult(prev: CareerState, r: TournamentResult): O
   const me = playerStanding(r);
   const field = r.standings.length;
   const money: MoneyOp[] = [];
-  const tourName = TOURS[def.tour].name;
+  const tourName = tourNameOf(def.tour, ladderOf(c));
 
   // All-time career money (everyone who cashed).
   const allTimeMoney = { ...careerMoneyOf(c) };
@@ -523,10 +553,10 @@ export function applyTournamentResult(prev: CareerState, r: TournamentResult): O
       c.qschool.nextStage = null;
       if (me.position <= QSERIES_LPGA_CARDS) {
         c.qschool.result = 'lpga';
-        qNote = ` TOP ${QSERIES_LPGA_CARDS}! You've earned your PGA Tour card for next season!`;
+        qNote = ladderSay(ladderOf(c), ` TOP ${QSERIES_LPGA_CARDS}! You've earned your {Top} card for next season!`);
       } else if (me.position <= QSERIES_EPSON_CARDS) {
         c.qschool.result = 'epson';
-        qNote = ` You earned Korn Ferry Tour status for next season.`;
+        qNote = ladderSay(ladderOf(c), ` You earned {Dev} status for next season.`);
       } else {
         c.qschool.result = 'failed';
         qNote = ' No card this year. Back to the Pro Series.';
@@ -728,6 +758,7 @@ export function resolveEncounter(prev: CareerState, id: string, path: string[], 
     // Phase 3 is a new chapter for Ryan, so the look changes with it; in phase 2 the bald look is
     // unlocked for the player to choose.
     if (phaseOfAct(out.act) === 3) c.appearance = { hair, hat: phaseHat(hair) };
+    if (phaseOfAct(out.act) === 3 && phaseOfAct(story.act) < 3) enterLpgaLadder(c);
   }
   const say = (x: string) => ryanSay(phaseOf(prev), x);
   inbox(c, say(def.title), say(`${out.summary} (${out.changes})`), out.tone);
@@ -779,25 +810,25 @@ export function seasonRollover(prev: CareerState): CareerState {
   if (c.tourCard === 'lpga') {
     const rank = moneyRank(c, 'lpga');
     if (rank !== null && rank <= LPGA_KEEP_CARD) {
-      lines.push(`You finished #${rank} on the PGA Tour money list and kept your card.`);
+      lines.push(ladderSay(ladderOf(c), `You finished #${rank} on the {Top} money list and kept your card.`));
       c.flags.keptCard = true;
     } else {
       c.tourCard = 'epson';
-      lines.push(`You finished outside the top ${LPGA_KEEP_CARD} on the PGA Tour money list and lost your card. Back to the Korn Ferry Tour.`);
+      lines.push(ladderSay(ladderOf(c), `You finished outside the top ${LPGA_KEEP_CARD} on the {Top} money list and lost your card. Back to the {Dev}.`));
     }
   } else if (c.tourCard === 'epson') {
     const rank = moneyRank(c, 'epson');
     if (rank !== null && rank <= EPSON_GRADUATES) {
       c.tourCard = 'lpga';
-      lines.push(`#${rank} on the Korn Ferry Tour money list — you've graduated to the PGA Tour!`);
+      lines.push(ladderSay(ladderOf(c), `#${rank} on the {Dev} money list — you've graduated to the {Top}!`));
     }
   }
   if (c.qschool.result === 'lpga') {
     c.tourCard = 'lpga';
-    lines.push('Your Final Stage finish earns a PGA Tour card. Welcome to the big leagues.');
+    lines.push(ladderSay(ladderOf(c), 'Your Final Stage finish earns a {Top} card. Welcome to the big leagues.'));
   } else if (c.qschool.result === 'epson' && c.tourCard === 'none') {
     c.tourCard = 'epson';
-    lines.push('Your Final Stage finish earns Korn Ferry Tour status.');
+    lines.push(ladderSay(ladderOf(c), 'Your Final Stage finish earns {Dev} status.'));
   }
   if (c.status === 'amateur') {
     const rank = pointsList(c, 100).findIndex((p) => p.id === c.playerId);

@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.22.0",
+   "date": "2026-11-27",
+   "title": "The Next Chapter",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The Act II finale, The Next Chapter: Ryan tells Baba. He's going to practise. It opens Act III."
+    },
+    {
+     "tag": "new",
+     "text": "Act III puts Ryan on the LPGA ladder. She starts over at LPGA Q-School, then the Epson Tour, then the LPGA Tour, against new women's fields with Kayla Brooks back in them. The phase 3 look comes with it."
+    },
+    {
+     "tag": "improved",
+     "text": "Everything earned before the switch keeps its PGA name: past results, albatross records, and trophies like the PGA Tour Card. Trophies won after it get LPGA names."
+    },
+    {
+     "tag": "fixed",
+     "text": "Story scenes keep their words and Ryan's portrait steady from start to finish, and scenes without a choice now save properly."
+    }
+   ]
+  },
+  {
    "version": "0.21.1",
    "date": "2026-11-27",
    "title": "Baba, in person",

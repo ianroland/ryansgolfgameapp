@@ -1,3 +1,4 @@
+import { ladderOf, ladderSay, tourName } from '../../career/ladder';
 import { useState } from 'react';
 import { ACTIONS, actionBlocker, babaLoanStatus, advanceBlocker, entryBlocker, tournamentCosts, type ActionId } from '../../career/engine';
 import { ACTIONS_PER_WEEK, fameLevel, FAME_LEVELS, gameDate, SEASON_WEEKS, TOURS } from '../../career/config';
@@ -20,8 +21,8 @@ import { Bar, FormMeter, TourPill } from './bits';
 
 export function statusLabel(c: CareerState) {
   if (c.status === 'amateur') return 'Amateur';
-  if (c.tourCard === 'lpga') return 'PGA Tour member';
-  if (c.tourCard === 'epson') return 'Korn Ferry Tour member';
+  if (c.tourCard === 'lpga') return ladderSay(ladderOf(c), '{Top} member');
+  if (c.tourCard === 'epson') return ladderSay(ladderOf(c), '{Dev} member');
   return 'Professional';
 }
 
@@ -222,7 +223,7 @@ function WeekCard({ onEnter }: { onEnter: (def: TournamentDef) => void }) {
               <li key={d.id} className={`event-card ${!block && !played ? 'go' : ''}`}>
                 <div className="event-main">
                   <div className="event-title">
-                    <TourPill tour={d.tour} />
+                    <TourPill tour={d.tour} season={d.season} week={d.week} />
                     <span className="event-name">{d.name}</span>
                     {d.special && <span className="pill gold">{d.tour === 'lpga' ? 'Major' : 'Big event'}</span>}
                   </div>
@@ -304,7 +305,7 @@ function WeekCard({ onEnter }: { onEnter: (def: TournamentDef) => void }) {
       {confirmPro && (
         <Dialog title="Turn professional?" onClose={() => setConfirmPro(false)}>
           <p>
-            Pros play for prize money on the <b>{TOURS.mini.name}</b> and can enter <b>{TOURS.qschool.name}</b> (First Stage in week 20, $3,500 entry). You can&rsquo;t play amateur events again.
+            Pros play for prize money on the <b>{TOURS.mini.name}</b> and can enter <b>{tourName('qschool', ladderOf(c))}</b> (First Stage in week 20, $3,500 entry). You can&rsquo;t play amateur events again.
           </p>
           <p className="muted">Most players turn pro once their skills are in the high 40s and they have some money saved.</p>
           <div className="btn-row">

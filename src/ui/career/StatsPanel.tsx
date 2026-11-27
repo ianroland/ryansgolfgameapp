@@ -1,8 +1,8 @@
+import { ladderAt, tourShort } from '../../career/ladder';
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { careerStats, type EventLine, type HoleMix } from '../../career/careerStats';
 import { pinkJackets } from '../../career/legacy';
 import { isPinkJacket } from '../../catalog/trophies';
-import { TOURS } from '../../career/config';
 import { RIVAL } from '../../career/field';
 import type { TournamentRecord } from '../../persistence/records';
 import { useGame } from '../GameContext';
@@ -247,7 +247,7 @@ export function StatsPanel() {
                   <tr key={s.season} className={current ? 'current' : ''}>
                     <td>{s.season}{current && <span className="muted"> (now)</span>}</td>
                     <td>{l?.age ?? (current ? c.age : '—')}</td>
-                    <td className="tours">{s.tours.length ? s.tours.map((t) => <TourPill key={t} tour={t} />) : '—'}</td>
+                    <td className="tours">{s.tours.length ? s.tours.map((t) => <TourPill key={t} tour={t} season={s.season} week={99} />) : '—'}</td>
                     <td>{s.events}</td>
                     <td>{s.wins}</td>
                     <td>{s.top10s}</td>
@@ -255,7 +255,7 @@ export function StatsPanel() {
                     <td>{s.bestFinish ? ordinal(s.bestFinish) : '—'}</td>
                     <td>{fmtToPar(s.avgToPar)}</td>
                     <td>{s.earnings ? formatMoney(s.earnings) : '—'}</td>
-                    <td>{l?.rank ? `#${l.rank} ${l.tour === 'amateur' ? 'pts' : TOURS[l.tour].name.split(' ')[0]}` : current ? 'in progress' : '—'}</td>
+                    <td>{l?.rank ? `#${l.rank} ${l.tour === 'amateur' ? 'pts' : tourShort(l.tour, ladderAt(c, s.season, 99))}` : current ? 'in progress' : '—'}</td>
                     <td>{l?.allTimeRank ? `#${l.allTimeRank}` : '—'}</td>
                   </tr>
                 );
@@ -286,7 +286,7 @@ export function StatsPanel() {
                 <Fragment key={e.tournamentId}>
                   <tr className={`${e.madeCut && e.position === 1 ? 'win' : ''} ${open === e.tournamentId ? 'open' : ''}`} onClick={() => setOpen(open === e.tournamentId ? null : e.tournamentId)}>
                     <td>S{e.season} W{e.week}</td>
-                    <td className="l"><TourPill tour={e.tour} /> {e.name}{e.special && <span className="pill gold">{e.tour === 'lpga' ? 'Major' : '★'}</span>}<span className="log-course">{e.course}</span></td>
+                    <td className="l"><TourPill tour={e.tour} season={e.season} week={e.week} /> {e.name}{e.special && <span className="pill gold">{e.tour === 'lpga' ? 'Major' : '★'}</span>}<span className="log-course">{e.course}</span></td>
                     <td><b>{e.madeCut ? e.posLabel : 'MC'}</b>{e.playoff && <span className="muted"> (PO)</span>}<span className="muted"> /{e.fieldSize}</span></td>
                     <td>{e.rounds.join('-')}</td>
                     <td className={e.toPar < 0 ? 'under' : ''}>{toPar(e.toPar)}</td>

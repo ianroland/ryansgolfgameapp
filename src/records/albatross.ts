@@ -9,8 +9,9 @@
  * Record IDs are stable (`alb:<tournament>:<golfer>:r<round>:h<hole>`), so
  * processing the same result twice can never create a second record.
  */
+import { tourName, type Ladder } from '../career/ladder';
 import { checksum } from '../core/checksum';
-import { TOURS, type TourId } from '../career/config';
+import type { TourId } from '../career/config';
 import { resultCourse, type TournamentResult } from '../career/tournament';
 import { holeYardage } from '../golf/course';
 
@@ -90,7 +91,7 @@ export function isVerifiedRecord(r: TournamentResult): boolean {
 /** Every albatross in a finalized tournament result, for every golfer in the field. */
 export function detectAlbatrosses(
   r: TournamentResult,
-  opts: { source: AlbatrossRecord['source']; sourceCareerEventId: string; recordedAtReal: string; shotNotes?: Record<string, string> },
+  opts: { source: AlbatrossRecord['source']; sourceCareerEventId: string; recordedAtReal: string; shotNotes?: Record<string, string>; ladder?: Ladder },
 ): AlbatrossRecord[] {
   const course = resultCourse(r);
   const names = new Map(r.entrants.map((e) => [e.id, e.name]));
@@ -111,7 +112,7 @@ export function detectAlbatrosses(
           tournamentId: r.tournamentId,
           tournamentName: r.def.name,
           tour: r.def.tour,
-          tourName: TOURS[r.def.tour].name,
+          tourName: tourName(r.def.tour, opts.ladder ?? 'pga'),
           major: r.def.tour === 'lpga' && !!r.def.special,
           season: r.def.season,
           week: r.def.week,

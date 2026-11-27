@@ -5,6 +5,7 @@
  * a single IndexedDB transaction that also posts the money it produced, so
  * career state and the ledger always move together.
  */
+import { phaseOf } from '../story/phase';
 import { settleSports } from '../career/sportsbook';
 import type { UnlockRecord } from '../expansion/unlocks';
 import type { LocationState, NpcState } from '../npc/types';
@@ -131,7 +132,7 @@ export class CareerService {
     return this.db.transaction('rw', this.db.careers, async () => {
       const c = await this.db.careers.get('career');
       if (!c) return false;
-      const next = reconcileFieldPools(c.pools, Number(c.flags?.seed ?? 0));
+      const next = reconcileFieldPools(c.pools, Number(c.flags?.seed ?? 0), 'current', phaseOf(c));
       if (!next) return false;
       await this.db.careers.put({ ...c, pools: next });
       return true;

@@ -36,7 +36,8 @@ const MALE_FIRST = [
 export const MENS_TOURS: ReadonlySet<TourId> = new Set<TourId>(['amateur', 'mini', 'qschool', 'epson', 'lpga']);
 /** Kayla never sits in these pools (she's moved to her women's tour by rating). */
 const NO_RIVAL_TOURS: ReadonlySet<TourId> = new Set<TourId>(['amateur', 'mini']);
-export const isMensTour = (t: TourId) => MENS_TOURS.has(t);
+/** Phase 3 (Acts III–IV) puts Ryan on the LPGA ladder: only the amateur and mini tours stay men's. */
+export const isMensTour = (t: TourId, phase: 1 | 2 | 3 = 1) => (phase === 3 ? NO_RIVAL_TOURS.has(t) : MENS_TOURS.has(t));
 
 export const RIVAL = { id: 'golfer_kayla_brooks', name: 'Kayla Brooks' };
 
@@ -102,8 +103,10 @@ function buildLegacyPools(seed: number): Record<TourId, PoolGolfer[]> {
  * Q-School pool if the save has none, and moves Kayla out of the amateur and mini pools. Returns null when
  * nothing needs changing. Deterministic for a save's seed.
  */
-export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: number, rules: PoolRules = 'current'): Record<TourId, PoolGolfer[]> | null {
-  const mens = rules === 'reference-v1' ? REFERENCE_MENS_TOURS : MENS_TOURS;
+export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: number, rules: PoolRules = 'current', phase: 1 | 2 | 3 = 1): Record<TourId, PoolGolfer[]> | null {
+  // The women's ladder (reference pools, or Ryan's phase 3) keeps women's names on Q-School, Epson and LPGA.
+  const womensLadder = rules === 'reference-v1' || phase === 3;
+  const mens = womensLadder ? REFERENCE_MENS_TOURS : MENS_TOURS;
   const female = new Set(FIRST);
   const next = Object.fromEntries(Object.entries(pools).map(([k, v]) => [k, v.map((g) => ({ ...g }))])) as Record<TourId, PoolGolfer[]>;
   let changed = false;
@@ -112,7 +115,7 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
   const fresh = (list: string[]) => {
     for (;;) {
       const raw = `${list[r.int(0, list.length - 1)]} ${LAST[r.int(0, LAST.length - 1)]}`;
-      const n = rules === 'current' && list === MALE_FIRST ? raw.replace(/ Petrova$/, ' Petrov') : raw;
+      const n = list === MALE_FIRST ? raw.replace(/ Petrova$/, ' Petrov') : raw;
       if (!used.has(n)) {
         used.add(n);
         return n;
@@ -136,7 +139,7 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
         changed = true;
       }
       // Men's surname form (current rules only; the reference pools keep theirs).
-      if (rules === 'current' && g.id !== PLAYER_ID && g.id !== RIVAL.id && / Petrova$/.test(g.name) && !female.has(g.name.split(' ')[0])) {
+      if (rules === 'current' && mens.has(t) && g.id !== PLAYER_ID && g.id !== RIVAL.id && / Petrova$/.test(g.name) && !female.has(g.name.split(' ')[0])) {
         const n = g.name.replace(/ Petrova$/, ' Petrov');
         if (!used.has(n)) {
           used.add(n);
@@ -150,7 +153,7 @@ export function reconcileFieldPools(pools: Record<TourId, PoolGolfer[]>, seed: n
     const cfg = TOURS.qschool;
     const extra = Array.from({ length: QSCHOOL_POOL_SIZE }, (_, i) => ({
       id: `golfer_qs_${i + 1}`,
-      name: fresh(rules === 'reference-v1' ? FIRST : MALE_FIRST),
+      name: fresh(womensLadder ? FIRST : MALE_FIRST),
       rating: Math.round(cfg.ratingMin + (cfg.ratingMax - cfg.ratingMin) * Math.pow(r.next(), 0.8)),
       tour: 'qschool' as TourId,
     }));
@@ -256,3 +259,19 @@ export function evolvePools(pools: Record<TourId, PoolGolfer[]>, seasonEarnings:
 
 /** First-name lists by field (for tests and docs). */
 export const FIRST_NAMES = { men: MALE_FIRST, women: FIRST } as const;
+
+/**
+ * Phase 3: Ryan's world moves to the LPGA ladder. Q-School, Epson and LPGA get fresh women's
+ * pools (new ids, `w3_` prefix, so nothing collides with the PGA-ladder golfers they replace);
+ * Kayla stays where she is; the amateur and mini pools are untouched.
+ */
+export function lpgaLadderPools(pools: Record<TourId, PoolGolfer[]>, seed: number): Record<TourId, PoolGolfer[]> {
+  const women = buildPools(seed ^ 0x3a5e, 'reference-v1');
+  const kayla = Object.values(pools).flat().find((g) => g.id === RIVAL.id);
+  const next = { ...pools };
+  for (const t of ['qschool', 'epson', 'lpga'] as const) {
+    next[t] = (women[t] ?? []).filter((g) => g.id !== RIVAL.id && g.id !== PLAYER_ID).map((g) => ({ ...g, id: `w3_${g.id}`, tour: t }));
+    if (kayla && kayla.tour === t) next[t] = [...next[t], kayla];
+  }
+  return next;
+}

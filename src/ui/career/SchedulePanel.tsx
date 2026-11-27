@@ -1,6 +1,7 @@
+import { ladderOf, ladderSay, tourName } from '../../career/ladder';
 import { useState } from 'react';
 import { entryBlocker, moneyList, moneyRank, pointsList } from '../../career/engine';
-import { EPSON_GRADUATES, LPGA_KEEP_CARD, QSCHOOL, TOURS, type TourId } from '../../career/config';
+import { EPSON_GRADUATES, LPGA_KEEP_CARD, QSCHOOL, type TourId } from '../../career/config';
 import { courseOf, eligibility, seasonSchedule, type TournamentDef } from '../../career/tournament';
 import type { CareerState } from '../../career/types';
 import { useGame } from '../GameContext';
@@ -18,8 +19,8 @@ function roadSteps(c: CareerState) {
       now: c.status === 'pro' && c.tourCard === 'none',
       note: q.nextStage ? `Next: ${QSCHOOL[q.nextStage].name} (week ${QSCHOOL[q.nextStage].week})` : q.result === 'failed' ? 'Out this year. Try again next season.' : 'First Stage → Second Stage → Final Stage',
     },
-    { label: TOURS.epson.name, done: c.tourCard === 'lpga', now: c.tourCard === 'epson', note: `Top ${EPSON_GRADUATES} on the money list graduate.` },
-    { label: TOURS.lpga.name, done: false, now: c.tourCard === 'lpga', note: `Stay inside the top ${LPGA_KEEP_CARD} to keep your card.` },
+    { label: tourName('epson', ladderOf(c)), done: c.tourCard === 'lpga', now: c.tourCard === 'epson', note: `Top ${EPSON_GRADUATES} on the money list graduate.` },
+    { label: tourName('lpga', ladderOf(c)), done: false, now: c.tourCard === 'lpga', note: `Stay inside the top ${LPGA_KEEP_CARD} to keep your card.` },
   ];
 }
 
@@ -50,7 +51,7 @@ export function SchedulePanel({ onEnter }: { onEnter: (def: TournamentDef) => vo
               <li key={d.id} className={`sched-row ${d.week === c.week ? 'now' : ''} ${d.week < c.week ? 'past' : ''}`}>
                 <span className="wk">W{d.week}</span>
                 <span className="sched-name">
-                  <TourPill tour={d.tour} />
+                  <TourPill tour={d.tour} season={d.season} week={d.week} />
                   <span className="sched-title">
                     <span className="sched-event">{d.name} {d.special && <span className="pill gold">{d.tour === 'lpga' ? 'Major' : '★'}</span>}</span>
                     <span className="sched-course">{courseOf(d).name}</span>
@@ -78,7 +79,7 @@ export function SchedulePanel({ onEnter }: { onEnter: (def: TournamentDef) => vo
 
       <div className="hub-col">
         <section className="hub-card">
-          <h2 className="hub-title">Road to the PGA Tour</h2>
+          <h2 className="hub-title">{ladderSay(ladderOf(c), 'Road to the {Top}')}</h2>
           <ol className="road">
             {roadSteps(c).map((s) => (
               <li key={s.label} className={s.done ? 'done' : s.now ? 'now' : ''}>
@@ -98,7 +99,7 @@ export function SchedulePanel({ onEnter }: { onEnter: (def: TournamentDef) => vo
           ) : (
             <>
               <h2 className="hub-title">
-                {TOURS[listTour].name} money list {rank && <span className="pill gold">You: #{rank}</span>}
+                {tourName(listTour, ladderOf(c))} money list {rank && <span className="pill gold">You: #{rank}</span>}
               </h2>
               <Standings rows={moneyList(c, listTour, 12).map((p) => ({ id: p.id, name: p.name, value: shortMoney(p.amount) }))} me={c.playerId} rival={c.rivalId} />
             </>

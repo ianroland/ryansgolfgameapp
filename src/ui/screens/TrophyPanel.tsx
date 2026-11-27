@@ -31,7 +31,7 @@ export function TrophyPanel({ pickTrophyId, setPickTrophyId, displayInSlot, go }
   return (
     <div className="panel-body">
       <h1 className="panel-title"><Icon name="trophy" size={28} /> Trophy Inventory</h1>
-      <p className="muted">Trophies are earned by winning tournaments, earning your PGA Tour card at Q-School, and making albatrosses (your first, and your fifth). They can&rsquo;t be bought.</p>
+      <p className="muted">Trophies are earned by winning tournaments, earning your tour card at Q-School, and making albatrosses (your first, and your fifth). They can&rsquo;t be bought.</p>
 
       {picking && (
         <div className="picker" role="region" aria-label="Choose a cabinet slot">

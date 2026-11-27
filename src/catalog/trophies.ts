@@ -1,3 +1,4 @@
+import { WOMENS_TOUR_NAMES } from '../career/config';
 import { DESERT_ROSE, desertRoseSeason } from '../career/championships';
 import type { TrophyDefinitionId, TrophyInstance } from '../core/types';
 
@@ -11,6 +12,8 @@ export interface TrophyDefinition {
   /** Visual style used by the renderer. */
   style: TrophyStyle;
   purchasable: false;
+  /** Name and milestone when it was won on the LPGA ladder (phase 3); tour ids are shared with the PGA ladder. */
+  lpga?: { name: string; milestone: string };
 }
 
 export const TROPHY_DEFINITIONS: Record<TrophyDefinitionId, TrophyDefinition> = {
@@ -41,6 +44,7 @@ export const TROPHY_DEFINITIONS: Record<TrophyDefinitionId, TrophyDefinition> = 
     milestone: 'Finished inside the top 20 at Q-School Final Stage to earn a PGA Tour card.',
     style: 'card_plaque',
     purchasable: false,
+    lpga: { name: 'LPGA Tour Card', milestone: 'Finished inside the top 20 at LPGA Q-School Final Stage to earn an LPGA Tour card.' },
   },
   epson_win: {
     id: 'epson_win',
@@ -48,6 +52,7 @@ export const TROPHY_DEFINITIONS: Record<TrophyDefinitionId, TrophyDefinition> = 
     milestone: 'Won an event on the Korn Ferry Tour.',
     style: 'epson_cup',
     purchasable: false,
+    lpga: { name: 'Epson Tour Winner', milestone: 'Won an event on the Epson Tour.' },
   },
   lpga_win: {
     id: 'lpga_win',
@@ -55,6 +60,7 @@ export const TROPHY_DEFINITIONS: Record<TrophyDefinitionId, TrophyDefinition> = 
     milestone: 'Won an event on the PGA Tour.',
     style: 'lpga_cup',
     purchasable: false,
+    lpga: { name: 'LPGA Tour Winner', milestone: 'Won an event on the LPGA Tour.' },
   },
   major_win: {
     id: 'major_win',
@@ -107,7 +113,7 @@ type JacketCheck = Pick<TrophyInstance, 'trophyDefinitionId' | 'sourceTournament
 export const isPinkJacket = (t: JacketCheck) =>
   t.trophyDefinitionId === 'major_win' && desertRoseSeason(t.sourceTournamentId) !== null && t.metadata?.pinkJacket === true;
 
-export function trophyLook(t: JacketCheck & Pick<TrophyInstance, 'eventName' | 'courseName'>): { name: string; style: TrophyStyle; milestone: string; eventName: string; venue: string } {
+export function trophyLook(t: JacketCheck & Pick<TrophyInstance, 'eventName' | 'courseName'> & { tourName?: string }): { name: string; style: TrophyStyle; milestone: string; eventName: string; venue: string } {
   const def = TROPHY_DEFINITIONS[t.trophyDefinitionId];
   if (isPinkJacket(t)) {
     return {
@@ -119,5 +125,7 @@ export function trophyLook(t: JacketCheck & Pick<TrophyInstance, 'eventName' | '
       venue: `${DESERT_ROSE.venue} (${t.courseName} course)`,
     };
   }
-  return { name: def.name, style: def.style, milestone: def.milestone, eventName: t.eventName, venue: t.courseName };
+  // Won on the LPGA ladder (the tour name stamped at award time says which ladder).
+  const lpga = def.lpga && t.tourName && (Object.values(WOMENS_TOUR_NAMES) as string[]).includes(t.tourName) ? def.lpga : null;
+  return { name: lpga?.name ?? def.name, style: def.style, milestone: lpga?.milestone ?? def.milestone, eventName: t.eventName, venue: t.courseName };
 }

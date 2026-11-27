@@ -5,9 +5,10 @@
  * Idempotency: a trophy's ID is `trophy:<golfer>:<tournament>`, the table's
  * primary key, so one tournament can never award two trophies.
  */
-import { TROPHY_DEFINITIONS, trophyInstanceId } from '../catalog/trophies';
+import { ladderOf, tourName, type Ladder } from '../career/ladder';
+import { TROPHY_DEFINITIONS, trophyInstanceId, trophyLook } from '../catalog/trophies';
 import { resultCourse, type TournamentResult } from '../career/tournament';
-import { QSERIES_LPGA_CARDS, TOURS } from '../career/config';
+import { QSERIES_LPGA_CARDS } from '../career/config';
 import { desertRoseSeason } from '../career/championships';
 import { storyOf } from '../story/appearance';
 import type { CareerEvent, GolferId, TrophyDefinitionId, TrophyInstance } from '../core/types';
@@ -34,7 +35,7 @@ export function evaluateTrophy(result: TournamentResult, golferId: GolferId): Tr
   }
 }
 
-export function buildTrophyInstance(defId: TrophyDefinitionId, result: TournamentResult, event: CareerEvent, golferId: GolferId): TrophyInstance {
+export function buildTrophyInstance(defId: TrophyDefinitionId, result: TournamentResult, event: CareerEvent, golferId: GolferId, ladder: Ladder = 'pga'): TrophyInstance {
   const def = TROPHY_DEFINITIONS[defId];
   const me = result.standings.find((s) => s.id === golferId)!;
   const runnerUp = result.standings.find((s) => s.id !== golferId && s.position > me.position && s.madeCut) ?? null;
@@ -45,7 +46,7 @@ export function buildTrophyInstance(defId: TrophyDefinitionId, result: Tournamen
     sourceTournamentId: result.tournamentId,
     sourceCareerEventId: event.id,
     eventName: result.def.name,
-    tourName: TOURS[result.def.tour].name,
+    tourName: tourName(result.def.tour, ladder),
     courseName: resultCourse(result).name,
     earnedAt: result.finalizedAt,
     finish: {
@@ -71,12 +72,13 @@ export function registerTrophyAwards(pipeline: TournamentPipeline): () => void {
   return pipeline.subscribe('tournament_completed', async ({ db, event, result, golferId }) => {
     const defId = evaluateTrophy(result, golferId);
     if (!defId) return {};
-    const trophy = buildTrophyInstance(defId, result, event, golferId);
+    const career = await db.careers.get('career');
+    const ladder = career && career.playerId === golferId ? ladderOf(career) : 'pga';
+    const trophy = buildTrophyInstance(defId, result, event, golferId, ladder);
     if (await db.trophies.get(trophy.id)) return {};
     // The Pink Jacket: a Desert Rose Invitational win on the top tour while Ryan is in phase 3 (Act III+).
     // Recorded on the trophy when it is awarded, from the authoritative career state of that moment.
     if (defId === 'major_win' && desertRoseSeason(result.tournamentId) !== null) {
-      const career = await db.careers.get('career');
       if (career && career.playerId === golferId && storyOf(career).act >= 3) trophy.metadata = { ...trophy.metadata, pinkJacket: true };
     }
     await db.trophies.add(trophy);
@@ -85,7 +87,7 @@ export function registerTrophyAwards(pipeline: TournamentPipeline): () => void {
       notifications: [
         {
           kind: 'trophy' as const,
-          title: `Trophy earned: ${TROPHY_DEFINITIONS[defId].name}`,
+          title: `Trophy earned: ${trophyLook(trophy).name}`,
           body: `${trophy.eventName} · ${trophy.finish.posLabel}`,
           refId: trophy.id,
         },

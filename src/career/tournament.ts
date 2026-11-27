@@ -6,6 +6,7 @@
  * prizes and points must follow from the raw hole-by-hole scores and the
  * official schedule, or the career won't accept them.
  */
+import { fieldPhase, ladderOf, ladderSay } from './ladder';
 import { checksum } from '../core/checksum';
 import { DRY_CREEK_MUNI, getCourse } from '../golf/courses';
 import { coursePar, type CourseDef, type HoleDef } from '../golf/course';
@@ -165,18 +166,18 @@ export function eligibility(def: TournamentDef, c: CareerState): { ok: boolean; 
       return c.status === 'amateur' ? { ok: true } : { ok: false, reason: 'Amateurs only' };
     case 'mini':
       if (c.status !== 'pro') return { ok: false, reason: 'Professionals only. Turn pro first.' };
-      return c.tourCard === 'lpga' ? { ok: false, reason: 'PGA Tour members play the big tour' } : { ok: true };
+      return c.tourCard === 'lpga' ? { ok: false, reason: ladderSay(ladderOf(c), '{Top} members play the big tour') } : { ok: true };
     case 'qschool':
       if (c.status !== 'pro') return { ok: false, reason: 'Turn pro to enter Q-School' };
-      if (c.tourCard === 'lpga') return { ok: false, reason: 'You already have a PGA Tour card' };
+      if (c.tourCard === 'lpga') return { ok: false, reason: ladderSay(ladderOf(c), 'You already have a {Top} card') };
       if (c.qschool.season !== c.season || c.qschool.nextStage !== def.qStage) {
         return { ok: false, reason: def.qStage === 1 ? 'First Stage is open to all pros' : `Advance from the ${def.qStage === 2 ? 'First' : 'Second'} Stage first` };
       }
       return { ok: true };
     case 'epson':
-      return c.tourCard === 'epson' ? { ok: true } : { ok: false, reason: 'Needs Korn Ferry Tour status' };
+      return c.tourCard === 'epson' ? { ok: true } : { ok: false, reason: ladderSay(ladderOf(c), 'Needs {Dev} status') };
     case 'lpga':
-      return c.tourCard === 'lpga' ? { ok: true } : { ok: false, reason: 'Needs a PGA Tour card' };
+      return c.tourCard === 'lpga' ? { ok: true } : { ok: false, reason: ladderSay(ladderOf(c), 'Needs a {Top} card') };
   }
 }
 
@@ -223,7 +224,7 @@ export function startTournament(def: TournamentDef, c: CareerState, mode: RoundM
   const rival = Object.values(c.pools).flat().find((g) => g.id === c.rivalId);
   const poolTour: TourId = legacy && def.tour === 'qschool' ? 'mini' : def.tour;
   // Kayla only plays the women's tours; Ryan's fields are men's until phase 3, so she isn't in them.
-  if (rival && (legacy || !isMensTour(def.tour)) && (rival.tour === poolTour || def.tour === 'qschool' || def.special)) extras.push({ id: rival.id, name: rival.name, rating: rival.rating + def.ratingShift });
+  if (rival && (legacy || !isMensTour(def.tour, fieldPhase(c))) && (rival.tour === poolTour || def.tour === 'qschool' || def.special)) extras.push({ id: rival.id, name: rival.name, rating: rival.rating + def.ratingShift });
   let pool = c.pools[poolTour];
   // Q-School: early stages draw from the mini tours and the Epson Tour's
   // strugglers; Final Stage is Korn Ferry regulars fighting for PGA Tour cards.

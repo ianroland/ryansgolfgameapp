@@ -11,7 +11,8 @@
  *     record no verified result supports is removed. Nothing is ever invented
  *     for results that don't have trustworthy hole scores.
  */
-import { ALBATROSS_TROPHIES, milestoneTrophyId, TROPHY_DEFINITIONS } from '../catalog/trophies';
+import { ladderAt } from '../career/ladder';
+import { ALBATROSS_TROPHIES, milestoneTrophyId, trophyLook } from '../catalog/trophies';
 import { PLAYER_ID } from '../core/ids';
 import type { TrophyInstance } from '../core/types';
 import type { AppDB } from '../persistence/db';
@@ -93,14 +94,15 @@ async function awardMilestoneTrophies(db: AppDB, ownerId: string): Promise<Troph
 }
 
 function trophyNote(t: TrophyInstance): Omit<GameNotification, 'id'> {
-  return { kind: 'trophy', title: `Trophy earned: ${TROPHY_DEFINITIONS[t.trophyDefinitionId].name}`, body: `${t.eventName} · ${t.courseName}`, refId: t.id };
+  return { kind: 'trophy', title: `Trophy earned: ${trophyLook(t).name}`, body: `${t.eventName} · ${t.courseName}`, refId: t.id };
 }
 
 export function registerAlbatrossRecords(pipeline: TournamentPipeline): () => void {
   return pipeline.subscribe('tournament_completed', async ({ db, event, result, golferId }) => {
     const career = await db.careers.get('career');
     const notes = career?.shotNotes ?? {};
-    const found = detectAlbatrosses(result, { source: 'live', sourceCareerEventId: event.id, recordedAtReal: new Date().toISOString(), shotNotes: notes });
+    const ladder = career ? ladderAt(career, result.def.season, result.def.week) : 'pga';
+    const found = detectAlbatrosses(result, { source: 'live', sourceCareerEventId: event.id, recordedAtReal: new Date().toISOString(), shotNotes: notes, ladder });
     const notifications: Omit<GameNotification, 'id'>[] = [];
     let mine = await db.albatrosses.where('golferId').equals(golferId).count();
     for (const rec of found) {
@@ -134,11 +136,12 @@ export class RecordsService {
     const db = this.db;
     return db.transaction('rw', [db.albatrosses, db.tournaments, db.trophies, db.careers], async () => {
       const records = await db.tournaments.toArray();
+      const career = await db.careers.get('career');
       const verified = records.filter((r) => isVerifiedRecord(r));
       const now = new Date().toISOString();
       const derived = new Map<string, AlbatrossRecord>();
       for (const r of verified) {
-        for (const a of detectAlbatrosses(r, { source: 'backfill', sourceCareerEventId: r.recordedFromCareerEventId, recordedAtReal: now })) derived.set(a.id, a);
+        for (const a of detectAlbatrosses(r, { source: 'backfill', sourceCareerEventId: r.recordedFromCareerEventId, recordedAtReal: now, ladder: career ? ladderAt(career, r.def.season, r.def.week) : 'pga' })) derived.set(a.id, a);
       }
       const existing = await db.albatrosses.toArray();
       const have = new Set(existing.map((a) => a.id));
@@ -157,7 +160,7 @@ export class RecordsService {
         }
       }
       // Older saves counted an albatross as an eagle and kept no albatross total.
-      const career = await db.careers.get('career');
+      // (career loaded above)
       if (career && career.playerId === ownerId) {
         const mine = [...derived.values()].filter((a) => a.golferId === ownerId);
         const t = career.totals;

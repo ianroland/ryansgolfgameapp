@@ -4,10 +4,11 @@
  * his stored trophies and the milestones recorded on the career. Nothing here
  * writes; nothing is estimated. A figure the game doesn't record isn't shown.
  */
+import { ladderOf, tourName } from '../../career/ladder';
 import { useEffect, useMemo, useState } from 'react';
 import { careerStats, type EventLine } from '../../career/careerStats';
 import { DESERT_ROSE, desertRoseSeason, majorName, TOP_TOUR_MAJOR_WEEKS } from '../../career/championships';
-import { FAME_LEVELS, fameLevel, gameDate, TOURS, type TourId } from '../../career/config';
+import { FAME_LEVELS, fameLevel, gameDate, type TourId } from '../../career/config';
 import { evaluateLegacy, isLegacyWin, isTopTourMajor, LEGACY_MILESTONES, pinkJackets, type LegacyGroup } from '../../career/legacy';
 import { isPinkJacket, trophyLook } from '../../catalog/trophies';
 import type { TrophyInstance } from '../../core/types';
@@ -258,7 +259,7 @@ export function LegacyPanel({ onOpenTrophies }: { onOpenTrophies?: () => void })
                 const ev = history.filter((e) => e.tour === t);
                 return (
                   <tr key={t}>
-                    <td className="l"><TourPill tour={t} /> <span className="sr-only">{TOURS[t].name}</span></td>
+                    <td className="l"><TourPill tour={t} /> <span className="sr-only">{tourName(t, ladderOf(c))}</span></td>
                     <td>{ev.length}</td>
                     <td>{ev.filter(isLegacyWin).length}</td>
                     <td>{bestFinish(ev) ?? '—'}</td>
