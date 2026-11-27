@@ -17,6 +17,8 @@ export const SFX_NAMES = [
   'meter_start', 'meter_set', 'swing', 'hit_driver', 'hit_iron', 'hit_wedge', 'hit_putt',
   'bounce_fairway', 'bounce_green', 'bounce_rough', 'bounce_bunker', 'bounce_hard', 'tree', 'splash', 'cup',
   'cheer', 'clap', 'groan', 'albatross',
+  // Poker (and the private rooms)
+  'card_deal', 'card_flip', 'chip', 'chips_bet', 'chips_pot', 'knock', 'fold', 'all_in', 'shuffle', 'clock_tick', 'clock_warn', 'throw', 'splat', 'squeak',
 ] as const;
 export type Sfx = (typeof SFX_NAMES)[number];
 
@@ -339,6 +341,40 @@ class SoundEngine {
       case 'groan':
         this.hiss(t, 0.9, { freq: 420, sweepTo: 240, q: 3, vol: 0.18 * V, attack: 0.15 });
         return this.hiss(t, 0.9, { freq: 650, sweepTo: 330, q: 3, vol: 0.12 * V, attack: 0.15 });
+      // ── Poker ──
+      case 'card_deal': return this.hiss(t, 0.07, { freq: 2600, sweepTo: 5200, q: 0.9, vol: 0.22 * V });
+      case 'card_flip':
+        this.hiss(t, 0.05, { freq: 3200, q: 1.2, vol: 0.2 * V });
+        return this.tone(900, t + 0.03, 0.03, { vol: 0.06 * V, type: 'triangle' });
+      case 'chip': return this.chipClack(t, 1, V);
+      case 'chips_bet': return this.chipClack(t, 3, V);
+      case 'chips_pot': return this.chipClack(t, 7, V, 0.03);
+      case 'knock':
+        this.tone(140, t, 0.08, { vol: 0.5 * V, type: 'sine', slideTo: 90 });
+        return this.tone(140, t + 0.13, 0.08, { vol: 0.45 * V, type: 'sine', slideTo: 90 });
+      case 'fold': return this.hiss(t, 0.18, { freq: 1800, sweepTo: 700, q: 0.7, vol: 0.18 * V, attack: 0.02 });
+      case 'all_in':
+        this.chipClack(t, 10, V, 0.018);
+        return this.arp([N(7), N(12), N(19)], t + 0.2, 0.07, { vol: 0.12 * V, type: 'triangle' });
+      case 'shuffle':
+        for (let i = 0; i < 10; i++) this.hiss(t + i * 0.035, 0.03, { freq: 2200 + (i % 3) * 400, q: 1, vol: 0.12 * V });
+        return;
+      case 'clock_tick': return this.tone(2400, t, 0.02, { vol: 0.08 * V, type: 'square' });
+      case 'clock_warn': return this.arp([N(24), N(24)], t, 0.12, { vol: 0.12 * V, type: 'square' });
+      case 'throw': return this.hiss(t, 0.4, { freq: 500, sweepTo: 2600, q: 2.5, vol: 0.14 * V, attack: 0.05 });
+      case 'splat':
+        this.hiss(t, 0.16, { freq: 300, q: 0.6, vol: 0.4 * V, type: 'lowpass' });
+        return this.tone(180, t, 0.1, { vol: 0.2 * V, type: 'sine', slideTo: 60 });
+      case 'squeak': return this.tone(1200, t, 0.22, { vol: 0.14 * V, type: 'square', slideTo: 1900 });
+    }
+  }
+
+  /** Clay chips: short bright clicks, `n` of them `gap` apart (a stack sliding in). */
+  private chipClack(t: number, n: number, V: number, gap = 0.045) {
+    for (let i = 0; i < n; i++) {
+      const at = t + i * gap + Math.random() * 0.01;
+      this.tone(2900 + Math.random() * 900, at, 0.025, { vol: 0.12 * V, type: 'triangle' });
+      this.hiss(at, 0.02, { freq: 5200, q: 2, vol: 0.12 * V });
     }
   }
 

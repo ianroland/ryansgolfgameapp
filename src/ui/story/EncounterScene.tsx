@@ -63,7 +63,8 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
   // its own words or Ryan's portrait halfway through.
   const [startPhase] = useState(() => phaseOf(c));
   const [look] = useState(() => appearanceOf(c));
-  const def = useMemo(() => localizeEncounter(encounterById(id)!, startPhase), [id, startPhase]);
+  const [startFlags] = useState(() => ({ ...c.flags }));
+  const def = useMemo(() => localizeEncounter(encounterById(id)!, startPhase, startFlags), [id, startPhase, startFlags]);
   const [nodeId, setNodeId] = useState(def.start);
   const [lineIdx, setLineIdx] = useState(0);
   const [typed, setTyped] = useState(0);
@@ -222,7 +223,7 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
         </header>
         <div className="enc-stage" style={stage}>
           <RyanActor pose={poses[RYAN_ID] ?? 'idle'} talking={typing && speaker === RYAN_ID} expr={speaker === RYAN_ID ? line?.expr : undefined} height={130} look={look} />
-          <Actor key={onStage} who={onStage} side="right" pose={poses[onStage] ?? 'idle'} talking={typing && speaker === onStage} height={128} look={look} />
+          {onStage && <Actor key={onStage} who={onStage} side="right" pose={poses[onStage] ?? 'idle'} talking={typing && speaker === onStage} height={128} look={look} />}
         </div>
         <div className="enc-box">
           {error ? (

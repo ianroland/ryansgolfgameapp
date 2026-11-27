@@ -17,6 +17,19 @@ import { SpriteFrame } from '../story/Sprite';
 import { portraitKey } from '../../story/sprites';
 import { RYAN_ID } from '../../story/cast';
 import { appearanceOf } from '../../story/appearance';
+import { sound, type Sfx } from '../../audio/sound';
+
+/** The sound for a line of the table log. */
+function sfxForLine(l: string): Sfx | null {
+  if (/\(all in\)/.test(l)) return 'all_in';
+  if (/ folds$/.test(l)) return 'fold';
+  if (/ checks$/.test(l)) return 'knock';
+  if (/ (calls|bets|raises to|completes to) /.test(l)) return 'chips_bet';
+  if (/ (posts|brings it in|straddles)|^Antes/.test(l)) return 'chip';
+  if (/^Running it twice/.test(l)) return 'shuffle';
+  if (/ wins \$/.test(l) || /^7-2!/.test(l)) return 'chips_pot';
+  return null;
+}
 
 const SEAT_POS = ['s-hero', 's-left', 's-topleft', 's-topright', 's-right'];
 
@@ -96,6 +109,28 @@ export function PokerTableView({ room }: { room: Room }) {
   const peekOn = settings.autoPeek || peeked === handNo;
 
   useEffect(() => { if (L?.maxTo) setRaise(L.minTo); }, [L?.minTo, L?.maxTo, handNo]);
+
+  // Table sounds: whatever changed since the last thing shown.
+  const heard = useRef<{ hand: number; log: number; board: number; board2: number } | null>(null);
+  useEffect(() => {
+    if (!s) return;
+    const prev = heard.current;
+    heard.current = { hand: s.handNo, log: s.log.length, board: s.board.length, board2: s.board2?.length ?? 0 };
+    if (!prev) return;
+    if (prev.hand !== s.handNo) {
+      sound.play('shuffle', { volume: 0.6 });
+      for (let k = 0; k < 4; k++) window.setTimeout(() => sound.play('card_deal', { volume: 0.5 }), 260 + k * 90);
+      return;
+    }
+    const fresh = s.log.slice(prev.log);
+    const played = new Set<Sfx>();
+    for (const l of fresh) { const fx = sfxForLine(l); if (fx && !played.has(fx)) { played.add(fx); sound.play(fx, { volume: 0.7 }); } }
+    if (s.board.length > prev.board || (s.board2?.length ?? 0) > prev.board2) sound.play('card_flip', { volume: 0.6 });
+    if (s.result && fresh.some((l) => / wins \$/.test(l))) {
+      const mine = s.result.wins.some((w) => w.seat === HERO && w.amount > 0);
+      window.setTimeout(() => sound.play(mine ? 'cash' : 'ui_back', { volume: 0.6 }), 350);
+    }
+  }, [s]);
   useEffect(() => { setRabbitCards(null); setPre(null); }, [handNo]);
 
   // Every response from the table comes back with frames to replay.
@@ -124,6 +159,8 @@ export function PokerTableView({ room }: { room: Room }) {
       if (L) void doAct(L.check ? { type: 'check' } : { type: 'fold' });
       return;
     }
+    if (clock === 5) sound.play('clock_warn', { volume: 0.6 });
+    else if (clock < 5) sound.play('clock_tick', { volume: 0.6 });
     const id = window.setTimeout(() => setClock((c) => (c === null ? null : c - 1)), 1000);
     return () => window.clearTimeout(id);
   }, [clock, L, doAct]);
@@ -149,6 +186,7 @@ export function PokerTableView({ room }: { room: Room }) {
   };
   const onCardsUp = (e: RPointerEvent) => {
     if (flicked(e)) { if (L?.fold) void doAct({ type: 'fold' }); else if (L?.check) void doAct({ type: 'check' }); return; }
+    if (!peekOn) sound.play('card_flip', { volume: 0.5 });
     setPeeked(peekOn ? -1 : handNo);
   };
   const onChipsUp = (e: RPointerEvent) => {
@@ -164,8 +202,10 @@ export function PokerTableView({ room }: { room: Room }) {
   const throwThing = (seat: number, item: (typeof THROWABLES)[number]) => {
     setThrowAt(null);
     setFlying({ seat, icon: item.icon, key: Date.now() });
+    sound.play('throw', { volume: 0.6 });
     window.setTimeout(() => {
       setFlying(null);
+      sound.play(item.id === 'chicken' ? 'squeak' : item.id === 'rose' ? 'ui_confirm' : 'splat', { volume: 0.7 });
       const lines = REACTIONS[item.id];
       setReaction({ seat, text: lines[(Date.now() >> 4) % lines.length] });
       window.setTimeout(() => setReaction(null), 2600);

@@ -10,6 +10,7 @@ import { skinsBlocker, skinsMatch, SKINS_ENERGY, type VipStatus } from '../../se
 import { buyIn as skinsBuyIn, courseAt, holesPlayed, inPlayoff, nameOf, parOf, SKINS_HOLES, skinValue, STYLE_HINTS, type SkinsMatch, type SkinsStyle } from '../../expansion/skins';
 import type { LocationId } from '../../expansion/unlocks';
 import { useGame } from '../GameContext';
+import { sound } from '../../audio/sound';
 import { formatMoney } from '../format';
 import { PokerTableView } from './PokerTable';
 
@@ -125,7 +126,15 @@ function SkinsView({ at, blurb }: { at: LocationId; blurb: string }) {
   const block = skinsBlocker(c, at, state.balance);
   const m = live ?? last?.m ?? null;
   const play = async (style: SkinsStyle) => {
+    sound.play(style === 'aggressive' ? 'hit_driver' : 'hit_iron', { volume: 0.6 });
     const o = await run(() => services.poker.skinsPlay(style));
+    if (o) {
+      const m2 = o.match;
+      const i = m2.scores[0].length - 1;
+      const best = Math.min(...m2.scores.map((r) => r[i]));
+      const solo = m2.scores.filter((r) => r[i] === best).length === 1;
+      window.setTimeout(() => sound.play(solo && m2.scores[0][i] === best ? 'cup' : solo ? 'groan' : 'clap', { volume: 0.55 }), 450);
+    }
     if (o?.payout !== null && o?.payout !== undefined) {
       setLast({ m: o.match, payout: o.payout });
       const net = o.payout - skinsBuyIn(o.match);

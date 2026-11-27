@@ -92,3 +92,22 @@ describe('Rytirement', () => {
     expect(m.totals).toEqual(c.totals);
   });
 });
+
+describe('running gags and remembered choices', () => {
+  it("Kayla's Sunday line follows what she and Ryan became", async () => {
+    const def = encounterById('act4_championship_sunday')!;
+    const kayla = (flags: Record<string, unknown>) => localizeEncounter(def, 3, flags).nodes.start.lines.filter((l) => l.who === 'kayla_brooks').map((l) => l.text);
+    expect(kayla({ kayla: 'dinner' })).toEqual([expect.stringMatching(/Dinner’s at eight/)]);
+    expect(kayla({ kayla: 'rivals' })).toEqual([expect.stringMatching(/First tee/)]);
+    expect(kayla({ kayla: 'friends' })).toEqual([expect.stringMatching(/Best friend rules/)]);
+    expect(kayla({})).toHaveLength(1);
+  });
+  it('the watch party, the spare straw, the ball-mark tally and Lake Ryan are in', () => {
+    const text = (id: string) => Object.values(encounterById(id)!.nodes).flatMap((n) => n.lines.map((l) => l.text)).join(' ');
+    expect(text('act4_championship_sunday')).toMatch(/watch party/);
+    expect(text('act4_championship_sunday')).toMatch(/For emergencies/);
+    expect(text('act4_championship_sunday')).toMatch(/ball marks/);
+    expect(text('act4_championship_sunday_next_year')).toMatch(/FORE NEXT YEAR/);
+    expect(text('act4_lake_ryan')).toMatch(/LAKE RYAN/);
+  });
+});

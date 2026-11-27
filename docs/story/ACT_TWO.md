@@ -31,3 +31,10 @@ Built in 0.21.0 from the owner-approved outline "Ryan's Road: Acts II–IV Story
 - **The Next Chapter** shipped in 0.22.0, together with the phase 3 switch (`docs/story/PHASE_THREE.md`).
 - **The frozen Story Bible.** The Rejection, The Arnold Palmer Drive and The Dossier slot in when it's available. Act II currently starts right after the first Q-School.
 - **The quiet "What fits" thread.** These scenes are played straight and will go to the owner before they ship.
+
+## "What fits" (1.0.2)
+
+| id | Title | When | Notes |
+|---|---|---|---|
+| `act2_the_signature` | The Signature | 1+ week after Sunday Dinner | Ryan alone; journal entry in Ryan's own words. Played straight. |
+| `act2_six_am_call` | The Six A.M. Call | 1+ week after the helicopter dinner (before The Next Chapter) | Baba hears it in Ryan's voice and leaves the door open. Played straight. |

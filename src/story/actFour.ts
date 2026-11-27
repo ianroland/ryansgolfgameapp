@@ -281,6 +281,53 @@ export const ACT_FOUR: EncounterDef[] = [
     },
   },
   {
+    id: 'act4_lake_ryan',
+    title: 'Lake Ryan',
+    teaser: 'A tour stop has news about its pond. It involves a plaque.',
+    act: 4,
+    location: 'course_sunset',
+    cast: ['caddie_jordan', 'baba'],
+    when: (c, s) => onTour(c, s) && done(s, 'act4_desert_rose') && since(c, s, 'act4_desert_rose') >= 2,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'Practice round. The 14th. A golf cart, unattended, rolls gently, majestically, into the pond.' },
+          { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'For the record, that wasn’t us. That was a volunteer.' },
+          { who: 'narrator', text: 'The course superintendent arrives with a clipboard, a sheet over something rectangular, and the face of a man who has seen the highlight reels.' },
+          { who: 'narrator', text: 'Superintendent: “Your carts have now visited a pond at eleven tour stops. The board has voted. Effective today, this water hazard is named after you.”' },
+          { who: 'narrator', text: 'He pulls off the sheet. The plaque reads: LAKE RYAN. Below that, smaller: PLEASE STAY OUT OF IT.' },
+          { who: 'baba', expr: 'neutral', pose: 'think', text: 'It’s a pond. Lake is generous. Still. Nice plaque. Good brass.' },
+        ],
+        choice: {
+          prompt: 'A pond with your name on it.',
+          options: [
+            { id: 'ribbon', label: 'Cut the ribbon', hint: 'Fans ♥, Fame +2', next: 'ribbon' },
+            { id: 'cart', label: 'Ask if the cart can stay', hint: 'Jordan ♥', next: 'cart' },
+          ],
+        },
+      },
+      ribbon: {
+        lines: [
+          { who: 'narrator', text: 'Ryan cuts the ribbon with Baba’s pocketknife. Three photographers, one goose, and the cart, still bubbling, are in the photo.' },
+        ],
+        outcome: 'ribbon',
+      },
+      cart: {
+        lines: [
+          { who: 'ryan', expr: 'laughing', pose: 'talk', text: 'Can the cart stay? It looks happy.' },
+          { who: 'narrator', text: 'Superintendent: “…The cart can stay.” It becomes a habitat. Two ducks move in by Friday.' },
+          { who: 'caddie_jordan', expr: 'happy', pose: 'talk', text: 'Our first property.' },
+        ],
+        outcome: 'cart',
+      },
+    },
+    outcomes: {
+      ribbon: { summary: 'A tour stop named its pond Lake Ryan. Ryan cut the ribbon. A goose was in the photo.', tone: 'good', effects: { fame: 2, rel: { fans: 5 } }, bonds: { baba: 3 }, changes: 'Fans ♥ · Fame +2' },
+      cart: { summary: 'A tour stop named its pond Lake Ryan. The cart stayed. Two ducks live in it.', tone: 'good', effects: { rel: { caddie: 6 } }, bonds: { caddie_jordan: 8 }, changes: 'Jordan ♥' },
+    },
+  },
+  {
     id: 'act4_baba_at_the_major',
     title: 'Baba at the Major',
     teaser: 'Saturday at the National Open. Behind the ropes on nine: Baba, his good hat, and a pairings sheet he’s correcting in pencil.',
@@ -405,12 +452,18 @@ export const ACT_FOUR: EncounterDef[] = [
         lines: [
           { who: 'narrator', text: 'That morning. First tee, the Tour Championship, final round.' },
           { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'Sunday towel. It’s the good one. Don’t tell Tuesday.' },
-          { who: 'kayla_brooks', expr: 'confident', pose: 'talk', text: 'Whatever happens, I’m buying the first BOBO MILKY. You’re buying the rest.' },
+          { who: 'kayla_brooks', expr: 'happy', pose: 'talk', text: 'Best friend rules: I want to beat you by one, and then I want to buy you a BOBO MILKY.', ifFlag: { key: 'kayla', is: 'friends' } },
+          { who: 'kayla_brooks', expr: 'confident', pose: 'emphatic', text: 'Sunday. First tee. Just like I said. Try to keep up, muni kid.', ifFlag: { key: 'kayla', is: 'rivals' } },
+          { who: 'kayla_brooks', expr: 'happy', pose: 'talk', text: 'Dinner’s at eight. Win or lose. I checked the sky for helicopters twice.', ifFlag: { key: 'kayla', is: 'dinner' } },
+          { who: 'kayla_brooks', expr: 'confident', pose: 'talk', text: 'Whatever happens, I’m buying the first BOBO MILKY. You’re buying the rest.', ifFlag: { key: 'kayla', is: null } },
           { who: 'narrator', text: 'Up in the TV booth, they get Ryan’s name right on the first try. Nobody is more surprised than they are.' },
-          { who: 'narrator', text: 'Eighteen holes later, the putt for the title is exactly three feet.' },
+          { who: 'narrator', text: 'Eighteen holes later, the putt for the title is exactly three feet. Ryan can’t get the straw out of its wrapper. Jordan produces a spare from the bag and hands it over like a surgeon.' },
+          { who: 'caddie_jordan', expr: 'neutral', pose: 'give', text: 'For emergencies.' },
           { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Fifty from three feet. Every day.' },
           { who: 'narrator', text: 'It drops. The TV booth calls it for the wrong player, then corrects themselves on air. A mower crosses the 18th during the trophy speech.' },
           { who: 'narrator', text: 'Behind the podium. Biff’s assistant stands at the back holding a velvet case with a broken wooden tee in it. Nobody asks.' },
+          { who: 'baba', expr: 'neutral', pose: 'give', text: 'Fairway boy. Your season total. Unrepaired ball marks.' },
+          { who: 'narrator', text: 'He hands Biff a scorecard. The number on it has a comma.' },
           { who: 'narrator', text: 'Baba is holding a coffee can. On the side, in his handwriting: RYAN — PRO.' },
           { who: 'baba', expr: 'neutral', pose: 'give', text: 'Now you can open it.' },
           { who: 'narrator', text: 'Inside: broken wooden tees. Hundreds of them. Every one he ever fixed a ball mark with, since the day she first held a putter upside down.' },
@@ -422,6 +475,7 @@ export const ACT_FOUR: EncounterDef[] = [
       photo: {
         lines: [
           { who: 'narrator', text: 'The podium photo. Biff tries to get in it. The mower goes around him.' },
+          { who: 'narrator', text: 'Meanwhile, at Desert Palms: a watch party in the sportsbook. Emmett has made a banner. It reads FORE THE WIN. The dealers cheer, the regulars cheer, and the Stick Lady calls “Winner, winner!” at a TV.' },
         ],
         outcome: 'won',
       },
@@ -444,11 +498,15 @@ export const ACT_FOUR: EncounterDef[] = [
         lines: [
           { who: 'narrator', text: 'That morning. First tee, the Tour Championship, final round.' },
           { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'Sunday towel. It’s the good one. Don’t tell Tuesday.' },
-          { who: 'kayla_brooks', expr: 'confident', pose: 'talk', text: 'Whatever happens, I’m buying the first BOBO MILKY. You’re buying the rest.' },
+          { who: 'kayla_brooks', expr: 'happy', pose: 'talk', text: 'Best friend rules: I want to beat you by one, and then I want to buy you a BOBO MILKY.', ifFlag: { key: 'kayla', is: 'friends' } },
+          { who: 'kayla_brooks', expr: 'confident', pose: 'emphatic', text: 'Sunday. First tee. Just like I said. Try to keep up, muni kid.', ifFlag: { key: 'kayla', is: 'rivals' } },
+          { who: 'kayla_brooks', expr: 'happy', pose: 'talk', text: 'Dinner’s at eight. Win or lose. I checked the sky for helicopters twice.', ifFlag: { key: 'kayla', is: 'dinner' } },
+          { who: 'kayla_brooks', expr: 'confident', pose: 'talk', text: 'Whatever happens, I’m buying the first BOBO MILKY. You’re buying the rest.', ifFlag: { key: 'kayla', is: null } },
           { who: 'narrator', text: 'Up in the TV booth, they get Ryan’s name right on the first try. Nobody is more surprised than they are.' },
           { who: 'narrator', text: 'Eighteen holes later, it isn’t her day. Close. Not close enough.' },
           { who: 'baba', expr: 'neutral', pose: 'talk', text: 'You come home, I make breakfast, and we go to the range at six. Same as always.' },
           { who: 'narrator', text: 'Back home, the RYAN — PRO can goes back on the shelf. Baba dusts it. He has never dusted anything in his life.' },
+          { who: 'narrator', text: 'At Desert Palms the watch party goes on anyway. Emmett turns his banner over. The back reads FORE NEXT YEAR. He made both.' },
           { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Next year, {habibti}.' },
         ],
         outcome: 'next_year',

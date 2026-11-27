@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "1.0.2",
+   "date": "2026-11-27",
+   "title": "What fits, running gags, poker sounds",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Two quiet Act II scenes, played straight: The Signature (Ryan's first journal entry after the best round of the year) and The Six A.M. Call (Baba hears it in Ryan's voice and leaves the door open)."
+    },
+    {
+     "tag": "new",
+     "text": "Lake Ryan: after eleven tour stops' worth of golf carts in ponds, a course names its pond after Ryan. There's a plaque."
+    },
+    {
+     "tag": "improved",
+     "text": "Championship Sunday pays off the running gags. Kayla's first-tee line remembers what you two became. Jordan's spare straw is \"for emergencies.\" Baba hands Biff his season ball-mark tally (it has a comma). Desert Palms throws a watch party under Emmett's banner."
+    },
+    {
+     "tag": "new",
+     "text": "Poker sounds: shuffles, dealing, card flips, chips sliding in, the check knock, folds, all-ins, pots, shot-clock ticks, and a splat or squeak for every throwable. Skins holes get sounds too. Every sound can be swapped for your own file by name."
+    }
+   ]
+  },
+  {
    "version": "1.0.1",
    "date": "2026-11-27",
    "title": "Baba at the Major",

@@ -384,11 +384,12 @@ function EncounterCard({ onPlay }: { onPlay: (id: string) => void }) {
   const id = storyOf(state.career).available;
   const def = id ? encounterById(id) : null;
   if (!def) return null;
-  const who = def.cast[0];
+  // A scene with only Ryan in it shows Ryan.
+  const who = def.cast[0] ?? RYAN_ID;
   return (
     <section className="hub-card encounter-card" aria-label="Encounter" data-testid="encounter-card">
       <div className="enc-card-portrait">
-        <SpriteFrame who={who} frame={portraitKey(who, 'confident')} height={84} />
+        <SpriteFrame who={who} frame={portraitKey(who, who === RYAN_ID ? 'neutral' : 'confident', appearanceOf(state.career))} height={84} />
       </div>
       <div>
         <p className="enc-kicker">Encounter</p>

@@ -406,6 +406,53 @@ export const ACT_TWO: EncounterDef[] = [
     },
   },
   {
+    // "What fits" (1 of 2). Played straight, never for a laugh, in Ryan's own words.
+    id: 'act2_the_signature',
+    title: 'The Signature',
+    teaser: 'A good round, a scorecard, and a name at the bottom of it.',
+    act: 2,
+    location: 'clubhouse_lounge',
+    cast: [],
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_sunday_dinner') >= 1,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'The scorer’s tent, after the round. A 68, the best of the year. The official slides the card across the table for a signature.' },
+          { who: 'narrator', text: 'Ryan signs it. Then just looks at it for a while.' },
+          { who: 'narrator', text: 'That night, in the motel, Ryan writes in the journal Baba gave {him} for Q-School. {He}’s never written in it before.' },
+          { who: 'ryan', expr: 'neutral', text: 'Shot 68 today. Best round all year. Everyone kept saying “big guy” and “my man” and slapping my back, and every time it felt like they were talking to somebody standing next to me.' },
+          { who: 'ryan', expr: 'neutral', text: 'I love this game. That part is real. It’s everything around it that feels like a shirt somebody else picked out.' },
+          { who: 'ryan', expr: 'neutral', text: 'I don’t know what that means yet. I think I’m allowed to not know yet.' },
+        ],
+        choice: {
+          prompt: 'The pen is still in Ryan’s hand.',
+          options: [
+            { id: 'more', label: 'Keep writing', hint: 'Form +1', next: 'more' },
+            { id: 'close', label: 'Close the journal for tonight', hint: 'Energy +5', next: 'close' },
+          ],
+        },
+      },
+      more: {
+        lines: [
+          { who: 'ryan', expr: 'neutral', text: 'Things that feel right: the range at six. Baba’s terrible advice. The sound a putt makes when it’s good from the moment it leaves the face.' },
+          { who: 'ryan', expr: 'happy', text: 'Things that feel like me. I should keep a list.' },
+        ],
+        outcome: 'more',
+      },
+      close: {
+        lines: [
+          { who: 'narrator', text: 'Ryan closes the journal and puts it in the bag, in the pocket with the spare gloves, where it will stay all season. Written in, a little at a time.' },
+        ],
+        outcome: 'close',
+      },
+    },
+    outcomes: {
+      more: { summary: 'Wrote in the journal for the first time: the things that feel like me.', tone: 'neutral', effects: { form: 1, flags: { whatFits: 1 } }, changes: 'Form +1' },
+      close: { summary: 'Wrote in the journal for the first time, then closed it for the night.', tone: 'neutral', effects: { energy: 5, flags: { whatFits: 1 } }, changes: 'Energy +5' },
+    },
+  },
+  {
     id: 'act2_helicopter_dinner',
     title: 'Dinner, Interrupted',
     teaser: 'Kayla said yes to dinner. Biff said yes to a helicopter.',
@@ -474,6 +521,56 @@ export const ACT_TWO: EncounterDef[] = [
       loud: { summary: 'Told Kayla it was a thing. She didn’t hear it. She smiled anyway.', tone: 'good', effects: { rel: { rival: 8 } }, bonds: { kayla_brooks: 10, biff_fairway: -3 }, changes: 'Kayla ♥♥ · parked on “what if”' },
       note: { summary: 'Helped Biff park a helicopter. Kayla left a note: maybe next season.', tone: 'neutral', effects: { rel: { rival: -2 } }, bonds: { kayla_brooks: -2, biff_fairway: 8 }, changes: 'Biff ♥ · Kayla ♥− · parked on “what if”' },
       quiet: { summary: 'Walked Kayla to her car. Neither of them said the thing.', tone: 'neutral', effects: { rel: { rival: 4 } }, bonds: { kayla_brooks: 6 }, changes: 'Kayla ♥ · parked on “what if”' },
+    },
+  },
+  {
+    // "What fits" (2 of 2). Baba hears it in a voice before anyone says a word. Played straight.
+    id: 'act2_six_am_call',
+    title: 'The Six A.M. Call',
+    teaser: 'Baba calls at six, like always. This time Ryan picks up before the first ring ends.',
+    act: 2,
+    location: 'driving_range',
+    cast: ['baba'],
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_helicopter_dinner') >= 1,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'Six a.m. A motel parking lot, a different town. Ryan has been awake for an hour. The phone rings.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: '{Habibi}. You’re up. You’re never up.' },
+          { who: 'ryan', expr: 'neutral', text: 'Couldn’t sleep.' },
+          { who: 'baba', expr: 'neutral', pose: 'think', text: 'You sound tired. Not golf tired. The other kind.' },
+          { who: 'ryan', expr: 'neutral', text: 'I’m okay, Baba. I’m working something out. I don’t have the words for it yet.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Then don’t use words yet. Use the range. Words come later. They always come later. Look at me, I’m sixty-one and they’re still coming.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'When you have them, you come home and you tell me. Whatever it is. I’ll be at the muni. I’m always at the muni.' },
+        ],
+        choice: {
+          prompt: 'Ryan holds the phone a little tighter.',
+          options: [
+            { id: 'soon', label: '“Soon. I promise.”', hint: 'Baba ♥', next: 'soon' },
+            { id: 'putting', label: '“How’s the practice green?”', hint: 'Energy +5', next: 'putting' },
+          ],
+        },
+      },
+      soon: {
+        lines: [
+          { who: 'ryan', expr: 'neutral', text: 'Soon. I promise.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Good. Now go hit balls. And your follow-through, the crime. Don’t commit the crime.' },
+        ],
+        outcome: 'soon',
+      },
+      putting: {
+        lines: [
+          { who: 'ryan', expr: 'happy', text: 'How’s the practice green?' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'Stimping at eleven. The Fairway boy left four ball marks yesterday. Four. I counted twice.' },
+          { who: 'narrator', text: 'They talk about grass for twenty minutes. It helps more than either of them says.' },
+        ],
+        outcome: 'putting',
+      },
+    },
+    outcomes: {
+      soon: { summary: 'Baba heard it in Ryan’s voice. “When you have the words, come home and tell me.”', tone: 'good', effects: { rel: { mom: 6 }, flags: { whatFits: 2 } }, bonds: { baba: 8 }, changes: 'Baba ♥' },
+      putting: { summary: 'Six a.m. call with Baba. Twenty minutes about grass. It helped.', tone: 'good', effects: { energy: 5, flags: { whatFits: 2 } }, bonds: { baba: 5 }, changes: 'Energy +5' },
     },
   },
   {

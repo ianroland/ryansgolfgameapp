@@ -23,7 +23,19 @@ export interface Line {
   expr?: Expression;
   pose?: Pose;
   text: string;
+  /**
+   * Shown only when the career flag `key` equals `is` (null: the flag isn't set). Lets one scene
+   * remember an earlier choice, like what Kayla and Ryan became.
+   */
+  ifFlag?: { key: string; is: string | null };
 }
+
+/** Whether a line plays for this career's flags (lines without a condition always play). */
+export const lineShows = (l: Line, flags?: Record<string, unknown>) => {
+  if (!l.ifFlag || !flags) return true;
+  const v = flags[l.ifFlag.key];
+  return l.ifFlag.is === null ? v === undefined || v === null || v === '' : String(v) === l.ifFlag.is;
+};
 
 export interface Option {
   id: string;
@@ -298,10 +310,10 @@ export function nextDuringEncounter(c: CareerState, story: StoryState): Encounte
 }
 
 /** The encounter with every player-facing string filled for Ryan's phase (`{his}`, `{Habibi}`…). */
-export function localizeEncounter(def: EncounterDef, phase: Phase): EncounterDef {
+export function localizeEncounter(def: EncounterDef, phase: Phase, flags?: Record<string, unknown>): EncounterDef {
   const t = (x: string) => ryanSay(phase, x);
   const nodes = Object.fromEntries(Object.entries(def.nodes).map(([k, n]) => {
-    const lines = n.lines.map((l) => ({ ...l, text: t(l.text) }));
+    const lines = n.lines.filter((l) => lineShows(l, flags)).map((l) => ({ ...l, text: t(l.text) }));
     if ('choice' in n) return [k, { ...n, lines, choice: { prompt: t(n.choice.prompt), options: n.choice.options.map((o) => ({ ...o, label: t(o.label), hint: t(o.hint) })) } }];
     return [k, { ...n, lines }];
   })) as EncounterDef['nodes'];
