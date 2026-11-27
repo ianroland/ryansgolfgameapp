@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 import type { Card } from '../src/casino/blackjack';
 import { decide, equity, viewFor } from '../src/casino/poker/ai';
 import { bestHand, classOf, low5, omahaHigh, omahaLow, score5 } from '../src/casino/poker/handRank';
-import { act, chipsInPlay, legal, newTable, showing, sidePots, startHand, type HoldemState, type PokerVariant, type Seat } from '../src/casino/poker/holdem';
+import { act, chipsInPlay, legal, newTable, rabbit, runOut, showing, sidePots, startHand, type HoldemState, type PokerVariant, type Seat } from '../src/casino/poker/holdem';
 import { POKER_ROOMS, roomAt } from '../src/casino/poker/rooms';
 import { seededInt } from '../src/casino/random';
 import { isDomainError } from '../src/core/errors';
@@ -327,6 +327,34 @@ describe('poker room service', () => {
     expect(await balance(s)).toBe(before - roomAt(loc).buyIn.min + cashOut);
   });
 
+  it('app-style table: frames to replay, hand history, Time Bank, straddle setting, Run It Twice', async () => {
+    const s = await invited();
+    await s.poker.acceptInvite('desert_palms');
+    await s.economy.post({ ownerId: RYAN, amount: 50_000, type: 'job_wage', sourceId: 'test', idempotencyKey: 'poker-bank' });
+    let t = await s.poker.sit(1000, { runTwice: true, sevenDeuce: 10 });
+    expect(t.rules).toMatchObject({ runTwice: true, sevenDeuce: 10, doubleBoard: false });
+    expect(t.frames.length).toBeGreaterThan(0);
+    expect(t.frames.every((f) => f.state.deck.length === 0)).toBe(true); // frames never carry the deck
+    expect((await s.poker.useTimeBank()).timeBank).toBe(2);
+    expect((await s.poker.setStraddle(true)).straddle).toBe(true);
+    let sawRunout = false;
+    for (let h = 0; h < 25; h++) {
+      let guard = 0;
+      while (!t.state.result && guard++ < 30) {
+        if (t.state.awaitRunout) { const o = await s.poker.runout(true); t = { ...o.table, frames: o.frames }; sawRunout = true; continue; }
+        const L = legal(t.state, HERO);
+        t = await s.poker.act(L.maxTo ? { type: 'raise', to: L.maxTo } : L.toCall ? { type: 'call' } : { type: 'check' });
+      }
+      if (t.state.seats[HERO].stack <= 0) await s.poker.rebuy(1000);
+      t = await s.poker.nextHand();
+    }
+    const table = (await s.poker.table())!;
+    expect(table.history!.length).toBeGreaterThan(5);
+    expect(sawRunout).toBe(true);
+    for (const h of table.history!) expect(h.hole).toHaveLength(2);
+    await s.poker.leave();
+  });
+
   it('leaving mid-hand folds and still pays out the rest of the stack', async () => {
     const s = await invited();
     await s.poker.acceptInvite('desert_palms');
@@ -338,5 +366,61 @@ describe('poker room service', () => {
     expect(cashOut).toBeLessThanOrEqual(300 + 4 * 1000);
     expect(await balance(s)).toBe(before - 300 + cashOut);
     void setCareer;
+  });
+});
+
+describe('Pokerrrr-style table rules', () => {
+  const players = (n: number, stack = 500) => Array.from({ length: n }, (_, i) => ({ id: `p${i}`, name: `P${i}`, stack }));
+  it('Run It Twice: waits for the table, then splits each pot between two full boards', () => {
+    let t = startHand(newTable(players(2), 5, 10, { rules: { runTwice: true } }), seededInt(21));
+    t = act(t, { type: 'raise', to: 500 });
+    t = act(t, { type: 'call' });
+    expect(t.awaitRunout).toBe(true);
+    expect(t.result).toBeUndefined();
+    const two = runOut(t, 2);
+    expect(two.board).toHaveLength(5);
+    expect(two.board2).toHaveLength(5);
+    expect(two.result!.wins.reduce((a, w) => a + w.amount, 0)).toBe(1000);
+    expect(new Set(two.result!.wins.map((w) => w.run))).toEqual(new Set([1, 2]));
+    const one = runOut(t, 1);
+    expect(one.board2).toBeUndefined();
+    expect(chipsInPlay(one)).toBe(1000);
+  });
+  it('Double Board: two boards every hand, pot split between them, chips conserved', () => {
+    const rand = seededInt(8);
+    let t = newTable(players(4), 5, 10, { rules: { doubleBoard: true } });
+    for (let h = 0; h < 60; h++) {
+      t = { ...t, seats: t.seats.map((x) => (x.stack > 0 ? x : { ...x, stack: 500 })) };
+      const total = chipsInPlay(t);
+      t = startHand(t, rand);
+      while (!t.result) { const L = legal(t); t = act(t, L.toCall ? { type: rand(4) ? 'call' : 'fold' } : { type: 'check' }); }
+      expect(chipsInPlay(t)).toBe(total);
+      if (t.result.shown) { expect(t.board).toHaveLength(5); expect(t.board2).toHaveLength(5); }
+    }
+  });
+  it('7-2 Game: winning with seven-deuce collects the bounty from everyone dealt in', () => {
+    let t = startHand(newTable(players(3), 5, 10, { rules: { sevenDeuce: 10 } }), seededInt(3));
+    t = { ...t, seats: t.seats.map((x, i) => (i === t.toAct ? { ...x, hole: H('7c 2d') } : x)) };
+    const hero = t.toAct;
+    t = act(t, { type: 'raise', to: 40 });
+    while (!t.result) t = act(t, legal(t).fold ? { type: 'fold' } : { type: 'check' });
+    expect(t.bounty).toEqual({ seat: hero, amount: 20 });
+    expect(chipsInPlay(t)).toBe(1500);
+  });
+  it('straddle: left of the big blind posts double, action starts after them, and they get their option', () => {
+    let t = startHand(newTable(players(4), 5, 10), seededInt(4), { straddle: true });
+    const st = t.seats.findIndex((x) => x.bet === 20);
+    expect(st).toBeGreaterThanOrEqual(0);
+    expect(t.currentBet).toBe(20);
+    expect(legal(t).minTo).toBe(40);
+    while (t.toAct !== st) t = act(t, legal(t).toCall ? { type: 'call' } : { type: 'check' });
+    expect(legal(t).check).toBe(true);
+  });
+  it('rabbit hunt shows the cards that would have come and changes nothing', () => {
+    let t = startHand(newTable(players(2), 5, 10), seededInt(9));
+    t = act(t, { type: 'fold' });
+    const r = rabbit(t);
+    expect(r).toHaveLength(5);
+    expect(chipsInPlay(t)).toBe(1000);
   });
 });

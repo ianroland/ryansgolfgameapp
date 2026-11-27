@@ -10,7 +10,8 @@
  * cards and the board only (src/casino/poker/ai.ts).
  */
 import { decide, viewFor } from '../casino/poker/ai';
-import { act, legal, newTable, startHand, type Action, type HoldemState } from '../casino/poker/holdem';
+import { act, legal, newTable, runOut, startHand, type Action, type HoldemState, type TableRules } from '../casino/poker/holdem';
+import type { Card } from '../casino/blackjack';
 import { roomAt, type PokerRoom } from '../casino/poker/rooms';
 import { cryptoInt, type RandomInt } from '../casino/random';
 import * as engine from '../career/engine';
@@ -45,6 +46,19 @@ export const HERO = 0;
 
 export interface ChatLine { seat: number; text: string }
 
+/** One finished hand, for the hand history (newest last, capped). */
+export interface HandRecord {
+  handNo: number;
+  hole: Card[];
+  board: Card[];
+  board2?: Card[];
+  /** Ryan's chips won or lost on the hand. */
+  net: number;
+  lines: string[];
+}
+export const HISTORY_KEPT = 20;
+export const TIME_BANKS = 3;
+
 export interface PokerTable {
   sessionId: string;
   location: LocationId;
@@ -54,8 +68,20 @@ export interface PokerTable {
   state: HoldemState;
   /** What was said during the last stretch of play (presentation only). */
   chat: ChatLine[];
+  /** Table rules picked when sitting down (missing on 0.25 tables: none). */
+  rules?: TableRules;
+  /** Ryan straddles when he's under the gun. */
+  straddle?: boolean;
+  /** Ryan's stack when the current hand was dealt. */
+  startStack?: number;
+  history?: HandRecord[];
+  /** Time Bank extensions left this session. */
+  timeBank?: number;
   v: 1;
 }
+
+/** A moment in the regulars' play, for the table to replay one action at a time. */
+export interface Frame { state: HoldemState; chat?: ChatLine }
 
 const readTable = (raw: unknown): PokerTable | null => {
   if (typeof raw !== 'string' || !raw) return null;
@@ -63,33 +89,73 @@ const readTable = (raw: unknown): PokerTable | null => {
 };
 export const pokerTable = (c: CareerState) => readTable(c.flags.pokerTable);
 export const handLive = (t: PokerTable) => !t.state.result && t.state.handNo > 0;
+const heroLive = (s: HoldemState) => s.seats[HERO].inHand && !s.seats[HERO].folded;
 
 const pick = <T,>(xs: readonly T[], rand: RandomInt) => xs[rand(xs.length)];
+const frameOf = (s: HoldemState, chat?: ChatLine): Frame => ({ state: { ...s, deck: [] }, chat });
 
-/** Opponents act until it's Ryan's turn or the hand is over. Adds table talk as it goes. */
-export function playToHero(s0: HoldemState, room: PokerRoom, chat: ChatLine[], rand: RandomInt = cryptoInt, talk: RandomInt = cryptoInt): HoldemState {
+/**
+ * Opponents act until it's Ryan's turn, Ryan has a Run It Twice call to make, or the hand is
+ * over. Adds table talk as it goes, and a frame per action when `frames` is given.
+ */
+export function playToHero(s0: HoldemState, room: PokerRoom, chat: ChatLine[], rand: RandomInt = cryptoInt, talk: RandomInt = cryptoInt, frames?: Frame[]): HoldemState {
   let s = s0;
   let guard = 0;
-  while (!s.result && s.toAct >= 0 && s.toAct !== HERO) {
+  while (!s.result) {
     if (++guard > 500) throw new Error('Poker loop did not settle');
+    if (s.awaitRunout) {
+      if (heroLive(s)) return s; // Ryan's call
+      s = runOut(s, 1);
+      frames?.push(frameOf(s));
+      continue;
+    }
+    if (s.toAct < 0 || s.toAct === HERO) break;
     const i = s.toAct;
     const reg = room.regulars[i - 1];
     const a = decide(viewFor(s, i), reg.style, rand);
     s = act(s, a);
+    let line: ChatLine | undefined;
     if (talk(100) < 22) {
       const lines = a.type === 'raise' ? reg.lines.raise : a.type === 'fold' ? reg.lines.fold : null;
-      if (lines) chat.push({ seat: i, text: pick(lines, talk) });
+      if (lines) { line = { seat: i, text: pick(lines, talk) }; chat.push(line); }
     }
+    frames?.push(frameOf(s, line));
   }
   if (s.result) {
     const top = [...s.result.wins].sort((a, b) => b.amount - a.amount)[0];
-    if (top && top.seat !== HERO && talk(100) < 60) chat.push({ seat: top.seat, text: pick(room.regulars[top.seat - 1].lines.win, talk) });
+    let line: ChatLine | undefined;
+    if (top && top.seat !== HERO && talk(100) < 60) line = { seat: top.seat, text: pick(room.regulars[top.seat - 1].lines.win, talk) };
     else if (top && top.seat === HERO && talk(100) < 40) {
       const loser = 1 + talk(room.regulars.length);
-      chat.push({ seat: loser, text: pick(room.regulars[loser - 1].lines.lose, talk) });
+      line = { seat: loser, text: pick(room.regulars[loser - 1].lines.lose, talk) };
     }
+    if (line) { chat.push(line); if (frames?.length) frames[frames.length - 1].chat ??= line; }
   }
   return s;
+}
+
+/** Adds the finished hand to the history once. */
+function withHistory(t: PokerTable, s: HoldemState): PokerTable {
+  const hist = t.history ?? [];
+  if (!s.result || hist.some((h) => h.handNo === s.handNo)) return { ...t, state: s };
+  const rec: HandRecord = {
+    handNo: s.handNo, hole: s.seats[HERO].hole, board: s.board, board2: s.board2,
+    net: s.seats[HERO].stack - (t.startStack ?? s.seats[HERO].stack), lines: s.log.slice(-6),
+  };
+  return { ...t, state: s, history: [...hist, rec].slice(-HISTORY_KEPT) };
+}
+
+/** Text of a hand for "Share hand" (copied to the clipboard by the table). */
+export function shareText(h: HandRecord, room: string): string {
+  const card = (c: Card) => `${['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'][c.rank]}${'shdc'[c.suit]}`;
+  return [
+    `${room}, hand #${h.handNo}`,
+    `Ryan: ${h.hole.map(card).join(' ')}`,
+    h.board.length ? `Board: ${h.board.map(card).join(' ')}` : '',
+    h.board2?.length ? `Board 2: ${h.board2.map(card).join(' ')}` : '',
+    ...h.lines,
+    `Result: ${h.net >= 0 ? '+' : ''}$${h.net}`,
+  ].filter(Boolean).join('\n');
 }
 
 export interface VipStatus {
@@ -195,7 +261,7 @@ export class PokerService {
   }
 
   /** Buys in and deals the first hand. */
-  async sit(buyIn: number): Promise<PokerTable> {
+  async sit(buyIn: number, rules: TableRules = {}): Promise<PokerTable & { frames: Frame[] }> {
     return this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
       const c = await this.open();
       if (pokerTable(c)) throw new DomainError('CAREER_RULE', "You're already sitting at the table");
@@ -205,12 +271,73 @@ export class PokerService {
       const sessionId = newId('poker');
       await this.economy.post({ ownerId: c.playerId, amount: -buyIn, type: 'casino', sourceId: sessionId, idempotencyKey: `poker:${sessionId}:buy:1` });
       const players = [{ id: 'ryan', name: 'Ryan', stack: buyIn }, ...room.regulars.map((r) => ({ id: r.id, name: r.short, stack: room.regularStack }))];
+      const clean: TableRules = {
+        runTwice: !!rules.runTwice && room.variant !== 'stud',
+        doubleBoard: !!rules.doubleBoard && room.variant !== 'stud',
+        sevenDeuce: room.variant === 'holdem' && rules.sevenDeuce ? room.bb : 0,
+      };
       const chat: ChatLine[] = [{ seat: 1 + this.rand(room.regulars.length), text: '' }];
       chat[0].text = pick(room.regulars[chat[0].seat - 1].lines.sit, this.rand);
-      const state = playToHero(startHand(newTable(players, room.sb, room.bb, { variant: room.variant }), this.rand), room, chat, this.rand, this.rand);
-      const t: PokerTable = { sessionId, location: room.location, bought: buyIn, buys: 1, state, chat, v: 1 };
+      const frames: Frame[] = [];
+      const first = startHand(newTable(players, room.sb, room.bb, { variant: room.variant, rules: clean }), this.rand);
+      frames.push(frameOf(first, chat[0]));
+      const state = playToHero(first, room, chat, this.rand, this.rand, frames);
+      const t = withHistory({ sessionId, location: room.location, bought: buyIn, buys: 1, state, chat, rules: clean, startStack: buyIn, history: [], timeBank: TIME_BANKS, v: 1 }, state);
       await this.save(c, t);
-      return t;
+      return { ...t, frames };
+    });
+  }
+
+  /** Ryan's straddle preference (used when he's under the gun in Hold'em or Omaha). */
+  async setStraddle(on: boolean): Promise<PokerTable> {
+    return this.db.transaction('rw', [this.db.careers], async () => {
+      const c = await this.career();
+      const t = pokerTable(c);
+      if (!t) throw new DomainError('CAREER_RULE', 'Sit down first');
+      const next = { ...t, straddle: on };
+      await this.save(c, next);
+      return next;
+    });
+  }
+
+  /** Uses one Time Bank extension (+10 seconds on the shot clock). */
+  async useTimeBank(): Promise<PokerTable> {
+    return this.db.transaction('rw', [this.db.careers], async () => {
+      const c = await this.career();
+      const t = pokerTable(c);
+      if (!t) throw new DomainError('CAREER_RULE', 'Sit down first');
+      const left = t.timeBank ?? TIME_BANKS;
+      if (left <= 0) throw new DomainError('CAREER_RULE', 'No Time Bank left');
+      const next = { ...t, timeBank: left - 1 };
+      await this.save(c, next);
+      return next;
+    });
+  }
+
+  /**
+   * Run It Twice: Ryan's answer when everyone left is all in. Running it twice needs every
+   * player in the hand to agree; each regular's answer depends on their style.
+   */
+  async runout(twice: boolean): Promise<{ table: PokerTable; frames: Frame[]; agreed: boolean }> {
+    return this.db.transaction('rw', [this.db.careers], async () => {
+      const c = await this.career();
+      const t = pokerTable(c);
+      if (!t || !t.state.awaitRunout) throw new DomainError('CAREER_RULE', 'Nothing to run out');
+      const room = roomAt(t.location);
+      const others = t.state.seats.map((x, i) => (i !== HERO && x.inHand && !x.folded ? i : -1)).filter((i) => i > 0);
+      const agreed = twice && others.every((i) => this.rand(100) < 45 + 50 * room.regulars[i - 1].style.aggro);
+      const chat: ChatLine[] = [];
+      if (twice && !agreed) {
+        const no = others.find(() => true)!;
+        chat.push({ seat: no, text: 'Once. I like my bad beats in one piece.' });
+      }
+      const frames: Frame[] = [];
+      let state = runOut(t.state, agreed ? 2 : 1);
+      frames.push(frameOf(state, chat[0]));
+      state = playToHero(state, room, chat, this.rand, this.rand, frames);
+      const next = withHistory({ ...t, chat }, state);
+      await this.save(c, next);
+      return { table: next, frames, agreed };
     });
   }
 
@@ -222,7 +349,7 @@ export class PokerService {
   }
 
   /** Ryan's move; the regulars then play until it's his turn again or the hand ends. */
-  async act(a: Action): Promise<PokerTable> {
+  async act(a: Action): Promise<PokerTable & { frames: Frame[] }> {
     return this.db.transaction('rw', [this.db.careers], async () => {
       const c = await this.open();
       const t = pokerTable(c);
@@ -230,17 +357,19 @@ export class PokerService {
       if (t.state.toAct !== HERO) throw new DomainError('CAREER_RULE', 'Not your turn');
       const room = roomAt(t.location);
       const chat: ChatLine[] = [];
+      const frames: Frame[] = [];
       let state: HoldemState;
       try { state = act(t.state, a); } catch (e) { throw new DomainError('CAREER_RULE', (e as Error).message); }
-      state = playToHero(state, room, chat, this.rand, this.rand);
-      const next = { ...t, state, chat };
+      frames.push(frameOf(state));
+      state = playToHero(state, room, chat, this.rand, this.rand, frames);
+      const next = withHistory({ ...t, chat }, state);
       await this.save(c, next);
-      return next;
+      return { ...next, frames };
     });
   }
 
   /** Deals the next hand. Busted regulars reload; Ryan needs chips (rebuy) to be dealt in. */
-  async nextHand(): Promise<PokerTable> {
+  async nextHand(): Promise<PokerTable & { frames: Frame[] }> {
     return this.db.transaction('rw', [this.db.careers], async () => {
       const c = await this.open();
       const t = pokerTable(c);
@@ -249,11 +378,18 @@ export class PokerService {
       if (t.state.seats[HERO].stack <= 0) throw new DomainError('CAREER_RULE', "You're out of chips: rebuy or leave");
       const room = roomAt(t.location);
       const reloaded = { ...t.state, seats: t.state.seats.map((x, i) => (i !== HERO && x.stack < room.bb ? { ...x, stack: room.regularStack } : x)) };
+      // Straddle: the seat after the big blind. Ryan straddles if he's set it; aggressive regulars sometimes do.
+      const n = reloaded.seats.length;
+      const utg = (reloaded.button + 4) % n; // button moves one, then SB, BB, then under the gun
+      const wantsStraddle = room.variant !== 'stud' && (utg === HERO ? !!t.straddle : room.regulars[utg - 1].style.aggro > 0.6 && this.rand(100) < 30);
       const chat: ChatLine[] = [];
-      const state = playToHero(startHand(reloaded, this.rand), room, chat, this.rand, this.rand);
-      const next = { ...t, state, chat };
+      const frames: Frame[] = [];
+      const dealt = startHand(reloaded, this.rand, { straddle: wantsStraddle });
+      frames.push(frameOf(dealt));
+      const state = playToHero(dealt, room, chat, this.rand, this.rand, frames);
+      const next = withHistory({ ...t, chat, startStack: t.state.seats[HERO].stack }, state);
       await this.save(c, next);
-      return next;
+      return { ...next, frames };
     });
   }
 
@@ -294,6 +430,7 @@ export class PokerService {
         let guard = 0;
         while (!s.result) {
           if (++guard > 200) throw new Error('Poker loop did not settle');
+          if (s.awaitRunout) s = runOut(s, 1);
           s = playToHero(s, room, [], this.rand, this.rand);
           if (!s.result && s.toAct === HERO) s = act(s, { type: legal(s, HERO).check ? 'check' : 'fold' });
         }

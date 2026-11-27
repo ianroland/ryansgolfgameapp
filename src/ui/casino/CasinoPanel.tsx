@@ -1077,8 +1077,8 @@ function PrivateTab({ at, on, onClick, refresh }: { at: LocationId; on: boolean;
   const v = useVipStatus(at, refresh);
   const locked = !v?.unlocked;
   return (
-    <button className={`vip-tab ${on ? 'on' : ''} ${locked ? 'locked' : ''}`} aria-disabled={locked} title={locked ? 'Invitation only' : undefined} onClick={onClick} data-testid="casino-private">
-      {locked ? '🔒 ' : '★ '}Private Rooms
+    <button className={`vip-tab ${on ? 'on' : ''} ${locked ? 'locked' : ''}`} aria-disabled={locked} title={locked ? 'Private rooms: invitation only' : 'Private rooms'} onClick={onClick} data-testid="casino-private">
+      {locked ? '🔒 ' : '★ '}VIP
     </button>
   );
 }

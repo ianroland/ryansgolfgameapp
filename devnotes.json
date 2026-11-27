@@ -2,6 +2,33 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.26.0",
+   "date": "2026-11-27",
+   "title": "Poker, app style",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The poker rooms now play like a social poker app. The regulars act one at a time with chips sliding in, and there's a Skip button and a speed setting."
+    },
+    {
+     "tag": "new",
+     "text": "New controls: pre-action boxes (Check/Fold, Check, Call Any), quick bets (Min, ½ Pot, ¾ Pot, Pot, All-in), and tap-to-peek on your cards. There's a shot clock with a 3-use Time Bank (+10s); you can turn it off."
+    },
+    {
+     "tag": "new",
+     "text": "Table rules you pick when you sit: Run It Twice (everyone has to agree), Double Board, and the 7-2 Game (win with seven-deuce and everyone pays a big-blind bounty). You can also straddle when you're under the gun, and aggressive regulars sometimes do too."
+    },
+    {
+     "tag": "new",
+     "text": "Gestures: flick your cards up to fold, flick the chips up to bet, double-tap the felt to check. Also new: rabbit hunt after a hand ends early, hand history with Share hand, and things to throw at the regulars."
+    },
+    {
+     "tag": "change",
+     "text": "The Home tab is now Real Estate, and homes for sale moved there from the Pro Shop under Listings. The casino's private rooms tab is now just VIP, so it fits on small screens."
+    }
+   ]
+  },
+  {
    "version": "0.25.2",
    "date": "2026-11-27",
    "title": "Skins on the private courses",

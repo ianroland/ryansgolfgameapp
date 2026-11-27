@@ -4,20 +4,14 @@
  * and dollar moves through PokerService.
  */
 import { useEffect, useState } from 'react';
-import { legal, pot, variantOf } from '../../casino/poker/holdem';
-import type { PokerRoom as Room } from '../../casino/poker/rooms';
 import { dealerById } from '../../npc/registry';
 import { INVITE_LINES, INVITE_NIGHTS } from '../../npc/vip';
-import { HERO, pokerTable, skinsBlocker, skinsMatch, SKINS_ENERGY, type VipStatus } from '../../services/pokerService';
+import { skinsBlocker, skinsMatch, SKINS_ENERGY, type VipStatus } from '../../services/pokerService';
 import { buyIn as skinsBuyIn, courseAt, holesPlayed, inPlayoff, nameOf, parOf, SKINS_HOLES, skinValue, STYLE_HINTS, type SkinsMatch, type SkinsStyle } from '../../expansion/skins';
 import type { LocationId } from '../../expansion/unlocks';
 import { useGame } from '../GameContext';
 import { formatMoney } from '../format';
-import { BetChip, PlayingCard } from './TableBits';
-import { SpriteFrame } from '../story/Sprite';
-import { portraitKey } from '../../story/sprites';
-import { RYAN_ID } from '../../story/cast';
-import { appearanceOf } from '../../story/appearance';
+import { PokerTableView } from './PokerTable';
 
 /** `refresh` re-reads when it changes (the floor passes the open game, so moving tables re-checks). */
 export function useVipStatus(at: LocationId, refresh?: unknown): VipStatus | null {
@@ -88,107 +82,8 @@ export function PrivateRooms({ at }: { at: LocationId }) {
         <button className={part === 'poker' ? 'on' : ''} onClick={() => setPart('poker')} data-testid="vip-poker">{room.name} · {room.variantName}</button>
         <button className={part === 'course' ? 'on' : ''} onClick={() => setPart('course')} data-testid="vip-course">{room.course.name}</button>
       </nav>
-      {part === 'poker' ? <PokerRoomView room={room} /> : <SkinsView at={room.location} blurb={room.course.blurb} />}
+      {part === 'poker' ? <PokerTableView room={room} /> : <SkinsView at={room.location} blurb={room.course.blurb} />}
     </div>
-  );
-}
-
-const SEAT_POS = ['s-hero', 's-left', 's-topleft', 's-topright', 's-right'];
-
-function PokerRoomView({ room }: { room: Room }) {
-  const { state, services, run } = useGame();
-  const t = pokerTable(state.career);
-  const [buyIn, setBuyIn] = useState(Math.min(room.buyIn.max, Math.max(room.buyIn.min, 500)));
-  const [raise, setRaise] = useState(0);
-  const s = t?.state;
-  const myTurn = !!s && !s.result && s.toAct === HERO;
-  const L = s && myTurn ? legal(s, HERO) : null;
-  useEffect(() => { if (L?.maxTo) setRaise(L.minTo); }, [L?.minTo, L?.maxTo]);
-
-  if (!room.open) {
-    return (
-      <section className="hub-card poker-room" data-testid="poker-soon">
-        <h2 className="hub-title">{room.name}</h2>
-        <p>The {room.variantName} table is still being set up. The regulars are already arguing about the seating chart.</p>
-        <ul className="poker-regulars">{room.regulars.map((r) => <li key={r.id}><b style={{ color: r.color }}>{r.name}</b>: {r.bio}</li>)}</ul>
-      </section>
-    );
-  }
-
-  if (!t || !s) {
-    return (
-      <section className="hub-card poker-room" data-testid="poker-lobby">
-        <h2 className="hub-title">{room.name} · {room.variantName}</h2>
-        <p className="muted">{room.variant === 'stud' ? `Antes ${formatMoney(Math.max(1, Math.round(room.bb / 5)))}, bring-in ${formatMoney(room.sb)}, bets ${formatMoney(room.bb)}/${formatMoney(room.bb * 2)}` : `Blinds ${formatMoney(room.sb)}/${formatMoney(room.bb)}${room.variant === 'omaha8' ? ', pot limit, high and low split the pot' : ''}`} · buy in {formatMoney(room.buyIn.min)}–{formatMoney(room.buyIn.max)}. Same four regulars every night.</p>
-        <ul className="poker-regulars">{room.regulars.map((r) => <li key={r.id}><span className="poker-av" style={{ background: r.color }}>{r.short[0]}</span><b>{r.name}</b>: {r.bio}</li>)}</ul>
-        <div className="row">
-          <label>Buy in <input type="range" min={room.buyIn.min} max={room.buyIn.max} step={50} value={buyIn} onChange={(e) => setBuyIn(Number(e.target.value))} data-testid="poker-buyin" /> <b>{formatMoney(buyIn)}</b></label>
-          <button className="btn primary" onClick={() => run(() => services.poker.sit(buyIn))} data-testid="poker-sit">Take a seat</button>
-        </div>
-      </section>
-    );
-  }
-
-  const over = !!s.result;
-  const shown = over && s.result!.shown;
-  const winners = new Set(s.result?.wins.map((w) => w.seat));
-  const hero = s.seats[HERO];
-  return (
-    <section className="hub-card poker-room" data-testid="poker-table">
-      <div className="poker-felt">
-        <div className="poker-center">
-          <div className={`poker-board ${variantOf(s) === 'stud' ? 'stud' : ''}`}>{s.board.map((c, i) => <PlayingCard key={`${s.handNo}-${i}`} card={c} i={i} />)}</div>
-          <p className="poker-pot" data-testid="poker-pot">{over ? s.log[s.log.length - 1] : `Pot ${formatMoney(pot(s))}`}</p>
-        </div>
-        {s.seats.map((x, i) => {
-          const reg = i === HERO ? null : room.regulars[i - 1];
-          const reveal = i === HERO || (shown && !x.folded && x.inHand);
-          const stud = variantOf(s) === 'stud';
-          return (
-            <div key={x.id} className={`poker-seat ${SEAT_POS[i]} ${x.folded ? 'folded' : ''} ${s.toAct === i ? 'acting' : ''} ${winners.has(i) ? 'won' : ''}`} data-testid={`poker-seat-${i}`}>
-              {reg ? <span className="poker-av" style={{ background: reg.color }}>{reg.short[0]}</span> : <span className="poker-av hero-av"><SpriteFrame who={RYAN_ID} frame={portraitKey(RYAN_ID, 'neutral', appearanceOf(state.career))} height={40} /></span>}
-              <div className="poker-name">{reg?.short ?? 'You'}{s.button === i && <span className="poker-btn" title="Dealer button">D</span>}</div>
-              <div className="poker-stack">{formatMoney(x.stack)}{x.allIn && !over ? ' · all in' : ''}</div>
-              <div className={`poker-hole n${x.hole.length}`}>
-                {x.inHand && x.hole.map((c, k) => (
-                  <span key={`${s.handNo}-${k}`} className={stud && x.up?.[k] ? 'pk-up' : stud ? 'pk-down' : ''}>
-                    <PlayingCard card={c} i={k} hidden={!reveal && !(stud && x.up?.[k])} />
-                  </span>
-                ))}
-              </div>
-              {x.bet > 0 && <BetChip amount={x.bet} className="poker-bet" />}
-              {t.chat.filter((m) => m.seat === i).slice(-1).map((m, k) => <p key={k} className="poker-bubble">{m.text}</p>)}
-            </div>
-          );
-        })}
-      </div>
-      <div className="row poker-actions">
-        {myTurn && L && (
-          <>
-            {L.fold && <button className="btn" onClick={() => run(() => services.poker.act({ type: 'fold' }))} data-testid="poker-fold">Fold</button>}
-            {L.check && <button className="btn" onClick={() => run(() => services.poker.act({ type: 'check' }))} data-testid="poker-check">Check</button>}
-            {L.toCall > 0 && <button className="btn primary" onClick={() => run(() => services.poker.act({ type: 'call' }))} data-testid="poker-call">Call {formatMoney(L.toCall)}</button>}
-            {L.maxTo > 0 && (
-              <span className="poker-raise">
-                {L.maxTo > L.minTo && <input type="range" min={L.minTo} max={L.maxTo} step={1} value={Math.min(Math.max(raise, L.minTo), L.maxTo)} onChange={(e) => setRaise(Number(e.target.value))} aria-label="Raise to" />}
-                <button className="btn primary" onClick={() => run(() => services.poker.act({ type: 'raise', to: Math.min(Math.max(raise, L.minTo), L.maxTo) }))} data-testid="poker-raise">
-                  {Math.max(raise, L.minTo) >= hero.bet + hero.stack ? 'All in' : s.currentBet === 0 ? 'Bet' : 'Raise to'} {formatMoney(Math.min(Math.max(raise, L.minTo), L.maxTo))}
-                </button>
-              </span>
-            )}
-          </>
-        )}
-        {over && hero.stack > 0 && <button className="btn primary" onClick={() => run(() => services.poker.nextHand())} data-testid="poker-next">Next hand</button>}
-        {over && hero.stack < room.buyIn.max && (
-          <button className="btn" onClick={() => run(() => services.poker.rebuy(Math.min(room.buyIn.max - hero.stack, Math.max(room.buyIn.min, room.buyIn.max - hero.stack))))} data-testid="poker-rebuy">
-            Top up to {formatMoney(room.buyIn.max)}
-          </button>
-        )}
-        <button className="btn ghost" onClick={() => run(() => services.poker.leave())} data-testid="poker-leave">{over ? 'Cash out' : 'Fold and cash out'}</button>
-      </div>
-      <ul className="craps-log poker-log" aria-live="polite">{[...s.log].reverse().slice(0, 6).map((l, i) => <li key={i} className={i === 0 ? 'latest' : ''}>{l}</li>)}</ul>
-      <p className="fineprint">Bought in: {formatMoney(t.bought)} · regulars reload when they bust; only your own chips are yours. In-game money only.</p>
-    </section>
   );
 }
 

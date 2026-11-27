@@ -10,6 +10,14 @@
  * chip is in a stack or in front of a seat (this hand's contributions) at all times.
  * Side pots are built at showdown from what each seat put in; folded chips stay in the pots
  * they fed.
+ *
+ * Table rules (the Pokerrrr-style extras, all optional):
+ *   runTwice    when everyone left is all in before the river, the table may deal the rest of
+ *               the board twice; each pot is split between the two runs.
+ *   doubleBoard every hand deals two boards from the flop on; each pot is split between them.
+ *   sevenDeuce  the 7-2 Game: win a pot holding 7-2 and every other player dealt in pays you
+ *               this bounty (Hold'em only).
+ *   straddle    (per hand) the player left of the big blind posts a blind raise of 2× the big blind.
  */
 import type { Card } from '../blackjack';
 import { cryptoInt, type RandomInt } from '../random';
@@ -38,7 +46,9 @@ export interface Seat {
   inHand: boolean;
 }
 
-export interface PotWin { seat: number; amount: number; hand?: string; half?: 'high' | 'low' }
+export interface PotWin { seat: number; amount: number; hand?: string; half?: 'high' | 'low'; run?: 1 | 2 }
+
+export interface TableRules { runTwice?: boolean; doubleBoard?: boolean; sevenDeuce?: number }
 
 export interface HoldemState {
   /** Missing on tables saved by 0.25.0: Hold'em. */
@@ -53,6 +63,15 @@ export interface HoldemState {
   bringIn?: number;
   deck: Card[];
   board: Card[];
+  /** The second board (Double Board, or the second run of Run It Twice). */
+  board2?: Card[];
+  rules?: TableRules;
+  /** Everyone left is all in before the river: waiting for the table to choose one run or two. */
+  awaitRunout?: boolean;
+  /** How the board was run out this hand (2 = Run It Twice). */
+  runs?: 1 | 2;
+  /** The 7-2 bounty paid this hand, if any. */
+  bounty?: { seat: number; amount: number };
   street: Street;
   /** Index of the seat to act, or -1 when nobody can (hand over or running out). */
   toAct: number;
@@ -94,20 +113,21 @@ function nextSeat(s: HoldemState, i: number, pred: (x: Seat) => boolean): number
 
 export function newTable(
   players: { id: string; name: string; stack: number }[], sb: number, bb: number,
-  opts: { variant?: PokerVariant; ante?: number; bringIn?: number } = {},
+  opts: { variant?: PokerVariant; ante?: number; bringIn?: number; rules?: TableRules } = {},
 ): HoldemState {
   const variant = opts.variant ?? 'holdem';
   return {
     variant,
     seats: players.map((p) => ({ ...p, hole: [], bet: 0, total: 0, folded: false, allIn: false, acted: false, inHand: false })),
     button: players.length - 1, sb, bb, deck: [], board: [], street: 'showdown', toAct: -1,
-    currentBet: 0, minRaise: bb, raises: 0, handNo: 0, log: [],
+    currentBet: 0, minRaise: bb, raises: 0, handNo: 0, log: [], rules: variant === 'stud' ? {} : { ...opts.rules, ...(variant !== 'holdem' ? { sevenDeuce: 0 } : {}) },
     ...(variant === 'stud' ? { ante: opts.ante ?? Math.max(1, Math.round(bb / 5)), bringIn: opts.bringIn ?? sb } : {}),
   };
 }
 
 const clone = (s: HoldemState): HoldemState => ({
   ...s, seats: s.seats.map((x) => ({ ...x, hole: [...x.hole], up: x.up ? [...x.up] : undefined })), deck: [...s.deck], board: [...s.board], log: [...s.log],
+  board2: s.board2 ? [...s.board2] : undefined,
   result: s.result ? { ...s.result, wins: [...s.result.wins] } : undefined,
 });
 
@@ -141,7 +161,7 @@ function studFirst(s: HoldemState): number {
 }
 
 /** Deals a new hand: moves the button, posts blinds (or antes and the bring-in), deals. Needs two seats with chips. */
-export function startHand(prev: HoldemState, rand: RandomInt = cryptoInt): HoldemState {
+export function startHand(prev: HoldemState, rand: RandomInt = cryptoInt, opts: { straddle?: boolean } = {}): HoldemState {
   const s = clone(prev);
   const v = variantOf(s);
   for (const x of s.seats) Object.assign(x, { hole: [], up: v === 'stud' ? [] : undefined, bet: 0, total: 0, folded: false, allIn: false, acted: false, inHand: x.stack > 0 });
@@ -150,6 +170,10 @@ export function startHand(prev: HoldemState, rand: RandomInt = cryptoInt): Holde
   s.handNo += 1;
   s.result = undefined;
   s.board = [];
+  s.board2 = s.rules?.doubleBoard && v !== 'stud' ? [] : undefined;
+  s.awaitRunout = false;
+  s.runs = undefined;
+  s.bounty = undefined;
   s.deck = newDeck(rand);
   s.log = [];
   s.raises = 0;
@@ -191,6 +215,17 @@ export function startHand(prev: HoldemState, rand: RandomInt = cryptoInt): Holde
   s.log.push(`${s.seats[sbSeat].name} posts ${s.seats[sbSeat].bet}`, `${s.seats[bbSeat].name} posts ${s.seats[bbSeat].bet}`);
   s.currentBet = s.bb;
   s.minRaise = s.bb;
+  let lastBlind = bbSeat;
+  if (opts.straddle && dealt > 2) {
+    const st = nextSeat(s, bbSeat, (x) => x.inHand && !x.allIn);
+    if (st >= 0 && st !== sbSeat) {
+      put(s.seats[st], s.bb * 2);
+      s.log.push(`${s.seats[st].name} straddles for ${s.seats[st].bet}`);
+      s.currentBet = Math.max(s.bb, s.seats[st].bet);
+      s.minRaise = s.bb * 2;
+      lastBlind = st;
+    }
+  }
   for (let r = 0; r < holeCount(v); r++) {
     let i = sbSeat;
     for (let k = 0; k < dealt; k++) {
@@ -199,7 +234,7 @@ export function startHand(prev: HoldemState, rand: RandomInt = cryptoInt): Holde
     }
   }
   s.street = 'preflop';
-  s.toAct = nextSeat(s, bbSeat, canBet);
+  s.toAct = nextSeat(s, lastBlind, canBet);
   return settleIfDone(s);
 }
 
@@ -312,10 +347,59 @@ function nextStreet(s: HoldemState) {
     s.toAct = studFirst(s);
     return;
   }
-  s.deck.pop(); // burn
-  const n = s.street === 'flop' ? 3 : 1;
-  for (let k = 0; k < n; k++) s.board.push(s.deck.pop()!);
+  dealBoards(s);
   s.toAct = nextSeat(s, s.button, canBet);
+}
+
+/** Burn and deal the next street to the board (and the second board, under Double Board). */
+function dealBoards(s: HoldemState) {
+  const n = s.board.length === 0 ? 3 : 1;
+  s.deck.pop();
+  for (let k = 0; k < n; k++) s.board.push(s.deck.pop()!);
+  if (s.board2 && !s.runs) {
+    s.deck.pop();
+    for (let k = 0; k < n; k++) s.board2.push(s.deck.pop()!);
+  }
+}
+
+const boardGame = (s: HoldemState) => variantOf(s) !== 'stud';
+
+/**
+ * Runs the board out once or twice after everyone left is all in (the table's choice under
+ * Run It Twice). The second run shares the cards already out and deals its own after them.
+ */
+export function runOut(prev: HoldemState, times: 1 | 2): HoldemState {
+  if (!prev.awaitRunout) throw new Error('Nothing to run out');
+  const s = clone(prev);
+  s.awaitRunout = false;
+  s.runs = times;
+  if (times === 2) {
+    const shared = [...s.board];
+    while (s.board.length < 5) { s.deck.pop(); s.board.push(s.deck.pop()!); }
+    s.board2 = shared;
+    while (s.board2.length < 5) { s.deck.pop(); s.board2.push(s.deck.pop()!); }
+    s.log.push('Running it twice');
+    s.street = 'river';
+  }
+  return settleIfDone(s);
+}
+
+/**
+ * Rabbit hunt: the board cards that would have come if the hand had gone on (shown after a
+ * hand ends early; changes nothing). Follows the same burn-and-deal order as the real deal.
+ */
+export function rabbit(s: HoldemState): Card[] {
+  if (!s.result || !boardGame(s) || s.board.length >= 5) return [];
+  const deck = [...s.deck];
+  const out = [...s.board];
+  while (out.length < 5) {
+    const n = out.length === 0 ? 3 : 1;
+    deck.pop();
+    if (s.board2) deck.pop(); // the second board's burn would have come out too
+    for (let k = 0; k < n; k++) out.push(deck.pop()!);
+    if (s.board2) for (let k = 0; k < n; k++) deck.pop();
+  }
+  return out.slice(s.board.length);
 }
 
 /** Ends the hand if one player is left, closes betting rounds, runs cards out when nobody can bet. */
@@ -329,6 +413,12 @@ function settleIfDone(s: HoldemState): HoldemState {
     const bettors = s.seats.filter(canBet);
     const someoneOwes = bettors.length > 1 ? !roundClosed(s) : bettors.length === 1 && bettors[0].bet < s.currentBet;
     if (someoneOwes && s.toAct >= 0) return s;
+    // Nobody can bet any more with cards to come: under Run It Twice the table decides first.
+    if (bettors.length <= 1 && boardGame(s) && s.rules?.runTwice && !s.board2 && !s.runs && s.street !== 'river' && s.street !== 'showdown') {
+      s.toAct = -1;
+      s.awaitRunout = true;
+      return s;
+    }
     if (s.street === 'river' || s.street === 'seventh' || s.street === 'showdown') { showdown(s); return s; }
     nextStreet(s);
     if (s.seats.filter(canBet).length > 1 && s.toAct >= 0) return s;
@@ -380,24 +470,34 @@ function splitAmong(s: HoldemState, winners: number[], amount: number, label: (w
 
 function showdown(s: HoldemState) {
   const v = variantOf(s);
-  if (v !== 'stud') while (s.board.length < 5) { s.deck.pop(); s.board.push(s.deck.pop()!); }
+  if (v !== 'stud') {
+    while (s.board.length < 5) { s.deck.pop(); s.board.push(s.deck.pop()!); }
+    if (s.board2) while (s.board2.length < 5) { s.deck.pop(); s.board2.push(s.deck.pop()!); }
+  }
   s.street = 'showdown';
-  const rated = s.seats.map((x) => (x.inHand && !x.folded ? rate(v, x.hole, s.board) : null));
+  const boards = s.board2 ? [s.board, s.board2] : [s.board];
   const wins: PotWin[] = [];
   for (const p of sidePots(s.seats)) {
-    const best = Math.max(...p.eligible.map((i) => rated[i]!.high));
-    const hiWinners = p.eligible.filter((i) => rated[i]!.high === best);
-    const lows = p.eligible.filter((i) => rated[i]!.low !== null);
-    const hiName = (w: number) => ({ hand: HAND_CLASS_NAMES[rated[w]!.cls] });
-    if (v === 'omaha8' && lows.length) {
-      const bestLow = Math.min(...lows.map((i) => rated[i]!.low!));
-      const loWinners = lows.filter((i) => rated[i]!.low === bestLow);
-      const loAmount = Math.floor(p.amount / 2); // the odd chip goes to the high half
-      wins.push(...splitAmong(s, hiWinners, p.amount - loAmount, (w) => ({ ...hiName(w), half: 'high' })));
-      wins.push(...splitAmong(s, loWinners, loAmount, () => ({ hand: lowName(bestLow), half: 'low' })));
-    } else {
-      wins.push(...splitAmong(s, hiWinners, p.amount, hiName));
-    }
+    // Each board takes its share of every pot (the first board gets the odd chip).
+    const shares = boards.length === 2 ? [p.amount - Math.floor(p.amount / 2), Math.floor(p.amount / 2)] : [p.amount];
+    boards.forEach((board, b) => {
+      const rated = s.seats.map((x) => (x.inHand && !x.folded ? rate(v, x.hole, board) : null));
+      const run = boards.length === 2 ? ((b + 1) as 1 | 2) : undefined;
+      const amount = shares[b];
+      const best = Math.max(...p.eligible.map((i) => rated[i]!.high));
+      const hiWinners = p.eligible.filter((i) => rated[i]!.high === best);
+      const lows = p.eligible.filter((i) => rated[i]!.low !== null);
+      const hiName = (w: number) => ({ hand: HAND_CLASS_NAMES[rated[w]!.cls], run });
+      if (v === 'omaha8' && lows.length) {
+        const bestLow = Math.min(...lows.map((i) => rated[i]!.low!));
+        const loWinners = lows.filter((i) => rated[i]!.low === bestLow);
+        const loAmount = Math.floor(amount / 2); // the odd chip goes to the high half
+        wins.push(...splitAmong(s, hiWinners, amount - loAmount, (w) => ({ ...hiName(w), half: 'high' })));
+        wins.push(...splitAmong(s, loWinners, loAmount, () => ({ hand: lowName(bestLow), half: 'low', run })));
+      } else {
+        wins.push(...splitAmong(s, hiWinners, amount, hiName));
+      }
+    });
   }
   award(s, wins, true);
 }
@@ -418,11 +518,30 @@ function award(s: HoldemState, wins: PotWin[], shown: boolean) {
   // One log line per seat and half.
   const merged = new Map<string, PotWin>();
   for (const w of wins) {
-    const k = `${w.seat}:${w.half ?? ''}`;
+    const k = `${w.seat}:${w.half ?? ''}:${w.run ?? ''}`;
     const m = merged.get(k);
     merged.set(k, m ? { ...m, amount: m.amount + w.amount } : { ...w });
   }
   for (const w of merged.values()) {
-    s.log.push(`${s.seats[w.seat].name} wins $${w.amount.toLocaleString('en-US')}${w.half ? ` (${w.half})` : ''}${w.hand ? ` with ${withArticle(w.hand)}` : ''}`);
+    const tag = [w.run ? `board ${w.run}` : '', w.half ?? ''].filter(Boolean).join(', ');
+    s.log.push(`${s.seats[w.seat].name} wins $${w.amount.toLocaleString('en-US')}${tag ? ` (${tag})` : ''}${w.hand ? ` with ${withArticle(w.hand)}` : ''}`);
+  }
+  // The 7-2 Game: a pot won holding seven-deuce collects the bounty from everyone else dealt in.
+  const bounty = s.rules?.sevenDeuce ?? 0;
+  if (bounty > 0 && variantOf(s) === 'holdem') {
+    const winners = [...new Set(wins.filter((w) => w.amount > 0).map((w) => w.seat))];
+    const sd = winners.find((w) => { const r = s.seats[w].hole.map((c) => c.rank).sort((a, b) => a - b); return r[0] === 2 && r[1] === 7; });
+    if (sd !== undefined) {
+      let got = 0;
+      for (const [i, x] of s.seats.entries()) {
+        if (i === sd || !x.inHand) continue;
+        const pay = Math.min(bounty, x.stack);
+        x.stack -= pay;
+        got += pay;
+      }
+      s.seats[sd].stack += got;
+      s.bounty = { seat: sd, amount: got };
+      s.log.push(`7-2! ${s.seats[sd].name} collects a $${got.toLocaleString('en-US')} bounty`);
+    }
   }
 }

@@ -27,7 +27,7 @@ export function ShopPanel() {
   const { state, services, run, notify } = useGame();
   const c = state.career;
   const [pending, setPending] = useState<Pending | null>(null);
-  const [tab, setTab] = useState<'gear' | 'acc' | 'snacks' | 'life' | 'homes'>('gear');
+  const [tab, setTab] = useState<'gear' | 'acc' | 'snacks' | 'life'>('gear');
   const snacksUsed = Number(c.flags[snackWeekKey(c.season, c.week)] ?? 0);
 
   const confirm = async () => {
@@ -53,7 +53,7 @@ export function ShopPanel() {
       <header className="hub-card ps-head">
         <div>
           <h1 className="ps-title">Pro Shop</h1>
-          <p className="muted">Clubs, kit and snacks. The guy behind the counter has opinions about your grip.</p>
+          <p className="muted">Clubs, kit and snacks. The guy behind the counter has opinions about your grip. (Homes are under Real Estate.)</p>
         </div>
         <span className="subtab-bank">Bank: <b>{formatMoney(state.balance)}</b></span>
       </header>
@@ -62,7 +62,6 @@ export function ShopPanel() {
         <button className={tab === 'acc' ? 'on' : ''} onClick={() => setTab('acc')} data-testid="ps-acc">Accessories</button>
         <button className={tab === 'snacks' ? 'on' : ''} onClick={() => setTab('snacks')} data-testid="ps-snacks">Snacks &amp; Energy</button>
         <button className={tab === 'life' ? 'on' : ''} onClick={() => setTab('life')}>Lifestyle</button>
-        <button className={tab === 'homes' ? 'on' : ''} onClick={() => setTab('homes')}>Homes</button>
       </nav>
 
       {tab === 'gear' && (
@@ -166,7 +165,50 @@ export function ShopPanel() {
         </section>
       )}
 
-      {tab === 'homes' && (
+      {pending && (
+        <Dialog title={`Buy ${pending.name}?`} onClose={() => setPending(null)}>
+          <p>
+            {formatMoney(pending.price)} leaves you with <b>{formatMoney(state.balance - pending.price)}</b>.
+          </p>
+          {state.balance - pending.price < state.propertyDef.livingCost * 4 && <p className="warn-text">That&rsquo;s less than a month of rent.</p>}
+          <div className="btn-row">
+            <button className="btn ghost" onClick={() => setPending(null)}>Cancel</button>
+            <button className="btn primary" onClick={confirm} autoFocus data-testid="confirm-buy">Buy</button>
+          </div>
+        </Dialog>
+      )}
+    </main>
+  );
+}
+
+/** Real Estate → Listings: homes for sale (moved here from the Pro Shop). */
+export function ListingsPanel() {
+  const { state, services, run, notify } = useGame();
+  const c = state.career;
+  const [pending, setPending] = useState<Pending | null>(null);
+  const confirm = async () => {
+    const p = pending!;
+    setPending(null);
+    const o = await run(() => services.career.buyHome(p.id));
+    if (o?.message) notify({ kind: 'purchase', title: o.message, body: p.price ? formatMoney(-p.price, true) : undefined });
+  };
+  const priceBtn = (p: Pending, lock: string | null) =>
+    lock ? (
+      <span className="pill warn">{lock}</span>
+    ) : (
+      <button className="btn small primary" disabled={state.balance < p.price} onClick={() => setPending(p)} data-testid={`buy-${p.id}`}>
+        {formatMoney(p.price)}
+      </button>
+    );
+  return (
+    <main className="shop pro-shop listings" data-testid="listings">
+      <header className="hub-card ps-head re-head">
+        <div>
+          <h1 className="ps-title">Real Estate</h1>
+          <p className="muted">Every listing comes with a realtor who says "cozy" about the small ones.</p>
+        </div>
+        <span className="subtab-bank">Bank: <b>{formatMoney(state.balance)}</b></span>
+      </header>
         <section className="hub-card">
           <h2 className="hub-title">Homes</h2>
           <p className="muted">A better home means more room: more places for furniture, fancier cabinets, and more energy each week. Rent goes up too.</p>
@@ -194,13 +236,9 @@ export function ShopPanel() {
             })}
           </ul>
         </section>
-      )}
-
       {pending && (
         <Dialog title={`Buy ${pending.name}?`} onClose={() => setPending(null)}>
-          <p>
-            {formatMoney(pending.price)} leaves you with <b>{formatMoney(state.balance - pending.price)}</b>.
-          </p>
+          <p>{formatMoney(pending.price)} leaves you with <b>{formatMoney(state.balance - pending.price)}</b>.</p>
           {state.balance - pending.price < state.propertyDef.livingCost * 4 && <p className="warn-text">That&rsquo;s less than a month of rent.</p>}
           <div className="btn-row">
             <button className="btn ghost" onClick={() => setPending(null)}>Cancel</button>
