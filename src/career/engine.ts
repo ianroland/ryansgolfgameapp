@@ -14,7 +14,7 @@ import {
   QSERIES_LPGA_CARDS, rivalTourName, SEASON_WEEKS, START_AGE, TOURS, fameLevel, type QStage, type TourId,
 } from './config';
 import { buildPools, evolvePools, lpgaLadderPools, RIVAL, rivalTourFor } from './field';
-import { gearById, lifestyleById, STARTING_EQUIPMENT } from './shop';
+import { gearById, lifestyleById, snackById, snackWeekKey, SNACKS_PER_WEEK, STARTING_EQUIPMENT } from './shop';
 import { clampStat, skillPointCost, trainingGain, travelDiscount, energyRegen } from './stats';
 import { storyById, STORIES, type Effects } from './stories';
 import { careerMoneyOf, ryanRank, seedCareerMoney } from './moneyList';
@@ -405,6 +405,26 @@ export function buyLifestyle(prev: CareerState, itemId: string, balance: number)
   }
   if (l.kind === 'car') c.owned = c.owned.filter((id) => id === itemId || lifestyleById(id)?.kind !== 'car');
   return { career: c, money: [{ amount: -l.price, type: 'lifestyle_purchase', sourceId: itemId, key: `buy:${itemId}` }], message: `Bought ${l.name}` };
+}
+
+/** Snacks & energy from the Pro Shop: energy now, a few per week, capped at 100. */
+export function buySnack(prev: CareerState, itemId: string, balance: number): Outcome {
+  const x = snackById(itemId) ?? fail('Unknown item');
+  const key = snackWeekKey(prev.season, prev.week);
+  const used = Number(prev.flags[key] ?? 0);
+  if (used >= SNACKS_PER_WEEK) fail(`That's ${SNACKS_PER_WEEK} this week. Save some for later.`);
+  if (prev.energy >= 100) fail('Already full of energy');
+  if (balance < x.price) fail('Not enough money');
+  const c = clone(prev);
+  for (const k of Object.keys(c.flags)) if (k.startsWith('snacks:') && k !== key) delete c.flags[k];
+  c.flags[key] = used + 1;
+  const before = c.energy;
+  c.energy = clamp(c.energy + x.energy, 0, 100);
+  return {
+    career: c,
+    money: [{ amount: -x.price, type: 'lifestyle_purchase', sourceId: itemId, key: `snack:${itemId}:${prev.season}:${prev.week}:${used + 1}` }],
+    message: `${x.name}: +${c.energy - before} Energy`,
+  };
 }
 
 // ───────────────────────── Tournaments ─────────────────────────

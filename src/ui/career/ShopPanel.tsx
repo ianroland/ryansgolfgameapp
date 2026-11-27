@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { GEAR, LIFESTYLE, type GearSlot } from '../../career/shop';
+import { GEAR, LIFESTYLE, SNACKS, SNACKS_PER_WEEK, snackWeekKey, type GearSlot } from '../../career/shop';
+import { ClubIcon, ItemIcon } from './ProShopIcons';
 import { STAT_LABELS, type StatKey } from '../../career/types';
 import { HOMES } from '../../catalog/properties';
 import { Dialog } from '../components/Dialog';
@@ -15,11 +16,19 @@ const bonusText = (b: Partial<Record<StatKey, number>>) =>
 
 type Pending = { kind: 'gear' | 'life' | 'home'; id: string; name: string; price: number };
 
+/** 0 starter … 3 top of the line, by price within the slot. */
+const clubTier = (id: string) => {
+  const g = GEAR.find((x) => x.id === id)!;
+  const prices = GEAR.filter((x) => x.slot === g.slot).map((x) => x.price).sort((a, b) => a - b);
+  return Math.round((prices.indexOf(g.price) / Math.max(1, prices.length - 1)) * 3);
+};
+
 export function ShopPanel() {
   const { state, services, run, notify } = useGame();
   const c = state.career;
   const [pending, setPending] = useState<Pending | null>(null);
-  const [tab, setTab] = useState<'gear' | 'life' | 'homes'>('gear');
+  const [tab, setTab] = useState<'gear' | 'acc' | 'snacks' | 'life' | 'homes'>('gear');
+  const snacksUsed = Number(c.flags[snackWeekKey(c.season, c.week)] ?? 0);
 
   const confirm = async () => {
     const p = pending!;
@@ -40,12 +49,20 @@ export function ShopPanel() {
     );
 
   return (
-    <main className="shop">
-      <nav className="subtabs" aria-label="Shop sections">
-        <button className={tab === 'gear' ? 'on' : ''} onClick={() => setTab('gear')}>Equipment</button>
+    <main className="shop pro-shop">
+      <header className="hub-card ps-head">
+        <div>
+          <h1 className="ps-title">Pro Shop</h1>
+          <p className="muted">Clubs, kit and snacks. The guy behind the counter has opinions about your grip.</p>
+        </div>
+        <span className="subtab-bank">Bank: <b>{formatMoney(state.balance)}</b></span>
+      </header>
+      <nav className="subtabs" aria-label="Pro Shop sections">
+        <button className={tab === 'gear' ? 'on' : ''} onClick={() => setTab('gear')} data-testid="ps-clubs">Clubs</button>
+        <button className={tab === 'acc' ? 'on' : ''} onClick={() => setTab('acc')} data-testid="ps-acc">Accessories</button>
+        <button className={tab === 'snacks' ? 'on' : ''} onClick={() => setTab('snacks')} data-testid="ps-snacks">Snacks &amp; Energy</button>
         <button className={tab === 'life' ? 'on' : ''} onClick={() => setTab('life')}>Lifestyle</button>
         <button className={tab === 'homes' ? 'on' : ''} onClick={() => setTab('homes')}>Homes</button>
-        <span className="subtab-bank">Bank: <b>{formatMoney(state.balance)}</b></span>
       </nav>
 
       {tab === 'gear' && (
@@ -54,11 +71,12 @@ export function ShopPanel() {
             <section key={slot} className="hub-card">
               <h2 className="hub-title">{SLOT_NAMES[slot]}</h2>
               <ul className="list">
-                {GEAR.filter((g) => g.slot === slot).map((g) => {
+                {GEAR.filter((g) => g.slot === slot).sort((a, b) => a.price - b.price).map((g) => {
                   const owned = g.price === 0 || c.owned.includes(g.id);
                   const equipped = c.equipment[slot] === g.id;
                   return (
                     <li key={g.id} className={`list-row column shop-row ${equipped ? 'is-selected' : ''}`}>
+                      <ClubIcon slot={slot} tier={clubTier(g.id)} />
                       <span className="shop-info">
                         <b>{g.name}</b>
                         <span className="muted">{g.description}</span>
@@ -83,11 +101,12 @@ export function ShopPanel() {
         <section className="hub-card">
           <h2 className="hub-title">Lifestyle &amp; team</h2>
           <ul className="list">
-            {LIFESTYLE.map((l) => {
+            {LIFESTYLE.filter((l) => l.kind !== 'accessory').map((l) => {
               const owned = c.owned.includes(l.id);
               const lock = c.fame < l.minFame ? `Fame ${l.minFame}` : l.requiresPro && c.status !== 'pro' ? 'Pros only' : null;
               return (
                 <li key={l.id} className="list-row column shop-row">
+                  <ItemIcon id={l.id} kind={l.kind} />
                   <span className="shop-info">
                     <b>{l.name}</b>
                     <span className="muted">{l.description}{l.tournamentBonus ? ` (${bonusText(l.tournamentBonus)})` : ''}</span>
@@ -101,6 +120,52 @@ export function ShopPanel() {
         </section>
       )}
 
+      {tab === 'acc' && (
+        <section className="hub-card">
+          <h2 className="hub-title">Accessories</h2>
+          <ul className="list ps-grid">
+            {LIFESTYLE.filter((l) => l.kind === 'accessory').map((l) => {
+              const owned = c.owned.includes(l.id);
+              const lock = c.fame < l.minFame ? `Fame ${l.minFame}` : null;
+              return (
+                <li key={l.id} className={`list-row column shop-row ${owned ? 'is-selected' : ''}`} data-testid={`ps-item-${l.id}`}>
+                  <ItemIcon id={l.id} />
+                  <span className="shop-info"><b>{l.name}</b><span className="muted">{l.description}</span></span>
+                  {owned ? <span className="pill gold">Owned</span> : priceBtn({ kind: 'life', id: l.id, name: l.name, price: l.price }, lock)}
+                </li>
+              );
+            })}
+          </ul>
+          <p className="fineprint">Accessories stack with everything else you own.</p>
+        </section>
+      )}
+
+      {tab === 'snacks' && (
+        <section className="hub-card">
+          <h2 className="hub-title">Snacks &amp; Energy</h2>
+          <p className="muted">Energy <b>{c.energy}</b>/100 · {SNACKS_PER_WEEK - snacksUsed} of {SNACKS_PER_WEEK} snacks left this week. Eaten on the spot.</p>
+          <ul className="list ps-grid">
+            {SNACKS.map((x) => (
+              <li key={x.id} className="list-row column shop-row" data-testid={`ps-item-${x.id}`}>
+                <ItemIcon id={x.id} />
+                <span className="shop-info"><b>{x.name}</b><span className="muted">{x.description}</span></span>
+                <button
+                  className="btn small primary"
+                  disabled={state.balance < x.price || snacksUsed >= SNACKS_PER_WEEK || c.energy >= 100}
+                  onClick={async () => {
+                    const o = await run(() => services.career.buySnack(x.id));
+                    if (o?.message) notify({ kind: 'purchase', title: o.message, body: formatMoney(-x.price, true) });
+                  }}
+                  data-testid={`buy-${x.id}`}
+                >
+                  {formatMoney(x.price)}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {tab === 'homes' && (
         <section className="hub-card">
           <h2 className="hub-title">Homes</h2>
@@ -111,6 +176,7 @@ export function ShopPanel() {
               const below = h.tier < state.propertyDef.tier;
               return (
                 <li key={h.id} className={`list-row column shop-row ${current ? 'is-selected' : ''}`}>
+                  <ItemIcon id="home" />
                   <span className="shop-info">
                     <b>Lv {h.tier} · {h.name}</b>
                     <span className="muted">{h.theme}</span>

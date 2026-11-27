@@ -13,6 +13,8 @@ import { serverById } from '../casino/servers/registry';
 import { SERVER_CONFIG } from '../casino/servers/config';
 import { applyTip, applyVisit, freshNpcState, normalizeNpcState, TIP_AMOUNTS, type TipOutcome } from '../npc/relationship';
 import { eligibleHooks, type RelationshipHook } from '../npc/hooks';
+import { applyTableNight } from '../npc/vip';
+import { casinoAt } from '../expansion/locations';
 import type { NpcId, NpcState, RelationshipLogEntry } from '../npc/types';
 import type { EconomyService } from './economyService';
 import { pendingThreeCard } from './casinoService';
@@ -65,10 +67,12 @@ export class NpcService {
       const key = casinoWeekKey(c);
       const prev = await this.stateOf(npcId);
       if (prev.lastVisitKey === key) return prev; // already counted this visit
-      const next = applyVisit(prev, key);
-      await this.db.npcState.put(next);
       const at = (await this.db.profiles.get(c.playerId))?.careerClock ?? new Date(0).toISOString();
-      await this.log({ id: `rel:${npcId}:visit:${key}`, npcId, at, kind: 'visit', delta: 0, visitKey: key });
+      // A night at this dealer's table here: counts toward the private-room invitation, and
+      // once Ryan is a Regular it is real relationship (table time), the way past tips' ceiling.
+      const { next, gain } = applyTableNight(applyVisit(prev, key), casinoAt(c), at);
+      await this.db.npcState.put(next);
+      await this.log({ id: `rel:${npcId}:visit:${key}`, npcId, at, kind: 'visit', delta: gain, visitKey: key });
       return next;
     });
   }

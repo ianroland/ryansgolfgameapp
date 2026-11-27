@@ -37,6 +37,8 @@ import { ChipButton, ChipImg } from './Chips';
 import { CasinoLocationContext, devChipPreview, devLegacyTables, useCasinoLocation } from './casinoLocation';
 import { chipAsset } from '../../expansion/chipThemes';
 import { CasinoLobby } from './CasinoLobby';
+import { PrivateRooms, useVipStatus, VipInvite } from './PrivateRooms';
+import { pokerTable } from '../../services/pokerService';
 import { casinoAt, locationById, type CasinoGameId } from '../../expansion/locations';
 import { ART as LOBBY_ART } from './CasinoLobby';
 import { ALL_SPOTS, MONIQUE_AT, RT, spotBox, WHEEL_AT, ZERO_CLIP, type Box } from './rouletteLayout';
@@ -58,7 +60,7 @@ import { appearanceOf } from '../../story/appearance';
  * the existing games.
  */
 
-type Game = CasinoGameId;
+type Game = CasinoGameId | 'private';
 
 const CHIPS = [5, 10, 25, 100, 500];
 /** Wide scenes (craps, roulette) also put the dealer beside the table on wide screens (tested: fits one screen). */
@@ -1070,6 +1072,17 @@ function Roulette({ active, onLeave }: { active: boolean; onLeave: () => void })
 
 // ───────────────────────── Casino floor ─────────────────────────
 
+/** The private rooms tab: greyed out until this floor's invitation is accepted. */
+function PrivateTab({ at, on, onClick, refresh }: { at: LocationId; on: boolean; onClick: () => void; refresh?: unknown }) {
+  const v = useVipStatus(at, refresh);
+  const locked = !v?.unlocked;
+  return (
+    <button className={`vip-tab ${on ? 'on' : ''} ${locked ? 'locked' : ''}`} aria-disabled={locked} title={locked ? 'Invitation only' : undefined} onClick={onClick} data-testid="casino-private">
+      {locked ? '🔒 ' : '★ '}Private Rooms
+    </button>
+  );
+}
+
 export function CasinoPanel() {
   const { state, services, run, notify } = useGame();
   const c = state.career;
@@ -1134,6 +1147,12 @@ export function CasinoPanel() {
               Head to the casino
             </button>
             {block && <p className="warn-text">{block}</p>}
+            {pokerTable(c) && (
+              <p className="warn-text" data-testid="poker-left-chips">
+                You left {formatMoney(pokerTable(c)!.state.seats[0].stack)} in chips at the poker table.{' '}
+                <button className="btn ghost" onClick={() => run(() => services.poker.leave())} data-testid="poker-cashout-away">Cash out</button>
+              </p>
+            )}
           </div>
         </section>
       ) : (
@@ -1142,7 +1161,9 @@ export function CasinoPanel() {
             {here.games.map((g) => (
               <button key={g.id} className={game === g.id ? 'on' : ''} onClick={() => setGame(g.id)} data-testid={`casino-${g.id}`}>{g.label}</button>
             ))}
+            <PrivateTab at={at} on={game === 'private'} onClick={() => setGame('private')} refresh={game} />
           </nav>
+          <VipInvite at={at} onOpen={() => setGame('private')} refresh={game} />
           {/* Games stay mounted so a hand in progress survives switching. */}
           <div hidden={game !== 'blackjack'}><Blackjack /></div>
           <div hidden={game !== 'slots'}><Slots /></div>
@@ -1154,6 +1175,7 @@ export function CasinoPanel() {
           {game === 'sportsbook' && <Sportsbook />}
           {game === 'machines' && <VideoMachine />}
           {game === 'wheel' && <SpinWheel />}
+          {game === 'private' && <PrivateRooms at={at} />}
         </>
       )}
     </main>

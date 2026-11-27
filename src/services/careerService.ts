@@ -241,6 +241,10 @@ export class CareerService {
     return this.mutate((c, { balance }) => engine.buyLifestyle(c, itemId, balance));
   }
 
+  buySnack(itemId: string) {
+    return this.mutate((c, { balance }) => engine.buySnack(c, itemId, balance));
+  }
+
   /** Advances the week, then settles any sportsbook tickets whose games are now final (same transaction). */
   async advanceWeek() {
     let settled = 0;

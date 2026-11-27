@@ -2,6 +2,33 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.25.0",
+   "date": "2026-11-27",
+   "title": "Private Rooms and the Pro Shop",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Each casino now has a Private Rooms tab, greyed out until a dealer who works that floor invites you. Tips get a dealer to Regular. After that, every night you spend at their table moves you toward Friend. Once you're a Friend and have spent 3 nights at their table at that casino, they invite you, and the room and course there open for good."
+    },
+    {
+     "tag": "new",
+     "text": "The Back Room at Desert Palms: No-Limit Texas Hold'em at 5/10 against four permanent regulars, Lucky Pham, Professor Ike Mandel, Sal \"The Sphinx\" Moretti and Coco DeLuca. Side pots are handled, and each opponent decides from their own cards and the board only."
+    },
+    {
+     "tag": "new",
+     "text": "Poker money: one debit for the buy-in and one credit when you cash out. If you leave mid-hand, your hand is folded. Chips left at the table can be cashed out from the casino door."
+    },
+    {
+     "tag": "new",
+     "text": "White Buffalo (Seven Card Stud) and Morongo Sky (Omaha Hi-Lo) rooms and all three private courses are listed with their regulars. Their tables and the skins matches come next."
+    },
+    {
+     "tag": "new",
+     "text": "The Shop is now the Pro Shop, with a new look and drawn icons for every item. It has more clubs, a new Accessories section (glove, shoes, alignment sticks, rangefinder, green book, launch monitor, massage gun) and Snacks & Energy (BOBO MILKY and friends, 3 a week)."
+    }
+   ]
+  },
+  {
    "version": "0.24.0",
    "date": "2026-11-27",
    "title": "Act IV: The Major",

@@ -2629,3 +2629,66 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .craps-zone-note { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); white-space: nowrap; padding: 0.25cqw 0.8cqw; border-radius: 99px; background: rgba(10, 30, 18, 0.82); color: #f4e7b0; font-size: max(10px, 1.15cqw); letter-spacing: .02em; pointer-events: none; }
 .cl-note { display: block; font-size: 11px; opacity: .8; }
 .baba-face { align-self: center; display: block; }
+
+/* ───── Private rooms (0.25.0) ───── */
+.casino-tabs .vip-tab { margin-left: auto; background: linear-gradient(180deg, #3a2a52, #1d1230); box-shadow: inset 0 0 0 2px #b08cff; }
+.casino-tabs .vip-tab.locked { opacity: 0.55; filter: grayscale(0.8); }
+.casino-tabs .vip-tab.on { background: linear-gradient(180deg, #ffe680, #d99a12); color: #2a1a02; text-shadow: none; }
+.vip-invite { display: flex; gap: 14px; align-items: flex-start; border-color: #b08cff; background: linear-gradient(180deg, #2a1d40, #160f24); color: #f3eaff; margin-bottom: 12px; animation: vipGlow 2.4s ease-in-out infinite; }
+@keyframes vipGlow { 50% { box-shadow: 0 0 18px #b08cff88; } }
+.vip-face { width: 64px; height: 64px; flex: none; display: grid; place-items: center; font-family: var(--head); font-size: 34px; background: #6c3483; color: #fff; border: 3px solid var(--ink); border-radius: 10px; }
+.vip-body { flex: 1; }
+.vip-tag { margin-left: 8px; font-size: 13px; padding: 1px 6px; border-radius: 6px; background: #ffd34d; color: #2a1a02; }
+.vip-locked { text-align: left; border-style: dashed; opacity: 0.92; }
+.vip-sub button { font-size: 18px; }
+.poker-room { overflow: hidden; }
+.poker-regulars { list-style: none; padding: 0; display: grid; gap: 6px; }
+.poker-regulars li { display: flex; gap: 8px; align-items: center; }
+.poker-av { display: inline-grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 50%; border: 2px solid var(--ink); color: #fff; font-family: var(--head); font-size: 20px; text-shadow: 1px 1px 0 var(--ink); }
+.poker-felt { position: relative; height: 430px; margin: 4px 0 10px; border-radius: 200px / 150px; border: 10px solid #4a2a12; box-shadow: inset 0 0 0 4px #7a4a22, inset 0 0 60px #0008; background: radial-gradient(ellipse at center, #2f8a4f 0%, #1c6236 60%, #124526 100%); }
+.poker-center { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); text-align: center; }
+.poker-board { display: flex; gap: 6px; justify-content: center; min-height: 86px; }
+.poker-pot { margin: 6px 0 0; color: #fff; font-family: var(--head); font-size: 20px; text-shadow: 2px 2px 0 var(--ink); }
+.poker-seat { position: absolute; width: 150px; text-align: center; color: #fff; transition: opacity .2s; }
+.poker-seat .poker-av { width: 42px; height: 42px; font-size: 24px; }
+.poker-seat.acting .poker-av { box-shadow: 0 0 0 3px #ffe680, 0 0 14px #ffe680; }
+.poker-seat.folded { opacity: 0.45; }
+.poker-seat.won .poker-stack { color: #ffe680; }
+.poker-name { font-family: var(--head); font-size: 17px; text-shadow: 1px 1px 0 var(--ink); }
+.poker-stack { font-size: 13px; text-shadow: 1px 1px 0 var(--ink); }
+.poker-hole { display: flex; justify-content: center; gap: 2px; transform: scale(0.72); transform-origin: top center; height: 66px; }
+.poker-btn { display: inline-grid; place-items: center; width: 18px; height: 18px; margin-left: 4px; border-radius: 50%; background: #fff; color: #222; font-size: 11px; vertical-align: middle; text-shadow: none; }
+.poker-bet { position: absolute; left: 50%; transform: translateX(-50%) scale(0.8); }
+.s-hero { left: 50%; bottom: -6px; transform: translateX(-50%); }
+.s-hero .poker-hole { transform: scale(0.9); height: 80px; }
+.s-hero .poker-bet { top: -34px; }
+.s-left { left: 2%; top: 52%; } .s-left .poker-bet { right: -40px; left: auto; top: 30px; }
+.s-topleft { left: 18%; top: 2%; } .s-topleft .poker-bet { bottom: -30px; }
+.s-topright { right: 18%; top: 2%; } .s-topright .poker-bet { bottom: -30px; }
+.s-right { right: 2%; top: 52%; } .s-right .poker-bet { left: -40px; top: 30px; }
+.poker-bubble { position: absolute; left: 50%; top: -30px; transform: translateX(-50%); width: max-content; max-width: 220px; margin: 0; padding: 4px 8px; font-size: 12px; background: #fffbe6; color: #2a1a02; border: 2px solid var(--ink); border-radius: 8px; z-index: 2; animation: pokerBubble 4s forwards; }
+@keyframes pokerBubble { 0%, 80% { opacity: 1; } 100% { opacity: 0; } }
+.poker-actions { gap: 8px; flex-wrap: wrap; align-items: center; }
+.poker-raise { display: inline-flex; gap: 6px; align-items: center; }
+.poker-log { max-height: 140px; }
+@media (max-width: 700px) { .poker-felt { height: 520px; border-radius: 60px; } .poker-seat { width: 110px; } .s-topleft { left: 4%; } .s-topright { right: 4%; } }
+.poker-av.hero-av { background: #1e8449; overflow: hidden; }
+@media (max-width: 700px) {
+  .poker-board { gap: 3px; min-height: 64px; }
+  .poker-board .pcard { width: 44px; height: 64px; }
+  .poker-board .pcard .pc-suit { font-size: 22px; }
+  .poker-center { top: 40%; }
+  .s-left, .s-right { top: 56%; }
+  .poker-pot { font-size: 15px; }
+}
+
+/* ───── Pro Shop (0.25.0) ───── */
+.ps-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; background: linear-gradient(100deg, #164526 0%, #2a7a44 55%, #3c8f55 100%); color: #fff; }
+.ps-head .muted { color: #d8f2df; }
+.ps-title { margin: 0; font-family: var(--head); font-size: 38px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 3px 3px 0 var(--ink); }
+.ps-head .subtab-bank { background: #0006; padding: 6px 12px; border-radius: 8px; }
+.pro-shop .shop-row { gap: 12px; }
+.ps-icon { flex: none; width: 56px; height: 56px; image-rendering: auto; filter: drop-shadow(0 2px 0 #0003); }
+.pro-shop .shop-row.is-selected .ps-icon { filter: drop-shadow(0 0 6px #ffd34d); }
+.ps-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 700px) { .ps-grid { grid-template-columns: minmax(0, 1fr); } .ps-title { font-size: 28px; } .ps-icon { width: 46px; height: 46px; } }

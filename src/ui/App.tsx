@@ -45,7 +45,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'career', label: 'Career' },
   { id: 'schedule', label: 'Schedule' },
   { id: 'legacy', label: 'Legacy' },
-  { id: 'shop', label: 'Shop' },
+  { id: 'shop', label: 'Pro Shop' },
   { id: 'people', label: 'People' },
   { id: 'clubhouse', label: 'Home' },
   { id: 'casino', label: 'Casino' },

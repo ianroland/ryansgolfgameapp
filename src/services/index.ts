@@ -18,6 +18,7 @@ import { RecordsService, registerAlbatrossRecords } from './recordsService';
 import { LegacyService, registerLegacyAwards } from './legacyService';
 import { ExpansionService } from './expansionService';
 import { NpcService } from './npcService';
+import { PokerService } from './pokerService';
 import { DrinkService } from './drinkService';
 import { SportsbookService } from './sportsbookService';
 import { SportsUniverseService } from './sportsUniverseService';
@@ -37,6 +38,7 @@ export interface GameServices {
   legacy: LegacyService;
   expansion: ExpansionService;
   npc: NpcService;
+  poker: PokerService;
   drinks: DrinkService;
   sportsbook: SportsbookService;
   sportsUniverse: SportsUniverseService;
@@ -68,6 +70,7 @@ export function createServices(dbName: string = DB_NAME, dexieOptions?: DexieOpt
     legacy: new LegacyService(db),
     expansion: new ExpansionService(db),
     npc: new NpcService(db, economy),
+    poker: new PokerService(db, economy),
     drinks: new DrinkService(db, economy),
     sportsbook,
     sportsUniverse: new SportsUniverseService(db, sportsbook, notifier),
