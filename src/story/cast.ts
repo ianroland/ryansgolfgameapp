@@ -39,9 +39,9 @@ export const characterById = (id: string) => CAST.find((c) => c.id === id);
 
 /**
  * People who speak in a scene without character art (a name tag, no portrait or sprite).
- * Mom has no art yet; none is invented for her.
+ * None right now; no art is ever invented for anyone.
  */
-export const VOICES: readonly { id: string; short: string; color: string }[] = [{ id: 'mom', short: 'Mom', color: '#a0522d' }];
+export const VOICES: readonly { id: string; short: string; color: string }[] = [];
 export const voiceById = (id: string) => VOICES.find((v) => v.id === id);
 
 /** Expression → which head is drawn. Cast sheets have 7 heads; "worried" shares the disappointed head. */

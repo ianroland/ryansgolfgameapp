@@ -128,7 +128,7 @@ describe('Act III: The Rookie', () => {
 describe('Act IV: The Major', () => {
   it('the shippable scenes play in order on the LPGA Tour', async () => {
     const { ACT_FOUR } = await import('../src/story/actFour');
-    expect(ACT_FOUR.map((d) => d.id)).toEqual(['act4_big_leagues', 'act4_corkboard', 'act4_desert_rose', 'act4_kayla_knows', 'act4_mom_at_the_major', 'act4_reading_the_green', 'act4_championship_sunday', 'act4_championship_sunday_next_year']);
+    expect(ACT_FOUR.map((d) => d.id)).toEqual(['act4_big_leagues', 'act4_corkboard', 'act4_desert_rose', 'act4_kayla_knows', 'act4_baba_at_the_major', 'act4_reading_the_green', 'act4_championship_sunday', 'act4_championship_sunday_next_year']);
     for (const d of ACT_FOUR) expect(d.act).toBe(4);
   });
 

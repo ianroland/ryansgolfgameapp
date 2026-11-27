@@ -3,9 +3,9 @@
  * Same rules as Act III: the jokes land on Biff, the tour, Doug and Kayla's detective work, never on
  * Ryan's transition. Approved under the owner's standing approval.
  *
- * Mom at the Major, Reading the Green and Championship Sunday: approved by the owner (2026-11-27,
- * "approve all"). Mom at the Major and Reading the Green play between rounds (`during`). Mom has no
- * character art, so she speaks as a voice (name tag, no portrait); no art is invented for her.
+ * Baba at the Major, Reading the Green and Championship Sunday: approved by the owner (2026-11-27,
+ * "approve all"; then "change mom to Baba": the major scene is Baba's, and Mom doesn't appear).
+ * Baba at the Major and Reading the Green play between rounds (`during`).
  */
 import type { CareerState } from '../career/types';
 import type { EncounterDef } from './encounters';
@@ -27,7 +27,6 @@ const done = (s: StoryState, id: string) => !!s.encounters[id];
 const lastWasTourChampionship = (c: CareerState) => !c.active && c.recent[0]?.name === 'Tour Championship' && c.recent[0]?.season === c.season;
 const wonIt = (c: CareerState) => c.recent[0]?.posLabel === '1';
 
-export const MOM_VOICE = 'mom';
 
 export const ACT_FOUR: EncounterDef[] = [
   {
@@ -282,64 +281,64 @@ export const ACT_FOUR: EncounterDef[] = [
     },
   },
   {
-    id: 'act4_mom_at_the_major',
-    title: 'Mom at the Major',
-    teaser: 'Saturday at the National Open. Behind the ropes on nine: a sun hat and an upside-down pairings sheet.',
+    id: 'act4_baba_at_the_major',
+    title: 'Baba at the Major',
+    teaser: 'Saturday at the National Open. Behind the ropes on nine: Baba, his good hat, and a pairings sheet he’s correcting in pencil.',
     act: 4,
     location: 'course_sunset',
-    cast: ['baba'],
+    cast: ['baba', 'caddie_jordan'],
     during: true,
     when: (c, s) => onTour(c, s) && at(c, 'National Open Championship') && c.active!.round === 2 && done(s, 'act4_big_leagues'),
     start: 'start',
     nodes: {
       start: {
         lines: [
-          { who: 'narrator', text: 'Saturday at the National Open, the season’s third major. Behind the ropes on the ninth: a woman in a sun hat, holding the pairings sheet upside down.' },
-          { who: 'mom', text: 'Ryan? …Ryan. Hi.' },
-          { who: 'ryan', expr: 'surprised', text: 'Mom. You came.' },
-          { who: 'mom', text: 'Nobody told me. I saw you on the news. Then I saw it again. Then I bought a ticket.' },
-          { who: 'mom', text: 'I’m not good at this. I’m reading. There’s a whole shelf at the library, and a librarian who keeps bringing me more.' },
-          { who: 'mom', text: 'You look happy. That’s the part I understand already.' },
-          { who: 'mom', text: 'I’ll be on nine. I don’t know what a bogey is. I’ll clap anyway.' },
+          { who: 'narrator', text: 'Saturday at the National Open, the season’s third major. Behind the ropes on the ninth: Baba, in his good hat, holding the pairings sheet. He is correcting it with a pencil.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: '{Habibti}. They spelled the course wrong. Also your tee time. I fixed both.' },
+          { who: 'ryan', expr: 'surprised', text: 'Baba, you have a clubhouse credential. There’s air conditioning in there.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'The clubhouse has carpet. I don’t trust a golf course with carpet.' },
+          { who: 'baba', expr: 'neutral', pose: 'think', text: 'Thirty years I mow grass for other people’s majors. This one I just watch. It’s strange. I keep wanting to fix the divots.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'I’ll be on nine. I know what a bogey is. Don’t make one.' },
         ],
         choice: {
           prompt: 'What does Ryan say?',
           options: [
-            { id: 'hug', label: 'Hug her', hint: 'Mom ♥♥', next: 'hug' },
-            { id: 'sunday', label: '“Stay for Sunday?”', hint: 'Mom ♥, Form +1', next: 'sunday' },
-            { id: 'baba', label: '“Stand with Baba. He’ll explain bogeys.”', hint: 'Mom ♥, Baba ♥', next: 'baba' },
+            { id: 'hug', label: 'Hug him', hint: 'Baba ♥♥, Form +2', next: 'hug' },
+            { id: 'sunday', label: '“Stay for Sunday?”', hint: 'Baba ♥, Form +1', next: 'sunday' },
+            { id: 'jordan', label: '“Go stand with Jordan.”', hint: 'Baba ♥, Jordan ♥', next: 'jordan' },
           ],
         },
       },
       hug: {
         lines: [
           { who: 'narrator', text: 'Ryan ducks under the rope. The marshal opens his mouth, looks at them, and closes it again.' },
-          { who: 'mom', text: 'Okay. Okay. Go hit your ball. I’ll be right here.' },
-          { who: 'narrator', text: 'She claps at the wrong moment on the ninth green. A marshal raises his QUIET PLEASE sign. She waves at the marshal.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Okay. Okay. People are looking. Go hit your ball.' },
+          { who: 'narrator', text: 'On the ninth green Baba tells the gallery the fringe is cut a sixteenth too short. A marshal raises his QUIET PLEASE sign. Baba waves at the marshal.' },
         ],
         outcome: 'hug',
       },
       sunday: {
         lines: [
           { who: 'ryan', expr: 'happy', pose: 'talk', text: 'Stay for Sunday?' },
-          { who: 'mom', text: 'I’ll try. I mean it. I’ll try.' },
-          { who: 'narrator', text: 'She claps at the wrong moment on the ninth green. A marshal raises his QUIET PLEASE sign. She waves at the marshal.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'I’m already staying. I bought the cooler its own seat on the shuttle.' },
+          { who: 'narrator', text: 'On the ninth green Baba tells the gallery the fringe is cut a sixteenth too short. A marshal raises his QUIET PLEASE sign. Baba waves at the marshal.' },
         ],
         outcome: 'sunday',
       },
-      baba: {
+      jordan: {
         lines: [
-          { who: 'ryan', expr: 'laughing', pose: 'talk', text: 'Go stand with Baba. He’ll explain bogeys.' },
-          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'A bogey is one over par. Par is what the course thinks you should shoot. The course is usually wrong.' },
-          { who: 'narrator', text: 'Baba explains bogeys for nine holes. Mom nods at all of it. On the ninth green she claps at the wrong moment, and this time Baba claps with her.' },
+          { who: 'ryan', expr: 'laughing', pose: 'talk', text: 'Go stand with Jordan. Jordan has the yardage book.' },
+          { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'Every sprinkler head, measured twice.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'Twice is good. I measure three times. Give me the pencil.' },
+          { who: 'narrator', text: 'For nine holes Baba corrects the yardage book. Jordan lets him. Two of the corrections are right.' },
         ],
-        outcome: 'baba',
+        outcome: 'jordan',
       },
     },
     outcomes: {
-      hug: { summary: 'Mom came to the National Open. Ryan hugged her behind the ninth green.', tone: 'good', effects: { form: 2 }, bonds: { mom: 14 }, changes: 'Mom ♥♥ · Form +2' },
-      sunday: { summary: 'Mom came to the National Open, and said she’d try to stay for Sunday.', tone: 'good', effects: { form: 1 }, bonds: { mom: 8 }, changes: 'Mom ♥ · Form +1' },
-      baba: { summary: 'Mom came to the National Open. Baba explained bogeys for nine holes.', tone: 'good', effects: { rel: { mom: 4 } }, bonds: { mom: 8, baba: 6 }, changes: 'Mom ♥ · Baba ♥' },
+      hug: { summary: 'Baba watched his first major from behind the ninth. Ryan hugged him under the rope.', tone: 'good', effects: { form: 2, rel: { mom: 6 } }, bonds: { baba: 12 }, changes: 'Baba ♥♥ · Form +2' },
+      sunday: { summary: 'Baba is staying for Sunday. So is his cooler.', tone: 'good', effects: { form: 1, rel: { mom: 4 } }, bonds: { baba: 8 }, changes: 'Baba ♥ · Form +1' },
+      jordan: { summary: 'Baba spent nine holes correcting Jordan’s yardage book. Two corrections were right.', tone: 'good', effects: { rel: { mom: 4, caddie: 4 } }, bonds: { baba: 6, caddie_jordan: 6 }, changes: 'Baba ♥ · Jordan ♥' },
     },
   },
   {

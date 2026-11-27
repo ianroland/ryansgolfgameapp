@@ -2,6 +2,17 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "1.0.1",
+   "date": "2026-11-27",
+   "title": "Baba at the Major",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "Mom at the Major is now Baba at the Major: Baba watches his first major from behind the ninth green, corrects the pairings sheet in pencil, and won't go in the clubhouse because it has carpet."
+    }
+   ]
+  },
+  {
    "version": "1.0.0",
    "date": "2026-11-27",
    "title": "Ryan's Road to the LPGA: 1.0",

@@ -9,7 +9,7 @@ Built in 0.24.0. Act IV plays on the LPGA Tour itself (`story.act === 4` and an 
 | `act4_desert_rose` | The Desert Rose | Biff, Commissioner Clipboard | Weeks 4–6, the run-up to the first major. Biff's pre-ordered Pink Jacket. |
 | `act4_kayla_knows` | Kayla Knows | Kayla | 3+ weeks after The Corkboard. Ryan tells her. The player picks what they become (`flags.kayla`: friends, rivals or dinner). |
 
-| `act4_mom_at_the_major` | Mom at the Major | Baba (Mom as a voice) | Between rounds 2 and 3 of the National Open Championship (`during`). Mom has no art, so she speaks with a name tag only. |
+| `act4_baba_at_the_major` | Baba at the Major | Baba, Jordan | Between rounds 2 and 3 of the National Open Championship (`during`). Baba watches his first major from behind the ninth (owner: "change mom to Baba"). |
 | `act4_reading_the_green` | Reading the Green | Baba | The night before the final round of the Tour Championship (`during`). |
 | `act4_championship_sunday` | Championship Sunday | Baba, Jordan, Kayla | Straight after winning the Tour Championship. The putt is three feet; Baba hands over the RYAN — PRO can (broken tees). Sets `flags.storyComplete`. |
 | `act4_championship_sunday_next_year` | Championship Sunday | Baba, Jordan, Kayla | After the Tour Championship if Ryan didn't win it. The can stays on the shelf; a later win still opens it. Sets `flags.storyComplete`. |

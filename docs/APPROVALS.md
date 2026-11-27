@@ -15,3 +15,6 @@ Approved by the owner with "approve all let's get this to mvp to final release":
 - Reading the Green (Baba walks the 18th at 10:55 p.m.).
 - Lore questions q1–q8: approved as is.
 - Poker table rules (Run It Twice, Double Board, 7-2 Game, straddle), skins matches, Rytirement and the muni.
+
+## 2026-11-27 — "change mom to Baba" (owner)
+- The major scene is now Baba at the Major (Baba and Jordan). Mom no longer appears in it, and the no-art "voice" speaker is unused.

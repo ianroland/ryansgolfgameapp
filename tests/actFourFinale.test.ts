@@ -1,4 +1,4 @@
-/** Act IV finale: between-rounds scenes (Mom at the Major, Reading the Green) and Championship Sunday. */
+/** Act IV finale: between-rounds scenes (Baba at the Major, Reading the Green) and Championship Sunday. */
 import 'fake-indexeddb/auto';
 import { describe, expect, it } from 'vitest';
 import { encounterBlocker, offerStoryNow } from '../src/career/engine';
@@ -19,16 +19,16 @@ const lpga = (c: CareerState, name: string) => seasonSchedule(c.season).find((t)
 const playing = (c: CareerState, name: string, round: number): CareerState => ({ ...c, active: { tournamentId: lpga(c, name).id, round, alive: [c.playerId] } as unknown as ActiveTournament });
 
 describe('between-rounds scenes', () => {
-  it('Mom at the Major: Saturday at the National Open, playable only while the tournament is on', async () => {
+  it('Baba at the Major: Saturday at the National Open, playable only while the tournament is on', async () => {
     const c = await act4();
     expect(offerStoryNow(playing(c, 'National Open Championship', 1)).story!.available).toBeNull();
     const sat = offerStoryNow(playing(c, 'National Open Championship', 2));
-    expect(sat.story!.available).toBe('act4_mom_at_the_major');
-    expect(encounterBlocker(sat, 'act4_mom_at_the_major', ['hug'], 0)).toBeNull();
+    expect(sat.story!.available).toBe('act4_baba_at_the_major');
+    expect(encounterBlocker(sat, 'act4_baba_at_the_major', ['hug'], 0)).toBeNull();
     // Missed it: the tournament ended, the moment has passed and the offer goes away.
     const after = { ...sat, active: null };
-    expect(encounterBlocker(after, 'act4_mom_at_the_major', ['hug'], 0)).toBe('That moment has passed');
-    expect(offerStoryNow(after).story!.available).not.toBe('act4_mom_at_the_major');
+    expect(encounterBlocker(after, 'act4_baba_at_the_major', ['hug'], 0)).toBe('That moment has passed');
+    expect(offerStoryNow(after).story!.available).not.toBe('act4_baba_at_the_major');
   });
   it('Reading the Green: the night before the final round of the Tour Championship', async () => {
     const c = await act4();
@@ -54,7 +54,7 @@ describe('Championship Sunday', () => {
     expect(offerStoryNow(later).story!.available).toBe('act4_championship_sunday');
   });
   it('Ryan is she/her and Baba says habibti in every finale line', () => {
-    for (const id of ['act4_mom_at_the_major', 'act4_reading_the_green', 'act4_championship_sunday', 'act4_championship_sunday_next_year']) {
+    for (const id of ['act4_baba_at_the_major', 'act4_reading_the_green', 'act4_championship_sunday', 'act4_championship_sunday_next_year']) {
       const def = localizeEncounter(encounterById(id)!, 3);
       const text = Object.values(def.nodes).flatMap((n) => n.lines.map((l) => l.text)).join(' ');
       expect(text).not.toMatch(/[{}]/);
