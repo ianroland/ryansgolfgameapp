@@ -25,6 +25,21 @@ import type { DealerId, NpcState } from '../npc/types';
 import { hasVip, inviterAt, vipByKey, vipKey } from '../npc/vip';
 import type { AppDB } from '../persistence/db';
 import type { EconomyService } from './economyService';
+import { buyIn as skinsBuyIn, courseAt, newMatch, payoutOf, playHole, type SkinsMatch, type SkinsStyle } from '../expansion/skins';
+import { playerRating } from '../career/stats';
+
+export const SKINS_ENERGY = 10;
+export const skinsMatch = (c: CareerState) => readTable(c.flags.skinsMatch) as unknown as SkinsMatch | null;
+export const skinsWeekKey = (loc: LocationId) => `skinsWeek:${loc}`;
+/** Why Ryan can't tee off at this course right now, or null. */
+export function skinsBlocker(c: CareerState, loc: LocationId, balance: number): string | null {
+  if (!hasVip(c.flags, loc)) return 'Members and their guests only';
+  if (skinsMatch(c)) return 'Finish the match you started';
+  if (c.flags[skinsWeekKey(loc)] === engine.casinoWeekKey(c)) return 'One tee time a week. Come back next week.';
+  if (c.energy < SKINS_ENERGY) return 'Too tired for nine holes';
+  if (balance < skinsBuyIn(courseAt(loc))) return `The buy-in is ${skinsBuyIn(courseAt(loc)).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}`;
+  return null;
+}
 
 export const HERO = 0;
 
@@ -125,6 +140,45 @@ export class PokerService {
       const next = { ...c, flags: { ...c.flags, [vipKey(loc)]: at, [vipByKey(loc)]: by } };
       await this.db.careers.put(next);
       return { location: loc, unlocked: true, inviter: null, room: roomAt(loc) };
+    });
+  }
+
+  /** Tees off a skins match at this casino's private course: buy-in debited once, 10 energy. */
+  async skinsStart(): Promise<SkinsMatch> {
+    return this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.open();
+      const loc = casinoAt(c);
+      const block = skinsBlocker(c, loc, await this.economy.getBalance(c.playerId));
+      if (block) throw new DomainError('CAREER_RULE', block);
+      const id = newId('skins');
+      const m = newMatch(id, loc, (this.rand(2 ** 30) ^ Date.now()) >>> 0, Math.round(playerRating(c)));
+      await this.economy.post({ ownerId: c.playerId, amount: -skinsBuyIn(m), type: 'casino', sourceId: id, idempotencyKey: `skins:${id}:buy` });
+      const flags = { ...c.flags, skinsMatch: JSON.stringify(m), [skinsWeekKey(loc)]: engine.casinoWeekKey(c) };
+      await this.db.careers.put({ ...c, energy: Math.max(0, c.energy - SKINS_ENERGY), flags });
+      return m;
+    });
+  }
+
+  /** Plays the next hole; when the match ends, pays Ryan's skins once and clears it. */
+  async skinsPlay(style: SkinsStyle): Promise<{ match: SkinsMatch; payout: number | null }> {
+    if (!['safe', 'normal', 'aggressive'].includes(style)) throw new DomainError('CAREER_RULE', 'Pick how to play the hole');
+    return this.db.transaction('rw', [...this.economy.tables, this.db.careers], async () => {
+      const c = await this.career();
+      const prev = skinsMatch(c);
+      if (!prev) throw new DomainError('CAREER_RULE', 'No match in progress');
+      const m = playHole(prev, style);
+      if (!m.done) {
+        await this.db.careers.put({ ...c, flags: { ...c.flags, skinsMatch: JSON.stringify(m) } });
+        return { match: m, payout: null };
+      }
+      const payout = payoutOf(m);
+      if (payout > skinsBuyIn(m) * m.players.length) throw new DomainError('CAREER_RULE', 'Payout exceeds the pool');
+      if (payout > 0) await this.economy.post({ ownerId: c.playerId, amount: payout, type: 'casino', sourceId: m.id, idempotencyKey: `skins:${m.id}:pay` });
+      const recorded = engine.recordCasino(c, skinsBuyIn(m), payout, { biggestWin: payout - skinsBuyIn(m) });
+      const flags: CareerState['flags'] = { ...recorded.flags, skinsLast: JSON.stringify(m) };
+      delete flags.skinsMatch;
+      await this.db.careers.put({ ...recorded, flags });
+      return { match: m, payout };
     });
   }
 

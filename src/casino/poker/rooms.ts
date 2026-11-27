@@ -101,7 +101,7 @@ export const POKER_ROOMS: readonly PokerRoom[] = [
   {
     location: 'white_buffalo', name: 'The Paddock', variant: 'stud', variantName: 'Seven Card Stud ($10/$20 limit)', open: true,
     sb: 5, bb: 10, buyIn: { min: 300, max: 1500 }, regularStack: 1500,
-    course: { name: 'Bison Ridge', blurb: 'Eighteen holes along the ridge, closed to the public. The resort\'s money men play for skins on Tuesdays.' },
+    course: { name: 'Bison Ridge', blurb: 'Eighteen holes along the ridge, closed to the public. The resort\'s money men play the back nine for skins.' },
     regulars: [
       { id: 'hank_dorsey', name: 'Hank Dorsey', short: 'Hank', color: '#a04000', bio: 'Cattle auctioneer. Bets faster than he talks, which is very fast.', style: { tight: 0.5, aggro: 0.8, bluff: 0.25 }, lines: { sit: ['Sit down, sit down, do I hear a buy-in?'], raise: ['Raise, raise, going once!'], fold: ['Pass.'], win: ['SOLD.'], lose: ['Well, slap me.'] } },
       { id: 'gloria_vance', name: 'Gloria Vance', short: 'Gloria', color: '#1f618d', bio: 'Widowed three times. All natural causes. She\'d like you to know that.', style: { tight: 0.8, aggro: 0.5, bluff: 0.1 }, lines: { sit: ['Hello, dear. Do you have a will?'], raise: ['I\'ll raise.'], fold: ['Not today.'], win: ['How lovely.'], lose: ['Oh, well.'] } },

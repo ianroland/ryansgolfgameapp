@@ -2,6 +2,25 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.25.2",
+   "date": "2026-11-27",
+   "title": "Skins on the private courses",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Each casino's private course now runs nine-hole skins matches for money: Palm Hollow ($100 a skin), Bison Ridge ($500) and Mesa Vista ($2,500), each against three members."
+    },
+    {
+     "tag": "new",
+     "text": "On every hole you pick how to play it: safe (never worse than bogey), your normal game, or go for it. Ties carry, and anything still riding after the ninth goes to a sudden-death playoff."
+    },
+    {
+     "tag": "new",
+     "text": "Buy-in is nine skins, debited once. Your skins are paid out once at the end. One tee time a week per course, 10 energy."
+    }
+   ]
+  },
+  {
    "version": "0.25.1",
    "date": "2026-11-27",
    "title": "Stud and Omaha Hi-Lo",
