@@ -21,7 +21,7 @@ import { careerMoneyOf, ryanRank, seedCareerMoney } from './moneyList';
 import { eligibility, playerStanding, resultCourse, startTournament, type TournamentDef, type TournamentResult } from './tournament';
 import { isAlbatross } from '../records/albatross';
 import { appearanceBlocker, phaseHat, storyOf } from '../story/appearance';
-import { encounterById, nextEncounter, walkEncounter } from '../story/encounters';
+import { encounterById, nextDuringEncounter, nextEncounter, walkEncounter } from '../story/encounters';
 import type { Appearance } from '../story/types';
 import { BABA_LOAN, BABA_LOAN_LINES } from '../story/babaLoan';
 import { HAIR_OF_PHASE, phaseOf, phaseOfAct, ryanSay } from '../story/phase';
@@ -335,6 +335,12 @@ export function visitCasino(prev: CareerState, at: LocationId = 'desert_palms'):
 /** Records casino results on the career (for stats, stories, achievements). */
 export function recordCasino(prev: CareerState, wagered: number, returned: number, opts: { jackpot?: boolean; biggestWin?: number } = {}): CareerState {
   const c = clone(prev);
+  // After Rytirement the all-time casino record is locked; play is tallied on its own.
+  if (isRytired(c)) {
+    c.flags.rytiredWagered = Number(c.flags.rytiredWagered ?? 0) + wagered;
+    c.flags.rytiredReturned = Number(c.flags.rytiredReturned ?? 0) + returned;
+    return c;
+  }
   c.flags.casinoWagered = Number(c.flags.casinoWagered ?? 0) + wagered;
   c.flags.casinoReturned = Number(c.flags.casinoReturned ?? 0) + returned;
   if (opts.jackpot) c.flags.casinoJackpot = true;
@@ -427,6 +433,63 @@ export function buySnack(prev: CareerState, itemId: string, balance: number): Ou
   };
 }
 
+// ───────────────────────── Rytirement ─────────────────────────
+
+/** Ryan has hung up the tour card: the career record is locked (flag holds the game time). */
+export const isRytired = (c: Pick<CareerState, 'flags'>) => typeof c.flags.rytired === 'string';
+
+/** The career at Rytirement, frozen for the record. */
+export interface RytiredRecord {
+  season: number; week: number; events: number; wins: number; majors: number; earnings: number;
+  fame: number; casinoNet: number; casinoBiggestWin: number;
+}
+export const rytiredRecord = (c: CareerState): RytiredRecord | null => {
+  if (!isRytired(c)) return null;
+  try { return JSON.parse(String(c.flags.rytiredRecord)) as RytiredRecord; } catch { return null; }
+};
+
+export function rytireBlocker(c: CareerState): string | null {
+  if (isRytired(c)) return 'Already Rytired';
+  if (!c.flags.storyComplete) return 'Finish the story first (Championship Sunday)';
+  if (c.active) return 'Finish your tournament first';
+  return null;
+}
+
+/**
+ * Rytirement: Ryan's choice, after the story. Locks the career record and the casino all-time
+ * total where they stand. Afterwards the tour is closed, the local muni is open for casual
+ * rounds, and casino play still works but isn't counted toward the all-time record.
+ */
+export function rytire(prev: CareerState): Outcome {
+  const block = rytireBlocker(prev);
+  if (block) fail(block);
+  const c = clone(prev);
+  const record: RytiredRecord = {
+    season: c.season, week: c.week, events: c.totals.events, wins: c.totals.wins, majors: c.totals.majors,
+    earnings: c.totals.earnings, fame: c.fame, casinoNet: casinoNet(c), casinoBiggestWin: Number(c.flags.casinoBiggestWin ?? 0),
+  };
+  c.flags.rytired = now(c);
+  c.flags.rytiredRecord = JSON.stringify(record);
+  inbox(c, 'Rytirement', `Ryan hangs up the tour card after ${record.events} events, ${record.wins} wins and ${record.majors} majors. Baba has already booked the range for six a.m. The muni is open.`, 'good');
+  return { career: c, money: [], message: 'Rytired. The record is locked. The muni is open.' };
+}
+
+export const MUNI_COURSE_ID = 'course_dry_creek_muni';
+
+/** A casual round at the muni after Rytirement: kept for fun, never in the career record. */
+export function recordMuniRound(prev: CareerState, strokes: number[]): Outcome {
+  if (!isRytired(prev)) fail('The muni opens at Rytirement');
+  if (!strokes.length || strokes.some((x) => !Number.isInteger(x) || x < 1 || x > 15)) fail('Invalid scorecard');
+  const c = clone(prev);
+  const total = strokes.reduce((a, b) => a + b, 0);
+  c.flags.muniRounds = Number(c.flags.muniRounds ?? 0) + 1;
+  const key = `muniBest${strokes.length}`;
+  const best = Number(c.flags[key] ?? 0);
+  const newBest = !best || total < best;
+  if (newBest) c.flags[key] = total;
+  return { career: c, money: [], message: newBest ? `Muni round: ${total}. A new muni best!` : `Muni round: ${total}.` };
+}
+
 // ───────────────────────── Tournaments ─────────────────────────
 
 export function tournamentCosts(def: TournamentDef, c: CareerState) {
@@ -435,6 +498,7 @@ export function tournamentCosts(def: TournamentDef, c: CareerState) {
 }
 
 export function entryBlocker(c: CareerState, def: TournamentDef, balance: number): string | null {
+  if (isRytired(c)) return 'Rytired. The muni is open.';
   if (c.active) return 'Already playing a tournament';
   if (c.pendingStory) return 'Something needs your attention first';
   if (def.week !== c.week || def.season !== c.season) return def.week < c.week ? 'Already played' : `Week ${def.week}`;
@@ -731,9 +795,29 @@ export function applyEffects(c: CareerState, fx: Effects, balance: number, sourc
 
 /** Offers the next eligible encounter (called when a week begins). */
 function offerEncounter(c: CareerState) {
-  const story = storyOf(c);
+  let story = storyOf(c);
+  // A between-rounds scene that wasn't played goes away with its tournament.
+  if (story.available && !c.active && encounterById(story.available)?.during) story = { ...story, available: null };
+  c.story = story;
   const next = nextEncounter(c, story);
   if (next) c.story = { ...story, available: next.id };
+}
+
+/**
+ * Offers what's due right now: between rounds, a scene for this tournament (it takes the
+ * place of any week scene still waiting, which comes back next week); otherwise the next
+ * week scene (e.g. straight after a tournament ends).
+ */
+export function offerStoryNow(prev: CareerState): CareerState {
+  const c = clone(prev);
+  const story = storyOf(c);
+  if (c.active) {
+    const during = nextDuringEncounter(c, story);
+    if (during && story.available !== during.id) c.story = { ...story, available: during.id };
+    return c;
+  }
+  offerEncounter(c);
+  return c;
 }
 
 export function encounterBlocker(c: CareerState, id: string, path: string[], balance: number): string | null {
@@ -742,7 +826,8 @@ export function encounterBlocker(c: CareerState, id: string, path: string[], bal
   if (!def) return 'Unknown encounter';
   if (story.encounters[id]) return 'Already played';
   if (story.available !== id) return "That encounter isn't available";
-  if (c.active) return 'Finish the tournament first';
+  if (c.active && !def.during) return 'Finish the tournament first';
+  if (!c.active && def.during) return 'That moment has passed';
   const walk = walkEncounter(def, path);
   if (!walk.ok) return walk.reason;
   if (walk.stake > balance) return `You need $${walk.stake.toLocaleString()} for that bet`;

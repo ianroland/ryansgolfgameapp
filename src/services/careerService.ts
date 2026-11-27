@@ -241,6 +241,14 @@ export class CareerService {
     return this.mutate((c, { balance }) => engine.buyLifestyle(c, itemId, balance));
   }
 
+  rytire() {
+    return this.mutate((c) => engine.rytire(c));
+  }
+
+  recordMuniRound(strokes: number[]) {
+    return this.mutate((c) => engine.recordMuniRound(c, strokes));
+  }
+
   buySnack(itemId: string) {
     return this.mutate((c, { balance }) => engine.buySnack(c, itemId, balance));
   }
@@ -356,9 +364,11 @@ export class CareerService {
       if (!c.active) throw new DomainError('CAREER_RULE', 'Not in a tournament');
       const def = findTournament(c.active.tournamentId)!;
       if (c.active.round >= def.rounds) return c;
-      const next = { ...c, active: completeRound(c.active, def, c) };
+      let next: CareerState = { ...c, active: completeRound(c.active, def, c) };
       // Missed the cut: the rest of the tournament plays out without Ryan.
-      while (!next.active.alive.includes(c.playerId) && next.active.round < def.rounds) next.active = completeRound(next.active, def, next);
+      while (!next.active!.alive.includes(c.playerId) && next.active!.round < def.rounds) next.active = completeRound(next.active!, def, next);
+      // Between rounds: a story scene may be waiting for this tournament.
+      if (next.active!.round < def.rounds && next.active!.alive.includes(c.playerId)) next = engine.offerStoryNow(next);
       await this.db.careers.put(next);
       return next;
     });
@@ -378,6 +388,11 @@ export class CareerService {
       // Never leave the player stuck in a tournament the pipeline refused.
       await this.db.careers.put({ ...(await this.getCareer()), active: null });
     }
+    // A scene that follows a tournament (e.g. Championship Sunday) is offered straight away.
+    await this.db.transaction('rw', this.db.careers, async () => {
+      const after = await this.getCareer();
+      if (!after.active && after.story?.act === 4) await this.db.careers.put(engine.offerStoryNow(after));
+    });
     return { career: await this.getCareer(), outcome, result };
   }
 }

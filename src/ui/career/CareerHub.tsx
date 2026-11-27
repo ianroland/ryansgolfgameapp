@@ -18,6 +18,8 @@ import { sound } from '../../audio/sound';
 import { useGame } from '../GameContext';
 import { formatGameDate, formatMoney, shortMoney } from '../format';
 import { Bar, FormMeter, TourPill } from './bits';
+import * as engine from '../../career/engine';
+import { openMuni } from '../tournament/MuniRound';
 
 export function statusLabel(c: CareerState) {
   if (c.status === 'amateur') return 'Amateur';
@@ -404,6 +406,7 @@ export function CareerHub({ onEnter, onEncounter }: { onEnter: (def: TournamentD
       <div className="hub-col">
         <ProfileCard />
         <BabaLoanCard />
+        <RytirementCard />
         <SkillsCard />
       </div>
       <WeekCard onEnter={onEnter} />
@@ -412,5 +415,44 @@ export function CareerHub({ onEnter, onEncounter }: { onEnter: (def: TournamentD
         <NewsCard />
       </div>
     </main>
+  );
+}
+
+/** After Championship Sunday: Ryan's choice to Rytire (with a confirm). After: the muni. */
+export function RytirementCard() {
+  const { state, services, run, notify } = useGame();
+  const c = state.career;
+  const [confirm, setConfirm] = useState(false);
+  const rytired = engine.isRytired(c);
+  if (!rytired && !c.flags.storyComplete) return null;
+  const rec = engine.rytiredRecord(c);
+  return (
+    <section className="hub-card rytire-card" data-testid="rytire-card">
+      {rytired ? (
+        <>
+          <h2 className="hub-title">Rytired</h2>
+          <p>Career record, locked: <b>{rec?.events ?? 0}</b> events, <b>{rec?.wins ?? 0}</b> wins, <b>{rec?.majors ?? 0}</b> majors, {formatMoney(rec?.earnings ?? 0)} earned. Casino all-time locked at <b>{formatMoney(rec?.casinoNet ?? 0, true)}</b>.</p>
+          <p className="muted">The casino is still open; it just doesn&rsquo;t count anymore. Since Rytirement: {formatMoney(Number(c.flags.rytiredReturned ?? 0) - Number(c.flags.rytiredWagered ?? 0), true)}.{c.flags.muniRounds ? ` Muni rounds: ${c.flags.muniRounds}.` : ''}</p>
+          <button className="btn primary" onClick={openMuni} data-testid="muni-open">Play Dry Creek Muni</button>
+        </>
+      ) : (
+        <>
+          <h2 className="hub-title">Rytirement?</h2>
+          <p>The story&rsquo;s done. Whenever you&rsquo;re ready, Ryan can hang up the tour card. No rush: the career goes on as long as you like.</p>
+          <button className="btn" onClick={() => setConfirm(true)} data-testid="rytire-open">Rytire…</button>
+        </>
+      )}
+      {confirm && (
+        <Dialog title="Rytire?" onClose={() => setConfirm(false)}>
+          <p>Rytirement <b>locks your career record</b> (events, wins, majors, earnings, Legacy) and your <b>casino all-time</b> total where they stand. The tour closes for good.</p>
+          <p>Afterwards Dry Creek Muni opens for casual rounds, and the casino stays open, but nothing you win or lose there counts toward the all-time record.</p>
+          <p className="warn-text">This can&rsquo;t be undone.</p>
+          <div className="btn-row">
+            <button className="btn ghost" onClick={() => setConfirm(false)}>Not yet</button>
+            <button className="btn primary" onClick={async () => { setConfirm(false); const o = await run(() => services.career.rytire()); if (o?.message) notify({ kind: 'info', title: o.message }); }} data-testid="rytire-confirm">Rytire</button>
+          </div>
+        </Dialog>
+      )}
+    </section>
   );
 }

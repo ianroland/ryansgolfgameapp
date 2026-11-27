@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { sound } from '../../audio/sound';
 import { appearanceOf } from '../../story/appearance';
-import { characterById, RYAN_ID } from '../../story/cast';
+import { characterById, RYAN_ID, voiceById } from '../../story/cast';
 import { encounterById, localizeEncounter, type EncounterNode, type Line } from '../../story/encounters';
 import { phaseOf } from '../../story/phase';
 import { poseFrames, portraitKey } from '../../story/sprites';
@@ -93,7 +93,7 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
 
   // Lines set a character's standing pose.
   useEffect(() => {
-    if (line?.pose && line.who !== 'narrator') setPoses((p) => ({ ...p, [line.who]: line.pose! === 'talk' ? 'idle' : line.pose! }));
+    if (line?.pose && line.who !== 'narrator' && !voiceById(line.who)) setPoses((p) => ({ ...p, [line.who]: line.pose! === 'talk' ? 'idle' : line.pose! }));
   }, [line]);
 
   const resolve = useCallback(
@@ -202,7 +202,8 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
   useEffect(() => {
     if (def.cast.includes(speaker) && speaker !== onStage) setOnStage(speaker);
   }, [speaker, onStage, def.cast]);
-  const speakerDef = speaker === RYAN_ID ? { short: 'Ryan', color: '#1d3f8a' } : characterById(speaker);
+  const voice = voiceById(speaker);
+  const speakerDef = speaker === RYAN_ID ? { short: 'Ryan', color: '#1d3f8a' } : voice ?? characterById(speaker);
   const balance = state.balance;
   const ending = 'outcome' in node;
   const canLater = path.length === 0 && !ending;
@@ -249,7 +250,7 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
             </div>
           ) : (
             <div className={`enc-line ${speaker === 'narrator' ? 'narration' : ''}`} onClick={advance} data-testid="enc-line">
-              {speaker !== 'narrator' && (
+              {speaker !== 'narrator' && !voice && (
                 <div className="enc-portrait">
                   <SpriteFrame who={speaker} frame={portraitKey(speaker, line?.expr ?? 'neutral', look)} height={96} title={speakerDef?.short} />
                 </div>

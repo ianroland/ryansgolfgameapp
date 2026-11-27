@@ -1,9 +1,12 @@
-import { appearanceOf, resolveLook } from '../../story/appearance';
+import { appearanceOf, resolveLook, storyOf } from '../../story/appearance';
+import { encounterById, localizeEncounter } from '../../story/encounters';
+import { phaseOf } from '../../story/phase';
+import { EncounterScene } from '../story/EncounterScene';
 import { destroyGame } from '../../game/destroyGame';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type * as Phaser from 'phaser';
 import { achievementById } from '../../career/achievements';
-import { TOURS } from '../../career/config';
+import { ladderOf, tourName } from '../../career/ladder';
 import { shotModifiers } from '../../career/stats';
 import {
   activeCourse, cutLine, findTournament, holeForRound, holesToPlay, parsOf, pressureFor, previewRound, windsForRound,
@@ -85,7 +88,7 @@ function Leaderboard({ rows, me, rival, limit = 10 }: { rows: Row[]; me: string;
 
 // ───────────────────────── Playing a hole ─────────────────────────
 
-function HolePlayer({ setup, onComplete, onSimRest }: { setup: HoleSetup; onComplete: (strokes: number, shot?: string) => void; onSimRest: () => void }) {
+export function HolePlayer({ setup, onComplete, onSimRest }: { setup: HoleSetup; onComplete: (strokes: number, shot?: string) => void; onSimRest: () => void }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<RoundScene | null>(null);
   const completeRef = useRef(onComplete);
@@ -175,6 +178,7 @@ export function TournamentView({ onExit }: { onExit: () => void }) {
   const [playing, setPlaying] = useState(false);
   const [holeDone, setHoleDone] = useState<{ idx: number; strokes: number } | null>(null);
   const [busy, setBusy] = useState(false);
+  const [scene, setScene] = useState<string | null>(null);
   // CI-2: competitor cut-ins (review build only; see useCutIn.ts).
   const cutIn = useCutIn();
   const offerCutIn = cutIn.offer;
@@ -274,7 +278,6 @@ export function TournamentView({ onExit }: { onExit: () => void }) {
   );
 
   if (!def) return null;
-  const cfg = TOURS[def.tour];
 
   // ── Final results ──
   if (finished) {
@@ -360,10 +363,23 @@ export function TournamentView({ onExit }: { onExit: () => void }) {
             </h2>
             <Leaderboard rows={rows} me={c.playerId} rival={c.rivalId} />
           </section>
+          {(() => {
+            const waiting = storyOf(c).available;
+            const def = waiting ? encounterById(waiting) : undefined;
+            if (!def?.during) return null;
+            const loc = localizeEncounter(def, phaseOf(c));
+            return (
+              <section className="hub-card between-rounds" data-testid="between-rounds">
+                <h2 className="hub-title">Between rounds · {loc.title}</h2>
+                <p>{loc.teaser}</p>
+                <button className="btn primary" onClick={() => setScene(def.id)} data-testid="between-rounds-play">Play scene ▸</button>
+              </section>
+            );
+          })()}
           <section className="hub-card">
             <h2 className="hub-title">Round {active.round + 1}</h2>
             <p className="muted">
-              {cfg.name} · <strong data-testid="round-course">{course.name}</strong> · par {coursePar(course)}. Energy {Math.round(c.energy)} · Form {c.form > 0 ? '+' : ''}{c.form}.
+              {tourName(def.tour, ladderOf(c))} · <strong data-testid="round-course">{course.name}</strong> · par {coursePar(course)}. Energy {Math.round(c.energy)} · Form {c.form > 0 ? '+' : ''}{c.form}.
             </p>
             {toPlay.length > 0 ? (
               <p>You&rsquo;ll play holes {toPlay.map((i) => course.holes[i].number).join(', ')}. The rest are simmed from your skills.</p>
@@ -393,6 +409,7 @@ export function TournamentView({ onExit }: { onExit: () => void }) {
       )}
 
       {cutIn.shown && <cutIn.shown.Card view={cutIn.shown.view} onClosed={cutIn.closed} />}
+      {scene && <EncounterScene id={scene} onClose={() => setScene(null)} />}
 
       {holeDone && !cutIn.shown && (
         <div className="round-overlay" role="dialog" aria-label="Hole result">

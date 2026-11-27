@@ -73,6 +73,11 @@ export interface EncounterDef {
   cast: string[];
   /** Eligible to be offered (it's also never offered once completed). */
   when: (c: CareerState, story: StoryState) => boolean;
+  /**
+   * Plays between rounds of a tournament (offered when a round is finished, while
+   * `c.active` is set) instead of between weeks. Missed, it goes away with the tournament.
+   */
+  during?: boolean;
   start: string;
   nodes: Record<string, EncounterNode>;
   outcomes: Record<string, OutcomeDef>;
@@ -283,7 +288,13 @@ export function walkEncounter(def: EncounterDef, path: string[]): WalkResult {
 /** The next encounter to offer, if one is eligible and none is waiting. */
 export function nextEncounter(c: CareerState, story: StoryState): EncounterDef | null {
   if (story.available) return null;
-  return ENCOUNTERS.find((e) => !story.encounters[e.id] && e.act <= story.act && e.when(c, story)) ?? null;
+  return ENCOUNTERS.find((e) => !e.during && !story.encounters[e.id] && e.act <= story.act && e.when(c, story)) ?? null;
+}
+
+/** A between-rounds scene for the tournament in progress, if one is due. */
+export function nextDuringEncounter(c: CareerState, story: StoryState): EncounterDef | null {
+  if (!c.active) return null;
+  return ENCOUNTERS.find((e) => e.during && !story.encounters[e.id] && e.act <= story.act && e.when(c, story)) ?? null;
 }
 
 /** The encounter with every player-facing string filled for Ryan's phase (`{his}`, `{Habibi}`…). */

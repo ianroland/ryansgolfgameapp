@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import * as E from '../src/career/engine';
 import { appearanceBlocker, appearanceOf, resolveLook, storyOf } from '../src/story/appearance';
-import { CAST, RYAN_ID } from '../src/story/cast';
+import { CAST, RYAN_ID, VOICES } from '../src/story/cast';
 import { judgeDrive, judgePutt, maxDrive, opponentDrive, simChallenge } from '../src/story/challenge';
 import { ENCOUNTERS, encounterById, nextEncounter, walkEncounter, type EncounterDef } from '../src/story/encounters';
 import { poseFrames, portraitKey, sheetManifest } from '../src/story/sprites';
@@ -120,9 +120,9 @@ describe('encounter scripts', () => {
       expect([...outcomes].sort(), def.id).toEqual(Object.keys(def.outcomes).sort());
       for (const n of Object.values(def.nodes)) {
         for (const l of n.lines) {
-          expect(['narrator', RYAN_ID, ...def.cast], `${def.id}: ${l.text}`).toContain(l.who);
+          expect(['narrator', RYAN_ID, ...def.cast, ...VOICES.map((v) => v.id)], `${def.id}: ${l.text}`).toContain(l.who);
           expect(l.text.length).toBeGreaterThan(0);
-          if (l.who !== 'narrator' && l.expr) expect(portraitKey(l.who, l.expr, { hair: 'curly', hat: true })).toMatch(new RegExp(`portrait\\.${l.expr}$`));
+          if (l.who !== 'narrator' && !VOICES.some((v) => v.id === l.who) && l.expr) expect(portraitKey(l.who, l.expr, { hair: 'curly', hat: true })).toMatch(new RegExp(`portrait\\.${l.expr}$`));
         }
       }
     }

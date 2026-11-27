@@ -3,12 +3,16 @@
  * Same rules as Act III: the jokes land on Biff, the tour, Doug and Kayla's detective work, never on
  * Ryan's transition. Approved under the owner's standing approval.
  *
- * Mom at the Major, Reading the Green and Championship Sunday are drafted for the owner first and
- * need a between-rounds trigger (and Mom's art), so they aren't here yet.
+ * Mom at the Major, Reading the Green and Championship Sunday: approved by the owner (2026-11-27,
+ * "approve all"). Mom at the Major and Reading the Green play between rounds (`during`). Mom has no
+ * character art, so she speaks as a voice (name tag, no portrait); no art is invented for her.
  */
 import type { CareerState } from '../career/types';
 import type { EncounterDef } from './encounters';
 import type { StoryState } from './types';
+import { findTournament } from '../career/tournament';
+
+const tournamentName = (id: string) => findTournament(id)?.name ?? '';
 
 const SEASON = 30;
 const since = (c: CareerState, s: StoryState, id: string) => {
@@ -17,6 +21,13 @@ const since = (c: CareerState, s: StoryState, id: string) => {
 };
 /** Act IV plays on the LPGA Tour itself. */
 const onTour = (c: CareerState, s: StoryState) => s.act === 4 && c.tourCard === 'lpga';
+const at = (c: CareerState, name: string) => !!c.active && c.active.tournamentId.startsWith('lpga-') && tournamentName(c.active.tournamentId) === name;
+const done = (s: StoryState, id: string) => !!s.encounters[id];
+/** Ryan just finished the Tour Championship this season (and won it, if `won`). */
+const lastWasTourChampionship = (c: CareerState) => !c.active && c.recent[0]?.name === 'Tour Championship' && c.recent[0]?.season === c.season;
+const wonIt = (c: CareerState) => c.recent[0]?.posLabel === '1';
+
+export const MOM_VOICE = 'mom';
 
 export const ACT_FOUR: EncounterDef[] = [
   {
@@ -268,6 +279,184 @@ export const ACT_FOUR: EncounterDef[] = [
       friends: { summary: 'Told Kayla. Best friends who want to beat each other very badly.', tone: 'good', effects: { rel: { rival: 12 }, flags: { kayla: 'friends' } }, bonds: { kayla_brooks: 14 }, changes: 'Kayla ♥♥' },
       rivals: { summary: 'Told Kayla. It’s on: Sunday, first tee.', tone: 'good', effects: { form: 2, rel: { rival: 8 }, flags: { kayla: 'rivals' } }, bonds: { kayla_brooks: 10 }, changes: 'Kayla ♥ · Form +2' },
       dinner: { summary: 'Told Kayla. Dinner, no helicopters (Baba took Biff’s keys).', tone: 'good', effects: { rel: { rival: 15 }, flags: { kayla: 'dinner' } }, bonds: { kayla_brooks: 18 }, changes: 'Kayla ♥♥♥' },
+    },
+  },
+  {
+    id: 'act4_mom_at_the_major',
+    title: 'Mom at the Major',
+    teaser: 'Saturday at the National Open. Behind the ropes on nine: a sun hat and an upside-down pairings sheet.',
+    act: 4,
+    location: 'course_sunset',
+    cast: ['baba'],
+    during: true,
+    when: (c, s) => onTour(c, s) && at(c, 'National Open Championship') && c.active!.round === 2 && done(s, 'act4_big_leagues'),
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'Saturday at the National Open, the season’s third major. Behind the ropes on the ninth: a woman in a sun hat, holding the pairings sheet upside down.' },
+          { who: 'mom', text: 'Ryan? …Ryan. Hi.' },
+          { who: 'ryan', expr: 'surprised', text: 'Mom. You came.' },
+          { who: 'mom', text: 'Nobody told me. I saw you on the news. Then I saw it again. Then I bought a ticket.' },
+          { who: 'mom', text: 'I’m not good at this. I’m reading. There’s a whole shelf at the library, and a librarian who keeps bringing me more.' },
+          { who: 'mom', text: 'You look happy. That’s the part I understand already.' },
+          { who: 'mom', text: 'I’ll be on nine. I don’t know what a bogey is. I’ll clap anyway.' },
+        ],
+        choice: {
+          prompt: 'What does Ryan say?',
+          options: [
+            { id: 'hug', label: 'Hug her', hint: 'Mom ♥♥', next: 'hug' },
+            { id: 'sunday', label: '“Stay for Sunday?”', hint: 'Mom ♥, Form +1', next: 'sunday' },
+            { id: 'baba', label: '“Stand with Baba. He’ll explain bogeys.”', hint: 'Mom ♥, Baba ♥', next: 'baba' },
+          ],
+        },
+      },
+      hug: {
+        lines: [
+          { who: 'narrator', text: 'Ryan ducks under the rope. The marshal opens his mouth, looks at them, and closes it again.' },
+          { who: 'mom', text: 'Okay. Okay. Go hit your ball. I’ll be right here.' },
+          { who: 'narrator', text: 'She claps at the wrong moment on the ninth green. A marshal raises his QUIET PLEASE sign. She waves at the marshal.' },
+        ],
+        outcome: 'hug',
+      },
+      sunday: {
+        lines: [
+          { who: 'ryan', expr: 'happy', pose: 'talk', text: 'Stay for Sunday?' },
+          { who: 'mom', text: 'I’ll try. I mean it. I’ll try.' },
+          { who: 'narrator', text: 'She claps at the wrong moment on the ninth green. A marshal raises his QUIET PLEASE sign. She waves at the marshal.' },
+        ],
+        outcome: 'sunday',
+      },
+      baba: {
+        lines: [
+          { who: 'ryan', expr: 'laughing', pose: 'talk', text: 'Go stand with Baba. He’ll explain bogeys.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'A bogey is one over par. Par is what the course thinks you should shoot. The course is usually wrong.' },
+          { who: 'narrator', text: 'Baba explains bogeys for nine holes. Mom nods at all of it. On the ninth green she claps at the wrong moment, and this time Baba claps with her.' },
+        ],
+        outcome: 'baba',
+      },
+    },
+    outcomes: {
+      hug: { summary: 'Mom came to the National Open. Ryan hugged her behind the ninth green.', tone: 'good', effects: { form: 2 }, bonds: { mom: 14 }, changes: 'Mom ♥♥ · Form +2' },
+      sunday: { summary: 'Mom came to the National Open, and said she’d try to stay for Sunday.', tone: 'good', effects: { form: 1 }, bonds: { mom: 8 }, changes: 'Mom ♥ · Form +1' },
+      baba: { summary: 'Mom came to the National Open. Baba explained bogeys for nine holes.', tone: 'good', effects: { rel: { mom: 4 } }, bonds: { mom: 8, baba: 6 }, changes: 'Mom ♥ · Baba ♥' },
+    },
+  },
+  {
+    id: 'act4_reading_the_green',
+    title: 'Reading the Green',
+    teaser: '10:55 p.m., the night before the final round. One flashlight on the 18th green.',
+    act: 4,
+    location: 'course_sunset',
+    cast: ['baba'],
+    during: true,
+    when: (c, s) => onTour(c, s) && at(c, 'Tour Championship') && c.active!.round === (findTournament(c.active!.tournamentId)?.rounds ?? 4) - 1,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: '10:55 p.m. The night before the final round. The 18th green is dark except for one flashlight.' },
+          { who: 'narrator', text: 'Baba is walking the green. Slowly. Reading every slope like the morning paper.' },
+          { who: 'ryan', expr: 'surprised', pose: 'talk', text: 'Baba? It’s almost eleven. Security’s going to think you’re stealing the flag.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Security knows me. I told them I mow. They let me in out of respect.' },
+          { who: 'baba', expr: 'confident', pose: 'emphatic', text: 'Left edge breaks two cups more than it looks. Back right is faster than the pro says. The pro is wrong. Don’t tell him.' },
+          { who: 'ryan', expr: 'happy', text: 'You walked the whole green?' },
+          { who: 'baba', expr: 'neutral', pose: 'think', text: 'Twice. The second time to check the first time.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Tomorrow you win, good. You lose, you come home, I make breakfast, and we go to the range at six. Same as always.' },
+        ],
+        choice: {
+          prompt: 'It’s almost eleven.',
+          options: [
+            { id: 'walk', label: 'Walk it with him', hint: 'Baba ♥, Form +1', next: 'walk' },
+            { id: 'bed', label: 'Go to bed', hint: 'Energy +8', next: 'bed' },
+          ],
+        },
+      },
+      walk: {
+        lines: [
+          { who: 'narrator', text: 'They walk the green together. Neither says anything. A sprinkler comes on three greens over. Neither of them moves.' },
+          { who: 'baba', expr: 'neutral', pose: 'give', text: 'Here. BOBO MILKY. Then bed. You have a job tomorrow.' },
+        ],
+        outcome: 'walk',
+      },
+      bed: {
+        lines: [
+          { who: 'ryan', expr: 'neutral', pose: 'talk', text: 'Goodnight, Baba.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Goodnight, {habibti}. Back right is fast. I’ll tell you again at breakfast.' },
+        ],
+        outcome: 'bed',
+      },
+    },
+    outcomes: {
+      walk: { summary: 'Walked the 18th green with Baba at 10:55 p.m. He was right about the back right.', tone: 'good', effects: { form: 1 }, bonds: { baba: 8 }, changes: 'Baba ♥ · Form +1' },
+      bed: { summary: 'Left Baba reading the 18th green and got some sleep.', tone: 'good', effects: { energy: 8 }, bonds: { baba: 3 }, changes: 'Energy +8' },
+    },
+  },
+  {
+    id: 'act4_championship_sunday',
+    title: 'Championship Sunday',
+    teaser: 'The Tour Championship. Three feet. A coffee can.',
+    act: 4,
+    location: 'course_sunset',
+    cast: ['baba', 'caddie_jordan', 'kayla_brooks'],
+    when: (c, s) => onTour(c, s) && lastWasTourChampionship(c) && wonIt(c),
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'That morning. First tee, the Tour Championship, final round.' },
+          { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'Sunday towel. It’s the good one. Don’t tell Tuesday.' },
+          { who: 'kayla_brooks', expr: 'confident', pose: 'talk', text: 'Whatever happens, I’m buying the first BOBO MILKY. You’re buying the rest.' },
+          { who: 'narrator', text: 'Up in the TV booth, they get Ryan’s name right on the first try. Nobody is more surprised than they are.' },
+          { who: 'narrator', text: 'Eighteen holes later, the putt for the title is exactly three feet.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Fifty from three feet. Every day.' },
+          { who: 'narrator', text: 'It drops. The TV booth calls it for the wrong player, then corrects themselves on air. A mower crosses the 18th during the trophy speech.' },
+          { who: 'narrator', text: 'Behind the podium. Biff’s assistant stands at the back holding a velvet case with a broken wooden tee in it. Nobody asks.' },
+          { who: 'narrator', text: 'Baba is holding a coffee can. On the side, in his handwriting: RYAN — PRO.' },
+          { who: 'baba', expr: 'neutral', pose: 'give', text: 'Now you can open it.' },
+          { who: 'narrator', text: 'Inside: broken wooden tees. Hundreds of them. Every one he ever fixed a ball mark with, since the day she first held a putter upside down.' },
+          { who: 'ryan', expr: 'surprised', pose: 'talk', text: 'Baba. You kept all of these?' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'I don’t throw things away. Also, your follow-through was fine today. Don’t let it go to your head.' },
+        ],
+        next: 'photo',
+      },
+      photo: {
+        lines: [
+          { who: 'narrator', text: 'The podium photo. Biff tries to get in it. The mower goes around him.' },
+        ],
+        outcome: 'won',
+      },
+    },
+    outcomes: {
+      won: { summary: 'Won the Tour Championship. The putt was three feet. Baba handed over the can.', tone: 'good', effects: { fame: 5, form: 3, flags: { storyComplete: 'won', canOpened: true } }, bonds: { baba: 15, caddie_jordan: 6, kayla_brooks: 6 }, changes: 'Story complete · Fame +5 · Baba ♥♥♥' },
+    },
+  },
+  {
+    id: 'act4_championship_sunday_next_year',
+    title: 'Championship Sunday',
+    teaser: 'The Tour Championship is over. Baba has a promise to keep.',
+    act: 4,
+    location: 'course_sunset',
+    cast: ['baba', 'caddie_jordan', 'kayla_brooks'],
+    when: (c, s) => onTour(c, s) && lastWasTourChampionship(c) && !wonIt(c) && !done(s, 'act4_championship_sunday'),
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'That morning. First tee, the Tour Championship, final round.' },
+          { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'Sunday towel. It’s the good one. Don’t tell Tuesday.' },
+          { who: 'kayla_brooks', expr: 'confident', pose: 'talk', text: 'Whatever happens, I’m buying the first BOBO MILKY. You’re buying the rest.' },
+          { who: 'narrator', text: 'Up in the TV booth, they get Ryan’s name right on the first try. Nobody is more surprised than they are.' },
+          { who: 'narrator', text: 'Eighteen holes later, it isn’t her day. Close. Not close enough.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'You come home, I make breakfast, and we go to the range at six. Same as always.' },
+          { who: 'narrator', text: 'Back home, the RYAN — PRO can goes back on the shelf. Baba dusts it. He has never dusted anything in his life.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Next year, {habibti}.' },
+        ],
+        outcome: 'next_year',
+      },
+    },
+    outcomes: {
+      next_year: { summary: 'The Tour Championship wasn’t hers this year. Breakfast, then the range at six. The can stays on the shelf for next year.', tone: 'neutral', effects: { form: 1, flags: { storyComplete: 'next_year' } }, bonds: { baba: 8 }, changes: 'Story complete · Baba ♥' },
     },
   },
 ];

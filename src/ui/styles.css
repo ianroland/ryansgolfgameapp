@@ -2765,3 +2765,8 @@ button.poker-av { cursor: pointer; padding: 0; }
   .poker-presets .btn { flex: 1; padding-left: 4px; padding-right: 4px; }
   .poker-raise input[type=range] { flex: 1; }
 }
+.between-rounds { border-color: #b08cff; background: linear-gradient(180deg, #2a1d40, #160f24); color: #f3eaff; }
+.rytire-card { border-color: #d99a12; background: linear-gradient(180deg, #3a2a10, #1d150a); color: #fff3d6; }
+.muni-card { display: flex; gap: 4px; flex-wrap: wrap; }
+.muni-card span { min-width: 24px; text-align: center; padding: 2px 4px; border-radius: 4px; background: #fffbe9; color: #1d1d2a; }
+.muni-card span.under { color: #c0392b; font-weight: bold; }

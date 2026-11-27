@@ -9,6 +9,15 @@ Built in 0.24.0. Act IV plays on the LPGA Tour itself (`story.act === 4` and an 
 | `act4_desert_rose` | The Desert Rose | Biff, Commissioner Clipboard | Weeks 4–6, the run-up to the first major. Biff's pre-ordered Pink Jacket. |
 | `act4_kayla_knows` | Kayla Knows | Kayla | 3+ weeks after The Corkboard. Ryan tells her. The player picks what they become (`flags.kayla`: friends, rivals or dinner). |
 
-## Drafted for the owner (in the outline doc), not yet in the game
+| `act4_mom_at_the_major` | Mom at the Major | Baba (Mom as a voice) | Between rounds 2 and 3 of the National Open Championship (`during`). Mom has no art, so she speaks with a name tag only. |
+| `act4_reading_the_green` | Reading the Green | Baba | The night before the final round of the Tour Championship (`during`). |
+| `act4_championship_sunday` | Championship Sunday | Baba, Jordan, Kayla | Straight after winning the Tour Championship. The putt is three feet; Baba hands over the RYAN — PRO can (broken tees). Sets `flags.storyComplete`. |
+| `act4_championship_sunday_next_year` | Championship Sunday | Baba, Jordan, Kayla | After the Tour Championship if Ryan didn't win it. The can stays on the shelf; a later win still opens it. Sets `flags.storyComplete`. |
 
-Mom at the Major, Reading the Green (Baba's canon Scene 3) and Championship Sunday. All three play during a tournament, so they need a between-rounds scene trigger. Mom also needs character art.
+## Between-rounds scenes
+
+An encounter with `during: true` is offered when a round finishes (CareerService.finishRound → engine.offerStoryNow) and plays from the tournament screen's "Between rounds" card. Missed, it goes away with the tournament and can come back the next time its conditions hold.
+
+## After the story
+
+Once `flags.storyComplete` is set, the Career hub offers Rytirement (with a confirm). It locks the career record and the casino all-time, closes the tour, and opens Dry Creek Muni for casual rounds that are never counted.

@@ -7,3 +7,11 @@
 - Dealer invitation lines for all five dealers (src/npc/vip.ts).
 - Poker regulars and their table talk for all three rooms (src/casino/poker/rooms.ts).
 - Pro Shop item names and descriptions, including the snacks (src/career/shop.ts).
+
+## 2026-11-27 — "approve all" (owner)
+Approved by the owner with "approve all let's get this to mvp to final release":
+- Mom at the Major (draft in the outline doc, shipped as written; Mom speaks as a voice with no art).
+- Championship Sunday, both versions. The can's contents: every broken tee Baba ever repaired a ball mark with.
+- Reading the Green (Baba walks the 18th at 10:55 p.m.).
+- Lore questions q1–q8: approved as is.
+- Poker table rules (Run It Twice, Double Board, 7-2 Game, straddle), skins matches, Rytirement and the muni.

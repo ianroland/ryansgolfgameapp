@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "1.0.0",
+   "date": "2026-11-27",
+   "title": "Ryan's Road to the LPGA: 1.0",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The story is complete. Mom at the Major plays between rounds of the National Open, and Reading the Green the night before the Tour Championship's final round. Championship Sunday follows the Tour Championship: win it and the putt is three feet and Baba finally hands over the RYAN — PRO can. If you don't win, the can waits for next year."
+    },
+    {
+     "tag": "new",
+     "text": "Between-rounds scenes: a story moment can now appear on the tournament screen between rounds."
+    },
+    {
+     "tag": "new",
+     "text": "Rytirement: after Championship Sunday, Ryan can hang up the tour card whenever you choose (there's a confirm step). It locks the career record and the casino all-time. The tour closes, Dry Creek Muni opens for casual 9- and 18-hole rounds, and the casino stays open, but nothing there counts anymore."
+    },
+    {
+     "tag": "fixed",
+     "text": "The tournament screen now names the right tour in phase 3 (LPGA Tour, not PGA Tour)."
+    }
+   ]
+  },
+  {
    "version": "0.26.0",
    "date": "2026-11-27",
    "title": "Poker, app style",
@@ -23,7 +46,7 @@
      "text": "Gestures: flick your cards up to fold, flick the chips up to bet, double-tap the felt to check. Also new: rabbit hunt after a hand ends early, hand history with Share hand, and things to throw at the regulars."
     },
     {
-     "tag": "change",
+     "tag": "improved",
      "text": "The Home tab is now Real Estate, and homes for sale moved there from the Pro Shop under Listings. The casino's private rooms tab is now just VIP, so it fits on small screens."
     }
    ]
@@ -61,7 +84,7 @@
      "text": "The Observatory at Morongo Sky deals Pot-Limit Omaha Hi-Lo: four hole cards, using exactly two of them with three from the board. The best high and the best 8-or-better low split the pot."
     },
     {
-     "tag": "fix",
+     "tag": "fixed",
      "text": "Poker opponents still see only what a real player would: their own cards, the board, and other players' up cards."
     }
    ]
@@ -613,7 +636,7 @@
    "title": "A history board you can read",
    "items": [
     {
-     "tag": "fix",
+     "tag": "fixed",
      "text": "On iPhone and iPad, scenes like Biff's driving range could lose their pictures after a long session. The golf course and clubhouse now hand their graphics memory back when you leave them."
     },
     {
@@ -625,7 +648,7 @@
      "text": "Sports history updates: the basketball league had eight founding clubs, and Las Vegas beat two higher seeds on its 1996 title run."
     },
     {
-     "tag": "fix",
+     "tag": "fixed",
      "text": "On phones, the driving range no longer repeats at the top of the picture during Biff's long-drive challenge."
     }
    ]
@@ -992,7 +1015,7 @@
      "text": "Every dealer now talks in the same dialogue box as Madame Monique, with a portrait: Velvet Vega at blackjack and Stick Lady (the craps dealer, previously called the stickman). Stick Lady's face changes with the roll."
     },
     {
-     "tag": "changed",
+     "tag": "improved",
      "text": "Ryan's dad, Baba, replaces Mom in the People tab, the weekly \"Call Baba\" activity and the family story events. Your existing relationship carries over."
     },
     {
@@ -1000,7 +1023,7 @@
      "text": "Recent results on the Career tab: the tour badge sits on its own line above the event name instead of being squeezed beside it."
     },
     {
-     "tag": "changed",
+     "tag": "improved",
      "text": "The greyhound sprites are provisional."
     }
    ]
@@ -1019,7 +1042,7 @@
      "text": "Every race is decided when you bet and saved with it, so the race you watch is the race that pays. Close a race halfway and it finishes and pays when you come back."
     },
     {
-     "tag": "changed",
+     "tag": "improved",
      "text": "The greyhounds are placeholder art for now."
     }
    ]
@@ -1046,7 +1069,7 @@
      "text": "Ryan now looks right in every phase: portraits, story scenes and the on-course swing all use the approved art for the current phase."
     },
     {
-     "tag": "changed",
+     "tag": "improved",
      "text": "The visor now goes with Ryan's phase, so the separate visor option is gone. Earlier results keep the event names they were played under."
     },
     {

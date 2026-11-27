@@ -19,6 +19,7 @@ import { TrophyDetails } from './screens/TrophyDetails';
 import { CareerHub } from './career/CareerHub';
 import { SchedulePanel } from './career/SchedulePanel';
 import { ListingsPanel, ShopPanel } from './career/ShopPanel';
+import { MUNI_EVENT, MuniRound } from './tournament/MuniRound';
 import { PeoplePanel } from './career/PeoplePanel';
 import { StoryDialog } from './career/StoryDialog';
 import { EnterDialog } from './career/EnterDialog';
@@ -85,6 +86,12 @@ export function App() {
     }
   });
   const [started, setStarted] = useState(false);
+  const [muni, setMuni] = useState(false);
+  useEffect(() => {
+    const on = () => setMuni(true);
+    window.addEventListener(MUNI_EVENT, on);
+    return () => window.removeEventListener(MUNI_EVENT, on);
+  }, []);
   const [legacySection, setLegacySection] = useState<LegacySection>('overview');
   // Rotating scenery for the game shell (one timer for page and header; not saved).
   const scenery = useSceneRotation();
@@ -212,6 +219,8 @@ export function App() {
 
       {showTournament ? (
         <TournamentView onExit={() => { setInTournament(false); setTab('career'); }} />
+      ) : muni ? (
+        <MuniRound onExit={() => setMuni(false)} />
       ) : (
         <>
           <nav className="tabs" aria-label="Game screens">

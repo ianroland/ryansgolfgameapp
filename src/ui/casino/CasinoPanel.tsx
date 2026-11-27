@@ -1120,7 +1120,7 @@ export function CasinoPanel() {
         </div>
         <dl className="casino-stats">
           <div><dt>Bank</dt><dd><ShownBalance real={state.balance} /></dd></div>
-          <div><dt>Casino all-time</dt><dd className={net >= 0 ? 'pos' : 'neg'}>{formatMoney(net, true)}</dd></div>
+          <div><dt>Casino all-time{typeof c.flags.rytired === 'string' ? ' (locked)' : ''}</dt><dd className={net >= 0 ? 'pos' : 'neg'}>{formatMoney(net, true)}</dd></div>
           <div><dt>Biggest win</dt><dd>{formatMoney(Number(c.flags.casinoBiggestWin ?? 0))}</dd></div>
         </dl>
       </section>
