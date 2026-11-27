@@ -4,7 +4,7 @@
  * is absurd; innuendo never gets explicit. Approved under the owner's standing approval (docs/APPROVALS.md).
  *
  * Third-person lines about Ryan use `{he}`/`{his}` tokens (src/story/phase.ts). Baba's Act II beats
- * (Sunday Dinner, The Next Chapter) wait for his character art.
+ * Baba's art: src/assets/characters/baba.png (cut by tools/cut_baba.py from the author's sheet).
  */
 import type { CareerState } from '../career/types';
 import type { EncounterDef } from './encounters';
@@ -315,13 +315,104 @@ export const ACT_TWO: EncounterDef[] = [
     },
   },
   {
+    id: 'act2_sunday_dinner',
+    title: 'Sunday Dinner',
+    teaser: 'Baba has four foil trays, a cooler, and opinions about your putting.',
+    act: 2,
+    location: 'driving_range',
+    cast: ['baba'],
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_monday_goose') >= 1,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'Sunday at the muni. A picnic table behind the maintenance shed. Baba has brought dinner in four foil trays and a cooler.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: '{Habibi}. Sit. Eat. You look like a one-iron.' },
+          { who: 'ryan', expr: 'happy', text: 'Hi, Baba.' },
+          { who: 'narrator', text: 'Baba hands over a carton of BOBO MILKY without asking. He has never once asked.' },
+          { who: 'baba', expr: 'confident', pose: 'give', text: 'Drink. Calcium. Your bones are the only thing on tour that isn’t rented.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'I watched your Monday round on the phone. The little phone. Your putting is a crime.' },
+          { who: 'ryan', expr: 'confident', pose: 'talk', text: 'I got through the qualifier, Baba.' },
+          { who: 'baba', expr: 'confident', pose: 'talk', text: 'Through. Not over. Through is a door. You walked through a door. Congratulations.' },
+          { who: 'narrator', text: 'He checks his gold watch. Dinner has been going for four minutes.' },
+          { who: 'baba', expr: 'neutral', pose: 'idle', text: 'Eat. Then fifty from three feet. The practice green is right there. I mowed it for you. Diagonal.' },
+        ],
+        choice: {
+          prompt: 'What does Ryan do?',
+          options: [
+            { id: 'putt', label: 'Fifty from three feet, right now', hint: 'Putting challenge with Baba watching, Form +', next: 'putt' },
+            { id: 'eat', label: 'Eat first. Talk.', hint: 'Baba ♥♥, +Energy', next: 'eat' },
+            { id: 'biff', label: 'Tell him about Biff', hint: 'Baba ♥, ball marks', next: 'biff' },
+          ],
+        },
+      },
+      putt: {
+        lines: [
+          { who: 'ryan', expr: 'confident', pose: 'talk', text: 'Okay. Fifty. Count them.' },
+          { who: 'baba', expr: 'neutral', pose: 'idle', text: 'I always count.' },
+        ],
+        challenge: { kind: 'putt', opponent: 'baba' },
+        win: 'putt_made',
+        lose: 'putt_missed',
+      },
+      putt_made: {
+        lines: [
+          { who: 'narrator', text: 'Forty-nine in a row. The fiftieth hangs on the lip, thinks about it, and drops.' },
+          { who: 'baba', expr: 'neutral', pose: 'idle', text: 'Fifty.' },
+          { who: 'narrator', text: 'A pause. The corner of Baba’s mustache moves about one millimetre.' },
+          { who: 'baba', expr: 'happy', pose: 'confident', text: 'Okay. Now eat. The kofta is getting cold, and so am I.' },
+        ],
+        outcome: 'putt_made',
+      },
+      putt_missed: {
+        lines: [
+          { who: 'narrator', text: 'Number thirty-one lips out.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'Again.' },
+          { who: 'ryan', expr: 'worried', text: 'From the start?' },
+          { who: 'baba', expr: 'confident', pose: 'talk', text: 'Where else would you start? The middle? Life doesn’t have a middle, {habibi}.' },
+          { who: 'narrator', text: 'It is dark by the time Ryan makes fifty. Baba holds the flashlight the whole time, complaining, and doesn’t leave once.' },
+        ],
+        outcome: 'putt_missed',
+      },
+      eat: {
+        lines: [
+          { who: 'ryan', expr: 'happy', pose: 'talk', text: 'Can we just eat first?' },
+          { who: 'baba', expr: 'worried', pose: 'think', text: '...Fine. Ten minutes. Then putting.' },
+          { who: 'narrator', text: 'It is not ten minutes. It is an hour. Baba explains the correct way to mow a fairway, twice, with diagrams drawn on a napkin.' },
+          { who: 'baba', expr: 'angry', pose: 'emphatic', text: 'Eleven unrepaired ball marks on fourteen today. ELEVEN. People are animals.' },
+          { who: 'ryan', expr: 'laughing', text: 'You counted?' },
+          { who: 'baba', expr: 'neutral', pose: 'idle', text: 'I always count. Fix your ball marks. It’s the only rule.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: '...And call more. Not for me. For the practice green. It worries.' },
+          { who: 'narrator', text: 'The practice green does not worry. Baba checks his watch so nobody sees his face.' },
+        ],
+        outcome: 'ate',
+      },
+      biff: {
+        lines: [
+          { who: 'ryan', expr: 'laughing', pose: 'talk', text: 'Biff Fairway keeps turning up at my events. He has a gold everything now.' },
+          { who: 'baba', expr: 'angry', pose: 'angry', text: 'The Fairway boy.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'Fourteen ball marks the last time he played here. Fourteen. I counted. I always count.' },
+          { who: 'baba', expr: 'confident', pose: 'confident', text: 'You know what money can’t buy, {habibi}? A ball-mark repair. You have to bend down. Rich people don’t bend.' },
+          { who: 'narrator', text: 'He says this with the satisfaction of a man who has bent down several thousand times.' },
+        ],
+        outcome: 'biff',
+      },
+    },
+    outcomes: {
+      putt_made: { summary: 'Made fifty from three feet with Baba counting.', tone: 'good', effects: { form: 2, energy: -3, rel: { mom: 6 } }, bonds: { baba: 6 }, changes: 'Form +2 · −3 Energy · Baba ♥' },
+      putt_missed: { summary: 'Fifty from three feet, by flashlight. Baba stayed the whole time.', tone: 'good', effects: { form: 1, energy: -6, rel: { mom: 8 } }, bonds: { baba: 8 }, changes: 'Form +1 · −6 Energy · Baba ♥' },
+      ate: { summary: 'Ate first. Heard about ball marks. Promised to call more.', tone: 'good', effects: { energy: 8, rel: { mom: 10 } }, bonds: { baba: 10 }, changes: '+8 Energy · Baba ♥♥' },
+      biff: { summary: 'Told Baba about Biff. Learned Biff’s exact ball-mark total.', tone: 'neutral', effects: { rel: { mom: 6 }, form: 1 }, bonds: { baba: 6 }, changes: 'Baba ♥ · Form +1' },
+    },
+  },
+  {
     id: 'act2_helicopter_dinner',
     title: 'Dinner, Interrupted',
     teaser: 'Kayla said yes to dinner. Biff said yes to a helicopter.',
     act: 2,
     location: 'clubhouse_lounge',
     cast: ['kayla_brooks', 'biff_fairway'],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_rain_delay') >= 4 && since(c, s, 'act2_monday_goose') >= 1,
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_rain_delay') >= 4 && since(c, s, 'act2_sunday_dinner') >= 1,
     start: 'start',
     nodes: {
       start: {

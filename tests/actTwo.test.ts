@@ -65,7 +65,7 @@ describe('Act II: The Grind', () => {
 
   it('the Act II scenes follow in order, a few weeks apart', () => {
     const order = ACT_TWO.map((d) => d.id);
-    expect(order).toEqual(['act2_motel_six_iron', 'act2_the_sponsor', 'act2_rain_delay', 'act2_monday_goose', 'act2_helicopter_dinner']);
+    expect(order).toEqual(['act2_motel_six_iron', 'act2_the_sponsor', 'act2_rain_delay', 'act2_monday_goose', 'act2_sunday_dinner', 'act2_helicopter_dinner']);
     for (const d of ACT_TWO.slice(1)) expect(d.act).toBe(2);
     // Two characters on stage take turns opposite Ryan; both have art (checked in story.test.ts).
     expect(ACT_TWO.find((d) => d.id === 'act2_helicopter_dinner')!.cast).toEqual(['kayla_brooks', 'biff_fairway']);

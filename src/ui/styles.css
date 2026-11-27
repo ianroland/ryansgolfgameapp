@@ -2628,3 +2628,4 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 /* Come / Don't Come: say why they're closed on the come-out roll */
 .craps-zone-note { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); white-space: nowrap; padding: 0.25cqw 0.8cqw; border-radius: 99px; background: rgba(10, 30, 18, 0.82); color: #f4e7b0; font-size: max(10px, 1.15cqw); letter-spacing: .02em; pointer-events: none; }
 .cl-note { display: block; font-size: 11px; opacity: .8; }
+.baba-face { align-self: center; display: block; }

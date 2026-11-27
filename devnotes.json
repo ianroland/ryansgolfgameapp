@@ -2,6 +2,29 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.21.1",
+   "date": "2026-11-27",
+   "title": "Baba, in person",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Baba joins the cast, drawn from the author's character sheet: idle, talking, emphatic, laughing, concerned, proud, angry, BOBO MILKY hand-offs, victory and more, with five portraits."
+    },
+    {
+     "tag": "new",
+     "text": "Act II: Sunday Dinner. Foil trays behind the maintenance shed, a BOBO MILKY you didn't ask for, and fifty from three feet with Baba counting."
+    },
+    {
+     "tag": "improved",
+     "text": "Baba's face now shows on the loan call."
+    },
+    {
+     "tag": "fixed",
+     "text": "Ryan's putting neck is back to normal length: his collar now sits right under his chin, as in the reference art."
+    }
+   ]
+  },
+  {
    "version": "0.21.0",
    "date": "2026-11-27",
    "title": "Act II: The Grind",

@@ -19,7 +19,7 @@ describe('character art (real transparency, complete manifests)', () => {
   const pngs = readdirSync(ASSETS).filter((f) => f.endsWith('.png'));
 
   it('every atlas has genuine alpha: only fully clear or fully opaque pixels, and see-through frame corners', () => {
-    expect(pngs.length).toBe(11);
+    expect(pngs.length).toBe(12);
     for (const f of pngs) {
       const img = decodePng(join(ASSETS, f));
       const m = JSON.parse(readFileSync(join(ASSETS, f.replace('.png', '.json')), 'utf8'));
@@ -48,7 +48,7 @@ describe('character art (real transparency, complete manifests)', () => {
   });
 
   it('every cast member has a portrait for every expression and the core poses', () => {
-    expect(CAST).toHaveLength(10);
+    expect(CAST).toHaveLength(11);
     for (const ch of CAST) {
       for (const e of EXPRESSIONS) expect(sheetManifest(ch.id)!.frames[portraitKey(ch.id, e)], `${ch.id} ${e}`).toBeDefined();
       for (const pose of ['idle', 'talk', 'celebrate', 'disappointed'] as const) expect(poseFrames(ch.id, pose)[0]?.startsWith(`${pose}.`), `${ch.id} ${pose}`).toBe(true);

@@ -18,10 +18,15 @@ Built in 0.21.0 from the owner-approved outline "Ryan's Road: Acts II–IV Story
 | `act2_the_sponsor` | The Sponsor | Mr. Dawson, Biff | 2+ weeks later |
 | `act2_rain_delay` | Rain Delay | Kayla | 2+ weeks after The Sponsor |
 | `act2_monday_goose` | Monday Qualifier | Commissioner Clipboard (and a goose) | 2+ weeks after Rain Delay |
-| `act2_helicopter_dinner` | Dinner, Interrupted | Kayla, Biff | 4+ weeks after Rain Delay and after the goose |
+| `act2_sunday_dinner` | Sunday Dinner | Baba | 1+ week after the goose (0.21.1) |
+| `act2_helicopter_dinner` | Dinner, Interrupted | Kayla, Biff | 4+ weeks after Rain Delay, and after Sunday Dinner |
 
 ## Waiting on
 
-- **Baba's sprite sheet.** Sunday Dinner and The Next Chapter (the Act II finale, which starts Act III and phase 3) need it. Ryan's art for all three phases already exists.
+- **Baba's art is in** (0.21.1). The author's sheet was in `art/source_sheets/cast/` all along; `tools/cut_baba.py` cuts it into `src/assets/characters/baba.png`.
+  - Strips are taken in order and scaled to one standing height.
+  - The keying fringe is removed.
+  - The portraits' blue squares are keyed out, and the 5 faces are mapped onto the 8 expressions.
+- **The Next Chapter** (the Act II finale, which starts phase 3) is drafted for the owner in the outline doc. It ships together with the phase 3 LPGA tour switch.
 - **The frozen Story Bible.** The Rejection, The Arnold Palmer Drive and The Dossier slot in when it's available. Act II currently starts right after the first Q-School.
 - **The quiet "What fits" thread.** These scenes are played straight and will go to the owner before they ship.

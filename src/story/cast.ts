@@ -31,6 +31,7 @@ export const CAST: CharacterDef[] = [
   { id: 'sponsor_dawson', name: 'Mr. Dawson', short: 'Dawson', role: 'Sponsor executive', personality: 'Corporate. Questionable marketing instincts, unshakeable confidence in them.', color: '#1d3f8a' },
   { id: 'caddie_jordan', name: 'Jordan', short: 'Jordan', role: 'Caddie', personality: 'Dependable, dry sense of humour, reads greens and people.', person: 'caddie', color: '#3f6f3a' },
   { id: 'friend_avery', name: 'Avery', short: 'Avery', role: 'Friend', personality: 'Knows Ryan outside golf. Supportive, honest, brings snacks.', color: '#d8457a' },
+  { id: 'baba', name: 'Baba', short: 'Baba', role: 'Ryan\u2019s father', personality: 'Blunt, funny, demanding, loyal. Never sentimental. Always has a BOBO MILKY.', person: 'mom', color: '#2f6b3a' },
   { id: 'reporter_kim', name: 'Kim', short: 'Reporter Kim', role: 'Sports reporter', personality: "Follows Ryan's increasingly strange career with a microphone and a straight face.", color: '#7a2f6b' },
 ];
 

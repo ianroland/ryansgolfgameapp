@@ -102,6 +102,7 @@ export function BabaLoanCard() {
       {open && (
         <Dialog title={repay ? BABA_LOAN_LINES.repayTitle : 'Calling Baba'} onClose={close}>
           <div className="baba-call" data-testid="baba-call">
+            <span className="baba-face" aria-hidden="true"><SpriteFrame who="baba" frame={portraitKey('baba', said ? 'happy' : repay ? 'confident' : 'neutral')} height={88} /></span>
             {BABA_LOAN_STATUS === 'draft' && <span className="rpg-draft">Draft lines</span>}
             {said ? (
               <p className="baba-line">{said}</p>

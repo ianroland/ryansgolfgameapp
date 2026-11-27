@@ -5,7 +5,9 @@ export const EXPRESSIONS = ['neutral', 'happy', 'angry', 'surprised', 'worried',
 export type Expression = (typeof EXPRESSIONS)[number];
 
 /** Full-body poses. Not every character has every pose: see `poseFrames`. */
-export type Pose = 'idle' | 'talk' | 'celebrate' | 'disappointed' | 'confident' | 'walk' | 'laugh' | 'angry' | 'surprised' | 'sad' | 'point' | 'handshake' | 'sit' | 'stand';
+export type Pose = 'idle' | 'talk' | 'celebrate' | 'disappointed' | 'confident' | 'walk' | 'laugh' | 'angry' | 'surprised' | 'sad' | 'point' | 'handshake' | 'sit' | 'stand'
+  /** Baba's sheet: emphatic talk, handing over a BOBO MILKY, drinking one, thinking. */
+  | 'emphatic' | 'give' | 'drink' | 'think';
 
 /**
  * Ryan's phase look (stable save ids): `curly` = phase 1, natural black side-parted hair (Act I);
