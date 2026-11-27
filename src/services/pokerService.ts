@@ -153,7 +153,7 @@ export class PokerService {
       const players = [{ id: 'ryan', name: 'Ryan', stack: buyIn }, ...room.regulars.map((r) => ({ id: r.id, name: r.short, stack: room.regularStack }))];
       const chat: ChatLine[] = [{ seat: 1 + this.rand(room.regulars.length), text: '' }];
       chat[0].text = pick(room.regulars[chat[0].seat - 1].lines.sit, this.rand);
-      const state = playToHero(startHand(newTable(players, room.sb, room.bb), this.rand), room, chat, this.rand, this.rand);
+      const state = playToHero(startHand(newTable(players, room.sb, room.bb, { variant: room.variant }), this.rand), room, chat, this.rand, this.rand);
       const t: PokerTable = { sessionId, location: room.location, bought: buyIn, buys: 1, state, chat, v: 1 };
       await this.save(c, t);
       return t;

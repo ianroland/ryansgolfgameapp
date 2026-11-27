@@ -9,8 +9,9 @@
  */
 import type { LocationId } from '../../expansion/unlocks';
 import type { Personality } from './ai';
+import type { PokerVariant } from './holdem';
 
-export type PokerVariant = 'holdem' | 'stud' | 'omaha8';
+export type { PokerVariant };
 
 export interface Regular {
   id: string;
@@ -30,7 +31,7 @@ export interface PokerRoom {
   name: string;
   variant: PokerVariant;
   variantName: string;
-  /** Built and playable. The others show their regulars and a "table being set up" note. */
+  /** Built and playable (a room still being built shows its regulars and a note instead). */
   open: boolean;
   sb: number;
   bb: number;
@@ -98,7 +99,7 @@ export const POKER_ROOMS: readonly PokerRoom[] = [
     ],
   },
   {
-    location: 'white_buffalo', name: 'The Paddock', variant: 'stud', variantName: 'Seven Card Stud', open: false,
+    location: 'white_buffalo', name: 'The Paddock', variant: 'stud', variantName: 'Seven Card Stud ($10/$20 limit)', open: true,
     sb: 5, bb: 10, buyIn: { min: 300, max: 1500 }, regularStack: 1500,
     course: { name: 'Bison Ridge', blurb: 'Eighteen holes along the ridge, closed to the public. The resort\'s money men play for skins on Tuesdays.' },
     regulars: [
@@ -109,7 +110,7 @@ export const POKER_ROOMS: readonly PokerRoom[] = [
     ],
   },
   {
-    location: 'morongo_sky', name: 'The Observatory', variant: 'omaha8', variantName: 'Omaha Hi-Lo', open: false,
+    location: 'morongo_sky', name: 'The Observatory', variant: 'omaha8', variantName: 'Pot-Limit Omaha Hi-Lo', open: true,
     sb: 10, bb: 20, buyIn: { min: 500, max: 2500 }, regularStack: 2500,
     course: { name: 'Mesa Vista', blurb: 'A cliffside private course with a membership list nobody has seen. Skins here start at serious money.' },
     regulars: [

@@ -4,7 +4,7 @@
  * and dollar moves through PokerService.
  */
 import { useEffect, useState } from 'react';
-import { legal, pot } from '../../casino/poker/holdem';
+import { legal, pot, variantOf } from '../../casino/poker/holdem';
 import type { PokerRoom as Room } from '../../casino/poker/rooms';
 import { dealerById } from '../../npc/registry';
 import { INVITE_LINES, INVITE_NIGHTS } from '../../npc/vip';
@@ -124,7 +124,7 @@ function PokerRoomView({ room }: { room: Room }) {
     return (
       <section className="hub-card poker-room" data-testid="poker-lobby">
         <h2 className="hub-title">{room.name} · {room.variantName}</h2>
-        <p className="muted">Blinds {formatMoney(room.sb)}/{formatMoney(room.bb)} · buy in {formatMoney(room.buyIn.min)}–{formatMoney(room.buyIn.max)}. Same four regulars every night.</p>
+        <p className="muted">{room.variant === 'stud' ? `Antes ${formatMoney(Math.max(1, Math.round(room.bb / 5)))}, bring-in ${formatMoney(room.sb)}, bets ${formatMoney(room.bb)}/${formatMoney(room.bb * 2)}` : `Blinds ${formatMoney(room.sb)}/${formatMoney(room.bb)}${room.variant === 'omaha8' ? ', pot limit, high and low split the pot' : ''}`} · buy in {formatMoney(room.buyIn.min)}–{formatMoney(room.buyIn.max)}. Same four regulars every night.</p>
         <ul className="poker-regulars">{room.regulars.map((r) => <li key={r.id}><span className="poker-av" style={{ background: r.color }}>{r.short[0]}</span><b>{r.name}</b>: {r.bio}</li>)}</ul>
         <div className="row">
           <label>Buy in <input type="range" min={room.buyIn.min} max={room.buyIn.max} step={50} value={buyIn} onChange={(e) => setBuyIn(Number(e.target.value))} data-testid="poker-buyin" /> <b>{formatMoney(buyIn)}</b></label>
@@ -142,18 +142,25 @@ function PokerRoomView({ room }: { room: Room }) {
     <section className="hub-card poker-room" data-testid="poker-table">
       <div className="poker-felt">
         <div className="poker-center">
-          <div className="poker-board">{s.board.map((c, i) => <PlayingCard key={`${s.handNo}-${i}`} card={c} i={i} />)}</div>
+          <div className={`poker-board ${variantOf(s) === 'stud' ? 'stud' : ''}`}>{s.board.map((c, i) => <PlayingCard key={`${s.handNo}-${i}`} card={c} i={i} />)}</div>
           <p className="poker-pot" data-testid="poker-pot">{over ? s.log[s.log.length - 1] : `Pot ${formatMoney(pot(s))}`}</p>
         </div>
         {s.seats.map((x, i) => {
           const reg = i === HERO ? null : room.regulars[i - 1];
           const reveal = i === HERO || (shown && !x.folded && x.inHand);
+          const stud = variantOf(s) === 'stud';
           return (
             <div key={x.id} className={`poker-seat ${SEAT_POS[i]} ${x.folded ? 'folded' : ''} ${s.toAct === i ? 'acting' : ''} ${winners.has(i) ? 'won' : ''}`} data-testid={`poker-seat-${i}`}>
               {reg ? <span className="poker-av" style={{ background: reg.color }}>{reg.short[0]}</span> : <span className="poker-av hero-av"><SpriteFrame who={RYAN_ID} frame={portraitKey(RYAN_ID, 'neutral', appearanceOf(state.career))} height={40} /></span>}
               <div className="poker-name">{reg?.short ?? 'You'}{s.button === i && <span className="poker-btn" title="Dealer button">D</span>}</div>
               <div className="poker-stack">{formatMoney(x.stack)}{x.allIn && !over ? ' · all in' : ''}</div>
-              <div className="poker-hole">{x.inHand && x.hole.map((c, k) => <PlayingCard key={`${s.handNo}-${k}`} card={c} i={k} hidden={!reveal} />)}</div>
+              <div className={`poker-hole n${x.hole.length}`}>
+                {x.inHand && x.hole.map((c, k) => (
+                  <span key={`${s.handNo}-${k}`} className={stud && x.up?.[k] ? 'pk-up' : stud ? 'pk-down' : ''}>
+                    <PlayingCard card={c} i={k} hidden={!reveal && !(stud && x.up?.[k])} />
+                  </span>
+                ))}
+              </div>
               {x.bet > 0 && <BetChip amount={x.bet} className="poker-bet" />}
               {t.chat.filter((m) => m.seat === i).slice(-1).map((m, k) => <p key={k} className="poker-bubble">{m.text}</p>)}
             </div>
@@ -168,9 +175,9 @@ function PokerRoomView({ room }: { room: Room }) {
             {L.toCall > 0 && <button className="btn primary" onClick={() => run(() => services.poker.act({ type: 'call' }))} data-testid="poker-call">Call {formatMoney(L.toCall)}</button>}
             {L.maxTo > 0 && (
               <span className="poker-raise">
-                <input type="range" min={L.minTo} max={L.maxTo} step={1} value={Math.min(Math.max(raise, L.minTo), L.maxTo)} onChange={(e) => setRaise(Number(e.target.value))} aria-label="Raise to" />
+                {L.maxTo > L.minTo && <input type="range" min={L.minTo} max={L.maxTo} step={1} value={Math.min(Math.max(raise, L.minTo), L.maxTo)} onChange={(e) => setRaise(Number(e.target.value))} aria-label="Raise to" />}
                 <button className="btn primary" onClick={() => run(() => services.poker.act({ type: 'raise', to: Math.min(Math.max(raise, L.minTo), L.maxTo) }))} data-testid="poker-raise">
-                  {raise >= L.maxTo ? 'All in' : s.currentBet === 0 ? 'Bet' : 'Raise to'} {formatMoney(Math.min(Math.max(raise, L.minTo), L.maxTo))}
+                  {Math.max(raise, L.minTo) >= hero.bet + hero.stack ? 'All in' : s.currentBet === 0 ? 'Bet' : 'Raise to'} {formatMoney(Math.min(Math.max(raise, L.minTo), L.maxTo))}
                 </button>
               </span>
             )}

@@ -2,6 +2,25 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.25.1",
+   "date": "2026-11-27",
+   "title": "Stud and Omaha Hi-Lo",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The Paddock at the White Buffalo deals Seven Card Stud at $10/$20 limit: antes, the lowest card showing brings it in, a four-bet cap, and up cards everyone can see."
+    },
+    {
+     "tag": "new",
+     "text": "The Observatory at Morongo Sky deals Pot-Limit Omaha Hi-Lo: four hole cards, using exactly two of them with three from the board. The best high and the best 8-or-better low split the pot."
+    },
+    {
+     "tag": "fix",
+     "text": "Poker opponents still see only what a real player would: their own cards, the board, and other players' up cards."
+    }
+   ]
+  },
+  {
    "version": "0.25.0",
    "date": "2026-11-27",
    "title": "Private Rooms and the Pro Shop",

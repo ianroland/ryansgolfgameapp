@@ -7,8 +7,8 @@ import 'fake-indexeddb/auto';
 import { describe, expect, it } from 'vitest';
 import type { Card } from '../src/casino/blackjack';
 import { decide, equity, viewFor } from '../src/casino/poker/ai';
-import { bestHand, classOf, score5 } from '../src/casino/poker/handRank';
-import { act, chipsInPlay, legal, newTable, sidePots, startHand, type HoldemState, type Seat } from '../src/casino/poker/holdem';
+import { bestHand, classOf, low5, omahaHigh, omahaLow, score5 } from '../src/casino/poker/handRank';
+import { act, chipsInPlay, legal, newTable, showing, sidePots, startHand, type HoldemState, type PokerVariant, type Seat } from '../src/casino/poker/holdem';
 import { POKER_ROOMS, roomAt } from '../src/casino/poker/rooms';
 import { seededInt } from '../src/casino/random';
 import { isDomainError } from '../src/core/errors';
@@ -93,9 +93,9 @@ describe("Hold'em rules", () => {
     expect(t.seats.map((x) => x.stack)).toEqual([150, 300, 0]);
   });
 
-  it('random legal play over many hands: chips are always conserved and every hand ends', () => {
+  it.each(['holdem', 'omaha8', 'stud'] as PokerVariant[])('%s: random legal play over many hands conserves chips and every hand ends', (variant) => {
     const rand = seededInt(42);
-    let t: HoldemState = newTable([0, 1, 2, 3, 4].map((i) => ({ id: `p${i}`, name: `P${i}`, stack: 100 + i * 150 })), 5, 10);
+    let t: HoldemState = newTable([0, 1, 2, 3, 4].map((i) => ({ id: `p${i}`, name: `P${i}`, stack: 100 + i * 150 })), 5, 10, { variant });
     let hands = 0;
     for (let h = 0; h < 300; h++) {
       // Busted seats reload (as the regulars do), so play goes on.
@@ -119,6 +119,81 @@ describe("Hold'em rules", () => {
       hands++;
     }
     expect(hands).toBe(300);
+    expect(t.seats.every((x) => !x.inHand || x.hole.length <= (variant === 'stud' ? 7 : variant === 'omaha8' ? 4 : 2))).toBe(true);
+  });
+});
+
+describe('Omaha Hi-Lo', () => {
+  it('uses exactly two hole cards and three from the board', () => {
+    // Four hearts on board and one heart in hand: no flush in Omaha.
+    expect(omahaHigh(H('Ah Kc Qd Js'), H('2h 5h 8h 9h Tc')).cls).not.toBe('flush');
+    expect(omahaHigh(H('Ah Kh Qd Js'), H('2h 5h 8h 9c Tc')).cls).toBe('flush');
+  });
+  it('lows need five different ranks, eight or better, and lower is better', () => {
+    expect(low5(H('Ac 2d 3h 4s 5c'))).not.toBeNull();
+    expect(low5(H('Ac 2d 3h 4s 9c'))).toBeNull();
+    expect(low5(H('Ac 2d 3h 3s 5c'))).toBeNull();
+    expect(low5(H('Ac 2d 3h 4s 6c'))!).toBeLessThan(low5(H('Ac 2d 3h 4s 7c'))!);
+    expect(omahaLow(H('Ac 2d Kh Ks'), H('3h 6c 8d Qs Jd'))).not.toBeNull();
+    expect(omahaLow(H('Ac Qd Kh Ks'), H('3h 6c 8d 2s 4d'))).toBeNull(); // only one low card in hand
+  });
+  it('splits the pot between the best high and the best low', () => {
+    let t = startHand(newTable([{ id: 'a', name: 'A', stack: 100 }, { id: 'b', name: 'B', stack: 100 }, { id: 'c', name: 'C', stack: 100 }], 5, 10, { variant: 'omaha8' }), seededInt(5));
+    const holes = [H('Ks Kh Qd Jc'), H('As 2h 9d 9c'), H('Tc Td 7s 7h')];
+    const board = H('Kd 3c 4h 8s Qh');
+    const deck = [board[4], C('Jh'), board[3], C('Js'), board[2], board[1], board[0], C('Jd')];
+    t = { ...t, seats: t.seats.map((x, i) => ({ ...x, hole: holes[i] })), deck };
+    // Pot limit: raise as far as allowed, then call everything off.
+    let guard = 0;
+    while (!t.result && guard++ < 30) { const L = legal(t); t = act(t, L.maxTo ? { type: 'raise', to: L.maxTo } : L.toCall ? { type: 'call' } : { type: 'check' }); }
+    expect(t.result?.shown).toBe(true);
+    // A: trip kings (high, 150). B: 8-4-3-2-A low (150). C: nothing.
+    expect(t.seats.map((x) => x.stack)).toEqual([150, 150, 0]);
+    expect(t.result!.wins.map((w) => w.half).sort()).toEqual(['high', 'low']);
+  });
+});
+
+describe('Seven Card Stud', () => {
+  const table = () => startHand(newTable([0, 1, 2, 3].map((i) => ({ id: `p${i}`, name: `P${i}`, stack: 500 })), 5, 10, { variant: 'stud' }), seededInt(11));
+  it('antes, two down and one up, and the lowest card showing brings it in', () => {
+    const t = table();
+    expect(t.street).toBe('third');
+    for (const x of t.seats) { expect(x.hole).toHaveLength(3); expect(x.up).toEqual([false, false, true]); }
+    const hi = (r: number) => (r === 1 ? 14 : r);
+    const lowest = Math.min(...t.seats.map((x) => hi(showing(x)[0].rank)));
+    const bringer = t.seats.findIndex((x) => x.bet === 5);
+    expect(hi(showing(t.seats[bringer])[0].rank)).toBe(lowest);
+    expect(chipsInPlay(t)).toBe(2000);
+    expect(t.seats.reduce((a, x) => a + x.total, 0)).toBe(4 * 2 + 5);
+  });
+  it('fixed limit: complete to 10 on third street, bets of 20 from fifth, four bets a street at most', () => {
+    let t = table();
+    expect(legal(t)).toMatchObject({ minTo: 10, maxTo: 10 });
+    t = act(t, { type: 'raise', to: 10 });
+    expect(legal(t)).toMatchObject({ minTo: 20, maxTo: 20 });
+    t = act(t, { type: 'raise', to: 20 });
+    t = act(t, { type: 'raise', to: 30 });
+    t = act(t, { type: 'raise', to: 40 });
+    expect(legal(t).maxTo).toBe(0); // capped
+    while (t.street === 'third') t = act(t, legal(t).toCall ? { type: 'call' } : { type: 'check' });
+    while (t.street === 'fourth') t = act(t, legal(t).toCall ? { type: 'call' } : { type: 'check' });
+    expect(t.street).toBe('fifth');
+    expect(legal(t)).toMatchObject({ minTo: 20, maxTo: 20 });
+  });
+  it('deals the last card face down, seven cards in all', () => {
+    let t = table();
+    while (!t.result && t.street !== 'seventh') t = act(t, legal(t).toCall ? { type: 'call' } : { type: 'check' });
+    for (const x of t.seats.filter((x) => !x.folded)) expect(x.up).toEqual([false, false, true, true, true, true, false]);
+  });
+  it("opponents can't see down cards: changing someone's hidden cards changes nothing", () => {
+    let t = table();
+    t = act(t, legal(t).toCall ? { type: 'call' } : { type: 'check' });
+    const i = t.toAct;
+    const v = viewFor(t, i);
+    const swapped: HoldemState = { ...t, seats: t.seats.map((x, j) => (j === i ? x : { ...x, hole: x.hole.map((c, k) => (x.up![k] ? c : C('As'))) })) };
+    expect(viewFor(swapped, i).oppShowing).toEqual(v.oppShowing);
+    const p = POKER_ROOMS[1].regulars[0].style;
+    expect(decide(viewFor(swapped, i), p, seededInt(3))).toEqual(decide(v, p, seededInt(3)));
   });
 });
 
@@ -127,7 +202,7 @@ describe('opponents', () => {
     const t = startHand(newTable([0, 1, 2, 3].map((i) => ({ id: `p${i}`, name: `P${i}`, stack: 1000 })), 5, 10), seededInt(7));
     const i = t.toAct;
     const v = viewFor(t, i);
-    expect(Object.keys(v).sort()).toEqual(['bb', 'board', 'currentBet', 'hole', 'maxTo', 'minTo', 'myBet', 'opponents', 'pot', 'stack', 'toCall']);
+    expect(Object.keys(v).sort()).toEqual(['bb', 'board', 'currentBet', 'hole', 'maxTo', 'minTo', 'myBet', 'oppShowing', 'opponents', 'pot', 'stack', 'toCall', 'variant']);
     const swapped: HoldemState = { ...t, seats: t.seats.map((x, j) => (j === i ? x : { ...x, hole: H('As Ah') })) };
     const p = POKER_ROOMS[0].regulars[1].style;
     expect(decide(viewFor(swapped, i), p, seededInt(9))).toEqual(decide(v, p, seededInt(9)));
@@ -137,7 +212,7 @@ describe('opponents', () => {
     expect(equity(H('7c 2d'), [], 1, 300, seededInt(1))).toBeLessThan(0.4);
   });
   it('a tight regular folds trash to a big bet; a loose one plays more hands', () => {
-    const base = { board: [], pot: 115, toCall: 100, currentBet: 100, myBet: 0, stack: 1000, minTo: 190, maxTo: 1000, opponents: 2, bb: 10 };
+    const base = { variant: 'holdem' as const, oppShowing: [], board: [], pot: 115, toCall: 100, currentBet: 100, myBet: 0, stack: 1000, minTo: 190, maxTo: 1000, opponents: 2, bb: 10 };
     const tight = POKER_ROOMS[0].regulars[0].style;
     let folds = 0;
     for (let k = 0; k < 20; k++) if (decide({ ...base, hole: H('7c 2d') }, tight, seededInt(k)).type === 'fold') folds++;
@@ -147,7 +222,7 @@ describe('opponents', () => {
 
 describe('rooms and invitations', () => {
   it('one room per casino, each with four permanent regulars and a private course', () => {
-    expect(POKER_ROOMS.map((r) => [r.location, r.variant])).toEqual([['desert_palms', 'holdem'], ['white_buffalo', 'stud'], ['morongo_sky', 'omaha8']]);
+    expect(POKER_ROOMS.map((r) => [r.location, r.variant, r.open])).toEqual([['desert_palms', 'holdem', true], ['white_buffalo', 'stud', true], ['morongo_sky', 'omaha8', true]]);
     for (const r of POKER_ROOMS) {
       expect(r.regulars).toHaveLength(4);
       expect(r.course.name).toBeTruthy();
@@ -236,6 +311,20 @@ describe('poker room service', () => {
     const stack = t.state.seats[HERO].stack;
     if (stack < room.buyIn.max) expect(isDomainError(await s.poker.rebuy(room.buyIn.max - stack + 1).catch((e) => e), 'CAREER_RULE')).toBe(true);
     await s.poker.leave();
+  });
+
+  it.each([['white_buffalo', 'stud'], ['morongo_sky', 'omaha8']] as const)('%s deals %s with its own regulars', async (loc, variant) => {
+    const { s } = await newCareer();
+    await s.casino.visit();
+    await setCareer(s, (c) => { c.flags.casinoAt = loc; c.flags[`vip:${loc}`] = 't'; });
+    const before = await balance(s);
+    let t = await s.poker.sit(roomAt(loc).buyIn.min);
+    expect(t.state.variant).toBe(variant);
+    expect(t.state.seats.slice(1).map((x) => x.id)).toEqual(roomAt(loc).regulars.map((r) => r.id));
+    let guard = 0;
+    while (!t.state.result && guard++ < 20) t = await s.poker.act({ type: legal(t.state, HERO).check ? 'check' : 'fold' });
+    const { cashOut } = await s.poker.leave();
+    expect(await balance(s)).toBe(before - roomAt(loc).buyIn.min + cashOut);
   });
 
   it('leaving mid-hand folds and still pays out the rest of the stack', async () => {

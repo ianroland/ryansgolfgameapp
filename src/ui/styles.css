@@ -2692,3 +2692,11 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .pro-shop .shop-row.is-selected .ps-icon { filter: drop-shadow(0 0 6px #ffd34d); }
 .ps-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 @media (max-width: 700px) { .ps-grid { grid-template-columns: minmax(0, 1fr); } .ps-title { font-size: 28px; } .ps-icon { width: 46px; height: 46px; } }
+.poker-hole > span { display: inline-block; }
+.poker-hole.n4 { transform: scale(0.6); }
+.poker-hole.n4 > span + span, .poker-hole.n5 > span + span, .poker-hole.n6 > span + span, .poker-hole.n7 > span + span { margin-left: -34px; }
+.poker-hole.n5, .poker-hole.n6, .poker-hole.n7 { transform: scale(0.6); }
+.s-hero .poker-hole.n4, .s-hero .poker-hole.n5, .s-hero .poker-hole.n6, .s-hero .poker-hole.n7 { transform: scale(0.8); }
+.s-hero .poker-hole > span + span { margin-left: -18px; }
+.poker-hole .pk-down { transform: translateY(8px); filter: brightness(0.92); }
+.poker-board.stud { min-height: 0; }

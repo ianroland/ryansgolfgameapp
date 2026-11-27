@@ -5,8 +5,7 @@
  */
 import type { Card } from '../blackjack';
 import { cryptoInt, type RandomInt } from '../random';
-import { bestHand } from './handRank';
-import { legal, pot, type Action, type HoldemState } from './holdem';
+import { holeCount, legal, pot, rate, showing, variantOf, type Action, type HoldemState, type PokerVariant } from './holdem';
 
 export interface Personality {
   /** 0 loose … 1 tight: how much equity it wants before putting chips in. */
@@ -18,7 +17,11 @@ export interface Personality {
 }
 
 export interface SeatView {
+  variant: PokerVariant;
+  /** All of this seat's own cards. */
   hole: Card[];
+  /** Cards showing for each other live player (stud up cards; empty otherwise). */
+  oppShowing: Card[][];
   board: Card[];
   pot: number;
   toCall: number;
@@ -36,36 +39,50 @@ export interface SeatView {
 export function viewFor(s: HoldemState, i: number): SeatView {
   const L = legal(s, i);
   const x = s.seats[i];
+  const opps = s.seats.filter((o, j) => j !== i && o.inHand && !o.folded);
   return {
+    variant: variantOf(s), oppShowing: opps.map((o) => showing(o)),
     hole: [...x.hole], board: [...s.board], pot: pot(s), toCall: L.toCall, currentBet: s.currentBet, myBet: x.bet,
     stack: x.stack, minTo: L.minTo, maxTo: L.maxTo, bb: s.bb,
-    opponents: s.seats.filter((o, j) => j !== i && o.inHand && !o.folded).length,
+    opponents: opps.length,
   };
 }
 
-/** Share of the pot this hand wins on average against `opponents` random hands (ties split). */
-export function equity(hole: Card[], board: Card[], opponents: number, iterations = 160, rand: RandomInt = cryptoInt): number {
-  const known = new Set([...hole, ...board].map((c) => c.rank * 4 + c.suit));
+/**
+ * Share of the pot this seat wins on average (ties and hi/lo halves split), dealing the unseen
+ * cards at random. Known: the seat's own cards, the board, and what opponents show.
+ */
+export function equity(
+  hole: Card[], board: Card[], opponents: number, iterations = 160, rand: RandomInt = cryptoInt,
+  variant: PokerVariant = 'holdem', oppShowing: Card[][] = [],
+): number {
+  const known = new Set([...hole, ...board, ...oppShowing.flat()].map((c) => c.rank * 4 + c.suit));
   const rest: Card[] = [];
-  for (let s = 0; s < 4; s++) for (let r = 1; r <= 13; r++) if (!known.has(r * 4 + s)) rest.push({ rank: r, suit: s as Card['suit'] });
-  const need = 5 - board.length + 2 * opponents;
+  for (let su = 0; su < 4; su++) for (let r = 1; r <= 13; r++) if (!known.has(r * 4 + su)) rest.push({ rank: r, suit: su as Card['suit'] });
+  const per = holeCount(variant);
+  const boardTotal = variant === 'stud' ? 0 : 5;
+  const opp = Array.from({ length: opponents }, (_, o) => oppShowing[o] ?? []);
+  const need = (per - hole.length) + (boardTotal - board.length) + opp.reduce((a, k) => a + per - k.length, 0);
+  if (need > rest.length) return 1 / (opponents + 1);
   let won = 0;
   for (let it = 0; it < iterations; it++) {
-    // Partial shuffle: only the cards we need.
     const d = rest;
     for (let k = 0; k < need; k++) { const j = k + rand(d.length - k); [d[k], d[j]] = [d[j], d[k]]; }
-    const full = [...board, ...d.slice(0, 5 - board.length)];
-    const mine = bestHand([...hole, ...full]).score;
-    let best = mine;
-    let ties = 1;
-    let lost = false;
-    for (let o = 0; o < opponents; o++) {
-      const off = 5 - board.length + 2 * o;
-      const theirs = bestHand([d[off], d[off + 1], ...full]).score;
-      if (theirs > best) { lost = true; break; }
-      if (theirs === best) ties++;
-    }
-    if (!lost) won += 1 / ties;
+    let at = 0;
+    const take = (n: number) => { const out = d.slice(at, at + n); at += n; return out; };
+    const mine = [...hole, ...take(per - hole.length)];
+    const full = [...board, ...take(boardTotal - board.length)];
+    const theirs = opp.map((k) => [...k, ...take(per - k.length)]);
+    const all = [mine, ...theirs].map((h) => rate(variant, h, full));
+    const hiBest = Math.max(...all.map((r) => r.high));
+    const hiN = all.filter((r) => r.high === hiBest).length;
+    const myHi = all[0].high === hiBest ? 1 / hiN : 0;
+    const lows = all.map((r) => r.low).filter((l): l is number => l !== null);
+    if (variant === 'omaha8' && lows.length) {
+      const loBest = Math.min(...lows);
+      const loN = lows.filter((l) => l === loBest).length;
+      won += 0.5 * myHi + (all[0].low === loBest ? 0.5 / loN : 0);
+    } else won += myHi;
   }
   return won / iterations;
 }
@@ -75,7 +92,8 @@ const chance = (p: number, rand: RandomInt) => rand(1000) < p * 1000;
 
 /** Picks a legal action. Uses only the view (and a random source for mixing). */
 export function decide(v: SeatView, p: Personality, rand: RandomInt = cryptoInt): Action {
-  const eq = equity(v.hole, v.board, Math.max(1, v.opponents), 160, rand);
+  const iters = v.variant === 'holdem' ? 160 : 90;
+  const eq = equity(v.hole, v.board, Math.max(1, v.opponents), iters, rand, v.variant, v.oppShowing);
   // Equity a fair share would be, so "strong" means strong for this many players.
   const fair = 1 / (v.opponents + 1);
   const strength = eq / fair; // 1 = average hand here

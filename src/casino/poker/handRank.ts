@@ -54,3 +54,58 @@ export function bestHand(cards: readonly Card[]): { score: number; cards: Card[]
   }
   return { score: best, cards: pick, cls: classOf(best) };
 }
+
+const pairs = <T,>(xs: readonly T[], k: number): T[][] => {
+  const out: T[][] = [];
+  const go = (start: number, acc: T[]) => {
+    if (acc.length === k) { out.push(acc); return; }
+    for (let i = start; i < xs.length; i++) go(i + 1, [...acc, xs[i]]);
+  };
+  go(0, []);
+  return out;
+};
+
+/** Omaha high: exactly two hole cards and three from the board. */
+export function omahaHigh(hole: readonly Card[], board: readonly Card[]): { score: number; cls: HandClass } {
+  let best = -1;
+  for (const h of pairs(hole, 2)) for (const b of pairs(board, 3)) best = Math.max(best, score5([...h, ...b]));
+  return { score: best, cls: classOf(best) };
+}
+
+/**
+ * 8-or-better low value of five cards (ace plays low), or null if they don't qualify.
+ * Smaller is better: the highest card is compared first, then the next.
+ */
+export function low5(cards: readonly Card[]): number | null {
+  const r = cards.map((c) => c.rank).sort((a, b) => b - a); // ace = 1 already low
+  if (new Set(r).size !== 5 || r[0] > 8) return null;
+  return r.reduce((acc, k, i) => acc + k * 16 ** (4 - i), 0);
+}
+
+/** Omaha low: exactly two hole cards and three from the board, 8 or better; null if none. */
+export function omahaLow(hole: readonly Card[], board: readonly Card[]): number | null {
+  let best: number | null = null;
+  for (const h of pairs(hole, 2)) for (const b of pairs(board, 3)) {
+    const v = low5([...h, ...b]);
+    if (v !== null && (best === null || v < best)) best = v;
+  }
+  return best;
+}
+
+/** "8-6 low" style name for a low value. */
+export function lowName(v: number): string {
+  const top = Math.floor(v / 16 ** 4);
+  const next = Math.floor(v / 16 ** 3) % 16;
+  const n = (k: number) => (k === 1 ? 'A' : String(k));
+  return `${n(top)}-${n(next)} low`;
+}
+
+/** Score of the cards showing (stud action order): pairs, trips and quads count; straights and flushes don't. */
+export function scoreShowing(cards: readonly Card[]): number {
+  const ranks = cards.map((c) => hi(c.rank));
+  const counts = new Map<number, number>();
+  for (const r of ranks) counts.set(r, (counts.get(r) ?? 0) + 1);
+  const groups = [...counts.entries()].sort((a, b) => b[1] - a[1] || b[0] - a[0]);
+  const cls = groups[0]?.[1] === 4 ? 7 : groups[0]?.[1] === 3 ? 3 : groups[0]?.[1] === 2 && groups[1]?.[1] === 2 ? 2 : groups[0]?.[1] === 2 ? 1 : 0;
+  return groups.map((g) => g[0]).slice(0, 4).reduce((acc, k, i) => acc + k * 16 ** (3 - i), cls * 16 ** 4);
+}
