@@ -84,14 +84,14 @@ export function casinoStaff(states: readonly NpcState[]): StaffRow[] {
   return rows;
 }
 
-/** DRAFT labels: how well a table's regulars know Ryan, by craps rolls at that casino. */
+/** How well a table's regulars know Ryan, by craps rolls at that casino. Approved by the owner 2026-11-27 ("i love this"). */
 export const FAMILIARITY: readonly { min: number; label: string }[] = [
   { min: 1, label: 'New face' },
   { min: 30, label: 'Nodding terms' },
   { min: 150, label: 'Table regular' },
   { min: 500, label: 'Rail family' },
 ];
-export const FAMILIARITY_STATUS = 'draft' as const;
+export const FAMILIARITY_STATUS: 'draft' | 'approved' = 'approved';
 
 export function familiarity(rolls: number): string | null {
   let label: string | null = null;

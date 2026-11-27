@@ -2,6 +2,17 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.20.10",
+   "date": "2026-11-27",
+   "title": "Rail family, approved",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "The craps regulars' familiarity labels are approved: New face, Nodding terms (30 rolls), Table regular (150) and Rail family (500). The draft badge is gone."
+    }
+   ]
+  },
+  {
    "version": "0.20.9",
    "date": "2026-11-24",
    "title": "Tidier tabs, more people",
