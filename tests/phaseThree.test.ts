@@ -124,3 +124,23 @@ describe('Act III: The Rookie', () => {
     expect(ladderOf(c)).toBe('lpga');
   });
 });
+
+describe('Act IV: The Major', () => {
+  it('the shippable scenes play in order on the LPGA Tour', async () => {
+    const { ACT_FOUR } = await import('../src/story/actFour');
+    expect(ACT_FOUR.map((d) => d.id)).toEqual(['act4_big_leagues', 'act4_corkboard', 'act4_desert_rose', 'act4_kayla_knows']);
+    for (const d of ACT_FOUR) expect(d.act).toBe(4);
+  });
+
+  it('Kayla Knows records what they become', async () => {
+    const { s } = await toActThree();
+    await setCareer(s, (x) => {
+      x.tourCard = 'lpga';
+      x.story = { ...storyOf(x), act: 4, available: 'act4_kayla_knows' };
+    });
+    await s.career.resolveEncounter('act4_kayla_knows', ['dinner']);
+    const c = await s.career.getCareer();
+    expect(c.flags.kayla).toBe('dinner');
+    expect(storyOf(c).bonds.kayla_brooks).toBeGreaterThan(60);
+  });
+});

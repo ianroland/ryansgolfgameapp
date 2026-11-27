@@ -2,6 +2,21 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.24.0",
+   "date": "2026-11-27",
+   "title": "Act IV: The Major",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Act IV on the LPGA Tour: The Big Leagues (meet Jordan, your caddie, and #TowelTuesday), The Corkboard (Kayla has bought red string in bulk), The Desert Rose (Biff's pre-ordered Pink Jacket) and Kayla Knows."
+    },
+    {
+     "tag": "new",
+     "text": "Kayla finally finds out, and you choose what they become: friends, rivals, or dinner with no helicopters."
+    }
+   ]
+  },
+  {
    "version": "0.23.0",
    "date": "2026-11-27",
    "title": "Act III: The Rookie",
