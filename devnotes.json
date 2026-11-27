@@ -2,6 +2,33 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "0.21.0",
+   "date": "2026-11-27",
+   "title": "Act II: The Grind",
+   "items": [
+    {
+     "tag": "new",
+     "text": "The story finally moves past Act I. Once your first Q-School is over, Marty Mulligan (and Doug, his inflatable caddie) opens Act II, and the bald look unlocks."
+    },
+    {
+     "tag": "new",
+     "text": "Four more Act II scenes: The Sponsor (Biff wants to be called Mr. Fairway on TV), Rain Delay (Kayla, a golf cart and a pond), Monday Qualifier (a goose with seniority) and Dinner, Interrupted (a helicopter on the 18th green)."
+    },
+    {
+     "tag": "new",
+     "text": "With two characters in a scene, whoever is talking steps in opposite Ryan. New scene setting: the course at sunset."
+    },
+    {
+     "tag": "improved",
+     "text": "Lines about Ryan follow his story phase, including Baba's habibi and habibti."
+    },
+    {
+     "tag": "fixed",
+     "text": "Ryan no longer has a double chin when he putts."
+    }
+   ]
+  },
+  {
    "version": "0.20.12",
    "date": "2026-11-27",
    "title": "Mason Vale's last act",

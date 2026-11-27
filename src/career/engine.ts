@@ -20,10 +20,11 @@ import { storyById, STORIES, type Effects } from './stories';
 import { careerMoneyOf, ryanRank, seedCareerMoney } from './moneyList';
 import { eligibility, playerStanding, resultCourse, startTournament, type TournamentDef, type TournamentResult } from './tournament';
 import { isAlbatross } from '../records/albatross';
-import { appearanceBlocker, storyOf } from '../story/appearance';
+import { appearanceBlocker, phaseHat, storyOf } from '../story/appearance';
 import { encounterById, nextEncounter, walkEncounter } from '../story/encounters';
 import type { Appearance } from '../story/types';
 import { BABA_LOAN, BABA_LOAN_LINES } from '../story/babaLoan';
+import { HAIR_OF_PHASE, phaseOf, phaseOfAct, ryanSay } from '../story/phase';
 import { casinoAt, locationById } from '../expansion/locations';
 import type { LocationId } from '../expansion/unlocks';
 import { STAT_KEYS, STAT_LABELS, type CareerState, type InboxItem, type PersonId, type RoundMode, type StatKey } from './types';
@@ -720,8 +721,17 @@ export function resolveEncounter(prev: CareerState, id: string, path: string[], 
     available: null,
     encounters: { ...story.encounters, [id]: { outcome: walk.outcome, path, season: c.season, week: c.week, at: now(c) } },
   };
-  inbox(c, def.title, `${out.summary} (${out.changes})`, out.tone);
-  return { ...withAchievements({ career: c, money, message: out.summary }), outcomeId: walk.outcome };
+  if (out.act && out.act > story.act) {
+    const hair = HAIR_OF_PHASE[phaseOfAct(out.act)];
+    c.story.act = out.act;
+    if (!c.story.hairUnlocked.includes(hair)) c.story.hairUnlocked = [...c.story.hairUnlocked, hair];
+    // Phase 3 is a new chapter for Ryan, so the look changes with it; in phase 2 the bald look is
+    // unlocked for the player to choose.
+    if (phaseOfAct(out.act) === 3) c.appearance = { hair, hat: phaseHat(hair) };
+  }
+  const say = (x: string) => ryanSay(phaseOf(prev), x);
+  inbox(c, say(def.title), say(`${out.summary} (${out.changes})`), out.tone);
+  return { ...withAchievements({ career: c, money, message: say(out.summary) }), outcomeId: walk.outcome };
 }
 
 export function setAppearance(prev: CareerState, a: Appearance): Outcome {
@@ -873,7 +883,7 @@ function albatrossNews(c: CareerState, r: TournamentResult) {
           n += 1;
           inbox(
             c,
-            n === 1 ? `Ryan records his first career albatross at ${course.name}!` : `Albatross #${n} for Ryan`,
+            n === 1 ? ryanSay(phaseOf(c), `Ryan records {his} first career albatross at ${course.name}!`) : `Albatross #${n} for Ryan`,
             `A ${s} on ${where} in round ${ri + 1} of the ${r.def.name}. It's in the record book for good.`,
             'good',
           );

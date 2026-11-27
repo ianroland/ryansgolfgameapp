@@ -12,6 +12,8 @@ import { SEASON_WEEKS } from '../career/config';
 import type { Effects } from '../career/stories';
 import type { CareerState } from '../career/types';
 import type { Act, Expression, Pose, StoryState } from './types';
+import { ryanSay, type Phase } from './phase';
+import { ACT_TWO } from './actTwo';
 
 export interface Line {
   /** 'ryan', a cast id, or 'narrator'. */
@@ -51,6 +53,11 @@ export interface OutcomeDef {
   bonds?: Record<string, number>;
   /** Shown as a line under the summary: what changed. */
   changes: string;
+  /**
+   * Moves the story into this Act (never backwards). Unlocks that phase's approved look and puts
+   * Ryan in it; phase 3 (Act III on) is she/her everywhere (src/story/phase.ts).
+   */
+  act?: Act;
 }
 
 export interface EncounterDef {
@@ -59,7 +66,7 @@ export interface EncounterDef {
   /** One line for the hub card. */
   teaser: string;
   act: Act;
-  location: 'driving_range' | 'clubhouse_lounge';
+  location: 'driving_range' | 'clubhouse_lounge' | 'course_sunset';
   /** Cast in the scene besides Ryan. The first one stands opposite him. */
   cast: string[];
   /** Eligible to be offered (it's also never offered once completed). */
@@ -225,6 +232,7 @@ export const ENCOUNTERS: EncounterDef[] = [
       framed: { summary: 'Talked Biff into a museum for his gold clubs. The video went around.', tone: 'neutral', effects: { fame: 1, rel: { fans: 4 } }, bonds: { biff_fairway: -3 }, changes: 'Fame +1 · Fans ♥' },
     },
   },
+  ...ACT_TWO,
 ];
 
 export const encounterById = (id: string) => ENCOUNTERS.find((e) => e.id === id);
@@ -272,4 +280,16 @@ export function walkEncounter(def: EncounterDef, path: string[]): WalkResult {
 export function nextEncounter(c: CareerState, story: StoryState): EncounterDef | null {
   if (story.available) return null;
   return ENCOUNTERS.find((e) => !story.encounters[e.id] && e.act <= story.act && e.when(c, story)) ?? null;
+}
+
+/** The encounter with every player-facing string filled for Ryan's phase (`{his}`, `{Habibi}`…). */
+export function localizeEncounter(def: EncounterDef, phase: Phase): EncounterDef {
+  const t = (x: string) => ryanSay(phase, x);
+  const nodes = Object.fromEntries(Object.entries(def.nodes).map(([k, n]) => {
+    const lines = n.lines.map((l) => ({ ...l, text: t(l.text) }));
+    if ('choice' in n) return [k, { ...n, lines, choice: { prompt: t(n.choice.prompt), options: n.choice.options.map((o) => ({ ...o, label: t(o.label), hint: t(o.hint) })) } }];
+    return [k, { ...n, lines }];
+  })) as EncounterDef['nodes'];
+  const outcomes = Object.fromEntries(Object.entries(def.outcomes).map(([k, o]) => [k, { ...o, summary: t(o.summary), changes: t(o.changes) }]));
+  return { ...def, title: t(def.title), teaser: t(def.teaser), nodes, outcomes };
 }

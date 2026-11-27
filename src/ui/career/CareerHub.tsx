@@ -8,6 +8,7 @@ import { appearanceOf, storyOf } from '../../story/appearance';
 import { encounterById } from '../../story/encounters';
 import { RYAN_ID } from '../../story/cast';
 import { BABA_LOAN, BABA_LOAN_LINES, BABA_LOAN_STATUS } from '../../story/babaLoan';
+import { phaseOf, ryanSay } from '../../story/phase';
 import { portraitKey } from '../../story/sprites';
 import { AppearanceDialog } from '../story/AppearanceDialog';
 import { SpriteFrame } from '../story/Sprite';
@@ -107,7 +108,7 @@ export function BabaLoanCard() {
             ) : repay ? (
               <p className="baba-line">{BABA_LOAN_LINES.repayBody}</p>
             ) : (
-              BABA_LOAN_LINES.call.map((l) => <p key={l} className="baba-line">{l}</p>)
+              BABA_LOAN_LINES.call.map((l) => <p key={l} className="baba-line">{ryanSay(phaseOf(state.career), l)}</p>)
             )}
             <div className="baba-actions">
               {said ? (

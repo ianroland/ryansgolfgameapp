@@ -2,17 +2,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { sound } from '../../audio/sound';
 import { appearanceOf } from '../../story/appearance';
 import { characterById, RYAN_ID } from '../../story/cast';
-import { encounterById, type EncounterNode, type Line } from '../../story/encounters';
+import { encounterById, localizeEncounter, type EncounterNode, type Line } from '../../story/encounters';
+import { phaseOf } from '../../story/phase';
 import { poseFrames, portraitKey } from '../../story/sprites';
 import type { Expression, Pose } from '../../story/types';
 import drivingRange from '../../assets/scenes/driving_range.webp';
 import clubhouseLounge from '../../assets/scenes/clubhouse_lounge.webp';
+import courseSunset from '../../assets/backgrounds/bg_city_sunset.webp';
 import { useBlocking } from '../blocking';
 import { useGame } from '../GameContext';
 import { DriveChallenge, PuttChallenge } from './Challenge';
 import { SpriteFrame } from './Sprite';
 
-const BACKGROUNDS = { driving_range: drivingRange, clubhouse_lounge: clubhouseLounge };
+const BACKGROUNDS = { driving_range: drivingRange, clubhouse_lounge: clubhouseLounge, course_sunset: courseSunset };
 const TYPE_MS = 22;
 
 type Phase = 'lines' | 'choice' | 'challenge' | 'summary';
@@ -56,7 +58,8 @@ function RyanActor({ pose, talking, expr, height, look }: { pose: Pose; talking:
 export function EncounterScene({ id, onClose }: { id: string; onClose: () => void }) {
   const { state, services, run, refresh } = useGame();
   const c = state.career;
-  const def = encounterById(id)!;
+  // Ryan's pronouns and Baba's pet name follow the phase the scene plays in.
+  const def = useMemo(() => localizeEncounter(encounterById(id)!, phaseOf(c)), [id, c]);
   const look = appearanceOf(c);
   const [nodeId, setNodeId] = useState(def.start);
   const [lineIdx, setLineIdx] = useState(0);
@@ -186,6 +189,11 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
   };
 
   const speaker = line?.who ?? 'narrator';
+  // With two cast members, whoever speaks steps in opposite Ryan (the first one otherwise).
+  const [onStage, setOnStage] = useState(opponent);
+  useEffect(() => {
+    if (def.cast.includes(speaker) && speaker !== onStage) setOnStage(speaker);
+  }, [speaker, onStage, def.cast]);
   const speakerDef = speaker === RYAN_ID ? { short: 'Ryan', color: '#1d3f8a' } : characterById(speaker);
   const balance = state.balance;
   const ending = 'outcome' in node;
@@ -205,7 +213,7 @@ export function EncounterScene({ id, onClose }: { id: string; onClose: () => voi
         </header>
         <div className="enc-stage" style={stage}>
           <RyanActor pose={poses[RYAN_ID] ?? 'idle'} talking={typing && speaker === RYAN_ID} expr={speaker === RYAN_ID ? line?.expr : undefined} height={130} look={look} />
-          <Actor who={opponent} side="right" pose={poses[opponent] ?? 'idle'} talking={typing && speaker === opponent} height={128} look={look} />
+          <Actor key={onStage} who={onStage} side="right" pose={poses[onStage] ?? 'idle'} talking={typing && speaker === onStage} height={128} look={look} />
         </div>
         <div className="enc-box">
           {error ? (

@@ -21,7 +21,7 @@ export const BABA_LOAN_LINES = {
   cardBody: 'The bank is nearly empty. Baba said once: call if it ever gets bad. You can ask him for $500, one time.',
   call: [
     'He picks up on the second ring. He always does.',
-    '"Habibi. You only call this late when something’s broken. The car or the bank?"',
+    '"{Habibi}. You only call this late when something’s broken. The car or the bank?"',
     '"Five hundred. Once. I’m a groundskeeper, not a bank."',
     '"And eat something. Real food. Not those bars."',
   ],
