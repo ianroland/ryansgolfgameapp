@@ -1,7 +1,7 @@
 {
   "name": "ryans-road-to-the-lpga",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,9 @@
     "build:single": "tsc --noEmit && SINGLE=1 vite build",
     "build:site": "tsc --noEmit && vite build --outDir dist-site/play --emptyOutDir && node scripts/build-site.mjs",
     "preview:site": "npx --yes serve dist-site -l 4173",
-    "lore:export": "npx --yes vite-node scripts/export-sports-lore.ts"
+    "lore:export": "npx --yes vite-node scripts/export-sports-lore.ts",
+    "desktop": "npm run build && electron .",
+    "desktop:dist": "npm run build && electron-builder"
   },
   "dependencies": {
     "@fontsource/jersey-15": "^5.3.0",
@@ -29,10 +31,61 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
+    "electron": "^45.5.0",
+    "electron-builder": "^26.18.0",
     "fake-indexeddb": "^6.2.8",
     "typescript": "^7.0.2",
     "vite": "^8.3.8",
     "vite-plugin-singlefile": "^2.3.4",
     "vitest": "^5.1.1"
+  },
+  "main": "desktop/main.cjs",
+  "description": "Ryan's Road to the LPGA",
+  "build": {
+    "appId": "com.tinymana.ryansroad",
+    "productName": "Ryans Road to the LPGA",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**/*",
+      "package.json",
+      "!**/node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "dist",
+        "to": "game"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "signAndEditExecutable": false,
+      "executableName": "RyansRoad"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.sports-games"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "dir"
+      ],
+      "category": "Game",
+      "executableName": "ryans-road"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "icon": "build/icon.png",
+    "artifactName": "RyansRoad-${version}-${os}-${arch}.${ext}",
+    "publish": null
   }
 }

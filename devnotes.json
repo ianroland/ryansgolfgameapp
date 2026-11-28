@@ -2,6 +2,17 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "1.1.0",
+   "date": "2026-11-27",
+   "title": "Desktop app",
+   "items": [
+    {
+     "tag": "new",
+     "text": "Ryan's Road now runs as a desktop app (Windows, Mac and Linux). Saves stay on your computer between runs, F11 or Alt+Enter toggles fullscreen, and the window remembers its size. It's the first step toward Steam."
+    }
+   ]
+  },
+  {
    "version": "1.0.3",
    "date": "2026-11-27",
    "title": "Pacing pass: story, money and looks",

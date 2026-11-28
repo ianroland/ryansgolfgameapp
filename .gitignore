@@ -6,3 +6,5 @@ dist-site
 .DS_Store
 broadcast-lab-output
 cutins-lab-output
+release
+playthrough-lab-output
