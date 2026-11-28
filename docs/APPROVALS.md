@@ -18,3 +18,6 @@ Approved by the owner with "approve all let's get this to mvp to final release":
 
 ## 2026-11-27 — "change mom to Baba" (owner)
 - The major scene is now Baba at the Major (Baba and Jordan). Mom no longer appears in it, and the no-art "voice" speaker is unused.
+
+## 2026-11-27: welcome letter (owner)
+- The opening welcome letter (src/career/engine.ts, newCareerState) stays exactly as written, including its last line. Owner: "Welcome letter does not change." Don't flag it again.
