@@ -73,6 +73,11 @@ export interface SkinsMatch {
   seed: number;
   /** Ryan's rating when he teed off (fixed for the match). */
   rating: number;
+  /**
+   * The members' ratings for this match (1.0.3): they raise their game when a better Ryan
+   * shows up, so a course stays a contest as Ryan improves. Missing on older matches: base.
+   */
+  rivalRatings?: number[];
   stake: number;
   /** Player ids: 'ryan' first, then the rivals. */
   players: string[];
@@ -98,10 +103,15 @@ export const skinValue = (m: SkinsMatch) => m.stake * m.players.length;
 export const buyIn = (m: Pick<SkinsMatch, 'stake'>) => m.stake * SKINS_HOLES;
 export const payoutOf = (m: SkinsMatch, i = 0) => m.skins[i] * skinValue(m);
 
+/** Share of Ryan's lead over a member's base rating that the member closes for the match. */
+export const RIVAL_CATCH_UP = 0.7;
+export const rivalRating = (base: number, ryan: number) => Math.round(base + Math.max(0, ryan - base) * RIVAL_CATCH_UP);
+
 export function newMatch(id: string, loc: LocationId, seed: number, rating: number): SkinsMatch {
   const course = courseAt(loc);
   const players = ['ryan', ...course.rivals.map((r) => r.id)];
-  return { id, location: loc, seed, rating, stake: course.stake, players, scores: players.map(() => []), skins: players.map(() => 0), carry: 1, styles: [], log: [], done: false, v: 1 };
+  const rivalRatings = course.rivals.map((r) => rivalRating(r.rating, rating));
+  return { id, location: loc, seed, rating, rivalRatings, stake: course.stake, players, scores: players.map(() => []), skins: players.map(() => 0), carry: 1, styles: [], log: [], done: false, v: 1 };
 }
 
 /** One player's strokes on hole `i` of the match (deterministic for the seed, player, hole and style). */
@@ -109,7 +119,7 @@ export function strokesFor(m: SkinsMatch, who: number, i: number, style: SkinsSt
   const r = rng(m.seed ^ hashString(`${m.players[who]}:${i}`));
   const par = parOf(m, i);
   const wind = r.next() * 12;
-  const rating = who === 0 ? m.rating : courseAt(m.location).rivals[who - 1].rating;
+  const rating = who === 0 ? m.rating : m.rivalRatings?.[who - 1] ?? courseAt(m.location).rivals[who - 1].rating;
   if (style === 'safe') return Math.min(par + 1, simHole(par, rating - 5, r, wind));
   if (style === 'aggressive') {
     const s = simHole(par, rating + 9, r, wind);

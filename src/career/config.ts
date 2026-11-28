@@ -79,7 +79,7 @@ export const TOURS: Record<TourId, TourConfig> = {
 
 export type QStage = 1 | 2 | 3;
 export const QSCHOOL: Record<QStage, { name: string; week: number; entryFee: number; ratingShift: number; advanceFraction: number }> = {
-  1: { name: 'Q-School · First Stage', week: 20, entryFee: 3500, ratingShift: -4, advanceFraction: 0.35 },
+  1: { name: 'Q-School · First Stage', week: 20, entryFee: 2000, ratingShift: -4, advanceFraction: 0.35 },
   2: { name: 'Q-School · Second Stage', week: 24, entryFee: 0, ratingShift: 0, advanceFraction: 0.3 },
   3: { name: 'Q-School · Final Stage', week: 28, entryFee: 0, ratingShift: 1, advanceFraction: 0 },
 };

@@ -2,6 +2,49 @@
  "_howto": "Newest first. Add an entry at the top each time you push an update; the website and the in-game 'What's new' both read this file. tag: new | improved | fixed.",
  "notes": [
   {
+   "version": "1.0.3",
+   "date": "2026-11-27",
+   "title": "Pacing pass: story, money and looks",
+   "items": [
+    {
+     "tag": "improved",
+     "text": "Ryan goes bald when Act II starts (phase 2), and phase 3's look still arrives with Act III. Saves already in Act II switch once on load. You can still pick any look you've unlocked."
+    },
+    {
+     "tag": "fixed",
+     "text": "In phase 3 the SoCal Pro Series is a women's field, like the rest of Ryan's tour."
+    },
+    {
+     "tag": "new",
+     "text": "Two new Act I scenes so the amateur and mini-tour seasons aren't quiet: The Cart Barn (cart number nine pulls left, into the pond) and Six A.M. at the Range (Kayla got there first, with a putting challenge)."
+    },
+    {
+     "tag": "improved",
+     "text": "Act II is spread across a season on the road instead of ten weeks. The Next Chapter comes late in the season, once Ryan has Korn Ferry status or has spent a full year on the road. Act III scenes are three weeks apart."
+    },
+    {
+     "tag": "new",
+     "text": "New scenes for the slow stretches: Again (after a missed LPGA Q-School), Small Towns (a second Epson Tour year, and a water tower an eight-iron away) and The Booth (a rain delay in the TV booth with the confidently wrong commentators). Act IV now spreads through the season, with at most one scene a week."
+    },
+    {
+     "tag": "improved",
+     "text": "Q-School First Stage now costs $2,000 (was $3,500), so the first try comes sooner."
+    },
+    {
+     "tag": "new",
+     "text": "Dry Creek Muni Fund (Real Estate → Muni Fund): six projects at the muni, from new flagsticks ($5,000) to a carpet-free clubhouse ($300,000). Each has a small perk and a word from Baba, and you'll see them on your muni rounds after Rytirement."
+    },
+    {
+     "tag": "improved",
+     "text": "Skins members raise their game against a stronger Ryan, so the private courses stay a contest."
+    },
+    {
+     "tag": "improved",
+     "text": "Encounter cards show the right pronouns in titles and teasers."
+    }
+   ]
+  },
+  {
    "version": "1.0.2",
    "date": "2026-11-27",
    "title": "What fits, running gags, poker sounds",

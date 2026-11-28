@@ -69,3 +69,18 @@ describe('skins service', () => {
     expect(keys.filter((e) => e.idempotencyKey.endsWith(':pay')).length).toBeLessThanOrEqual(1);
   });
 });
+
+describe('members raise their game', () => {
+  it('a stronger Ryan faces stronger members, but never weaker than their base', async () => {
+    const { rivalRating } = await import('../src/expansion/skins');
+    expect(rivalRating(60, 40)).toBe(60);
+    expect(rivalRating(60, 80)).toBe(74);
+    const m = newMatch('m', 'desert_palms', 1, 80);
+    expect(m.rivalRatings).toEqual(courseAt('desert_palms').rivals.map((r) => rivalRating(r.rating, 80)));
+    // Over many matches a much stronger Ryan still wins well under all nine skins on average.
+    let won = 0;
+    for (let seed = 1; seed <= 100; seed++) won += playOut(newMatch('m', 'desert_palms', seed, 80)).skins[0];
+    expect(won / 100).toBeLessThan(6);
+    expect(won / 100).toBeGreaterThan(2.25);
+  });
+});

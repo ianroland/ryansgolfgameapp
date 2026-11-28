@@ -46,10 +46,10 @@ describe('phase 3: The Next Chapter opens Act III and the LPGA ladder', () => {
     expect(ladderAt(c, c.season, c.week)).toBe('lpga');
   });
 
-  it("the ladder becomes women's fields with Kayla in them; amateur and mini stay as they were", async () => {
+  it("the ladder and the SoCal Pro Series become women's fields with Kayla on the ladder; amateur stays as it was", async () => {
     const { before, c } = await toActThree();
     const women = new Set<string>(FIRST_NAMES.women);
-    for (const t of ['qschool', 'epson', 'lpga'] as const) {
+    for (const t of ['mini', 'qschool', 'epson', 'lpga'] as const) {
       expect(isMensTour(t, 3)).toBe(false);
       expect(c.pools[t].length).toBeGreaterThan(10);
       for (const g of c.pools[t]) if (g.id !== RIVAL.id) {
@@ -60,8 +60,8 @@ describe('phase 3: The Next Chapter opens Act III and the LPGA ladder', () => {
     expect(ladderIds(c)).toContain(RIVAL.id);
     expect(new Set(ladderIds(c)).size).toBe(ladderIds(c).length);
     expect(c.pools.amateur).toEqual(before.pools.amateur);
-    expect(c.pools.mini).toEqual(before.pools.mini);
-    expect(isMensTour('mini', 3)).toBe(true);
+    expect(c.pools.mini.length).toBe(before.pools.mini.length);
+    expect(isMensTour('amateur', 3)).toBe(true);
   });
 
   it('season ladder money lists start fresh; the all-time list trades the PGA ladder for the new golfers', async () => {
@@ -89,7 +89,7 @@ describe('phase 3: The Next Chapter opens Act III and the LPGA ladder', () => {
 describe('Act III: The Rookie', () => {
   it('the scenes follow in order and all play in Act III', async () => {
     const { ACT_THREE } = await import('../src/story/actThree');
-    expect(ACT_THREE.map((d) => d.id)).toEqual(['act3_fresh_start', 'act3_biff_ally', 'act3_qschool_doug', 'act3_have_we_met', 'act3_not_for_the_public', 'act3_butter_classic', 'act3_the_card']);
+    expect(ACT_THREE.map((d) => d.id)).toEqual(['act3_fresh_start', 'act3_biff_ally', 'act3_qschool_doug', 'act3_have_we_met', 'act3_not_for_the_public', 'act3_butter_classic', 'act3_again', 'act3_small_towns', 'act3_the_card']);
     for (const d of ACT_THREE) expect(d.act).toBe(3);
   });
 
@@ -128,7 +128,7 @@ describe('Act III: The Rookie', () => {
 describe('Act IV: The Major', () => {
   it('the shippable scenes play in order on the LPGA Tour', async () => {
     const { ACT_FOUR } = await import('../src/story/actFour');
-    expect(ACT_FOUR.map((d) => d.id)).toEqual(['act4_big_leagues', 'act4_corkboard', 'act4_desert_rose', 'act4_kayla_knows', 'act4_lake_ryan', 'act4_baba_at_the_major', 'act4_reading_the_green', 'act4_championship_sunday', 'act4_championship_sunday_next_year']);
+    expect(ACT_FOUR.map((d) => d.id)).toEqual(['act4_big_leagues', 'act4_corkboard', 'act4_desert_rose', 'act4_kayla_knows', 'act4_lake_ryan', 'act4_the_booth', 'act4_baba_at_the_major', 'act4_reading_the_green', 'act4_championship_sunday', 'act4_championship_sunday_next_year']);
     for (const d of ACT_FOUR) expect(d.act).toBe(4);
   });
 

@@ -18,7 +18,7 @@ import { TrophyPanel } from './screens/TrophyPanel';
 import { TrophyDetails } from './screens/TrophyDetails';
 import { CareerHub } from './career/CareerHub';
 import { SchedulePanel } from './career/SchedulePanel';
-import { ListingsPanel, ShopPanel } from './career/ShopPanel';
+import { ListingsPanel, MuniFundPanel, ShopPanel } from './career/ShopPanel';
 import { MUNI_EVENT, MuniRound } from './tournament/MuniRound';
 import { PeoplePanel } from './career/PeoplePanel';
 import { StoryDialog } from './career/StoryDialog';
@@ -39,7 +39,7 @@ import { ShownBalance } from './casino/ShownBalance';
 /** The Sports History Board loads on first open (its archive is several MB). */
 
 /** Clubhouse sub-screens. */
-export type Screen = 'home' | 'listings' | 'store' | 'edit' | 'trophies';
+export type Screen = 'home' | 'listings' | 'muni' | 'store' | 'edit' | 'trophies';
 type Tab = 'career' | 'schedule' | 'legacy' | 'shop' | 'people' | 'clubhouse' | 'casino';
 
 const TABS: { id: Tab; label: string }[] = [
@@ -55,6 +55,7 @@ const TABS: { id: Tab; label: string }[] = [
 const SUBSCREENS: { id: Screen; label: string }[] = [
   { id: 'home', label: 'Overview' },
   { id: 'listings', label: 'Listings' },
+  { id: 'muni', label: 'Muni Fund' },
   { id: 'store', label: 'Furniture' },
   { id: 'edit', label: 'Edit Room' },
   { id: 'trophies', label: 'Trophies' },
@@ -262,6 +263,7 @@ export function App() {
                 </nav>
                 {screen === 'home' && <HomePanel go={go} />}
                 {screen === 'listings' && <ListingsPanel />}
+                {screen === 'muni' && <MuniFundPanel />}
                 {screen === 'store' && <StorePanel go={go} />}
                 {screen === 'edit' && edit && (
                   <EditRoomPanel

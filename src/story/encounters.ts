@@ -13,6 +13,7 @@ import type { Effects } from '../career/stories';
 import type { CareerState } from '../career/types';
 import type { Act, Expression, Pose, StoryState } from './types';
 import { ryanSay, type Phase } from './phase';
+import { ACT_ONE } from './actOne';
 import { ACT_TWO } from './actTwo';
 import { ACT_THREE } from './actThree';
 import { ACT_FOUR } from './actFour';
@@ -251,6 +252,7 @@ export const ENCOUNTERS: EncounterDef[] = [
       framed: { summary: 'Talked Biff into a museum for his gold clubs. The video went around.', tone: 'neutral', effects: { fame: 1, rel: { fans: 4 } }, bonds: { biff_fairway: -3 }, changes: 'Fame +1 · Fans ♥' },
     },
   },
+  ...ACT_ONE,
   ...ACT_TWO,
   ...ACT_THREE,
   ...ACT_FOUR,
@@ -300,7 +302,10 @@ export function walkEncounter(def: EncounterDef, path: string[]): WalkResult {
 /** The next encounter to offer, if one is eligible and none is waiting. */
 export function nextEncounter(c: CareerState, story: StoryState): EncounterDef | null {
   if (story.available) return null;
-  return ENCOUNTERS.find((e) => !e.during && !story.encounters[e.id] && e.act <= story.act && e.when(c, story)) ?? null;
+  // One week scene per week (between-rounds scenes and Championship Sunday don't count, and
+  // Championship Sunday is never held back).
+  const busyWeek = Object.entries(story.encounters).some(([id, r]) => r.season === c.season && r.week === c.week && !ENCOUNTERS.find((e) => e.id === id)?.during);
+  return ENCOUNTERS.find((e) => !e.during && !story.encounters[e.id] && e.act <= story.act && (!busyWeek || e.id.startsWith('act4_championship_sunday')) && e.when(c, story)) ?? null;
 }
 
 /** A between-rounds scene for the tournament in progress, if one is due. */

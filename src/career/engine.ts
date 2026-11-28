@@ -860,9 +860,9 @@ export function resolveEncounter(prev: CareerState, id: string, path: string[], 
     const hair = HAIR_OF_PHASE[phaseOfAct(out.act)];
     c.story.act = out.act;
     if (!c.story.hairUnlocked.includes(hair)) c.story.hairUnlocked = [...c.story.hairUnlocked, hair];
-    // Phase 3 is a new chapter for Ryan, so the look changes with it; in phase 2 the bald look is
-    // unlocked for the player to choose.
-    if (phaseOfAct(out.act) === 3) c.appearance = { hair, hat: phaseHat(hair) };
+    // Each phase is a new chapter for Ryan, so the look changes with it: bald in phase 2 (Act II),
+    // the phase 3 look from Act III (owner, 2026-11-27). Earlier looks stay unlocked.
+    if (phaseOfAct(out.act) > phaseOfAct(story.act)) c.appearance = { hair, hat: phaseHat(hair) };
     if (phaseOfAct(out.act) === 3 && phaseOfAct(story.act) < 3) enterLpgaLadder(c);
   }
   const say = (x: string) => ryanSay(phaseOf(prev), x);

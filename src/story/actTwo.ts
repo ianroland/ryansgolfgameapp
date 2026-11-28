@@ -7,6 +7,7 @@
  * Baba's art: src/assets/characters/baba.png (cut by tools/cut_baba.py from the author's sheet).
  */
 import type { CareerState } from '../career/types';
+import { playerRating } from '../career/stats';
 import type { EncounterDef } from './encounters';
 import type { StoryState } from './types';
 
@@ -91,7 +92,7 @@ export const ACT_TWO: EncounterDef[] = [
     act: 2,
     location: 'clubhouse_lounge',
     cast: ['sponsor_dawson', 'biff_fairway'],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_motel_six_iron') >= 2,
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_motel_six_iron') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -171,7 +172,7 @@ export const ACT_TWO: EncounterDef[] = [
     act: 2,
     location: 'course_sunset',
     cast: ['kayla_brooks'],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_the_sponsor') >= 2,
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_the_sponsor') >= 5,
     start: 'start',
     nodes: {
       start: {
@@ -244,7 +245,7 @@ export const ACT_TWO: EncounterDef[] = [
     act: 2,
     location: 'course_sunset',
     cast: ['commissioner_clipboard'],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_rain_delay') >= 2,
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_rain_delay') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -321,7 +322,7 @@ export const ACT_TWO: EncounterDef[] = [
     act: 2,
     location: 'driving_range',
     cast: ['baba'],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_monday_goose') >= 1,
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_monday_goose') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -413,7 +414,7 @@ export const ACT_TWO: EncounterDef[] = [
     act: 2,
     location: 'clubhouse_lounge',
     cast: [],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_sunday_dinner') >= 1,
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_sunday_dinner') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -459,7 +460,7 @@ export const ACT_TWO: EncounterDef[] = [
     act: 2,
     location: 'clubhouse_lounge',
     cast: ['kayla_brooks', 'biff_fairway'],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_rain_delay') >= 4 && since(c, s, 'act2_sunday_dinner') >= 1,
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_rain_delay') >= 10 && since(c, s, 'act2_the_signature') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -531,7 +532,9 @@ export const ACT_TWO: EncounterDef[] = [
     act: 2,
     location: 'driving_range',
     cast: ['baba'],
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_helicopter_dinner') >= 1,
+    // Halfway through the wait for The Next Chapter, not right after the helicopter.
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_helicopter_dinner') >= 4
+      && (c.tourCard === 'epson' || c.tourCard === 'lpga' || playerRating(c) >= 57 || since(c, s, 'act2_motel_six_iron') >= 50),
     start: 'start',
     nodes: {
       start: {
@@ -581,7 +584,10 @@ export const ACT_TWO: EncounterDef[] = [
     location: 'course_sunset',
     cast: ['baba'],
     // The Act II finale (owner-approved draft, 2026-11-27). It opens Act III and the LPGA ladder.
-    when: (c, s) => s.act === 2 && since(c, s, 'act2_helicopter_dinner') >= 2,
+    // It comes late in a season on the road, once Ryan has Korn Ferry status or the game to chase the
+    // LPGA (rating 60), or two years after Act II began (1.0.3 pacing, from the playthrough bot).
+    when: (c, s) => s.act === 2 && since(c, s, 'act2_six_am_call') >= 4 && c.week >= 22
+      && (c.tourCard === 'epson' || c.tourCard === 'lpga' || playerRating(c) >= 60 || since(c, s, 'act2_motel_six_iron') >= 2 * SEASON),
     start: 'start',
     nodes: {
       start: {

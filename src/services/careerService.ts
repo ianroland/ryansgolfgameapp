@@ -13,6 +13,7 @@ import { achievementById } from '../career/achievements';
 import { gameDate, PLAYER_ID, PLAYER_NAME, START_MONEY } from '../career/config';
 import { reconcileFieldPools } from '../career/field';
 import * as engine from '../career/engine';
+import { phaseHat } from '../story/appearance';
 import { CareerRuleError, type ActionId, type Outcome } from '../career/engine';
 import { activeCourse, completeRound, finalizeTournament, findTournament, type TournamentResult } from '../career/tournament';
 import { albatrossId, isAlbatross } from '../records/albatross';
@@ -133,8 +134,13 @@ export class CareerService {
       const c = await this.db.careers.get('career');
       if (!c) return false;
       const next = reconcileFieldPools(c.pools, Number(c.flags?.seed ?? 0), 'current', phaseOf(c));
-      if (!next) return false;
-      await this.db.careers.put({ ...c, pools: next });
+      // Saves already in Act II from before 1.0.3 kept the curly look: phase 2 is bald (once).
+      const lookFix = phaseOf(c) === 2 && c.appearance?.hair === 'curly' && !c.flags.phase2Look;
+      if (!next && !lookFix) return false;
+      await this.db.careers.put({
+        ...c, pools: next ?? c.pools,
+        ...(lookFix ? { appearance: { hair: 'bald', hat: phaseHat('bald') }, flags: { ...c.flags, phase2Look: true } } : {}),
+      });
       return true;
     });
   }

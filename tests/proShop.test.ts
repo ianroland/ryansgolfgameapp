@@ -39,3 +39,20 @@ describe('snacks', () => {
     expect(energyRegen(with_, 0) - energyRegen(c, 0)).toBe(3);
   });
 });
+
+describe('Dry Creek Muni Fund', () => {
+  it('projects are bought once, gated by fame, and their perks count like lifestyle items', async () => {
+    const { MUNI_PROJECTS, MUNI_LINES } = await import('../src/career/shop');
+    const { s } = await newCareer();
+    const p = MUNI_PROJECTS[1];
+    await expect(s.career.buyLifestyle(p.id)).rejects.toThrow(/fame/i);
+    const c0 = await s.career.getCareer();
+    await s.db.careers.put({ ...c0, fame: 60 });
+    await s.economy.post({ ownerId: RYAN, amount: 1_000_000, type: 'job_wage', sourceId: 't', idempotencyKey: 'muni-bank' });
+    const before = energyRegen(await s.career.getCareer(), 0);
+    await s.career.buyLifestyle(p.id);
+    await expect(s.career.buyLifestyle(p.id)).rejects.toThrow();
+    expect(energyRegen(await s.career.getCareer(), 0) - before).toBe(3);
+    for (const x of MUNI_PROJECTS) expect(MUNI_LINES[x.id]).toBeTruthy();
+  });
+});

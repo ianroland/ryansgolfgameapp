@@ -2,7 +2,7 @@
 import type { StatKey } from './types';
 
 export type GearSlot = 'driver' | 'irons' | 'wedges' | 'putter';
-export type LifestyleKind = 'car' | 'caddie' | 'coach' | 'accessory';
+export type LifestyleKind = 'car' | 'caddie' | 'coach' | 'accessory' | 'muni';
 
 export interface GearItem {
   id: string;
@@ -70,6 +70,28 @@ export const LIFESTYLE: LifestyleItem[] = [
   { id: 'acc_massage', kind: 'accessory', name: 'Massage Gun', price: 300, minFame: 0, description: 'Sounds like a jackhammer, feels like a vacation. +3 energy a week.', energyRegen: 3 },
 ];
 
+/**
+ * The Dry Creek Muni Fund (1.0.3): late-game projects at the muni where it all started. Each is
+ * bought once (from Real Estate → Muni Fund), keeps a small perk like any lifestyle item, and gets
+ * a line from Baba. A place for LPGA money to go that means something.
+ */
+export const MUNI_PROJECTS: LifestyleItem[] = [
+  { id: 'muni_flagsticks', kind: 'muni', name: 'New Flagsticks', price: 5_000, minFame: 25, description: 'Eighteen new flags. Baba keeps the old ones “for parts.” +1 Nerve in tournaments.', tournamentBonus: { nerve: 1 } },
+  { id: 'muni_cart_barn', kind: 'muni', name: 'Cart Barn Roof', price: 15_000, minFame: 30, description: 'It stops raining inside the cart barn. Cart number nine still pulls left. +3 energy a week.', energyRegen: 3 },
+  { id: 'muni_irrigation', kind: 'muni', name: 'Irrigation System', price: 40_000, minFame: 35, description: 'The fairways turn green in August for the first time since 1994. Training gains +5%.', trainingBoost: 0.05 },
+  { id: 'muni_practice_green', kind: 'muni', name: 'Baba’s Practice Green', price: 90_000, minFame: 40, description: 'Rebuilt to tour speed, to Baba’s exact specifications, which he will not write down. +2 Putting in tournaments.', tournamentBonus: { putting: 2 } },
+  { id: 'muni_junior_program', kind: 'muni', name: 'Junior Golf Program', price: 150_000, minFame: 45, description: 'Free clubs and lessons for kids. Baba teaches the six a.m. session. +4 energy a week, Fans ♥.', energyRegen: 4 },
+  { id: 'muni_clubhouse', kind: 'muni', name: 'The New Clubhouse', price: 300_000, minFame: 50, description: 'No carpet. Baba checked. Training gains +10%.', trainingBoost: 0.1 },
+];
+export const MUNI_LINES: Record<string, string> = {
+  muni_flagsticks: 'Flags. Good. The old ones had holes. Not the good kind of holes.',
+  muni_cart_barn: 'A roof. Now when it rains I have to find another reason to complain.',
+  muni_irrigation: 'Green in August. I don’t know what to do with myself. I’ll mow it twice.',
+  muni_practice_green: 'Eleven on the stimp. Don’t tell anyone. Let them think it’s a normal green.',
+  muni_junior_program: 'Twelve kids at six a.m. Three of them hold the putter upside down. I like those three.',
+  muni_clubhouse: 'I walked in. No carpet. I walked out. Then I walked in again, just to feel it.',
+};
+
 /** Snacks & energy: used on the spot, a few per week. Never alcoholic. */
 export interface SnackItem {
   id: string;
@@ -98,4 +120,4 @@ export const STARTING_EQUIPMENT: Record<GearSlot, string> = {
 };
 
 export const gearById = (id: string) => GEAR.find((g) => g.id === id);
-export const lifestyleById = (id: string) => LIFESTYLE.find((l) => l.id === id);
+export const lifestyleById = (id: string) => LIFESTYLE.find((l) => l.id === id) ?? MUNI_PROJECTS.find((l) => l.id === id);

@@ -8,6 +8,7 @@ import { playerRating, shotModifiers } from '../../career/stats';
 import { getCourse } from '../../golf/courses';
 import { rng } from '../../golf/math';
 import { MUNI_COURSE_ID } from '../../career/engine';
+import { MUNI_PROJECTS } from '../../career/shop';
 import { appearanceOf, resolveLook } from '../../story/appearance';
 import { useGame } from '../GameContext';
 import { toPar } from '../format';
@@ -82,6 +83,10 @@ export function MuniRound({ onExit }: { onExit: () => void }) {
         <section className="hub-card between">
           <h2 className="hub-title">Dry Creek Muni</h2>
           <p>Where it all started. Baba mowed the practice green this morning in a pattern he says spells nothing. The starter waves you through.</p>
+          {(() => {
+            const done = MUNI_PROJECTS.filter((p) => c.owned.includes(p.id));
+            return done.length ? <p className="muted">The Muni Fund is everywhere you look: {done.map((p) => p.name).join(', ')}.</p> : null;
+          })()}
           <div className="btn-row">
             <button className="btn primary" onClick={() => setCount(9)} data-testid="muni-9">Play nine</button>
             <button className="btn" onClick={() => setCount(18)} data-testid="muni-18">Play eighteen</button>

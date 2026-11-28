@@ -2690,7 +2690,7 @@ img.chip-img { aspect-ratio: 1 / 1; height: auto; flex-shrink: 0; object-fit: co
 .pro-shop .shop-row { gap: 12px; }
 .ps-icon { flex: none; width: 56px; height: 56px; image-rendering: auto; filter: drop-shadow(0 2px 0 #0003); }
 .pro-shop .shop-row.is-selected .ps-icon { filter: drop-shadow(0 0 6px #ffd34d); }
-.ps-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px; }
 @media (max-width: 700px) { .ps-grid { grid-template-columns: minmax(0, 1fr); } .ps-title { font-size: 28px; } .ps-icon { width: 46px; height: 46px; } }
 .poker-hole > span { display: inline-block; }
 .poker-hole.n4 { transform: scale(0.6); }
@@ -2770,3 +2770,5 @@ button.poker-av { cursor: pointer; padding: 0; }
 .muni-card { display: flex; gap: 4px; flex-wrap: wrap; }
 .muni-card span { min-width: 24px; text-align: center; padding: 2px 4px; border-radius: 4px; background: #fffbe9; color: #1d1d2a; }
 .muni-card span.under { color: #c0392b; font-weight: bold; }
+.muni-head { background: linear-gradient(100deg, #1f4d2a 0%, #3f7a3a 55%, #8aa83a 100%); }
+.muni-baba { display: block; margin-top: 4px; font-style: italic; color: #b8f0c0; }

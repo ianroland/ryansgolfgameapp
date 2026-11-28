@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GEAR, LIFESTYLE, SNACKS, SNACKS_PER_WEEK, snackWeekKey, type GearSlot } from '../../career/shop';
+import { GEAR, LIFESTYLE, MUNI_LINES, MUNI_PROJECTS, SNACKS, SNACKS_PER_WEEK, snackWeekKey, type GearSlot } from '../../career/shop';
 import { ClubIcon, ItemIcon } from './ProShopIcons';
 import { STAT_LABELS, type StatKey } from '../../career/types';
 import { HOMES } from '../../catalog/properties';
@@ -246,6 +246,55 @@ export function ListingsPanel() {
           </div>
         </Dialog>
       )}
+    </main>
+  );
+}
+
+/** Real Estate → Muni Fund: late-game projects at Dry Creek Muni, each with a perk and a word from Baba. */
+export function MuniFundPanel() {
+  const { state, services, run, notify } = useGame();
+  const c = state.career;
+  const done = MUNI_PROJECTS.filter((p) => c.owned.includes(p.id)).length;
+  return (
+    <main className="shop pro-shop muni-fund" data-testid="muni-fund">
+      <header className="hub-card ps-head muni-head">
+        <div>
+          <h1 className="ps-title">Dry Creek Muni Fund</h1>
+          <p className="muted">Where it all started. {done} of {MUNI_PROJECTS.length} projects done. Baba has opinions about every one.</p>
+        </div>
+        <span className="subtab-bank">Bank: <b>{formatMoney(state.balance)}</b></span>
+      </header>
+      <section className="hub-card">
+        <ul className="list ps-grid">
+          {MUNI_PROJECTS.map((p) => {
+            const owned = c.owned.includes(p.id);
+            const lock = c.fame < p.minFame ? `Fame ${p.minFame}` : null;
+            return (
+              <li key={p.id} className={`list-row column shop-row ${owned ? 'is-selected' : ''}`} data-testid={`muni-${p.id}`}>
+                <ItemIcon id="home" />
+                <span className="shop-info">
+                  <b>{p.name}</b>
+                  <span className="muted">{p.description}</span>
+                  {owned && <span className="muni-baba">Baba: “{MUNI_LINES[p.id]}”</span>}
+                </span>
+                {owned ? <span className="pill gold">Done</span> : lock ? <span className="pill warn">{lock}</span> : (
+                  <button
+                    className="btn small primary"
+                    disabled={state.balance < p.price}
+                    onClick={async () => {
+                      const o = await run(() => services.career.buyLifestyle(p.id));
+                      if (o) notify({ kind: 'purchase', title: p.name, body: `Baba: “${MUNI_LINES[p.id]}”` });
+                    }}
+                    data-testid={`fund-${p.id}`}
+                  >
+                    Fund {formatMoney(p.price)}
+                  </button>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </main>
   );
 }

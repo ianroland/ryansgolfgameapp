@@ -307,7 +307,7 @@ function WeekCard({ onEnter }: { onEnter: (def: TournamentDef) => void }) {
       {confirmPro && (
         <Dialog title="Turn professional?" onClose={() => setConfirmPro(false)}>
           <p>
-            Pros play for prize money on the <b>{TOURS.mini.name}</b> and can enter <b>{tourName('qschool', ladderOf(c))}</b> (First Stage in week 20, $3,500 entry). You can&rsquo;t play amateur events again.
+            Pros play for prize money on the <b>{TOURS.mini.name}</b> and can enter <b>{tourName('qschool', ladderOf(c))}</b> (First Stage in week 20, $2,000 entry). You can&rsquo;t play amateur events again.
           </p>
           <p className="muted">Most players turn pro once their skills are in the high 40s and they have some money saved.</p>
           <div className="btn-row">
@@ -393,8 +393,8 @@ function EncounterCard({ onPlay }: { onPlay: (id: string) => void }) {
       </div>
       <div>
         <p className="enc-kicker">Encounter</p>
-        <h2 className="hub-title">{def.title}</h2>
-        <p className="muted">{def.teaser}</p>
+        <h2 className="hub-title">{ryanSay(phaseOf(state.career), def.title)}</h2>
+        <p className="muted">{ryanSay(phaseOf(state.career), def.teaser)}</p>
         <button className="btn primary" onClick={() => onPlay(def.id)} data-testid="encounter-play">Play scene ▸</button>
       </div>
     </section>

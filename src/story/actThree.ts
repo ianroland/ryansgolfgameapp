@@ -18,6 +18,8 @@ const since = (c: CareerState, s: StoryState, id: string) => {
   return r ? (c.season - r.season) * SEASON + (c.week - r.week) : -Infinity;
 };
 
+const done3 = (s: StoryState, id: string) => !!s.encounters[id];
+
 export const ACT_THREE: EncounterDef[] = [
   {
     id: 'act3_fresh_start',
@@ -91,7 +93,7 @@ export const ACT_THREE: EncounterDef[] = [
     act: 3,
     location: 'clubhouse_lounge',
     cast: ['biff_fairway', 'reporter_kim'],
-    when: (c, s) => s.act === 3 && since(c, s, 'act3_fresh_start') >= 2,
+    when: (c, s) => s.act === 3 && since(c, s, 'act3_fresh_start') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -158,7 +160,7 @@ export const ACT_THREE: EncounterDef[] = [
     act: 3,
     location: 'course_sunset',
     cast: ['marty_mulligan', 'commissioner_clipboard'],
-    when: (c, s) => s.act === 3 && since(c, s, 'act3_biff_ally') >= 2,
+    when: (c, s) => s.act === 3 && since(c, s, 'act3_biff_ally') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -227,7 +229,7 @@ export const ACT_THREE: EncounterDef[] = [
     act: 3,
     location: 'driving_range',
     cast: ['kayla_brooks'],
-    when: (c, s) => s.act === 3 && since(c, s, 'act3_qschool_doug') >= 2,
+    when: (c, s) => s.act === 3 && since(c, s, 'act3_qschool_doug') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -312,7 +314,7 @@ export const ACT_THREE: EncounterDef[] = [
     act: 3,
     location: 'driving_range',
     cast: ['baba', 'biff_fairway'],
-    when: (c, s) => s.act === 3 && since(c, s, 'act3_have_we_met') >= 2,
+    when: (c, s) => s.act === 3 && since(c, s, 'act3_have_we_met') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -374,7 +376,7 @@ export const ACT_THREE: EncounterDef[] = [
     act: 3,
     location: 'course_sunset',
     cast: ['reporter_kim'],
-    when: (c, s) => s.act === 3 && since(c, s, 'act3_not_for_the_public') >= 2,
+    when: (c, s) => s.act === 3 && since(c, s, 'act3_not_for_the_public') >= 4,
     start: 'start',
     nodes: {
       start: {
@@ -428,6 +430,95 @@ export const ACT_THREE: EncounterDef[] = [
       pie_won: { summary: 'Won the Tri-County Fair pie-tin putt. Sponsored by a cherry pie.', tone: 'good', effects: { fame: 3, form: 1 }, changes: 'Fame +3 · Form +1 · one cherry pie' },
       pie_lost: { summary: 'Putted into the pig race. Gerald won.', tone: 'neutral', effects: { fame: 1 }, changes: 'Fame +1 · Gerald ♥' },
       shade: { summary: 'Saved the butter trophy’s arm. Mostly.', tone: 'good', effects: { fame: 2, rel: { fans: 6 } }, changes: 'Fame +2 · Fans ♥' },
+    },
+  },
+  {
+    id: 'act3_again',
+    title: 'Again',
+    teaser: 'LPGA Q-School didn’t go {his} way. Baba has a word for it.',
+    act: 3,
+    location: 'driving_range',
+    cast: ['baba'],
+    when: (c, s) => s.act === 3 && c.qschool.result === 'failed' && c.qschool.season === c.season && done3(s, 'act3_fresh_start'),
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'The muni range, the Monday after Q-School. Baba has set out two buckets, two BOBO MILKYs and one opinion.' },
+          { who: 'ryan', expr: 'neutral', pose: 'talk', text: 'I didn’t make it, Baba.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'I know. I watched the website. I pressed refresh until the computer asked me to stop.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'You know what this is? Again. That’s all it is. Again is the most important word in golf. Also “fore.” Again is second.' },
+          { who: 'baba', expr: 'neutral', pose: 'give', text: 'Bucket. Then the other bucket. Then again.' },
+        ],
+        choice: {
+          prompt: 'Two buckets, two cartons.',
+          options: [
+            { id: 'buckets', label: 'Hit both buckets', hint: 'Form +2, Baba ♥', next: 'buckets' },
+            { id: 'talk', label: 'Sit with him a minute first', hint: 'Energy +8, Baba ♥', next: 'talk' },
+          ],
+        },
+      },
+      buckets: {
+        lines: [{ who: 'narrator', text: 'Two hundred balls. Baba counts every one out loud. At a hundred and fifty he says “better.” At two hundred he says “again,” and means next year.' }],
+        outcome: 'buckets',
+      },
+      talk: {
+        lines: [
+          { who: 'narrator', text: 'They sit on the bench behind the range. Baba tells the story of the year the irrigation flooded the 7th and he mowed it anyway. It has no point. It helps.' },
+        ],
+        outcome: 'talk',
+      },
+    },
+    outcomes: {
+      buckets: { summary: 'Missed the LPGA card at Q-School. Baba’s word for it: again. Two hundred balls.', tone: 'neutral', effects: { form: 2, rel: { mom: 4 } }, bonds: { baba: 6 }, changes: 'Form +2 · Baba ♥' },
+      talk: { summary: 'Missed the LPGA card at Q-School. Sat with Baba behind the range. It helped.', tone: 'neutral', effects: { energy: 8, rel: { mom: 4 } }, bonds: { baba: 6 }, changes: 'Energy +8 · Baba ♥' },
+    },
+  },
+  {
+    id: 'act3_small_towns',
+    title: 'Small Towns',
+    teaser: 'Another Epson Tour week. The sponsor is a water tower.',
+    act: 3,
+    location: 'course_sunset',
+    cast: ['baba', 'caddie_jordan'],
+    // For the year when the card doesn't come at the first try: the road goes on, and so does the story.
+    // A season on the Epson Tour, chasing the money list: it lands in the middle of that season.
+    when: (c, s) => s.act === 3 && done3(s, 'act3_butter_classic') && c.tourCard === 'epson' && c.qschool.result !== 'lpga'
+      && c.week >= 10 && since(c, s, 'act3_butter_classic') >= 6,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'Another season on the road. This week’s title sponsor is the town’s water tower, painted to look like a golf ball. It is the tallest thing for sixty miles.' },
+          { who: 'baba', expr: 'neutral', pose: 'think', text: 'From the first tee, that tower is an eight-iron. I measured.' },
+          { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'Please don’t hit the water tower.' },
+          { who: 'narrator', text: 'Biff calls. He would like to buy the town. The town would like Biff to stop calling.' },
+          { who: 'ryan', expr: 'neutral', pose: 'talk', text: 'Second year out here. Same motels, same cooler, same eight-iron to a water tower.' },
+          { who: 'baba', expr: 'neutral', pose: 'talk', text: 'Same Baba. That part you should be grateful for. The card comes when it comes. You keep making putts.' },
+        ],
+        choice: {
+          prompt: 'The town has a pie contest. Ryan has a tee time.',
+          options: [
+            { id: 'range', label: 'Range, then early night', hint: 'Form +1, Energy +5', next: 'range' },
+            { id: 'pie', label: 'Judge the pie contest', hint: 'Fans ♥, Fame +1', next: 'pie' },
+          ],
+        },
+      },
+      range: {
+        lines: [{ who: 'narrator', text: 'Ryan hits balls until the water tower turns pink in the sunset. Baba counts out loud. Nobody hits the tower.' }],
+        outcome: 'range',
+      },
+      pie: {
+        lines: [
+          { who: 'narrator', text: 'Ryan judges fourteen pies. Baba judges them again, privately, and files a dissent.' },
+          { who: 'baba', expr: 'neutral', pose: 'emphatic', text: 'The rhubarb was robbed.' },
+        ],
+        outcome: 'pie',
+      },
+    },
+    outcomes: {
+      range: { summary: 'A second year on the Epson Tour. A water tower an eight-iron away. Nobody hit it.', tone: 'good', effects: { form: 1, energy: 5 }, bonds: { baba: 4 }, changes: 'Form +1 · Energy +5' },
+      pie: { summary: 'Judged a small-town pie contest. Baba filed a dissent on the rhubarb.', tone: 'good', effects: { fame: 1, rel: { fans: 4 } }, bonds: { baba: 4 }, changes: 'Fans ♥ · Fame +1' },
     },
   },
   {

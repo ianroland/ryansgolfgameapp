@@ -46,7 +46,7 @@ describe('Act II: The Grind', () => {
     expect(due).toContain('act2_motel_six_iron');
   });
 
-  it('every ending of the opener moves the story to Act II and unlocks the bald look, without changing it', async () => {
+  it('every ending of the opener moves the story to Act II and switches Ryan to the bald look', async () => {
     for (const path of [['sign'], ['solo'], ['doug']]) {
       const { s } = await newCareer();
       await setCareer(s, (x) => {
@@ -58,7 +58,7 @@ describe('Act II: The Grind', () => {
       expect(storyOf(c).act).toBe(2);
       expect(phaseOf(c)).toBe(2);
       expect(storyOf(c).hairUnlocked).toEqual(['curly', 'bald']);
-      expect(appearanceOf(c).hair).toBe('curly');
+      expect(appearanceOf(c).hair).toBe('bald');
       expect(c.inbox[0].body).toMatch(/Act II begins/);
     }
   });

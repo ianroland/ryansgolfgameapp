@@ -219,7 +219,7 @@ export const ACT_FOUR: EncounterDef[] = [
     act: 4,
     location: 'driving_range',
     cast: ['kayla_brooks'],
-    when: (c, s) => onTour(c, s) && since(c, s, 'act4_corkboard') >= 3,
+    when: (c, s) => onTour(c, s) && since(c, s, 'act4_corkboard') >= 7,
     start: 'start',
     nodes: {
       start: {
@@ -287,7 +287,7 @@ export const ACT_FOUR: EncounterDef[] = [
     act: 4,
     location: 'course_sunset',
     cast: ['caddie_jordan', 'baba'],
-    when: (c, s) => onTour(c, s) && done(s, 'act4_desert_rose') && since(c, s, 'act4_desert_rose') >= 2,
+    when: (c, s) => onTour(c, s) && done(s, 'act4_kayla_knows') && since(c, s, 'act4_kayla_knows') >= 3 && c.week >= 12,
     start: 'start',
     nodes: {
       start: {
@@ -325,6 +325,55 @@ export const ACT_FOUR: EncounterDef[] = [
     outcomes: {
       ribbon: { summary: 'A tour stop named its pond Lake Ryan. Ryan cut the ribbon. A goose was in the photo.', tone: 'good', effects: { fame: 2, rel: { fans: 5 } }, bonds: { baba: 3 }, changes: 'Fans ♥ · Fame +2' },
       cart: { summary: 'A tour stop named its pond Lake Ryan. The cart stayed. Two ducks live in it.', tone: 'good', effects: { rel: { caddie: 6 } }, bonds: { caddie_jordan: 8 }, changes: 'Jordan ♥' },
+    },
+  },
+  {
+    id: 'act4_the_booth',
+    title: 'The Booth',
+    teaser: 'Rain delay. The network wants Ryan in the TV booth. The TV booth is not ready for Ryan.',
+    act: 4,
+    location: 'clubhouse_lounge',
+    cast: ['caddie_jordan'],
+    when: (c, s) => onTour(c, s) && c.week >= 21 && done(s, 'act4_lake_ryan') && since(c, s, 'act4_lake_ryan') >= 3,
+    start: 'start',
+    nodes: {
+      start: {
+        lines: [
+          { who: 'narrator', text: 'Rain delay. A network producer in a poncho asks if Ryan will sit in the TV booth “for a few minutes of colour.”' },
+          { who: 'narrator', text: 'The booth: Chip Halloway and Dale Brisket, forty combined years of being confidently wrong.' },
+          { who: 'narrator', text: 'Chip: “Folks, you can see the players have retreated to the clubhouse. Some of them are using umbrellas, which in golf we call a ‘brolly-gag.’”' },
+          { who: 'ryan', expr: 'neutral', pose: 'talk', text: 'We don’t call it that.' },
+          { who: 'narrator', text: 'Dale: “And there’s {his} caddie, Jordan, reading the rain. Jordan, what’s the break on that puddle?”' },
+          { who: 'caddie_jordan', expr: 'neutral', pose: 'talk', text: 'Two cups left. Firm. I wouldn’t putt it.' },
+          { who: 'narrator', text: 'Chip: “A local legend tells us the pond on fourteen is named after a golfer. Nobody knows who.”' },
+        ],
+        choice: {
+          prompt: 'The red light is on.',
+          options: [
+            { id: 'correct', label: 'Gently correct everything, on air', hint: 'Fame +2, Fans ♥', next: 'correct' },
+            { id: 'cook', label: 'Let them cook', hint: 'Form +1, Jordan ♥', next: 'cook' },
+          ],
+        },
+      },
+      correct: {
+        lines: [
+          { who: 'ryan', expr: 'happy', pose: 'talk', text: 'It’s an umbrella. That’s a puddle. And the pond is Lake Ryan. There’s a plaque. Good brass.' },
+          { who: 'narrator', text: 'Dale: “Fascinating. And who is Lake Ryan named after?”' },
+          { who: 'narrator', text: 'The clip runs on every highlight show that night. The network keeps the booth seat warm for {him}, “just in case it rains again.”' },
+        ],
+        outcome: 'correct',
+      },
+      cook: {
+        lines: [
+          { who: 'narrator', text: 'Ryan nods along for twenty minutes. Chip explains the “double eagle bogey.” Dale says the greens “roll like a dream, if the dream were about grass.”' },
+          { who: 'caddie_jordan', expr: 'happy', pose: 'talk', text: 'Best twenty minutes of television I’ve ever been in.' },
+        ],
+        outcome: 'cook',
+      },
+    },
+    outcomes: {
+      correct: { summary: 'Sat in the TV booth during a rain delay and corrected everything, on air. It went everywhere.', tone: 'good', effects: { fame: 2, rel: { fans: 5 } }, changes: 'Fame +2 · Fans ♥' },
+      cook: { summary: 'Sat in the TV booth during a rain delay and let Chip and Dale cook. Jordan loved it.', tone: 'good', effects: { form: 1 }, bonds: { caddie_jordan: 6 }, changes: 'Form +1 · Jordan ♥' },
     },
   },
   {
